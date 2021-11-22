@@ -4,32 +4,12 @@ use std::io::Read;
 use std::path::PathBuf;
 
 use clap::{App, Arg};
-use regex::Regex;
 
 mod doxygen;
-mod common;
+mod symregs;
 
-use common::parse_regs_common;
 use doxygen::parse_regs_doxygen;
-
-fn normalize_target(s: &str) -> &str {
-    // Apply remappings based on inconsistent file naming
-    match s {
-        "CFG" => "ICPU_CFG",
-        "DEV2G5" => "DEV1G",
-        "PCIE_EP" => "PCIE",
-        "PCS10G_BR" => "PCS_10GBASE_R",
-        "TWI2" => "TWI",
-        "UART2" => "UART",
-        "VAUI0" | "VAUI1" => "VAUI_CHANNEL",
-        "VCAP_ES0" | "VCAP_SUPER" => "VCAP_CORE",
-        "XGANA" => "SD10G65",
-        "XGDIG" => "SD10G65_DIG",
-        "XGKR0" | "XGKR1" => "KR_DEV1",
-        "XGXFI" => "XFI_SHELL",
-        _ => s,
-    }
-}
+use symregs::parse_symregs;
 
 #[derive(Debug)]
 pub struct Field {
@@ -83,30 +63,17 @@ fn main() -> Result<(), std::io::Error> {
     let mut path = PathBuf::from(mesa_root);
     path.push("base");
     path.push(family);
-    path.push(format!("vtss_{}_regs_common.h", subfamily));
-
-    // Read the top-level target list (where a "target" is a collection of
-    // register groups)
+    path.push(format!("vtss_{}_symregs.c", subfamily));
     let mut file = File::open(&path)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
-    let targets = parse_regs_common(&contents);
-    println!("{:#x?}", targets);
+    let (target_data, target_list) = parse_symregs(&contents);
     path.pop();
 
-    let re = Regex::new(r"^(.*)(_[0-9]+)$").unwrap();
     let mut seen_targets = HashSet::new();
     let mut out = HashMap::new();
-    for target in targets {
-        // Strip trailing "_[0-9]+" from targets with multiple instances
-        let base_target = if let Some(cap) = re.captures(&target.0) {
-            cap[1].to_owned()
-        } else {
-            target.0.clone()
-        };
-
-        // Apply remappings based on inconsistent file naming
-        let base_target = normalize_target(&base_target).to_owned();
+    for target in target_list {
+        let base_target = target.1.0;
 
         if seen_targets.insert(base_target.clone()) {
             path.push(format!(
@@ -114,7 +81,6 @@ fn main() -> Result<(), std::io::Error> {
                 subfamily,
                 base_target.to_lowercase()
             ));
-            println!("Opening {:?}", path);
             let mut file = File::open(&path)?;
             let mut contents = String::new();
             file.read_to_string(&mut contents)?;
