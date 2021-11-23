@@ -1,7 +1,7 @@
 use regex::Regex;
 use std::collections::HashMap;
 
-use crate::Address;
+use vsc7448_types::Address;
 
 // Represents a memory map for a particular Target
 // This map is indexed as target_map[register_group].1[register_name]

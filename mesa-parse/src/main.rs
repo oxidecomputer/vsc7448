@@ -4,46 +4,12 @@ use std::io::Read;
 use std::path::PathBuf;
 
 use clap::{App, Arg};
-use ron::ser::{to_string_pretty, PrettyConfig};
-use serde::Serialize;
 
 mod doxygen;
 mod symregs;
 
 use doxygen::parse_regs_doxygen;
 use symregs::parse_symregs;
-
-#[derive(Debug, Serialize)]
-pub struct Field {
-    brief: Option<String>,
-    details: Option<String>,
-    lo: usize,
-    hi: usize,
-}
-#[derive(Debug, Serialize)]
-pub struct Register {
-    addr: Address,
-    brief: Option<String>,
-    details: Option<String>,
-    fields: HashMap<String, Field>,
-}
-#[derive(Debug, Serialize)]
-pub struct RegisterGroup {
-    addr: Address,
-    desc: String,
-    regs: HashMap<String, Register>,
-}
-#[derive(Debug, Serialize)]
-pub struct Target {
-    desc: String,
-    groups: HashMap<String, RegisterGroup>,
-}
-#[derive(Copy, Clone, Debug, Serialize)]
-pub struct Address {
-    base: usize,
-    count: usize,
-    width: usize,
-}
 
 fn main() -> Result<(), std::io::Error> {
     let matches = App::new("mesa-parse")
@@ -84,7 +50,7 @@ fn main() -> Result<(), std::io::Error> {
 
     // Then, parse each target-specific file
     let mut seen_targets = HashSet::new();
-    let mut out = HashMap::new();
+    let mut target_docs = HashMap::new();
     for target in &target_list {
         let base_target = target.1 .0.clone();
 
@@ -99,13 +65,32 @@ fn main() -> Result<(), std::io::Error> {
             file.read_to_string(&mut contents)?;
             path.pop();
             let docs = parse_regs_doxygen(&contents, target_data.get(&base_target).unwrap());
-            out.insert(base_target, docs);
+            target_docs.insert(base_target, docs);
         }
     }
 
-    println!(
-        "{}",
-        to_string_pretty(&(out, target_list), PrettyConfig::new()).unwrap()
-    );
+    let mut keys = target_list.keys().collect::<Vec<_>>();
+    keys.sort();
+    print!("lazy_static! {{
+    static ref MEMORY_MAP: HashMap<&str, (&str, Vec<(Option<usize>, usize>)> = {{
+        let mut out = HashMap::new();");
+    for k in keys {
+        let t = target_list.get(k).unwrap();
+        print!("
+        out.insert({:?}, ({:?}, vec![",
+        k, t.0);
+        for t in &t.1 {
+            print!("({:?},{:#x}),", t.0, t.1);
+        }
+        print!("]);");
+    }
+    println!("
+        return out;
+    }}");
+
+    print!("
+    static ref TARGETS: HashMap<&str, Target> = {{");
+
+
     Ok(())
 }

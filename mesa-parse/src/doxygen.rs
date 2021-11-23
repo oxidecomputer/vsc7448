@@ -1,7 +1,8 @@
 use regex::Regex;
 use std::collections::HashMap;
 
-use crate::{symregs::TargetMap, Field, Register, RegisterGroup, Target};
+use crate::symregs::TargetMap;
+use vsc7448_types::{Field, Register, RegisterGroup, Target};
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 enum DoxygenBlockType {
