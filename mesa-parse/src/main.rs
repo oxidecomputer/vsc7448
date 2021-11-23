@@ -69,28 +69,109 @@ fn main() -> Result<(), std::io::Error> {
         }
     }
 
+    print!(
+        "use std::collections::HashMap;
+
+use vsc7448_types::{{Target, RegisterGroup, Register, Field, Address}};
+use lazy_static::lazy_static;
+
+lazy_static! {{
+    static ref MEMORY_MAP: HashMap<&'static str, (&'static str, Vec<(Option<usize>, usize)>)> = {{
+        let mut out = HashMap::new();"
+    );
     let mut keys = target_list.keys().collect::<Vec<_>>();
     keys.sort();
-    print!("lazy_static! {{
-    static ref MEMORY_MAP: HashMap<&str, (&str, Vec<(Option<usize>, usize>)> = {{
-        let mut out = HashMap::new();");
     for k in keys {
         let t = target_list.get(k).unwrap();
-        print!("
+        print!(
+            "
         out.insert({:?}, ({:?}, vec![",
-        k, t.0);
+            k, t.0
+        );
         for t in &t.1 {
             print!("({:?},{:#x}),", t.0, t.1);
         }
-        print!("]);");
+        print!("]));");
     }
-    println!("
+    println!(
+        "
         return out;
-    }}");
+    }};"
+    );
 
-    print!("
-    static ref TARGETS: HashMap<&str, Target> = {{");
+    print!(
+        "
+    static ref TARGETS: HashMap<&'static str, Target> = {{
+        let mut out = HashMap::new();"
+    );
+    let mut keys = target_docs.keys().collect::<Vec<_>>();
+    keys.sort();
+    // Iteration over targets
+    for k in keys {
+        let t = target_docs.get(k).unwrap();
+        print!(
+            "
 
+        let {}groups = HashMap::new();",
+            if t.groups.is_empty() { "" } else { "mut " }
+        );
+        let mut keys = t.groups.keys().collect::<Vec<_>>();
+        keys.sort();
+
+        // Iteration over register groups
+        for k in keys {
+            let t = t.groups.get(k).unwrap();
+            print!(
+                "
+        let {}regs = HashMap::new();",
+                if t.regs.is_empty() { "" } else { "mut " }
+            );
+            let mut keys = t.regs.keys().collect::<Vec<_>>();
+            keys.sort();
+
+            // Iteration over registers
+            for k in keys {
+                print!(
+                    "
+        let mut fields = HashMap::new();"
+                );
+                let t = t.regs.get(k).unwrap();
+                let mut keys = t.fields.keys().collect::<Vec<_>>();
+                keys.sort();
+
+                // Iteration over fields
+                for k in keys {
+                    let t = t.fields.get(k).unwrap();
+                    print!(
+                        "
+        fields.insert({:?}, {:?});",
+                        k, t
+                    );
+                }
+                print!(
+                    "
+        regs.insert({:?}, Register {{ addr: {:?}, brief: {:?}, details: {:?}, fields }});",
+                    k, t.addr, t.brief, t.details
+                );
+            }
+            print!(
+                "
+        groups.insert({:?}, RegisterGroup {{ addr: {:?}, desc: {:?}, regs }});",
+                k, t.addr, t.desc
+            );
+        }
+        print!(
+            "
+        out.insert({:?}, Target {{ desc: {:?}, groups }});",
+            k, t.desc
+        );
+    }
+    println!(
+        "
+        return out;
+    }};
+}}"
+    );
 
     Ok(())
 }
