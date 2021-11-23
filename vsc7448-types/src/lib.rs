@@ -1,33 +1,35 @@
 use std::collections::HashMap;
 
 #[derive(Debug)]
-pub struct Field {
-    pub brief: Option<String>,
-    pub details: Option<String>,
+pub struct Field<S> {
+    pub brief: Option<S>,
+    pub details: Option<S>,
     pub lo: usize,
     pub hi: usize,
 }
 
 #[derive(Debug)]
-pub struct Register {
+pub struct Register<S> {
     pub addr: Address,
-    pub brief: Option<String>,
-    pub details: Option<String>,
-    pub fields: HashMap<String, Field>,
+    pub brief: Option<S>,
+    pub details: Option<S>,
+    pub fields: HashMap<S, Field<S>>,
 }
 
 #[derive(Debug)]
-pub struct RegisterGroup {
+pub struct RegisterGroup<S> {
     pub addr: Address,
-    pub desc: String,
-    pub regs: HashMap<String, Register>,
+    pub desc: S,
+    pub regs: HashMap<S, Register<S>>,
 }
 
 #[derive(Debug)]
-pub struct Target {
-    pub desc: String,
-    pub groups: HashMap<String, RegisterGroup>,
+pub struct BaseTarget<S> {
+    pub desc: S,
+    pub groups: HashMap<S, RegisterGroup<S>>,
 }
+pub type OwnedTarget = BaseTarget<String>;
+pub type Target = BaseTarget<&'static str>;
 
 #[derive(Copy, Clone, Debug)]
 pub struct Address {

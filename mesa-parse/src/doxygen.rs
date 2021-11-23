@@ -2,7 +2,7 @@ use regex::Regex;
 use std::collections::HashMap;
 
 use crate::symregs::TargetMap;
-use vsc7448_types::{Field, Register, RegisterGroup, Target};
+use vsc7448_types::{Field, OwnedTarget, Register, RegisterGroup};
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 enum DoxygenBlockType {
@@ -138,7 +138,7 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
 }
 
 // Horrifying code to parse a vtss_*_regs_*.h file
-pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> Target {
+pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
     let mut itr = s.lines().peekable();
     let field_re = Regex::new(r"#define\s+VTSS_F[A-Z_0-9]*\(x\)\s+(\w*)\((.+)\)$").unwrap();
     let mut target = None;
@@ -168,7 +168,7 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> Target {
                 assert!(target.is_none());
                 assert!(item.brief.is_none());
                 assert!(item.details.is_none());
-                target = Some(Target {
+                target = Some(OwnedTarget {
                     desc: item.desc.unwrap(),
                     groups: HashMap::new(),
                 });
