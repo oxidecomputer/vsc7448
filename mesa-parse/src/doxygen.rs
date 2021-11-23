@@ -237,5 +237,12 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
             _ => panic!("Invalid block type"),
         }
     }
+    // Finalize pending parse
+    if let Some((name, reg)) = register.take() {
+        group.as_mut().unwrap().1.regs.insert(name, reg);
+    }
+    if let Some((name, group)) = group.take() {
+        target.as_mut().unwrap().groups.insert(name, group);
+    }
     target.unwrap()
 }
