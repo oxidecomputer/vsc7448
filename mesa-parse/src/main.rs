@@ -22,12 +22,14 @@ pub struct Field {
 }
 #[derive(Debug, Serialize)]
 pub struct Register {
+    addr: Address,
     brief: Option<String>,
     details: Option<String>,
-    fields: HashMap<String, Field>
+    fields: HashMap<String, Field>,
 }
 #[derive(Debug, Serialize)]
 pub struct RegisterGroup {
+    addr: Address,
     desc: String,
     regs: HashMap<String, Register>,
 }
@@ -35,6 +37,12 @@ pub struct RegisterGroup {
 pub struct Target {
     desc: String,
     groups: HashMap<String, RegisterGroup>,
+}
+#[derive(Copy, Clone, Debug, Serialize)]
+pub struct Address {
+    base: usize,
+    count: usize,
+    width: usize,
 }
 
 fn main() -> Result<(), std::io::Error> {
@@ -77,8 +85,8 @@ fn main() -> Result<(), std::io::Error> {
     // Then, parse each target-specific file
     let mut seen_targets = HashSet::new();
     let mut out = HashMap::new();
-    for target in target_list {
-        let base_target = target.1.0;
+    for target in &target_list {
+        let base_target = target.1 .0.clone();
 
         if seen_targets.insert(base_target.clone()) {
             path.push(format!(
@@ -90,10 +98,14 @@ fn main() -> Result<(), std::io::Error> {
             let mut contents = String::new();
             file.read_to_string(&mut contents)?;
             path.pop();
-            out.insert(base_target, parse_regs_doxygen(&contents));
+            let docs = parse_regs_doxygen(&contents, target_data.get(&base_target).unwrap());
+            out.insert(base_target, docs);
         }
     }
 
-    println!("{}", to_string_pretty(&out, PrettyConfig::new()).unwrap());
+    println!(
+        "{}",
+        to_string_pretty(&(out, target_list), PrettyConfig::new()).unwrap()
+    );
     Ok(())
 }

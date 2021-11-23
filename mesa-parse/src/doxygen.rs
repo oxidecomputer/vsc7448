@@ -1,7 +1,7 @@
-use std::collections::HashMap;
 use regex::Regex;
+use std::collections::HashMap;
 
-use crate::{Target, RegisterGroup, Register, Field};
+use crate::{symregs::TargetMap, Field, Register, RegisterGroup, Target};
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 enum DoxygenBlockType {
@@ -96,15 +96,15 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
                     State::Brief => {
                         assert!(out.brief.is_none());
                         out.brief = Some(prev_accum);
-                    },
+                    }
                     State::Details => {
                         assert!(out.details.is_none());
                         out.details = Some(prev_accum);
-                    },
+                    }
                     State::Desc => {
                         assert!(out.desc.is_none());
                         out.desc = Some(prev_accum);
-                    },
+                    }
                 }
             }
         } else {
@@ -122,22 +122,22 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
             State::Brief => {
                 assert!(out.brief.is_none());
                 out.brief = Some(accum);
-            },
+            }
             State::Details => {
                 assert!(out.details.is_none());
                 out.details = Some(accum);
-            },
+            }
             State::Desc => {
                 assert!(out.desc.is_none());
                 out.desc = Some(accum);
-            },
+            }
         };
     }
     out
 }
 
 // Horrifying code to parse a vtss_*_regs_*.h file
-pub fn parse_regs_doxygen(s: &str) -> Target {
+pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> Target {
     let mut itr = s.lines().peekable();
     let field_re = Regex::new(r"#define\s+VTSS_F[A-Z_0-9]*\(x\)\s+(\w*)\((.+)\)$").unwrap();
     let mut target = None;
@@ -171,28 +171,43 @@ pub fn parse_regs_doxygen(s: &str) -> Target {
                     desc: item.desc.unwrap(),
                     groups: HashMap::new(),
                 });
-            },
+            }
             DoxygenBlockType::RegisterGroup => {
                 if let Some((name, group)) = group.take() {
                     target.as_mut().unwrap().groups.insert(name, group);
                 }
                 assert!(item.brief.is_none());
                 assert!(item.details.is_none());
-                group = Some((item.name, RegisterGroup {
-                    desc: item.desc.unwrap(),
-                    regs: HashMap::new(),
-                }));
-            },
+                let addr = map.get(&item.name).unwrap().0;
+                group = Some((
+                    item.name,
+                    RegisterGroup {
+                        addr,
+                        desc: item.desc.unwrap(),
+                        regs: HashMap::new(),
+                    },
+                ));
+            }
             DoxygenBlockType::Register => {
                 if let Some((name, reg)) = register.take() {
                     group.as_mut().unwrap().1.regs.insert(name, reg);
                 }
-                register = Some((item.name, Register {
-                    brief: item.brief,
-                    details: item.details,
-                    fields: HashMap::new(),
-                }));
-            },
+                let addr = *map
+                    .get(&group.as_ref().unwrap().0)
+                    .unwrap()
+                    .1
+                    .get(&item.name)
+                    .unwrap();
+                register = Some((
+                    item.name,
+                    Register {
+                        addr,
+                        brief: item.brief,
+                        details: item.details,
+                        fields: HashMap::new(),
+                    },
+                ));
+            }
             DoxygenBlockType::Field => {
                 let s = itr.next().unwrap();
                 let cap = field_re.captures(s).unwrap();
@@ -209,11 +224,14 @@ pub fn parse_regs_doxygen(s: &str) -> Target {
                 };
                 assert!(item.desc.is_none());
                 register.as_mut().unwrap().1.fields.insert(
-                    item.name, Field {
+                    item.name,
+                    Field {
                         brief: item.brief,
                         details: item.details,
-                        lo, hi,
-                    });
+                        lo,
+                        hi,
+                    },
+                );
             }
             _ => panic!("Invalid block type"),
         }
