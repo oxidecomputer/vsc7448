@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 regex = "1"
 clap = "2.33.0"
+ron = "*"
+serde = "*"
