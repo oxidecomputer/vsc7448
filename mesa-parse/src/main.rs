@@ -87,7 +87,13 @@ use std::collections::HashMap;
 use vsc7448_types::{{Target, RegisterGroup, Register, Field, Address}};
 use lazy_static::lazy_static;
 
+pub mod parse;
+
 lazy_static! {{
+    /// Maps from user-facing target name to a tuple of
+    /// - Name in `TARGETS` map (which may be different!)
+    /// - List of instances, as tuples of `(instance id, address)`.  If there is
+    ///   only one instance of this target, then this is vec![(None, ADDRESS)].
     pub static ref MEMORY_MAP: HashMap<&'static str, (&'static str, Vec<(Option<usize>, usize)>)> = {{
         let mut out = HashMap::new();"
     );
@@ -113,6 +119,8 @@ lazy_static! {{
 
     print!(
         "
+    /// Maps from target name to `Target`, which contains a hierarchy
+    /// of register groups, registers, and fields.
     pub static ref TARGETS: HashMap<&'static str, Target> = {{
         let mut out = HashMap::new();"
     );
