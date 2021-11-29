@@ -11,3 +11,4 @@ license = "MPL-2.0"
 regex = "1"
 clap = "2.33.0"
 vsc7448-types = { path = "../vsc7448-types" }
+parse_int = "0.6"

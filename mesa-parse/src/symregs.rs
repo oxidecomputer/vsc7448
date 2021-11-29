@@ -30,10 +30,10 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
         r#"^\s*\{\s*([A-Z0-9_"]+)\s*,\s*([0-9xa-zA-Z]+)\s*,\s*([0-9xa-zA-Z]+)\s*,\s*([0-9xa-zA-Z]+)\s*,\s*(regs_within_[A-Z0-9_]+)\s*\}"#)
         .unwrap();
     let target_re = Regex::new(
-        r#"^\s*\{\s*([A-Z0-9_"]+)\s*,\s*([\-0-9]+)\s*,\s*(0x[0-9a-z]+)\s*,\s*VTSS_IO_OFFSET([0-9]+)\(([0-9xa-zA-Z]+)\)\s*,\s*reggrps_within_([A-Z0-9_]+)\s*\}"#)
+        r#"^\s*\{\s*([A-Z0-9_"]+)\s*,\s*([\-0-9]+)\s*,\s*(0x[[:xdigit:]]+)\s*,\s*VTSS_IO_OFFSET([0-9]+)\(([0-9xa-zA-Z]+)\)\s*,\s*reggrps_within_([A-Z0-9_]+)\s*\}"#)
         .unwrap();
 
-    let offset_re = Regex::new(r"^#define VTSS_IO_ORIGIN([0-9]+)_OFFSET\s+0x([[:xdigit:]]+)$")
+    let offset_re = Regex::new(r"^#define VTSS_IO_ORIGIN([0-9]+)_OFFSET\s+(0x[[:xdigit:]]+)$")
         .expect("failed to build regex");
     let mut offsets = HashMap::new();
 
@@ -64,7 +64,7 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
         if let Some(cap) = offset_re.captures(s) {
             offsets.insert(
                 cap[1].to_owned(),
-                usize::from_str_radix(&cap[2], 16).unwrap(),
+                parse_int::parse(&cap[2]).unwrap(),
             );
         }
 
@@ -83,9 +83,9 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
                 continue;
             }
             let name = caps[1].trim_matches('\"');
-            let base = usize::from_str_radix(caps[2].strip_prefix("0x").unwrap(), 16).unwrap();
-            let count = usize::from_str_radix(caps[3].strip_prefix("0x").unwrap(), 16).unwrap();
-            let width = usize::from_str_radix(caps[4].strip_prefix("0x").unwrap(), 16).unwrap();
+            let base = parse_int::parse::<usize>(&caps[2]).unwrap();
+            let count = parse_int::parse::<usize>(&caps[3]).unwrap();
+            let width = parse_int::parse::<usize>(&caps[4]).unwrap();
             active_regs
                 .as_mut()
                 .unwrap()
@@ -99,9 +99,9 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
                 continue;
             }
             let name = caps[1].trim_matches('\"');
-            let base = usize::from_str_radix(caps[2].strip_prefix("0x").unwrap(), 16).unwrap();
-            let count = usize::from_str_radix(caps[3].strip_prefix("0x").unwrap(), 16).unwrap();
-            let width = usize::from_str_radix(caps[4].strip_prefix("0x").unwrap(), 16).unwrap();
+            let base = parse_int::parse::<usize>(&caps[2]).unwrap();
+            let count = parse_int::parse::<usize>(&caps[3]).unwrap();
+            let width = parse_int::parse::<usize>(&caps[4]).unwrap();
             let regs = &caps[5];
             active_target.as_mut().unwrap().1.insert(
                 name.to_string(),
@@ -115,7 +115,7 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
         if let Some(caps) = target_re.captures(s) {
             let name = caps[1].trim_matches('\"').to_owned();
             let repl: i32 = caps[2].parse().unwrap();
-            let addr = usize::from_str_radix(caps[5].strip_prefix("0x").unwrap(), 16).unwrap();
+            let addr = parse_int::parse::<usize>(&caps[5]).unwrap();
             let entry = target_list
                 .entry(name)
                 .or_insert((caps[6].to_owned(), Vec::new()));
