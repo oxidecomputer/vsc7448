@@ -8,7 +8,10 @@
 use regex::Regex;
 use thiserror::Error;
 
+use std::collections::HashMap;
+
 use crate::{MEMORY_MAP, TARGETS};
+use vsc7448_types::Field;
 
 /// One level of hierarchy within a fully qualified register, with a name and
 /// optional index (for targets / groups / registers that have multiple
@@ -61,6 +64,31 @@ pub enum ParseError {
     NotRegisterGroupArray,
     #[error("Register group index is out of range ({0} >= {1})")]
     InvalidRegisterGroupIndex(usize, usize),
+}
+
+impl<'a> TargetRegister<'a> {
+    /// Returns the physical memory address of the given address
+    pub fn address(&self) -> u32 {
+        let target = &MEMORY_MAP[self.target.name];
+        let (_, mut addr) = target.1.iter().find(|t| t.0 == self.target.index)
+            .unwrap();
+
+        let target = &TARGETS[target.0];
+        let group = &target.groups[self.group.name];
+        addr += (group.addr.base + group.addr.width * self.group.index.unwrap_or(0)) * 4;
+
+        let reg = &group.regs[self.reg.name];
+        addr += (reg.addr.base + reg.addr.width * self.reg.index.unwrap_or(0)) * 4;
+
+        addr.try_into().expect("Address exceeds 32-bit space?!")
+    }
+    /// Returns this register's field map.
+    pub fn fields(&self) -> &HashMap<&'static str, Field<&'static str>> {
+        &TARGETS[MEMORY_MAP[self.target.name].0]
+            .groups[self.group.name]
+            .regs[self.reg.name]
+            .fields
+    }
 }
 
 impl<'a> std::str::FromStr for TargetRegister<'a> {
