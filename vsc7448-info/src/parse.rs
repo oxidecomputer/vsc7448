@@ -40,6 +40,12 @@ pub struct TargetRegister<'a> {
     reg: Indexed<'a>,
 }
 
+impl<'a> std::fmt::Display for TargetRegister<'a> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}:{}:{}", self.target, self.group, self.reg)
+    }
+}
+
 #[derive(Error, Debug, Eq, PartialEq)]
 pub enum ParseError {
     #[error("Regex match failed")]
