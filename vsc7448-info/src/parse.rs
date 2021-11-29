@@ -16,14 +16,16 @@ use vsc7448_types::Field;
 /// One level of hierarchy within a fully qualified register, with a name and
 /// optional index (for targets / groups / registers that have multiple
 /// instances)
-#[derive(Debug, PartialEq, Eq)]
-pub struct Indexed<'a> {
-    /// Name of the target, register group, or register
-    name: &'a str,
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub struct Indexed {
+    /// Name of the target, register group, or register.  This is always
+    /// `'static` because it points into `MEMORY_MAP` or `TARGETS`, which
+    /// are `lazy_static` constant globals.
+    name: &'static str,
     /// Index of the item within an array
     index: Option<usize>,
 }
-impl<'a> std::fmt::Display for Indexed<'a> {
+impl std::fmt::Display for Indexed {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self.index {
             None => write!(f, "{}", self.name),
@@ -34,13 +36,13 @@ impl<'a> std::fmt::Display for Indexed<'a> {
 
 /// Fully qualified register
 #[derive(Debug, PartialEq, Eq)]
-pub struct TargetRegister<'a> {
-    target: Indexed<'a>,
-    group: Indexed<'a>,
-    reg: Indexed<'a>,
+pub struct TargetRegister {
+    target: Indexed,
+    group: Indexed,
+    reg: Indexed,
 }
 
-impl<'a> std::fmt::Display for TargetRegister<'a> {
+impl std::fmt::Display for TargetRegister {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}:{}:{}", self.target, self.group, self.reg)
     }
@@ -54,30 +56,29 @@ pub enum ParseError {
     TooManyItems,
     #[error("No register with that name")]
     NoSuchRegister,
-    #[error("Multiple registers with this name; specify target or group")]
-    AmbiguousRegister,
-    #[error("Invalid target index: {0:?}")]
-    InvalidTargetIndex(Option<usize>),
-    #[error("Register is part of an array and requires an [index]")]
-    RegisterArray,
-    #[error("Register index specified for a non-array register")]
-    NotRegisterArray,
-    #[error("Register index is out of range ({0} >= {1})")]
-    InvalidRegisterIndex(usize, usize),
-    #[error("Register group is part of an array and requires an [index]")]
-    RegisterGroupArray,
-    #[error("Register group index specified for a non-array register group")]
-    NotRegisterGroupArray,
-    #[error("Register group index is out of range ({0} >= {1})")]
-    InvalidRegisterGroupIndex(usize, usize),
+    #[error("Multiple registers with this name ({0}, {1}); specify target or group")]
+    AmbiguousRegister(TargetRegister, TargetRegister),
+    #[error("Invalid target index for target {0}: {1:?}")]
+    InvalidTargetIndex(&'static str, Option<usize>),
+    #[error("Register {0} is part of an array and requires an [index]")]
+    RegisterArray(&'static str),
+    #[error("Register index specified for a non-array register {0}")]
+    NotRegisterArray(&'static str),
+    #[error("Register index for {0} is out of range ({1} >= {2})")]
+    InvalidRegisterIndex(&'static str, usize, usize),
+    #[error("Register group {0} is part of an array and requires an [index]")]
+    RegisterGroupArray(&'static str),
+    #[error("Register group index specified for a non-array register group {0}")]
+    NotRegisterGroupArray(&'static str),
+    #[error("Register group index for {0} is out of range ({0} >= {1})")]
+    InvalidRegisterGroupIndex(&'static str, usize, usize),
 }
 
-impl<'a> TargetRegister<'a> {
+impl TargetRegister {
     /// Returns the physical memory address of the given address
     pub fn address(&self) -> u32 {
         let target = &MEMORY_MAP[self.target.name];
-        let (_, mut addr) = target.1.iter().find(|t| t.0 == self.target.index)
-            .unwrap();
+        let (_, mut addr) = target.1.iter().find(|t| t.0 == self.target.index).unwrap();
 
         let target = &TARGETS[target.0];
         let group = &target.groups[self.group.name];
@@ -90,14 +91,11 @@ impl<'a> TargetRegister<'a> {
     }
     /// Returns this register's field map.
     pub fn fields(&self) -> &HashMap<&'static str, Field<&'static str>> {
-        &TARGETS[MEMORY_MAP[self.target.name].0]
-            .groups[self.group.name]
-            .regs[self.reg.name]
-            .fields
+        &TARGETS[MEMORY_MAP[self.target.name].0].groups[self.group.name].regs[self.reg.name].fields
     }
 }
 
-impl<'a> std::str::FromStr for TargetRegister<'a> {
+impl std::str::FromStr for TargetRegister {
     type Err = ParseError;
     /// Parses a string into a qualified register.  This is very flexible,
     /// accepting strings of the format
@@ -112,7 +110,7 @@ impl<'a> std::str::FromStr for TargetRegister<'a> {
         let re = Regex::new(r"^([A-Z_0-9]+)(\[([0-9]+)\])?$").unwrap();
         let words = s.split(':').collect::<Vec<&str>>();
 
-        let out = match words.len() {
+        let (out, ambig) = match words.len() {
             // Just a register name, potentially qualified with an index
             1 => {
                 let cap = re.captures(words[0]).ok_or(ParseError::MatchFailed)?;
@@ -121,20 +119,17 @@ impl<'a> std::str::FromStr for TargetRegister<'a> {
 
                 let mut iter = MEMORY_MAP
                     .iter()
-                    .flat_map(|(i, target)|
+                    .flat_map(|(i, target)| {
                         TARGETS[target.0]
                             .groups
                             .iter()
                             .map(move |(j, group)| (i, j, group))
-                    )
+                    })
                     .filter_map(|(i, j, group)| {
                         group.regs.get_key_value(name).map(|(k, _v)| (i, j, k))
                     });
                 let found = iter.next().ok_or(ParseError::NoSuchRegister)?;
-                if iter.next().is_some() {
-                    return Err(ParseError::AmbiguousRegister);
-                }
-                Self {
+                let out = Self {
                     target: Indexed {
                         name: found.0,
                         index: None,
@@ -147,8 +142,9 @@ impl<'a> std::str::FromStr for TargetRegister<'a> {
                         name: found.2,
                         index,
                     },
-                }
-            },
+                };
+                (out, iter.next())
+            }
             2 => {
                 let cap = re.captures(words[1]).ok_or(ParseError::MatchFailed)?;
                 let reg_name = &cap[1];
@@ -160,34 +156,41 @@ impl<'a> std::str::FromStr for TargetRegister<'a> {
 
                 // Attempt to decode root_name as either a target or a register
                 // group, for maximum ease of parsing.
-                let mut iter = MEMORY_MAP.get_key_value(root_name)
+                let mut iter = MEMORY_MAP
+                    .get_key_value(root_name)
                     .into_iter()
-                    .flat_map(|(i, target)|
+                    .flat_map(|(i, target)| {
                         TARGETS[target.0]
                             .groups
                             .iter()
-                            .map(move |(j, group)| (i, j, group)))
+                            .map(move |(j, group)| (i, j, group))
+                    })
                     .filter_map(|(i, j, group)| {
-                        group.regs.get_key_value(reg_name).map(|(k, _v)| (i, j, k, true))
-                    }).chain(
+                        group
+                            .regs
+                            .get_key_value(reg_name)
+                            .map(|(k, _v)| (i, j, k, true))
+                    })
+                    .chain(
                         MEMORY_MAP
-                        .iter()
-                        .flat_map(|(i, target)|
-                            TARGETS[target.0]
-                                .groups
-                                .get_key_value(root_name)
-                                .into_iter()
-                                .map(move |(j, group)| (i, j, group))
-                        )
-                        .filter_map(|(i, j, group)| {
-                            group.regs.get_key_value(reg_name).map(|(k, _v)| (i, j, k, false))
-                        }));
+                            .iter()
+                            .flat_map(|(i, target)| {
+                                TARGETS[target.0]
+                                    .groups
+                                    .get_key_value(root_name)
+                                    .into_iter()
+                                    .map(move |(j, group)| (i, j, group))
+                            })
+                            .filter_map(|(i, j, group)| {
+                                group
+                                    .regs
+                                    .get_key_value(reg_name)
+                                    .map(|(k, _v)| (i, j, k, false))
+                            }),
+                    );
 
                 let found = iter.next().ok_or(ParseError::NoSuchRegister)?;
-                if iter.next().is_some() {
-                    return Err(ParseError::AmbiguousRegister);
-                }
-                Self {
+                let out = Self {
                     target: Indexed {
                         name: found.0,
                         index: if found.3 { root_index } else { None },
@@ -200,7 +203,8 @@ impl<'a> std::str::FromStr for TargetRegister<'a> {
                         name: found.2,
                         index: reg_index,
                     },
-                }
+                };
+                (out, iter.next().map(|f| (f.0, f.1, f.2)))
             }
             3 => {
                 let cap = re.captures(words[2]).ok_or(ParseError::MatchFailed)?;
@@ -215,23 +219,22 @@ impl<'a> std::str::FromStr for TargetRegister<'a> {
                 let target_name = &cap[1];
                 let target_index = cap.get(3).map(|i| i.as_str().parse::<usize>().unwrap());
 
-                let mut iter = MEMORY_MAP.get_key_value(target_name)
+                let mut iter = MEMORY_MAP
+                    .get_key_value(target_name)
                     .into_iter()
-                    .flat_map(|(i, target)|
+                    .flat_map(|(i, target)| {
                         TARGETS[target.0]
                             .groups
                             .get_key_value(group_name)
                             .into_iter()
-                            .map(move |(j, group)| (i, j, group)))
+                            .map(move |(j, group)| (i, j, group))
+                    })
                     .filter_map(|(i, j, group)| {
-                        group.regs.get_key_value(reg_name).map(|(k, _v)| (i, j, k, true))
+                        group.regs.get_key_value(reg_name).map(|(k, _v)| (i, j, k))
                     });
 
                 let found = iter.next().ok_or(ParseError::NoSuchRegister)?;
-                if iter.next().is_some() {
-                    return Err(ParseError::AmbiguousRegister);
-                }
-                Self {
+                let out = Self {
                     target: Indexed {
                         name: found.0,
                         index: target_index,
@@ -244,10 +247,32 @@ impl<'a> std::str::FromStr for TargetRegister<'a> {
                         name: found.2,
                         index: reg_index,
                     },
-                }
+                };
+                (out, iter.next())
             }
             _ => return Err(ParseError::TooManyItems),
         };
+
+        if let Some(ambig) = ambig {
+            let index = out.reg.index;
+            return Err(ParseError::AmbiguousRegister(
+                out,
+                Self {
+                    target: Indexed {
+                        name: ambig.0,
+                        index: None,
+                    },
+                    group: Indexed {
+                        name: ambig.1,
+                        index: None,
+                    },
+                    reg: Indexed {
+                        name: ambig.2,
+                        index,
+                    },
+                },
+            ));
+        }
 
         // Check that the target index is valid
         let target = &MEMORY_MAP[out.target.name];
@@ -255,22 +280,27 @@ impl<'a> std::str::FromStr for TargetRegister<'a> {
             .1
             .iter()
             .find(|t| t.0 == out.target.index)
-            .ok_or(ParseError::InvalidTargetIndex(out.target.index))?;
+            .ok_or(ParseError::InvalidTargetIndex(
+                out.target.name,
+                out.target.index,
+            ))?;
 
         let target = &TARGETS[target.0];
         let group = &target.groups[out.group.name];
         match (group.addr.count, out.group.index) {
-            (1, Some(_)) => Err(ParseError::NotRegisterGroupArray),
-            (i, None) if i != 1 => Err(ParseError::RegisterGroupArray),
-            (i, Some(j)) if j >= i => Err(ParseError::InvalidRegisterGroupIndex(j, i)),
+            (1, Some(_)) => Err(ParseError::NotRegisterGroupArray(out.group.name)),
+            (i, None) if i != 1 => Err(ParseError::RegisterGroupArray(out.group.name)),
+            (i, Some(j)) if j >= i => {
+                Err(ParseError::InvalidRegisterGroupIndex(out.group.name, j, i))
+            }
             _ => Ok(()),
         }?;
 
         let reg = &group.regs[out.reg.name];
         match (reg.addr.count, out.reg.index) {
-            (1, Some(_)) => Err(ParseError::NotRegisterArray),
-            (i, None) if i != 1 => Err(ParseError::RegisterArray),
-            (i, Some(j)) if j >= i => Err(ParseError::InvalidRegisterIndex(j, i)),
+            (1, Some(_)) => Err(ParseError::NotRegisterArray(out.reg.name)),
+            (i, None) if i != 1 => Err(ParseError::RegisterArray(out.reg.name)),
+            (i, Some(j)) if j >= i => Err(ParseError::InvalidRegisterIndex(out.reg.name, j, i)),
             _ => Ok(()),
         }?;
 
@@ -301,21 +331,22 @@ mod tests {
                 },
             })
         );
-        assert_eq!(
-            "AGGR_CFG".parse::<TargetRegister>(),
-            Err(ParseError::AmbiguousRegister)
-        );
+        if let Err(ParseError::AmbiguousRegister(_, _)) = "AGGR_CFG".parse::<TargetRegister>() {
+            // Okay
+        } else {
+            panic!("Failed to detect ambiguous register");
+        }
         assert_eq!(
             "QMAP_PORT_MODE".parse::<TargetRegister>(),
-            Err(ParseError::RegisterArray)
+            Err(ParseError::RegisterArray("QMAP_PORT_MODE"))
         );
         assert_eq!(
             "DEV10G:MAC_CFG_STATUS:MAC_TX_MONITOR_STICKY".parse::<TargetRegister>(),
-            Err(ParseError::InvalidTargetIndex(None))
+            Err(ParseError::InvalidTargetIndex("DEV10G", None))
         );
         assert_eq!(
             "DEV10G[4]:MAC_CFG_STATUS:MAC_TX_MONITOR_STICKY".parse::<TargetRegister>(),
-            Err(ParseError::InvalidTargetIndex(Some(4)))
+            Err(ParseError::InvalidTargetIndex("DEV10G", Some(4)))
         );
         assert_eq!(
             "QMAP_PORT_MODE[50]".parse::<TargetRegister>(),
@@ -336,7 +367,8 @@ mod tests {
         );
         assert_eq!(
             "QMAP_PORT_MODE[60]".parse::<TargetRegister>(),
-            Err(ParseError::InvalidRegisterIndex(60, 53)));
+            Err(ParseError::InvalidRegisterIndex("QMAP_PORT_MODE", 60, 53))
+        );
         assert_eq!(
             "DEV10G[3]:MAC_CFG_STATUS:MAC_TX_MONITOR_STICKY".parse::<TargetRegister>(),
             Ok(TargetRegister {
