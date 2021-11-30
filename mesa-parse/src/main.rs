@@ -41,6 +41,28 @@ fn main() -> Result<(), std::io::Error> {
         (family, family)
     };
 
+    if family == "phy" {
+        run_phy(mesa_root)
+    } else {
+        run_regs(mesa_root, family, subfamily)
+    }
+}
+
+fn run_phy(mesa_root: &str) -> Result<(), std::io::Error> {
+    let mut path = PathBuf::from(mesa_root);
+    path.push("base");
+    path.push("phy");
+    path.push("phy_1g");
+    path.push("vtss_phy.h");
+
+    let mut file = File::open(&path)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+
+    Ok(())
+}
+
+fn run_regs(mesa_root: &str, family: &str, subfamily: &str) -> Result<(), std::io::Error> {
     // Parse the symregs file first, since that gives us all of our target file
     // names for doxygen parsing
     let mut path = PathBuf::from(mesa_root);
