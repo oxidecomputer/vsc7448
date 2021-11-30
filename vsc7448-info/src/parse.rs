@@ -10,7 +10,7 @@ use thiserror::Error;
 
 use std::collections::HashMap;
 
-use crate::{MEMORY_MAP, TARGETS};
+use crate::{MEMORY_MAP, PHY_MAP, TARGETS};
 use vsc7448_types::Field;
 
 /// One level of hierarchy within a fully qualified register, with a name and
@@ -56,6 +56,10 @@ pub enum ParseError {
     TooManyItems,
     #[error("No register with that name")]
     NoSuchRegister,
+    #[error("No page with that name")]
+    NoSuchPage,
+    #[error("Register shows up in multiple mages ({0}, {1}); specify page")]
+    AmbiguousPhyRegister(&'static str, &'static str),
     #[error("Multiple registers with this name ({0}, {1}); specify target or group")]
     AmbiguousRegister(TargetRegister, TargetRegister),
     #[error("Invalid target index for target {0}: {1:?}")]
@@ -308,12 +312,55 @@ impl std::str::FromStr for TargetRegister {
     }
 }
 
+/// PHY register
+///
+/// `page` and `reg` index into [struct@PHY_MAP]
+#[derive(Debug, PartialEq, Eq)]
+pub struct PhyRegister {
+    page: &'static str,
+    reg: &'static str,
+}
+
+impl std::str::FromStr for PhyRegister {
+    type Err = ParseError;
+    /// Parses a string into a PHY register.  This is very flexible, accepting
+    /// strings of the format
+    /// - `REG_NAME`
+    /// - `PAGE:REG_NAME`
+    ///
+    /// This will raise an error if the parse is invalid or ambiguous, based
+    /// on the PHY register map
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let words = s.split(':').collect::<Vec<&str>>();
+        match words.len() {
+            1 => {
+                let mut iter = PHY_MAP.iter().filter_map(|(page, p)| {
+                    p.regs.get_key_value(words[0]).map(|(reg, _r)| (page, reg))
+                });
+                let (page, reg) = iter.next().ok_or(ParseError::NoSuchRegister)?;
+                if let Some((ambig, _)) = iter.next() {
+                    return Err(ParseError::AmbiguousPhyRegister(page, ambig));
+                }
+                Ok(PhyRegister { page, reg })
+            }
+            2 => match PHY_MAP.get_key_value(words[0]) {
+                None => Err(ParseError::NoSuchPage),
+                Some((page, p)) => match p.regs.get_key_value(words[1]) {
+                    None => Err(ParseError::NoSuchRegister),
+                    Some((reg, _r)) => Ok(PhyRegister { page, reg }),
+                },
+            },
+            _ => Err(ParseError::TooManyItems),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn test_add() {
+    fn test_target_register() {
         assert_eq!(
             "CHIP_ID".parse::<TargetRegister>(),
             Ok(TargetRegister {
@@ -384,6 +431,21 @@ mod tests {
                     name: "MAC_TX_MONITOR_STICKY",
                     index: None
                 },
+            })
+        );
+    }
+
+    #[test]
+    fn test_phy_register() {
+        assert_eq!(
+            "LOLOL".parse::<PhyRegister>(),
+            Err(ParseError::NoSuchRegister)
+        );
+        assert_eq!(
+            "EXTENDED_PHY_CONTROL".parse::<PhyRegister>(),
+            Ok(PhyRegister {
+                page: "STANDARD",
+                reg: "EXTENDED_PHY_CONTROL",
             })
         );
     }
