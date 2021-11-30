@@ -80,9 +80,9 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
                 continue;
             }
             let name = caps[1].trim_matches('\"');
-            let base = parse_int::parse::<usize>(&caps[2]).unwrap();
-            let count = parse_int::parse::<usize>(&caps[3]).unwrap();
-            let width = parse_int::parse::<usize>(&caps[4]).unwrap();
+            let base = parse_int::parse(&caps[2]).unwrap();
+            let count = parse_int::parse(&caps[3]).unwrap();
+            let width = parse_int::parse(&caps[4]).unwrap();
             active_regs
                 .as_mut()
                 .unwrap()
@@ -96,9 +96,9 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
                 continue;
             }
             let name = caps[1].trim_matches('\"');
-            let base = parse_int::parse::<usize>(&caps[2]).unwrap();
-            let count = parse_int::parse::<usize>(&caps[3]).unwrap();
-            let width = parse_int::parse::<usize>(&caps[4]).unwrap();
+            let base = parse_int::parse(&caps[2]).unwrap();
+            let count = parse_int::parse(&caps[3]).unwrap();
+            let width = parse_int::parse(&caps[4]).unwrap();
             let regs = &caps[5];
             active_target.as_mut().unwrap().1.insert(
                 name.to_string(),

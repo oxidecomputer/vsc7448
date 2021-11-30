@@ -164,6 +164,9 @@ lazy_static! {{
                 // Iteration over fields
                 for k in keys {
                     let t = &t.fields[k];
+                    if t.hi > 32 {
+                        panic!("Invalid hi bit for {:?}", t);
+                    }
                     print!(
                         "
         fields.insert({:?}, {:?});",
@@ -224,7 +227,7 @@ lazy_static! {{
 
     // Iteration over pages
     let mut keys = pages.keys().collect::<Vec<_>>();
-    keys.sort_by_key(|k| pages[k.as_str()].base);
+    keys.sort_by_key(|k| (pages[k.as_str()].base, k.as_str()));
     for k in keys {
         let t = &pages[k];
         print!(
@@ -234,7 +237,7 @@ lazy_static! {{
             if t.regs.is_empty() { "" } else { "mut " }
         );
         let mut keys = t.regs.keys().collect::<Vec<_>>();
-        keys.sort_by_key(|k| t.regs[k.as_str()].addr.base);
+        keys.sort_by_key(|k| (t.regs[k.as_str()].addr.base, k.as_str()));
 
         // Iteration over registers
         for k in keys {
@@ -245,16 +248,22 @@ lazy_static! {{
                 if t.fields.is_empty() { "" } else { "mut " }
             );
             let mut keys = t.fields.keys().collect::<Vec<_>>();
-            keys.sort_by_key(|k| t.fields[k.as_str()].lo);
+            keys.sort_by_key(|k| (t.fields[k.as_str()].lo, k.as_str()));
 
             // Iteration over fields
             for k in keys {
                 let t = &t.fields[k];
+                if t.hi > 32 {
+                    panic!("Invalid hi bit for {:?}", t);
+                }
                 print!(
                     "
         fields.insert({:?}, {:?});",
                     k, t
                 );
+            }
+            if t.addr.base > 31 {
+                panic!("Invalid register address for {:?}", t);
             }
             print!(
                 "

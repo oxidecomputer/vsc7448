@@ -10040,9 +10040,9 @@ lazy_static! {
         let fields = HashMap::new();
         regs.insert("MAC_SERDES_PCS_STATUS", Register { addr: Address { base: 17, count: 1, width: 0 }, brief: None, details: None, fields });
         let fields = HashMap::new();
-        regs.insert("REVERED_18", Register { addr: Address { base: 18, count: 1, width: 0 }, brief: None, details: None, fields });
-        let fields = HashMap::new();
         regs.insert("MAC_SERDES_CLAUSE_37_ADVERTISED_ABILITY", Register { addr: Address { base: 18, count: 1, width: 0 }, brief: None, details: None, fields });
+        let fields = HashMap::new();
+        regs.insert("REVERED_18", Register { addr: Address { base: 18, count: 1, width: 0 }, brief: None, details: None, fields });
         let fields = HashMap::new();
         regs.insert("MAC_SERDES_STATUS", Register { addr: Address { base: 20, count: 1, width: 0 }, brief: None, details: None, fields });
         let fields = HashMap::new();

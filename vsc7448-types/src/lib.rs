@@ -15,8 +15,8 @@ use std::collections::HashMap;
 pub struct Field<S> {
     pub brief: Option<S>,
     pub details: Option<S>,
-    pub lo: usize,
-    pub hi: usize,
+    pub lo: u8,
+    pub hi: u8,
 }
 
 /// Represents a single register (or register array) within a register group
@@ -59,15 +59,15 @@ pub type Target = BaseTarget<&'static str>;
 /// `(base + index * width) * 4`
 #[derive(Copy, Clone, Debug)]
 pub struct Address {
-    pub base: usize,
-    pub count: usize,
-    pub width: usize,
+    pub base: u32,
+    pub count: u32,
+    pub width: u32,
 }
 
 /// Represents a PHY register page
 #[derive(Debug)]
 pub struct Page<S> {
     pub desc: S,
-    pub base: usize,
+    pub base: u32,
     pub regs: HashMap<S, Register<S>>,
 }

@@ -225,7 +225,7 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
                     let mut itr = cap[2].split(',');
                     itr.next().unwrap(); // Skip first term
                     let lo = itr.next().unwrap().parse().unwrap();
-                    let size: usize = itr.next().unwrap().parse().unwrap();
+                    let size: u8 = itr.next().unwrap().parse().unwrap();
                     (lo, lo + size)
                 };
                 assert!(item.desc.is_none());

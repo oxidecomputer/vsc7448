@@ -355,6 +355,28 @@ impl std::str::FromStr for PhyRegister {
     }
 }
 
+impl std::fmt::Display for PhyRegister {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}:{}", self.page, self.reg)
+    }
+}
+
+impl PhyRegister {
+    /// Returns the page address for this PHY register.
+    pub fn page_addr(&self) -> u32 {
+        PHY_MAP[self.page].base.try_into().expect("Invalid page address")
+    }
+    /// Looks up the register address within the page, which is a 5-bit value.
+    pub fn reg_addr(&self) -> u8 {
+        let addr = PHY_MAP[self.page].regs[self.reg].addr.base.try_into().expect("Invalid register address");
+        if addr > 31 {
+            // This should never happen, because it's checked in the codegen
+            panic!("Invalid register address (must be <= 31)");
+        }
+        addr
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
