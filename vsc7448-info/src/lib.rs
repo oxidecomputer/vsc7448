@@ -17,7 +17,7 @@ lazy_static! {
     /// - Name in `TARGETS` map (which may be different!)
     /// - List of instances, as tuples of `(instance id, address)`.  If there is
     ///   only one instance of this target, then this is vec![(None, ADDRESS)].
-    pub static ref MEMORY_MAP: HashMap<&'static str, (&'static str, Vec<(Option<usize>, usize)>)> = {
+    pub static ref MEMORY_MAP: HashMap<&'static str, (&'static str, Vec<(Option<u32>, u32)>)> = {
         let mut out = HashMap::new();
         out.insert("AFI", ("AFI", vec![(None,0x71a80000),]));
         out.insert("ANA_AC", ("ANA_AC", vec![(None,0x71f00000),]));

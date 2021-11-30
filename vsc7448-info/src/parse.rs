@@ -23,7 +23,7 @@ pub struct Indexed {
     /// are `lazy_static` constant globals.
     name: &'static str,
     /// Index of the item within an array
-    index: Option<usize>,
+    index: Option<u32>,
 }
 impl std::fmt::Display for Indexed {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -63,19 +63,19 @@ pub enum ParseError {
     #[error("Multiple registers with this name ({0}, {1}); specify target or group")]
     AmbiguousRegister(TargetRegister, TargetRegister),
     #[error("Invalid target index for target {0}: {1:?}")]
-    InvalidTargetIndex(&'static str, Option<usize>),
+    InvalidTargetIndex(&'static str, Option<u32>),
     #[error("Register {0} is part of an array and requires an [index]")]
     RegisterArray(&'static str),
     #[error("Register index specified for a non-array register {0}")]
     NotRegisterArray(&'static str),
     #[error("Register index for {0} is out of range ({1} >= {2})")]
-    InvalidRegisterIndex(&'static str, usize, usize),
+    InvalidRegisterIndex(&'static str, u32, u32),
     #[error("Register group {0} is part of an array and requires an [index]")]
     RegisterGroupArray(&'static str),
     #[error("Register group index specified for a non-array register group {0}")]
     NotRegisterGroupArray(&'static str),
     #[error("Register group index for {0} is out of range ({0} >= {1})")]
-    InvalidRegisterGroupIndex(&'static str, usize, usize),
+    InvalidRegisterGroupIndex(&'static str, u32, u32),
 }
 
 impl TargetRegister {
@@ -119,7 +119,7 @@ impl std::str::FromStr for TargetRegister {
             1 => {
                 let cap = re.captures(words[0]).ok_or(ParseError::MatchFailed)?;
                 let name = &cap[1];
-                let index = cap.get(3).map(|i| i.as_str().parse::<usize>().unwrap());
+                let index = cap.get(3).map(|i| i.as_str().parse().unwrap());
 
                 let mut iter = MEMORY_MAP
                     .iter()
@@ -152,11 +152,11 @@ impl std::str::FromStr for TargetRegister {
             2 => {
                 let cap = re.captures(words[1]).ok_or(ParseError::MatchFailed)?;
                 let reg_name = &cap[1];
-                let reg_index = cap.get(3).map(|i| i.as_str().parse::<usize>().unwrap());
+                let reg_index = cap.get(3).map(|i| i.as_str().parse().unwrap());
 
                 let cap = re.captures(words[0]).ok_or(ParseError::MatchFailed)?;
                 let root_name = &cap[1];
-                let root_index = cap.get(3).map(|i| i.as_str().parse::<usize>().unwrap());
+                let root_index = cap.get(3).map(|i| i.as_str().parse().unwrap());
 
                 // Attempt to decode root_name as either a target or a register
                 // group, for maximum ease of parsing.
@@ -213,15 +213,15 @@ impl std::str::FromStr for TargetRegister {
             3 => {
                 let cap = re.captures(words[2]).ok_or(ParseError::MatchFailed)?;
                 let reg_name = &cap[1];
-                let reg_index = cap.get(3).map(|i| i.as_str().parse::<usize>().unwrap());
+                let reg_index = cap.get(3).map(|i| i.as_str().parse().unwrap());
 
                 let cap = re.captures(words[1]).ok_or(ParseError::MatchFailed)?;
                 let group_name = &cap[1];
-                let group_index = cap.get(3).map(|i| i.as_str().parse::<usize>().unwrap());
+                let group_index = cap.get(3).map(|i| i.as_str().parse().unwrap());
 
                 let cap = re.captures(words[0]).ok_or(ParseError::MatchFailed)?;
                 let target_name = &cap[1];
-                let target_index = cap.get(3).map(|i| i.as_str().parse::<usize>().unwrap());
+                let target_index = cap.get(3).map(|i| i.as_str().parse().unwrap());
 
                 let mut iter = MEMORY_MAP
                     .get_key_value(target_name)
