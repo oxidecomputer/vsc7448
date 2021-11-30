@@ -62,10 +62,7 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
         }
 
         if let Some(cap) = offset_re.captures(s) {
-            offsets.insert(
-                cap[1].to_owned(),
-                parse_int::parse(&cap[2]).unwrap(),
-            );
+            offsets.insert(cap[1].to_owned(), parse_int::parse(&cap[2]).unwrap());
         }
 
         if let Some(caps) = regs_within_re.captures(s) {

@@ -63,3 +63,11 @@ pub struct Address {
     pub count: usize,
     pub width: usize,
 }
+
+/// Represents a PHY register page
+#[derive(Debug)]
+pub struct Page<S> {
+    pub desc: S,
+    pub base: usize,
+    pub regs: HashMap<S, Register<S>>,
+}
