@@ -364,7 +364,7 @@ impl std::fmt::Display for PhyRegister {
 impl PhyRegister {
     /// Returns the page address for this PHY register.
     pub fn page_addr(&self) -> u32 {
-        PHY_MAP[self.page].base.try_into().expect("Invalid page address")
+        PHY_MAP[self.page].base
     }
     /// Looks up the register address within the page, which is a 5-bit value.
     pub fn reg_addr(&self) -> u8 {
@@ -374,6 +374,10 @@ impl PhyRegister {
             panic!("Invalid register address (must be <= 31)");
         }
         addr
+    }
+    /// Returns this register's field map.
+    pub fn fields(&self) -> &HashMap<&'static str, Field<&'static str>> {
+        &PHY_MAP[self.page].regs[self.reg].fields
     }
 }
 
