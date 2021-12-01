@@ -348,14 +348,14 @@ impl std::str::FromStr for PhyRegister {
                 2 => {
                     let page = PHY_MAP
                         .iter()
-                        .filter(|(_page, p)| p.base == words[1])
+                        .filter(|(_page, p)| p.base == words[0])
                         .next()
                         .ok_or(ParseError::NoSuchPage)?;
                     let reg = page
                         .1
                         .regs
                         .iter()
-                        .filter(|(_reg, r)| r.addr.base == words[0])
+                        .filter(|(_reg, r)| r.addr.base == words[1])
                         .next()
                         .ok_or(ParseError::NoSuchRegister)?;
                     Ok(PhyRegister {
@@ -517,6 +517,13 @@ mod tests {
             Ok(PhyRegister {
                 page: "STANDARD",
                 reg: "IDENTIFIER_1",
+            })
+        );
+        assert_eq!(
+            "16:14".parse::<PhyRegister>(),
+            Ok(PhyRegister {
+                page: "GPIO",
+                reg: "GPIO_CONTROL_2",
             })
         );
     }
