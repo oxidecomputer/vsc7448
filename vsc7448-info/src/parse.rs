@@ -358,7 +358,10 @@ impl std::str::FromStr for PhyRegister {
                         .filter(|(_reg, r)| r.addr.base == words[0])
                         .next()
                         .ok_or(ParseError::NoSuchRegister)?;
-                    Ok(PhyRegister { page: page.0, reg: reg.0 })
+                    Ok(PhyRegister {
+                        page: page.0,
+                        reg: reg.0,
+                    })
                 }
                 _ => Err(ParseError::TooManyItems),
             };
