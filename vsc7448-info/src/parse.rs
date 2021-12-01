@@ -332,6 +332,37 @@ impl std::str::FromStr for PhyRegister {
     /// on the PHY register map
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let words = s.split(':').collect::<Vec<&str>>();
+        let numbers: Result<Vec<_>, _> = words.iter().map(|s| s.parse::<u32>()).collect();
+        if let Ok(words) = numbers {
+            return match words.len() {
+                1 => Ok(PhyRegister {
+                    page: "STANDARD",
+                    reg: PHY_MAP["STANDARD"]
+                        .regs
+                        .iter()
+                        .filter(|(_reg, r)| r.addr.base == words[0])
+                        .next()
+                        .ok_or(ParseError::NoSuchRegister)?
+                        .0,
+                }),
+                2 => {
+                    let page = PHY_MAP
+                        .iter()
+                        .filter(|(_page, p)| p.base == words[1])
+                        .next()
+                        .ok_or(ParseError::NoSuchPage)?;
+                    let reg = page
+                        .1
+                        .regs
+                        .iter()
+                        .filter(|(_reg, r)| r.addr.base == words[0])
+                        .next()
+                        .ok_or(ParseError::NoSuchRegister)?;
+                    Ok(PhyRegister { page: page.0, reg: reg.0 })
+                }
+                _ => Err(ParseError::TooManyItems),
+            };
+        }
         match words.len() {
             1 => {
                 let mut iter = PHY_MAP.iter().filter_map(|(page, p)| {
@@ -368,7 +399,11 @@ impl PhyRegister {
     }
     /// Looks up the register address within the page, which is a 5-bit value.
     pub fn reg_addr(&self) -> u8 {
-        let addr = PHY_MAP[self.page].regs[self.reg].addr.base.try_into().expect("Invalid register address");
+        let addr = PHY_MAP[self.page].regs[self.reg]
+            .addr
+            .base
+            .try_into()
+            .expect("Invalid register address");
         if addr > 31 {
             // This should never happen, because it's checked in the codegen
             panic!("Invalid register address (must be <= 31)");
@@ -472,6 +507,13 @@ mod tests {
             Ok(PhyRegister {
                 page: "STANDARD",
                 reg: "EXTENDED_PHY_CONTROL",
+            })
+        );
+        assert_eq!(
+            "2".parse::<PhyRegister>(),
+            Ok(PhyRegister {
+                page: "STANDARD",
+                reg: "IDENTIFIER_1",
             })
         );
     }
