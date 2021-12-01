@@ -411,7 +411,7 @@ impl PhyRegister {
         addr
     }
     /// Returns this register's field map.
-    pub fn fields(&self) -> &HashMap<&'static str, Field<&'static str>> {
+    pub fn fields(&self) -> &'static HashMap<&'static str, Field<&'static str>> {
         &PHY_MAP[self.page].regs[self.reg].fields
     }
 }
