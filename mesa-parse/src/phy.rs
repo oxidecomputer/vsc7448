@@ -25,15 +25,20 @@ pub fn parse_phy_pages(s: &str) -> HashMap<String, Page<String>> {
 pub fn parse_phy_registers(s: &str, pages: &mut HashMap<String, Page<String>>) {
     //#define  VTSS_PHY_MODE_CONTROL VTSS_PHY_PAGE_STANDARD, 0
     let reg_re = Regex::new(
-        r"^#define\s+VTSS_PHY_(?:PAGE_)?([A-Z0-9_]+)\s+VTSS_PHY_PAGE_([A-Z0-9_]+),\s+([0-9]+)$",
+        r"^#define\s+VTSS_PHY_(?:PAGE_)?([A-Z0-9_]+)\s+VTSS_PHY_PAGE_([A-Z0-9_]+),\s*([0-9]+)$",
     )
     .unwrap();
-    let field_re =
-        Regex::new(r"^#define\s+VTSS_PHY_(?:F_PAGE_)?([A-Z0-9_]+)\s+VTSS_PHY_BIT\(([0-9]+)\)$")
-            .unwrap();
+    let field_re = Regex::new(
+        r"^#define\s+VTSS_(?:F_)?PHY_(?:F_PAGE_)?([A-Z0-9_]+)\s+VTSS_PHY_BIT\(([0-9]+)\)$",
+    )
+    .unwrap();
     let mask_re =
-        Regex::new(r"^#define\s+VTSS_PHY_([A-Z0-9_]+)\s+VTSS_PHY_MASK\(([0-9]+),\s+([0-9]+)\)$")
+        Regex::new(r"^#define\s+VTSS_PHY_([A-Z0-9_]+)\s+VTSS_PHY_MASK\(([0-9]+),\s*([0-9]+)\)$")
             .unwrap();
+    let bitmask_re = Regex::new(
+        r"^#define\s+VTSS_M_PHY_([A-Z0-9_]+)\s+VTSS_PHY_ENCODE_BITMASK\(([0-9]+),\s*([0-9]+)\)$",
+    )
+    .unwrap();
 
     let mut active: Option<(String, String, Register<String>)> = None;
     for line in s.lines() {
@@ -77,10 +82,15 @@ pub fn parse_phy_registers(s: &str, pages: &mut HashMap<String, Page<String>>) {
                 },
             );
         }
-        if let Some(cap) = mask_re.captures(line) {
-            let field_name = cap[1]
-                .strip_prefix(&format!("{}_", active.as_ref().unwrap().1))
-                .unwrap();
+        if let Some(cap) = mask_re.captures(line).or_else(|| bitmask_re.captures(line)) {
+            let field_name = match cap[1].strip_prefix(&format!("{}_", active.as_ref().unwrap().1))
+            {
+                Some(f) => f,
+                None => {
+                    eprintln!("Out of order field {}; skipping", &cap[1]);
+                    continue;
+                }
+            };
             let lo = parse_int::parse(&cap[2]).unwrap();
             let hi = parse_int::parse(&cap[3]).unwrap();
             active.as_mut().unwrap().2.fields.insert(
