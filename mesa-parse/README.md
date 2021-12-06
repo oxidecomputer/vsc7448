@@ -13,5 +13,5 @@ time, with zero cost).
 
 ## Example invocation
 ```
-cargo run --release -- PATH/TO/mesa-v2021.09 jaguar2:jaguar2c > ../vsc7448-info/src/lib.rs
+cargo run --release -- --info ../vsc7448-info PATH/TO/mesa-v2021.09 jaguar2:jaguar2c
 ```

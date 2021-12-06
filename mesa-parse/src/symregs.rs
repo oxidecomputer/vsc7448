@@ -13,7 +13,7 @@ use vsc7448_types::Address;
 pub type TargetMap = HashMap<String, (Address, HashMap<String, Address>)>;
 
 // Represents the layout of Targets in memory.
-type TargetList = HashMap<String, (String, Vec<(Option<usize>, usize)>)>;
+pub type TargetList = HashMap<String, (String, Vec<(Option<usize>, usize)>)>;
 
 type MemoryMap = (HashMap<String, TargetMap>, TargetList);
 

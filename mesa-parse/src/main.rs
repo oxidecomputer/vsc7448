@@ -5,10 +5,11 @@
 //
 use std::collections::{HashMap, HashSet};
 use std::fs::File;
-use std::io::Read;
+use std::io::{Read, Write};
 use std::path::PathBuf;
 
 use clap::{App, Arg};
+use vsc7448_types::{OwnedTarget, Page};
 
 mod doxygen;
 mod phy;
@@ -16,7 +17,7 @@ mod symregs;
 
 use doxygen::parse_regs_doxygen;
 use phy::{parse_phy_pages, parse_phy_registers};
-use symregs::parse_symregs;
+use symregs::{parse_symregs, TargetList};
 
 fn main() -> Result<(), std::io::Error> {
     let matches = App::new("mesa-parse")
@@ -26,6 +27,14 @@ fn main() -> Result<(), std::io::Error> {
         .arg(Arg::with_name("root")
             .required(true)
             .help("Path to `mesa-v20xx...` folder")
+            .takes_value(true))
+        .arg(Arg::with_name("pac")
+            .long("pac")
+            .help("Root directory of the vs7488-pac crate")
+            .takes_value(true))
+        .arg(Arg::with_name("info")
+            .long("info")
+            .help("Root directory of the vs7488-info crate")
             .takes_value(true))
         .arg(Arg::with_name("family")
             .required(true)
@@ -76,7 +85,65 @@ fn main() -> Result<(), std::io::Error> {
         }
     }
 
-    print!(
+    // Then, handle the PHY registers
+    let mut path = PathBuf::from(mesa_root);
+    path.push("include");
+    path.push("vtss_phy_api.h");
+
+    let mut file = File::open(&path)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let mut pages = parse_phy_pages(&contents);
+
+    let mut path = PathBuf::from(mesa_root);
+    path.push("base");
+    path.push("phy");
+    path.push("phy_1g");
+    path.push("vtss_phy.h");
+    let mut file = File::open(&path)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    parse_phy_registers(&contents, &mut pages);
+
+    if let Some(pac) = matches.value_of("pac") {
+        print_pac_lib(pac, &target_list, &target_docs, &pages)?;
+    }
+
+    if let Some(info) = matches.value_of("info") {
+        print_info_lib(info, &target_list, &target_docs, &pages)?;
+    }
+
+    if matches.value_of("info").is_none() && matches.value_of("pac").is_none() {
+        eprintln!("--info or --pac required");
+    }
+
+    Ok(())
+}
+
+/// Prints `lib.rs` for the vsc7448_pac crate
+fn print_pac_lib(
+    _dir: &str,
+    _target_list: &TargetList,
+    _target_docs: &HashMap<String, OwnedTarget>,
+    _pages: &HashMap<String, Page<String>>,
+) -> Result<(), std::io::Error> {
+    unimplemented!()
+}
+
+/// Prints lib.rs for the vsc7448_info crate
+fn print_info_lib(
+    dir: &str,
+    target_list: &TargetList,
+    target_docs: &HashMap<String, OwnedTarget>,
+    pages: &HashMap<String, Page<String>>,
+) -> Result<(), std::io::Error> {
+    let mut path = PathBuf::from(dir);
+    path.push("src");
+    path.push("lib.rs");
+    let mut file = File::create(&path)?;
+
+    write!(
+        &mut file,
         "//
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -98,65 +165,71 @@ lazy_static! {{
     ///   only one instance of this target, then this is vec![(None, ADDRESS)].
     pub static ref MEMORY_MAP: HashMap<&'static str, (&'static str, Vec<(Option<u32>, u32)>)> = {{
         let mut out = HashMap::new();"
-    );
+    )?;
     let mut keys = target_list.keys().collect::<Vec<_>>();
     keys.sort();
     for k in keys {
         let t = &target_list[k];
-        print!(
+        write!(
+            &mut file,
             "
         out.insert({:?}, ({:?}, vec![",
             k, t.0
-        );
+        )?;
         for t in &t.1 {
-            print!("({:?},{:#x}),", t.0, t.1);
+            write!(&mut file, "({:?},{:#x}),", t.0, t.1)?;
         }
-        print!("]));");
+        write!(&mut file, "]));")?;
     }
-    println!(
+    writeln!(
+        &mut file,
         "
         return out;
     }};"
-    );
+    )?;
 
-    print!(
+    write!(
+        &mut file,
         "
     /// Maps from target name to `Target`, which contains a hierarchy
     /// of register groups, registers, and fields.
     pub static ref TARGETS: HashMap<&'static str, Target> = {{
         let mut out = HashMap::new();"
-    );
+    )?;
     let mut keys = target_docs.keys().collect::<Vec<_>>();
     keys.sort();
     // Iteration over targets
     for k in keys {
         let t = &target_docs[k];
-        print!(
+        write!(
+            &mut file,
             "
 
         let {}groups = HashMap::new();",
             if t.groups.is_empty() { "" } else { "mut " }
-        );
+        )?;
         let mut keys = t.groups.keys().collect::<Vec<_>>();
         keys.sort();
 
         // Iteration over register groups
         for k in keys {
             let t = &t.groups[k];
-            print!(
+            write!(
+                &mut file,
                 "
         let {}regs = HashMap::new();",
                 if t.regs.is_empty() { "" } else { "mut " }
-            );
+            )?;
             let mut keys = t.regs.keys().collect::<Vec<_>>();
             keys.sort();
 
             // Iteration over registers
             for k in keys {
-                print!(
+                write!(
+                    &mut file,
                     "
         let mut fields = HashMap::new();"
-                );
+                )?;
                 let t = &t.regs[k];
                 let mut keys = t.fields.keys().collect::<Vec<_>>();
                 keys.sort();
@@ -167,86 +240,74 @@ lazy_static! {{
                     if t.hi > 32 {
                         panic!("Invalid hi bit for {:?}", t);
                     }
-                    print!(
+                    write!(
+                        &mut file,
                         "
         fields.insert({:?}, {:?});",
                         k, t
-                    );
+                    )?;
                 }
-                print!(
+                write!(
+                    &mut file,
                     "
         regs.insert({:?}, Register {{ addr: {:?}, brief: {:?}, details: {:?}, fields }});",
                     k, t.addr, t.brief, t.details
-                );
+                )?;
             }
-            print!(
+            write!(
+                &mut file,
                 "
         groups.insert({:?}, RegisterGroup {{ addr: {:?}, desc: {:?}, regs }});",
                 k, t.addr, t.desc
-            );
+            )?;
         }
-        print!(
+        write!(
+            &mut file,
             "
         out.insert({:?}, Target {{ desc: {:?}, groups }});",
             k, t.desc
-        );
+        )?;
     }
-    println!(
+    writeln!(
+        &mut file,
         "
         return out;
     }};"
-    );
+    )?;
 
-    // Then, handle the PHY registers
-    let mut path = PathBuf::from(mesa_root);
-    path.push("include");
-    path.push("vtss_phy_api.h");
-
-    let mut file = File::open(&path)?;
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)?;
-    let mut pages = parse_phy_pages(&contents);
-
-    let mut path = PathBuf::from(mesa_root);
-    path.push("base");
-    path.push("phy");
-    path.push("phy_1g");
-    path.push("vtss_phy.h");
-    let mut file = File::open(&path)?;
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)?;
-    parse_phy_registers(&contents, &mut pages);
-
-    print!(
+    write!(
+        &mut file,
         "
     /// Maps from PHY page name to `Page`, which contains a hierarchy
     /// of registers containing bit fields.
     pub static ref PHY_MAP: HashMap<&'static str, Page<&'static str>> = {{
         let mut out = HashMap::new();"
-    );
+    )?;
 
     // Iteration over pages
     let mut keys = pages.keys().collect::<Vec<_>>();
     keys.sort_by_key(|k| (pages[k.as_str()].base, k.as_str()));
     for k in keys {
         let t = &pages[k];
-        print!(
+        write!(
+            &mut file,
             "
 
         let {}regs = HashMap::new();",
             if t.regs.is_empty() { "" } else { "mut " }
-        );
+        )?;
         let mut keys = t.regs.keys().collect::<Vec<_>>();
         keys.sort_by_key(|k| (t.regs[k.as_str()].addr.base, k.as_str()));
 
         // Iteration over registers
         for k in keys {
             let t = &t.regs[k];
-            print!(
+            write!(
+                &mut file,
                 "
         let {}fields = HashMap::new();",
                 if t.fields.is_empty() { "" } else { "mut " }
-            );
+            )?;
             let mut keys = t.fields.keys().collect::<Vec<_>>();
             keys.sort_by_key(|k| (t.fields[k.as_str()].lo, k.as_str()));
 
@@ -256,33 +317,37 @@ lazy_static! {{
                 if t.hi > 32 {
                     panic!("Invalid hi bit for {:?}", t);
                 }
-                print!(
+                write!(
+                    &mut file,
                     "
         fields.insert({:?}, {:?});",
                     k, t
-                );
+                )?;
             }
             if t.addr.base > 31 {
                 panic!("Invalid register address for {:?}", t);
             }
-            print!(
+            write!(
+                &mut file,
                 "
         regs.insert({:?}, Register {{ addr: {:?}, brief: {:?}, details: {:?}, fields }});",
                 k, t.addr, t.brief, t.details
-            );
+            )?;
         }
 
-        print!(
+        write!(
+            &mut file,
             "
         out.insert({:?}, Page {{ desc: {:?}, base: {}, regs }});",
             k, t.desc, t.base,
-        );
+        )?;
     }
-    println!(
+    writeln!(
+        &mut file,
         "
         return out;
     }};
 }}"
-    );
+    )?;
     Ok(())
 }
