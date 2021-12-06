@@ -12,3 +12,5 @@ lazy_static = "*"
 regex = "1"
 thiserror = "1"
 vsc7448-types = { path = "../vsc7448-types" }
+serde = "1"
+postcard = "0.7"

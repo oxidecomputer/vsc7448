@@ -13,7 +13,7 @@ use vsc7448_types::Address;
 pub type TargetMap = BTreeMap<String, (Address, BTreeMap<String, Address>)>;
 
 // Represents the layout of Targets in memory.
-pub type TargetList = BTreeMap<String, (String, Vec<(Option<usize>, usize)>)>;
+pub type TargetList = BTreeMap<String, (String, Vec<(Option<u32>, u32)>)>;
 
 type MemoryMap = (BTreeMap<String, TargetMap>, TargetList);
 
@@ -112,16 +112,12 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
         if let Some(caps) = target_re.captures(s) {
             let name = caps[1].trim_matches('\"').to_owned();
             let repl: i32 = caps[2].parse().unwrap();
-            let addr = parse_int::parse::<usize>(&caps[5]).unwrap();
+            let addr = parse_int::parse::<u32>(&caps[5]).unwrap();
             let entry = target_list
                 .entry(name)
                 .or_insert((caps[6].to_owned(), Vec::new()));
             assert!(entry.0 == caps[6]);
-            let repl = if repl == -1 {
-                None
-            } else {
-                Some(repl as usize)
-            };
+            let repl = if repl == -1 { None } else { Some(repl as u32) };
             entry.1.push((repl, addr + offsets.get(&caps[4]).unwrap()));
         }
     }

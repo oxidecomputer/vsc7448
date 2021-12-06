@@ -8,7 +8,7 @@
 use regex::Regex;
 use thiserror::Error;
 
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 use crate::{MEMORY_MAP, PHY_MAP, TARGETS};
 use vsc7448_types::Field;
@@ -84,7 +84,7 @@ impl TargetRegister {
         let target = &MEMORY_MAP[self.target.name];
         let (_, mut addr) = target.1.iter().find(|t| t.0 == self.target.index).unwrap();
 
-        let target = &TARGETS[target.0];
+        let target = &TARGETS[&target.0];
         let group = &target.groups[self.group.name];
         addr += (group.addr.base + group.addr.width * self.group.index.unwrap_or(0)) * 4;
 
@@ -94,8 +94,8 @@ impl TargetRegister {
         addr.try_into().expect("Address exceeds 32-bit space?!")
     }
     /// Returns this register's field map.
-    pub fn fields(&self) -> &HashMap<&'static str, Field<&'static str>> {
-        &TARGETS[MEMORY_MAP[self.target.name].0].groups[self.group.name].regs[self.reg.name].fields
+    pub fn fields(&self) -> &BTreeMap<String, Field<String>> {
+        &TARGETS[&MEMORY_MAP[self.target.name].0].groups[self.group.name].regs[self.reg.name].fields
     }
 }
 
@@ -124,7 +124,7 @@ impl std::str::FromStr for TargetRegister {
                 let mut iter = MEMORY_MAP
                     .iter()
                     .flat_map(|(i, target)| {
-                        TARGETS[target.0]
+                        TARGETS[&target.0]
                             .groups
                             .iter()
                             .map(move |(j, group)| (i, j, group))
@@ -164,7 +164,7 @@ impl std::str::FromStr for TargetRegister {
                     .get_key_value(root_name)
                     .into_iter()
                     .flat_map(|(i, target)| {
-                        TARGETS[target.0]
+                        TARGETS[&target.0]
                             .groups
                             .iter()
                             .map(move |(j, group)| (i, j, group))
@@ -179,7 +179,7 @@ impl std::str::FromStr for TargetRegister {
                         MEMORY_MAP
                             .iter()
                             .flat_map(|(i, target)| {
-                                TARGETS[target.0]
+                                TARGETS[&target.0]
                                     .groups
                                     .get_key_value(root_name)
                                     .into_iter()
@@ -227,7 +227,7 @@ impl std::str::FromStr for TargetRegister {
                     .get_key_value(target_name)
                     .into_iter()
                     .flat_map(|(i, target)| {
-                        TARGETS[target.0]
+                        TARGETS[&target.0]
                             .groups
                             .get_key_value(group_name)
                             .into_iter()
@@ -289,7 +289,7 @@ impl std::str::FromStr for TargetRegister {
                 out.target.index,
             ))?;
 
-        let target = &TARGETS[target.0];
+        let target = &TARGETS[&target.0];
         let group = &target.groups[out.group.name];
         match (group.addr.count, out.group.index) {
             (1, Some(_)) => Err(ParseError::NotRegisterGroupArray(out.group.name)),
@@ -414,7 +414,7 @@ impl PhyRegister {
         addr
     }
     /// Returns this register's field map.
-    pub fn fields(&self) -> &'static HashMap<&'static str, Field<&'static str>> {
+    pub fn fields(&self) -> &'static BTreeMap<String, Field<String>> {
         &PHY_MAP[self.page].regs[self.reg].fields
     }
 }
