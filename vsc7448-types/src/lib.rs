@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 /// Represents a single bitfield within a register, containing bits `lo`
 /// (inclusive) through `hi` (exclusive).  For example, a bitfield that
@@ -28,7 +28,7 @@ pub struct Register<S> {
     pub addr: Address,
     pub brief: Option<S>,
     pub details: Option<S>,
-    pub fields: HashMap<S, Field<S>>,
+    pub fields: BTreeMap<S, Field<S>>,
 }
 
 /// A register group (or register group array) within a target
@@ -39,7 +39,7 @@ pub struct Register<S> {
 pub struct RegisterGroup<S> {
     pub addr: Address,
     pub desc: S,
-    pub regs: HashMap<S, Register<S>>,
+    pub regs: BTreeMap<S, Register<S>>,
 }
 
 /// A top-level "target" within the VSC7448.
@@ -49,7 +49,7 @@ pub struct RegisterGroup<S> {
 #[derive(Debug)]
 pub struct BaseTarget<S> {
     pub desc: S,
-    pub groups: HashMap<S, RegisterGroup<S>>,
+    pub groups: BTreeMap<S, RegisterGroup<S>>,
 }
 pub type OwnedTarget = BaseTarget<String>;
 pub type Target = BaseTarget<&'static str>;
@@ -69,5 +69,5 @@ pub struct Address {
 pub struct Page<S> {
     pub desc: S,
     pub base: u32,
-    pub regs: HashMap<S, Register<S>>,
+    pub regs: BTreeMap<S, Register<S>>,
 }

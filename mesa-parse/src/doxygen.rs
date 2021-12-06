@@ -4,7 +4,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
 use regex::Regex;
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 use crate::symregs::TargetMap;
 use vsc7448_types::{Field, OwnedTarget, Register, RegisterGroup};
@@ -175,7 +175,7 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
                 assert!(item.details.is_none());
                 target = Some(OwnedTarget {
                     desc: item.desc.unwrap(),
-                    groups: HashMap::new(),
+                    groups: BTreeMap::new(),
                 });
             }
             DoxygenBlockType::RegisterGroup => {
@@ -190,7 +190,7 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
                     RegisterGroup {
                         addr,
                         desc: item.desc.unwrap(),
-                        regs: HashMap::new(),
+                        regs: BTreeMap::new(),
                     },
                 ));
             }
@@ -210,7 +210,7 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
                         addr,
                         brief: item.brief,
                         details: item.details,
-                        fields: HashMap::new(),
+                        fields: BTreeMap::new(),
                     },
                 ));
             }

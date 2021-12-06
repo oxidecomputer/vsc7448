@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
-use std::collections::{HashMap, HashSet};
+use std::collections::{BTreeMap, HashSet};
 use std::fs::File;
 use std::io::{Read, Write};
 use std::path::PathBuf;
@@ -66,7 +66,7 @@ fn main() -> Result<(), std::io::Error> {
 
     // Then, parse each target-specific file
     let mut seen_targets = HashSet::new();
-    let mut target_docs = HashMap::new();
+    let mut target_docs = BTreeMap::new();
     for target in &target_list {
         let base_target = target.1 .0.clone();
 
@@ -124,8 +124,8 @@ fn main() -> Result<(), std::io::Error> {
 fn print_pac_lib(
     _dir: &str,
     _target_list: &TargetList,
-    _target_docs: &HashMap<String, OwnedTarget>,
-    _pages: &HashMap<String, Page<String>>,
+    _target_docs: &BTreeMap<String, OwnedTarget>,
+    _pages: &BTreeMap<String, Page<String>>,
 ) -> Result<(), std::io::Error> {
     unimplemented!()
 }
@@ -134,9 +134,9 @@ fn print_pac_lib(
 fn print_info_lib(
     dir: &str,
     target_list: &TargetList,
-    target_docs: &HashMap<String, OwnedTarget>,
-    pages: &HashMap<String, Page<String>>,
-) -> Result<(), std::io::Error> {
+    target_docs: &BTreeMap<String, OwnedTarget>,
+    pages: &BTreeMap<String, Page<String>>,
+) -> Result<(), Box<dyn std::error::Error>> {
     let mut path = PathBuf::from(dir);
     path.push("src");
     path.push("lib.rs");
@@ -166,10 +166,7 @@ lazy_static! {{
     pub static ref MEMORY_MAP: HashMap<&'static str, (&'static str, Vec<(Option<u32>, u32)>)> = {{
         let mut out = HashMap::new();"
     )?;
-    let mut keys = target_list.keys().collect::<Vec<_>>();
-    keys.sort();
-    for k in keys {
-        let t = &target_list[k];
+    for (k, t) in target_list {
         write!(
             &mut file,
             "
@@ -196,11 +193,8 @@ lazy_static! {{
     pub static ref TARGETS: HashMap<&'static str, Target> = {{
         let mut out = HashMap::new();"
     )?;
-    let mut keys = target_docs.keys().collect::<Vec<_>>();
-    keys.sort();
     // Iteration over targets
-    for k in keys {
-        let t = &target_docs[k];
+    for (k, t) in target_docs {
         write!(
             &mut file,
             "
@@ -208,35 +202,25 @@ lazy_static! {{
         let {}groups = HashMap::new();",
             if t.groups.is_empty() { "" } else { "mut " }
         )?;
-        let mut keys = t.groups.keys().collect::<Vec<_>>();
-        keys.sort();
 
         // Iteration over register groups
-        for k in keys {
-            let t = &t.groups[k];
+        for (k, t) in &t.groups {
             write!(
                 &mut file,
                 "
         let {}regs = HashMap::new();",
                 if t.regs.is_empty() { "" } else { "mut " }
             )?;
-            let mut keys = t.regs.keys().collect::<Vec<_>>();
-            keys.sort();
 
             // Iteration over registers
-            for k in keys {
+            for (k, t) in &t.regs {
                 write!(
                     &mut file,
                     "
         let mut fields = HashMap::new();"
                 )?;
-                let t = &t.regs[k];
-                let mut keys = t.fields.keys().collect::<Vec<_>>();
-                keys.sort();
-
                 // Iteration over fields
-                for k in keys {
-                    let t = &t.fields[k];
+                for (k, t) in &t.fields {
                     if t.hi > 32 {
                         panic!("Invalid hi bit for {:?}", t);
                     }
@@ -293,7 +277,7 @@ lazy_static! {{
             &mut file,
             "
 
-        let {}regs = HashMap::new();",
+        let {}regs = BTreeMap::new();",
             if t.regs.is_empty() { "" } else { "mut " }
         )?;
         let mut keys = t.regs.keys().collect::<Vec<_>>();
