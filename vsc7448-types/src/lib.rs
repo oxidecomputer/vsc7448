@@ -11,7 +11,7 @@ use std::collections::HashMap;
 ///
 /// Typically parameterized with either `String` or `'static str`, depending on
 /// how it's used in the program.
-#[derive(Debug)]
+#[derive(Copy, Clone, Debug)]
 pub struct Field<S> {
     pub brief: Option<S>,
     pub details: Option<S>,
@@ -23,7 +23,7 @@ pub struct Field<S> {
 ///
 /// Typically parameterized with either `String` or `'static str`, depending on
 /// how it's used in the program.
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Register<S> {
     pub addr: Address,
     pub brief: Option<S>,
@@ -35,7 +35,7 @@ pub struct Register<S> {
 ///
 /// Typically parameterized with either `String` or `'static str`, depending on
 /// how it's used in the program.
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct RegisterGroup<S> {
     pub addr: Address,
     pub desc: S,
