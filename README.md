@@ -8,7 +8,7 @@ very few people.
 - `vsc7448-types` are common types
 - `mesa-parse` parses `MESA` headers and generates `vsc7448-info`
 - `vsc7448-info` exposes a register map as a userland data structure
-- `vsc7448-sys` (coming soon) exposes the same register map as raw pointers
+- `vsc7448-pac` exposes the same register map as addresses
   (for use in embedded devices)
 
 ## License

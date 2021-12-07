@@ -114,7 +114,7 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
             let repl: i32 = caps[2].parse().unwrap();
             let addr = parse_int::parse::<u32>(&caps[5]).unwrap();
             let entry = target_list
-                .entry(name)
+                .entry(name.clone())
                 .or_insert((caps[6].to_owned(), Vec::new()));
             assert!(entry.0 == caps[6]);
             let repl = if repl == -1 { None } else { Some(repl as u32) };
