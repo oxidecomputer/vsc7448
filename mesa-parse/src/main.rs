@@ -262,14 +262,9 @@ use crate::types::RegisterAddress;
         writeln!(
             &mut file,
             "
-/// Target `{0}`
-///
 /// {1}
 pub struct {0}(u32);
-impl {0} {{
-    pub fn addr(&self) -> u32 {{
-        self.0
-    }}",
+impl {0} {{",
             name, target_docs[remap].desc
         )?;
 
@@ -288,7 +283,7 @@ impl {0} {{
                     "
     pub fn {1}(&self, index: u32) -> {0}::{1} {{
         assert!(index < {3});
-        {0}::{1}(self.addr() + 0x{2:x} + index * 0x{4:x})
+        {0}::{1}(self.0 + 0x{2:x} + index * 0x{4:x})
     }}",
                     name.to_lowercase(),
                     gname,
@@ -301,7 +296,7 @@ impl {0} {{
                     &mut file,
                     "
     pub fn {1}(&self) -> {0}::{1} {{
-        {0}::{1}(self.addr() + 0x{2:x})
+        {0}::{1}(self.0 + 0x{2:x})
     }}",
                     name.to_lowercase(),
                     gname,
@@ -312,14 +307,9 @@ impl {0} {{
             write!(
                 &mut tfile,
                 "
-/// Register group `{0}`
-///
 /// {1}
 pub struct {0}(pub(super) u32);
-impl {0} {{
-    pub fn addr(&self) -> u32 {{
-        self.0
-    }}",
+impl {0} {{",
                 gname,
                 group.desc.replace("\n", "\n/// ")
             )?;
@@ -330,7 +320,7 @@ impl {0} {{
                         "
     pub fn {0}(&self, index: u32) -> RegisterAddress<{1}::{0}> {{
         assert!(index < {4});
-        RegisterAddress::new(self.addr() + 0x{2:x} + index * 0x{3:x})
+        RegisterAddress::new(self.0 + 0x{2:x} + index * 0x{3:x})
     }}",
                         rname,
                         gname.to_lowercase(),
@@ -343,7 +333,7 @@ impl {0} {{
                         &mut tfile,
                         "
     pub fn {0}(&self) -> RegisterAddress<{1}::{0}> {{
-        RegisterAddress::new(self.addr() + 0x{2:x})
+        RegisterAddress::new(self.0 + 0x{2:x})
     }}",
                         rname,
                         gname.to_lowercase(),
@@ -366,7 +356,6 @@ impl {0} {{",
                 )?;
                 assert!(!reg.fields.is_empty());
                 for (fname, field) in reg.fields.iter() {
-                    writeln!(&mut gfile, "\n    /// Bitfield `{0}`", fname)?;
                     if let Some(brief) = &field.brief {
                         writeln!(
                             &mut gfile,
