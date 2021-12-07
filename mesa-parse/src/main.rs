@@ -325,7 +325,7 @@ impl {0} {{
             )?;
             for (rname, reg) in group.regs.iter() {
                 if reg.addr.count > 1 {
-                    writeln!(
+                    write!(
                         &mut tfile,
                         "
     pub fn {0}(&self, index: u32) -> RegisterAddress<{1}::{0}> {{
@@ -339,7 +339,7 @@ impl {0} {{
                         reg.addr.count
                     )?;
                 } else {
-                    writeln!(
+                    write!(
                         &mut tfile,
                         "
     pub fn {0}(&self) -> RegisterAddress<{1}::{0}> {{
@@ -350,29 +350,48 @@ impl {0} {{
                         reg.addr.base * 4
                     )?;
                 }
-                writeln!(
+                writeln!(&mut gfile, "\n/// Register `{0}`", rname)?;
+                if let Some(brief) = &reg.brief {
+                    writeln!(&mut gfile, "///\n/// {}", brief.replace("\n", "\n/// "))?;
+                }
+                if let Some(details) = &reg.details {
+                    writeln!(&mut gfile, "///\n/// {}", details.replace("\n", "\n/// "))?;
+                }
+                write!(
                     &mut gfile,
-                    "
-/// Register {0}
-///
-{1}{2}
-#[derive(From, Into)]
+                    "#[derive(From, Into)]
 pub struct {0}(u32);
-",
-                    rname,
-                    if let Some(brief) = &reg.brief {
-                        format!("/// {}", brief.replace("\n", "\n/// "))
-                    } else {
-                        "".to_string()
-                    },
-                    if let Some(desc) = &reg.details {
-                        format!("/// {}", desc.replace("\n", "\n/// "))
-                    } else {
-                        "".to_string()
-                    }
+impl {0} {{",
+                    rname
                 )?;
+                assert!(!reg.fields.is_empty());
+                for (fname, field) in reg.fields.iter() {
+                    writeln!(&mut gfile, "\n    /// Bitfield `{0}`", fname)?;
+                    if let Some(brief) = &field.brief {
+                        writeln!(&mut gfile, "    ///\n    /// {}", brief.replace("\n", "\n    /// "))?;
+                    }
+                    if let Some(details) = &field.details {
+                        writeln!(&mut gfile, "    ///\n    /// {}", details.replace("\n", "\n    /// "))?;
+                    }
+                    write!(
+                        &mut gfile,
+                        "    pub fn {field}(&self) -> u32 {{
+        (self.0 & 0x{mask:x}) >> {shift}
+    }}
+    pub fn set_{field}(&mut self, value: u32) {{
+        let value = value << {shift};
+        assert!(value <= 0x{mask:x});
+        self.0 &= !0x{mask:x};
+        self.0 |= value;
+    }}",
+                        field = fname.to_lowercase(),
+                        shift = field.lo,
+                        mask = ((1 << field.hi) - 1) ^ ((1 << field.lo) - 1)
+                    )?;
+                }
+                writeln!(&mut gfile, "\n}}")?;
             }
-            writeln!(&mut tfile, "}}")?;
+            writeln!(&mut tfile, "\n}}")?;
         }
         write!(
             &mut file,
