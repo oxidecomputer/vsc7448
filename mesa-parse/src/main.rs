@@ -161,40 +161,52 @@ fn print_pac_lib(
     pages: &BTreeMap<String, Page<String>>,
 ) -> Result<(), std::io::Error> {
     let mut path = PathBuf::from(dir);
-    let folder = path.file_name().unwrap().to_str().unwrap().to_owned();
     path.push("src");
     path.push("lib.rs");
     let mut file = File::create(&path)?;
+    path.pop();
 
-    write!(&mut file, "{}", header)?;
-    writeln!(&mut file, "use crate::RegisterAddress;")?;
+    writeln!(&mut file, "{}", header)?;
+    writeln!(
+        &mut file,
+        "
+#![no_std]
+#![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
+
+pub mod types;
+
+// Top-level targets are stored in the tree as submodules
+"
+    )?;
+    // Write all of the mods
+    for name in target_list.keys() {
+        writeln!(&mut file, "pub mod {};", name.to_lowercase())?;
+    }
 
     // Write top-level targets
-    for (name, (remap, instances)) in target_list.iter() {
-        write!(
-            &mut file,
-            "
-#[allow(non_camel_case_types)]
-#[derive(Default)]
-pub struct {0}();
-impl {0} {{
-    pub fn addr(&self{1}) -> u32 {{
-",
-            name,
-            if instances.len() > 1 {
-                ", index: u32"
-            } else {
-                ""
-            }
-        )?;
+    write!(
+        &mut file,
+        "
+pub struct Vsc7448 {{}}
+impl Vsc7448 {{"
+    )?;
+
+    // Create the top-level Vsc7448 struct, which has static functions to
+    // construct each kind of target
+    for (name, (_, instances)) in target_list.iter() {
         let mut instances = instances.clone();
         instances.sort();
         match instances.len() {
-            0 => panic!("Target with no instances"),
-            1 => {
-                assert!(instances[0].0.is_none());
-                writeln!(&mut file, "        0x{:x}", instances[0].1)?;
-            }
+            0 => panic!("Target {} has 0 instances", name),
+            1 => write!(
+                &mut file,
+                "
+    pub fn {0}() -> {0} {{
+        {0}(0x{1:x})
+    }}",
+                name, instances[0].1
+            )?,
             _ => {
                 // Sanity-check that the instances are tightly packed in memory
                 let delta = instances[1].1 - instances[0].1;
@@ -202,12 +214,165 @@ impl {0} {{
                     assert_eq!(instance.0, Some(i as u32));
                     assert_eq!(instance.1, instances[0].1 + delta * i as u32);
                 }
-                writeln!(
+                write!(
                     &mut file,
-                    "        0x{:x} + 0x{:x} * index",
-                    instances[0].1, delta
+                    "
+    pub fn {0}(index: u32) -> {0} {{
+        assert!(index < {2});
+        {0}(0x{1:x} + index * 0x{3:x})
+    }}",
+                    name,
+                    instances[0].1,
+                    instances.len(),
+                    delta
                 )?;
             }
+        }
+    }
+    writeln!(&mut file, "\n}}")?;
+
+    // Write top-level targets
+    for (name, (remap, _instances)) in target_list.iter() {
+        // Open and write a header to the target-specific file
+        let mut path = PathBuf::from(dir);
+        path.push("src");
+        path.push(format!("{}.rs", name.to_lowercase()));
+        let mut tfile = File::create(&path)?;
+        path.pop();
+        path.push(name.to_lowercase());
+        if !path.exists() {
+            std::fs::create_dir(path.clone())?;
+        }
+
+        writeln!(&mut tfile, "{}", header)?;
+        writeln!(
+            &mut tfile,
+            "
+use crate::types::RegisterAddress;
+
+// Register groups are stored in the tree as submodules
+"
+        )?;
+
+        for (gname, _group) in target_docs[remap].groups.iter() {
+            writeln!(&mut tfile, "pub mod {};", gname.to_lowercase())?;
+        }
+
+        // Write the struct header
+        writeln!(
+            &mut file,
+            "
+/// Target `{0}`
+///
+/// {1}
+pub struct {0}(u32);
+impl {0} {{
+    pub fn addr(&self) -> u32 {{
+        self.0
+    }}",
+            name, target_docs[remap].desc
+        )?;
+
+        for (gname, group) in target_docs[remap].groups.iter() {
+            path.push(format!("{}.rs", gname.to_lowercase()));
+            let mut gfile = File::create(&path)?;
+            path.pop();
+            writeln!(&mut gfile, "{}", header)?;
+            if !group.regs.is_empty() {
+                writeln!(&mut gfile, "use derive_more::{{From, Into}};")?;
+            }
+
+            if group.addr.count > 1 {
+                write!(
+                    &mut file,
+                    "
+    pub fn {1}(&self, index: u32) -> {0}::{1} {{
+        assert!(index < {3});
+        {0}::{1}(self.addr() + 0x{2:x} + index * 0x{4:x})
+    }}",
+                    name.to_lowercase(),
+                    gname,
+                    group.addr.base * 4,
+                    group.addr.count,
+                    group.addr.width,
+                )?;
+            } else {
+                write!(
+                    &mut file,
+                    "
+    pub fn {1}(&self) -> {0}::{1} {{
+        {0}::{1}(self.addr() + 0x{2:x})
+    }}",
+                    name.to_lowercase(),
+                    gname,
+                    group.addr.base * 4,
+                )?;
+            }
+
+            write!(
+                &mut tfile,
+                "
+/// Register group `{0}`
+///
+/// {1}
+pub struct {0}(pub(super) u32);
+impl {0} {{
+    pub fn addr(&self) -> u32 {{
+        self.0
+    }}",
+                gname,
+                group.desc.replace("\n", "\n/// ")
+            )?;
+            for (rname, reg) in group.regs.iter() {
+                if reg.addr.count > 1 {
+                    writeln!(
+                        &mut tfile,
+                        "
+    pub fn {0}(&self, index: u32) -> RegisterAddress<{1}::{0}> {{
+        assert!(index < {4});
+        RegisterAddress::new(self.addr() + 0x{2:x} + index * 0x{3:x})
+    }}",
+                        rname,
+                        gname.to_lowercase(),
+                        reg.addr.base * 4,
+                        reg.addr.width * 4,
+                        reg.addr.count
+                    )?;
+                } else {
+                    writeln!(
+                        &mut tfile,
+                        "
+    pub fn {0}(&self) -> RegisterAddress<{1}::{0}> {{
+        RegisterAddress::new(self.addr() + 0x{2:x})
+    }}",
+                        rname,
+                        gname.to_lowercase(),
+                        reg.addr.base * 4
+                    )?;
+                }
+                writeln!(
+                    &mut gfile,
+                    "
+/// Register {0}
+///
+{1}{2}
+#[derive(From, Into)]
+pub struct {0}(u32);
+",
+                    rname,
+                    if let Some(brief) = &reg.brief {
+                        format!("/// {}", brief.replace("\n", "\n/// "))
+                    } else {
+                        "".to_string()
+                    },
+                    if let Some(desc) = &reg.details {
+                        format!("/// {}", desc.replace("\n", "\n/// "))
+                    } else {
+                        "".to_string()
+                    }
+                )?;
+            }
+            writeln!(&mut tfile, "}}")?;
         }
         write!(
             &mut file,
