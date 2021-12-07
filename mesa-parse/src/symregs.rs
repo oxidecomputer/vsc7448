@@ -46,7 +46,7 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
 
     // Map from target name to target memory map
     let mut known_targets = BTreeMap::new();
-    let mut target_list = BTreeMap::new();
+    let mut target_list: TargetList = BTreeMap::new();
 
     for s in s.lines() {
         // When a block ends, finalize it
