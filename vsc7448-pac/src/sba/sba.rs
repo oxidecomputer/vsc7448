@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// The default master is selected by the bus when no master has requested ownership. The default master is able to start bus accesses slightly faster than other masters.
 #[derive(From, Into)]
 pub struct DFT_MST(u32);
-impl DFT_MST {    ///
+impl DFT_MST {
     /// Use this field to configure default master.
+
     ///
+
     /// 0: No default master 1: Master 1 2: Master 2 3: Master 3
     pub fn dft_mst(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -55,7 +57,7 @@ impl DFT_MST {    ///
 /// Early burst termination
 #[derive(From, Into)]
 pub struct EBT(u32);
-impl EBT {    ///
+impl EBT {
     /// Set when an Early Burst Termination takes place. The register is cleared when read.
     pub fn ebt(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -73,7 +75,7 @@ impl EBT {    ///
 /// Early burst termination count
 #[derive(From, Into)]
 pub struct EBT_COUNT(u32);
-impl EBT_COUNT {    ///
+impl EBT_COUNT {
     /// Maximum number of cycles a transfer can take before being subject to an early burst termination.
     pub fn ebt_count(&self) -> u32 {
         (self.0 & 0x3ff) >> 0
@@ -91,9 +93,11 @@ impl EBT_COUNT {    ///
 /// Early burst termination enable
 #[derive(From, Into)]
 pub struct EBT_EN(u32);
-impl EBT_EN {    ///
+impl EBT_EN {
     /// Use this field to enable early burst termination.
+
     ///
+
     /// 0: Disabled 1: Enabled
     pub fn ebt_en(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -111,9 +115,11 @@ impl EBT_EN {    ///
 /// Master 1 arbitration priority
 #[derive(From, Into)]
 pub struct PL_CPU(u32);
-impl PL_CPU {    ///
+impl PL_CPU {
     /// Arbitration priority for the master. When multiple masters request the bus at the same time, the one with the highest priority is ganted bus access.
+
     ///
+
     /// Values 0x1 through 0xF, higher values are prioritized over lower values.
     pub fn pl1(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -131,7 +137,7 @@ impl PL_CPU {    ///
 /// Master 3 arbitration priority
 #[derive(From, Into)]
 pub struct PL_CSR(u32);
-impl PL_CSR {    ///
+impl PL_CSR {
     /// See SBA::PL1 for description.
     pub fn pl3(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -149,7 +155,7 @@ impl PL_CSR {    ///
 /// Master 2 arbitration priority
 #[derive(From, Into)]
 pub struct PL_PCIE(u32);
-impl PL_PCIE {    ///
+impl PL_PCIE {
     /// See SBA::PL1 for description.
     pub fn pl2(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -168,12 +174,12 @@ impl PL_PCIE {    ///
 #[derive(From, Into)]
 pub struct RESERVED1(u32);
 impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_reserved1(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -183,7 +189,7 @@ impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
 /// Master 1 clock tokens
 #[derive(From, Into)]
 pub struct WT_CPU(u32);
-impl WT_CPU {    ///
+impl WT_CPU {
     /// Number of tokens to grant the master at the start of each refresh period for weighted-token arbitration scheme. If configured with a value of zero, the master is considered to have infinite tokens.
     pub fn wt_cl1(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -201,7 +207,7 @@ impl WT_CPU {    ///
 /// Master 3 clock tokens
 #[derive(From, Into)]
 pub struct WT_CSR(u32);
-impl WT_CSR {    ///
+impl WT_CSR {
     /// See SBA::WT_CL1 for description.
     pub fn wt_cl3(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -221,7 +227,7 @@ impl WT_CSR {    ///
 /// When weighted token arbitration is enabled, each master on the shared bus is granted a configurable number of tokens at the start of each refresh period. The length of each refresh period is configurable. In each clock-cycle that a master uses the bus, the token counter for that master decreases. Once all tokens are spent, the master is forced to a low priority. A master with tokens remaining, always takes priority over masters with no tokens remaining.
 #[derive(From, Into)]
 pub struct WT_EN(u32);
-impl WT_EN {    ///
+impl WT_EN {
     /// Set this field to enable weighted-token arbitration scheme.
     pub fn wt_en(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -239,7 +245,7 @@ impl WT_EN {    ///
 /// Master 2 clock tokens
 #[derive(From, Into)]
 pub struct WT_PCIE(u32);
-impl WT_PCIE {    ///
+impl WT_PCIE {
     /// See SBA::WT_CL1 for description.
     pub fn wt_cl2(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -257,7 +263,7 @@ impl WT_PCIE {    ///
 /// Clock tokens refresh period
 #[derive(From, Into)]
 pub struct WT_TCL(u32);
-impl WT_TCL {    ///
+impl WT_TCL {
     /// Refresh period length for the weighted-token arbitration scheme.
     pub fn wt_tcl(&self) -> u32 {
         (self.0 & 0xffff) >> 0

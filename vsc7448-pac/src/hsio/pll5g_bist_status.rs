@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Configuration register 2 for PLL5G BIST.
 #[derive(From, Into)]
 pub struct PLL5G_BIST_CFG2(u32);
-impl PLL5G_BIST_CFG2 {    ///
+impl PLL5G_BIST_CFG2 {
     /// BIST compare divider N
     pub fn pllb_div_factor_n(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -55,7 +55,7 @@ impl PLL5G_BIST_CFG2 {    ///
 /// Status register 0 for PLL5G BIST.
 #[derive(From, Into)]
 pub struct PLL5G_BIST_STAT0(u32);
-impl PLL5G_BIST_STAT0 {    ///
+impl PLL5G_BIST_STAT0 {
     /// BIST busy, 0: not busy, 1: busy
     pub fn pllb_busy(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -65,7 +65,7 @@ impl PLL5G_BIST_STAT0 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// BIST done, 0: done, 1: not done
     pub fn pllb_done_n(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -75,7 +75,7 @@ impl PLL5G_BIST_STAT0 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// BIST pass/fail, 0: passed, 1: failed
     pub fn pllb_fail(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -85,7 +85,7 @@ impl PLL5G_BIST_STAT0 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// BIST pll_cnt upper limit at max. frequency
     pub fn pllb_fsm_stat(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -105,7 +105,7 @@ impl PLL5G_BIST_STAT0 {    ///
 /// Status register 1A for PLL5G BIST.
 #[derive(From, Into)]
 pub struct PLL5G_BIST_STAT1A(u32);
-impl PLL5G_BIST_STAT1A {    ///
+impl PLL5G_BIST_STAT1A {
     /// BIST compare divider phase difference
     pub fn pllb_cnt_ref_diff(&self) -> u32 {
         (self.0 & 0xffff) >> 0

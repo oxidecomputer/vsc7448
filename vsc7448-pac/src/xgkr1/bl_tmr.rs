@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS AN config 0
 #[derive(From, Into)]
 pub struct AN_CFG0(u32);
-impl AN_CFG0 {    ///
+impl AN_CFG0 {
     /// Clear ABILITY_DETECT state counter
     pub fn abdet_clr(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -43,7 +43,7 @@ impl AN_CFG0 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Clear AN state machine history
     pub fn an_sm_hist_clr(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -53,7 +53,7 @@ impl AN_CFG0 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Disable clock gating
     pub fn clkg_disable(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -63,9 +63,11 @@ impl AN_CFG0 {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Select source of 10G sync signal
+
     ///
+
     /// 0: KR internal 1: External
     pub fn sync10g_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -75,9 +77,11 @@ impl AN_CFG0 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Select source of 3G and 1G sync signal
+
     ///
+
     /// 0: KR internal 1: External
     pub fn sync8b10b_sel(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -87,7 +91,7 @@ impl AN_CFG0 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Bypass training if 10G negotiated
     pub fn tr_disable(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -105,7 +109,7 @@ impl AN_CFG0 {    ///
 /// VS AN break_link timer lsw
 #[derive(From, Into)]
 pub struct BL_LSW(u32);
-impl BL_LSW {    ///
+impl BL_LSW {
     /// break_link_timer setting
     pub fn bl_tmr_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0

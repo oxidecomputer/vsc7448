@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Configuration register 0 for SERDES1G DFT functions
 #[derive(From, Into)]
 pub struct SERDES1G_DFT_CFG0(u32);
-impl SERDES1G_DFT_CFG0 {    ///
+impl SERDES1G_DFT_CFG0 {
     /// Disable output inverter of BIST PRBS generator
     pub fn inv_dis(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -45,19 +45,21 @@ impl SERDES1G_DFT_CFG0 {    ///
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    ///
+    }
     /// Lazy designers spare bit
     pub fn lazybit(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_lazybit(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
-    }    ///
+    }
     /// Select PRBS pattern for BIST
+
     ///
+
     /// 0: G(x) = x^7 + x^6 + 1 1: G(x) = x^15 + x^14 + 1 2: G(x) = x^23 + x^18 + 1 3: G(x) = x^31 + x^28 + 1
     pub fn prbs_sel(&self) -> u32 {
         (self.0 & 0x300000) >> 20
@@ -67,9 +69,11 @@ impl SERDES1G_DFT_CFG0 {    ///
         assert!(value <= 0x300000);
         self.0 &= !0x300000;
         self.0 |= value;
-    }    ///
+    }
     /// General enable for Jitter-Injection/Frequency-Offset-Generation Block (RX-Path)
+
     ///
+
     /// 0: Off 1: On
     pub fn rx_dft_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -79,9 +83,11 @@ impl SERDES1G_DFT_CFG0 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable sensitivity for phasedetector CP/MD (RX-Path)
+
     ///
+
     /// 0: Off 1: On
     pub fn rx_pdsens_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -91,9 +97,11 @@ impl SERDES1G_DFT_CFG0 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Disable influence of external phase correction on step controller
+
     ///
+
     /// 0: Enable 1: Disable
     pub fn rx_phs_corr_dis(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -103,9 +111,11 @@ impl SERDES1G_DFT_CFG0 {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Selection of test mode
+
     ///
+
     /// 0: Normal operation 1: BIST 2: Fixed pattern 3: Random pattern 4-7: Reserved
     pub fn test_mode(&self) -> u32 {
         (self.0 & 0x70000) >> 16
@@ -115,9 +125,11 @@ impl SERDES1G_DFT_CFG0 {    ///
         assert!(value <= 0x70000);
         self.0 &= !0x70000;
         self.0 |= value;
-    }    ///
+    }
     /// General enable for Jitter-Injection/Frequency-Offset-Generation Block (TX-Path)
+
     ///
+
     /// 0: Off 1: On
     pub fn tx_dft_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -137,9 +149,11 @@ impl SERDES1G_DFT_CFG0 {    ///
 /// Configuration register 1 for SERDES1G DFT functions (TX direction)
 #[derive(From, Into)]
 pub struct SERDES1G_DFT_CFG1(u32);
-impl SERDES1G_DFT_CFG1 {    ///
+impl SERDES1G_DFT_CFG1 {
     /// Direction of Frequency-Offset (TX-Path)
+
     ///
+
     /// 0: Down 1: Up
     pub fn tx_freqoff_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -149,9 +163,11 @@ impl SERDES1G_DFT_CFG1 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable Frequency-Offset-Generation (TX-Path)
+
     ///
+
     /// 0: Off 1: On
     pub fn tx_freqoff_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -161,7 +177,7 @@ impl SERDES1G_DFT_CFG1 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Amplitude of jitter for Jitter-Injection (TX-Path)
     pub fn tx_jitter_ampl(&self) -> u32 {
         (self.0 & 0x3ff00) >> 8
@@ -171,9 +187,11 @@ impl SERDES1G_DFT_CFG1 {    ///
         assert!(value <= 0x3ff00);
         self.0 &= !0x3ff00;
         self.0 |= value;
-    }    ///
+    }
     /// Enable TX jitter intertion
+
     ///
+
     /// 0: Off 1:On
     pub fn tx_ji_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -183,7 +201,7 @@ impl SERDES1G_DFT_CFG1 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Stepping frequency for Jitter-Injection/Frequency-Offset-Generation (1/2^n) (TX-Path)
     pub fn tx_step_freq(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -193,9 +211,11 @@ impl SERDES1G_DFT_CFG1 {    ///
         assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
-    }    ///
+    }
     /// Select waveform for Jitter-Injection (TX-Path)
+
     ///
+
     /// 0: Triangular 1: Flattened (sinusoidal)
     pub fn tx_waveform_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -215,9 +235,11 @@ impl SERDES1G_DFT_CFG1 {    ///
 /// Configuration register 2 for SERDES1G DFT functions (RX direction)
 #[derive(From, Into)]
 pub struct SERDES1G_DFT_CFG2(u32);
-impl SERDES1G_DFT_CFG2 {    ///
+impl SERDES1G_DFT_CFG2 {
     /// Direction of Frequency-Offset (RX-Path)
+
     ///
+
     /// 0: Down 1: Up
     pub fn rx_freqoff_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -227,9 +249,11 @@ impl SERDES1G_DFT_CFG2 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable Frequency-Offset-Generation (RX-Path)
+
     ///
+
     /// 0: Off 1: On
     pub fn rx_freqoff_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -239,7 +263,7 @@ impl SERDES1G_DFT_CFG2 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Amplitude of jitter for Link-Quality-Evaluation/Jitter-Injection (RX-Path)
     pub fn rx_jitter_ampl(&self) -> u32 {
         (self.0 & 0x3ff00) >> 8
@@ -249,9 +273,11 @@ impl SERDES1G_DFT_CFG2 {    ///
         assert!(value <= 0x3ff00);
         self.0 &= !0x3ff00;
         self.0 |= value;
-    }    ///
+    }
     /// Enable RX jitter intertion
+
     ///
+
     /// 0: Off 1:On
     pub fn rx_ji_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -261,7 +287,7 @@ impl SERDES1G_DFT_CFG2 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Stepping frequency for Jitter-Injection/Frequency-Offset-Generation (1/2^n) (RX-Path)
     pub fn rx_step_freq(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -271,9 +297,11 @@ impl SERDES1G_DFT_CFG2 {    ///
         assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
-    }    ///
+    }
     /// Select waveform for Jitter-Injection (RX-Path)
+
     ///
+
     /// 0: Triangular 1: Flattened
     pub fn rx_waveform_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -293,9 +321,11 @@ impl SERDES1G_DFT_CFG2 {    ///
 /// Status register of SERDES1G RCPLL
 #[derive(From, Into)]
 pub struct SERDES1G_PLL_STATUS(u32);
-impl SERDES1G_PLL_STATUS {    ///
+impl SERDES1G_PLL_STATUS {
     /// Calibration error
+
     ///
+
     /// 0: No error during calibration 1: Errors occured during calibration
     pub fn pll_cal_err(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -305,9 +335,11 @@ impl SERDES1G_PLL_STATUS {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Calibration status
+
     ///
+
     /// 0: Calibration not started or ongoing 1: Calibration finished
     pub fn pll_cal_not_done(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -317,9 +349,11 @@ impl SERDES1G_PLL_STATUS {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Out of range error
+
     ///
+
     /// 0: No out of range condition detected 1: Out of range condition since last calibration detected
     pub fn pll_out_of_range_err(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -329,7 +363,7 @@ impl SERDES1G_PLL_STATUS {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// PLL read-back data, depending on "pll_rb_data_sel" either the calibrated setting or the measured period
     pub fn pll_rb_data(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -349,7 +383,7 @@ impl SERDES1G_PLL_STATUS {    ///
 /// Configuration register for the 1G RC-PLL BIST
 #[derive(From, Into)]
 pub struct SERDES1G_RC_PLL_BIST_CFG(u32);
-impl SERDES1G_RC_PLL_BIST_CFG {    ///
+impl SERDES1G_RC_PLL_BIST_CFG {
     /// Enables the BIST for the RC-PLL
     pub fn pll_bist_ena(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -359,7 +393,7 @@ impl SERDES1G_RC_PLL_BIST_CFG {    ///
         assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
-    }    ///
+    }
     /// Feedback divider setting for closed loop test at high frequency. B1: Rc_div2, B0: Fb_div2.
     pub fn pll_bist_fbs_high(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -369,7 +403,7 @@ impl SERDES1G_RC_PLL_BIST_CFG {    ///
         assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
-    }    ///
+    }
     /// Higher frequnecy for the RC-PLL BIST
     pub fn pll_bist_high(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -379,7 +413,7 @@ impl SERDES1G_RC_PLL_BIST_CFG {    ///
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    ///
+    }
     /// Lower frequnecy for the RC-PLL BIST
     pub fn pll_bist_low(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -399,7 +433,7 @@ impl SERDES1G_RC_PLL_BIST_CFG {    ///
 /// Test bits (pattern) for SERDES1G lane. These bits are used when Lane_Test_cfg.Test_mode is set to 2 (fixed pattern)
 #[derive(From, Into)]
 pub struct SERDES1G_TP_CFG(u32);
-impl SERDES1G_TP_CFG {    ///
+impl SERDES1G_TP_CFG {
     /// Static pattern tranferred in fixed pattern test mode, LSB is transferred first
     pub fn static_pattern(&self) -> u32 {
         (self.0 & 0xfffff) >> 0

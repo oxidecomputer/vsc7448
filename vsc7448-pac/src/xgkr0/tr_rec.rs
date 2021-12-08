@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training lptrain state machine history msw
 #[derive(From, Into)]
 pub struct HIST_MSW(u32);
-impl HIST_MSW {    ///
+impl HIST_MSW {
     /// lptrain state machine history
     pub fn lptsm_hist_msw(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -43,7 +43,7 @@ impl HIST_MSW {    ///
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
-    }    ///
+    }
     /// training state machine history
     pub fn sm_hist(&self) -> u32 {
         (self.0 & 0x7f0) >> 4
@@ -61,7 +61,7 @@ impl HIST_MSW {    ///
 /// VS recorded dme violation positions for C0
 #[derive(From, Into)]
 pub struct TR_C0_DME_REC(u32);
-impl TR_C0_DME_REC {    ///
+impl TR_C0_DME_REC {
     /// Recorded position of DME_viol event for C0
     pub fn c0_dme_rec(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -79,7 +79,7 @@ impl TR_C0_DME_REC {    ///
 /// VS recorded min,max positions for C0
 #[derive(From, Into)]
 pub struct TR_C0_LIM_REC(u32);
-impl TR_C0_LIM_REC {    ///
+impl TR_C0_LIM_REC {
     /// Recorded position of MAX event for C0
     pub fn c0_max_rec(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
@@ -89,7 +89,7 @@ impl TR_C0_LIM_REC {    ///
         assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
-    }    ///
+    }
     /// Recorded position of MIN event for C0
     pub fn c0_min_rec(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -107,7 +107,7 @@ impl TR_C0_LIM_REC {    ///
 /// VS recorded dme violation positions for CM
 #[derive(From, Into)]
 pub struct TR_CM_DME_REC(u32);
-impl TR_CM_DME_REC {    ///
+impl TR_CM_DME_REC {
     /// Recorded position of DME_viol event for CM
     pub fn cm_dme_rec(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -125,7 +125,7 @@ impl TR_CM_DME_REC {    ///
 /// VS recorded min,max positions for CM
 #[derive(From, Into)]
 pub struct TR_CM_LIM_REC(u32);
-impl TR_CM_LIM_REC {    ///
+impl TR_CM_LIM_REC {
     /// Recorded position of MAX event for CM
     pub fn cm_max_rec(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
@@ -135,7 +135,7 @@ impl TR_CM_LIM_REC {    ///
         assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
-    }    ///
+    }
     /// Recorded position of MIN event for CM
     pub fn cm_min_rec(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -153,7 +153,7 @@ impl TR_CM_LIM_REC {    ///
 /// VS recorded dme violation positions for CP
 #[derive(From, Into)]
 pub struct TR_CP_DME_REC(u32);
-impl TR_CP_DME_REC {    ///
+impl TR_CP_DME_REC {
     /// Recorded position of DME_viol event for CP
     pub fn cp_dme_rec(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -171,7 +171,7 @@ impl TR_CP_DME_REC {    ///
 /// VS recorded min,max positions for CP
 #[derive(From, Into)]
 pub struct TR_CP_LIM_REC(u32);
-impl TR_CP_LIM_REC {    ///
+impl TR_CP_LIM_REC {
     /// Recorded position of MAX event for CP
     pub fn cp_max_rec(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
@@ -181,7 +181,7 @@ impl TR_CP_LIM_REC {    ///
         assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
-    }    ///
+    }
     /// Recorded position of MIN event for CP
     pub fn cp_min_rec(&self) -> u32 {
         (self.0 & 0x7f) >> 0

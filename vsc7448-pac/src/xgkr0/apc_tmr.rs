@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training ROM address for end and obcfg
 #[derive(From, Into)]
 pub struct OBCFG_ADDR(u32);
-impl OBCFG_ADDR {    ///
+impl OBCFG_ADDR {
     /// Address of OB tap configuration settings
     pub fn obcfg_addr(&self) -> u32 {
         (self.0 & 0x7f) >> 0

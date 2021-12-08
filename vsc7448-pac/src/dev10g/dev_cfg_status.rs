@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// A number of internal loopback can be enabled in each device by the configuration bits in this register.
 #[derive(From, Into)]
 pub struct DEV_LB_CFG(u32);
-impl DEV_LB_CFG {    ///
+impl DEV_LB_CFG {
     /// An internal loopback from the egress Taxi bus to the ingress Taxi bus can be enabled.
+
     ///
+
     /// '0': Loopback from Taxi egress to Taxi ingress is disabled '1': Loopback from Taxi egress to Taxi ingress is enabled
     pub fn taxi_host_lb_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -47,9 +49,11 @@ impl DEV_LB_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// An internal loopback from the igress Taxi bus to the egress Taxi bus can be enabled.
+
     ///
+
     /// '0': Loopback from Taxi ingress bus to Taxi egress bus disabled '1': Loopback from Taxi ingress bus to Taxi egress bus enabled
     pub fn taxi_phy_lb_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -67,9 +71,11 @@ impl DEV_LB_CFG {    ///
 /// Debug Configuration Register
 #[derive(From, Into)]
 pub struct DEV_MISC_CFG(u32);
-impl DEV_MISC_CFG {    ///
+impl DEV_MISC_CFG {
     /// Clears RX_RESYNC_MAX_FILL_LVL that holds the max. fill level of RX RESYNC FIFO. This is a on shot bit automatically cleared by HW.
+
     ///
+
     /// '0': No action '1': clears RX_RESYNC_MAX_FILL_LVL (Bit is automatically cleared)
     pub fn rx_resync_max_fill_lvl_clr(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -79,9 +85,11 @@ impl DEV_MISC_CFG {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// The device can be configured to disregard the fcs_update indication from the DSM and not update the FCS of any transmitted frames.
+
     ///
+
     /// 0: The FCS of transmitted frames is updated according to the fcs_update indication from the DSM. 1: The FCS of transmitted frames is never updated. 2: The FCS of transmitted frames is always updated.
     pub fn tx_fcs_update_sel(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -101,9 +109,11 @@ impl DEV_MISC_CFG {    ///
 /// When port protedction is enabled the device will snoop and transmit data destined for another device 10G identified by port_protect_id.
 #[derive(From, Into)]
 pub struct DEV_PORT_PROTECT(u32);
-impl DEV_PORT_PROTECT {    ///
+impl DEV_PORT_PROTECT {
     /// Enables snooping of egress data from another port. The port from which egress data is copied and transmitted at the Ethernet port is determined by the PORT_PROTECT_ID configuration.
+
     ///
+
     /// '0': Port protection is disabled. '1': Port protection is enabled.
     pub fn port_protect_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -113,9 +123,11 @@ impl DEV_PORT_PROTECT {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates from which port egress data must be copied and transmitted at this Ethernet port. The port from which egress data is copied must always be a port that is closer to the ASM. I.e. DEV(X) may be configured to snoop egress data destined for DEV(X+n), where DEV(X+n) is closer to the ASM - but NOT vice versa.
+
     ///
+
     /// 0: Reserved 1: Egress data destined for DEV(1) is also transmitted by this device. 2: Egress data destined for DEV(2) is also transmitted by this device. ..
     pub fn port_protect_id(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -133,9 +145,11 @@ impl DEV_PORT_PROTECT {    ///
 /// Clock/Reset Control Register
 #[derive(From, Into)]
 pub struct DEV_RST_CTRL(u32);
-impl DEV_RST_CTRL {    ///
+impl DEV_RST_CTRL {
     /// Reset MAC Rx clock domains of the device.
+
     ///
+
     /// '0': The MAC Rx clock domain is NOT reset '1': The MAC Rx clock domain is reset Note: MAC_RX_RST is NOT a one-shot operation. The MAC Rx clock domain remains reset until a '0' is written to MAC_RX_RST.
     pub fn mac_rx_rst(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -145,9 +159,11 @@ impl DEV_RST_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Reset MAC Tx clock domain of device.
+
     ///
+
     /// '0': The MAC Tx clock domain is not reset. '1': The MAC Tx clock domain is reset. Note: The MAC Tx clock domain remains reset until 0 is written to this register field.
     pub fn mac_tx_rst(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -157,9 +173,11 @@ impl DEV_RST_CTRL {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Backplane Ethernet: Enable parallel detection mode for autonegotiation
+
     ///
+
     /// '0':  Parallel detection mode disabled '1': Parallel detection mode enabled
     pub fn pardet_mode_ena(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -169,9 +187,11 @@ impl DEV_RST_CTRL {    ///
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    ///
+    }
     /// Reset PCS Rx clock domains of the device.
+
     ///
+
     /// '0': The PCS Rx clock domain is NOT reset '1': The PCS Rx clock domain is reset Note: PCS_RX_RST is NOT a one-shot operation. The PCS Rx clock domain remains reset until a '0' is written to PCS_RX_RST.
     pub fn pcs_rx_rst(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -181,9 +201,11 @@ impl DEV_RST_CTRL {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Reset PCS Tx clock domains of the device.
+
     ///
+
     /// '0': The PCS Tx clock domain is NOT reset '1': The PCS Tx clock domain is reset Note: PCS_TX_RST is NOT a one-shot operation. The PCS Tx clock domain remains reset until a '0' is written to PCS_TX_RST.
     pub fn pcs_tx_rst(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -193,9 +215,11 @@ impl DEV_RST_CTRL {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// This field is used to configure the MAC and PCS Rx/Tx clock frequencies.
+
     ///
+
     /// '100':  XAUI/RXAUI 10 Gbps or 12Gbps OXAUI '110':  Both MAC and PCS Rx/Tx clocks are disabled '111':  XFI 10 Gbps Unused values are reserved.
     pub fn speed_sel(&self) -> u32 {
         (self.0 & 0x700000) >> 20
@@ -213,7 +237,7 @@ impl DEV_RST_CTRL {    ///
 /// Ingress (receive) Path Status Register
 #[derive(From, Into)]
 pub struct DEV_RX_STATUS(u32);
-impl DEV_RX_STATUS {    ///
+impl DEV_RX_STATUS {
     /// Maximum fill level of Rx resync FIFO. Fill level can be cleared by writing to RX_RESYNC_MAX_FILL_LVL_CLR bit.
     pub fn rx_resync_max_fill_lvl(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -233,9 +257,11 @@ impl DEV_RX_STATUS {    ///
 /// Clear the sticky bits by writing a '1' in the relevant bitgroups.
 #[derive(From, Into)]
 pub struct DEV_STICKY(u32);
-impl DEV_STICKY {    ///
+impl DEV_STICKY {
     /// Indicates that a missing EOF has been detected. Writing a '1' clears the sticky bit.
+
     ///
+
     /// '0': No EOF error detected '1': Missing EOF indication detected in Rx path of DEV10G.
     pub fn rx_eof_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -245,9 +271,11 @@ impl DEV_STICKY {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates if an overflow has occured in the ingress resynchronization FIFO. Writing a '1' clears the sticky bit.
+
     ///
+
     /// '0': No overflow has occurred in the ingress resynchronization FIFO. '1': An overflow has occurred in the ingress resynchronization FIFO.
     pub fn rx_resync_fifo_oflw_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -257,9 +285,11 @@ impl DEV_STICKY {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that a missing SOF has been detected in the Rx path of the DEV10G. Writing a '1' clears the sticky bit.
+
     ///
+
     /// '0': No missing SOF detected '1': Missing SOF indication detected in Rx path of DEV10G.
     pub fn rx_sof_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -269,9 +299,11 @@ impl DEV_STICKY {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that a missing EOF has been detected. Writing a '1' clears the sticky bit.
+
     ///
+
     /// '0': No EOF error detected '1': Missing EOF indication detected in Tx path of DEV10G.
     pub fn tx_eof_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -281,9 +313,11 @@ impl DEV_STICKY {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that a missing SOF has been detected in the Tx path of the DEV10G. Writing a '1' clears the sticky bit.
+
     ///
+
     /// '0': No missing SOF detected '1': Missing SOF indication detected in Tx path of DEV10G.
     pub fn tx_sof_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -301,7 +335,7 @@ impl DEV_STICKY {    ///
 /// Control Energy Efficient Ethernet operation.
 #[derive(From, Into)]
 pub struct EEE_CFG(u32);
-impl EEE_CFG {    ///
+impl EEE_CFG {
     /// Enable EEE operation on the port. A port enters the low power mode when no egress queues have data ready. The port is activated when one of the following conditions is true: - A queue has been non-empty for EEE_TIMER_AGE. - A queue has more than EEE_HIGH_FRAMES frames pending. - A queue has more than EEE_HIGH_BYTES bytes pending. - A queue is marked as a fast queue, and has data pending.
     pub fn eee_ena(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -311,9 +345,11 @@ impl EEE_CFG {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Maximum time frames in any queue must wait before the port is activated. The default value corresponds to 48 us.
+
     ///
+
     /// Time = 4**(EEE_TIMER_AGE/16) * (EEE_TIMER_AGE mod 16) microseconds
     pub fn eee_timer_age(&self) -> u32 {
         (self.0 & 0x3f8000) >> 15
@@ -323,9 +359,11 @@ impl EEE_CFG {    ///
         assert!(value <= 0x3f8000);
         self.0 &= !0x3f8000;
         self.0 |= value;
-    }    ///
+    }
     /// When all queues are empty, the port is kept active until this time has passed. Default value corresponds to 5 us.
+
     ///
+
     /// Time = 4**(EEE_TIMER_HOLDOFF/16) * (EEE_TIMER_HOLDOFF mod 16) microseconds
     pub fn eee_timer_holdoff(&self) -> u32 {
         (self.0 & 0xfe) >> 1
@@ -335,9 +373,11 @@ impl EEE_CFG {    ///
         assert!(value <= 0xfe);
         self.0 &= !0xfe;
         self.0 |= value;
-    }    ///
+    }
     /// Time from the egress port is activated until frame transmission is restarted. Default value corresponds to 16 us.
+
     ///
+
     /// Time = 4**(EEE_TIMER_WAKEUP/16) * (EEE_TIMER_WAKEUP mod 16) microseconds
     pub fn eee_timer_wakeup(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
@@ -347,7 +387,7 @@ impl EEE_CFG {    ///
         assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
-    }    ///
+    }
     /// Status bit indicating whether port is in low-power-idle due to the LPI algorithm (EEE_CFG). If set, transmissions are held back.
     pub fn port_lpi(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -367,9 +407,11 @@ impl EEE_CFG {    ///
 /// Interrupt Source Register
 #[derive(From, Into)]
 pub struct INTR(u32);
-impl INTR {    ///
+impl INTR {
     /// Link status is down (source: PCS1G, PCS10G or PCS2x6G depending on current DEV10G mode)
+
     ///
+
     /// 0 = no indication 1 = active indication
     pub fn link_dwn_intr(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -379,9 +421,11 @@ impl INTR {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Link status is up (source: PCS1G, PCS10G or PCS2x6G depending on current DEV10G mode)
+
     ///
+
     /// 0 = no indication 1 = active indication
     pub fn link_up_intr(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -391,7 +435,7 @@ impl INTR {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Aggregate of BaseR PCS indications, see PCS_10GBASE_R::PCS_INTR_STAT and PSC_10GBASE_R::PCS_INTR_MASK for more information. This field is set when any BaseR PCS interrupt indication is active and enabled.
     pub fn pcs_br_intr(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -401,9 +445,11 @@ impl INTR {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// PCS10G, PCS1G: RX Low Power Idle mode has changed
+
     ///
+
     /// 0 = no indication 1 = active indication
     pub fn rx_lpi_intr(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -413,9 +459,11 @@ impl INTR {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// PCS10G, PCS1G: TX Low Power Idle mode has changed
+
     ///
+
     /// 0 = no indication 1 = active indication
     pub fn tx_lpi_intr(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -435,7 +483,7 @@ impl INTR {    ///
 /// Interrupt Enable Register
 #[derive(From, Into)]
 pub struct INTR_ENA(u32);
-impl INTR_ENA {    ///
+impl INTR_ENA {
     /// Set to enable propagation of LINK_DWN interrupt.
     pub fn link_dwn_intr_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -445,7 +493,7 @@ impl INTR_ENA {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Set to enable propagation of LINK_UP interrupt.
     pub fn link_up_intr_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -455,7 +503,7 @@ impl INTR_ENA {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set to enable propagation of PCS_BR interrupt.
     pub fn pcs_br_intr_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -465,7 +513,7 @@ impl INTR_ENA {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Set to enable propagation of RX_LPI interrupt.
     pub fn rx_lpi_intr_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -475,7 +523,7 @@ impl INTR_ENA {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set to enable propagation of TX_LPI interrupt.
     pub fn tx_lpi_intr_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -495,7 +543,7 @@ impl INTR_ENA {    ///
 /// Interrupt Status Register
 #[derive(From, Into)]
 pub struct INTR_IDENT(u32);
-impl INTR_IDENT {    ///
+impl INTR_IDENT {
     /// Set if LINK_DWN interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
     pub fn link_dwn_intr_ident(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -505,7 +553,7 @@ impl INTR_IDENT {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Set if LINK_UP interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
     pub fn link_up_intr_ident(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -515,7 +563,7 @@ impl INTR_IDENT {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set if PCS_BR interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
     pub fn pcs_br_intr_ident(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -525,7 +573,7 @@ impl INTR_IDENT {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Set if RX_LPI interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
     pub fn rx_lpi_intr_ident(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -535,7 +583,7 @@ impl INTR_IDENT {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set if TX_LPI interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
     pub fn tx_lpi_intr_ident(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -555,9 +603,11 @@ impl INTR_IDENT {    ///
 /// Special configuration bit groups for PCS2x6G.
 #[derive(From, Into)]
 pub struct PCS2X6G_EXT_CFG(u32);
-impl PCS2X6G_EXT_CFG {    ///
+impl PCS2X6G_EXT_CFG {
     /// Flip HM-Bus, i.e. map lane 0 on 1 and lane 1 on 0
+
     ///
+
     /// 0: Normal operation 1: Flipped lane assignment
     pub fn flip_hmbus(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -567,9 +617,11 @@ impl PCS2X6G_EXT_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Invert HM-Bus, invert all data signals from/to SERDES
+
     ///
+
     /// 0: Normal operation 1: Inverted HM-bus
     pub fn invert_hmbus(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -587,7 +639,7 @@ impl PCS2X6G_EXT_CFG {    ///
 /// selects mode for which status counter will count the coresponding frames on RX and TX
 #[derive(From, Into)]
 pub struct PFC_PAUSE_MODE_CTRL(u32);
-impl PFC_PAUSE_MODE_CTRL {    ///
+impl PFC_PAUSE_MODE_CTRL {
     /// '0' : counters will be having number of pause frame received/transmitted '1' : counters will be having number of PFC frame received/transmitted
     pub fn pfc_pause_mode_select(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -605,7 +657,7 @@ impl PFC_PAUSE_MODE_CTRL {    ///
 /// PTP Configuration per port
 #[derive(From, Into)]
 pub struct PTP_CFG(u32);
-impl PTP_CFG {    ///
+impl PTP_CFG {
     /// Configures the time domain this port is assigned to. This domain assignment must be made before the central counters in DEVCPU block is enabled.
     pub fn ptp_dom(&self) -> u32 {
         (self.0 & 0xc0000) >> 18
@@ -615,7 +667,7 @@ impl PTP_CFG {    ///
         assert!(value <= 0xc0000);
         self.0 &= !0xc0000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable PTP on the port
     pub fn ptp_ena(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -625,7 +677,7 @@ impl PTP_CFG {    ///
         assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
-    }    ///
+    }
     /// Time in ns to subtract from timestamper in the ingress direction to compensate for static delay through the physical encoding layers.
     pub fn ptp_rx_io_dly(&self) -> u32 {
         (self.0 & 0x3fe00) >> 9
@@ -635,7 +687,7 @@ impl PTP_CFG {    ///
         assert!(value <= 0x3fe00);
         self.0 &= !0x3fe00;
         self.0 |= value;
-    }    ///
+    }
     /// Time in ns to add to timestamper in the egress direction to compensate for static delay through the physical encoding layers.
     pub fn ptp_tx_io_dly(&self) -> u32 {
         (self.0 & 0x1ff) >> 0
@@ -653,7 +705,7 @@ impl PTP_CFG {    ///
 /// PTP Bit time accuracy configuration
 #[derive(From, Into)]
 pub struct PTP_CFG_BTDLY(u32);
-impl PTP_CFG_BTDLY {    ///
+impl PTP_CFG_BTDLY {
     /// Time in 100ps to subtract from timestamper in the ingress direction to compensate for static delay through the physical encoding layers.
     pub fn ptp_rx_bt_dly(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -663,7 +715,7 @@ impl PTP_CFG_BTDLY {    ///
         assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
-    }    ///
+    }
     /// Gearbox starting value when 6466b fifo is suspened in the ingress direction.
     pub fn ptp_rx_gearbox_ofs(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
@@ -673,7 +725,7 @@ impl PTP_CFG_BTDLY {    ///
         assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
-    }    ///
+    }
     /// Time in 100ps to subtract from timestamper in the egress direction to compensate for static delay through the physical encoding layers.
     pub fn ptp_tx_bt_dly(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -683,7 +735,7 @@ impl PTP_CFG_BTDLY {    ///
         assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
-    }    ///
+    }
     /// Gearbox starting value when 6466b fifo is suspended in the egress direction.
     pub fn ptp_tx_gearbox_ofs(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -701,7 +753,7 @@ impl PTP_CFG_BTDLY {    ///
 /// PTP Events per port
 #[derive(From, Into)]
 pub struct PTP_EVENTS(u32);
-impl PTP_EVENTS {    ///
+impl PTP_EVENTS {
     /// The correction field update went out of range. Valid range is -2^47 to 2^48-1. The frame CF will be changed to the maximum value. This range check is bypassed if ADDS48 mode is in use on the ingress or egress port.
     pub fn cf_too_big_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0

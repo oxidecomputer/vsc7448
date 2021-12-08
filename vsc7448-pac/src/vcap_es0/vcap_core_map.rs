@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Core index
 #[derive(From, Into)]
 pub struct VCAP_CORE_IDX(u32);
-impl VCAP_CORE_IDX {    ///
+impl VCAP_CORE_IDX {
     /// Set to index of specific core to access the mapping of that core via VCAP_SUPER::VCAP_CORE_MAP.
     pub fn core_idx(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -51,7 +51,7 @@ impl VCAP_CORE_IDX {    ///
 /// Cache rule enable
 #[derive(From, Into)]
 pub struct VCAP_RULE_ENA(u32);
-impl VCAP_RULE_ENA {    ///
+impl VCAP_RULE_ENA {
     /// Cache register. Set to enable ES0 rule. Applies only to the ES0 VCAP.
     pub fn rule_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0

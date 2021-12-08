@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS AN page_detect timer lsw
 #[derive(From, Into)]
 pub struct PD_LSW(u32);
-impl PD_LSW {    ///
+impl PD_LSW {
     /// page_detect_timer setting
     pub fn pd_tmr_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl PD_LSW {    ///
 /// VS AN training state timer msw
 #[derive(From, Into)]
 pub struct TR_MSW(u32);
-impl TR_MSW {    ///
+impl TR_MSW {
     /// training_state_timer setting
     pub fn tr_tmr_msw(&self) -> u32 {
         (self.0 & 0xffff) >> 0

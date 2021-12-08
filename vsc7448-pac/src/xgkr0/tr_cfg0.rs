@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// KR LD status report
 #[derive(From, Into)]
 pub struct KR_1X009B(u32);
-impl KR_1X009B {    ///
+impl KR_1X009B {
     /// Transmitted status report field
     pub fn ldstat(&self) -> u32 {
         (self.0 & 0xffff) >> 0

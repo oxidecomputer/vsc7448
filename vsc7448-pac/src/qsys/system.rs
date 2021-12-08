@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Control Energy Efficient Ethernet operation per front port.
 #[derive(From, Into)]
 pub struct EEE_CFG(u32);
-impl EEE_CFG {    ///
+impl EEE_CFG {
     /// Queues set in this mask activate the egress port immediately when any of the queues have data available.
     pub fn eee_fast_queues(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -51,7 +51,7 @@ impl EEE_CFG {    ///
 /// Thresholds for delayed EEE queues
 #[derive(From, Into)]
 pub struct EEE_THRES(u32);
-impl EEE_THRES {    ///
+impl EEE_THRES {
     /// Maximum number of bytes in a queue before egress port is activated. Unit is 60 bytes.
     pub fn eee_high_bytes(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -61,7 +61,7 @@ impl EEE_THRES {    ///
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    ///
+    }
     /// Maximum number of frames in a queue before the egress port is activated. Unit is 1 frame.
     pub fn eee_high_frames(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -79,9 +79,11 @@ impl EEE_THRES {    ///
 /// Frame aging configuration
 #[derive(From, Into)]
 pub struct FRM_AGING(u32);
-impl FRM_AGING {    ///
+impl FRM_AGING {
     /// Frames are aged and removed from the queue system when the frame's age timer becomes two. The frame age timer is increased for all frames whenever the configured time, MAX_AGE,  has passed. Effectively, this means that a frame is aged when the frame has waited in the queue system between one or two times the period specified by MAX_AGE. The periodd configured by MAX_AGE is also termed an "age era". A value of zero disables frame aging. Frame aging related parameters: QSYS:SYSTEM:FRM_AGING.MAX_AGE HSCH:HSCH_MISC:PORT_MODE.AGE_DIS DSM:CFG:BUF_CFG.AGING_ENA
+
     ///
+
     /// 0: Disable frame aging. >=1: Era length in unit of 4us.
     pub fn max_age(&self) -> u32 {
         (self.0 & 0xfffff) >> 0
@@ -99,7 +101,7 @@ impl FRM_AGING {    ///
 /// Packet memory status
 #[derive(From, Into)]
 pub struct PMEM_SIZE(u32);
-impl PMEM_SIZE {    ///
+impl PMEM_SIZE {
     /// Must be set before core reset is released. Unit is  bytes.
     pub fn pmem_size(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -119,7 +121,7 @@ impl PMEM_SIZE {    ///
 /// Controls reset and initialization of the switching core. Proper startup sequence is: - Enable memories - Initialize memories - Enable core
 #[derive(From, Into)]
 pub struct RESET_CFG(u32);
-impl RESET_CFG {    ///
+impl RESET_CFG {
     /// Switch core is enabled when this field is set.
     pub fn core_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -137,7 +139,7 @@ impl RESET_CFG {    ///
 /// Statistics configuration
 #[derive(From, Into)]
 pub struct STAT_CFG(u32);
-impl STAT_CFG {    ///
+impl STAT_CFG {
     /// Set to disable counting buffer drops (tail) in the designated tail drop counter. When disabled, the per priority buffer drop counter is used instead.
     pub fn stat_rx_taildrop_dis(&self) -> u32 {
         (self.0 & 0x1) >> 0

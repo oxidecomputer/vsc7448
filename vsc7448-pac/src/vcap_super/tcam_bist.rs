@@ -33,15 +33,15 @@ use derive_more::{From, Into};
 /// Number of VCAP interfaces
 #[derive(From, Into)]
 pub struct IF_CNT(u32);
-impl IF_CNT {    ///
+impl IF_CNT {
     /// The number of VCAP interfaces.
     pub fn if_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_if_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -51,7 +51,7 @@ impl IF_CNT {    ///
 /// Configuration of the TCAM
 #[derive(From, Into)]
 pub struct TCAM_CFG(u32);
-impl TCAM_CFG {    ///
+impl TCAM_CFG {
     /// Bias setting for the TCAM keeper circuit, configure as described in datasheet.
     pub fn tcam_bias(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -61,7 +61,7 @@ impl TCAM_CFG {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// Configures the BIST engine to stop testing if an error is detected. This is a debug feature that leaves the contents of the TCAM at the point of the failure, thusly allowing debug of the failing pattern via normal R/W to the TCAM. Note that because the bist is pipelilned, the contents of the TCAM may have been modified a few times since the actual error.
     pub fn tcam_bist_soe_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -71,7 +71,7 @@ impl TCAM_CFG {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Disable clock-gating in the TCAM, clock-gating is implemented for conserving power while the TCAMs are IDLE.
     pub fn tcam_cg_dis(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -81,7 +81,7 @@ impl TCAM_CFG {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Disable clock-gating on previous stage hit in the TCAM, clock-gating on previous stage hit is implemented for conserving power when a hit is found in an early pipeline stage.
     pub fn tcam_hcg_dis(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -99,7 +99,7 @@ impl TCAM_CFG {    ///
 /// Control of the TCAM
 #[derive(From, Into)]
 pub struct TCAM_CTRL(u32);
-impl TCAM_CTRL {    ///
+impl TCAM_CTRL {
     /// Set this field to start manual BIST of the TCAM. This field will be cleared once BIST is complete. The BIST procedure requires that the TCAM is initialized before start, setting TCAM_INIT at the same time as setting this field will first initalize the TCAM and then run BIST.
     pub fn tcam_bist(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -109,7 +109,7 @@ impl TCAM_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to start manual initialization of the TCAM. This field is cleared once initialization is complete. The TCAM has random contents after reset and must be initialized prior to usage.
     pub fn tcam_init(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -127,7 +127,7 @@ impl TCAM_CTRL {    ///
 /// Status for the TCAM
 #[derive(From, Into)]
 pub struct TCAM_STAT(u32);
-impl TCAM_STAT {    ///
+impl TCAM_STAT {
     /// Set if BIST sub-procedure Address Decode failed.
     pub fn bist_addr_err(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -137,7 +137,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Bit-Line-0 (extended) failed.
     pub fn bist_bl0e_err(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -147,7 +147,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Bit-Line-0 failed.
     pub fn bist_bl0_err(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -157,7 +157,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Bit-Line-1 (extended) failed.
     pub fn bist_bl1e_err(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -167,7 +167,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Bit-Line-1 failed.
     pub fn bist_bl1_err(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -177,7 +177,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Set while BIST is running. When checking the BIST result this field must be cleared.
     pub fn bist_busy(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -187,7 +187,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Compare failed.
     pub fn bist_comp_err(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -197,7 +197,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST failed.
     pub fn bist_err(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -207,7 +207,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Priority-Encode failed.
     pub fn bist_penc_err(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -217,7 +217,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Pattern-Horizontal-0 failed.
     pub fn bist_ph0_err(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -227,7 +227,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Pattern-Horizontal-1 failed.
     pub fn bist_ph1_err(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -237,7 +237,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Pattern-Vertical-0 failed.
     pub fn bist_pv0_err(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -247,7 +247,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Pattern-Vertical-1 failed.
     pub fn bist_pv1_err(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -257,7 +257,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BIST sub-procedure Read-Tree failed.
     pub fn bist_rt_err(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -267,7 +267,7 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Set when the BIST has been run. When checking the BIST result this field must be set.
     pub fn bist_run(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -277,9 +277,11 @@ impl TCAM_STAT {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates the current operational state of the TCAM.
+
     ///
+
     /// '0': Busy with initialization. '1': Ready to be used.
     pub fn tcam_rdy(&self) -> u32 {
         (self.0 & 0x1) >> 0

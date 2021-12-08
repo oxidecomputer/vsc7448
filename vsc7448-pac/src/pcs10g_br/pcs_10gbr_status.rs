@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Contains the sticky bits representing interrupts from the PCS. Set by logic. Write 1 to clear.
 #[derive(From, Into)]
 pub struct PCS_INTR_STAT(u32);
-impl PCS_INTR_STAT {    ///
+impl PCS_INTR_STAT {
     /// Interrupt when an invalid Rx block is detected
+
     ///
+
     /// 0: No invalid blocks 1: Invalid block detected
     pub fn c64b66b_err_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -47,9 +49,11 @@ impl PCS_INTR_STAT {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Lock (loss of synchronization) changed interrupt Interrupt occurs whenever there is ANY change in the underlying status of the LOCK signal
+
     ///
+
     /// 0: Synchronization has not changed 1: Synchronization (lock) status changed
     pub fn lock_changed_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -59,9 +63,11 @@ impl PCS_INTR_STAT {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Interrupt generated when the Rx signal ordered set FIFO is full or becomes not full Interrupt occurs whenever there is ANY change in the underlying status
+
     ///
+
     /// 0: Rx ordered set FIFO full status unchanged 1: Rx ordered set FIFO full status changed
     pub fn rx_fset_fifo_full_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -71,9 +77,11 @@ impl PCS_INTR_STAT {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Interrupt indicating that a signal ordered set was received and captured (||Fsig||)
+
     ///
+
     /// 0: No ordered set captured 1: Ordered set captured in FIFO
     pub fn rx_fset_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -83,9 +91,11 @@ impl PCS_INTR_STAT {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Set by the Rx BER state machine when a high bit error rate condition is detected or cleared Interrupt occurs whenever there is ANY change in the underlying status
+
     ///
+
     /// 0: High BER status unchanged 1: High BER status changed
     pub fn rx_hi_ber_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -95,9 +105,11 @@ impl PCS_INTR_STAT {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Interrupt generated when the Rx sequence ordered set FIFO is full or becomes not full Interrupt occurs whenever there is ANY change in the underlying status
+
     ///
+
     /// 0: Rx ordered set FIFO full status unchanged 1: Rx ordered set FIFO full status changed
     pub fn rx_oset_fifo_full_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -107,9 +119,11 @@ impl PCS_INTR_STAT {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Interrupt indicating that a sequence ordered set was received and captured (||Q||)
+
     ///
+
     /// 0: No ordered set captured 1: Ordered set captured in FIFO
     pub fn rx_oset_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -119,9 +133,11 @@ impl PCS_INTR_STAT {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Interrupt if an invalid Tx XGMII character is detected
+
     ///
+
     /// 0: No invalid character 1: Invalid character detected
     pub fn xgmii_err_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -141,9 +157,11 @@ impl PCS_INTR_STAT {    ///
 /// This register sets the number of WIS/PMA divide-by-2 clocks in one 125 microsecond interval. The counter increments and wraps. It should be set to (125 * freq_Mhz/2) where freq_Mhz is the WIS/PMA frequency in Megahertz. 0 disables the counter.
 #[derive(From, Into)]
 pub struct TIMER_125(u32);
-impl TIMER_125 {    ///
+impl TIMER_125 {
     /// Sets the maximum count for the 125 microsecond counter. Counts input clocks.
+
     ///
+
     /// 16-bit binary number
     pub fn timer_125(&self) -> u32 {
         (self.0 & 0xffff) >> 0

@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Rewriter router leg configuration
 #[derive(From, Into)]
 pub struct RLEG_CTRL(u32);
-impl RLEG_CTRL {    ///
+impl RLEG_CTRL {
     /// VID for egress router leg. This must be configured consistently in ANA_L3:VMID:RLEG_CTRL.RLEG_EVID.
+
     ///
+
     /// n: VID
     pub fn rleg_evid(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -45,9 +47,11 @@ impl RLEG_CTRL {    ///
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
-    }    ///
+    }
     /// Control the value of VSTAX.TAG.WAS_TAGGED field in the stack header for frames that are L3 forwarded to a stack port.
+
     ///
+
     /// 0: VSTAX.TAG.WAS_TAGGED = 0 1: VSTAX.TAG.WAS_TAGGED = 1
     pub fn rleg_vstax2_was_tagged(&self) -> u32 {
         (self.0 & 0x1000) >> 12

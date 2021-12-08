@@ -33,15 +33,15 @@ use derive_more::{From, Into};
 /// MAC address configuration - bits 31:0
 #[derive(From, Into)]
 pub struct LBM_MAC_LOW(u32);
-impl LBM_MAC_LOW {    ///
+impl LBM_MAC_LOW {
     /// Destination MAC address bit 31:0 used for LBM. See LBM_MAC_HIGH.
     pub fn lbm_mac_low(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_lbm_mac_low(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

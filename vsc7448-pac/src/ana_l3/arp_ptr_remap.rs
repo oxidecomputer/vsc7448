@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Maximum length for frames routed to this router leg
 #[derive(From, Into)]
 pub struct MAX_LEN(u32);
-impl MAX_LEN {    ///
+impl MAX_LEN {
     /// Max "Total Length" (ref. RFC791) of IPv4 frames using this egress router leg. Related parameters: ANA_L3:COMMON:ROUTING_CFG.IP4_LEN_REDIR ANA_L3:COMMON:CPU_QU_CFG.CPU_IP_LEN_QU
     pub fn ip4_max_len(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -43,15 +43,15 @@ impl MAX_LEN {    ///
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
-    }    ///
+    }
     /// Max "Payload Length" (ref. RFC2460) of IPv6 frames using this egress router leg. Related parameters: ANA_L3:COMMON:ROUTING_CFG.IP6_LEN_REDIR ANA_L3:COMMON:CPU_QU_CFG.CPU_IP_LEN_QU
     pub fn ip6_max_len(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_ip6_max_len(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }
 }

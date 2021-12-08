@@ -35,15 +35,15 @@ use derive_more::{From, Into};
 /// The CNT_TBL counters count number of hits in VCAP_IS2. For each of the two VCAP_IS2 lookups, a VCAP match results in the associated counter being incremented using the VCAP_IS2 action CNT_ID as index.
 #[derive(From, Into)]
 pub struct CNT(u32);
-impl CNT {    ///
+impl CNT {
     /// VCAP_IS2 counter value.
     pub fn cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -53,15 +53,15 @@ impl CNT {    ///
 /// PTP clock identifier LSB
 #[derive(From, Into)]
 pub struct PTP_CLOCK_ID_LSB(u32);
-impl PTP_CLOCK_ID_LSB {    ///
+impl PTP_CLOCK_ID_LSB {
     /// Bits 31:0 of clockIdentifier used in portIdentity.
     pub fn clock_id_lsb(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_clock_id_lsb(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -71,15 +71,15 @@ impl PTP_CLOCK_ID_LSB {    ///
 /// PTP clock identifier MSB
 #[derive(From, Into)]
 pub struct PTP_CLOCK_ID_MSB(u32);
-impl PTP_CLOCK_ID_MSB {    ///
+impl PTP_CLOCK_ID_MSB {
     /// Bits 63:32 of clockIdentifier used in portIdentity.
     pub fn clock_id_msb(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_clock_id_msb(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -89,7 +89,7 @@ impl PTP_CLOCK_ID_MSB {    ///
 /// Miscellaneous PTP domain configuration
 #[derive(From, Into)]
 pub struct PTP_MISC_CFG(u32);
-impl PTP_MISC_CFG {    ///
+impl PTP_MISC_CFG {
     /// New values for byte 0 in flagField. Only bits with the corresponding bits set in FLAG_FIELD_MASK, are used.
     pub fn flag_field(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -99,9 +99,11 @@ impl PTP_MISC_CFG {    ///
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
-    }    ///
+    }
     /// Mask used to configure which bits in flagField, byte 0, are overwriteen with value configured in PTP_MISC_CFG.FLAG_FIELD.
+
     ///
+
     /// Bit x=0: Do not overwrite bit x in flagField, byte 0. Bit x=1: Overwrite bit x in flagField, byte 0, with FLAG_FIELD, bit x.
     pub fn flag_field_mask(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -119,7 +121,7 @@ impl PTP_MISC_CFG {    ///
 /// PTP domain configuration used in sourcePortIdentity
 #[derive(From, Into)]
 pub struct PTP_SRC_PORT_CFG(u32);
-impl PTP_SRC_PORT_CFG {    ///
+impl PTP_SRC_PORT_CFG {
     /// Port number used in portIdentity.
     pub fn port_num(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -129,7 +131,7 @@ impl PTP_SRC_PORT_CFG {    ///
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
-    }    ///
+    }
     /// If set, lowest 6 bits in portIdentity is taken from ANA_ACL:PORT:PTP_CFG.PTP_PORT_NUM. Otherwise, portIdentity is taken from PTP_SRC_PORT_CFG.PORT_NUM.
     pub fn port_num_sel(&self) -> u32 {
         (self.0 & 0x10000) >> 16

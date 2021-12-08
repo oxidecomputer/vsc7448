@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS tap C0 value
 #[derive(From, Into)]
 pub struct TR_C0VAL(u32);
-impl TR_C0VAL {    ///
+impl TR_C0VAL {
     /// C0 value
     pub fn c0_val(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -51,7 +51,7 @@ impl TR_C0VAL {    ///
 /// VS tap CM value
 #[derive(From, Into)]
 pub struct TR_CMVAL(u32);
-impl TR_CMVAL {    ///
+impl TR_CMVAL {
     /// CM value
     pub fn cm_val(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -69,7 +69,7 @@ impl TR_CMVAL {    ///
 /// VS training status 2
 #[derive(From, Into)]
 pub struct TR_STS2(u32);
-impl TR_STS2 {    ///
+impl TR_STS2 {
     /// C0 range error (LH)
     pub fn c0_range_err(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -79,7 +79,7 @@ impl TR_STS2 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// CM range error (LH)
     pub fn cm_range_err(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -89,7 +89,7 @@ impl TR_STS2 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// CP range error (LH)
     pub fn cp_range_err(&self) -> u32 {
         (self.0 & 0x4) >> 2

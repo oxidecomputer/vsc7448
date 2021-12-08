@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Configures pipeline location for the various stat and policer entity for each pipeline action: repl:0 NONE, XTR_LATE_REW repl:1 INJ, INJ_MASQ, LBK_ASM repl:2 XTR repl:3 XTR_UPMEP repl:4 LBK_QS
 #[derive(From, Into)]
 pub struct ACTION_CTRL(u32);
-impl ACTION_CTRL {    ///
+impl ACTION_CTRL {
     /// Disable port statistics.
     pub fn pstat_dis(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -45,7 +45,7 @@ impl ACTION_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Disable Port VOE LM updates.
     pub fn pvoe_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -63,7 +63,7 @@ impl ACTION_CTRL {    ///
 /// Configuration of common leaky bucket handling
 #[derive(From, Into)]
 pub struct DLB_CTRL(u32);
-impl DLB_CTRL {    ///
+impl DLB_CTRL {
     /// TIMESCALE_VAL and BASE_TICK_CNT controls the the rate interval as well as the rate granularity available for LB rate configuration Refer to TIMESCALE_VAL for details.
     pub fn base_tick_cnt(&self) -> u32 {
         (self.0 & 0x7fff0) >> 4
@@ -73,9 +73,11 @@ impl DLB_CTRL {    ///
         assert!(value <= 0x7fff0);
         self.0 &= !0x7fff0;
         self.0 |= value;
-    }    ///
+    }
     /// Specifies the clock period in unit of 0.1ns.
+
     ///
+
     /// 40: 4ns (250MHz) 64: 6,4ns (156.25MHz) 192: 19,2 ns (52.08MHz)
     pub fn clk_period_01ns(&self) -> u32 {
         (self.0 & 0x7f80000) >> 19
@@ -85,9 +87,11 @@ impl DLB_CTRL {    ///
         assert!(value <= 0x7f80000);
         self.0 &= !0x7f80000;
         self.0 |= value;
-    }    ///
+    }
     /// Enables adding of frame bytes to the leaky buckets.
+
     ///
+
     /// 0: Disable bucket addition 1: Enable bucket addition
     pub fn dlb_add_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -97,9 +101,11 @@ impl DLB_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enables leaking from the leaky buckets.
+
     ///
+
     /// 0: Disable bucket leaking 1: Enable bucket leaking
     pub fn leak_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1

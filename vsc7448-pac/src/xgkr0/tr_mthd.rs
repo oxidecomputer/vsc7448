@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training state step
 #[derive(From, Into)]
 pub struct TR_STEP(u32);
-impl TR_STEP {    ///
+impl TR_STEP {
     /// Step to next lptrain state (if at breakpoint) (SC)
     pub fn step(&self) -> u32 {
         (self.0 & 0x1) >> 0

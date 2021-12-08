@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Current use for the scheduling element
 #[derive(From, Into)]
 pub struct QLIMIT_SE_USE(u32);
-impl QLIMIT_SE_USE {    ///
+impl QLIMIT_SE_USE {
     /// Total use for all queues on the schedulling element
     pub fn qlimit_se_use(&self) -> u32 {
         (self.0 & 0x7fff) >> 0
@@ -51,7 +51,7 @@ impl QLIMIT_SE_USE {    ///
 /// Current queue size
 #[derive(From, Into)]
 pub struct QUEUE_SIZE(u32);
-impl QUEUE_SIZE {    ///
+impl QUEUE_SIZE {
     /// This queue was have had one or more discards due to the queue limitation algorithm
     pub fn queue_killed(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -61,7 +61,7 @@ impl QUEUE_SIZE {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Current size of queue used for queue size limitation
     pub fn queue_size(&self) -> u32 {
         (self.0 & 0xffe) >> 1

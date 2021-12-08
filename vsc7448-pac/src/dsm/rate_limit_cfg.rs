@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Pause Frame pre-counter overflow sticky register
 #[derive(From, Into)]
 pub struct PRE_CNT_OFLW_STICKY(u32);
-impl PRE_CNT_OFLW_STICKY {    ///
+impl PRE_CNT_OFLW_STICKY {
     /// Will be set if one of the statistics pre counter have an overflow.
+
     ///
+
     /// '0': Pre counter overflow has not occurred '1': Pre counter overflow has occurred Bit is cleared by writing a '1' to this position.
     pub fn pre_cnt_oflw_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -57,9 +59,11 @@ impl PRE_CNT_OFLW_STICKY {    ///
 /// Configuration register for txFrameRateStart
 #[derive(From, Into)]
 pub struct TX_FRAME_RATE_START_CFG(u32);
-impl TX_FRAME_RATE_START_CFG {    ///
+impl TX_FRAME_RATE_START_CFG {
     /// Value loaded into the txFrameRateTimer at the start of each packet, when TX_RATE_LIMIT_FRAME_RATE mode is enabled. Timer is decremented with each byte transmitted. IPG is set to timer value at EOF. Note: If resulting IPG is smaller than the minimum IPG of 12 bytes, it will be set to 12 bytes.
+
     ///
+
     /// Timer start value in bytes. To take effect, value must be above 84. (64byte min frame size, 8 byte preamble, 12 byte minimum IFG).
     pub fn tx_frame_rate_start(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -79,9 +83,11 @@ impl TX_FRAME_RATE_START_CFG {    ///
 /// Configuration register for txFineIpgStretchRatio
 #[derive(From, Into)]
 pub struct TX_IPG_STRETCH_RATIO_CFG(u32);
-impl TX_IPG_STRETCH_RATIO_CFG {    ///
+impl TX_IPG_STRETCH_RATIO_CFG {
     /// Determines the extent of the interPacketGap extension, when txRateLimitPayloadRate mode is enabled. It may be considered as the number of bits in a packet that would require 32 octets of interPacketGap extension. Note that each interPacketGap is increased by an integer number of octets, the average increase is ( (frame length in bits) * 32) / txFineIpgStretchRatio. Note: fractions left at frame border will be carried on to the next frame. Example: Packet length = 64 bytes + 8 bytes preamble value = 2048 IPG increase = 9 bytes Maximum IPG increase is 255 bytes.
+
     ///
+
     /// IPG increase = frame length in bits * 32 / value. values below 2048 and above 518143 are reserved for arithmetic processing  reasons.
     pub fn tx_fine_ipg_stretch_ratio(&self) -> u32 {
         (self.0 & 0x7ffff) >> 0
@@ -101,9 +107,11 @@ impl TX_IPG_STRETCH_RATIO_CFG {    ///
 /// Configuration register for rate limit modes
 #[derive(From, Into)]
 pub struct TX_RATE_LIMIT_MODE(u32);
-impl TX_RATE_LIMIT_MODE {    ///
+impl TX_RATE_LIMIT_MODE {
     /// Scale the IPG calculated by txRateLimitFrameOverhead and/or txRateLimitPayloadRate by a power of 2 to enable shaping down to lower BW. Note: For txRateLimitPayloadRate only the additional overhead excluding the standard 12 byte IPG is scaled whereas for txRateLimitFrameOverhead the complete value is scaled.
+
     ///
+
     /// 0: Don't scale 1: Multiply by 2 2: Multiply by 4 (...) 10: Multiply by 1024 11-15: Reserved
     pub fn ipg_scale_val(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -113,9 +121,11 @@ impl TX_RATE_LIMIT_MODE {    ///
         assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
-    }    ///
+    }
     /// Defines if what is configured as header size in TX_RATE_LIMIT_HDR_SIZE::TX_RATE_LIMIT_HDR_CFG is subtracted form the payload in txRateLimitPayloadRate and txRateLimitFrameRate mode.
+
     ///
+
     /// 0: Nothing is subtracted from payload 1: TX_RATE_LIMIT_HDR_SIZE::TX_RATE_LIMIT_HDR_CFG is subtracted from payload
     pub fn payload_cfg(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -125,9 +135,11 @@ impl TX_RATE_LIMIT_MODE {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// This bitgroup defines whether the preamble is counted as payload in txRateLimitPayloadRate and txRateLimitFrameRate mode.
+
     ///
+
     /// '0': Preamble is not counted as payload '1': Preamble is counted as payload
     pub fn payload_pream_cfg(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -137,9 +149,11 @@ impl TX_RATE_LIMIT_MODE {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Enable for IPG reduction to allow adaption to clock frequency offsets. When this mode is enabled, all other TX_RATE_LIMIT modes must be disabled.
+
     ///
+
     /// '0': tx IPG reduction test feature disabled '1': tx IPG reduction test feature enabled
     pub fn tx_rate_ipg_ppm_adapt_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -149,9 +163,11 @@ impl TX_RATE_LIMIT_MODE {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Enable for accumulated rate limit mode. Instead of taking the maximum  IPG of txRateLimitFrameOverhead, txRateLimitPayloadRate and txRateLimitFrameRate. The resulting IPG is the sum of txRateLimitFrameOverhead and txRateLimitPayloadRate. txRateLimitFrameRate must be disabled.
+
     ///
+
     /// '0': Accumulated rate limit mode is disabled '1': Accumulated rate limit mode is enabled
     pub fn tx_rate_limit_accum_mode_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -161,9 +177,11 @@ impl TX_RATE_LIMIT_MODE {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Enable txRateLimitFrameOverhead mode. IPG is increased by a fixed value specified in RATE_CTRL::FRM_GAP_COMP
+
     ///
+
     /// '0': txRateLimitFrameOverhead disabled '1': txRateLimitFrameOverhead enabled
     pub fn tx_rate_limit_frame_overhead_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -173,9 +191,11 @@ impl TX_RATE_LIMIT_MODE {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable txRateLimitFrameRate mode. IPG is extended so that frame_size + IPG result in the value configured in RATE_CTRL::TX_FRAME_RATE_START
+
     ///
+
     /// '0': txRateLimitFrameRate disabled '1': txRateLimitFrameRate enabled
     pub fn tx_rate_limit_frame_rate_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -185,9 +205,11 @@ impl TX_RATE_LIMIT_MODE {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable txRateLimitPayloadRate mode. IPG is increased relative to payload size.
+
     ///
+
     /// '0': txRateLimitPayloadRate disabled '1': txRateLimitPayloadRate enable
     pub fn tx_rate_limit_payload_rate_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1

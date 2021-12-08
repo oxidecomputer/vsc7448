@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// General status
 #[derive(From, Into)]
 pub struct GENERAL_STAT(u32);
-impl GENERAL_STAT {    ///
+impl GENERAL_STAT {
     /// This field is set if the VCore CPU has entered sleep mode.
     pub fn cpu_sleep(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -43,7 +43,7 @@ impl GENERAL_STAT {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if the PI slave interface has received error indication from the SBA fabric during a read access. The PI slave will have returned 0x88888888 for the offending read.
     pub fn pi_slv_rd_err(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -53,7 +53,7 @@ impl GENERAL_STAT {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if the PI slave interface has received error indication from the SBA fabric during a write access.
     pub fn pi_slv_wr_err(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -63,9 +63,11 @@ impl GENERAL_STAT {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Debug information for checking register read/write problems. This is a read-only field which can only be cleared by reset of the VCore System.
+
     ///
+
     /// 0: No errors detected. 1: Non-32bit access to VCore or SwC registers, access has been discarded, read returns 0x8888 or 0x88. 2: SwC registers not ready when accessed, access has been discarded, read returns 0x88888888. 3: SwC registers reported error, check DEVCPU_ORG::ERR_CNTS for error, read returns 0x88888888. 4: Unimplemented VCore register, access has been discarded, read returns 0x88888888.
     pub fn reg_if_err(&self) -> u32 {
         (self.0 & 0xe) >> 1
@@ -75,7 +77,7 @@ impl GENERAL_STAT {    ///
         assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
-    }    ///
+    }
     /// Shows the value of the VCore Cfg strapping inputs.
     pub fn vcore_cfg(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -93,7 +95,7 @@ impl GENERAL_STAT {    ///
 /// PI Master Configuration
 #[derive(From, Into)]
 pub struct PI_MST_CFG(u32);
-impl PI_MST_CFG {    ///
+impl PI_MST_CFG {
     /// Disable Automatic Tester Equipment mode for the parallel interface. This mode is used during production testing for controlled loading of CPU.
     pub fn ate_mode_dis(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -103,9 +105,11 @@ impl PI_MST_CFG {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Controls the clock for the PI Controller. Setting this field to 0 or 1 value is illegal.
+
     ///
+
     /// The PI interface frequency is: 250MHz/CLK_DIV.
     pub fn clk_div(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -115,9 +119,11 @@ impl PI_MST_CFG {    ///
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
-    }    ///
+    }
     /// Controls the clock-polarity of the PI Master.
+
     ///
+
     /// 0: Rising edge of the clock sets and samples signals. 1: Falling edge of the clock sets and samples signals.
     pub fn clk_pol(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -127,9 +133,11 @@ impl PI_MST_CFG {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Controls drive of address and control signals between transfers. See also PI_MST_CTRL.CS_TRISTATE_CTRL.
+
     ///
+
     /// 0: Address and control signals are high-Z between transfers. 1: Address and control signals are driven between transfers.
     pub fn tristate_ctrl(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -149,7 +157,7 @@ impl PI_MST_CFG {    ///
 /// This is a replicated register, where each replication holds the configurations for one chip select. Changes to a value in one of the replicated instances apply only to that chip select.
 #[derive(From, Into)]
 pub struct PI_MST_CTRL(u32);
-impl PI_MST_CTRL {    ///
+impl PI_MST_CTRL {
     /// Number of PI_Clk cycles from address driven to PI_nCS[x] low.
     pub fn cscc(&self) -> u32 {
         (self.0 & 0x60) >> 5
@@ -159,9 +167,11 @@ impl PI_MST_CTRL {    ///
         assert!(value <= 0x60);
         self.0 &= !0x60;
         self.0 |= value;
-    }    ///
+    }
     /// Controls drive of PI_nCS[x] between transfers.
+
     ///
+
     /// 0: PI_nCS[x] is high-Z between transfers. 1: PI_nCS[x] is driven inactive between transfers.
     pub fn cs_tristate_ctrl(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -171,9 +181,11 @@ impl PI_MST_CTRL {    ///
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    ///
+    }
     /// Determines the number of PI_Clk cycles from the start of a transfer until a timeout occurs. This field is only valid when timeout for device-paced transfer is enabled.
+
     ///
+
     /// 000: 16 PI_Clk cycles 001: 32 PI_Clk cycles 010: 64 PI_Clk cycles 011: 128 PI_Clk cycles 100: 256 PI_Clk cycles 101: 512 PI_Clk cycles 110: 1024 PI_Clk cycles 111: 2048 PI_Clk cycles
     pub fn device_paced_timeout(&self) -> u32 {
         (self.0 & 0x1c0000) >> 18
@@ -183,7 +195,7 @@ impl PI_MST_CTRL {    ///
         assert!(value <= 0x1c0000);
         self.0 &= !0x1c0000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable timeout on device-paced transfers. If enabled, a device_paced_transfer transfer does not wait indefinitely for assertion of PI_nDone. If a timeout occurs, the TIMEOUT_ERR_STICKY bit is set in the status register and the current transfer is terminated (read-data will be invalid).
     pub fn device_paced_timeout_ena(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -193,9 +205,11 @@ impl PI_MST_CTRL {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Device-paced transfer enable. When enabled, use PI_nDone to end a transfer.
+
     ///
+
     /// 0: Disabled 1: Enabled
     pub fn device_paced_xfer_ena(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -205,9 +219,11 @@ impl PI_MST_CTRL {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Polarity of PI_nDone for device-paced transfers.
+
     ///
+
     /// 0: PI_nDone is active low 1: PI_nDone is active high
     pub fn done_pol(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -217,7 +233,7 @@ impl PI_MST_CTRL {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Number of PI_Clk cycles to insert at the end of a transfer.
     pub fn hldcc(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -227,7 +243,7 @@ impl PI_MST_CTRL {    ///
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    ///
+    }
     /// Number of PI_Clk cycles from PI_nCS[x] low to PI_nOE low.
     pub fn oecc(&self) -> u32 {
         (self.0 & 0x18) >> 3
@@ -237,9 +253,11 @@ impl PI_MST_CTRL {    ///
         assert!(value <= 0x18);
         self.0 &= !0x18;
         self.0 |= value;
-    }    ///
+    }
     /// Controls when data is sampled in relation to assertion of PI_nDone for device-paced reads.
+
     ///
+
     /// 0: Data is sampled one PI_Clk cycle after PI_nDone goes active. 1: Data is sampled on the same PI_Clk cycle where PI_nDone goes active.
     pub fn smpl_on_done(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -249,7 +267,7 @@ impl PI_MST_CTRL {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Number of wait states measured in PI_Clk cycles on both read and write transfers.
     pub fn waitcc(&self) -> u32 {
         (self.0 & 0x7f80) >> 7
@@ -269,7 +287,7 @@ impl PI_MST_CTRL {    ///
 /// This is a replicated register, where each replication holds the status for one chip select.
 #[derive(From, Into)]
 pub struct PI_MST_STATUS(u32);
-impl PI_MST_STATUS {    ///
+impl PI_MST_STATUS {
     /// If a timeout is enabled and timeout occurs during a device-paced transfer, this bit is set.
     pub fn timeout_err_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0

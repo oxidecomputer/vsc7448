@@ -74,12 +74,12 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
         self.0 &= !0x80000;
         self.0 |= value;
     }    pub fn pme_support(&self) -> u32 {
-        (self.0 & 0x7ffffff) >> 27
+        (self.0 & 0xf8000000) >> 27
     }
     pub fn set_pme_support(&mut self, value: u32) {
         let value = value << 27;
-        assert!(value <= 0x7ffffff);
-        self.0 &= !0x7ffffff;
+        assert!(value <= 0xf8000000);
+        self.0 &= !0xf8000000;
         self.0 |= value;
     }    pub fn pm_cap_id(&self) -> u32 {
         (self.0 & 0xff) >> 0

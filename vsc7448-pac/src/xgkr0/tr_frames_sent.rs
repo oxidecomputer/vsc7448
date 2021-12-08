@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training frames_sent lsw
 #[derive(From, Into)]
 pub struct FRSENT_LSW(u32);
-impl FRSENT_LSW {    ///
+impl FRSENT_LSW {
     /// Number of training frames sent to complete training.
     pub fn frsent_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl FRSENT_LSW {    ///
 /// VS tap CP value
 #[derive(From, Into)]
 pub struct TR_CPVAL(u32);
-impl TR_CPVAL {    ///
+impl TR_CPVAL {
     /// CP value
     pub fn cp_val(&self) -> u32 {
         (self.0 & 0x7f) >> 0

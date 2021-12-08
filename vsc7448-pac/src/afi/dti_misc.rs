@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// DTI count down counters
 #[derive(From, Into)]
 pub struct DTI_CNT_DOWN(u32);
-impl DTI_CNT_DOWN {    ///
+impl DTI_CNT_DOWN {
     /// Remaining number of clock cycles before next injection. May become negative while waiting for table/injection access. Two's complement encoded. Should be set to 0 when (re)starting DTI (unless an initial delay is desirable).
     pub fn cnt_down(&self) -> u32 {
         (self.0 & 0x7fffffff) >> 0
@@ -51,7 +51,7 @@ impl DTI_CNT_DOWN {    ///
 /// Duration of last DTI run
 #[derive(From, Into)]
 pub struct DTI_DURATION(u32);
-impl DTI_DURATION {    ///
+impl DTI_DURATION {
     /// Duration of last DTI run in DTI Duration Ticks. Before starting a DTI, DURATION must be set to 0. When AFI:DTI_MISC:DTI_CTRL.ENA becomes 0, DURATION is updated with the duration of the DTI run. While a DTI is running DURATION holds an internal time stamp of when the DTI was started. This value is not intended for SW usage. Related parameters: AFI:MISC:DTI_DURATION_TICK_LEN.DTI_DURATION_TICK_LEN
     pub fn duration(&self) -> u32 {
         (self.0 & 0x7fffffff) >> 0
@@ -71,7 +71,7 @@ impl DTI_DURATION {    ///
 /// When FC is experienced between AFI and FRD, then DTI an injecting DTI must "backoff" for FC_POSTPONE_LEN clock cycles. This is handled by this counter.
 #[derive(From, Into)]
 pub struct DTI_FC_CNT_DOWN(u32);
-impl DTI_FC_CNT_DOWN {    ///
+impl DTI_FC_CNT_DOWN {
     /// Remaining number of clock cycles before DTI is allowed to attempt injection again after experiencing FC from FRD. This field is set to FC_POSTPONE_LEN when FC from FRD is experienced. Note: Unlike CNT_DOWN, FC_CNT_DOWN is always >=0 (so no two's complement encoding).
     pub fn fc_cnt_down(&self) -> u32 {
         (self.0 & 0xff) >> 0

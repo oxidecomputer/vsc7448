@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Miscellaneous service configuration.
 #[derive(From, Into)]
 pub struct SERVICE_CFG(u32);
-impl SERVICE_CFG {    ///
+impl SERVICE_CFG {
     /// Force Egress FID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when ANA_CL:IPT:VSI_CFG.VSI_ENA==1 and frame has multicast DMAC. See also SERVICE_CFG.VSI_FORCE_MC_EFID_ENA.
+
     ///
+
     /// 0: Normal EFID behaviour for multicast  DMAC. 1: Force EFID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when VSI_ENA==1 and frame has multicast DMAC.
     pub fn isdx_force_mc_efid_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -47,9 +49,11 @@ impl SERVICE_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Force Egress FID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when ISDX > 0 and frame has multicast DMAC. See also SERVICE_CFG.VSI_FORCE_MC_EFID_ENA.
+
     ///
+
     /// 0: Normal EFID behaviour for multicast  DMAC. 1: Force EFID=ANA_L3:VLAN:VLAN_CFG.VLAN_FIDfor multicast DMAC when ISDX > 0.
     pub fn vsi_force_mc_efid_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -67,7 +71,7 @@ impl SERVICE_CFG {    ///
 /// Address range for TUPE to process
 #[derive(From, Into)]
 pub struct TUPE_ADDR(u32);
-impl TUPE_ADDR {    ///
+impl TUPE_ADDR {
     /// Last address in VLAN table for TUPE to process.
     pub fn tupe_end_addr(&self) -> u32 {
         (self.0 & 0x1fff0000) >> 16
@@ -77,7 +81,7 @@ impl TUPE_ADDR {    ///
         assert!(value <= 0x1fff0000);
         self.0 &= !0x1fff0000;
         self.0 |= value;
-    }    ///
+    }
     /// First address in VLAN table for TUPE to process.
     pub fn tupe_start_addr(&self) -> u32 {
         (self.0 & 0x1fff) >> 0
@@ -95,17 +99,19 @@ impl TUPE_ADDR {    ///
 /// TUPE command: Port mask bits to clear
 #[derive(From, Into)]
 pub struct TUPE_CMD_PORT_MASK_CLR(u32);
-impl TUPE_CMD_PORT_MASK_CLR {    ///
+impl TUPE_CMD_PORT_MASK_CLR {
     /// Mask with ports, which shall be cleared in VLAN_PORT_MASK in VLAN table if VLAN table entry meets the critierias enabled in TUPE_MISC. If a port has its bit set in both TUPE_CMD_PORT_MASK_CLR and TUPE_CMD_PORT_MASK_SET then the value in VLAN_PORT_MASK is toggled.
+
     ///
+
     /// CLR=0, SET=0: No change to VLAN_PORT_MASK bit CLR=0, SET=1: VLAN_PORT_MASK bit shall be set. CLR=1, SET=0: VLAN_PORT_MASK bit shall be cleared. CLR=1, SET=1: VLAN_PORT_MASK bit shall be toggled..
     pub fn tupe_cmd_port_mask_clr(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tupe_cmd_port_mask_clr(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -115,7 +121,7 @@ impl TUPE_CMD_PORT_MASK_CLR {    ///
 /// TUPE command: Port mask bits to clear
 #[derive(From, Into)]
 pub struct TUPE_CMD_PORT_MASK_CLR1(u32);
-impl TUPE_CMD_PORT_MASK_CLR1 {    ///
+impl TUPE_CMD_PORT_MASK_CLR1 {
     /// See TUPE_CMD_PORT_MASK_CLR.
     pub fn tupe_cmd_port_mask_clr1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0
@@ -133,17 +139,19 @@ impl TUPE_CMD_PORT_MASK_CLR1 {    ///
 /// TUPE command: Port mask bits to set
 #[derive(From, Into)]
 pub struct TUPE_CMD_PORT_MASK_SET(u32);
-impl TUPE_CMD_PORT_MASK_SET {    ///
+impl TUPE_CMD_PORT_MASK_SET {
     /// Mask with ports, which shall be set in VLAN_PORT_MASK in VLAN table if VLAN table entry meets the critierias enabled in TUPE_MISC. If a port has its bit set in both TUPE_CMD_PORT_MASK_CLR and TUPE_CMD_PORT_MASK_SET then the value in VLAN_PORT_MASK is toggled.
+
     ///
+
     /// CLR=0, SET=0: No change to VLAN_PORT_MASK bit CLR=0, SET=1: VLAN_PORT_MASK bit shall be set. CLR=1, SET=0: VLAN_PORT_MASK bit shall be cleared. CLR=1, SET=1: VLAN_PORT_MASK bit shall be toggled..
     pub fn tupe_cmd_port_mask_set(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tupe_cmd_port_mask_set(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -153,7 +161,7 @@ impl TUPE_CMD_PORT_MASK_SET {    ///
 /// TUPE command: Port mask bits to set
 #[derive(From, Into)]
 pub struct TUPE_CMD_PORT_MASK_SET1(u32);
-impl TUPE_CMD_PORT_MASK_SET1 {    ///
+impl TUPE_CMD_PORT_MASK_SET1 {
     /// See TUPE_CMD_PORT_MASK_SET.
     pub fn tupe_cmd_port_mask_set1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0
@@ -171,7 +179,7 @@ impl TUPE_CMD_PORT_MASK_SET1 {    ///
 /// TUPE parameter controlling which VLAN table entries to update
 #[derive(From, Into)]
 pub struct TUPE_CTRL_BIT_MASK(u32);
-impl TUPE_CTRL_BIT_MASK {    ///
+impl TUPE_CTRL_BIT_MASK {
     /// If enabled by TUPE_CTRL_BIT_ENA, then the following condition must be met for TUPE to update VLAN table entry: (ANA_L3:VLAN:TUPE_CTRL & TUPE_CTRL_BIT_MASK) != 0 If enabled by TUPE_COMB_MASK_ENA, then the following condition must be met for TUPE to update VLAN table entry: ((ANA_L3:VLAN:TUPE_CTRL & TUPE_CTRL_BIT_MASK) != 0) || (ANA_L3:VLAN:VLAN_MASK_CFG.VLAN_PORT_MASK & TUPE_PORT_MASK_A) != 0
     pub fn tupe_ctrl_bit_mask(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -189,7 +197,7 @@ impl TUPE_CTRL_BIT_MASK {    ///
 /// TUPE parameter controlling which VLAN table entries to update
 #[derive(From, Into)]
 pub struct TUPE_CTRL_VAL(u32);
-impl TUPE_CTRL_VAL {    ///
+impl TUPE_CTRL_VAL {
     /// If enabled by TUPE_CTRL_VAL_ENA, then the following condition must be met for TUPE to update VLAN table entry: (ANA_L3:VLAN:TUPE_CTRL & TUPE_CTRL_VAL_MASK) == TUPE_CTRL_VAL
     pub fn tupe_ctrl_val(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -207,7 +215,7 @@ impl TUPE_CTRL_VAL {    ///
 /// TUPE parameter controlling which VLAN table entries to update
 #[derive(From, Into)]
 pub struct TUPE_CTRL_VAL_MASK(u32);
-impl TUPE_CTRL_VAL_MASK {    ///
+impl TUPE_CTRL_VAL_MASK {
     /// See TUPE_CTRL_VAL.
     pub fn tupe_ctrl_val_mask(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -225,7 +233,7 @@ impl TUPE_CTRL_VAL_MASK {    ///
 /// Miscellaneous TUPE parameters
 #[derive(From, Into)]
 pub struct TUPE_MISC(u32);
-impl TUPE_MISC {    ///
+impl TUPE_MISC {
     /// Enable combined use of TUPE_CTRL_BIT_MASK and TUPE_PORT_MASK_A. For further information refer to TUPE_CTRL_BIT_MASK.TUPE_CTRL_BIT_MASK
     pub fn tupe_comb_mask_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -235,7 +243,7 @@ impl TUPE_MISC {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Enable use of TUPE_CTRL_BIT_MASK. For further information refer to TUPE_CTRL_BIT_MASK.TUPE_CTRL_BIT_MASK
     pub fn tupe_ctrl_bit_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -245,7 +253,7 @@ impl TUPE_MISC {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable use of TUPE_CTRL_VAL and TUPE_CTRL_VAL_MASK. For further information refer to TUPE_CTRL_VAL.TUPE_CTRL_VAL
     pub fn tupe_ctrl_val_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -255,7 +263,7 @@ impl TUPE_MISC {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable use of TUPE_PORT_MASK_A. For further information refer to TUPE_PORT_MASK_A.TUPE_PORT_MASK_A
     pub fn tupe_port_mask_a_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -265,7 +273,7 @@ impl TUPE_MISC {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Enable use of TUPE_PORT_MASK_B For further information refer to TUPE_PORT_MASK_B.TUPE_PORT_MASK_B
     pub fn tupe_port_mask_b_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -275,7 +283,7 @@ impl TUPE_MISC {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Start TUPE. Write 1 to start TUPE. Set to 0 by TUPE when done. Note: While TUPE is running (i.e. TUPE_START=1) CPU must not write to VLAN table.
     pub fn tupe_start(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -293,15 +301,15 @@ impl TUPE_MISC {    ///
 /// TUPE parameter controlling which VLAN table entries to update
 #[derive(From, Into)]
 pub struct TUPE_PORT_MASK_A(u32);
-impl TUPE_PORT_MASK_A {    ///
+impl TUPE_PORT_MASK_A {
     /// If enabled by TUPE_PORT_MASK_A_ENA, then the following condition must be met for TUPE to update VLAN table entry: (ANA_L3:VLAN:VLAN_MASK_CFG.VLAN_PORT_MASK & TUPE_PORT_MASK_A) != 0 If enabled by TUPE_COMB_MASK_ENA, then the following condition must be met for TUPE to update VLAN table entry: ((ANA_L3:VLAN:TUPE_CTRL & TUPE_CTRL_BIT_MASK) != 0) || (ANA_L3:VLAN:VLAN_MASK_CFG.VLAN_PORT_MASK & TUPE_PORT_MASK_A) != 0
     pub fn tupe_port_mask_a(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tupe_port_mask_a(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -311,7 +319,7 @@ impl TUPE_PORT_MASK_A {    ///
 /// TUPE parameter controlling which VLAN table entries to update
 #[derive(From, Into)]
 pub struct TUPE_PORT_MASK_A1(u32);
-impl TUPE_PORT_MASK_A1 {    ///
+impl TUPE_PORT_MASK_A1 {
     /// See TUPE_PORT_MASK_A.
     pub fn tupe_port_mask_a1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0
@@ -329,15 +337,15 @@ impl TUPE_PORT_MASK_A1 {    ///
 /// TUPE parameter controlling which VLAN table entries to update
 #[derive(From, Into)]
 pub struct TUPE_PORT_MASK_B(u32);
-impl TUPE_PORT_MASK_B {    ///
+impl TUPE_PORT_MASK_B {
     /// If enabled by TUPE_PORT_MASK_B_ENA, then the following condition must be met for TUPE to update VLAN table entry: (ANA_L3:VLAN:VLAN_MASK_CFG.VLAN_PORT_MASK & TUPE_PORT_MASK_B) != 0
     pub fn tupe_port_mask_b(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tupe_port_mask_b(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

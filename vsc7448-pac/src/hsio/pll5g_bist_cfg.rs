@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Configuration register 0A for PLL5G BIST.
 #[derive(From, Into)]
 pub struct PLL5G_BIST_CFG0A(u32);
-impl PLL5G_BIST_CFG0A {    ///
+impl PLL5G_BIST_CFG0A {
     /// BIST compare pre divider M
     pub fn pllb_div_factor_pre(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -55,7 +55,7 @@ impl PLL5G_BIST_CFG0A {    ///
 /// Configuration register 0B for PLL5G BIST.
 #[derive(From, Into)]
 pub struct PLL5G_BIST_CFG0B(u32);
-impl PLL5G_BIST_CFG0B {    ///
+impl PLL5G_BIST_CFG0B {
     /// BIST compare divider repeat count
     pub fn pllb_lock_repeat(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -65,7 +65,7 @@ impl PLL5G_BIST_CFG0B {    ///
         assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
-    }    ///
+    }
     /// BIST compare divider phase uncertainty
     pub fn pllb_lock_uncert(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -75,7 +75,7 @@ impl PLL5G_BIST_CFG0B {    ///
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
-    }    ///
+    }
     /// BIST measure mode, 0: frequency, 1: phase
     pub fn pllb_meas_mode(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -85,7 +85,7 @@ impl PLL5G_BIST_CFG0B {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// BIST start, 0: reset BIST, 1: start/enable BIST
     pub fn pllb_start_bist(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -105,7 +105,7 @@ impl PLL5G_BIST_CFG0B {    ///
 /// Configuration register 1 for PLL5G BIST.
 #[derive(From, Into)]
 pub struct PLL5G_BIST_CFG1(u32);
-impl PLL5G_BIST_CFG1 {    ///
+impl PLL5G_BIST_CFG1 {
     /// BIST compare divider M
     pub fn pllb_div_factor_m(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -125,7 +125,7 @@ impl PLL5G_BIST_CFG1 {    ///
 /// Status register 1 for the PLL5G
 #[derive(From, Into)]
 pub struct PLL5G_STATUS1(u32);
-impl PLL5G_STATUS1 {    ///
+impl PLL5G_STATUS1 {
     /// VCO frequency difference to refclk
     pub fn fbcnt_dif(&self) -> u32 {
         (self.0 & 0x3ff0) >> 4
@@ -135,7 +135,7 @@ impl PLL5G_STATUS1 {    ///
         assert!(value <= 0x3ff0);
         self.0 &= !0x3ff0;
         self.0 |= value;
-    }    ///
+    }
     /// startup FSM lock status
     pub fn fsm_lock(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -145,7 +145,7 @@ impl PLL5G_STATUS1 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// startup FSM internal status
     pub fn fsm_stat(&self) -> u32 {
         (self.0 & 0xe) >> 1
@@ -155,7 +155,7 @@ impl PLL5G_STATUS1 {    ///
         assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
-    }    ///
+    }
     /// VCO frequency step stop
     pub fn gain_stat(&self) -> u32 {
         (self.0 & 0x7c000) >> 14
@@ -165,7 +165,7 @@ impl PLL5G_STATUS1 {    ///
         assert!(value <= 0x7c000);
         self.0 &= !0x7c000;
         self.0 |= value;
-    }    ///
+    }
     /// sigma delta ADC output
     pub fn sig_del(&self) -> u32 {
         (self.0 & 0x7f80000) >> 19

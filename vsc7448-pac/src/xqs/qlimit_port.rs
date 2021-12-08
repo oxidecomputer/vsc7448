@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Current congestion count for the scheduling element
 #[derive(From, Into)]
 pub struct QLIMIT_CONG_CNT(u32);
-impl QLIMIT_CONG_CNT {    ///
+impl QLIMIT_CONG_CNT {
     /// Number of congested queues on the scheduling element
     pub fn qlimit_cong_cnt(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -51,7 +51,7 @@ impl QLIMIT_CONG_CNT {    ///
 /// Queue Limitation Configuration
 #[derive(From, Into)]
 pub struct QLIMIT_PORT_CFG(u32);
-impl QLIMIT_PORT_CFG {    ///
+impl QLIMIT_PORT_CFG {
     /// Queue limitation is for this port used in MAX mode, setting upper limits for a queue. Otherwise a minimum guarantee is given by the calculated queue maximum size
     pub fn qlimit_max_mode_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -61,7 +61,7 @@ impl QLIMIT_PORT_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Index of shared resource to use
     pub fn qlimit_shr_val(&self) -> u32 {
         (self.0 & 0x6) >> 1

@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training BER offset setting
 #[derive(From, Into)]
 pub struct TR_BER_OFS(u32);
-impl TR_BER_OFS {    ///
+impl TR_BER_OFS {
     /// Signed value to adjust final c0 tap position from calculated optimal setting.
     pub fn c0_ber_ofs(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
@@ -43,7 +43,7 @@ impl TR_BER_OFS {    ///
         assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
-    }    ///
+    }
     /// Signed value to adjust final cm tap position from calculated optimal setting.
     pub fn cm_ber_ofs(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -53,7 +53,7 @@ impl TR_BER_OFS {    ///
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
-    }    ///
+    }
     /// Signed value to adjust final cp tap position from calculated optimal setting.
     pub fn cp_ber_ofs(&self) -> u32 {
         (self.0 & 0x7c00) >> 10

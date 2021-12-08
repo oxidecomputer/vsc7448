@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Configuration register for clock generator to build a low speed clock signal of variable length and variable duty cycle provided on all data bits simultaniously
 #[derive(From, Into)]
 pub struct DFT_CLK_GEN_CFG(u32);
-impl DFT_CLK_GEN_CFG {    ///
+impl DFT_CLK_GEN_CFG {
     /// Duty cycle distortion: Refer to configuration fields 'cg_per_cfg' and 'cg_per_jump_cfg' for encoding description
     pub fn cg_dcd_cfg(&self) -> u32 {
         (self.0 & 0xffc) >> 2
@@ -45,9 +45,11 @@ impl DFT_CLK_GEN_CFG {    ///
         assert!(value <= 0xffc);
         self.0 &= !0xffc;
         self.0 |= value;
-    }    ///
+    }
     /// clock generator mode
+
     ///
+
     /// 0: normal operation; cg_per_cfg controls period 0->1 transition: after current period has finished (only) the next period is controlled by cg_per_jump_cfg afterwards normal operation 2: every N'th period the high value is replaced by a low value N is defined by cg_timer_cfg 3: every N'th period the low value is replaced by a high value N is defined by cg_timer_cfg
     pub fn cg_mode_cfg(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -57,21 +59,25 @@ impl DFT_CLK_GEN_CFG {    ///
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
-    }    ///
+    }
     /// (Half) clock period configuration in normal mode (refer also to configuration field cg_mode_cfg):
+
     ///
+
     /// high period = cg_per_cfg + cg_dcd_cfg low period = cg_per_cfg - cg_dcd_cfg
     pub fn cg_per_cfg(&self) -> u32 {
-        (self.0 & 0x3fffff) >> 22
+        (self.0 & 0xffc00000) >> 22
     }
     pub fn set_cg_per_cfg(&mut self, value: u32) {
         let value = value << 22;
-        assert!(value <= 0x3fffff);
-        self.0 &= !0x3fffff;
+        assert!(value <= 0xffc00000);
+        self.0 &= !0xffc00000;
         self.0 |= value;
-    }    ///
+    }
     /// (Half) clock period configuration in jump mode (refer also to configuration field cg_mode_cfg):
+
     ///
+
     /// high period = cg_per_jump_cfg + cg_dcd_cfg low period = cg_per_jump_cfg - cg_dcd_cfg
     pub fn cg_per_jump_cfg(&self) -> u32 {
         (self.0 & 0x3ff000) >> 12
@@ -91,7 +97,7 @@ impl DFT_CLK_GEN_CFG {    ///
 /// RX Sync control configuration register, synchronize I2 of one RX to the I2 of another RX
 #[derive(From, Into)]
 pub struct RX_SYNC_CTRL_CFG(u32);
-impl RX_SYNC_CTRL_CFG {    ///
+impl RX_SYNC_CTRL_CFG {
     /// Clear RX I2 value
     pub fn rx_i2_clr(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -101,7 +107,7 @@ impl RX_SYNC_CTRL_CFG {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Keep current RX I2 value constant
     pub fn rx_i2_hold(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -111,9 +117,11 @@ impl RX_SYNC_CTRL_CFG {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Source selection for RX lane synchronization
+
     ///
+
     /// 0: Do not use external sync_ctrl info 1: Select sync_ctrl info from external DES
     pub fn rx_lane_sync_src(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -133,9 +141,11 @@ impl RX_SYNC_CTRL_CFG {    ///
 /// Sync control configuration register
 #[derive(From, Into)]
 pub struct SYNC_CTRL_CFG(u32);
-impl SYNC_CTRL_CFG {    ///
+impl SYNC_CTRL_CFG {
     /// Source selection for lane synchronization
+
     ///
+
     /// 0: Select external DES 1: Select F2DF 2: Select local DES 3: Disable sync_ctrl
     pub fn lane_sync_src(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -155,7 +165,7 @@ impl SYNC_CTRL_CFG {    ///
 /// Sync control status register
 #[derive(From, Into)]
 pub struct SYNC_CTRL_STAT(u32);
-impl SYNC_CTRL_STAT {    ///
+impl SYNC_CTRL_STAT {
     /// Lane synchronization fifo overflow
     pub fn lane_sync_fifo_of_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0

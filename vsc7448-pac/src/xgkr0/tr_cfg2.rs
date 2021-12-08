@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// VS training config 1
 #[derive(From, Into)]
 pub struct TR_CFG1(u32);
-impl TR_CFG1 {    ///
+impl TR_CFG1 {
     /// Freeze timers. Bit set...
+
     ///
+
     /// 0: wait 1: max_wait 2: 1g 3: 3g 4: 10g 5: training 6: pgdet 7: link_pass 8: link_fail 9: an_wait 10: break_link
     pub fn tmr_hold(&self) -> u32 {
         (self.0 & 0x7ff) >> 0

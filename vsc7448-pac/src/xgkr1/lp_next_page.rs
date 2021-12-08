@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// NxtPg transmit 47-32
 #[derive(From, Into)]
 pub struct KR_7X0018(u32);
-impl KR_7X0018 {    ///
+impl KR_7X0018 {
     /// Next page to transmit D[47:32]
     pub fn np_tx2(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl KR_7X0018 {    ///
 /// LP next page ability 15-0
 #[derive(From, Into)]
 pub struct KR_7X0019(u32);
-impl KR_7X0019 {    ///
+impl KR_7X0019 {
     /// LP next page  ability D[15:0]
     pub fn lp_np_adv0(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -69,7 +69,7 @@ impl KR_7X0019 {    ///
 /// LP next page ability 31-16
 #[derive(From, Into)]
 pub struct KR_7X001A(u32);
-impl KR_7X001A {    ///
+impl KR_7X001A {
     /// LP next page ability D[31:16]
     pub fn lp_np_adv1(&self) -> u32 {
         (self.0 & 0xffff) >> 0

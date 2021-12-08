@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training override
 #[derive(From, Into)]
 pub struct TR_OVRD(u32);
-impl TR_OVRD {    ///
+impl TR_OVRD {
     /// Generate BER enable pulse (SC)
     pub fn ber_en_ovrd(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -43,7 +43,7 @@ impl TR_OVRD {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Generate Coef_update_valid pulse (SC)
     pub fn coef_ovrd_vld(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -53,7 +53,7 @@ impl TR_OVRD {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable manual training
     pub fn ovrd_en(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -63,7 +63,7 @@ impl TR_OVRD {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Control of rx_trained variable for training SM
     pub fn rxtrained_ovrd(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -73,7 +73,7 @@ impl TR_OVRD {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Generate Stat_report_valid pulse (SC)
     pub fn stat_ovrd_vld(&self) -> u32 {
         (self.0 & 0x1) >> 0

@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Control register for counter events
 #[derive(From, Into)]
 pub struct CNT_CTRL(u32);
-impl CNT_CTRL {    ///
+impl CNT_CTRL {
     /// If set to 1 events from all ports are counted. If 0 the port is selected by the 'EVENT_CNT_PORT' register
+
     ///
+
     /// 0: Count events from the port selected by 'EVENT_CNT_PORT' 1: Count events from all ports
     pub fn event_cnt_all(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -45,9 +47,11 @@ impl CNT_CTRL {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Select from which source port events are counted.
+
     ///
+
     /// 'n': Count events from source port n
     pub fn event_cnt_port(&self) -> u32 {
         (self.0 & 0x7e0) >> 5
@@ -57,9 +61,11 @@ impl CNT_CTRL {    ///
         assert!(value <= 0x7e0);
         self.0 &= !0x7e0;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of frames discarded by the REW. The QSYS abort statistics counters are used. This bit only enables counting of frames discarded by ES0 or the SW_MIP. Frame discards done by the OAM MEP are not included.
+
     ///
+
     /// 0: Disable counting 1: Enable counting
     pub fn stat_cnt_frm_abort_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -69,9 +75,11 @@ impl CNT_CTRL {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Configures the egress service statistics mode. The following options for looking up the egress service counter set are available: In mode 0 and 1 yellow frames (DE=1) are counted separately In mode 2 and 3 multicast frames (DMAC bit 40 = 1) are counted separately Related parameters: ANA_AC:PS_COMMON:MISC_CTRL.USE_VID_AS_ISDX_ENA
+
     ///
+
     /// 0: Use ESDX from ES0 if hit, otherwise ISDX 1: Use ESDX from ES0 if hit, otherwise no counting 2: Use ISDX (ifh.vstax.misc.isdx as index) 3: Use classified VID (ifh.vstax.tag.vid)
     pub fn stat_mode(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -81,9 +89,11 @@ impl CNT_CTRL {    ///
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
-    }    ///
+    }
     /// Configure ESDX counting for stacking ports. If this bit is set and PORT_CTRL.VSTAX_HDR_ENA=1, all counting based on the ESDX value is disabled regardless of the CNT_CTRL.STAT_MODE configuration. Related parameters: ANA_AC:PS_COMMON:COMMON_VSTAX_CFG.VSTAX2_ISDX_STAT_DIS
+
     ///
+
     /// 0: Normal ESDX statistics mode 1: Disable ESDX statistics for stacking ports
     pub fn vstax_stat_esdx_dis(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -101,9 +111,11 @@ impl CNT_CTRL {    ///
 /// Common Control configuration
 #[derive(From, Into)]
 pub struct COMMON_CTRL(u32);
-impl COMMON_CTRL {    ///
+impl COMMON_CTRL {
     /// When padding is required after tag removal, also the FCS will be removed before zero padding and new FCS is added.
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn frm_clr_pad_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -113,9 +125,11 @@ impl COMMON_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Control if frames are aborted if the IFH.ENCAP.WORD16_POP_CNT field is out of the supported range.
+
     ///
+
     /// 0: Keep frame 1: Abort frame
     pub fn invld_w16_pop_cnt_frm_abort(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -125,9 +139,11 @@ impl COMMON_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Used when frames are L3 forwarded to a stack port. When this bit is set, the reserved fields in the VSTAX.DST field is cleared
+
     ///
+
     /// 0: Keep VSTAX.DST field as received 1: Clear VSTAX.DST reserved fields when L3 forwarding
     pub fn l3_clr_vstax_dst_rsv(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -137,9 +153,11 @@ impl COMMON_CTRL {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Configures own UPSID to be used for stacking. This must be configured consistently across the following registers: ANA_CL::UPSID_CFG.UPSID_NUM ANA_AC::COMMON_VSTAX_CFG.OWN_UPSID ANA_L2::VSTAX_CTRL.OWN_UPSID REW::COMMON_CTRL.OWN_UPSID
+
     ///
+
     /// n: UPSID
     pub fn own_upsid(&self) -> u32 {
         (self.0 & 0x7c) >> 2
@@ -159,9 +177,11 @@ impl COMMON_CTRL {    ///
 /// Drop precedence level for the frame is translated to a drop eligible value 0 or 1, selecting between _DE0 or _DE1 mapping tables, when translating the internal prio to TAG priorities. Mapped drop precedence/internal priority is used when selected by TAG control configuration (see TAG ctrl)
 #[derive(From, Into)]
 pub struct DP_MAP(u32);
-impl DP_MAP {    ///
+impl DP_MAP {
     /// Drop precedence N uses mapping table given by bit N in this field.
+
     ///
+
     /// xxx0: Map DP value 0 to DE value 0 xxx1: Map DP value 0 to DE value 1 ... 0xxx: Map DP value 3 to DE value 0 1xxx: Map DP value 3 to DE value 1
     pub fn dp(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -179,7 +199,7 @@ impl DP_MAP {    ///
 /// Remap table of DSCP values.
 #[derive(From, Into)]
 pub struct DSCP_REMAP(u32);
-impl DSCP_REMAP {    ///
+impl DSCP_REMAP {
     /// Full one to one DSCP remapping table common for all ports.
     pub fn dscp_remap(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -197,9 +217,11 @@ impl DSCP_REMAP {    ///
 /// Various configuration of ES0 in rewriter module
 #[derive(From, Into)]
 pub struct ES0_CTRL(u32);
-impl ES0_CTRL {    ///
+impl ES0_CTRL {
     /// Enable ES0 router mode lookup when IFH.FWD.DST_MODE indicates routing. When enabled and IFH.FWD.DST_MODE = L3UC_ROUTING or IFH.FWD.DST_MODE = L3MC_ROUTING, the ES0 'VSI' key is set to all 1, the VID key field is set to IFH.DST.ERLEG and ES0 lookup is always done using VID key type. If IFH_FWD.DST_MODE does not indicate routing, the lookup is done normally regardless of the ES0_BY_RLEG configuration.
+
     ///
+
     /// 0: Normal ES0 lookup 1: Enable router mode ES0 lookup
     pub fn es0_by_rleg(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -209,9 +231,11 @@ impl ES0_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable ES0 router mode lookup when IFH.ENCAP.RT_FWD indicates routing. When enabled and IFH.FWD.DST_MODE = ENCAP and IFH.ENCAP.RT_FWD = 1, the ES0 'VSI' key field is set to all 1, the VID key field is set to IFH.ENCAP.GEN_IDX and ES0 lookup is always done using VID key type. If IFH.ENCAP.RT_FWD does not indicate routing, the lookup is done normally regardless of the ES0_BY_RT_FWD configuration.
+
     ///
+
     /// 0: Normal ES0 lookup 1: Enable router mode ES0 lookup
     pub fn es0_by_rt_fwd(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -221,9 +245,11 @@ impl ES0_CTRL {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Via ES0 it is possible to loop frames back to the Analyzer using the LOOP_ENA and FWD_SEL actions. If this bit is set, a frame can only be looped once by ES0.
+
     ///
+
     /// 0: No ES0 frame loop limitation 1: Allow only one loop of frame
     pub fn es0_frm_lbk_cfg(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -233,9 +259,11 @@ impl ES0_CTRL {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Enable lookup in VCAP_ES0 to control advanced frame modifications.
+
     ///
+
     /// 0: VCAP_ES0 do not control frame modifications 1: VCAP_ES0 controls all frame rewrites
     pub fn es0_lu_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -255,9 +283,11 @@ impl ES0_CTRL {    ///
 /// Selected local CPU queues can be redirected to a global CPU (GCPU) located on front- and/or stack ports. Each of the eight local CPU queues are configured individually. CPU queue redirection is enabled in QFWD::FRAME_COPY_CFG.FRMC_PORT_VAL The CPU queue number assigned to a frame is the highest priority CPU queue bit set in IFH.MISC.CPU_MASK. The CPU queue number is used to select configuration per queue. The GCPU forward frame modifications are not done, if no bits are set in IFH.MISC.CPU_MASK.
 #[derive(From, Into)]
 pub struct GCPU_CFG(u32);
-impl GCPU_CFG {    ///
+impl GCPU_CFG {
     /// Used when GCPU frames are forwarded to a front port. Frame are not modified when forwarded to the GCPU expect for the optional tags configured in GCPU_CFG.GCPU_TAG_SEL
+
     ///
+
     /// 0: Allow normal rewrites of GCPU frames forwarded to front ports 1: Allow only addition of GCPU_TAGS to GCPU frames
     pub fn gcpu_do_not_rew(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -267,9 +297,11 @@ impl GCPU_CFG {    ///
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    ///
+    }
     /// Used when GCPU frames are forwarded to a stack port. Configure forward mode of GCPU frames on stack ports by selecting value of VSTAX.GEN.FWD_MODE.
+
     ///
+
     /// 0: VSTAX.GEN.FWD_MODE = VS2_FWD_GCPU_UPS Forward the frame to a specific unit in the stack 1: VSTAX.GEN.FWD_MODE = VS2_FWD_PHYSICAL Forward the frame to a specific port on a specific unit in the stack.
     pub fn gcpu_fwd_mode(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -279,9 +311,11 @@ impl GCPU_CFG {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Used when GCPU frames are forwarded to a front port. Frames are sent with the IFH preserved. The IFH is encapsulated according to the configuration. Setting GCPU_KEEP_IFH to a value different from 0 overrides the GCPU_TAG_SEL and GCPU_DO_NOT_REW settings for front ports. No other rewrites are done to the frame. The GCPU_KEEP_IFH setting is not active if PORT_CTRL.KEEP_IFH_SEL is different from 0 or if PORT_CTRL.VSTAX_HDR_ENA=1
+
     ///
+
     /// 0: Normal mode. 1: Keep IFH without modifications. Frames are not updated. IFH is kept 2: Encapsulate IFH. The frame's DMAC, SMAC and a fixed TAG with ETYPE=8880 (Vitesse) and EPID=0x0009 are inserted in front of the IFH: [FRM_DMAC][FRM_SMAC][0x8880][0x0009][IFH][FRAME] 3: Encapsulate IFH using the ENCAP table Use ES0 to generate an ENCAP_ID and insert the encapsulation in front of the IFH: [ENCAP][IFH][FRAME] ES0 controlled encapsulations will be used if the ENCAP_ID action is active, otherwise mode 2) is used.
     pub fn gcpu_keep_ifh(&self) -> u32 {
         (self.0 & 0x300000) >> 20
@@ -291,9 +325,11 @@ impl GCPU_CFG {    ///
         assert!(value <= 0x300000);
         self.0 &= !0x300000;
         self.0 |= value;
-    }    ///
+    }
     /// When a GCPU frame is forwarded to a stack port: Force a change of the VSTAX.TAG to the configured values in GCPU_TAG_CFG:0 When a GCPU frame is forwarded to a front port: Optionally add one or two Q-tags to the frame. The tags are configured using GCPU_TAG_CFG
+
     ///
+
     /// 0: Normal mode. No tags are added and VSTAX.TAG is equal to the outer most frame tag 1: Add one tag to GCPU frames forwarded to front ports. Set VSTAX.TAG to GCPU_TAG_CFG:0 for frames on a stack port 2: Add two tags to GCPU frames forwarded to front ports. Set VSTAX.TAG to GCPU_TAG_CFG:0 for frames on a stack port 3: Reserved
     pub fn gcpu_tag_sel(&self) -> u32 {
         (self.0 & 0x60000) >> 17
@@ -303,9 +339,11 @@ impl GCPU_CFG {    ///
         assert!(value <= 0x60000);
         self.0 &= !0x60000;
         self.0 |= value;
-    }    ///
+    }
     /// Used when GCPU frames are forwarded to a stack port. DST_UPSID to be used as destination in the VSTAX header. Set VSTAX.DST.DST_UPSID to configured value.
+
     ///
+
     /// 0: DST_UPSID 0 1: DST_UPSID 1 ... n: DST_UPSID n
     pub fn gcpu_upsid(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -315,9 +353,11 @@ impl GCPU_CFG {    ///
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
-    }    ///
+    }
     /// Used when GCPU frames are forwarded to a stack port. DST_PN to be used as destination in the VSTAX header. Set VSTAX.DST.DST_PN to configured value.
+
     ///
+
     /// 0: DST_PN 0 1: DST_PN 1 ... n: DST_PN n
     pub fn gcpu_upspn(&self) -> u32 {
         (self.0 & 0x1f00) >> 8
@@ -337,9 +377,11 @@ impl GCPU_CFG {    ///
 /// Configuration of QTags for GCPU frames. GCPU frames that are forwarded to a front port can optionally have one or two Qtags added. The tags will be placed in the outer most position after the SMAC. TAG_A is the outer tag. Idx0:  TAG_A, Idx1:	TAG_B.
 #[derive(From, Into)]
 pub struct GCPU_TAG_CFG(u32);
-impl GCPU_TAG_CFG {    ///
+impl GCPU_TAG_CFG {
     /// GCPU Q-tag DEI values
+
     ///
+
     /// 0: DEI bit = 0 1: DEI bit = 1
     pub fn tag_dei_val(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -349,9 +391,11 @@ impl GCPU_TAG_CFG {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Selection of GCPU Q-tag PCP values
+
     ///
+
     /// 0: Use classified PCP 1: Use TAG_PCP_VAL
     pub fn tag_pcp_sel(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -361,9 +405,11 @@ impl GCPU_TAG_CFG {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// GCPU Q-tag PCP values.
+
     ///
+
     /// n: PCP n
     pub fn tag_pcp_val(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -373,9 +419,11 @@ impl GCPU_TAG_CFG {    ///
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    ///
+    }
     /// GCPU Q-tag Tag Protocol Identifiers(TPID)
+
     ///
+
     /// 0: 0x8100 1: 0x88A8 2: Custom1. REW::TPID_CFG[0].TPID_VAL 3: Custom2. REW::TPID_CFG[1].TPID_VAL 4: Custom3. REW::TPID_CFG[2].TPID_VAL 5: Select via ifh.vstax.tag_type and ifh.encap.tag_tpid If ifh.encap.tag_tipd = STD_TPID: If ifh.vstax.tag_type = 0 then 0x8100 else 0x88A8 If ifh.encap.tag_tipd = CUSTOM<n>: Custom<n> TPID 6-7: Reserved
     pub fn tag_tpid_sel(&self) -> u32 {
         (self.0 & 0xe0000) >> 17
@@ -385,9 +433,11 @@ impl GCPU_TAG_CFG {    ///
         assert!(value <= 0xe0000);
         self.0 &= !0xe0000;
         self.0 |= value;
-    }    ///
+    }
     /// GCPU Q-tag VID values
+
     ///
+
     /// n: VID n
     pub fn tag_vid_val(&self) -> u32 {
         (self.0 & 0x1ffe0) >> 5
@@ -405,7 +455,7 @@ impl GCPU_TAG_CFG {    ///
 /// Default values for transmitted HIHS
 #[derive(From, Into)]
 pub struct HIH_DEF_CFG(u32);
-impl HIH_DEF_CFG {    ///
+impl HIH_DEF_CFG {
     /// Default value for the CKSM field in transmitted HIH's.
     pub fn hih_def_cksm(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -415,7 +465,7 @@ impl HIH_DEF_CFG {    ///
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
-    }    ///
+    }
     /// Default value for the CL field in transmitted HIH's.
     pub fn hih_def_cl(&self) -> u32 {
         (self.0 & 0xffff00) >> 8
@@ -425,7 +475,7 @@ impl HIH_DEF_CFG {    ///
         assert!(value <= 0xffff00);
         self.0 &= !0xffff00;
         self.0 |= value;
-    }    ///
+    }
     /// Default value for the FLAGS field in transmitted HIH's.
     pub fn hih_def_flags(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -435,15 +485,15 @@ impl HIH_DEF_CFG {    ///
         assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
-    }    ///
+    }
     /// Default value for the LPID field in transmitted HIH's.
     pub fn hih_def_lpid(&self) -> u32 {
-        (self.0 & 0xffffff) >> 24
+        (self.0 & 0xff000000) >> 24
     }
     pub fn set_hih_def_lpid(&mut self, value: u32) {
         let value = value << 24;
-        assert!(value <= 0xffffff);
-        self.0 &= !0xffffff;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
         self.0 |= value;
     }
 }
@@ -455,9 +505,11 @@ impl HIH_DEF_CFG {    ///
 /// This register provides additional HIH configuration for 10G devices.
 #[derive(From, Into)]
 pub struct HIH_DEV10G_CFG(u32);
-impl HIH_DEV10G_CFG {    ///
+impl HIH_DEV10G_CFG {
     /// This register configures where the HiH is located for DEV10Gs. The HiH must be placed in the frame if PTP is enabled for the port.
+
     ///
+
     /// 0: Place the HiH after frame SFD 1: DEV10G::MAC_MODE_CFG.MAC_PREAMBLE_CFG controls the placement.
     pub fn hih_location(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -475,9 +527,11 @@ impl HIH_DEV10G_CFG {    ///
 /// CCM hit me once auto set
 #[derive(From, Into)]
 pub struct MIP_CTRL(u32);
-impl MIP_CTRL {    ///
+impl MIP_CTRL {
     /// Set all CCM Hit me once bits. Cleared when the access completes. Ref: REW:MIP_TBL:CCM_HMO_CTRL
+
     ///
+
     /// 0: Idle 1: Initiate setting all CCM_HMO_CTRL.CCM_COPY_ONCE_ENA where MIP_CCM_INTERVAL_MASK[CCM_HMO_CTRL.CCM_INTERVAL] is set The bit is cleared upon completion
     pub fn mip_ccm_hmo_set_shot(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -487,9 +541,11 @@ impl MIP_CTRL {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Specifies which MIP CCM intervals that will have CCM_COPY_ONCE_ENA set.
+
     ///
+
     /// x0x: Interval is ignored x1x: REW:MIP_TBL:CCM_HMO_CTRL.CCM_COPY_ONCE_ENA  is set where MIP_CCM_INTERVAL_MASK[CCM_HMO_CTRL.CCM_INTERVAL] is set.
     pub fn mip_ccm_interval_mask(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -509,9 +565,11 @@ impl MIP_CTRL {    ///
 /// Related parameters: ANA_AC:MIRROR_PROBE
 #[derive(From, Into)]
 pub struct MIRROR_PROBE_CFG(u32);
-impl MIRROR_PROBE_CFG {    ///
+impl MIRROR_PROBE_CFG {
     /// The TX port for the mirror_probe (From where rewrite configuration is taken)
+
     ///
+
     /// 0: Port 0 1: Port 1 . . . n: Port n
     pub fn mirror_tx_port(&self) -> u32 {
         (self.0 & 0x3f000) >> 12
@@ -521,9 +579,11 @@ impl MIRROR_PROBE_CFG {    ///
         assert!(value <= 0x3f000);
         self.0 &= !0x3f000;
         self.0 |= value;
-    }    ///
+    }
     /// Select encapsulation ID to use for remote mirror frames.
+
     ///
+
     /// 0: No encapsulation 1-n: Encapsulation ID n
     pub fn remote_encap_id(&self) -> u32 {
         (self.0 & 0xffc) >> 2
@@ -533,9 +593,11 @@ impl MIRROR_PROBE_CFG {    ///
         assert!(value <= 0xffc);
         self.0 &= !0xffc;
         self.0 |= value;
-    }    ///
+    }
     /// Enable encapsulation of mirrored frames. One or two Q-Tags (Q-in-Q) or the encapsulation table can be used. In tag mode the VLAN tags will be added in the outer most position after the SMAC. This will also be the case if a MPLS link layer is added to the frame. The tags will then be added after LL-SMAC. In encapsulation mode an entry in the ENCAP-table is used for encapsulation. This will override any encapsulation selected by ES0 for the frame.
+
     ///
+
     /// 0: Local mirror port. No encapsulation 1: Add one VLAN tag. Configured by MIRROR_TAG_A_CFG 2: Add two VLAN tags. Configured by MIRROR_TAG_A_CFG and MIRROR_TAG_B_CFG 3: Use ENCAP table selected by REMOTE_ENCAP_ID
     pub fn remote_mirror_cfg(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -555,9 +617,11 @@ impl MIRROR_PROBE_CFG {    ///
 /// Configuration of mirror QTag A. Each mirror probe can be configured individually.
 #[derive(From, Into)]
 pub struct MIRROR_TAG_A_CFG(u32);
-impl MIRROR_TAG_A_CFG {    ///
+impl MIRROR_TAG_A_CFG {
     /// Mirror Q-tag A DEI value.
+
     ///
+
     /// 0: DEI bit = 0 1: DEI bit = 1
     pub fn tag_a_dei_val(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -567,9 +631,11 @@ impl MIRROR_TAG_A_CFG {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Selection of mirror Q-tag A PCP value.
+
     ///
+
     /// 0: Use classified PCP 1: Use TAG_A_PCP_VAL
     pub fn tag_a_pcp_sel(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -579,9 +645,11 @@ impl MIRROR_TAG_A_CFG {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Mirror Q-tag A PCP value.
+
     ///
+
     /// n: PCP n
     pub fn tag_a_pcp_val(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -591,9 +659,11 @@ impl MIRROR_TAG_A_CFG {    ///
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    ///
+    }
     /// Mirror Q-tag A Tag Protocol Identifier(TPID)
+
     ///
+
     /// 0: 0x8100 1: 0x88A8 2: Custom1. REW::TPID_CFG[0].TPID_VAL 3: Custom2. REW::TPID_CFG[1].TPID_VAL 4: Custom3. REW::TPID_CFG[2].TPID_VAL 5: Select via ifh.vstax.tag_type and ifh.encap.tag_tpid If ifh.encap.tag_tipd = STD_TPID: If ifh.vstax.tag_type = 0 then 0x8100 else 0x88A8 If ifh.encap.tag_tipd = CUSTOM<n>: Custom<n> TPID 6-7: Reserved
     pub fn tag_a_tpid_sel(&self) -> u32 {
         (self.0 & 0xe0000) >> 17
@@ -603,9 +673,11 @@ impl MIRROR_TAG_A_CFG {    ///
         assert!(value <= 0xe0000);
         self.0 &= !0xe0000;
         self.0 |= value;
-    }    ///
+    }
     /// Mirror Q-tag A VID value.
+
     ///
+
     /// n: VID n
     pub fn tag_a_vid_val(&self) -> u32 {
         (self.0 & 0x1ffe0) >> 5
@@ -625,9 +697,11 @@ impl MIRROR_TAG_A_CFG {    ///
 /// Configuration of mirror QTag B. Each mirror probe can be configured individually.
 #[derive(From, Into)]
 pub struct MIRROR_TAG_B_CFG(u32);
-impl MIRROR_TAG_B_CFG {    ///
+impl MIRROR_TAG_B_CFG {
     /// Mirror Q-tag B DEI value.
+
     ///
+
     /// 0: DEI bit = 0 1: DEI bit = 1
     pub fn tag_b_dei_val(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -637,9 +711,11 @@ impl MIRROR_TAG_B_CFG {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Selection of mirror Q-tag B PCP value.
+
     ///
+
     /// 0: Use classified PCP 1: Use TAG_B_PCP_VAL
     pub fn tag_b_pcp_sel(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -649,9 +725,11 @@ impl MIRROR_TAG_B_CFG {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Mirror Q-tag B PCP value.
+
     ///
+
     /// n: PCP n
     pub fn tag_b_pcp_val(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -661,9 +739,11 @@ impl MIRROR_TAG_B_CFG {    ///
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    ///
+    }
     /// Mirror Q-tag B Tag Protocol Identifier(TPID)
+
     ///
+
     /// 0: 0x8100 1: 0x88A8 2: Custom1. REW::TPID_CFG[0].TPID_VAL 3: Custom2. REW::TPID_CFG[1].TPID_VAL 4: Custom3. REW::TPID_CFG[2].TPID_VAL 5: Select via ifh.vstax.tag_type and ifh.encap.tag_tpid If ifh.encap.tag_tipd = STD_TPID: If ifh.vstax.tag_type = 0 then 0x8100 else 0x88A8 If ifh.encap.tag_tipd = CUSTOM<n>: Custom<n> TPID 6-7: Reserved
     pub fn tag_b_tpid_sel(&self) -> u32 {
         (self.0 & 0xe0000) >> 17
@@ -673,9 +753,11 @@ impl MIRROR_TAG_B_CFG {    ///
         assert!(value <= 0xe0000);
         self.0 &= !0xe0000;
         self.0 |= value;
-    }    ///
+    }
     /// Mirror Q-tag B VID value.
+
     ///
+
     /// n: VID n
     pub fn tag_b_vid_val(&self) -> u32 {
         (self.0 & 0x1ffe0) >> 5
@@ -695,9 +777,11 @@ impl MIRROR_TAG_B_CFG {    ///
 /// Configuration of rewriter ports.
 #[derive(From, Into)]
 pub struct PORT_CTRL(u32);
-impl PORT_CTRL {    ///
+impl PORT_CTRL {
     /// Map the configuration port to a logical port number to be used by ES0 keys. The port used for the lookup can be Tx-mirrored. Use the unmapped port number, if the mapped value is outside port range (default)
+
     ///
+
     /// 0-10: Use this port number for ES0 lookup 11-15: Do not map port number
     pub fn es0_lport_num(&self) -> u32 {
         (self.0 & 0x3f000000) >> 24
@@ -707,9 +791,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x3f000000);
         self.0 &= !0x3f000000;
         self.0 |= value;
-    }    ///
+    }
     /// Configures the injection statistics pipeline point. Frames injected after the configured pipeline point are not counted by the ESDX counters. Configuring the value 'REW_'VRAP will cause all injected frames to be counted.
+
     ///
+
     /// 0: Reserved 1: REW_IN_MIP 2: REW_IN_SW 3: REW_IN_VOE 4: REW_OU_VOE 5: REW_OU_SW 6: REW_OU_MIP 7: REW_SAT 8: REW_PORT_VOE 9: REW_VRAP
     pub fn inj_stat_pipeline_pt(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -719,9 +805,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
-    }    ///
+    }
     /// Configure the rewriter IFH mode for the port. The configuration  is used by the physical port and is not changed for TX-Mirrored frames. See ASM::PORT_CFG.INJ_FORMAT_CFG
+
     ///
+
     /// 0: Normal mode. 1: Keep IFH without modifications. Frames are not updated. IFH is kept 2: Encapsulate IFH. The frame's DMAC, SMAC and a fixed TAG with ETYPE=8880 (Vitesse) and EPID=0x0009 are inserted in front of the IFH: [FRM_DMAC][FRM_SMAC][0x8880][0x0009][IFH][FRAME] 3: Encapsulate IFH using the ENCAP table Use ES0 to generate an ENCAP_ID and insert the encapsulation in front of the IFH: [ENCAP][IFH][FRAME] ES0 controlled encapsulations will be used if the ENCAP_ID action is active, otherwise mode 2) is used.
     pub fn keep_ifh_sel(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -731,9 +819,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
-    }    ///
+    }
     /// Default DEI value used by the OAM port VOE. This value is used for port VOE counter updates when no outer Q-Tag is present in a frame. The configuration is used by the physical port and is not changed for TX-Mirrored frames.
+
     ///
+
     /// n: OAM default DEI value
     pub fn port_voe_default_dei(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -743,9 +833,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Default PCP value used by the OAM port VOE. This value is used for port VOE counter updates when no outer Q-Tag is present in a frame. The configuration is used by the physical port and is not changed for TX-Mirrored frames.
+
     ///
+
     /// n: OAM default PCP value
     pub fn port_voe_default_pcp(&self) -> u32 {
         (self.0 & 0x380) >> 7
@@ -755,9 +847,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x380);
         self.0 &= !0x380;
         self.0 |= value;
-    }    ///
+    }
     /// This configuration applies to VLAN tag awareness in the port VOE for frames for which the rewriter is not pushing new VLAN tags or an MPLS link layer. Each bit corresponds to one of the known TPIDs. If the outgoing frame's outer tag contains a TPID for which PORT_VOE_TPID_AWARE_DIS is set, then the port VOE sees the frame as untagged. The configuration  is used by the physical port and is not changed for TX-Mirrored frames.
+
     ///
+
     /// Bit0: TPID = 0x8100. Bit1: TPID = 0x88A8 Bit2: TPID = REW::TPID_CFG[0].TPID_VAL Bit3: TPID = REW::TPID_CFG[1].TPID_VAL Bit4: TPID = REW::TPID_CFG[2].TPID_VAL
     pub fn port_voe_tpid_aware_dis(&self) -> u32 {
         (self.0 & 0x7c00) >> 10
@@ -767,9 +861,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x7c00);
         self.0 &= !0x7c00;
         self.0 |= value;
-    }    ///
+    }
     /// Configure tagging of frames with VSTAX.GEN.FWD_MODE = VS2_FWD_GMIRROR. Only active on front ports for frames using this FWD_MODE. This is used to control the remote mirror tagging of frames that have been mirrored from one unit in the stack to another unit. The configuration  is used by the physical port and is not changed for TX-Mirrored frames.
+
     ///
+
     /// 0: Always push the remote mirror tag carried VSTAX.TAG into the frame. No other tags are pushed. 1: Obey local port tag configuration.
     pub fn vstax2_mirror_obey_was_tagged(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -779,9 +875,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Configure VSTAX MISC field decoding. The configuration can be Tx-mirrored.
+
     ///
+
     /// 0: VSTAX MISC contains aggregation code 1: VSTAX MISC contains ISDX and COSID
     pub fn vstax2_misc_isdx_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -791,9 +889,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable insertion of stacking header in frame. The configuration is used by the physical port and is not changed for TX-Mirrored frames.
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn vstax_hdr_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -803,9 +903,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable padding of frames to 76 bytes. If a frame is smaller than 64 bytes when all rewrites are done, the frame is extended to 64 bytes to prevent under size frames leaving the chip. Setting this bit will cause all frames on the port to be extended to 76 bytes instead of 64 bytes. This should only optionally be enabled for stacking ports (PORT_CTRL.VSTAX_HDR_ENA = 1). Setting this bit will prevent frames from becoming under sized in a receiving switch, when the VStaX header is removed. The configuration is used by the physical port and is not changed for TX-Mirrored frames.
+
     ///
+
     /// 0: Normal padding to 64 bytes 1: Pad to 76 bytes
     pub fn vstax_pad_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -815,9 +917,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Select logical stacking port (or stacking port group) membership The configuration is used by the physical port and is not changed for TX-Mirrored frames.
+
     ///
+
     /// 0: Stack A 1: Stack B
     pub fn vstax_stack_grp_sel(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -827,9 +931,11 @@ impl PORT_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Configures the extraction statistics pipeline point. Frames extracted before the configured pipeline point are not counted by the ESDX counters Configuring the value 'REW_IN_MIP' will cause all extracted frames to be counted.
+
     ///
+
     /// 0: Reserved 1: REW_IN_MIP 2: REW_IN_SW 3: REW_IN_VOE 4: REW_OU_VOE 5: REW_OU_SW 6: REW_OU_MIP 7: REW_SAT 8: REW_PORT_VOE 9: REW_VRAP
     pub fn xtr_stat_pipeline_pt(&self) -> u32 {
         (self.0 & 0xf00000) >> 20
@@ -847,9 +953,11 @@ impl PORT_CTRL {    ///
 /// Rewriter router leg configuration.
 #[derive(From, Into)]
 pub struct RLEG_CFG_0(u32);
-impl RLEG_CFG_0 {    ///
+impl RLEG_CFG_0 {
     /// Router leg base MAC address, least significant bits. In order to have different MAC addresses per router leg, the base address may be incremented using VID or VMID, ref. RLEG_MAC_TYPE_SEL. This must be configured consistently in ANA_L3::RLEG_CFG_0.RLEG_MAC_LSB.
+
     ///
+
     /// Bit 0: MAC address, bit 0 ... Bit 23: MAC address, bit 23
     pub fn rleg_mac_lsb(&self) -> u32 {
         (self.0 & 0xffffff) >> 0
@@ -867,9 +975,11 @@ impl RLEG_CFG_0 {    ///
 /// Rewriter router leg configuration.
 #[derive(From, Into)]
 pub struct RLEG_CFG_1(u32);
-impl RLEG_CFG_1 {    ///
+impl RLEG_CFG_1 {
     /// Router leg base MAC address, least significant bits. In order to have different MAC addresses per router leg, the base address may be incremented using VID or VMID, ref. RLEG_MAC_TYPE_SEL. This must be configured consistently in ANA_L3::RLEG_CFG_1.RLEG_MAC_MSB.
+
     ///
+
     /// Bit 0: MAC address, bit 24 ... Bit 23: MAC address, bit 47
     pub fn rleg_mac_msb(&self) -> u32 {
         (self.0 & 0xffffff) >> 0
@@ -879,9 +989,11 @@ impl RLEG_CFG_1 {    ///
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
-    }    ///
+    }
     /// Configuration of router leg specific MAC address. This must be configured consistently in ANA_L3::RLEG_CFG_1.RLEG_MAC_TYPE_SEL.
+
     ///
+
     /// 0: RLEG used to increment base MAC address: RLEG_MAC = RLEG_MAC_MSB(23:0) & ((RLEG_MAC_LSB(23:0) + IFH.ERLEG) mod 2**24) 1: EVID (VMID.RLEG_EVID) used to increment base MAC address: RLEG_MAC = RLEG_MAC_MSB(23:0) & ((RLEG_MAC_LSB(23:0) + RLEG_EVID) mod 2**24) 2: Base MAC address used for all router legs RLEG_MAC = RLEG_MAC_MSB[23:0] & RLEG_MAC_LSB[23:0] 3: Reserved
     pub fn rleg_mac_type_sel(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -899,9 +1011,11 @@ impl RLEG_CFG_1 {    ///
 /// Rewriter sticky bit register
 #[derive(From, Into)]
 pub struct STICKY_EVENT(u32);
-impl STICKY_EVENT {    ///
+impl STICKY_EVENT {
     /// This bit is set if a DSCP remap event is detected
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn dscp_remap_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -911,9 +1025,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if a DSCP has been replaced event is detected
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn dscp_replace_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -923,9 +1039,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if the IFH is not correct for PTP frames
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn invld_ifh_for_ptp_frm_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -935,9 +1053,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if an invalid 'pop_cnt' value is received in the IFH
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn invld_pop_cnt_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -947,9 +1067,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if an invalid 'pop_cnt' value is received in the IFH
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn invld_w16_pop_cnt_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -959,9 +1081,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if an IP4 frame has been L3 multicast forwarded
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ip4_mc_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -971,9 +1095,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if an IP4 frame has unicast forwarded.
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ip4_uc_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -983,9 +1109,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if an IP6 frame has been L3 multicast forwarded
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ip6_mc_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -995,9 +1123,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if an IP6 frame has been unicast forwarded.
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ip6_uc_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -1007,9 +1137,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if a new link layer has been added to a frame
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn link_layer_added_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -1019,9 +1151,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if a frames out of the REW is missing the link layer
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn link_layer_error_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -1031,9 +1165,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Encapsulation overflow. Mismatching pop/push operations
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn rewrite_overflow_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -1043,9 +1179,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if a VLAN pop event is detected
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn vlan_pop_cnt_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -1055,9 +1193,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Priority tagged frame event is detected
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn vlan_prio_tagged_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -1067,9 +1207,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if a VLAN tag event is detected
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn vlan_tag_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -1079,9 +1221,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Untagged frame event due to VID=0 is detected
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn vlan_untagged_vid0_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -1091,9 +1235,11 @@ impl STICKY_EVENT {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set if a VLAN untag event is detected
+
     ///
+
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn vlan_untag_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -1111,9 +1257,11 @@ impl STICKY_EVENT {    ///
 /// Mask for the STICKY_EVENT_COUNT
 #[derive(From, Into)]
 pub struct STICKY_EVENT_CNT_MASK_CFG(u32);
-impl STICKY_EVENT_CNT_MASK_CFG {    ///
+impl STICKY_EVENT_CNT_MASK_CFG {
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn dscp_remap_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -1123,9 +1271,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn dscp_replace_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -1135,9 +1285,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn invld_ifh_for_ptp_frm_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -1147,9 +1299,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn invld_pop_cnt_sticky_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -1159,9 +1313,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn invld_w16_pop_cnt_sticky_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -1171,9 +1327,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn ip4_mc_sticky_mask(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -1183,9 +1341,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn ip4_uc_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -1195,9 +1355,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn ip6_mc_sticky_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -1207,9 +1369,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn ip6_uc_sticky_mask(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -1219,9 +1383,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn link_layer_added_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -1231,9 +1397,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn link_layer_error_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -1243,9 +1411,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn rewrite_overflow_sticky_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -1255,9 +1425,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn vlan_pop_cnt_sticky_mask(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -1267,9 +1439,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn vlan_prio_tagged_sticky_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -1279,9 +1453,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn vlan_tag_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -1291,9 +1467,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn vlan_untagged_vid0_sticky_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -1303,9 +1481,11 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of the event
+
     ///
+
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn vlan_untag_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -1323,17 +1503,19 @@ impl STICKY_EVENT_CNT_MASK_CFG {    ///
 /// Controls the common sticky event counter.
 #[derive(From, Into)]
 pub struct STICKY_EVENT_COUNT(u32);
-impl STICKY_EVENT_COUNT {    ///
+impl STICKY_EVENT_COUNT {
     /// Counter with number of masked events. Multiple simultaneously events are counted as one.
+
     ///
+
     /// Counter can be written by SW.
     pub fn sticky_event_counter(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_sticky_event_counter(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -1343,9 +1525,11 @@ impl STICKY_EVENT_COUNT {    ///
 /// Configure custom TPID values
 #[derive(From, Into)]
 pub struct TPID_CFG(u32);
-impl TPID_CFG {    ///
+impl TPID_CFG {
     /// Configure 3 custom TPID values. These must be configured identically in ANA_CL::VLAN_STAG_CFG.STAG_ETYPE_VAL. Related parameters: ANA_CL::VLAN_STAG_CFG.STAG_ETYPE_VAL
+
     ///
+
     /// n: TPID value
     pub fn tpid_val(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -1363,9 +1547,11 @@ impl TPID_CFG {    ///
 /// VSTAX Configuration per logical Stacking port
 #[derive(From, Into)]
 pub struct VSTAX_PORT_GRP_CFG(u32);
-impl VSTAX_PORT_GRP_CFG {    ///
+impl VSTAX_PORT_GRP_CFG {
     /// Change priority for learn all frames.
+
     ///
+
     /// 0: Disable 1: Enable (Learn all are send with highest priority)
     pub fn vstax_lrn_all_hp_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -1375,9 +1561,11 @@ impl VSTAX_PORT_GRP_CFG {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Control whether forwarding modes specific to VStaX AF shall be translated to BF forwarding modes. If set to 0, the following translation will be performed: fwd_logical -> fwd_lookup fwd_mc -> fwd_lookup If set to 1, no translation will be performed. Translation is only required for AF switches operating in a BF stack.
+
     ///
+
     /// 0: Perform fwd_mode translation. 1: Do not perform fwd_mode translation.
     pub fn vstax_mode(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -1387,7 +1575,7 @@ impl VSTAX_PORT_GRP_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Link TTL value
     pub fn vstax_ttl(&self) -> u32 {
         (self.0 & 0x1f0) >> 4

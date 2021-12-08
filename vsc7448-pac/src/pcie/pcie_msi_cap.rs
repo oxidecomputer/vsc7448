@@ -50,12 +50,12 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         self.0 &= !0x800000;
         self.0 |= value;
     }    pub fn data_reg_add_info(&self) -> u32 {
-        (self.0 & 0xffffff) >> 24
+        (self.0 & 0xff000000) >> 24
     }
     pub fn set_data_reg_add_info(&mut self, value: u32) {
         let value = value << 24;
-        assert!(value <= 0xffffff);
-        self.0 &= !0xffffff;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
         self.0 |= value;
     }    pub fn data_scale(&self) -> u32 {
         (self.0 & 0x6000) >> 13
@@ -114,12 +114,12 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
 #[derive(From, Into)]
 pub struct MSI_LOWER_32(u32);
 impl MSI_LOWER_32 {    pub fn pci_msi_lower_32(&self) -> u32 {
-        (self.0 & 0x3) >> 2
+        (self.0 & 0xfffffffc) >> 2
     }
     pub fn set_pci_msi_lower_32(&mut self, value: u32) {
         let value = value << 2;
-        assert!(value <= 0x3);
-        self.0 &= !0x3;
+        assert!(value <= 0xfffffffc);
+        self.0 &= !0xfffffffc;
         self.0 |= value;
     }
 }
@@ -130,12 +130,12 @@ impl MSI_LOWER_32 {    pub fn pci_msi_lower_32(&self) -> u32 {
 #[derive(From, Into)]
 pub struct MSI_UPPER_32(u32);
 impl MSI_UPPER_32 {    pub fn pci_msi_upper_32(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_pci_msi_upper_32(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Backplane ethernet status
 #[derive(From, Into)]
 pub struct KR_7X0030(u32);
-impl KR_7X0030 {    ///
+impl KR_7X0030 {
     /// BP AN ability
     pub fn an_bp_able(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -43,7 +43,7 @@ impl KR_7X0030 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// 10G CR10   negotiated
     pub fn an_neg_cr10(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -53,7 +53,7 @@ impl KR_7X0030 {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// 10G CR4    negotiated
     pub fn an_neg_cr4(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -63,7 +63,7 @@ impl KR_7X0030 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// 10G KR FEC negotiated
     pub fn an_neg_fec(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -73,7 +73,7 @@ impl KR_7X0030 {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// 10G KR     negotiated
     pub fn an_neg_kr(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -83,7 +83,7 @@ impl KR_7X0030 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// 10G KR4    negotiated
     pub fn an_neg_kr4(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -93,7 +93,7 @@ impl KR_7X0030 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// 1G  KX     negotiated
     pub fn an_neg_kx(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -103,7 +103,7 @@ impl KR_7X0030 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// 10G KX4    negotiated
     pub fn an_neg_kx4(&self) -> u32 {
         (self.0 & 0x4) >> 2

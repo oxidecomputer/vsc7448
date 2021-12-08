@@ -35,15 +35,15 @@ use derive_more::{From, Into};
 /// See ANA_AC:AGGR.
 #[derive(From, Into)]
 pub struct AGGR_CFG(u32);
-impl AGGR_CFG {    ///
+impl AGGR_CFG {
     /// Aggregation port mask.
     pub fn port_mask(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_port_mask(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -53,7 +53,7 @@ impl AGGR_CFG {    ///
 /// Mirror probe port mask configuration
 #[derive(From, Into)]
 pub struct PROBE_PORT_CFG1(u32);
-impl PROBE_PORT_CFG1 {    ///
+impl PROBE_PORT_CFG1 {
     /// Refer to PROBE_PORT_CFG.PROBE_PORT_MASK description.
     pub fn probe_port_mask1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0

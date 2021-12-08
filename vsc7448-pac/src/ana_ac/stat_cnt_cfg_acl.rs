@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Event mask for counters.
 #[derive(From, Into)]
 pub struct STAT_GLOBAL_EVENT_MASK(u32);
-impl STAT_GLOBAL_EVENT_MASK {    ///
+impl STAT_GLOBAL_EVENT_MASK {
     /// This value stores the event mask which indicates the counter of all flows to count certain events. If set to '1' the respective event is not filtered and can trigger the counter. If set to '0' the respective event is filtered and the counter will treat the frame as if no event has occurred. The following events apply to ACL stat: Bit0: Count CPU traffic applicable for CPU ACL policer but not discarded Bit1: Count front port traffic applicable for ACL policer but not discarded Bit2: Count CPU traffic discarded by ACL policer Bit3: Count front port traffic discarded by ACL policer
+
     ///
+
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
     pub fn global_event_mask(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -53,15 +55,15 @@ impl STAT_GLOBAL_EVENT_MASK {    ///
 /// The counter's least significant 32 bits.
 #[derive(From, Into)]
 pub struct STAT_LSB_CNT(u32);
-impl STAT_LSB_CNT {    ///
+impl STAT_LSB_CNT {
     /// This register contains the least significant 32 bits of a counter.
     pub fn lsb_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_lsb_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// KR LP coefficient update
 #[derive(From, Into)]
 pub struct KR_1X0098(u32);
-impl KR_1X0098 {    ///
+impl KR_1X0098 {
     /// Received coefficient update field
     pub fn lpcoef(&self) -> u32 {
         (self.0 & 0xffff) >> 0

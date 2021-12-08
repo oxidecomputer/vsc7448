@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training config 9
 #[derive(From, Into)]
 pub struct TR_CFG9(u32);
-impl TR_CFG9 {    ///
+impl TR_CFG9 {
     /// Number of training frames used for BER calculation.
     pub fn frcnt_ber(&self) -> u32 {
         (self.0 & 0xffff) >> 0

@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// The registers are index by 4 x port number + port policer index.
 #[derive(From, Into)]
 pub struct POL_PORT_THRES_CFG_0(u32);
-impl POL_PORT_THRES_CFG_0 {    ///
+impl POL_PORT_THRES_CFG_0 {
     /// Threshold size for port policer (burst capacity). Related parameters: ANA_AC_POL:POL_PORT_CTRL:POL_PORT_CFG.FRAME_RATE_ENA
+
     ///
+
     /// When POL_PORT_CFG.FRAME_RATE_ENA is disabled burst capacity is configured in steps of 8192 bytes. 0: Always closed 1: Burst capacity = 8192 bytes n: Burst capacity = n x 8192 bytes 63: Burst capacity = 516096 bytes When POL_PORT_CFG.FRAME_RATE_ENA is enabled burst capacity is configured in steps of 8192/2504 frames. 0: Always closed 1: Burst capacity = 1 x 8192/2504 frames n: Burst capacity = n x 8192/2504 frames 63: Burst capacity = 206 frames
     pub fn port_thres0(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -57,9 +59,11 @@ impl POL_PORT_THRES_CFG_0 {    ///
 /// The registers are index by 4 x port number + port policer index.
 #[derive(From, Into)]
 pub struct POL_PORT_THRES_CFG_1(u32);
-impl POL_PORT_THRES_CFG_1 {    ///
+impl POL_PORT_THRES_CFG_1 {
     /// Hysteresis size for port policer. Unit is 8192 bytes. PORT_THRES1 is used when a port policer is in flow control mode. Flow control is asserted when the bucket level exceeds PORT_THRES0. Flow control is deasserted when the bucket has leaked PORT_THRES1 bytes since the assertion. PORT_THRES1 must be programmed smaller or equal to PORT_THRES0. Related parameters: ANA_AC_POL:POL_PORT_CFG:POL_PORT_THRES_CFG_0.PORT_THRES0 ANA_AC_POL:POL_ALL_CFG:POL_PORT_FC_CFG.FC_ENA
+
     ///
+
     /// 0 : No hysteresis 1: Deassert flow control when bucket has leaked 8192 bytes ... n: Deassert flow control when bucket has leaked n * 8192 bytes
     pub fn port_thres1(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -77,9 +81,11 @@ impl POL_PORT_THRES_CFG_1 {    ///
 /// Policer diagnostic information
 #[derive(From, Into)]
 pub struct POL_STICKY1(u32);
-impl POL_STICKY1 {    ///
+impl POL_STICKY1 {
     /// Set if frame has been dropped by a BDLB policer. Bit is cleared by writing a 1 to this position.
+
     ///
+
     /// 0: No event has occurred 1: BDLB policer drop event has occurred
     pub fn pol_bdlb_drop_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -89,9 +95,11 @@ impl POL_STICKY1 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Set if BUM policer has been active. One bit per BUM policer. Bit is cleared by writing a 1 to this position.
+
     ///
+
     /// 0: No event has occurred 1: BUM policer has been active.
     pub fn pol_bum_slb_active_sticky(&self) -> u32 {
         (self.0 & 0x1c) >> 2
@@ -101,9 +109,11 @@ impl POL_STICKY1 {    ///
         assert!(value <= 0x1c);
         self.0 &= !0x1c;
         self.0 |= value;
-    }    ///
+    }
     /// Set if frame has been dropped by a BUM policer. One bit per BUM policer. Bit is cleared by writing a 1 to this position.
+
     ///
+
     /// 0: No event has occurred 1: BUM policer drop event has occurred
     pub fn pol_bum_slb_drop_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1

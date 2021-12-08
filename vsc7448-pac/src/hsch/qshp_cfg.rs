@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Queue Shaping configuration
 #[derive(From, Into)]
 pub struct QSHP_CIR_CFG(u32);
-impl QSHP_CIR_CFG {    ///
+impl QSHP_CIR_CFG {
     /// Burst capacity of this shaper. Unit is 4096 kilobytes. The shaper is disabled when CIR_BURST=0.
     pub fn cir_burst(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -43,7 +43,7 @@ impl QSHP_CIR_CFG {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// Leak rate for this shaper. Unit is defined by the leak list period the shaper is attached to (see HSCH_LEAK_CFG.LEAK_TIME).
     pub fn cir_rate(&self) -> u32 {
         (self.0 & 0x7fffc0) >> 6
@@ -61,7 +61,7 @@ impl QSHP_CIR_CFG {    ///
 /// State of the inputs to this SE
 #[derive(From, Into)]
 pub struct SE_STATE(u32);
-impl SE_STATE {    ///
+impl SE_STATE {
     /// The queue selector must be updated about the state of this element
     pub fn force_upd(&self) -> u32 {
         (self.0 & 0x1) >> 0

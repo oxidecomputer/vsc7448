@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Current amount of congested scheduling elements in the share
 #[derive(From, Into)]
 pub struct QLIMIT_CONG_CNT_STAT(u32);
-impl QLIMIT_CONG_CNT_STAT {    ///
+impl QLIMIT_CONG_CNT_STAT {
     /// Return the current number of active queues in the share.
     pub fn qlimit_act_cnt(&self) -> u32 {
         (self.0 & 0x7fff) >> 0
@@ -61,7 +61,7 @@ impl QLIMIT_CONG_CNT_STAT {    ///
 /// Disabling queue limitation per port.
 #[derive(From, Into)]
 pub struct QLIMIT_DIS_CFG(u32);
-impl QLIMIT_DIS_CFG {    ///
+impl QLIMIT_DIS_CFG {
     /// Disable queue limitation for the port. If either queue limitation is disabled for the source port, or for the destination port, the queue limitation algorithm is bypassed.
     pub fn qlimit_egr_dis(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -71,7 +71,7 @@ impl QLIMIT_DIS_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Disable queue limitation for the port. If either queue limitation is disabled for the source port, or for the destination port, the queue limitation algorithm is bypassed.
     pub fn qlimit_igr_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -121,7 +121,7 @@ impl QLIMIT_QUE_CONG_CFG {    pub fn qlimit_que_cong(&self) -> u32 {
 /// Size of congested SE
 #[derive(From, Into)]
 pub struct QLIMIT_SE_CONG_CFG(u32);
-impl QLIMIT_SE_CONG_CFG {    ///
+impl QLIMIT_SE_CONG_CFG {
     /// An SE is regarded congested when its total queue size exceeds this.
     pub fn qlimit_se_cong(&self) -> u32 {
         (self.0 & 0xfffff) >> 0
@@ -139,7 +139,7 @@ impl QLIMIT_SE_CONG_CFG {    ///
 /// Maximum congested size of shared area
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_ATOP_CFG(u32);
-impl QLIMIT_SHR_ATOP_CFG {    ///
+impl QLIMIT_SHR_ATOP_CFG {
     /// When filling exceeds this level, all active queues start tail dropping.
     pub fn qlimit_shr_atop(&self) -> u32 {
         (self.0 & 0x7fff) >> 0
@@ -157,7 +157,7 @@ impl QLIMIT_SHR_ATOP_CFG {    ///
 /// Maximum congested size of shared area
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_CTOP_CFG(u32);
-impl QLIMIT_SHR_CTOP_CFG {    ///
+impl QLIMIT_SHR_CTOP_CFG {
     /// When filling exceeds this level, all congested queues start tail dropping.
     pub fn qlimit_shr_ctop(&self) -> u32 {
         (self.0 & 0x7fff) >> 0
@@ -191,7 +191,7 @@ impl QLIMIT_SHR_FILL_STAT {    pub fn qlimit_shr_fill(&self) -> u32 {
 /// Maximum area to distribute between large SE users
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_QDIV_CFG(u32);
-impl QLIMIT_SHR_QDIV_CFG {    ///
+impl QLIMIT_SHR_QDIV_CFG {
     /// This amount can be shared between large SEs
     pub fn qlimit_shr_qdiv(&self) -> u32 {
         (self.0 & 0x7fff) >> 0
@@ -209,7 +209,7 @@ impl QLIMIT_SHR_QDIV_CFG {    ///
 /// Maximum area use before queue limitation kicks in
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_QLIM_CFG(u32);
-impl QLIMIT_SHR_QLIM_CFG {    ///
+impl QLIMIT_SHR_QLIM_CFG {
     /// When filling exceeds this level, all queues are limited in size depending on number of congested queues.
     pub fn qlimit_shr_qlim(&self) -> u32 {
         (self.0 & 0x7fff) >> 0
@@ -227,7 +227,7 @@ impl QLIMIT_SHR_QLIM_CFG {    ///
 /// Maximum size of shared area
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_TOP_CFG(u32);
-impl QLIMIT_SHR_TOP_CFG {    ///
+impl QLIMIT_SHR_TOP_CFG {
     /// When total consumption of a shared area exceeds this level, all queues belonging to the area start tail dropping
     pub fn qlimit_shr_top(&self) -> u32 {
         (self.0 & 0x7fff) >> 0

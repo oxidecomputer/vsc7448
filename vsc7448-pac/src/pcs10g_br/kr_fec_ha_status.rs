@@ -33,15 +33,15 @@ use derive_more::{From, Into};
 /// FEC corrected block cout
 #[derive(From, Into)]
 pub struct KR_FEC_CORRECTED(u32);
-impl KR_FEC_CORRECTED {    ///
+impl KR_FEC_CORRECTED {
     /// FEC corrected block count.
     pub fn fec_corrected_blocks(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_fec_corrected_blocks(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -51,15 +51,15 @@ impl KR_FEC_CORRECTED {    ///
 /// FEC unfixable error count threshold value
 #[derive(From, Into)]
 pub struct UNFIXABLE_ERROR_COUNT_THRESHOLD(u32);
-impl UNFIXABLE_ERROR_COUNT_THRESHOLD {    ///
+impl UNFIXABLE_ERROR_COUNT_THRESHOLD {
     /// When fixed error count exceeds or equal to this value, then FEC_UNFIXABLE_ERROR_COUNT_STICKY sticky bit is set and interrupt is generated if enabled through FEC_UNFIXABLE_ERROR_COUNT_STICKY_MASK
     pub fn unfixable_error_count_threshold(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_unfixable_error_count_threshold(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

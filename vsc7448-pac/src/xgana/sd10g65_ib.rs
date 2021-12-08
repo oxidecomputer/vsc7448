@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Configuration register 0 for SD10G65 IB. Note: Configuration bit-grp IB_CLKDIV_ENA was named IB_VSCOPE_CLK_ENA in an early revision of the input buffer.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG0(u32);
-impl SD10G65_IB_CFG0 {    ///
+impl SD10G65_IB_CFG0 {
     /// Enable for 1V mode
+
     ///
+
     /// 0: VDDI=1.2V 1: VDDI=1.0V
     pub fn ib_1v_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -47,9 +49,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Enable clock dividers in sampling stag
+
     ///
+
     /// 0: Disable (use in double rate mode) 1: Enable (use in full rate mode)
     pub fn ib_clkdiv_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -59,9 +63,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Enable DFE stage (gates IB_ISEL_DFE)
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn ib_dfe_ena(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -71,7 +77,7 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Is or'ed to the prim. input of the macro: sx_direct_data_ena_rx_i and is used to enable the direct data path.
     pub fn ib_direct_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -81,9 +87,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable EQualiZation stage
+
     ///
+
     /// 0: Disable 1: Enable (mission mode)
     pub fn ib_eqz_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -93,9 +101,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable for IA including ACJtag
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn ib_ia_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -105,9 +115,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Enable for IA signal detect circuit (IB_SDET_SEL = 0 required)
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn ib_ia_sdet_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -117,9 +129,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Enable for IA signal detect circuit (IB_SDET_SEL = 1 required)
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn ib_ie_sdet_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -129,9 +143,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Enable for level detect circuit
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn ib_ld_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -141,9 +157,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Offset resistance adjustment for CML cells (two-complement)
+
     ///
+
     /// 1000: -8 1111: -1 0000: 0 0111: 7
     pub fn ib_rcml_adj(&self) -> u32 {
         (self.0 & 0x78000000) >> 27
@@ -153,9 +171,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x78000000);
         self.0 &= !0x78000000;
         self.0 |= value;
-    }    ///
+    }
     /// Offset resistance adjustment for termination (two-complement)
+
     ///
+
     /// 1000: -8 1111: -1 0000: 0 0111: 7
     pub fn ib_rib_adj(&self) -> u32 {
         (self.0 & 0x1e0000) >> 17
@@ -165,7 +185,7 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x1e0000);
         self.0 &= !0x1e0000;
         self.0 |= value;
-    }    ///
+    }
     /// Shifts resistance adjustment value ib_rib_adj by +1
     pub fn ib_rib_shift(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -175,9 +195,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable SAMpling stage
+
     ///
+
     /// 0: Disable 1: Enable (mission mode)
     pub fn ib_sam_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -187,9 +209,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Select input buffer input signal
+
     ///
+
     /// 0: normal operation 1: -6dB input 2: OB->IB data loop or test signal 3: RESERVED
     pub fn ib_sig_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -199,7 +223,7 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
-    }    ///
+    }
     /// Routed to analog macro but not used inside! Vscope clock source is selected via ib_sel_vclk.
     pub fn ib_spare_pool2(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -209,9 +233,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Enable common mode termination
+
     ///
+
     /// 0: no common mode termination (only AC-common mode termination) 1: termination to VDDI
     pub fn ib_term_vdd_ena(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -221,7 +247,7 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Select termination voltage
     pub fn ib_term_v_sel(&self) -> u32 {
         (self.0 & 0x7800000) >> 23
@@ -231,9 +257,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x7800000);
         self.0 &= !0x7800000;
         self.0 |= value;
-    }    ///
+    }
     /// Controls Bulk Voltage of High Speed Cells
+
     ///
+
     /// 0: High 1: Low (mission mode)
     pub fn ib_vbulk_sel(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -243,9 +271,11 @@ impl SD10G65_IB_CFG0 {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Enable VScope Path of Sampling-Stage
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn ib_vscope_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -265,9 +295,11 @@ impl SD10G65_IB_CFG0 {    ///
 /// Configuration register 1 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG1(u32);
-impl SD10G65_IB_CFG1 {    ///
+impl SD10G65_IB_CFG1 {
     /// Inductor peaking of EQ-Buffer3 (over all 5. stage)
+
     ///
+
     /// 0: no peaking 15: max. peaking max. peaking >3dB at 8GHz
     pub fn ib_agc_l(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -277,9 +309,11 @@ impl SD10G65_IB_CFG1 {    ///
         assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
-    }    ///
+    }
     /// C-gain peaking for IB-stage
+
     ///
+
     /// 0: no peaking 7: max. peaking corner frequency adjustment with ib_eqz_c_adj_ib
     pub fn ib_amp_c(&self) -> u32 {
         (self.0 & 0xe00) >> 9
@@ -289,21 +323,25 @@ impl SD10G65_IB_CFG1 {    ///
         assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
-    }    ///
+    }
     /// Inductor peaking of 1. stage Input buffer
+
     ///
+
     /// 0: no peaking 15: max. peaking max. peaking > 3db at 8GHz
     pub fn ib_amp_l(&self) -> u32 {
-        (self.0 & 0xfffffff) >> 28
+        (self.0 & 0xf0000000) >> 28
     }
     pub fn set_ib_amp_l(&mut self, value: u32) {
         let value = value << 28;
-        assert!(value <= 0xfffffff);
-        self.0 &= !0xfffffff;
+        assert!(value <= 0xf0000000);
+        self.0 &= !0xf0000000;
         self.0 |= value;
-    }    ///
+    }
     /// C-gain peaking for EQ-stage0
+
     ///
+
     /// 0: no peaking 7: max. peaking corner frequency adjustment with ib_eqz_c_adj_es0
     pub fn ib_eqz_c0(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -313,9 +351,11 @@ impl SD10G65_IB_CFG1 {    ///
         assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
-    }    ///
+    }
     /// C-gain peaking for EQ-stage1
+
     ///
+
     /// 0: no peaking 7: max. peaking corner frequency adjustment with ib_eqz_c_adj_es1
     pub fn ib_eqz_c1(&self) -> u32 {
         (self.0 & 0x38) >> 3
@@ -325,9 +365,11 @@ impl SD10G65_IB_CFG1 {    ///
         assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
-    }    ///
+    }
     /// C-gain peaking for EQ-stage2
+
     ///
+
     /// 0: no peaking 7: max. peaking corner frequency adjustment with ib_eqz_c_adj_es2
     pub fn ib_eqz_c2(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -337,9 +379,11 @@ impl SD10G65_IB_CFG1 {    ///
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    ///
+    }
     /// Inductor peaking of EQ-Buffer0 (over all 2. stage)
+
     ///
+
     /// 0: no peaking 15: max. peaking max. peaking > 3db at 8GHz
     pub fn ib_eqz_l0(&self) -> u32 {
         (self.0 & 0xf000000) >> 24
@@ -349,9 +393,11 @@ impl SD10G65_IB_CFG1 {    ///
         assert!(value <= 0xf000000);
         self.0 &= !0xf000000;
         self.0 |= value;
-    }    ///
+    }
     /// Inductor peaking of EQ-Buffer1 (over all 3. stage)
+
     ///
+
     /// 0: no peaking 15: max. peaking max. peaking > 3dB at 8GHz
     pub fn ib_eqz_l1(&self) -> u32 {
         (self.0 & 0xf00000) >> 20
@@ -361,9 +407,11 @@ impl SD10G65_IB_CFG1 {    ///
         assert!(value <= 0xf00000);
         self.0 &= !0xf00000;
         self.0 |= value;
-    }    ///
+    }
     /// Inductor peaking of EQ-Buffer2 (over all 4. stage)
+
     ///
+
     /// 0: no peaking 15: max. peaking max. peaking > 3dB at 8GHz
     pub fn ib_eqz_l2(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -383,9 +431,11 @@ impl SD10G65_IB_CFG1 {    ///
 /// Configuration register 10 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG10(u32);
-impl SD10G65_IB_CFG10 {    ///
+impl SD10G65_IB_CFG10 {
     /// Result of Level-Detect0 (after IB-stage of EQZ) circuitry
+
     ///
+
     /// 1: Input level above threshold defined by IB_EQ_LD_LEV
     pub fn ib_eqz_ld0_nedge(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -395,9 +445,11 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Result of Level-Detect0 (after IB-stage of EQZ) circuitry
+
     ///
+
     /// 1: Input level above threshold defined by IB_EQ_LD_LEV
     pub fn ib_eqz_ld0_pedge(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -407,9 +459,11 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    ///
+    }
     /// Result of Level-Detect1 (after ES2-stage of EQZ) circuitry
+
     ///
+
     /// 1: Input level above threshold defined by IB_EQ_LD_LEV
     pub fn ib_eqz_ld1_nedge(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -419,9 +473,11 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
-    }    ///
+    }
     /// Result of Level-Detect1 (after ES2-stage of EQZ) circuitry
+
     ///
+
     /// 1: Input level above threshold defined by IB_EQ_LD_LEV
     pub fn ib_eqz_ld1_pedge(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -431,7 +487,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
-    }    ///
+    }
     /// Direct Data output from IA block
     pub fn ib_ia_direct_data(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -441,17 +497,17 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
-    }    ///
+    }
     /// Data offset calibration result IA stage
     pub fn ib_ia_doffs_cal(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_ib_ia_doffs_cal(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
-    }    ///
+    }
     /// Result signal detect of IA stage
     pub fn ib_ia_sdet(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -461,7 +517,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
-    }    ///
+    }
     /// Direct Data output from IE block
     pub fn ib_ie_direct_data(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -471,7 +527,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Result signal detect of IE stage
     pub fn ib_ie_sdet(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
@@ -481,7 +537,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
-    }    ///
+    }
     /// Detection of toggling signal at PADP and PADN
     pub fn ib_ie_sdet_nedge(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
@@ -491,7 +547,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
-    }    ///
+    }
     /// Detection of toggling signal at PADP and PADN
     pub fn ib_ie_sdet_pedge(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
@@ -501,7 +557,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
-    }    ///
+    }
     /// Data offset calibration result IS stage
     pub fn ib_is_doffs_cal(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -511,7 +567,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
-    }    ///
+    }
     /// JTAG debug clk
     pub fn ib_jtag_clk(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -521,7 +577,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// JTAG debug enable
     pub fn ib_jtag_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -531,7 +587,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// JTAG debug n-input
     pub fn ib_jtag_in_n(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -541,7 +597,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// JTAG debug p-input
     pub fn ib_jtag_in_p(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -551,7 +607,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// JTAG debug n-output
     pub fn ib_jtag_out_n(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -561,7 +617,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// JTAG debug p-output
     pub fn ib_jtag_out_p(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -571,9 +627,11 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// JTAG debug threshold
+
     ///
+
     /// 0: 0mV 1: 10mV 31: 310mV
     pub fn ib_jtag_thres(&self) -> u32 {
         (self.0 & 0x1f0) >> 4
@@ -583,7 +641,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x1f0);
         self.0 &= !0x1f0;
         self.0 |= value;
-    }    ///
+    }
     /// Drive enable for BiDi loop (a.k.a. Input loop o. RX->TX loop). Is or'ed with primary input: ib_inp_loop_ena_i. Is overruled by PAD loop.
     pub fn ib_loop_drv(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -593,7 +651,7 @@ impl SD10G65_IB_CFG10 {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Receive enable for BiDi loop (a.k.a. PAD loop o. TX->RX loop). Is or'ed with primary input: ib_pad_loop_ena_i. Disable testgenerator 'ib_tstgen_ena' if input loop is used
     pub fn ib_loop_rec(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -613,9 +671,11 @@ impl SD10G65_IB_CFG10 {    ///
 /// Configuration register 11 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG11(u32);
-impl SD10G65_IB_CFG11 {    ///
+impl SD10G65_IB_CFG11 {
     /// DFE Bias current settings (bit-group is gated with IB_DFE_ENA)
+
     ///
+
     /// 0: DFE disabled 1: Minimum current 15: Maximum current
     pub fn ib_dfe_isel(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -625,7 +685,7 @@ impl SD10G65_IB_CFG11 {    ///
         assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
-    }    ///
+    }
     /// Increase current in first stage (only available in 1.2 Volt mode)
     pub fn ib_ena_400_inp(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -635,7 +695,7 @@ impl SD10G65_IB_CFG11 {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Reserved
     pub fn ib_spare_pool(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -645,7 +705,7 @@ impl SD10G65_IB_CFG11 {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Gain temperature coefficient for DFE stage
     pub fn ib_tc_dfe(&self) -> u32 {
         (self.0 & 0x7c0) >> 6
@@ -655,7 +715,7 @@ impl SD10G65_IB_CFG11 {    ///
         assert!(value <= 0x7c0);
         self.0 &= !0x7c0;
         self.0 |= value;
-    }    ///
+    }
     /// Gain temperature coefficient for AGC stage
     pub fn ib_tc_eq(&self) -> u32 {
         (self.0 & 0x3e) >> 1
@@ -675,9 +735,11 @@ impl SD10G65_IB_CFG11 {    ///
 /// Configuration register 2 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG2(u32);
-impl SD10G65_IB_CFG2 {    ///
+impl SD10G65_IB_CFG2 {
     /// Amplification (gain) of AGC in Input Buffer (normal operation)
+
     ///
+
     /// after gain calibration 0: gain = 0.3 255: gain = 1.5 if disp/disn is active dac function for dfe gain calibration
     pub fn ib_eqz_agc(&self) -> u32 {
         (self.0 & 0x3fc00) >> 10
@@ -687,9 +749,11 @@ impl SD10G65_IB_CFG2 {    ///
         assert!(value <= 0x3fc00);
         self.0 &= !0x3fc00;
         self.0 |= value;
-    }    ///
+    }
     /// Gain of Input Buffer
+
     ///
+
     /// 0-511 gain adjustment only in first stage > 511 gain in first stage at max. 512-639 gain in 2.stage increased from 1 to 2 > 639 gain = 2 640-767 gain in 3.stage increased from 1 to 2 >767 gain = 2 768-895 gain in 4.stage increased from 1 to 2 >895 gain at max.
     pub fn ib_eqz_gain(&self) -> u32 {
         (self.0 & 0xffc0000) >> 18
@@ -699,9 +763,11 @@ impl SD10G65_IB_CFG2 {    ///
         assert!(value <= 0xffc0000);
         self.0 &= !0xffc0000;
         self.0 |= value;
-    }    ///
+    }
     /// Offset value for IB-stage of Input Buffer
+
     ///
+
     /// 512: neutral > 512: positive < 512: negative range +/- 600mV (low gain) to +/-30mV (high gain) gain dependent offset sensitivity requiered for Base line wander compensation not supported in test chip
     pub fn ib_eqz_offset(&self) -> u32 {
         (self.0 & 0x3ff) >> 0
@@ -721,9 +787,11 @@ impl SD10G65_IB_CFG2 {    ///
 /// Configuration register 1 for SD10G65 IB. Note: the behavior of IB_EQ_LD1_OFFSET changes when APC is disabled. In this case IB_EQ_LD1_OFFSET directly controls the level for Level-Detect circuitry 1. Coding: 0: 20mV, 1: 25mV, ... 63: 340mV.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG3(u32);
-impl SD10G65_IB_CFG3 {    ///
+impl SD10G65_IB_CFG3 {
     /// Selects source of direct data path to core
+
     ///
+
     /// 0: IE 1: IA
     pub fn ib_direct_sel(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -733,9 +801,11 @@ impl SD10G65_IB_CFG3 {    ///
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    ///
+    }
     /// Level for Level-Detect circuitry 0.
+
     ///
+
     /// 0: 20mV 1: 25mV ... 40: 220mV ... 63: 340mV
     pub fn ib_eq_ld0_level(&self) -> u32 {
         (self.0 & 0x1f800) >> 11
@@ -745,9 +815,11 @@ impl SD10G65_IB_CFG3 {    ///
         assert!(value <= 0x1f800);
         self.0 &= !0x1f800;
         self.0 |= value;
-    }    ///
+    }
     /// With APC enabled level offset (6bit-signed) compared to IB_EQ_LD0_LEVEL for Level-Detect circuitry 1. Saturating between 20mV and 340mV. See also note in register description.
+
     ///
+
     /// 0: no offset 1: +5mV 31: +155mV 63(= -1): -5mV 32(= -32): -160mV.
     pub fn ib_eq_ld1_offset(&self) -> u32 {
         (self.0 & 0x7e0000) >> 17
@@ -757,9 +829,11 @@ impl SD10G65_IB_CFG3 {    ///
         assert!(value <= 0x7e0000);
         self.0 &= !0x7e0000;
         self.0 |= value;
-    }    ///
+    }
     /// Threshold value for IA Signal-Detect.
+
     ///
+
     /// 0: 0mV ... 8: 80mV ... 31: 310mV
     pub fn ib_ia_sdet_level(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -769,9 +843,11 @@ impl SD10G65_IB_CFG3 {    ///
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
-    }    ///
+    }
     /// Threshold value for IE Signal-Detect.
+
     ///
+
     /// 0: 20mV 1: 25mV 2: 30mV ... 63: 340mV
     pub fn ib_ie_sdet_level(&self) -> u32 {
         (self.0 & 0x7e0) >> 5
@@ -781,21 +857,25 @@ impl SD10G65_IB_CFG3 {    ///
         assert!(value <= 0x7e0);
         self.0 &= !0x7e0;
         self.0 |= value;
-    }    ///
+    }
     /// Dividing factor for SDET and LD circuits of IE.
+
     ///
+
     /// 0: 128 1: 32 2: 8 3: 4
     pub fn ib_ldsd_divsel(&self) -> u32 {
-        (self.0 & 0x3fffffff) >> 30
+        (self.0 & 0xc0000000) >> 30
     }
     pub fn set_ib_ldsd_divsel(&mut self, value: u32) {
         let value = value << 30;
-        assert!(value <= 0x3fffffff);
-        self.0 &= !0x3fffffff;
+        assert!(value <= 0xc0000000);
+        self.0 &= !0xc0000000;
         self.0 |= value;
-    }    ///
+    }
     /// Clock dividing factor for Signal Detect circuit of IA
+
     ///
+
     /// 0: 2 ... 7: 256
     pub fn ib_sdet_clk_div(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
@@ -805,9 +885,11 @@ impl SD10G65_IB_CFG3 {    ///
         assert!(value <= 0x38000000);
         self.0 &= !0x38000000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects source of signal detect (ib_X_sdet_ena must be enabled accordingly)
+
     ///
+
     /// 0: IA 1: IE
     pub fn ib_sdet_sel(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -817,9 +899,11 @@ impl SD10G65_IB_CFG3 {    ///
         assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
-    }    ///
+    }
     /// Force Signal-Detect output to high level
+
     ///
+
     /// 0: Normal operation 1: Force sigdet high
     pub fn ib_set_sdet(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -839,9 +923,11 @@ impl SD10G65_IB_CFG3 {    ///
 /// Configuration register 4 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG4(u32);
-impl SD10G65_IB_CFG4 {    ///
+impl SD10G65_IB_CFG4 {
     /// corner frequency selection for c-gain peaking 4.stage
+
     ///
+
     /// 0: lowest corner frequency 3: highest corner frequency
     pub fn ib_eqz_c_adj_es0(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -851,9 +937,11 @@ impl SD10G65_IB_CFG4 {    ///
         assert!(value <= 0x3000000);
         self.0 &= !0x3000000;
         self.0 |= value;
-    }    ///
+    }
     /// corner frequency selection for c-gain peaking 3.stage
+
     ///
+
     /// 0: lowest corner frequency 3: highest corner frequency
     pub fn ib_eqz_c_adj_es1(&self) -> u32 {
         (self.0 & 0xc000000) >> 26
@@ -863,9 +951,11 @@ impl SD10G65_IB_CFG4 {    ///
         assert!(value <= 0xc000000);
         self.0 &= !0xc000000;
         self.0 |= value;
-    }    ///
+    }
     /// corner frequency selection for c-gain peaking 2.stage
+
     ///
+
     /// 0: lowest corner frequency 3: highest corner frequency
     pub fn ib_eqz_c_adj_es2(&self) -> u32 {
         (self.0 & 0x30000000) >> 28
@@ -875,21 +965,25 @@ impl SD10G65_IB_CFG4 {    ///
         assert!(value <= 0x30000000);
         self.0 &= !0x30000000;
         self.0 |= value;
-    }    ///
+    }
     /// corner frequency selection for c-gain peaking 1.stage
+
     ///
+
     /// 0: lowest corner frequency 3: highest corner frequency
     pub fn ib_eqz_c_adj_ib(&self) -> u32 {
-        (self.0 & 0x3fffffff) >> 30
+        (self.0 & 0xc0000000) >> 30
     }
     pub fn set_ib_eqz_c_adj_ib(&mut self, value: u32) {
         let value = value << 30;
-        assert!(value <= 0x3fffffff);
-        self.0 &= !0x3fffffff;
+        assert!(value <= 0xc0000000);
+        self.0 &= !0xc0000000;
         self.0 |= value;
-    }    ///
+    }
     /// Coder mode: APC C value to IE capacitance
+
     ///
+
     /// 0: equ. distributed 2: 1st buffer max - 2nd buffer max - ...
     pub fn ib_eqz_c_mode(&self) -> u32 {
         (self.0 & 0x1c0000) >> 18
@@ -899,9 +993,11 @@ impl SD10G65_IB_CFG4 {    ///
         assert!(value <= 0x1c0000);
         self.0 &= !0x1c0000;
         self.0 |= value;
-    }    ///
+    }
     /// Coder mode: APC L value to IE inductance
+
     ///
+
     /// 0: equ. distributed (double step 3->4) 1: equ. distributed (no change 6+7) 2: 1st buffer max - 2nd buffer max - ...
     pub fn ib_eqz_l_mode(&self) -> u32 {
         (self.0 & 0xe00000) >> 21
@@ -911,9 +1007,11 @@ impl SD10G65_IB_CFG4 {    ///
         assert!(value <= 0xe00000);
         self.0 &= !0xe00000;
         self.0 |= value;
-    }    ///
+    }
     /// Threshold value (offset) for main sampling path
+
     ///
+
     /// 0: -max 31: -0 32: +0 63: +max (depending on calibration)
     pub fn ib_main_thres(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -923,9 +1021,11 @@ impl SD10G65_IB_CFG4 {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// Threshold value (offset) for vscope-high sampling path
+
     ///
+
     /// 0: -max 31: -0 32: +0 63: +max (depending on calibration)
     pub fn ib_vscope_h_thres(&self) -> u32 {
         (self.0 & 0x3f000) >> 12
@@ -935,9 +1035,11 @@ impl SD10G65_IB_CFG4 {    ///
         assert!(value <= 0x3f000);
         self.0 &= !0x3f000;
         self.0 |= value;
-    }    ///
+    }
     /// Threshold value (offset) for vscope-low sampling path
+
     ///
+
     /// 0: -max 31: -0 32: +0 63: +max (depending on calibration)
     pub fn ib_vscope_l_thres(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
@@ -957,9 +1059,11 @@ impl SD10G65_IB_CFG4 {    ///
 /// Configuration register 5 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG5(u32);
-impl SD10G65_IB_CFG5 {    ///
+impl SD10G65_IB_CFG5 {
     /// AGC output disable required to calibrate DFE-gain
+
     ///
+
     /// 0: mission mode 3: Vout = 0V 1: Vout= xx*ampldfe/64 2: Vout=-xx*ampldfe/64 ampldfe=270mV if ena1V = '1' (1V mode) ampldfe=360mV if ena1V = '0' (1.2V mode) xx=
     pub fn ib_agc_dis(&self) -> u32 {
         (self.0 & 0x60000) >> 17
@@ -969,7 +1073,7 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x60000);
         self.0 &= !0x60000;
         self.0 |= value;
-    }    ///
+    }
     /// Enables IS MUX in detblk1
     pub fn ib_calmux_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -979,9 +1083,11 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// DFE output disable required to calibrate IS
+
     ///
+
     /// 0: mission mode 3: Vout = 0V 1: Vout= xx*ampldfe/64 2: Vout=-xx*ampldfe/64 ampldfe=196mV if ena1V = '1' (1V mode) ampldfe=260mV if ena1V = '0' (1.2V mode) xx= TBD
     pub fn ib_dfe_dis(&self) -> u32 {
         (self.0 & 0x180000) >> 19
@@ -991,7 +1097,7 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x180000);
         self.0 &= !0x180000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects EQ Level Detect for calibration
     pub fn ib_eq_ld_cal_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -1001,9 +1107,11 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable calibration in order to eliminate hysteresis
+
     ///
+
     /// 1: Enable 0: Disable
     pub fn ib_hys_cal_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -1013,7 +1121,7 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Selects IA offset circuit for calibration
     pub fn ib_ia_offs_cal_ena(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -1023,7 +1131,7 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects IE Signal Detect for calibration
     pub fn ib_ie_sdet_cal_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -1033,7 +1141,7 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects IS offset circuit for calibration
     pub fn ib_is_offs_cal_ena(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -1043,9 +1151,11 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable jump to opposite half of h-channel
+
     ///
+
     /// 0: Post main sampler 1: Pre main sampler
     pub fn ib_jumph_ena(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -1055,9 +1165,11 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable jump to opposite half of l-channel
+
     ///
+
     /// 0: Post main sampler 1: Pre main sampler
     pub fn ib_jumpl_ena(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -1067,9 +1179,11 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects calibration target (sample stage threshold, sample stage offset, aux.-stage offset), dependend on calibration group, see encoding.
+
     ///
+
     /// When ib_thres_cal_ena = 1 0: MD0 threshold 1: MD1 threshold 2: CP0 threshold 3: CP1 threshold 4: VH0 threshold 5: VH1 threshold 6: VL0 threshold 7: VL1 threshold When ib_is_offs_cal_ena = 1 0: MD0 offset 1: MD1 offset 2: CP0 offset 3: CP1 offset 4: VH0 offset 5: VH1 offset 6: VL0 offset 7: VL1 offset When ib_ia_offs_cal_ena = 1 0: Observe0 offset 1: Observe1 offset 2: Observe0 threshold 3: Observe1 threshold (MSB not used)
     pub fn ib_offs_blksel(&self) -> u32 {
         (self.0 & 0x3c0) >> 6
@@ -1079,9 +1193,11 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x3c0);
         self.0 &= !0x3c0;
         self.0 |= value;
-    }    ///
+    }
     /// Calibration value for IA/IS. Values for threshold calibration get inverted for negative threshold voltages (ib_vscope_h_thres, ib_vscope_l_thres or ib_main_thres).
+
     ///
+
     /// For offset calibration 0: -max_offset * 32/32 31: -max_offset * 1/32 32: +max_offset * 1/32 63: +max_offset * 32/32 For threshold calibration 0: min_threshold 63: max_threshold
     pub fn ib_offs_value(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -1091,7 +1207,7 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// Selects IS threshold circuit for calibration
     pub fn ib_thres_cal_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -1101,21 +1217,25 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Test generator amplitude setting
+
     ///
+
     /// 0: 0mV ... 15: 150mV
     pub fn ib_tstgen_ampl(&self) -> u32 {
-        (self.0 & 0xfffffff) >> 28
+        (self.0 & 0xf0000000) >> 28
     }
     pub fn set_ib_tstgen_ampl(&mut self, value: u32) {
         let value = value << 28;
-        assert!(value <= 0xfffffff);
-        self.0 &= !0xfffffff;
+        assert!(value <= 0xf0000000);
+        self.0 &= !0xf0000000;
         self.0 |= value;
-    }    ///
+    }
     /// Test generator data
+
     ///
+
     /// 0: low 1: high
     pub fn ib_tstgen_data(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -1125,9 +1245,11 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
-    }    ///
+    }
     /// Test generator enable but data path selected with 'ib_sig_sel' (disable input loop if testgenerator is used)
+
     ///
+
     /// 0: inactive 1: active
     pub fn ib_tstgen_ena(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
@@ -1137,9 +1259,11 @@ impl SD10G65_IB_CFG5 {    ///
         assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
-    }    ///
+    }
     /// Test generator data toggle enable
+
     ///
+
     /// 0: inactive 1: active
     pub fn ib_tstgen_toggle_ena(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -1159,9 +1283,11 @@ impl SD10G65_IB_CFG5 {    ///
 /// Configuration register 6 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG6(u32);
-impl SD10G65_IB_CFG6 {    ///
+impl SD10G65_IB_CFG6 {
     /// Enable automatic AGC adjustment
+
     ///
+
     /// 1: AGC is adjusted automatically (IB_EQZ_AGC_ADJ value is not used) 0: AGC is adjusted with value stored in IB_EQZ_AGC_ADJ
     pub fn ib_auto_agc_adj(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -1171,9 +1297,11 @@ impl SD10G65_IB_CFG6 {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Gain adjustment of AGC-amplifier
+
     ///
+
     /// Bitgroup should be set to 2*IB_DFE_GAIN_ADJ
     pub fn ib_eqz_agc_adj(&self) -> u32 {
         (self.0 & 0xfe0) >> 5
@@ -1183,9 +1311,11 @@ impl SD10G65_IB_CFG6 {    ///
         assert!(value <= 0xfe0);
         self.0 &= !0xfe0;
         self.0 |= value;
-    }    ///
+    }
     /// 0dB Gain adjustment for EQZ-stages of Input Buffer
+
     ///
+
     /// level at LD0 = LD1 -> 0dB level range 160mV-220mV
     pub fn ib_eqz_gain_adj(&self) -> u32 {
         (self.0 & 0x7f0000) >> 16
@@ -1195,9 +1325,11 @@ impl SD10G65_IB_CFG6 {    ///
         assert!(value <= 0x7f0000);
         self.0 &= !0x7f0000;
         self.0 |= value;
-    }    ///
+    }
     /// Range for offset calibration of all sampling pathes
+
     ///
+
     /// 0: 0mV 32: 80mV
     pub fn ib_sam_offs_adj(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -1217,9 +1349,11 @@ impl SD10G65_IB_CFG6 {    ///
 /// Configuration register 7 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG7(u32);
-impl SD10G65_IB_CFG7 {    ///
+impl SD10G65_IB_CFG7 {
     /// Gain adjustment of DFEamplifier
+
     ///
+
     /// DFE Gain 1 Volt mode = 0dB 1.2 Volt mode 1dB measurement with int. DAC and Vscope Channels
     pub fn ib_dfe_gain_adj(&self) -> u32 {
         (self.0 & 0x3f0000) >> 16
@@ -1229,9 +1363,11 @@ impl SD10G65_IB_CFG7 {    ///
         assert!(value <= 0x3f0000);
         self.0 &= !0x3f0000;
         self.0 |= value;
-    }    ///
+    }
     /// Select configuration of DFEamplifier gain adjustment
+
     ///
+
     /// 0: Normal operation (APC can take over control) 1: Enforce configuration via IB_DFE_GAIN_ADJ
     pub fn ib_dfe_gain_adj_s(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -1241,9 +1377,11 @@ impl SD10G65_IB_CFG7 {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Higher threshold offset of DFE buffer for IS calibration
+
     ///
+
     /// 0: 0mv 63: 200mV
     pub fn ib_dfe_offset_h(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
@@ -1253,9 +1391,11 @@ impl SD10G65_IB_CFG7 {    ///
         assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
-    }    ///
+    }
     /// Selects higher or lower DFE offset for IS calibration
+
     ///
+
     /// 0: ib_dfe_offset_l 1: ib_dfe_offset_h
     pub fn ib_dfe_offset_h_l(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -1265,9 +1405,11 @@ impl SD10G65_IB_CFG7 {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Lower sample offset of DFE buffer for IS calibration
+
     ///
+
     /// 0: 0mv 63: 200mV
     pub fn ib_dfe_offset_l(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -1277,7 +1419,7 @@ impl SD10G65_IB_CFG7 {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// Initial value for calibration of main sampling path
     pub fn ib_main_thres_cal(&self) -> u32 {
         (self.0 & 0x1f800000) >> 23
@@ -1297,9 +1439,11 @@ impl SD10G65_IB_CFG7 {    ///
 /// Configuration register 8 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG8(u32);
-impl SD10G65_IB_CFG8 {    ///
+impl SD10G65_IB_CFG8 {
     /// Enable analog output decoder in IE
+
     ///
+
     /// 1: Enable 0: Disable
     pub fn ib_aout_ena(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -1309,19 +1453,21 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
-    }    ///
+    }
     /// not used
     pub fn ib_aout_mux(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_ib_aout_mux(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
-    }    ///
+    }
     /// Select analog signal routed to analog test output from either IB sampling stage or equalizer. See also SD10G65_IB_CFG8.IB_AOUT_ENA and SD10G65_SBUS_RX_CFG.SBUS_ANAOUT_SEL.
+
     ///
+
     /// Encoding for sampling stage: 0: VCMT 1: VCMR 2: CMLCI 3: RESIDL 4: RESCML 5: CMLSU 6: CMLBI 7: CMLRA 8: VCN 9: VCP 10: DIFSRC 11: VREGN 12: VREGP 13: TSTSRC 14: TSTDRN 15: TSTRES 16: CMLBF1P 17: CMLBF1N 18: CMLBF2P 19: CMLBF2P 20: CMLBF3P 21: CMLBF3P 22: CMLBF4P 23: CMLBF4P 24 to 31: same coding as for 16 to 23 Encoding for equalizer: 0: n.a. 1: vddi_int 2: eq1_vreg 3: eq2_vreg 4: eq3_vreg 5: agc_vreg 6: dfe_vreg 7: dfe_p 8: n.a. 9: ib_cmv 10: eq1_cmv 11: eq2_cmv 12: eq3_cmv 13: agc_cmv 14: dfe_cmv 15: dfe_n
     pub fn ib_aout_pool(&self) -> u32 {
         (self.0 & 0x3e000000) >> 25
@@ -1331,9 +1477,11 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x3e000000);
         self.0 &= !0x3e000000;
         self.0 |= value;
-    }    ///
+    }
     /// Gain of cml stages inside IS
+
     ///
+
     /// 0: 3dB 31: 6dB 63: 9dB
     pub fn ib_bias_adj(&self) -> u32 {
         (self.0 & 0x3f0) >> 4
@@ -1343,9 +1491,11 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x3f0);
         self.0 &= !0x3f0;
         self.0 |= value;
-    }    ///
+    }
     /// Bias regulation mode
+
     ///
+
     /// 0: constant resistor 1: constant current
     pub fn ib_bias_mode(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -1355,9 +1505,11 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    ///
+    }
     /// Amplitude of cml stages inside IS
+
     ///
+
     /// 0: 200mVppd 7: 240mVppd
     pub fn ib_cml_ampl(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
@@ -1367,9 +1519,11 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
-    }    ///
+    }
     /// Current through CML Cells
+
     ///
+
     /// 0: 150% 5: 100% 15: 50%
     pub fn ib_cml_curr(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -1379,9 +1533,11 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
-    }    ///
+    }
     /// EQZ current control
+
     ///
+
     /// 0: mission mode 1: 1.5% current increase
     pub fn ib_eq_curr(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -1391,7 +1547,7 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Invert calibration value coming from the calibration FSM for IA calibration.
     pub fn ib_inv_ia_cal_val(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -1401,7 +1557,7 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Invert observe signal from auxilary stage that goes to calibration FSM
     pub fn ib_inv_ia_dofs(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -1411,7 +1567,7 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    ///
+    }
     /// Invert observe signal from sample stage that goes to calibration FSM
     pub fn ib_inv_is_dofs(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -1421,7 +1577,7 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Invert calibration value coming from the calibration FSM for IS offset calibration.
     pub fn ib_inv_offs_cal_val(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -1431,7 +1587,7 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Invert calibration value coming from the calibration FSM for IS threshold calibration.
     pub fn ib_inv_thr_cal_val(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -1441,9 +1597,11 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Enables neutral setting of latches
+
     ///
+
     /// 1: Reset to mid values 0: Normal operation
     pub fn ib_lat_neutral(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -1453,7 +1611,7 @@ impl SD10G65_IB_CFG8 {    ///
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    ///
+    }
     /// Use separate vscope clock for vscope-channels
     pub fn ib_sel_vclk(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -1473,7 +1631,7 @@ impl SD10G65_IB_CFG8 {    ///
 /// Configuration register 9 for SD10G65 IB.
 #[derive(From, Into)]
 pub struct SD10G65_IB_CFG9(u32);
-impl SD10G65_IB_CFG9 {    ///
+impl SD10G65_IB_CFG9 {
     /// Weighting for first DFE coefficient
     pub fn ib_dfe_coef1(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -1483,7 +1641,7 @@ impl SD10G65_IB_CFG9 {    ///
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
-    }    ///
+    }
     /// Weighting for second DFE coefficient
     pub fn ib_dfe_coef2(&self) -> u32 {
         (self.0 & 0x3f00) >> 8
@@ -1493,7 +1651,7 @@ impl SD10G65_IB_CFG9 {    ///
         assert!(value <= 0x3f00);
         self.0 &= !0x3f00;
         self.0 |= value;
-    }    ///
+    }
     /// Weighting for third DFE coefficient
     pub fn ib_dfe_coef3(&self) -> u32 {
         (self.0 & 0x1f0000) >> 16
@@ -1503,7 +1661,7 @@ impl SD10G65_IB_CFG9 {    ///
         assert!(value <= 0x1f0000);
         self.0 &= !0x1f0000;
         self.0 |= value;
-    }    ///
+    }
     /// Weighting for fourth DFE coefficient
     pub fn ib_dfe_coef4(&self) -> u32 {
         (self.0 & 0x1f000000) >> 24
@@ -1523,15 +1681,15 @@ impl SD10G65_IB_CFG9 {    ///
 /// Subversion revision number for the RTL used in SD10G65_RX
 #[derive(From, Into)]
 pub struct SD10G65_RX_SVN_ID(u32);
-impl SD10G65_RX_SVN_ID {    ///
+impl SD10G65_RX_SVN_ID {
     /// SVN revision number of RTL sources
     pub fn rx_svn_id(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_svn_id(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -1543,7 +1701,7 @@ impl SD10G65_RX_SVN_ID {    ///
 /// Configuration register for Service-Bus related setting. Note: SBUS configuration applies for RX/TX aggregates only, any configuration applied to SBUS_TX_CFG (output buffer cfg space) will be ignored.
 #[derive(From, Into)]
 pub struct SD10G65_SBUS_RX_CFG(u32);
-impl SD10G65_SBUS_RX_CFG {    ///
+impl SD10G65_SBUS_RX_CFG {
     /// Enable analog test output multiplexer
     pub fn sbus_anaout_en(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -1553,9 +1711,11 @@ impl SD10G65_SBUS_RX_CFG {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Analog test output
+
     ///
+
     /// 0: l0_ctrlspeed[0] 1: vbulk 2: nref 3: vref820m 4: vddfilt 5: vddfilt 6: ie_aout 7: ib_aout 8: ob_aout2 9: pll_frange 10: pll_srange 11: pll_vreg820m_tx 12: pll_vreg820m_rx 13: ob_aout_n 14: ob_aout_p 15: vddfilt
     pub fn sbus_anaout_sel(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -1565,9 +1725,11 @@ impl SD10G65_SBUS_RX_CFG {    ///
         assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
-    }    ///
+    }
     /// Bias enable
+
     ///
+
     /// 1: Enable 0: Disable
     pub fn sbus_bias_en(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -1577,9 +1739,11 @@ impl SD10G65_SBUS_RX_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Bias speed selection
+
     ///
+
     /// 0: Below 4Gbps 1: 4Gbps to 6Gbps 2: 6Gbps to 9Gbps 3: Above 9Gbps
     pub fn sbus_bias_speed_sel(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -1589,7 +1753,7 @@ impl SD10G65_SBUS_RX_CFG {    ///
         assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
-    }    ///
+    }
     /// Enable BiDi loop driver for F2DF testing
     pub fn sbus_loopdrv_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -1599,9 +1763,11 @@ impl SD10G65_SBUS_RX_CFG {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Offset value for BIAS resistor calibration (2-complement)
+
     ///
+
     /// 1000: -8 1111: -1 0000: 0 0111: 7
     pub fn sbus_rcomp(&self) -> u32 {
         (self.0 & 0x78) >> 3
@@ -1611,7 +1777,7 @@ impl SD10G65_SBUS_RX_CFG {    ///
         assert!(value <= 0x78);
         self.0 &= !0x78;
         self.0 |= value;
-    }    ///
+    }
     /// Pool of spare bits for use in late design changes.
     pub fn sbus_spare_pool(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -1631,7 +1797,7 @@ impl SD10G65_SBUS_RX_CFG {    ///
 /// Revision numbers of the analog sub IPs used in the SD10G65_TX
 #[derive(From, Into)]
 pub struct SD10G65_TX_REV_ID(u32);
-impl SD10G65_TX_REV_ID {    ///
+impl SD10G65_TX_REV_ID {
     /// Feature set number of output buffer (ob10g_N)
     pub fn ob_rev_id(&self) -> u32 {
         (self.0 & 0x3f00000) >> 20
@@ -1641,7 +1807,7 @@ impl SD10G65_TX_REV_ID {    ///
         assert!(value <= 0x3f00000);
         self.0 &= !0x3f00000;
         self.0 |= value;
-    }    ///
+    }
     /// Feature set number of RC-PLL (pll10g_N)
     pub fn rcpll_rev_id(&self) -> u32 {
         (self.0 & 0x3f00) >> 8
@@ -1651,7 +1817,7 @@ impl SD10G65_TX_REV_ID {    ///
         assert!(value <= 0x3f00);
         self.0 &= !0x3f00;
         self.0 |= value;
-    }    ///
+    }
     /// Feature set number of synthesizer (syn_N)
     pub fn synth_rev_id(&self) -> u32 {
         (self.0 & 0xfc000) >> 14
@@ -1661,7 +1827,7 @@ impl SD10G65_TX_REV_ID {    ///
         assert!(value <= 0xfc000);
         self.0 &= !0xfc000;
         self.0 |= value;
-    }    ///
+    }
     /// Feature set number of Toplevel (sd10g65_N)
     pub fn top_rev_id(&self) -> u32 {
         (self.0 & 0xff) >> 0

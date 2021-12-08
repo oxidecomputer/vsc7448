@@ -35,15 +35,15 @@ use derive_more::{From, Into};
 /// See description for QSYS:STAT.
 #[derive(From, Into)]
 pub struct CNT(u32);
-impl CNT {    ///
+impl CNT {
     /// Counter value, ref. QSYS:STAT.
     pub fn cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

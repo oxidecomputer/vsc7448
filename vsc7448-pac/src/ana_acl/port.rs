@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Key selection for VCAP_IS2 lookups. Replicated per lookup.
 #[derive(From, Into)]
 pub struct VCAP_S2_KEY_SEL(u32);
-impl VCAP_S2_KEY_SEL {    ///
+impl VCAP_S2_KEY_SEL {
     /// Applies to ARP/RARP frames.
+
     ///
+
     /// 0: Match against MAC_ETYPE entries. 1: Match against ARP entries.
     pub fn arp_key_sel(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -47,9 +49,11 @@ impl VCAP_S2_KEY_SEL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Applies to IPv4 multicast frames.
+
     ///
+
     /// 0: Match against MAC_ETYPE entries. 1: Match against IP4_TCP_UDP for IPv4 TCP/UDP frames and against IP4_OTHER entries for other IPv4 frames. 2: Match against IP_7TUPLE entries. 3: Match against IP4_VID entries.
     pub fn ip4_mc_key_sel(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -59,9 +63,11 @@ impl VCAP_S2_KEY_SEL {    ///
         assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
-    }    ///
+    }
     /// Applies to IPv4 unicast frames.
+
     ///
+
     /// 0: Match against MAC_ETYPE entries. 1: Match against IP4_TCP_UDP for IPv4 TCP/UDP frames and against IP4_OTHER entries for other IPv4 frames. 2: Match against IP_7TUPLE entries.
     pub fn ip4_uc_key_sel(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -71,9 +77,11 @@ impl VCAP_S2_KEY_SEL {    ///
         assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
-    }    ///
+    }
     /// Applies to IPv6 multicast frames.
+
     ///
+
     /// 0: Match against MAC_ETYPE entries. 1: Match against IP_7TUPLE entries. 2: Match against IP6_VID entries.
     pub fn ip6_mc_key_sel(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -83,9 +91,11 @@ impl VCAP_S2_KEY_SEL {    ///
         assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
-    }    ///
+    }
     /// Applies to IPv6 unicast frames.
+
     ///
+
     /// 0: Match against MAC_ETYPE entries. 1: Match against IP_7TUPLE entries.
     pub fn ip6_uc_key_sel(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -95,9 +105,11 @@ impl VCAP_S2_KEY_SEL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Applies to frames where frame_type is set to non Ethernet (CW or MPLS).
+
     ///
+
     /// 0: Match against MAC_ETYPE entries. 1: match against CUSTOM_1 entries. 2: match against CUSTOM_2 entries. 3: No lookup.
     pub fn non_eth_key_sel(&self) -> u32 {
         (self.0 & 0x300) >> 8

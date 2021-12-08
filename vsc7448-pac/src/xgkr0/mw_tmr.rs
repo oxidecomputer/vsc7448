@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training maxwait_timer lsw
 #[derive(From, Into)]
 pub struct MW_TMR_LSW(u32);
-impl MW_TMR_LSW {    ///
+impl MW_TMR_LSW {
     /// maxwait_timer, when training expires and failure declared. 500ms
     pub fn mw_tmr_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl MW_TMR_LSW {    ///
 /// VS training wait_timer
 #[derive(From, Into)]
 pub struct WT_TMR(u32);
-impl WT_TMR {    ///
+impl WT_TMR {
     /// wait_timer for training state machine to allow extra training frames to be exchanged
     pub fn wt_tmr(&self) -> u32 {
         (self.0 & 0xffff) >> 0

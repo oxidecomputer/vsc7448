@@ -35,15 +35,15 @@ use derive_more::{From, Into};
 /// Value of the CCM-LM.TX_FC_F field in the lastest received valid CCM-LM frame by this VOE. This value must be transmitted as CCM-LM.TX_FCB in the next CCM-LM frame transmitted by this VOE.
 #[derive(From, Into)]
 pub struct CCM_TX_FCB_CFG(u32);
-impl CCM_TX_FCB_CFG {    ///
+impl CCM_TX_FCB_CFG {
     /// See register description.
     pub fn ccm_tx_fcb(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_ccm_tx_fcb(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -55,15 +55,15 @@ impl CCM_TX_FCB_CFG {    ///
 /// TX counter for counting Initiator MEP Tx SynLM PDUs (SLM / SL1). The counter value is written into the the following fields of Tx SynLM PDUs: * SLM.TxFCf * 1SL.TxFCf The counter is increased (+1) after being written to the Tx PDU. Note: To send TxFCf = 1 in the first Tx SynLM PDU, this register must be initialized to 1.
 #[derive(From, Into)]
 pub struct SLM_TX_FRM_CNT(u32);
-impl SLM_TX_FRM_CNT {    ///
+impl SLM_TX_FRM_CNT {
     /// See register description.
     pub fn slm_tx_frm_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_slm_tx_frm_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

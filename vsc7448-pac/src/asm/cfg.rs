@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Holds DEVCPU specific Flow Control configuration signals
 #[derive(From, Into)]
 pub struct CPU_FC_CFG(u32);
-impl CPU_FC_CFG {    ///
+impl CPU_FC_CFG {
     /// This field determines if the ASM must assert the flow control signal to the CPU device when the ASM FIFO fill level exceeds the watermark given in	   CPU_FC_WM.
+
     ///
+
     /// '0': Flow control is disabled. '1': Flow control is enabled.
     pub fn cpu_fc_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -45,9 +47,11 @@ impl CPU_FC_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// This field determines the ASM FIFO fill level required for the ASM to activate FC. The fill level is given by the number of complete cells in the FIFO that are ready to be passed to the ANA block.
+
     ///
+
     /// 0: Flow control is activated if the ASM FIFO of the DEVCPU holds 1 or more complete cells. 1: Flow control is activated if the ASM FIFO of the DEVCPU holds 2 or more complete cells. --- X: Flow control is activated if the ASM FIFO of the DEVCPU holds X+1 or more complete cells.
     pub fn cpu_fc_wm(&self) -> u32 {
         (self.0 & 0xe) >> 1
@@ -65,9 +69,11 @@ impl CPU_FC_CFG {    ///
 /// MAC Address Configuration Register (MSB)
 #[derive(From, Into)]
 pub struct MAC_ADDR_HIGH_CFG(u32);
-impl MAC_ADDR_HIGH_CFG {    ///
+impl MAC_ADDR_HIGH_CFG {
     /// Upper 24 bits of MAC address. The MAC address is used when filtering incoming Pause Control Frames - i.e. when the ASM detemines whether or not a pause value must be passed to the DSM.
+
     ///
+
     /// The resulting MAC address of a device is determined as: MAC_ADDR_HIGH  & MAC_ADDR_LOW.
     pub fn mac_addr_high(&self) -> u32 {
         (self.0 & 0xffffff) >> 0
@@ -85,9 +91,11 @@ impl MAC_ADDR_HIGH_CFG {    ///
 /// MAC Address Configuration Register (LSB)
 #[derive(From, Into)]
 pub struct MAC_ADDR_LOW_CFG(u32);
-impl MAC_ADDR_LOW_CFG {    ///
+impl MAC_ADDR_LOW_CFG {
     /// Lower 24 bits of MAC address. The MAC address is used when filtering incoming Pause Control Frames - i.e. when the ASM detemines whether or not a pause value must be passed to the DSM.
+
     ///
+
     /// The resulting MAC address of a device is determined as: MAC_ADDR_HIGH  & MAC_ADDR_LOW.
     pub fn mac_addr_low(&self) -> u32 {
         (self.0 & 0xffffff) >> 0
@@ -107,9 +115,11 @@ impl MAC_ADDR_LOW_CFG {    ///
 /// This register control whether pause and control frames should be forwarded or terminated at ingress.
 #[derive(From, Into)]
 pub struct PAUSE_CFG(u32);
-impl PAUSE_CFG {    ///
+impl PAUSE_CFG {
     /// This field indicates whether or not the ASM must discard Control frames with type 0x8808 not being Pause frames, to the IQS by asserting the abort signal. One configuration bit is defined for each port.
+
     ///
+
     /// '0': The ASM must not discard Control frames. '1': The ASM must discard Control frames to the IQS by asserting the abort signal.
     pub fn abort_ctrl_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -119,9 +129,11 @@ impl PAUSE_CFG {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// This field indicates whether or not the ASM must discard a valid Pause frame to the IQS by asserting the abort signal. One configuration bit is defined for each port.
+
     ///
+
     /// '0': The ASM must not discard valid Pause frames. '1': The ASM must discard valid Pause frames to the IQS by asserting the abort signal, but the Pause value must still be used to stall the egress data flow.
     pub fn abort_pause_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -141,7 +153,7 @@ impl PAUSE_CFG {    ///
 /// This register holds port configuration bit groups
 #[derive(From, Into)]
 pub struct PORT_CFG(u32);
-impl PORT_CFG {    ///
+impl PORT_CFG {
     /// Disables the CSC statistics counters in the ASM for the port. Set this when the port utilizes a DEV10G device as this handles the statistics locally in the device.
     pub fn csc_stat_dis(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -151,9 +163,11 @@ impl PORT_CFG {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// This field determines if the ASM must abort mark frames that become older than 16-24 ms before and EOF is received.
+
     ///
+
     /// '0': Aging enabled. '1': Aging disabled.
     pub fn frm_aging_dis(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -163,7 +177,7 @@ impl PORT_CFG {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// If this field is set the ASM remove the first 4 bytes of the payload and insert it into the HIH field of the IFH.
     pub fn hih_after_preamble_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -173,7 +187,7 @@ impl PORT_CFG {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// If this field is set the ASM will ignore any abort indication received on the TAXI interface for the port.
     pub fn ign_taxi_abort_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -183,9 +197,11 @@ impl PORT_CFG {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Configure discard behaviour depending on matching result of the selected injection format. This setting is only valid for injection formats with short or long prefix.
+
     ///
+
     /// 0: Discard none 1: Discard frames with wrong injection format 2: Discard frames with correct injection format
     pub fn inj_discard_cfg(&self) -> u32 {
         (self.0 & 0x18) >> 3
@@ -195,9 +211,11 @@ impl PORT_CFG {    ///
         assert!(value <= 0x18);
         self.0 &= !0x18;
         self.0 |= value;
-    }    ///
+    }
     /// Set the mode for the formatting of incoming frames. Four different modes can be selected: - Normal mode (No IFH) - IFH without prefix - IFH with short prefix - IFH with long prefix If one of the IFH modes are selected incoming frames are expected to contain the selected prefix followed by an IFH as the first part of the frame. Frames are forwarded based on the contents in the IFH instead of normal forwarding. Three different prefix modes are supported: - No prefix. - IFH short prefix:. any DMAC, any SMAC, EtherType=0x8880, payload=0x0007 - IFH long prefix: any DMAC, any SMAC, VLAN Tag, EtherType=0x8880, payload=0x0007. In the IFH modes, if the incoming frame's format does not comply with the prefix, then IFH_PREFIX_ERR_STICKY is set.
+
     ///
+
     /// 0: Normal mode (No IFH) 1: IFH without prefix 2: IFH with short prefix 3: IFH with long prefix
     pub fn inj_format_cfg(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -207,7 +225,7 @@ impl PORT_CFG {    ///
         assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
-    }    ///
+    }
     /// If this field is set the ASM does not expect the incoming frame data to have a preamble prepended.
     pub fn no_preamble_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -217,9 +235,11 @@ impl PORT_CFG {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// This field determines if the ASM mustzero-pad Ethernet frames that are less than 64 bytes.
+
     ///
+
     /// '0': Padding is disabled. Frames that are less than 64 bytes and have not been abort marked are passed to the ANA block 'as is'. Frames that are less than 64 bytes and have been abort marked are normally discarded silently by the ASM. '1': Padding is enabled. If the resulting frame size will be less than 64 bytes, the frame is zero-padded, so that the resulting frame size is 64 bytes.
     pub fn pad_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -229,7 +249,7 @@ impl PORT_CFG {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// If this field is set the ASM will not store the first 8 bytes from the packet. This must be enabled when injecting with IFH without prefix from an extenal CPU (INJ_FORMAT_CFG=1).
     pub fn skip_preamble_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -239,9 +259,11 @@ impl PORT_CFG {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// This bit defines if the ASM must be Vstax2 aware or not. If Vstax2 awareness is enabled and a frame holds a Vstax2 header following the SMAC address, this Vstax2 header is removed from the frame and placed in the IFH and the vstax_avail and update_fcs fields in the IFH will be set, so that the frame FCS is recalculated in the egress direction. If Vstax2 awareness is disabled or a frame does not hold a Vstax2 header, no bytes will be removed from the frame and the vstax_hdr, vstax_avail and fcs_update fields in the IFH will be cleared. When Vstax2 awareness is enabled INJ_FORMAT_CFG must be set to 0
+
     ///
+
     /// 0: Vstax2 awareness is disabled. 1: Vstax2 awareness is enabled.
     pub fn vstax2_awr_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -259,17 +281,19 @@ impl PORT_CFG {    ///
 /// Counter to track the PCS's Sync-lost error
 #[derive(From, Into)]
 pub struct RX_SYNC_LOST_ERR_CNT(u32);
-impl RX_SYNC_LOST_ERR_CNT {    ///
+impl RX_SYNC_LOST_ERR_CNT {
     /// Counter to track the PCS's Sync-lost error
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_sync_lost_err_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_sync_lost_err_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -281,9 +305,11 @@ impl RX_SYNC_LOST_ERR_CNT {    ///
 /// Register that contains the bitgroups to configure/control the statistics counters.
 #[derive(From, Into)]
 pub struct STAT_CFG(u32);
-impl STAT_CFG {    ///
+impl STAT_CFG {
     /// Setting of this bit initiates the clearing of all statistics counter.
+
     ///
+
     /// '0': No action '1': Stat cnt clr (Bit is automatically cleared)
     pub fn stat_cnt_clr_shot(&self) -> u32 {
         (self.0 & 0x1) >> 0

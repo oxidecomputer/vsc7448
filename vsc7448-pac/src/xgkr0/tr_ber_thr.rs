@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training method
 #[derive(From, Into)]
 pub struct TR_MTHD(u32);
-impl TR_MTHD {    ///
+impl TR_MTHD {
     /// Training method for remote C(0)
     pub fn mthd_c0(&self) -> u32 {
         (self.0 & 0x300) >> 8
@@ -43,7 +43,7 @@ impl TR_MTHD {    ///
         assert!(value <= 0x300);
         self.0 &= !0x300;
         self.0 |= value;
-    }    ///
+    }
     /// Training method for remote C(-1)
     pub fn mthd_cm(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -53,9 +53,11 @@ impl TR_MTHD {    ///
         assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
-    }    ///
+    }
     /// Training method for remote C(+1)
+
     ///
+
     /// 0 : BER method 1 : Gain method 2 : DFE method
     pub fn mthd_cp(&self) -> u32 {
         (self.0 & 0xc00) >> 10
@@ -65,9 +67,11 @@ impl TR_MTHD {    ///
         assert!(value <= 0xc00);
         self.0 &= !0xc00;
         self.0 |= value;
-    }    ///
+    }
     /// remote tap to optimize first
+
     ///
+
     /// 0 : C(-1) 1 : C(0) 2 : C(+1)
     pub fn ord1(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -77,7 +81,7 @@ impl TR_MTHD {    ///
         assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
-    }    ///
+    }
     /// remote tap to optimize second
     pub fn ord2(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -87,7 +91,7 @@ impl TR_MTHD {    ///
         assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
-    }    ///
+    }
     /// remote tap to optimize third
     pub fn ord3(&self) -> u32 {
         (self.0 & 0x3) >> 0

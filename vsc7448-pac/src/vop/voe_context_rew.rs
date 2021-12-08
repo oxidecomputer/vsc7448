@@ -35,15 +35,15 @@ use derive_more::{From, Into};
 /// This is the value of the Rx LM counter sampled when the latest CCM-LM frame was received. This value must be transmitted as CCM-LM.RX_FCB in the next CCM-LM frame transmitted by this VOE.
 #[derive(From, Into)]
 pub struct CCM_RX_FCB_CFG(u32);
-impl CCM_RX_FCB_CFG {    ///
+impl CCM_RX_FCB_CFG {
     /// See register description.
     pub fn ccm_rx_fcb(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_ccm_rx_fcb(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -93,15 +93,15 @@ impl CT_CCM_TLV_INFO_REW {    pub fn ct_if_status_value_rew(&self) -> u32 {
 /// Context data
 #[derive(From, Into)]
 pub struct CT_OAM_DATA_REW(u32);
-impl CT_OAM_DATA_REW {    ///
+impl CT_OAM_DATA_REW {
     /// Context register containing Sequence Number or Transaction ID
     pub fn ct_oam_seq_rew(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_ct_oam_seq_rew(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -137,7 +137,7 @@ impl CT_OAM_INFO_REW {    pub fn ct_block_data_rew(&self) -> u32 {
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG]
     pub fn ct_entry_valid_rew(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -155,9 +155,11 @@ impl CT_OAM_INFO_REW {    pub fn ct_block_data_rew(&self) -> u32 {
         assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG]
+
     ///
+
     /// 0: OAM Frame is TX 1: OAM Frame is RX
     pub fn ct_lookup_type_rew(&self) -> u32 {
         (self.0 & 0x3c000000) >> 26
@@ -183,7 +185,7 @@ impl CT_OAM_INFO_REW {    pub fn ct_block_data_rew(&self) -> u32 {
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Generic index from if the OpCode is generic.
     pub fn ct_oam_gen_idx_rew(&self) -> u32 {
         (self.0 & 0x1c0000) >> 18
@@ -193,7 +195,7 @@ impl CT_OAM_INFO_REW {    pub fn ct_block_data_rew(&self) -> u32 {
         assert!(value <= 0x1c0000);
         self.0 &= !0x1c0000;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG] OAM PDU currently being processed
     pub fn ct_oam_pdu_rew(&self) -> u32 {
         (self.0 & 0x3e00000) >> 21
@@ -203,7 +205,7 @@ impl CT_OAM_INFO_REW {    pub fn ct_block_data_rew(&self) -> u32 {
         assert!(value <= 0x3e00000);
         self.0 &= !0x3e00000;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG] OAM type currently being processed
     pub fn ct_oam_type_rew(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -213,9 +215,11 @@ impl CT_OAM_INFO_REW {    pub fn ct_block_data_rew(&self) -> u32 {
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
-    }    ///
+    }
     /// Determines if the PDU is to be counted as Selected OAM or NON Selected OAM.
+
     ///
+
     /// 0: Count as NON Selected OAM 1: Count as Selected OAM
     pub fn ct_sel_oam_rew(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -225,7 +229,7 @@ impl CT_OAM_INFO_REW {    pub fn ct_block_data_rew(&self) -> u32 {
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG] Source port.
     pub fn ct_src_port_rew(&self) -> u32 {
         (self.0 & 0x3f000) >> 12
@@ -235,7 +239,7 @@ impl CT_OAM_INFO_REW {    pub fn ct_block_data_rew(&self) -> u32 {
         assert!(value <= 0x3f000);
         self.0 &= !0x3f000;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG]
     pub fn ct_upd_seq_rew(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -263,7 +267,7 @@ impl CT_OAM_STICKY_REW {    pub fn ct_ccm_nonzero_endtlv_rew(&self) -> u32 {
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG] PDU was correctly validaded by the VOE and is ready to be processed.
     pub fn ct_ccm_period_err_rew(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -273,7 +277,7 @@ impl CT_OAM_STICKY_REW {    pub fn ct_ccm_nonzero_endtlv_rew(&self) -> u32 {
         assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG] PDU was correctly validaded by the VOE and is ready to be processed.
     pub fn ct_ccm_prio_err_rew(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -283,7 +287,7 @@ impl CT_OAM_STICKY_REW {    pub fn ct_ccm_nonzero_endtlv_rew(&self) -> u32 {
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG]
     pub fn ct_extract_cause_rew(&self) -> u32 {
         (self.0 & 0x3e000) >> 13
@@ -301,7 +305,7 @@ impl CT_OAM_STICKY_REW {    pub fn ct_ccm_nonzero_endtlv_rew(&self) -> u32 {
         assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG]
     pub fn ct_mel_high_rew(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -311,7 +315,7 @@ impl CT_OAM_STICKY_REW {    pub fn ct_ccm_nonzero_endtlv_rew(&self) -> u32 {
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG] PDU was correctly validaded by the VOE and is ready to be processed.
     pub fn ct_pdu_hw_ena_rew(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -353,7 +357,7 @@ impl CT_OAM_STICKY_REW {    pub fn ct_ccm_nonzero_endtlv_rew(&self) -> u32 {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    ///
+    }
     /// [MCC_DEBUG] PDU was correctly validaded by the VOE and is ready to be processed.
     pub fn ct_valid_pdu_rew(&self) -> u32 {
         (self.0 & 0x400000) >> 22

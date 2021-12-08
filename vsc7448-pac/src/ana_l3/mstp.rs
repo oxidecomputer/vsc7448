@@ -35,17 +35,19 @@ use derive_more::{From, Into};
 /// Configuration of forwarding state per MSTP
 #[derive(From, Into)]
 pub struct MSTP_FWD_CFG(u32);
-impl MSTP_FWD_CFG {    ///
+impl MSTP_FWD_CFG {
     /// Enable/disable forwarding per port. Ports in MSTP Forwarding state must be enabled in this port mask. If a port is disabled in this mask, frames received on the port are not forwarded, and frames are not forwarded to the port. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_DISCARD_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_FWD_ALLOWED_STICKY
+
     ///
+
     /// '0': forwarding is disabled from/to respective port '1': forwarding is enabled from/to respective port
     pub fn mstp_fwd_mask(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_mstp_fwd_mask(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -57,7 +59,7 @@ impl MSTP_FWD_CFG {    ///
 /// Configuration of forwarding state per MSTP
 #[derive(From, Into)]
 pub struct MSTP_FWD_CFG1(u32);
-impl MSTP_FWD_CFG1 {    ///
+impl MSTP_FWD_CFG1 {
     /// Refer to MSTP_FWD_CFG.MSTP_FWD_MASK description.
     pub fn mstp_fwd_mask1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0
@@ -77,17 +79,19 @@ impl MSTP_FWD_CFG1 {    ///
 /// Configuration of learning state per MSTP.
 #[derive(From, Into)]
 pub struct MSTP_LRN_CFG(u32);
-impl MSTP_LRN_CFG {    ///
+impl MSTP_LRN_CFG {
     /// Enable/disable learning per port. If a port is disabled in the mask, L2 learning of the (FID, SMAC) pair is not done. Ports in MSTP Learning and Forwarding state must be enabled in this mask. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_LRN_DENY_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_LRN_ALLOWED_STICKY
+
     ///
+
     /// '0': Learning is disabled for frames from respective port '1': Learning is enabled for frames from respective port
     pub fn mstp_lrn_mask(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_mstp_lrn_mask(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -99,7 +103,7 @@ impl MSTP_LRN_CFG {    ///
 /// Configuration of VLAN port mask.
 #[derive(From, Into)]
 pub struct VLAN_MASK_CFG1(u32);
-impl VLAN_MASK_CFG1 {    ///
+impl VLAN_MASK_CFG1 {
     /// Refer to VLAN_MASK_CFG.VLAN_PORT_MASK description.
     pub fn vlan_port_mask1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0

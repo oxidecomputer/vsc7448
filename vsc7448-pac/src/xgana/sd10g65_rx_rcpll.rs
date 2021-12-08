@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Configuration register 0 for SD10G65 RX RCPLL.
 #[derive(From, Into)]
 pub struct SD10G65_RX_RCPLL_CFG0(u32);
-impl SD10G65_RX_RCPLL_CFG0 {    ///
+impl SD10G65_RX_RCPLL_CFG0 {
     /// Enable RCPLL FSM
     pub fn pllf_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -45,9 +45,11 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable predivider for feedback clock to allow for faster clocks,
+
     ///
+
     /// 0: disable 1: enable
     pub fn pllf_fbdiv_pre(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -57,9 +59,11 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable PLL loop ctrl by pllf_loop_ena,
+
     ///
+
     /// 0: enable loop ctrl by FSM 1: enable loop ctrl by pllf_loop_ena
     pub fn pllf_loop_ctrl_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -69,7 +73,7 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Enable closed loop, selected with pllf_loop_ctrl_ena=1
     pub fn pllf_loop_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -79,7 +83,7 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Enable VCO control signal out of range recalibration
     pub fn pllf_oor_recal_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -89,9 +93,11 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Sets the ramp characteristic of the FSM, higher values give faster ramp up but less accuracy,
+
     ///
+
     /// 0: normal (default) ramping 1: faster ramping 2: fastest ramping 3: slow ramping uses all possible values of r_ctrl
     pub fn pllf_ramp_mode_sel(&self) -> u32 {
         (self.0 & 0x380) >> 7
@@ -101,9 +107,11 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x380);
         self.0 &= !0x380;
         self.0 |= value;
-    }    ///
+    }
     /// Select output on pllf_ref_cnt_stat,
+
     ///
+
     /// 0: ref_cnt 1: pll_cnt_diff 2: syn_cnt 3: pll_cnt
     pub fn pllf_ref_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -113,7 +121,7 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable restart of FSM from frequency deviation/unlock condition
     pub fn pllf_rst_frqdet_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -123,7 +131,7 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Enable restart of FSM from overrun
     pub fn pllf_rst_overrun_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -133,7 +141,7 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Preload value of the ramp up counter, reduces ramp up time for higher frequencies
     pub fn pllf_start_cnt(&self) -> u32 {
         (self.0 & 0x3ff0000) >> 16
@@ -143,9 +151,11 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x3ff0000);
         self.0 &= !0x3ff0000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable feedback clock usage instead of DES/SER par. clock,
+
     ///
+
     /// 0: disable 1: enable
     pub fn pllf_syn_clk_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -155,9 +165,11 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable vco load by pllf_vco_fast,
+
     ///
+
     /// 0: enable vco fast by FSM 1: enable vco load by pllf_vco_fast
     pub fn pllf_vco_fast_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -167,9 +179,11 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable vco load by pllf_vco_load,
+
     ///
+
     /// 0: enable vco load by FSM 1: enable vco load by pllf_vco_load
     pub fn pllf_vco_load_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -179,9 +193,11 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Enable vco load by pllf_vco_slow,
+
     ///
+
     /// 0: enable vco slow by FSM 1: enable vco load by pllf_vco_slow
     pub fn pllf_vco_slow_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -201,7 +217,7 @@ impl SD10G65_RX_RCPLL_CFG0 {    ///
 /// Configuration register 1 for SD10G65 RX RCPLL.
 #[derive(From, Into)]
 pub struct SD10G65_RX_RCPLL_CFG1(u32);
-impl SD10G65_RX_RCPLL_CFG1 {    ///
+impl SD10G65_RX_RCPLL_CFG1 {
     /// enable special BIST settings
     pub fn pllf_bist_ena(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -211,19 +227,21 @@ impl SD10G65_RX_RCPLL_CFG1 {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Target value: 1/vco_frq * par.bit.width * 512 * ref_clk_frq
     pub fn pllf_ref_cnt_end(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_pllf_ref_cnt_end(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
-    }    ///
+    }
     /// Select vco static frequency by feedforward (higher freq.),
+
     ///
+
     /// 0: min. freq 3: max. freq.
     pub fn pllf_vco_fast(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -233,9 +251,11 @@ impl SD10G65_RX_RCPLL_CFG1 {    ///
         assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
-    }    ///
+    }
     /// Select vco static frequency by load,
+
     ///
+
     /// 0: VCO off
     pub fn pllf_vco_load(&self) -> u32 {
         (self.0 & 0x3ff0) >> 4
@@ -245,9 +265,11 @@ impl SD10G65_RX_RCPLL_CFG1 {    ///
         assert!(value <= 0x3ff0);
         self.0 &= !0x3ff0;
         self.0 |= value;
-    }    ///
+    }
     /// Select vco static frequency by feedback (lower freq.),
+
     ///
+
     /// 0: max. freq 3: min. freq.
     pub fn pllf_vco_slow(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -267,7 +289,7 @@ impl SD10G65_RX_RCPLL_CFG1 {    ///
 /// Configuration register 2 for SD10G65 RX RCPLL.
 #[derive(From, Into)]
 pub struct SD10G65_RX_RCPLL_CFG2(u32);
-impl SD10G65_RX_RCPLL_CFG2 {    ///
+impl SD10G65_RX_RCPLL_CFG2 {
     /// Not used
     pub fn pll_cal_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -277,7 +299,7 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable analog RCPLL part
     pub fn pll_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -287,9 +309,11 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Select VCO regulated supply (820mV),
+
     ///
+
     /// 0: 820mv 4: 860mV 6: 950mV 7: short to VDDA all others reserved
     pub fn pll_fbsel820(&self) -> u32 {
         (self.0 & 0x7000000) >> 24
@@ -299,9 +323,11 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x7000000);
         self.0 &= !0x7000000;
         self.0 |= value;
-    }    ///
+    }
     /// Select chargepump current,
+
     ///
+
     /// 0: 50uA 1: 100uA 2: 150uA 3: 200uA
     pub fn pll_lpf_cur(&self) -> u32 {
         (self.0 & 0x1800) >> 11
@@ -311,9 +337,11 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x1800);
         self.0 &= !0x1800;
         self.0 |= value;
-    }    ///
+    }
     /// Select loop filter resistor value,
+
     ///
+
     /// 0: not allowed 1: 2400 2: 1600 3: 960 4: 1200 5: 800 6: 685 7: 533 8: 800 9: 600 10: 533 11: 436 12: 480 13: 400 14: 369 15: 320
     pub fn pll_lpf_res(&self) -> u32 {
         (self.0 & 0x780) >> 7
@@ -323,9 +351,11 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x780);
         self.0 &= !0x780;
         self.0 |= value;
-    }    ///
+    }
     /// Debug, short N bulk voltage of OpAmps,
+
     ///
+
     /// 0: N bulk unequal 0 1: short to VSSA
     pub fn pll_short_bulkhn_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -335,9 +365,11 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Debug, short P bulk voltage of OpAmps,
+
     ///
+
     /// 0: P bulk unequal supply 1: short to supply
     pub fn pll_short_bulkhp_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -347,9 +379,11 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Debug, short N bulk voltage of VCO,
+
     ///
+
     /// 0: N bulk unequal 0 1: short to VSSA
     pub fn pll_short_bulkn_ena(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -359,9 +393,11 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Debug, short P bulk voltage of VCO,
+
     ///
+
     /// 0: P bulk unequal supply 1: short to supply
     pub fn pll_short_bulkp_ena(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -371,9 +407,11 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Select vco current,
+
     ///
+
     /// 0: lowest current 31: highest current
     pub fn pll_vco_cur(&self) -> u32 {
         (self.0 & 0x7c) >> 2
@@ -383,9 +421,11 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
         assert!(value <= 0x7c);
         self.0 &= !0x7c;
         self.0 |= value;
-    }    ///
+    }
     /// Select VCO load switch gate voltage,
+
     ///
+
     /// 0: 1.4V 1: 1.5V 2: 1.6V 3: 1.7V 15: max.
     pub fn pll_vreg18(&self) -> u32 {
         (self.0 & 0xf00000) >> 20
@@ -405,19 +445,21 @@ impl SD10G65_RX_RCPLL_CFG2 {    ///
 /// Status register 0 for SD10G65 RX RCPLL.
 #[derive(From, Into)]
 pub struct SD10G65_RX_RCPLL_STAT0(u32);
-impl SD10G65_RX_RCPLL_STAT0 {    ///
+impl SD10G65_RX_RCPLL_STAT0 {
     /// PLL lock status,
+
     ///
+
     /// 0: not locked 1: locked
     pub fn pllf_lock_stat(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_pllf_lock_stat(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
-    }    ///
+    }
     /// Actual value of VCO fast portion, set by FSM
     pub fn pllf_vco_fast_stat(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -427,7 +469,7 @@ impl SD10G65_RX_RCPLL_STAT0 {    ///
         assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
-    }    ///
+    }
     /// Actual value of VCO load, set by FSM
     pub fn pllf_vco_load_stat(&self) -> u32 {
         (self.0 & 0x3ff0) >> 4
@@ -437,7 +479,7 @@ impl SD10G65_RX_RCPLL_STAT0 {    ///
         assert!(value <= 0x3ff0);
         self.0 &= !0x3ff0;
         self.0 |= value;
-    }    ///
+    }
     /// Actual value of VCO slow portion, set by FSM
     pub fn pllf_vco_slow_stat(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -447,9 +489,11 @@ impl SD10G65_RX_RCPLL_STAT0 {    ///
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
-    }    ///
+    }
     /// Out of range status bit,
+
     ///
+
     /// 0: within range 1: out of range
     pub fn pll_range_limit(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -459,9 +503,11 @@ impl SD10G65_RX_RCPLL_STAT0 {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Out of range status bit, sticky bit,
+
     ///
+
     /// 0: within range 1: out of range
     pub fn pll_range_limit_sty(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -481,17 +527,17 @@ impl SD10G65_RX_RCPLL_STAT0 {    ///
 /// Revision numbers of the analog sub IPs used in the SD10G65_RX
 #[derive(From, Into)]
 pub struct SD10G65_RX_REV_ID(u32);
-impl SD10G65_RX_REV_ID {    ///
+impl SD10G65_RX_REV_ID {
     /// Feature set number of deserializer (des10g_N)
     pub fn des_rev_id(&self) -> u32 {
-        (self.0 & 0x3ffffff) >> 26
+        (self.0 & 0xfc000000) >> 26
     }
     pub fn set_des_rev_id(&mut self, value: u32) {
         let value = value << 26;
-        assert!(value <= 0x3ffffff);
-        self.0 &= !0x3ffffff;
+        assert!(value <= 0xfc000000);
+        self.0 &= !0xfc000000;
         self.0 |= value;
-    }    ///
+    }
     /// Feature set number of input buffer (ib10g_N)
     pub fn ib_rev_id(&self) -> u32 {
         (self.0 & 0x3f00000) >> 20
@@ -501,7 +547,7 @@ impl SD10G65_RX_REV_ID {    ///
         assert!(value <= 0x3f00000);
         self.0 &= !0x3f00000;
         self.0 |= value;
-    }    ///
+    }
     /// Feature set number of RC-PLL (pll10g_N)
     pub fn rcpll_rev_id(&self) -> u32 {
         (self.0 & 0x3f00) >> 8
@@ -511,7 +557,7 @@ impl SD10G65_RX_REV_ID {    ///
         assert!(value <= 0x3f00);
         self.0 &= !0x3f00;
         self.0 |= value;
-    }    ///
+    }
     /// Feature set number of synthesizer (syn_N)
     pub fn synth_rev_id(&self) -> u32 {
         (self.0 & 0xfc000) >> 14
@@ -521,7 +567,7 @@ impl SD10G65_RX_REV_ID {    ///
         assert!(value <= 0xfc000);
         self.0 &= !0xfc000;
         self.0 |= value;
-    }    ///
+    }
     /// Feature set number of Toplevel (sd10g65_N)
     pub fn top_rev_id(&self) -> u32 {
         (self.0 & 0xff) >> 0

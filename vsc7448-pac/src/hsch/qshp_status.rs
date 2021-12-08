@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Configuration of the connections between queue shapers
 #[derive(From, Into)]
 pub struct QSHP_CONNECT(u32);
-impl QSHP_CONNECT {    ///
+impl QSHP_CONNECT {
     /// Forms the leak chains.
     pub fn se_leak_link(&self) -> u32 {
         (self.0 & 0xfff) >> 0

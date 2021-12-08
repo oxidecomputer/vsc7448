@@ -33,15 +33,15 @@ use derive_more::{From, Into};
 /// Action cache
 #[derive(From, Into)]
 pub struct VCAP_ACTION_DAT(u32);
-impl VCAP_ACTION_DAT {    ///
+impl VCAP_ACTION_DAT {
     /// The cache register that holds action. The register is replicated; index 0 is the 32 LSBs of the action.
     pub fn action_dat(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_action_dat(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -51,15 +51,15 @@ impl VCAP_ACTION_DAT {    ///
 /// Counter cache
 #[derive(From, Into)]
 pub struct VCAP_CNT_DAT(u32);
-impl VCAP_CNT_DAT {    ///
+impl VCAP_CNT_DAT {
     /// The cache register that holds counter. The register is replicated; index 0 is the 32 LSBs of the counter. When the counter is 1 bit wide the counter operates as a 1 bit saturating counter; it is set by VCAP when a rule is matched by a key.
     pub fn cnt_dat(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_cnt_dat(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -69,17 +69,19 @@ impl VCAP_CNT_DAT {    ///
 /// Entry data cache
 #[derive(From, Into)]
 pub struct VCAP_ENTRY_DAT(u32);
-impl VCAP_ENTRY_DAT {    ///
+impl VCAP_ENTRY_DAT {
     /// The cache register that holds entry data. The register is replicated; index 0 is the 32 LSBs of the entry-data. Together with VCAP_MASK_DAT.MASK_DAT this field defines match parameters for TCAM entries. Version 2 VCAPs allows programming of never-match, this is needed when disabling entries. Version 1 VCAPs converts match-off to match-any when reading/writing entries.
+
     ///
+
     /// Match-0: Entry=0, Mask=0 Match-1: Entry=1, Mask=0 Match-any (don't care): Entry=0, Mask=1 Match-off (never-match): Entry=1, Mask=1
     pub fn entry_dat(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_entry_dat(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -89,15 +91,15 @@ impl VCAP_ENTRY_DAT {    ///
 /// Entry mask cache
 #[derive(From, Into)]
 pub struct VCAP_MASK_DAT(u32);
-impl VCAP_MASK_DAT {    ///
+impl VCAP_MASK_DAT {
     /// The cache register that holds entry mask. The register is replicated; index 0 is the 32 LSBs of the entry-mask. See VCAP_MASK_DAT.MASK_DAT for encoding information.
     pub fn mask_dat(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_mask_dat(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -107,21 +109,25 @@ impl VCAP_MASK_DAT {    ///
 /// Configuration for move/initialization
 #[derive(From, Into)]
 pub struct VCAP_MV_CFG(u32);
-impl VCAP_MV_CFG {    ///
+impl VCAP_MV_CFG {
     /// Specifies the distance during move operations. I.e. if this field is set to 4 for a move-down operation, then source address n is moved to destination address n+5.
+
     ///
+
     /// 0: Distance is one position 1: Distance is two positions n: Distance is n+1 positions
     pub fn mv_num_pos(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_mv_num_pos(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
-    }    ///
+    }
     /// Specifies the number of addresses to move/initialize during	move/init operations.
+
     ///
+
     /// 0: Address VCAP_UPDATE_CTRL.UPDATE_ADDR is moved/initialized n: Addresses VCAP_UPDATE_CTRL.UPDATE_ADDR through VCAP_UPDATE_CTRL.UPDATE_ADDR+n are moved/initialized
     pub fn mv_size(&self) -> u32 {
         (self.0 & 0xffff) >> 0

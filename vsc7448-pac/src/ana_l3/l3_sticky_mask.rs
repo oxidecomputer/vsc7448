@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// ARP and L3MC table related diagnostic registers.
 #[derive(From, Into)]
 pub struct L3_ARP_IPMC_STICKY(u32);
-impl L3_ARP_IPMC_STICKY {    ///
+impl L3_ARP_IPMC_STICKY {
     /// Set if the IPv4/IPv6 DIP or (DIP,SIP) lookup failed due to - No match in LPM table - Unsupported action type in LPM table - ARP table lookup returns an invalid entry.
     pub fn entry_not_found_sticky(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -45,7 +45,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if IPv4 SIP RPF check results in a frame not being L3 forwarded. Related parameters: ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_SIP_RPF_MODE
     pub fn ip4_sip_rpf_filter_sticky(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -55,7 +55,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if IPv6 SIP RPF check results in a frame not being L3 forwarded. Related parameters: ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_SIP_RPF_MODE
     pub fn ip6_sip_rpf_filter_sticky(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
@@ -65,7 +65,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if a frame has exceeded IP4_MAX_LEN/IP6_MAX_LEN for an egress router leg. Ref. ANA_L3:VMID:MAX_LEN.IP4_MAX_LEN ANA_L3:VMID:MAX_LEN.IP6_MAX_LEN
     pub fn ip_max_len_exceeded_sticky(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -75,7 +75,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
-    }    ///
+    }
     /// Set when L2 forwarding of IPv4 multicast frame has completed.
     pub fn l2_mc_fwd_sticky(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -85,7 +85,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    ///
+    }
     /// Set when IP multicast L3 forwarding has been completed for a frame.
     pub fn l3_mc_fwd_sticky(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -95,7 +95,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if an IP MC frame copy from VD0 does not get L3 forwarded (i.e. gets dropped).
     pub fn mc_looped_cp_sticky(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -105,7 +105,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if an IP MC frame has failed RPF check. Related parameters: ANA_L3:L3MC:L3MC_CTRL.RPF_CHK_ENA
     pub fn mc_rpf_filter_sticky(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -115,7 +115,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if neither L2 nor L3 forwarding is performed for an IP multicast frame.
     pub fn no_mc_fwd_sticky(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -125,7 +125,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if IPv4/IPv6 multicast forwarding fails because no there is no router leg  in ANA_L3:L3MC:EVMID_MASK_CFG.EVMID_MASK to forward to.
     pub fn no_mc_vmid_avail_sticky(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -135,7 +135,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if an ingress router leg match has been found for an IP multicast frame with header errors. Refer to ANA_L3:COMMON:ROUTING_CFG.CPU_RLEG_IP_HDR_FAIL_REDIR_ENA for list of covered errors.
     pub fn rleg_mc_hdr_err_redir_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -145,7 +145,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set if an ingress router leg match has been found for an IP multicast frame.
     pub fn rleg_mc_hit_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -155,7 +155,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Set if ingress router leg match has been found for an IPv4/IPv6 multicast frame with options/hop-by-hop options. Such frames may optionally be redirected to CPU, ref. ANA_L3:COMMON:ROUTING_CFG.CPU_IP4_OPTIONS_REDIR_ENA ANA_L3:COMMON:ROUTING_CFG.CPU_IP6_HOPBYHOP_REDIR_ENA A similar sticky bit is available for IP unicast frames: RLEG_UC_IP_OPT_REDIR_STICKY
     pub fn rleg_mc_ip_opt_redir_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -165,7 +165,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Set if ingress router leg match has been found for an IP multicast frame with a TTL less than 2.
     pub fn rleg_mc_ttl_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -175,7 +175,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if ingress router leg match has been found for a non-IP frame. Such frames are redirected to ANA_L3:COMMON:CPU_QU_CFG.CPU_RLEG_QU
     pub fn rleg_nonip_uc_redir_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -185,7 +185,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Set if an ingress router leg match has been found for an IP unicast frame with header errors. Refer to ANA_L3:COMMON:ROUTING_CFG.CPU_RLEG_IP_HDR_FAIL_REDIR_ENA for list of covered errors.
     pub fn rleg_uc_hdr_err_redir_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -195,7 +195,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set if an ingress router leg match has been found for an IP unicast frame.
     pub fn rleg_uc_hit_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -205,7 +205,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Set if ingress router leg match has been found for an IPv4/IPv6 unicast frame with options/hop-by-hop options. Such frames may optionally be redirected to CPU, ref. ANA_L3:COMMON:ROUTING_CFG.CPU_IP4_OPTIONS_REDIR_ENA ANA_L3:COMMON:ROUTING_CFG.CPU_IP6_HOPBYHOP_REDIR_ENA A similar sticky bit is available for IP multicast frames: RLEG_MC_IP_OPT_REDIR_STICKY
     pub fn rleg_uc_ip_opt_redir_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -215,7 +215,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Set if security lookup fails for DIP, i.e. mismatch for (DMAC,DIP) / (VMID,DIP). Related parameters: ANA_L3:COMMON:DIP_SECURE_ENA.DIP_CMP_ENA
     pub fn secur_dip_fail_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -225,7 +225,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Set for successful IPv4 DIP security lookup, i.e. matching for (DMAC,DIP) and/or (VMID,DIP). Related parameters: ANA_L3:COMMON:DIP_SECURE_ENA.DIP_CMP_ENA
     pub fn secur_ip4_dip_match_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -235,7 +235,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Set for successful IPv4 SIP security lookup, i.e. matching for (DMAC,SIP) and/or (VMID,SIP). Related parameters: ANA_L3:COMMON:SIP_SECURE_ENA.SIP_CMP_ENA
     pub fn secur_ip4_sip_match_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -245,7 +245,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Set for successful IPv6 DIP security lookup, i.e. matching for (DMAC,DIP) and/or (VMID,DIP). Related parameters: ANA_L3:COMMON:DIP_SECURE_ENA.DIP_CMP_ENA
     pub fn secur_ip6_dip_match_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -255,7 +255,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Set for successful IPv6 SIP security lookup, i.e. matching for (DMAC,SIP) and/or (VMID,SIP). Related parameters: ANA_L3:COMMON:SIP_SECURE_ENA.SIP_CMP_ENA
     pub fn secur_ip6_sip_match_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -265,7 +265,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Set if security lookup fails for SIP, i.e. mismatch for (DMAC,DIP) / (VMID,DIP). Related parameters: ANA_L3:COMMON:SIP_SECURE_ENA.SIP_CMP_ENA
     pub fn secur_sip_fail_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -275,7 +275,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Set if IP unicast routing lookup results in a valid ARP entry allowing the frame to be routed.
     pub fn uc_entry_found_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -285,7 +285,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if a frame has been redirected to CPU due to ICMP Redirect check. Related parameters: ANA_L3:VMID.RLEG_CTRL.RLEG_IP4_ICMP_REDIR_ENA ANA_L3:VMID.RLEG_CTRL.RLEG_IP6_ICMP_REDIR_ENA
     pub fn uc_icmp_redir_sticky(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -295,7 +295,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    ///
+    }
     /// Set in case of an IP unicast frame being filtered due to TTL. I.e. a frame with TTL<2 which hits a valid ARP table entry with non-zero MAC address.
     pub fn uc_ttl_filtering_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -305,7 +305,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if a frame has been redirected to CPU due to a zero DMAC address in the ARP entry.
     pub fn uc_zero_dmac_found_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -315,7 +315,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// DIP or (DIP,SIP) LPM lookup has resulted in match with unsupported action type.
     pub fn wrong_dip_lpm_action_type_sticky(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
@@ -325,7 +325,7 @@ impl L3_ARP_IPMC_STICKY {    ///
         assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
-    }    ///
+    }
     /// SIP LPM lookup has resulted in match with unsupported action type.
     pub fn wrong_sip_lpm_action_type_sticky(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
@@ -345,7 +345,7 @@ impl L3_ARP_IPMC_STICKY {    ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
 #[derive(From, Into)]
 pub struct RLEG_STICKY_MASK(u32);
-impl RLEG_STICKY_MASK {    ///
+impl RLEG_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
     pub fn rleg_mc_hdr_err_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -355,7 +355,7 @@ impl RLEG_STICKY_MASK {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn rleg_mc_hit_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -365,7 +365,7 @@ impl RLEG_STICKY_MASK {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn rleg_mc_ip_opt_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -375,7 +375,7 @@ impl RLEG_STICKY_MASK {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn rleg_mc_ttl_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -385,7 +385,7 @@ impl RLEG_STICKY_MASK {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn rleg_nonip_uc_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -395,7 +395,7 @@ impl RLEG_STICKY_MASK {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn rleg_uc_hdr_err_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -405,7 +405,7 @@ impl RLEG_STICKY_MASK {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn rleg_uc_hit_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -415,7 +415,7 @@ impl RLEG_STICKY_MASK {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn rleg_uc_ip_opt_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -435,7 +435,7 @@ impl RLEG_STICKY_MASK {    ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
 #[derive(From, Into)]
 pub struct ROUT_STICKY_MASK(u32);
-impl ROUT_STICKY_MASK {    ///
+impl ROUT_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
     pub fn entry_not_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -445,7 +445,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn ip4_sip_rpf_filter_sticky_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -455,7 +455,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn ip6_sip_rpf_filter_sticky_mask(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -465,7 +465,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn ip_max_len_exceeded_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -475,7 +475,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn l2_mc_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -485,7 +485,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn l3_mc_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -495,7 +495,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn lpm_ip4mc_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -505,7 +505,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn lpm_ip4uc_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -515,7 +515,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn lpm_ip6mc_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -525,7 +525,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn lpm_ip6uc_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -535,7 +535,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn mc_looped_cp_sticky_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -545,7 +545,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn mc_rpf_filter_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -555,7 +555,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn no_mc_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -565,7 +565,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn no_mc_vmid_avail_sticky_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -575,7 +575,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn uc_entry_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -585,7 +585,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn uc_icmp_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -595,7 +595,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn uc_ttl_filtering_sticky_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -605,7 +605,7 @@ impl ROUT_STICKY_MASK {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn uc_zero_dmac_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -625,7 +625,7 @@ impl ROUT_STICKY_MASK {    ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
 #[derive(From, Into)]
 pub struct SECUR_STICKY_MASK(u32);
-impl SECUR_STICKY_MASK {    ///
+impl SECUR_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
     pub fn secur_dip_fail_sticky_mask(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -635,7 +635,7 @@ impl SECUR_STICKY_MASK {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn secur_ip4_dip_match_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -645,7 +645,7 @@ impl SECUR_STICKY_MASK {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn secur_ip4_lpm_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -655,7 +655,7 @@ impl SECUR_STICKY_MASK {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn secur_ip4_sip_match_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -665,7 +665,7 @@ impl SECUR_STICKY_MASK {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn secur_ip6_dip_match_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -675,7 +675,7 @@ impl SECUR_STICKY_MASK {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn secur_ip6_lpm_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -685,7 +685,7 @@ impl SECUR_STICKY_MASK {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn secur_ip6_sip_match_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -695,7 +695,7 @@ impl SECUR_STICKY_MASK {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn secur_sip_fail_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -715,7 +715,7 @@ impl SECUR_STICKY_MASK {    ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
 #[derive(From, Into)]
 pub struct VLAN_MSTP_STICKY_MASK(u32);
-impl VLAN_MSTP_STICKY_MASK {    ///
+impl VLAN_MSTP_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
     pub fn mstp_discard_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -725,7 +725,7 @@ impl VLAN_MSTP_STICKY_MASK {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn mstp_fwd_allowed_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -735,7 +735,7 @@ impl VLAN_MSTP_STICKY_MASK {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn mstp_lrn_allowed_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -745,7 +745,7 @@ impl VLAN_MSTP_STICKY_MASK {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn mstp_lrn_deny_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -755,7 +755,7 @@ impl VLAN_MSTP_STICKY_MASK {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn port_fwd_deny_sticky_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -765,7 +765,7 @@ impl VLAN_MSTP_STICKY_MASK {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn port_lrn_deny_sticky_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -775,7 +775,7 @@ impl VLAN_MSTP_STICKY_MASK {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn vlan_igr_filter_sticky_mask(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -785,7 +785,7 @@ impl VLAN_MSTP_STICKY_MASK {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn vlan_lookup_invld_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -795,7 +795,7 @@ impl VLAN_MSTP_STICKY_MASK {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable counting of sticky event per concurrent counter.
     pub fn vlan_lrn_deny_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4

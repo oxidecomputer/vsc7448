@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Specifies BUM policer index.
 #[derive(From, Into)]
 pub struct BUM_CFG(u32);
-impl BUM_CFG {    ///
+impl BUM_CFG {
     /// Broadcast, Unknown and Multicast traffic leaky bucket index This index can be overruled by index from ISDX table if ANA_L2:ISDX:MISC_CFG.BUM_SLB_ENA is set. Related parameters: ANA_AC_POL:BUM_SLB
     pub fn bum_slb_idx(&self) -> u32 {
         (self.0 & 0x3ff) >> 0
@@ -55,7 +55,7 @@ impl BUM_CFG {    ///
 /// Control value for Table UPdate Engine (TUPE). See ANA_L3:TUPE.
 #[derive(From, Into)]
 pub struct TUPE_CTRL(u32);
-impl TUPE_CTRL {    ///
+impl TUPE_CTRL {
     /// Control value for Table UPdate Engine (TUPE). Note that unused bits in VLAN_PORT_MASK may also be used to control which VLAN table entries TUPE shall update. See ANA_L3:TUPE.
     pub fn tupe_ctrl(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -73,7 +73,7 @@ impl TUPE_CTRL {    ///
 /// TUPE parameter controlling which VLAN table entries to update
 #[derive(From, Into)]
 pub struct TUPE_PORT_MASK_B1(u32);
-impl TUPE_PORT_MASK_B1 {    ///
+impl TUPE_PORT_MASK_B1 {
     /// See TUPE_PORT_MASK_B.
     pub fn tupe_port_mask_b1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0
@@ -93,7 +93,7 @@ impl TUPE_PORT_MASK_B1 {    ///
 /// Various configuration of VLAN handles
 #[derive(From, Into)]
 pub struct VLAN_CFG(u32);
-impl VLAN_CFG {    ///
+impl VLAN_CFG {
     /// FID to be used for learning and forwarding.
     pub fn vlan_fid(&self) -> u32 {
         (self.0 & 0x1fff00) >> 8
@@ -103,7 +103,7 @@ impl VLAN_CFG {    ///
         assert!(value <= 0x1fff00);
         self.0 &= !0x1fff00;
         self.0 |= value;
-    }    ///
+    }
     /// Disable flooding of frames with unknown DMAC on a per VLAN basis. Note that when VLAN_FLOOD_DIS=1, then frames with broadcast or multicast DMAC are only forwarded if installed in MAC table.
     pub fn vlan_flood_dis(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -113,7 +113,7 @@ impl VLAN_CFG {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Enable VLAN ingress filtering per VLAN. If a enabled, frames received on a port, which is not a member of the classified VLAN, are discarded. VLAN ingress filtering can also be enabled per ingress port. VLAN ingress filtering is performed if either enabled for ingress port or for VLAN. Related parameters: ANA_L3:COMMON:VLAN_FILTER_CTRL ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.VLAN_IGR_FILTER_STICKY
     pub fn vlan_igr_filter_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -123,7 +123,7 @@ impl VLAN_CFG {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Disable learning of SMAC of frames received on this VLAN. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.VLAN_LRN_DENY_STICKY
     pub fn vlan_lrn_dis(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -133,7 +133,7 @@ impl VLAN_CFG {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// VLAN mirror enable flag. If this field is set, frames classified to this ingress VLAN are mirrored.
     pub fn vlan_mirror_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -143,7 +143,7 @@ impl VLAN_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Pointer to STP instance associated with VLAN. The value must not exceed the size of the MSTP table, ref. MSTP.
     pub fn vlan_mstp_ptr(&self) -> u32 {
         (self.0 & 0x7f000000) >> 24
@@ -153,7 +153,7 @@ impl VLAN_CFG {    ///
         assert!(value <= 0x7f000000);
         self.0 &= !0x7f000000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable / disable this VLAN as a Private VLAN (PVLAN). Ports within a PVLAN are categorized into three different port types: Promiscuous ports: A promiscuous port can communicate with all ports in the PVLAN, including the isolated and community ports. Isolated ports: An isolated port has complete Layer 2 separation from the other ports within the same PVLAN, but not from the promiscuous ports. PVLANs block all traffic to isolated ports except traffic from promiscuous ports. Traffic from isolated port is forwarded only to promiscuous ports. Community ports: Community ports communicate among themselves and with the PVLAN's promiscuous ports. Community ports cannot communicate with isolated ports. Related parameters: ANA_L3:COMMON:VLAN_ISOLATED_CFG ANA_L3:COMMON:VLAN_COMMUNITY_CFG
     pub fn vlan_private_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -163,7 +163,7 @@ impl VLAN_CFG {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable router leg in VLAN. If enabled, the ID of the router leg is configured in VMID_CFG.VMID.
     pub fn vlan_rleg_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -173,9 +173,11 @@ impl VLAN_CFG {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable secure forwarding on a per VLAN basis. When secure forwarding is enabled, only frames with known SMAC are forwarded.
+
     ///
+
     /// 0: Forwarding is allowed regardless of SMAC being known or unknown. 1: Forwarding is only allowed for frames with known SMAC.
     pub fn vlan_sec_fwd_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -195,17 +197,19 @@ impl VLAN_CFG {    ///
 /// Configuration of VLAN port mask.
 #[derive(From, Into)]
 pub struct VLAN_MASK_CFG(u32);
-impl VLAN_MASK_CFG {    ///
+impl VLAN_MASK_CFG {
     /// Specify mask of ports belonging to VLAN. Note: Initialization value for addresses 0,1 and 4095 is '1...1' Initialization value for all other addresses is 0 Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.VLAN_LOOKUP_INVLD_STICKY
+
     ///
+
     /// 0: Port does not belong to the VLAN 1: Port belongs to the VLAN
     pub fn vlan_port_mask(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_vlan_port_mask(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -215,7 +219,7 @@ impl VLAN_MASK_CFG {    ///
 /// Router Leg Identification / Mapped VLAN ID
 #[derive(From, Into)]
 pub struct VMID_CFG(u32);
-impl VMID_CFG {    ///
+impl VMID_CFG {
     /// Routing: VMID, identifying VLAN's router leg. Security check: "Mapped VLAN ID".
     pub fn vmid(&self) -> u32 {
         (self.0 & 0x7f) >> 0

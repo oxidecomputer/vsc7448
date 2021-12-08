@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Event mask for counters.
 #[derive(From, Into)]
 pub struct STAT_GLOBAL_EVENT_MASK(u32);
-impl STAT_GLOBAL_EVENT_MASK {    ///
+impl STAT_GLOBAL_EVENT_MASK {
     /// This value stores the event mask which indicates the counter of all flows to count certain events. If set to '1' the respective event is not filtered and can trigger the counter. If set to '0' the respective event is filtered and the counter will treat the frame as if no event has occurred. Which type of frame is counted is defined in: STAT_CFG, CFG_CNT_FRM_TYPE. The following events apply to port stat: bit0: Count events allowed by *_sticky_mask:0 bit1: Count events allowed by *_sticky_mask:1 ... bit3: Count events allowed by *_sticky_mask:n where n is number of counter event masks bit4: Count port policer:0 drop events bit4+1: Count port policer:1 drop events ... bit4+m: Count port policer:0 pass/active events bit4+m+1: Count port policer:1 pass/active events ... where m is number of per port policers bit4+2*m: Count storm policer drop events bit4+2*m+1: Count policer drop events bit4+2*m+3: Count lbk frame.
+
     ///
+
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
     pub fn global_event_mask(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -53,7 +55,7 @@ impl STAT_GLOBAL_EVENT_MASK {    ///
 /// Sticky diagnostic counter masks
 #[derive(From, Into)]
 pub struct STICKY_MASK(u32);
-impl STICKY_MASK {    ///
+impl STICKY_MASK {
     /// Mask to enable counting of sticky event.
     pub fn frame_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -63,7 +65,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn glag_contrib_sticky_mask(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -73,7 +75,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn ip4_mc_ctrl_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -83,9 +85,11 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
+
     ///
+
     /// Mask to enable counting of sticky event.
     pub fn ip4_mc_data_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -95,7 +99,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn ip6_mc_ctrl_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -105,7 +109,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn ip6_mc_data_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -115,7 +119,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn l2_mc_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -125,7 +129,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn no_l2_l3_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -135,7 +139,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn pgid_cpu_mask_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -145,7 +149,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn probe_sticky_mask(&self) -> u32 {
         (self.0 & 0x700000) >> 20
@@ -155,7 +159,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x700000);
         self.0 &= !0x700000;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn sflow_cand_sticky_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -165,7 +169,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn sflow_dst_sample_sticky_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -175,7 +179,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn sflow_sample_sticky_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -185,7 +189,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn sflow_src_sample_sticky_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -195,7 +199,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn src_contrib_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -205,7 +209,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn uc_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -215,7 +219,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn vlan_contrib_sticky_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -225,7 +229,7 @@ impl STICKY_MASK {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Mask to enable counting of sticky event.
     pub fn zero_dst_sticky_mask(&self) -> u32 {
         (self.0 & 0x20000) >> 17

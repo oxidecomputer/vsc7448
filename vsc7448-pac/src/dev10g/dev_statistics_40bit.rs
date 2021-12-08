@@ -33,17 +33,19 @@ use derive_more::{From, Into};
 /// Rx Bad Byte Counter
 #[derive(From, Into)]
 pub struct RX_BAD_BYTES_CNT(u32);
-impl RX_BAD_BYTES_CNT {    ///
+impl RX_BAD_BYTES_CNT {
     /// The number of received bytes in bad frames.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_bad_bytes_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_bad_bytes_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -55,9 +57,11 @@ impl RX_BAD_BYTES_CNT {    ///
 /// The number of received bytes in bad frames -  MSBs only.
 #[derive(From, Into)]
 pub struct RX_BAD_BYTES_MSB_CNT(u32);
-impl RX_BAD_BYTES_MSB_CNT {    ///
+impl RX_BAD_BYTES_MSB_CNT {
     /// The number of received bytes in bad frames - MSBs only.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_bad_bytes_msb_cnt(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -75,17 +79,19 @@ impl RX_BAD_BYTES_MSB_CNT {    ///
 /// Rx Byte Counter
 #[derive(From, Into)]
 pub struct RX_IN_BYTES_CNT(u32);
-impl RX_IN_BYTES_CNT {    ///
+impl RX_IN_BYTES_CNT {
     /// The number of bytes received (good, bad, and framing).
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_in_bytes_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_in_bytes_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -97,9 +103,11 @@ impl RX_IN_BYTES_CNT {    ///
 /// The number of bytes received (good, bad. Framing). MSB s only)
 #[derive(From, Into)]
 pub struct RX_IN_BYTES_MSB_CNT(u32);
-impl RX_IN_BYTES_MSB_CNT {    ///
+impl RX_IN_BYTES_MSB_CNT {
     /// The number of bytes received (good, bad, and framing) - MSBs only
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_in_bytes_msb_cnt(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -117,17 +125,19 @@ impl RX_IN_BYTES_MSB_CNT {    ///
 /// Rx OK Byte Counter
 #[derive(From, Into)]
 pub struct RX_OK_BYTES_CNT(u32);
-impl RX_OK_BYTES_CNT {    ///
+impl RX_OK_BYTES_CNT {
     /// The number of received bytes in good frames.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_ok_bytes_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_ok_bytes_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -139,9 +149,11 @@ impl RX_OK_BYTES_CNT {    ///
 /// The number of received bytes in good frames - MSBs only
 #[derive(From, Into)]
 pub struct RX_OK_BYTES_MSB_CNT(u32);
-impl RX_OK_BYTES_MSB_CNT {    ///
+impl RX_OK_BYTES_MSB_CNT {
     /// The numberof received bytes in good frames - MSBs only.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_ok_bytes_msb_cnt(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -159,17 +171,19 @@ impl RX_OK_BYTES_MSB_CNT {    ///
 /// Rx XGMII Protocol Error Counter
 #[derive(From, Into)]
 pub struct RX_XGMII_PROT_ERR_CNT(u32);
-impl RX_XGMII_PROT_ERR_CNT {    ///
+impl RX_XGMII_PROT_ERR_CNT {
     /// Number of XGMII protocol errors detected.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_xgmii_prot_err_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_xgmii_prot_err_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -179,17 +193,19 @@ impl RX_XGMII_PROT_ERR_CNT {    ///
 /// Tx OK Byte Counter
 #[derive(From, Into)]
 pub struct TX_OK_BYTES_CNT(u32);
-impl TX_OK_BYTES_CNT {    ///
+impl TX_OK_BYTES_CNT {
     /// The number of bytes transmitted successfully.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_ok_bytes_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_ok_bytes_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -199,17 +215,19 @@ impl TX_OK_BYTES_CNT {    ///
 /// Tx Byte Counter
 #[derive(From, Into)]
 pub struct TX_OUT_BYTES_CNT(u32);
-impl TX_OUT_BYTES_CNT {    ///
+impl TX_OUT_BYTES_CNT {
     /// The number of bytes transmitted (good, bad and framing).
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_out_bytes_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_out_bytes_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -221,9 +239,11 @@ impl TX_OUT_BYTES_CNT {    ///
 /// The number of bytes transmitted (good, bad, and framing) - MSBs only
 #[derive(From, Into)]
 pub struct TX_OUT_BYTES_MSB_CNT(u32);
-impl TX_OUT_BYTES_MSB_CNT {    ///
+impl TX_OUT_BYTES_MSB_CNT {
     /// The number of bytes transmitted (good, bad, framing) - MSBs only.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_out_bytes_msb_cnt(&self) -> u32 {
         (self.0 & 0xff) >> 0

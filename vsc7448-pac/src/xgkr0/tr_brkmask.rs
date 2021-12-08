@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training break_mask lsw
 #[derive(From, Into)]
 pub struct BRKMASK_LSW(u32);
-impl BRKMASK_LSW {    ///
+impl BRKMASK_LSW {
     /// Select lptrain state machine breakpoints. Each bit correpsonds to a state (see design doc)
     pub fn brkmask_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl BRKMASK_LSW {    ///
 /// VS training LUT selection
 #[derive(From, Into)]
 pub struct TR_LUTSEL(u32);
-impl TR_LUTSEL {    ///
+impl TR_LUTSEL {
     /// Clears LUT table
     pub fn lut_clr(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -61,7 +61,7 @@ impl TR_LUTSEL {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects LUT table entry (0 to 63).
     pub fn lut_row(&self) -> u32 {
         (self.0 & 0x1f8) >> 3
@@ -71,9 +71,11 @@ impl TR_LUTSEL {    ///
         assert!(value <= 0x1f8);
         self.0 &= !0x1f8;
         self.0 |= value;
-    }    ///
+    }
     /// Selects LUT for lut_o
+
     ///
+
     /// 0: Gain 1: DFE_1 2: DFE_2 3: DFE_avg_1 4: DFE_avg_2 5: BER_1 6: BER_2 7: BER_3
     pub fn lut_sel(&self) -> u32 {
         (self.0 & 0x7) >> 0

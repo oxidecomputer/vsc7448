@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Status register 1 for SD10G65 RX RCPLL.
 #[derive(From, Into)]
 pub struct SD10G65_RX_RCPLL_STAT1(u32);
-impl SD10G65_RX_RCPLL_STAT1 {    ///
+impl SD10G65_RX_RCPLL_STAT1 {
     /// Actual value of step up counter
     pub fn pllf_fsm_cnt_stat(&self) -> u32 {
         (self.0 & 0x7ff0) >> 4
@@ -45,9 +45,11 @@ impl SD10G65_RX_RCPLL_STAT1 {    ///
         assert!(value <= 0x7ff0);
         self.0 &= !0x7ff0;
         self.0 |= value;
-    }    ///
+    }
     /// Actual value of the FSM stage,
+
     ///
+
     /// 0: reset state 1: init state after reset 3: ramp up state checks for the counters and ramps up the frequency 6: additional wait state for internal BIAS settling 8: additional wait state 1 9: additional wait state 2 10; additional wait state 3 11: additional wait state 4 12: 1st locking state enables dynamic locking 13: final locking state checks for out of lock and overrun condition 14: error state low frequency 15: error state high frequency
     pub fn pllf_fsm_stat(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -57,15 +59,15 @@ impl SD10G65_RX_RCPLL_STAT1 {    ///
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
-    }    ///
+    }
     /// Internal FSM values selected by pllf_ref_cnt_sel
     pub fn pllf_ref_cnt_stat(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_pllf_ref_cnt_stat(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }
 }
@@ -77,7 +79,7 @@ impl SD10G65_RX_RCPLL_STAT1 {    ///
 /// Register for CDR loopfilter control for SD10G65 RX SYNTH.
 #[derive(From, Into)]
 pub struct SD10G65_RX_SYNTH_CDRLF(u32);
-impl SD10G65_RX_SYNTH_CDRLF {    ///
+impl SD10G65_RX_SYNTH_CDRLF {
     /// frequency select of integrator 1
     pub fn synth_integ1_fsel(&self) -> u32 {
         (self.0 & 0x7c0) >> 6
@@ -87,7 +89,7 @@ impl SD10G65_RX_SYNTH_CDRLF {    ///
         assert!(value <= 0x7c0);
         self.0 &= !0x7c0;
         self.0 |= value;
-    }    ///
+    }
     /// limit of integrator 1
     pub fn synth_integ1_lim(&self) -> u32 {
         (self.0 & 0xf800) >> 11
@@ -97,7 +99,7 @@ impl SD10G65_RX_SYNTH_CDRLF {    ///
         assert!(value <= 0xf800);
         self.0 &= !0xf800;
         self.0 |= value;
-    }    ///
+    }
     /// max value of integrator 1 during init phase
     pub fn synth_integ1_max0(&self) -> u32 {
         (self.0 & 0x1f0000) >> 16
@@ -107,7 +109,7 @@ impl SD10G65_RX_SYNTH_CDRLF {    ///
         assert!(value <= 0x1f0000);
         self.0 &= !0x1f0000;
         self.0 |= value;
-    }    ///
+    }
     /// max value of integrator 1 during normal operation
     pub fn synth_integ1_max1(&self) -> u32 {
         (self.0 & 0x3e00000) >> 21
@@ -117,7 +119,7 @@ impl SD10G65_RX_SYNTH_CDRLF {    ///
         assert!(value <= 0x3e00000);
         self.0 &= !0x3e00000;
         self.0 |= value;
-    }    ///
+    }
     /// frequency select of integrator 2
     pub fn synth_integ2_fsel(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -137,7 +139,7 @@ impl SD10G65_RX_SYNTH_CDRLF {    ///
 /// Configuration register 0 for SD10G65 RX SYNTH.
 #[derive(From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG0(u32);
-impl SD10G65_RX_SYNTH_CFG0 {    ///
+impl SD10G65_RX_SYNTH_CFG0 {
     /// enables CML2CMOS converter (low speed part of synthesizer)
     pub fn synth_conv_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -147,7 +149,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// synthesizer enable
     pub fn synth_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -157,9 +159,11 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// selects feedback divider setting.
+
     ///
+
     /// 0: divide by 1 1: divide by 2 2: divide by 4 3: reserved
     pub fn synth_fbdiv_sel(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -169,7 +173,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
-    }    ///
+    }
     /// inverts direction of sync out part
     pub fn synth_fb_dir(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -179,7 +183,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// selects step width for sync output
     pub fn synth_fb_step(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -189,7 +193,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0xc000);
         self.0 &= !0xc000;
         self.0 |= value;
-    }    ///
+    }
     /// enables half rate mode
     pub fn synth_hrate_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -199,7 +203,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// inverts direction of integral1 part
     pub fn synth_i1_dir(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -209,7 +213,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// selects step width for integrator1
     pub fn synth_i1_step(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -219,7 +223,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// inverts direction of integral2 part
     pub fn synth_i2_dir(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -229,7 +233,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// enable contribution of integral2 part
     pub fn synth_i2_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -239,7 +243,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// selects step width for integrator2
     pub fn synth_i2_step(&self) -> u32 {
         (self.0 & 0x1800) >> 11
@@ -249,9 +253,11 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x1800);
         self.0 &= !0x1800;
         self.0 |= value;
-    }    ///
+    }
     /// Enable for different offset compensation stages
+
     ///
+
     /// bit 0: Synthesizer main rotator bit 1: Feedback buffer bit 2: CDR rotator bit 3: VCO buffer
     pub fn synth_off_comp_ena(&self) -> u32 {
         (self.0 & 0x3c0000) >> 18
@@ -261,7 +267,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x3c0000);
         self.0 &= !0x3c0000;
         self.0 |= value;
-    }    ///
+    }
     /// inverts direction of propotional part
     pub fn synth_p_dir(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -271,7 +277,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// selects step width for propotional
     pub fn synth_p_step(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -281,9 +287,11 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// reg. pool for late changes/fixes. Used bits: Bit3-1: Synthesizer BIAS adjust in steps of ~3%.
+
     ///
+
     /// 0: 100% 7: 121%
     pub fn synth_spare_pool(&self) -> u32 {
         (self.0 & 0x3fc00000) >> 22
@@ -293,9 +301,11 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
         assert!(value <= 0x3fc00000);
         self.0 &= !0x3fc00000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects circuit speed.
+
     ///
+
     /// 0: for settings with synth_fbdiv_sel = 2 1: for setting with synth_fbdiv_sel less than 2
     pub fn synth_speed_sel(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -315,7 +325,7 @@ impl SD10G65_RX_SYNTH_CFG0 {    ///
 /// Configuration register 1 for SD10G65 RX SYNTH.
 #[derive(From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG1(u32);
-impl SD10G65_RX_SYNTH_CFG1 {    ///
+impl SD10G65_RX_SYNTH_CFG1 {
     /// frequency m setting bits 35:32
     pub fn synth_freqm_1(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -325,7 +335,7 @@ impl SD10G65_RX_SYNTH_CFG1 {    ///
         assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
-    }    ///
+    }
     /// frequency n setting bits 35:32
     pub fn synth_freqn_1(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -335,7 +345,7 @@ impl SD10G65_RX_SYNTH_CFG1 {    ///
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
-    }    ///
+    }
     /// frequency multiplier
     pub fn synth_freq_mult(&self) -> u32 {
         (self.0 & 0x3fff00) >> 8
@@ -345,7 +355,7 @@ impl SD10G65_RX_SYNTH_CFG1 {    ///
         assert!(value <= 0x3fff00);
         self.0 &= !0x3fff00;
         self.0 |= value;
-    }    ///
+    }
     /// frequency multiplier decoder bypass
     pub fn synth_freq_mult_byp(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -355,7 +365,7 @@ impl SD10G65_RX_SYNTH_CFG1 {    ///
         assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
-    }    ///
+    }
     /// frequency multiplier MSBits in bypass mode
     pub fn synth_freq_mult_hi(&self) -> u32 {
         (self.0 & 0x3c00000) >> 22
@@ -375,7 +385,7 @@ impl SD10G65_RX_SYNTH_CFG1 {    ///
 /// Configuration register 2 for SD10G65 RX SYNTH.
 #[derive(From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG2(u32);
-impl SD10G65_RX_SYNTH_CFG2 {    ///
+impl SD10G65_RX_SYNTH_CFG2 {
     /// enables clock for VScope / APC auxillary data chanels
     pub fn synth_aux_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -385,7 +395,7 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// uses cp/md selected via synth_cpmd_dig_sel instead of cp/md from sample stage
     pub fn synth_cpmd_dig_ena(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -395,7 +405,7 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    ///
+    }
     /// Cp/md dig select. Coding 0: select Bit 0/5 as cp/md (FX100 mode); 1: use cp/md from core
     pub fn synth_cpmd_dig_sel(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -405,7 +415,7 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    ///
+    }
     /// Controls the data valid behavior for the CDRLF I1 enable function: b0 = 0 => external signal controls, 1 => b1 controls
     pub fn synth_dv_ctrl_i1e(&self) -> u32 {
         (self.0 & 0xc00000) >> 22
@@ -415,7 +425,7 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
         assert!(value <= 0xc00000);
         self.0 &= !0xc00000;
         self.0 |= value;
-    }    ///
+    }
     /// Controls the data valid behavior for the CDRLF I1 max function: b0 = 0 => external signal controls, 1 => b1 controls
     pub fn synth_dv_ctrl_i1m(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -425,7 +435,7 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
         assert!(value <= 0x3000000);
         self.0 &= !0x3000000;
         self.0 |= value;
-    }    ///
+    }
     /// Controls the data valid behavior for the CDRLF I2 enable function: b0 = 0 => external signal controls, 1 => b1 controls
     pub fn synth_dv_ctrl_i2e(&self) -> u32 {
         (self.0 & 0xc000000) >> 26
@@ -435,7 +445,7 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
         assert!(value <= 0xc000000);
         self.0 &= !0xc000000;
         self.0 |= value;
-    }    ///
+    }
     /// Controls the data valid behavior for the moebdiv select function: b0 = 0 => external signal controls, 1 => b1 controls
     pub fn synth_dv_ctrl_md(&self) -> u32 {
         (self.0 & 0x300000) >> 20
@@ -445,7 +455,7 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
         assert!(value <= 0x300000);
         self.0 &= !0x300000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable ET-Serdes test mode. In this test mode the data_valid input port of SD10G65_RX switches between lock2data mode (data_valid = 0) and lock2ref mode (data_valid = 1). Do not use in mission mode.
     pub fn synth_etsd_mode_ena(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
@@ -455,7 +465,7 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
         assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
-    }    ///
+    }
     /// relationship phase center/aux
     pub fn synth_phase_aux(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -465,7 +475,7 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
-    }    ///
+    }
     /// relationship phase center/edge
     pub fn synth_phase_data(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
@@ -485,15 +495,15 @@ impl SD10G65_RX_SYNTH_CFG2 {    ///
 /// Configuration register 3 for SD10G65 RX SYNTH.
 #[derive(From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG3(u32);
-impl SD10G65_RX_SYNTH_CFG3 {    ///
+impl SD10G65_RX_SYNTH_CFG3 {
     /// frequency m setting bits 31:0
     pub fn synth_freqm_0(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_synth_freqm_0(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -505,15 +515,15 @@ impl SD10G65_RX_SYNTH_CFG3 {    ///
 /// Configuration register 4 for SD10G65 RX SYNTH.
 #[derive(From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG4(u32);
-impl SD10G65_RX_SYNTH_CFG4 {    ///
+impl SD10G65_RX_SYNTH_CFG4 {
     /// frequency n setting bits 31:0
     pub fn synth_freqn_0(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_synth_freqn_0(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -525,7 +535,7 @@ impl SD10G65_RX_SYNTH_CFG4 {    ///
 /// Register 0 for qualifier access for SD10G65 RX SYNTH.
 #[derive(From, Into)]
 pub struct SD10G65_RX_SYNTH_QUALIFIER0(u32);
-impl SD10G65_RX_SYNTH_QUALIFIER0 {    ///
+impl SD10G65_RX_SYNTH_QUALIFIER0 {
     /// Rising edge captures qualifier for readback
     pub fn synth_capture_qual(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -535,7 +545,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {    ///
         assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
-    }    ///
+    }
     /// Sticky flag to indicate saturating of Integrator1
     pub fn synth_i1_sat_det(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -545,7 +555,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {    ///
         assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
-    }    ///
+    }
     /// Clear for sticky flag "synth_i1_sat_det"
     pub fn synth_i1_sat_det_clr(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -555,7 +565,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {    ///
         assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
-    }    ///
+    }
     /// Sticky flag to indicate a wrap/saturating of Integrator2
     pub fn synth_i2_wrap_det(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -565,7 +575,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Clear for sticky flag "synth_I2_wrap_det"
     pub fn synth_i2_wrap_det_clr(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -575,7 +585,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Controls Integrator2 behavior: '0': wrapping; '1': saturating.
     pub fn synth_i2_wrap_inhibit(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -585,7 +595,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {    ///
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    ///
+    }
     /// Captured integrator 1 value
     pub fn synth_qual_i1(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -595,7 +605,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {    ///
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
-    }    ///
+    }
     /// MS Bits of captured integrator 2
     pub fn synth_qual_i2_msb(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -615,15 +625,15 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {    ///
 /// Register 1 for qualifier access for SD10G65 RX SYNTH.
 #[derive(From, Into)]
 pub struct SD10G65_RX_SYNTH_QUALIFIER1(u32);
-impl SD10G65_RX_SYNTH_QUALIFIER1 {    ///
+impl SD10G65_RX_SYNTH_QUALIFIER1 {
     /// LS Bits of captured integrator 2
     pub fn synth_qual_i2_lsb(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_synth_qual_i2_lsb(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -635,7 +645,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER1 {    ///
 /// Register 0 for sync control data for SD10G65 RX SYNTH.
 #[derive(From, Into)]
 pub struct SD10G65_RX_SYNTH_SYNC_CTRL(u32);
-impl SD10G65_RX_SYNTH_SYNC_CTRL {    ///
+impl SD10G65_RX_SYNTH_SYNC_CTRL {
     /// Sticky bit that indicates a sync control protocol error.
     pub fn synth_sc_protocol_err(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -645,7 +655,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {    ///
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    ///
+    }
     /// Clear for synth_sc_protocol_err sticky bit. Rising edge causes the clearing and a concurrent error event has higher priority.
     pub fn synth_sc_protocol_err_clr(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -655,7 +665,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {    ///
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects the synchronization period for the I2 value via sync control bus. Must be disabled (0) when sync control test generator is used. Coding in 312.5MHz clock cycles: 0: disabled, 1: 2^6, 2: 2^7, .., 15: 2^20.
     pub fn synth_sc_sync_timer_sel(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -665,7 +675,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {    ///
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
-    }    ///
+    }
     /// Selects sync control test generator period. Test generator period, i.e. number of INC resp. DEC steps, equal programmed value + 1.
     pub fn synth_sc_test_count(&self) -> u32 {
         (self.0 & 0x3ff0) >> 4
@@ -675,7 +685,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {    ///
         assert!(value <= 0x3ff0);
         self.0 &= !0x3ff0;
         self.0 |= value;
-    }    ///
+    }
     /// Enables sync control test generator. Before enabling the test generator the sync timer must be disabled (synth_sc_sync_timer_sel = 0) and the integrator 2 has to be cleared (synth_dv_ctrl_i2e = 1).
     pub fn synth_sc_test_enable(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -685,7 +695,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {    ///
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects sync control test generator mode: 0: INC, 1: DEC, 2: WOBBLE
     pub fn synth_sc_test_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -695,7 +705,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {    ///
         assert!(value <= 0xc000);
         self.0 &= !0xc000;
         self.0 |= value;
-    }    ///
+    }
     /// Triggers sync control test generator. In INC resp. DEC mode both edges act as trigger event. In WOBBLE mode a 1 enables wobbling. Disabling in WOBBEL mode lets current wobble cycle finish before stopping. I.e. the I2 values reaches its value prior wobbling again.
     pub fn synth_sc_test_trigger(&self) -> u32 {
         (self.0 & 0x10000) >> 16

@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Status register of SERDES6G DFT functions
 #[derive(From, Into)]
 pub struct SERDES6G_DFT_STATUS(u32);
-impl SERDES6G_DFT_STATUS {    ///
+impl SERDES6G_DFT_STATUS {
     /// BIST activity
+
     ///
+
     /// 0: BIST inactive 1: BIST active
     pub fn bist_active(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -47,9 +49,11 @@ impl SERDES6G_DFT_STATUS {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// BIST completion state (low-active)
+
     ///
+
     /// 0: BIST completed 1: not completed
     pub fn bist_complete_n(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -59,9 +63,11 @@ impl SERDES6G_DFT_STATUS {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// BIST result
+
     ///
+
     /// 0: No error found 1: Errors during BIST found
     pub fn bist_error(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -71,9 +77,11 @@ impl SERDES6G_DFT_STATUS {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// BIST sync result
+
     ///
+
     /// 0: Synchronization successful 1: Synchronization on BIST data failed
     pub fn bist_nosync(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -83,9 +91,11 @@ impl SERDES6G_DFT_STATUS {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// RC-PLL BIST result
+
     ///
+
     /// 0: No error found 1: Errors during BIST found
     pub fn pll_bist_failed(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -95,9 +105,11 @@ impl SERDES6G_DFT_STATUS {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// RC-PLL BIST not done flag
+
     ///
+
     /// 0: BIST done 1: BIST not started or active
     pub fn pll_bist_not_done(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -107,9 +119,11 @@ impl SERDES6G_DFT_STATUS {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// RC-PLL BIST timeout error flag
+
     ///
+
     /// 0: No timeout occured 1: Timeout occured
     pub fn pll_bist_timeout_err(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -119,9 +133,11 @@ impl SERDES6G_DFT_STATUS {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// PRBS synchronization status
+
     ///
+
     /// 0: PRBS checker not synchronized 1: PRBS checker synchronized
     pub fn prbs_sync_stat(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -141,7 +157,7 @@ impl SERDES6G_DFT_STATUS {    ///
 /// Error counter for SERDES6G PRBS
 #[derive(From, Into)]
 pub struct SERDES6G_ERR_CNT(u32);
-impl SERDES6G_ERR_CNT {    ///
+impl SERDES6G_ERR_CNT {
     /// PRBS error counter
     pub fn prbs_err_cnt(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -161,7 +177,7 @@ impl SERDES6G_ERR_CNT {    ///
 /// Configuration register for ANEG Output Buffer overwrite parameter. The values are used during Backplane Ethernet Auto-Negotiation when the output level of transmitter (OB output) have to be reduced.
 #[derive(From, Into)]
 pub struct SERDES6G_OB_ANEG_CFG(u32);
-impl SERDES6G_OB_ANEG_CFG {    ///
+impl SERDES6G_OB_ANEG_CFG {
     /// ANEG overwrite value for SERDES6G_OB_CFG1.ob_ena_cas
     pub fn an_ob_ena_cas(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -171,7 +187,7 @@ impl SERDES6G_OB_ANEG_CFG {    ///
         assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
-    }    ///
+    }
     /// ANEG overwrite value for SERDES6G_OB_CFG1.ob_lev
     pub fn an_ob_lev(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -181,7 +197,7 @@ impl SERDES6G_OB_ANEG_CFG {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// ANEG overwrite value for SERDES6G_OB_CFG.post0
     pub fn an_ob_post0(&self) -> u32 {
         (self.0 & 0x1f800000) >> 23
@@ -191,7 +207,7 @@ impl SERDES6G_OB_ANEG_CFG {    ///
         assert!(value <= 0x1f800000);
         self.0 &= !0x1f800000;
         self.0 |= value;
-    }    ///
+    }
     /// ANEG overwrite value for SERDES6G_OB_CFG.post1
     pub fn an_ob_post1(&self) -> u32 {
         (self.0 & 0x7c0000) >> 18
@@ -201,7 +217,7 @@ impl SERDES6G_OB_ANEG_CFG {    ///
         assert!(value <= 0x7c0000);
         self.0 &= !0x7c0000;
         self.0 |= value;
-    }    ///
+    }
     /// ANEG overwrite value for SERDES6G_OB_CFG.prec
     pub fn an_ob_prec(&self) -> u32 {
         (self.0 & 0x3e000) >> 13

@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training config 3
 #[derive(From, Into)]
 pub struct TR_CFG3(u32);
-impl TR_CFG3 {    ///
+impl TR_CFG3 {
     /// max	settings for local transmitter.
     pub fn cp_max(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
@@ -43,7 +43,7 @@ impl TR_CFG3 {    ///
         assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
-    }    ///
+    }
     /// min	settings for local transmitter.
     pub fn cp_min(&self) -> u32 {
         (self.0 & 0x3f) >> 0

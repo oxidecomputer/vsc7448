@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS AN arb state mach history
 #[derive(From, Into)]
 pub struct AN_HIST(u32);
-impl AN_HIST {    ///
+impl AN_HIST {
     /// AN state machine history
     pub fn an_sm_hist(&self) -> u32 {
         (self.0 & 0x7fff) >> 0

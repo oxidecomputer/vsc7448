@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Revision ID register
 #[derive(From, Into)]
 pub struct SERDES6G_REVID(u32);
-impl SERDES6G_REVID {    ///
+impl SERDES6G_REVID {
     /// DES revision
     pub fn des_rev(&self) -> u32 {
         (self.0 & 0xfc00) >> 10
@@ -45,7 +45,7 @@ impl SERDES6G_REVID {    ///
         assert!(value <= 0xfc00);
         self.0 &= !0xfc00;
         self.0 |= value;
-    }    ///
+    }
     /// IB revision
     pub fn ib_rev(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -55,7 +55,7 @@ impl SERDES6G_REVID {    ///
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
-    }    ///
+    }
     /// OB revision
     pub fn ob_rev(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
@@ -65,7 +65,7 @@ impl SERDES6G_REVID {    ///
         assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
-    }    ///
+    }
     /// RCPLL revision
     pub fn rcpll_rev(&self) -> u32 {
         (self.0 & 0x3e00000) >> 21
@@ -75,17 +75,17 @@ impl SERDES6G_REVID {    ///
         assert!(value <= 0x3e00000);
         self.0 &= !0x3e00000;
         self.0 |= value;
-    }    ///
+    }
     /// Serdes revision
     pub fn serdes_rev(&self) -> u32 {
-        (self.0 & 0x3ffffff) >> 26
+        (self.0 & 0xfc000000) >> 26
     }
     pub fn set_serdes_rev(&mut self, value: u32) {
         let value = value << 26;
-        assert!(value <= 0x3ffffff);
-        self.0 &= !0x3ffffff;
+        assert!(value <= 0xfc000000);
+        self.0 &= !0xfc000000;
         self.0 |= value;
-    }    ///
+    }
     /// SER revision
     pub fn ser_rev(&self) -> u32 {
         (self.0 & 0x1f0000) >> 16

@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training lut_read msw
 #[derive(From, Into)]
 pub struct LUT_MSW(u32);
-impl LUT_MSW {    ///
+impl LUT_MSW {
     /// Measured value of selected LUT.
     pub fn lut_msw(&self) -> u32 {
         (self.0 & 0xffff) >> 0

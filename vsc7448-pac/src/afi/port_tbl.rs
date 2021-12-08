@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Number of outstanding injections per port
 #[derive(From, Into)]
 pub struct PORT_FRM_OUT(u32);
-impl PORT_FRM_OUT {    ///
+impl PORT_FRM_OUT {
     /// Current number of injections (TTI or DTI) outstanding per port. This parameter should not be written to. If the parameter is written to and a TTI injection occurs concurrently, then the written value may get overwritten by the AFI block.
     pub fn frm_out_cnt(&self) -> u32 {
         (self.0 & 0x7ff0000) >> 16
@@ -51,7 +51,7 @@ impl PORT_FRM_OUT {    ///
 /// Outstanding TTI injections per port
 #[derive(From, Into)]
 pub struct TTI_PORT_FRM_OUT(u32);
-impl TTI_PORT_FRM_OUT {    ///
+impl TTI_PORT_FRM_OUT {
     /// See AFI:PORT_TBL:PORT_CFG.FRM_OUT_MAX.
     pub fn tti_frm_out_max(&self) -> u32 {
         (self.0 & 0x3ff) >> 0

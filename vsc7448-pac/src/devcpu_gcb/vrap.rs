@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Debug registers
 #[derive(From, Into)]
 pub struct MEMITGR_DBG(u32);
-impl MEMITGR_DBG {    ///
+impl MEMITGR_DBG {
     /// Always shows the (resynced) value of the data-field of the integrity-ring into the monitor.
     pub fn data_in(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -43,7 +43,7 @@ impl MEMITGR_DBG {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to enable detection of parity detections and ecc corrections. The monitor must be initialized before first use (after reset), this is done by making the first transtion from IDLE to LISTEN mode without enabeling detections (this field is cleared) and then setting this field once the monitor reaches the LISTEN mode.
     pub fn detect_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -53,7 +53,7 @@ impl MEMITGR_DBG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Always shows the (resynced) value of the ena-field of the integrity-ring into the monitor.
     pub fn ena_in(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -63,7 +63,7 @@ impl MEMITGR_DBG {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// When DEVCPU_GCB::MEMITGR_DBG.FORCE_ENA is set, this value is driven to ena-field of the intgrity-ring out from the monitor.
     pub fn ena_out(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -73,7 +73,7 @@ impl MEMITGR_DBG {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set to overtake ena and sync outputs (bit banging on the integrity ring) and drive these by DEVCPU_GCB::MEMITGR_DBG.ENA_OUT and DEVCPU_GCB::MEMITGR_DBG.SYNC_OUT respectively.
     pub fn force_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -83,7 +83,7 @@ impl MEMITGR_DBG {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set to force the intr-field of the intgrity-ring out from the monitor.
     pub fn force_intr(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -93,7 +93,7 @@ impl MEMITGR_DBG {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Always shows the (resynced) value of the intr-field of the integrity-ring into the monitor.
     pub fn intr_in(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -103,7 +103,7 @@ impl MEMITGR_DBG {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// This field is used for test purposes.
     pub fn mem_div_sense(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -113,7 +113,7 @@ impl MEMITGR_DBG {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Always shows the (resynced) value of the sync-field of the integrity-ring into the monitor.
     pub fn sync_in(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -123,7 +123,7 @@ impl MEMITGR_DBG {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// When DEVCPU_GCB::MEMITGR_DBG.FORCE_ENA is set, this value is driven to sync-field of the intgrity-ring out from the monitor.
     pub fn sync_out(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -141,7 +141,7 @@ impl MEMITGR_DBG {    ///
 /// VRAP events
 #[derive(From, Into)]
 pub struct VRAP_ACCESS_STAT(u32);
-impl VRAP_ACCESS_STAT {    ///
+impl VRAP_ACCESS_STAT {
     /// This field is set if an invalid command inside a valid VRAP frame has been received. The VRAP engine has ignored the command.
     pub fn cmd_invalid_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -151,7 +151,7 @@ impl VRAP_ACCESS_STAT {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if an invalid VRAP frame has been received and discarded by the VRAP-engine. Frames with a VRAP header different from V1 are considered invalid.
     pub fn frm_invalid_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -161,7 +161,7 @@ impl VRAP_ACCESS_STAT {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if a valid VRAP (Vitesse Register Access Protocol) frame has been received.
     pub fn frm_recv_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -171,7 +171,7 @@ impl VRAP_ACCESS_STAT {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if a VRAP reply frame has been aborted. This my happen if a protocol violation is detected during VRAP request frame processing.
     pub fn reply_abort_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0

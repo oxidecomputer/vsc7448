@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Various switch port mode settings
 #[derive(From, Into)]
 pub struct PFC_CFG(u32);
-impl PFC_CFG {    ///
+impl PFC_CFG {
     /// When set the MAC sends PRIO pause control frames in the Tx direction when congested.
     pub fn tx_pfc_ena(&self) -> u32 {
         (self.0 & 0x1fe) >> 1
@@ -43,7 +43,7 @@ impl PFC_CFG {    ///
         assert!(value <= 0x1fe);
         self.0 &= !0x1fe;
         self.0 |= value;
-    }    ///
+    }
     /// When set, a congested priority request pause of all lower priorities as well.
     pub fn tx_pfc_mode(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -61,7 +61,7 @@ impl PFC_CFG {    ///
 /// Shared QOS resource mode
 #[derive(From, Into)]
 pub struct RES_QOS_MODE(u32);
-impl RES_QOS_MODE {    ///
+impl RES_QOS_MODE {
     /// When a qos class is enabled in this mask, the class will have guaranteed shared space. The watermarks found in RES_CFG are used for setting the amount of space set aside.
     pub fn res_qos_rsrvd(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -81,7 +81,7 @@ impl RES_QOS_MODE {    ///
 /// Configured the WRED group per port.
 #[derive(From, Into)]
 pub struct WRED_GROUP(u32);
-impl WRED_GROUP {    ///
+impl WRED_GROUP {
     /// Frames towards a port is WRED discarded by the profiles for the group configured.
     pub fn wred_group(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -101,7 +101,7 @@ impl WRED_GROUP {    ///
 /// Configuration of Random Early Discard (RED) profile per RedGroup/QoS class/DP level. The profile index is calulated as Group*24+(DP-1)*8+QOS. There are no profiled for DP=0..
 #[derive(From, Into)]
 pub struct WRED_PROFILE(u32);
-impl WRED_PROFILE {    ///
+impl WRED_PROFILE {
     /// See WM_RED_LOW. Unit is 2816 bytes.
     pub fn wm_red_high(&self) -> u32 {
         (self.0 & 0x7ff) >> 0
@@ -111,7 +111,7 @@ impl WRED_PROFILE {    ///
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
-    }    ///
+    }
     /// When enqueuing a frame, RED is active if the egress memory consumption for the applicaple profile is above WM_RED_LEVEL. The probability of random early discarding is calculated as: (Memory consumption - WM_RED_LOW)/(WM_RED_HIGH - WM_RED_LOW). Unit is 2816 bytes.
     pub fn wm_red_low(&self) -> u32 {
         (self.0 & 0x3ff800) >> 11

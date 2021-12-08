@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS lptrain state machine history lsw
 #[derive(From, Into)]
 pub struct HIST_LSW(u32);
-impl HIST_LSW {    ///
+impl HIST_LSW {
     /// lptrain state machine history
     pub fn lptsm_hist_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl HIST_LSW {    ///
 /// VS training prbs11 error_count
 #[derive(From, Into)]
 pub struct TR_ERRCNT(u32);
-impl TR_ERRCNT {    ///
+impl TR_ERRCNT {
     /// bit error count of prbs11 checker
     pub fn errcnt(&self) -> u32 {
         (self.0 & 0xffff) >> 0

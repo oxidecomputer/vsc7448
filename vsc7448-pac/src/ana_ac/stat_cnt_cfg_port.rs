@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// This register group defines how to handle the incoming events.
 #[derive(From, Into)]
 pub struct STAT_CFG(u32);
-impl STAT_CFG {    ///
+impl STAT_CFG {
     /// Configure whether to count frames or bytes.
+
     ///
+
     /// '0': Count frames. '1': Count bytes.
     pub fn cfg_cnt_byte(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -47,9 +49,11 @@ impl STAT_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Selects which frames to count.
+
     ///
+
     /// "000": The frames without any event signal or frame error signal asserted are counted. "001": The frames with unmasked (enabled) events asserted but with no error indications are counted. "010": The frames with both event signal and the error signal asserted are counted. "011": The frames with event signal asserted are counted in spite of the error indications. "100": The frames with the error signal asserted, but with no event signal are counted. "101": The frames with error signal asserted are counted in spite of the accompied event indications. | Error | Event -----+-------+------ 000 |   N	|   N -----+-------+------ 001 |   N	|   Y -----+-------+------ 010 |   Y	|   Y -----+-------+------ 011 |   -	|   Y -----+-------+------ 100 |   Y	|   N -----+-------+------ 101 |   Y	|   - -----+-------+------
     pub fn cfg_cnt_frm_type(&self) -> u32 {
         (self.0 & 0xe) >> 1
@@ -59,9 +63,11 @@ impl STAT_CFG {    ///
         assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
-    }    ///
+    }
     /// This field is to configure the counters of a flow to count frames with certain priorities. The field contains one bit per priority. Note that with the default value of this field, counting is disabled for all priorities.
+
     ///
+
     /// 0: Do not count frames with this priority. 1: Count frames with this priority.
     pub fn cfg_prio_mask(&self) -> u32 {
         (self.0 & 0xff0) >> 4
@@ -81,9 +87,11 @@ impl STAT_CFG {    ///
 /// It is the sticky bits of events. If one event is triggered, the corresponding bit is set to '1' before it is cleared. To write '1' into this bit will clear the sticky bit.
 #[derive(From, Into)]
 pub struct STAT_EVENTS_STICKY(u32);
-impl STAT_EVENTS_STICKY {    ///
+impl STAT_EVENTS_STICKY {
     /// These are the sticky bits of events. There is a sticky bit for an event for each flow.
+
     ///
+
     /// '1': The corresponding event is triggered since it is cleared last time. '0': No such event is triggered since it is cleared last time.
     pub fn sticky_bits(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -101,15 +109,15 @@ impl STAT_EVENTS_STICKY {    ///
 /// The counter's least significant 32 bits.
 #[derive(From, Into)]
 pub struct STAT_LSB_CNT(u32);
-impl STAT_LSB_CNT {    ///
+impl STAT_LSB_CNT {
     /// This register contains the least significant 32 bits of a counter.
     pub fn lsb_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_lsb_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -119,7 +127,7 @@ impl STAT_LSB_CNT {    ///
 /// Reset all counters.
 #[derive(From, Into)]
 pub struct STAT_RESET(u32);
-impl STAT_RESET {    ///
+impl STAT_RESET {
     /// Write '1' to this field to reset all counters and configuration for this stat group. The device will set the bit back to '0' when reset has completed.
     pub fn reset(&self) -> u32 {
         (self.0 & 0x1) >> 0

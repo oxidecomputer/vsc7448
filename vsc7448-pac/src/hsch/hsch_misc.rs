@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Core events.
 #[derive(From, Into)]
 pub struct DEBUG_CTRL(u32);
-impl DEBUG_CTRL {    ///
+impl DEBUG_CTRL {
     /// Force port to be frame pending. To be used when a port for some unknown reason gets stuck. The port configured in FLUSH_PORT will be marked pending.
     pub fn port_kick(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -53,7 +53,7 @@ impl DEBUG_CTRL {    ///
 /// Configuration and status of a dwrr entry
 #[derive(From, Into)]
 pub struct DWRR_ENTRY(u32);
-impl DWRR_ENTRY {    ///
+impl DWRR_ENTRY {
     /// Current balance of the input
     pub fn dwrr_balance(&self) -> u32 {
         (self.0 & 0xfffff) >> 0
@@ -63,7 +63,7 @@ impl DWRR_ENTRY {    ///
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
-    }    ///
+    }
     /// When a specific input to an element is used, the cost is used when updating the balance.
     pub fn dwrr_cost(&self) -> u32 {
         (self.0 & 0x1f00000) >> 20
@@ -81,7 +81,7 @@ impl DWRR_ENTRY {    ///
 /// Egress queue status
 #[derive(From, Into)]
 pub struct EQ_STAT(u32);
-impl EQ_STAT {    ///
+impl EQ_STAT {
     /// Number of free frame references.
     pub fn fp_free_cnt(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -101,7 +101,7 @@ impl EQ_STAT {    ///
 /// Core events.
 #[derive(From, Into)]
 pub struct EVENTS_CORE(u32);
-impl EVENTS_CORE {    ///
+impl EVENTS_CORE {
     /// If an frame is added to an invalid queue in the scheduling hierarchy, this sticky bit will be set, and the violating request is see the EVENT_ENQ_ERR register.
     pub fn ev_enq_err(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -111,7 +111,7 @@ impl EVENTS_CORE {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Look in the RTL!
     pub fn ev_frd(&self) -> u32 {
         (self.0 & 0x1e) >> 1
@@ -121,7 +121,7 @@ impl EVENTS_CORE {    ///
         assert!(value <= 0x1e);
         self.0 &= !0x1e;
         self.0 |= value;
-    }    ///
+    }
     /// Look in the RTL!
     pub fn ev_hsch(&self) -> u32 {
         (self.0 & 0xfe0) >> 5
@@ -139,7 +139,7 @@ impl EVENTS_CORE {    ///
 /// Information about enqueueing error
 #[derive(From, Into)]
 pub struct EVENT_ENQ_ERR(u32);
-impl EVENT_ENQ_ERR {    ///
+impl EVENT_ENQ_ERR {
     /// Contains last enqueuing error egress port number
     pub fn enq_err_port(&self) -> u32 {
         (self.0 & 0x1f8000) >> 15
@@ -149,7 +149,7 @@ impl EVENT_ENQ_ERR {    ///
         assert!(value <= 0x1f8000);
         self.0 &= !0x1f8000;
         self.0 |= value;
-    }    ///
+    }
     /// Scheduling element being violated.
     pub fn enq_err_qno(&self) -> u32 {
         (self.0 & 0x7fff) >> 0
@@ -167,7 +167,7 @@ impl EVENT_ENQ_ERR {    ///
 /// Enable flushing of selected framesy
 #[derive(From, Into)]
 pub struct FLUSH_CTRL(u32);
-impl FLUSH_CTRL {    ///
+impl FLUSH_CTRL {
     /// Frame transmitted on the configured port will be flushed if set.
     pub fn flush_dst(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -177,7 +177,7 @@ impl FLUSH_CTRL {    ///
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    ///
+    }
     /// Set to enable flushing of all frames matching the flush criterias in this register
     pub fn flush_ena(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -187,7 +187,7 @@ impl FLUSH_CTRL {    ///
         assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
-    }    ///
+    }
     /// Flushing will only affect frames from this queue or SE.
     pub fn flush_hier(&self) -> u32 {
         (self.0 & 0x7fff) >> 0
@@ -197,7 +197,7 @@ impl FLUSH_CTRL {    ///
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
-    }    ///
+    }
     /// Flushing will only affect frames on this port.
     pub fn flush_port(&self) -> u32 {
         (self.0 & 0x7e0000) >> 17
@@ -207,7 +207,7 @@ impl FLUSH_CTRL {    ///
         assert!(value <= 0x7e0000);
         self.0 &= !0x7e0000;
         self.0 |= value;
-    }    ///
+    }
     /// Frames transmitted from the configured queue specified in FLUSH_HIER will be flushed.
     pub fn flush_queue(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -217,7 +217,7 @@ impl FLUSH_CTRL {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Frames transmitted from the configured SE index specified in FLUSH_HIER will be flushed.
     pub fn flush_se(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -227,7 +227,7 @@ impl FLUSH_CTRL {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Frame received on the configured port will be flushed if set.
     pub fn flush_src(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -245,7 +245,7 @@ impl FLUSH_CTRL {    ///
 /// Configuration selection register
 #[derive(From, Into)]
 pub struct HSCH_CFG_CFG(u32);
-impl HSCH_CFG_CFG {    ///
+impl HSCH_CFG_CFG {
     /// The DWRR balances and queue shapers will be accessed for the scheduling element indexed by this field.
     pub fn cfg_se_idx(&self) -> u32 {
         (self.0 & 0x3ffc000) >> 14
@@ -255,7 +255,7 @@ impl HSCH_CFG_CFG {    ///
         assert!(value <= 0x3ffc000);
         self.0 &= !0x3ffc000;
         self.0 |= value;
-    }    ///
+    }
     /// Skip a hierarchy update every time this number of updates has been done. If zero, the feature is disabled. Setting to 4095 will disable hierachy updates.
     pub fn csr_grant(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -265,7 +265,7 @@ impl HSCH_CFG_CFG {    ///
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
-    }    ///
+    }
     /// The HSCH layer set in this field will be accessed by the configuration interfaces.
     pub fn hsch_layer(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -283,15 +283,15 @@ impl HSCH_CFG_CFG {    ///
 /// Enable large scheduling elements
 #[derive(From, Into)]
 pub struct HSCH_LARGE_ENA(u32);
-impl HSCH_LARGE_ENA {    ///
+impl HSCH_LARGE_ENA {
     /// Bit n in replication k enables extended width on scheduling element (32k+n)*2. Scheduling element (32k+n)*2+1 must not be used if enabled. Fx. if scheduling element 180 should handle 16 inputs, HSCH_LARGE_ENA[2] bit 26 should be set to 1, and element 181 must not be used.
     pub fn hsch_large_ena(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_hsch_large_ena(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -301,7 +301,7 @@ impl HSCH_LARGE_ENA {    ///
 /// Common config for HSCH and policer module
 #[derive(From, Into)]
 pub struct HSCH_MISC_CFG(u32);
-impl HSCH_MISC_CFG {    ///
+impl HSCH_MISC_CFG {
     /// Values to add each frame when frame length adjustment is in use.
     pub fn frm_adj(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -311,7 +311,7 @@ impl HSCH_MISC_CFG {    ///
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
-    }    ///
+    }
     /// Set this to one to disabled all leaking from leaky bucket shapers
     pub fn leak_dis(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -329,7 +329,7 @@ impl HSCH_MISC_CFG {    ///
 /// Return information about scheduler busyness
 #[derive(From, Into)]
 pub struct HSCH_UPDATE_STAT(u32);
-impl HSCH_UPDATE_STAT {    ///
+impl HSCH_UPDATE_STAT {
     /// Return the maximum period of constant update need. Clear by writing one to the lsb of the register.
     pub fn hsch_update_cnt(&self) -> u32 {
         (self.0 & 0x1fff) >> 0
@@ -347,7 +347,7 @@ impl HSCH_UPDATE_STAT {    ///
 /// Cellbus configuration
 #[derive(From, Into)]
 pub struct OUTB_CPU_SHARE_ENA(u32);
-impl OUTB_CPU_SHARE_ENA {    ///
+impl OUTB_CPU_SHARE_ENA {
     /// When enabled, unused bandwidth sharing will be granted to the an internal CPUport, only when the calendar designated port is another internal CPU port. The OUTB_SHARE_ENA must be configured for the CPU ports when this is enabled
     pub fn outb_cpu_share_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -365,7 +365,7 @@ impl OUTB_CPU_SHARE_ENA {    ///
 /// Cellbus configuration
 #[derive(From, Into)]
 pub struct OUTB_SHARE_ENA(u32);
-impl OUTB_SHARE_ENA {    ///
+impl OUTB_SHARE_ENA {
     /// Sets the minimum distance between grants to an internal port. Extra grants are disabled when configured value is 0, otherwise the port seeks extra bandwidth, and the minimim distance in clock cycles is given by this value. The four replications are for internal CPU 0, internal CPU 1, VD0 and VD1. Setting a value of 14 grants extra bandwidth every 14 cycles, which for minimum sized frames corresponds to 84 bytes per 14 x 6,4 ns, or 7.5Gbps. Setting a value of 10 grants every 10 cycles, corresponding to 84 bytes per 64 ns, or 10.5Gbps. Minimum value for VD0 is 14, and 8 for the other internal ports.
     pub fn outb_share_ena(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -385,9 +385,11 @@ impl OUTB_SHARE_ENA {    ///
 /// These configurations exists per front port.
 #[derive(From, Into)]
 pub struct PFC_CFG(u32);
-impl PFC_CFG {    ///
+impl PFC_CFG {
     /// Set the layer at which PFC status should be applied for this port. Only layers 1 and 2 supports PFC blocking of the hierarchy.
+
     ///
+
     /// 0: Dont block any branches through PFC status 1: Use pfc status for the port on layer 1 2: Use pfc status for the port on layer 2 3: Reserved
     pub fn pfc_layer(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -397,7 +399,7 @@ impl PFC_CFG {    ///
         assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
-    }    ///
+    }
     /// Set to the scheduling element number which should be affected by pfc status for this port.
     pub fn pfc_se(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -417,7 +419,7 @@ impl PFC_CFG {    ///
 /// These configurations exists per front port and for each of the two CPU ports (11+12).
 #[derive(From, Into)]
 pub struct PORT_MODE(u32);
-impl PORT_MODE {    ///
+impl PORT_MODE {
     /// Disable aging of all frames transmitted to the port. Frame aging related parameters: QSYS:SYSTEM:FRM_AGING.MAX_AGE HSCH:HSCH_MISC:PORT_MODE.AGE_DIS DSM:CFG:BUF_CFG.AGING_ENA
     pub fn age_dis(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -427,9 +429,11 @@ impl PORT_MODE {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Select the priority mode for CPU copies transmitted on the port.
+
     ///
+
     /// 0: IFH CPU mask shows all CPU queues the frame applies to. Priority of frame set to the CPU queue the frame copy is generated for 1: IFH CPU mask shows the CPU queue number the frame copy is generated for. Priority of frame set to the priority selected for the particular frame copy (see QFWD::FRAME_COPY_CFG)
     pub fn cpu_prio_mode(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -439,7 +443,7 @@ impl PORT_MODE {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Disable dequeuing from the egress queues. Frames are not discarded, but may become aged when dequeuing is reenabled.
     pub fn dequeue_dis(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -449,7 +453,7 @@ impl PORT_MODE {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Increase DP by one in case scheduled frame passed due to excess rate shaper.
     pub fn eir_remark_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -459,7 +463,7 @@ impl PORT_MODE {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable truncation of stack learnall frames.
     pub fn trunc_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -477,7 +481,7 @@ impl PORT_MODE {    ///
 /// System clock period configuration
 #[derive(From, Into)]
 pub struct SYS_CLK_PER(u32);
-impl SYS_CLK_PER {    ///
+impl SYS_CLK_PER {
     /// Must be set to the system clock period with unit 100 picoseconds.
     pub fn sys_clk_per_100ps(&self) -> u32 {
         (self.0 & 0xff) >> 0

@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Clear the sticky bits by writing a '0' in the relevant bitgroups (writing a '1' sets the bit)!.
 #[derive(From, Into)]
 pub struct MAC_STICKY(u32);
-impl MAC_STICKY {    ///
+impl MAC_STICKY {
     /// Indicates that an inter packet gap shrink was detected (IPG < 12 bytes).
+
     ///
+
     /// '0': no ipg shrink was detected '1': one or more ipg shrink were detected Bit is cleared by writing a '1' to this position.
     pub fn rx_ipg_shrink_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -47,9 +49,11 @@ impl MAC_STICKY {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that a frame with MPLS multicast was received.
+
     ///
+
     /// '0': No frames with MPLS multicast EtherType has been detected; '1': One or more frames with MPLS multicast EtherType have been detected; Bit is cleared by writing a '1' to this position.
     pub fn rx_mpls_mc_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -59,9 +63,11 @@ impl MAC_STICKY {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that a frame with MPLS unicast was received.
+
     ///
+
     /// '0': No frames with MPLS Unicast EtherType has been detected; '1': One or more frames with MPLS Unicast EtherType have been detected; Bit is cleared by writing a '1' to this position.
     pub fn rx_mpls_uc_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -71,9 +77,11 @@ impl MAC_STICKY {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that a frame was received with a non-standard preamble.
+
     ///
+
     /// '0': No non-standard preamble detected; '1': One or more frames with non-standard preamble detected; Bit is cleared by writing a '1' to this position.
     pub fn rx_non_std_pream_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -83,9 +91,11 @@ impl MAC_STICKY {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// If a SOP is received and a following control character is received within the preamble, this bit is set. (No data is passed to the host interface of the MAC).
+
     ///
+
     /// '0': No Preamble error detected; '1': One or more preamble errors detected; Bit is cleared by writing a '1' to this position.
     pub fn rx_pream_err_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -95,9 +105,11 @@ impl MAC_STICKY {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// If Preamble Check is enabled and a SOP is received, this bit is set if the following bytes do not match a "5555555555..55D5" pattern. A 12 bytes preamble of "55555555.55555555.555555D5" will not cause this sticky bit to be set. This sticky bit can only be set when the port is setup in 10 Gbps mode.
+
     ///
+
     /// '0': No Preamble check has failed; '1': One or more preamble checks have failed; Bit is cleared by writing a '1' to this position.
     pub fn rx_pream_mismatch_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -107,9 +119,11 @@ impl MAC_STICKY {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that a preamble shrink was detected (preamble < 8 bytes). This sticky bit can only be set when the port is setup in 10 Gbps mode, where frames with e.g. a 4 bytes preamble will be discarded, and it requires that PRM_SHK_CHK_DIS = 0 and SFD_CHK_ENA = 1. In SGMII mode, all preamble sizes down to 3 bytes (including SFD) are accepted and will not cause this sticky bit to be set.
+
     ///
+
     /// '0': no preamble shrink detected; '1': one or more preamble shrinks detected; Bit is cleared by writing a '1' to this position.
     pub fn rx_pream_shrink_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -119,9 +133,11 @@ impl MAC_STICKY {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that a frame was received with a VLAN tag.
+
     ///
+
     /// '0': No Tagged frames have been detected; '1': One or more Tagged frames have been detected; Bit is cleared by writing a '1' to this position.
     pub fn rx_tag_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -131,9 +147,11 @@ impl MAC_STICKY {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that the transmit host initiated abort was executed.
+
     ///
+
     /// '0': no tx frame was aborted '1': one or more tx frames were aborted Bit is cleared by writing a '1' to this position.
     pub fn tx_abort_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -143,9 +161,11 @@ impl MAC_STICKY {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Sticky bit indicating that the MAC Transmit FIFO has dropped one or more frames because of underrun.
+
     ///
+
     /// '0': No MAC Tx FIFO underrun has occured '1': One or more MAC Tx FIFO underruns have occured Bit is cleared by writing a '1' to this position.
     pub fn tx_uflw_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -163,17 +183,19 @@ impl MAC_STICKY {    ///
 /// Counter to track the dribble-nibble (extra nibble) errors in frames.
 #[derive(From, Into)]
 pub struct RX_ALIGNMENT_LOST_CNT(u32);
-impl RX_ALIGNMENT_LOST_CNT {    ///
+impl RX_ALIGNMENT_LOST_CNT {
     /// The number of frames received with Alignment (dribble-nibble) error.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_alignment_lost_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_alignment_lost_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -183,17 +205,19 @@ impl RX_ALIGNMENT_LOST_CNT {    ///
 /// Rx Broadcast Frame Counter
 #[derive(From, Into)]
 pub struct RX_BC_CNT(u32);
-impl RX_BC_CNT {    ///
+impl RX_BC_CNT {
     /// The number of good broadcast frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_bc_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_bc_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -203,17 +227,19 @@ impl RX_BC_CNT {    ///
 /// Rx CRC Error Counter
 #[derive(From, Into)]
 pub struct RX_CRC_ERR_CNT(u32);
-impl RX_CRC_ERR_CNT {    ///
+impl RX_CRC_ERR_CNT {
     /// The number of frames received with CRC error only.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_crc_err_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_crc_err_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -223,17 +249,19 @@ impl RX_CRC_ERR_CNT {    ///
 /// Rx Undersize Counter (CRC error)
 #[derive(From, Into)]
 pub struct RX_FRAGMENTS_CNT(u32);
-impl RX_FRAGMENTS_CNT {    ///
+impl RX_FRAGMENTS_CNT {
     /// The number of undersize frames with CRC error received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_fragments_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_fragments_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -245,17 +273,19 @@ impl RX_FRAGMENTS_CNT {    ///
 /// If HIH CRC checking is enabled, this counter will count the number of frames discarded due to HIH CRC errors.
 #[derive(From, Into)]
 pub struct RX_HIH_CKSM_ERR_CNT(u32);
-impl RX_HIH_CKSM_ERR_CNT {    ///
+impl RX_HIH_CKSM_ERR_CNT {
     /// Number of frames discarded due to errors in HIH checksum.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_hih_cksm_err_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_hih_cksm_err_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -265,17 +295,19 @@ impl RX_HIH_CKSM_ERR_CNT {    ///
 /// Rx In-range Length Error Counter
 #[derive(From, Into)]
 pub struct RX_IN_RANGE_LEN_ERR_CNT(u32);
-impl RX_IN_RANGE_LEN_ERR_CNT {    ///
+impl RX_IN_RANGE_LEN_ERR_CNT {
     /// The number of frames with legal length field that doesn't match length of MAC client data.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_in_range_len_err_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_in_range_len_err_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -285,17 +317,19 @@ impl RX_IN_RANGE_LEN_ERR_CNT {    ///
 /// Rx Inter Packet Gap Shrink Counter
 #[derive(From, Into)]
 pub struct RX_IPG_SHRINK_CNT(u32);
-impl RX_IPG_SHRINK_CNT {    ///
+impl RX_IPG_SHRINK_CNT {
     /// Number of inter packet gap shrinks detected (IPG < 12 bytes).
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_ipg_shrink_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_ipg_shrink_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -305,17 +339,19 @@ impl RX_IPG_SHRINK_CNT {    ///
 /// Rx Jabbers Counter
 #[derive(From, Into)]
 pub struct RX_JABBERS_CNT(u32);
-impl RX_JABBERS_CNT {    ///
+impl RX_JABBERS_CNT {
     /// The number of oversize frames with CRC error received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_jabbers_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_jabbers_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -325,17 +361,19 @@ impl RX_JABBERS_CNT {    ///
 /// Rx Multicast Frame Counter
 #[derive(From, Into)]
 pub struct RX_MC_CNT(u32);
-impl RX_MC_CNT {    ///
+impl RX_MC_CNT {
     /// The number of good multicast frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_mc_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_mc_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -345,17 +383,19 @@ impl RX_MC_CNT {    ///
 /// Rx Out-Of-Range Length Error Counter
 #[derive(From, Into)]
 pub struct RX_OUT_OF_RANGE_LEN_ERR_CNT(u32);
-impl RX_OUT_OF_RANGE_LEN_ERR_CNT {    ///
+impl RX_OUT_OF_RANGE_LEN_ERR_CNT {
     /// The number of frames with illegal length field (frames using type field are not counted here).
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_out_of_range_len_err_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_out_of_range_len_err_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -365,17 +405,19 @@ impl RX_OUT_OF_RANGE_LEN_ERR_CNT {    ///
 /// Rx Oversize Counter (valid frame format)
 #[derive(From, Into)]
 pub struct RX_OVERSIZE_CNT(u32);
-impl RX_OVERSIZE_CNT {    ///
+impl RX_OVERSIZE_CNT {
     /// The number of oversize well-formed frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_oversize_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_oversize_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -385,17 +427,19 @@ impl RX_OVERSIZE_CNT {    ///
 /// Rx Pause Frame Counter
 #[derive(From, Into)]
 pub struct RX_PAUSE_CNT(u32);
-impl RX_PAUSE_CNT {    ///
+impl RX_PAUSE_CNT {
     /// Number of pause control frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_pause_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_pause_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -405,17 +449,19 @@ impl RX_PAUSE_CNT {    ///
 /// Rx 1024-1518 Byte Frame Counter
 #[derive(From, Into)]
 pub struct RX_SIZE1024TO1518_CNT(u32);
-impl RX_SIZE1024TO1518_CNT {    ///
+impl RX_SIZE1024TO1518_CNT {
     /// The number of 1024 to 1518 bytes frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_size1024to1518_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_size1024to1518_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -425,17 +471,19 @@ impl RX_SIZE1024TO1518_CNT {    ///
 /// Rx 128-255 Byte Frame Counter
 #[derive(From, Into)]
 pub struct RX_SIZE128TO255_CNT(u32);
-impl RX_SIZE128TO255_CNT {    ///
+impl RX_SIZE128TO255_CNT {
     /// The number of 128 to 255 bytes frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_size128to255_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_size128to255_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -445,17 +493,19 @@ impl RX_SIZE128TO255_CNT {    ///
 /// Rx 1519 To Max. Length Byte Frame Counter
 #[derive(From, Into)]
 pub struct RX_SIZE1519TOMAX_CNT(u32);
-impl RX_SIZE1519TOMAX_CNT {    ///
+impl RX_SIZE1519TOMAX_CNT {
     /// The number of frames received longer than 1518 bytes and not longer than Maximum Length Register (Maximum Length Register + 4 if the frame is VLAN tagged).
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_size1519tomax_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_size1519tomax_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -465,17 +515,19 @@ impl RX_SIZE1519TOMAX_CNT {    ///
 /// Rx 256-511 Byte Frame Counter
 #[derive(From, Into)]
 pub struct RX_SIZE256TO511_CNT(u32);
-impl RX_SIZE256TO511_CNT {    ///
+impl RX_SIZE256TO511_CNT {
     /// The number of 256 to 511 bytes frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_size256to511_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_size256to511_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -485,17 +537,19 @@ impl RX_SIZE256TO511_CNT {    ///
 /// Rx 512-1023 Byte Frame Counter
 #[derive(From, Into)]
 pub struct RX_SIZE512TO1023_CNT(u32);
-impl RX_SIZE512TO1023_CNT {    ///
+impl RX_SIZE512TO1023_CNT {
     /// The number of 512 to 1023 bytes frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_size512to1023_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_size512to1023_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -505,17 +559,19 @@ impl RX_SIZE512TO1023_CNT {    ///
 /// Rx 64 Byte Frame Counter
 #[derive(From, Into)]
 pub struct RX_SIZE64_CNT(u32);
-impl RX_SIZE64_CNT {    ///
+impl RX_SIZE64_CNT {
     /// The number of 64 bytes frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_size64_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_size64_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -525,17 +581,19 @@ impl RX_SIZE64_CNT {    ///
 /// Rx 65-127 Byte Frame Counter
 #[derive(From, Into)]
 pub struct RX_SIZE65TO127_CNT(u32);
-impl RX_SIZE65TO127_CNT {    ///
+impl RX_SIZE65TO127_CNT {
     /// The number of 65 to 127 bytes frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_size65to127_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_size65to127_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -545,17 +603,19 @@ impl RX_SIZE65TO127_CNT {    ///
 /// Rx Symbol Carrier Error Counter
 #[derive(From, Into)]
 pub struct RX_SYMBOL_ERR_CNT(u32);
-impl RX_SYMBOL_ERR_CNT {    ///
+impl RX_SYMBOL_ERR_CNT {
     /// The number of frames received with one or more symbol errors.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_symbol_err_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_symbol_err_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -565,17 +625,19 @@ impl RX_SYMBOL_ERR_CNT {    ///
 /// Counts frames that are tagged (C-Tagged or S-Tagged).
 #[derive(From, Into)]
 pub struct RX_TAGGED_FRMS_CNT(u32);
-impl RX_TAGGED_FRMS_CNT {    ///
+impl RX_TAGGED_FRMS_CNT {
     /// The number of frames received with C-Tag or S-Tag information
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_tagged_frms_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_tagged_frms_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -585,17 +647,19 @@ impl RX_TAGGED_FRMS_CNT {    ///
 /// Rx Unicast Frame Counter
 #[derive(From, Into)]
 pub struct RX_UC_CNT(u32);
-impl RX_UC_CNT {    ///
+impl RX_UC_CNT {
     /// The number of good unicast frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_uc_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_uc_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -605,17 +669,19 @@ impl RX_UC_CNT {    ///
 /// Rx Undersize Counter (valid frame format)
 #[derive(From, Into)]
 pub struct RX_UNDERSIZE_CNT(u32);
-impl RX_UNDERSIZE_CNT {    ///
+impl RX_UNDERSIZE_CNT {
     /// The number of undersize well-formed frames received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_undersize_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_undersize_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -625,17 +691,19 @@ impl RX_UNDERSIZE_CNT {    ///
 /// Rx Control Frame Counter
 #[derive(From, Into)]
 pub struct RX_UNSUP_OPCODE_CNT(u32);
-impl RX_UNSUP_OPCODE_CNT {    ///
+impl RX_UNSUP_OPCODE_CNT {
     /// Number of control frames with unsupported opcode received.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_unsup_opcode_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_unsup_opcode_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -645,17 +713,19 @@ impl RX_UNSUP_OPCODE_CNT {    ///
 /// Counts frames that are Not tagged  (neither C-Tagged nor S-Tagged).
 #[derive(From, Into)]
 pub struct RX_UNTAGGED_FRMS_CNT(u32);
-impl RX_UNTAGGED_FRMS_CNT {    ///
+impl RX_UNTAGGED_FRMS_CNT {
     /// The number of frames received without C-Tag and S-Tag information.
+
     ///
+
     /// Counter can be written by SW.
     pub fn rx_untagged_frms_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rx_untagged_frms_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -665,17 +735,19 @@ impl RX_UNTAGGED_FRMS_CNT {    ///
 /// Tx Broadcast Frame Counter
 #[derive(From, Into)]
 pub struct TX_BC_CNT(u32);
-impl TX_BC_CNT {    ///
+impl TX_BC_CNT {
     /// The number of broadcast frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_bc_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_bc_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -685,17 +757,19 @@ impl TX_BC_CNT {    ///
 /// Tx Multicast Frame Counter
 #[derive(From, Into)]
 pub struct TX_MC_CNT(u32);
-impl TX_MC_CNT {    ///
+impl TX_MC_CNT {
     /// The number of multicast frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_mc_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_mc_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -705,17 +779,19 @@ impl TX_MC_CNT {    ///
 /// Tx Pause Frame Counter
 #[derive(From, Into)]
 pub struct TX_PAUSE_CNT(u32);
-impl TX_PAUSE_CNT {    ///
+impl TX_PAUSE_CNT {
     /// The number of pause control frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_pause_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_pause_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -725,17 +801,19 @@ impl TX_PAUSE_CNT {    ///
 /// Tx 1024-1518 Byte Frame Counter
 #[derive(From, Into)]
 pub struct TX_SIZE1024TO1518_CNT(u32);
-impl TX_SIZE1024TO1518_CNT {    ///
+impl TX_SIZE1024TO1518_CNT {
     /// The number of 1024 to 1518 bytes frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_size1024to1518_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_size1024to1518_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -745,17 +823,19 @@ impl TX_SIZE1024TO1518_CNT {    ///
 /// Tx 128-255 Byte Frame Counter
 #[derive(From, Into)]
 pub struct TX_SIZE128TO255_CNT(u32);
-impl TX_SIZE128TO255_CNT {    ///
+impl TX_SIZE128TO255_CNT {
     /// The number of 128 to 255 bytes frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_size128to255_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_size128to255_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -765,17 +845,19 @@ impl TX_SIZE128TO255_CNT {    ///
 /// Tx 1519 To Max. Length Byte Frame Counter
 #[derive(From, Into)]
 pub struct TX_SIZE1519TOMAX_CNT(u32);
-impl TX_SIZE1519TOMAX_CNT {    ///
+impl TX_SIZE1519TOMAX_CNT {
     /// The number of frames transmitted longer than 1518 bytes and not longer than Maximum Length Register (Maximum Length Register + 4 if the frame is VLAN tagged).
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_size1519tomax_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_size1519tomax_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -785,17 +867,19 @@ impl TX_SIZE1519TOMAX_CNT {    ///
 /// Tx 256-511 Byte Frame Counter
 #[derive(From, Into)]
 pub struct TX_SIZE256TO511_CNT(u32);
-impl TX_SIZE256TO511_CNT {    ///
+impl TX_SIZE256TO511_CNT {
     /// The number of 256 to 511 bytes frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_size256to511_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_size256to511_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -805,17 +889,19 @@ impl TX_SIZE256TO511_CNT {    ///
 /// Tx 512-1023 Byte Frame Counter
 #[derive(From, Into)]
 pub struct TX_SIZE512TO1023_CNT(u32);
-impl TX_SIZE512TO1023_CNT {    ///
+impl TX_SIZE512TO1023_CNT {
     /// The number of 512 to 1023 bytes frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_size512to1023_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_size512to1023_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -825,17 +911,19 @@ impl TX_SIZE512TO1023_CNT {    ///
 /// Tx 64 Byte Frame Counter
 #[derive(From, Into)]
 pub struct TX_SIZE64_CNT(u32);
-impl TX_SIZE64_CNT {    ///
+impl TX_SIZE64_CNT {
     /// The number of 64 bytes frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_size64_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_size64_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -845,17 +933,19 @@ impl TX_SIZE64_CNT {    ///
 /// Tx 65-127 Byte Frame Counter
 #[derive(From, Into)]
 pub struct TX_SIZE65TO127_CNT(u32);
-impl TX_SIZE65TO127_CNT {    ///
+impl TX_SIZE65TO127_CNT {
     /// The number of 65 to 127 bytes frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_size65to127_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_size65to127_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -865,15 +955,15 @@ impl TX_SIZE65TO127_CNT {    ///
 /// Counts frames that are tagged (C-Tagged or S-Tagged).
 #[derive(From, Into)]
 pub struct TX_TAGGED_FRMS_CNT(u32);
-impl TX_TAGGED_FRMS_CNT {    ///
+impl TX_TAGGED_FRMS_CNT {
     /// The number of frames transmitted with C-Tag or S-Tag information
     pub fn tx_tagged_frms_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_tagged_frms_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -883,17 +973,19 @@ impl TX_TAGGED_FRMS_CNT {    ///
 /// Tx Unicast Frame Counter
 #[derive(From, Into)]
 pub struct TX_UC_CNT(u32);
-impl TX_UC_CNT {    ///
+impl TX_UC_CNT {
     /// The number of unicast frames transmitted.
+
     ///
+
     /// Counter can be written by SW.
     pub fn tx_uc_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_uc_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -903,15 +995,15 @@ impl TX_UC_CNT {    ///
 /// Counts frames that are Not tagged  (neither C-Tagged nor S-Tagged).
 #[derive(From, Into)]
 pub struct TX_UNTAGGED_FRMS_CNT(u32);
-impl TX_UNTAGGED_FRMS_CNT {    ///
+impl TX_UNTAGGED_FRMS_CNT {
     /// The number of frames transmitted without C-Tag and S-Tag information.
     pub fn tx_untagged_frms_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_untagged_frms_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

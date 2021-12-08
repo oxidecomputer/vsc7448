@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// TWI hold time configuration
 #[derive(From, Into)]
 pub struct TWI_CONFIG(u32);
-impl TWI_CONFIG {    ///
+impl TWI_CONFIG {
     /// Configure the hold time delay to apply to SDA after SCK when transmitting from the device. This delay is expressed in a number of VCore System clock cycles. The delay value should be as close to 300ns as possible without going below 300ns.
+
     ///
+
     /// Set to (300ns/4.8ns + 2) = 65
     pub fn twi_cnt_reload(&self) -> u32 {
         (self.0 & 0x1fe) >> 1
@@ -45,7 +47,7 @@ impl TWI_CONFIG {    ///
         assert!(value <= 0x1fe);
         self.0 &= !0x1fe;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to enable hold time on the TWI SDA output. When enabled the TWI_CONFIG.TWI_CNT_RELOAD field determines the amount of hold time to apply to SDA.
     pub fn twi_delay_enable(&self) -> u32 {
         (self.0 & 0x1) >> 0

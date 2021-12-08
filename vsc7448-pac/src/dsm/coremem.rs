@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Address selection
 #[derive(From, Into)]
 pub struct CM_ADDR(u32);
-impl CM_ADDR {    ///
+impl CM_ADDR {
     /// Address selection within selected core memory (CMID register). Address is automatically advanced at every data access.
     pub fn cm_addr(&self) -> u32 {
         (self.0 & 0x3fffff) >> 0
@@ -43,7 +43,7 @@ impl CM_ADDR {    ///
         assert!(value <= 0x3fffff);
         self.0 &= !0x3fffff;
         self.0 |= value;
-    }    ///
+    }
     /// Please refer to cmid.xls in the AS1000, misc_docs folder.
     pub fn cm_id(&self) -> u32 {
         (self.0 & 0x3fc00000) >> 22
@@ -63,7 +63,7 @@ impl CM_ADDR {    ///
 /// Controls reset and initialization of the switching core. Proper startup sequence is: - Enable memories - Initialize memories - Enable core
 #[derive(From, Into)]
 pub struct RAM_INIT(u32);
-impl RAM_INIT {    ///
+impl RAM_INIT {
     /// Core memory controllers are enabled when this field is set.
     pub fn ram_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -73,7 +73,7 @@ impl RAM_INIT {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Initialize core memories. Field is automatically cleared when operation is complete ( approx. 40 us).
     pub fn ram_init(&self) -> u32 {
         (self.0 & 0x2) >> 1

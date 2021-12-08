@@ -33,15 +33,15 @@ use derive_more::{From, Into};
 /// Number of defaults
 #[derive(From, Into)]
 pub struct ACTION_DEF_CNT(u32);
-impl ACTION_DEF_CNT {    ///
+impl ACTION_DEF_CNT {
     /// The number of default actions. For VCAPs with more than one interface (see VCAP_SUPER::IF_CNT); this field returns the total number of defaults for all interfaces.
     pub fn action_def_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_action_def_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -51,15 +51,15 @@ impl ACTION_DEF_CNT {    ///
 /// Action width
 #[derive(From, Into)]
 pub struct ACTION_WIDTH(u32);
-impl ACTION_WIDTH {    ///
+impl ACTION_WIDTH {
     /// Width of action. For version 1 VCAPs this is full word width. For version 2 VCAPs this is the width of one action suboword.
     pub fn action_width(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_action_width(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -69,15 +69,15 @@ impl ACTION_WIDTH {    ///
 /// Counter width
 #[derive(From, Into)]
 pub struct CNT_WIDTH(u32);
-impl CNT_WIDTH {    ///
+impl CNT_WIDTH {
     /// The width of the counter memory, this is the complete width of all counter-fields associated with one full-word entry. There is one counter per entry sub-word (see VCAP_SUPER::ENTRY_SWCNT for number of subwords.)
     pub fn cnt_width(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_cnt_width(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -87,15 +87,15 @@ impl CNT_WIDTH {    ///
 /// Number of cores
 #[derive(From, Into)]
 pub struct CORE_CNT(u32);
-impl CORE_CNT {    ///
+impl CORE_CNT {
     /// The number of parallel entry/action cores.
     pub fn core_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_core_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -105,15 +105,15 @@ impl CORE_CNT {    ///
 /// Number of full-word entries
 #[derive(From, Into)]
 pub struct ENTRY_CNT(u32);
-impl ENTRY_CNT {    ///
+impl ENTRY_CNT {
     /// Number of full-word entries (and actions) per core, see VCAP_SUPER::CORE_CNT for number of cores.
     pub fn entry_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_entry_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -123,15 +123,15 @@ impl ENTRY_CNT {    ///
 /// Number of subwords per full-word entry
 #[derive(From, Into)]
 pub struct ENTRY_SWCNT(u32);
-impl ENTRY_SWCNT {    ///
+impl ENTRY_SWCNT {
     /// The number of supported subwords per full-word entry.
     pub fn entry_swcnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_entry_swcnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -141,15 +141,15 @@ impl ENTRY_SWCNT {    ///
 /// Entry type-group width
 #[derive(From, Into)]
 pub struct ENTRY_TG_WIDTH(u32);
-impl ENTRY_TG_WIDTH {    ///
+impl ENTRY_TG_WIDTH {
     /// The width of a single TypeGroup id. For version 2 VCAPs this field return 0, the subword-encoding is configured directly via VCAP_SUPER::VCAP_ENTRY_DAT and VCAP_SUPER::VCAP_MASK_DAT.
     pub fn entry_tg_width(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_entry_tg_width(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -159,15 +159,15 @@ impl ENTRY_TG_WIDTH {    ///
 /// Entry width
 #[derive(From, Into)]
 pub struct ENTRY_WIDTH(u32);
-impl ENTRY_WIDTH {    ///
+impl ENTRY_WIDTH {
     /// Width of entry. For version 1 VCAPs this is full word width including bits for the TypeGroup id(s). For version 2 VCAPs this is the width of one entry suboword.
     pub fn entry_width(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_entry_width(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -177,7 +177,7 @@ impl ENTRY_WIDTH {    ///
 /// Debug information
 #[derive(From, Into)]
 pub struct VCAP_STICKY(u32);
-impl VCAP_STICKY {    ///
+impl VCAP_STICKY {
     /// A move operation has resulted in deleting of one or more rules. This field applies only to version 1 VCAPs, for version 2 VCAPs it is not implemented and reading it will return zero.
     pub fn vcap_row_deleted_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -195,17 +195,19 @@ impl VCAP_STICKY {    ///
 /// VCAP version
 #[derive(From, Into)]
 pub struct VCAP_VER(u32);
-impl VCAP_VER {    ///
+impl VCAP_VER {
     /// Version of the VCAP control logic.
+
     ///
+
     /// 0: Version 1 1: Version 2
     pub fn vcap_ver(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_vcap_ver(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

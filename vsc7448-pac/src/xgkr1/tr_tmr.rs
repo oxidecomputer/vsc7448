@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS AN link_pass_inhibit timer msw
 #[derive(From, Into)]
 pub struct LP_MSW(u32);
-impl LP_MSW {    ///
+impl LP_MSW {
     /// link_pass_inhibit_timer setting
     pub fn lp_tmr_msw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl LP_MSW {    ///
 /// VS AN training state timer lsw
 #[derive(From, Into)]
 pub struct TR_LSW(u32);
-impl TR_LSW {    ///
+impl TR_LSW {
     /// training_state_timer setting
     pub fn tr_tmr_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0

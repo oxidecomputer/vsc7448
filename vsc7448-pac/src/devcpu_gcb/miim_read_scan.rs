@@ -33,17 +33,19 @@ use derive_more::{From, Into};
 /// MIIM Results
 #[derive(From, Into)]
 pub struct MII_SCAN_LAST_RSLTS_VLD(u32);
-impl MII_SCAN_LAST_RSLTS_VLD {    ///
+impl MII_SCAN_LAST_RSLTS_VLD {
     /// Indicates for each PHY if a PHY register matched are valid or not.
+
     ///
+
     /// 0 : Scan result not valid. 1 : Scan result valid.
     pub fn miim_last_rslt_vld(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_miim_last_rslt_vld(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

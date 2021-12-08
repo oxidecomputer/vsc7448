@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Configuration register 0 for SD10G65 DES.
 #[derive(From, Into)]
 pub struct SD10G65_DES_CFG0(u32);
-impl SD10G65_DES_CFG0 {    ///
+impl SD10G65_DES_CFG0 {
     /// Deserializer disable.
     pub fn des_dis(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -45,9 +45,11 @@ impl SD10G65_DES_CFG0 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Interface width
+
     ///
+
     /// 0: 8 1: 10 2: 16 (energy efficient) 3: 20 (energy efficient) 4: 32 5: 40 6: 16 bit (fast) 7: 20 bit (fast)
     pub fn des_if_mode_sel(&self) -> u32 {
         (self.0 & 0x1c) >> 2
@@ -57,7 +59,7 @@ impl SD10G65_DES_CFG0 {    ///
         assert!(value <= 0x1c);
         self.0 &= !0x1c;
         self.0 |= value;
-    }    ///
+    }
     /// Invert output of high auxillary deserializer
     pub fn des_inv_h(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -67,7 +69,7 @@ impl SD10G65_DES_CFG0 {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Invert output of low auxillary deserializer
     pub fn des_inv_l(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -77,7 +79,7 @@ impl SD10G65_DES_CFG0 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Invert output of main deserializer
     pub fn des_inv_m(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -87,7 +89,7 @@ impl SD10G65_DES_CFG0 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Auxillary deserializer channels disable.
     pub fn des_vsc_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1

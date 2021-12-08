@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS AN link_fail_inhibit_long timer msw
 #[derive(From, Into)]
 pub struct LFLONG_MSW(u32);
-impl LFLONG_MSW {    ///
+impl LFLONG_MSW {
     /// 10g link_fail_inhibit_timer setting
     pub fn lflong_tmr_msw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl LFLONG_MSW {    ///
 /// VS AN link_fail_inhibit_short timer lsw
 #[derive(From, Into)]
 pub struct LFSHORT_LSW(u32);
-impl LFSHORT_LSW {    ///
+impl LFSHORT_LSW {
     /// 1g link_fail_inhibit_timer setting
     pub fn lfshort_tmr_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0

@@ -35,15 +35,15 @@ use derive_more::{From, Into};
 /// The register interface to the ordered set data
 #[derive(From, Into)]
 pub struct RX_FSET_FIFO_DATA(u32);
-impl RX_FSET_FIFO_DATA {    ///
+impl RX_FSET_FIFO_DATA {
     /// Register interface to the FIFO containing captured ordered sets. Each read of this register pops a 24-bit ordered set off the FIFO and increments the FIFO pointer.
     pub fn rx_fset_fifo_data(&self) -> u32 {
-        (self.0 & 0xff) >> 8
+        (self.0 & 0xffffff00) >> 8
     }
     pub fn set_rx_fset_fifo_data(&mut self, value: u32) {
         let value = value << 8;
-        assert!(value <= 0xff);
-        self.0 &= !0xff;
+        assert!(value <= 0xffffff00);
+        self.0 &= !0xffffff00;
         self.0 |= value;
     }
 }

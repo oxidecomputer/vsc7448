@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// SSTL drive-strength force
 #[derive(From, Into)]
 pub struct MEMPHY_ZCAL_FORCE(u32);
-impl MEMPHY_ZCAL_FORCE {    ///
+impl MEMPHY_ZCAL_FORCE {
     /// Set to force override of calibration signals.
     pub fn zcal_force_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -43,7 +43,7 @@ impl MEMPHY_ZCAL_FORCE {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// ZCAL value when forcing calibration signals.
     pub fn zcal_force_zcal(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -53,7 +53,7 @@ impl MEMPHY_ZCAL_FORCE {    ///
         assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
-    }    ///
+    }
     /// ZQ_OFF value when forcing calibration signals.
     pub fn zcal_force_zq_off(&self) -> u32 {
         (self.0 & 0x2) >> 1

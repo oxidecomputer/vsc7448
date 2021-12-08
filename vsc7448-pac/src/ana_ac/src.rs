@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// See ANA_AC:AGGR.
 #[derive(From, Into)]
 pub struct AGGR_CFG1(u32);
-impl AGGR_CFG1 {    ///
+impl AGGR_CFG1 {
     /// Refer to AGGR_CFG.PORT_MASK description.
     pub fn port_mask1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0
@@ -55,15 +55,15 @@ impl AGGR_CFG1 {    ///
 /// Refer to description for ANA_AC:SRC.
 #[derive(From, Into)]
 pub struct SRC_CFG(u32);
-impl SRC_CFG {    ///
+impl SRC_CFG {
     /// Refer to description for ANA_AC:SRC.
     pub fn port_mask(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_port_mask(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

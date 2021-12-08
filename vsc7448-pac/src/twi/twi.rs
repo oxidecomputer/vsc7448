@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Acknowledge general call
 #[derive(From, Into)]
 pub struct ACK_GEN_CALL(u32);
-impl ACK_GEN_CALL {    ///
+impl ACK_GEN_CALL {
     /// ACK General Call. When set to 1, the TWI controller responds with a ACK when it receives a General Call. Otherwise, the controller responds with a NACK.
     pub fn ack_gen_call(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -51,9 +51,11 @@ impl ACK_GEN_CALL {    ///
 /// TWI configuration
 #[derive(From, Into)]
 pub struct CFG(u32);
-impl CFG {    ///
+impl CFG {
     /// Controls whether transfers starts in 7- or 10-bit addressing mode when acting as a master.
+
     ///
+
     /// '0': 7-bit addressing '1': 10-bit addressing
     pub fn master_10bitaddr(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -63,9 +65,11 @@ impl CFG {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// This bit controls whether the TWI master is enabled.
+
     ///
+
     /// '0': master disabled '1': master enabled
     pub fn master_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -75,9 +79,11 @@ impl CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Determines whether RESTART conditions may be sent when acting as a master. Some older slaves do not support handling RESTART conditions; however, RESTART conditions are used in several operations. When RESTART is disabled, the master is prohibited from performing the following functions: * Change direction within a transfer (split) * Send a START BYTE * Combined format transfers in 7-bit addressing modes * Read operation with a 10-bit address * Send multiple bytes per transfer By replacing RESTART condition followed by a STOP and a subsequent START condition, split operations are  broken down into multiple transfers. If the above operations are performed, it will result in setting RAW_INTR_STAT.R_TX_ABRT.
+
     ///
+
     /// '0': disable '1': enable
     pub fn restart_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -87,9 +93,11 @@ impl CFG {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Controls whether the the TWI controller responds to 7- or 10-bit addresses in slave mode. In 7-bit mode; transactions that involve 10-bit addressing are ignored and only the lower 7 bits of the SAR register are compared.
+
     ///
+
     /// '0': 7-bit addressing. '1': 10-bit addressing.
     pub fn slave_10bitaddr(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -99,9 +107,11 @@ impl CFG {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// This bit controls whether the TWI controller has its slave disabled. If this bit is set (slave is disabled), the controller functions only as a master and does not perform any action that requires a slave.
+
     ///
+
     /// '0': slave is enabled '1': slave is disabled
     pub fn slave_dis(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -111,9 +121,11 @@ impl CFG {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// These bits control at which speed the TWI controller operates; its setting is relevant only in master mode. Hardware protects against illegal values being programmed by software.
+
     ///
+
     /// '1': standard mode (100 kbit/s) '2': fast mode (400 kbit/s)
     pub fn speed(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -131,7 +143,7 @@ impl CFG {    ///
 /// Clear ACTIVITY interrupt
 #[derive(From, Into)]
 pub struct CLR_ACTIVITY(u32);
-impl CLR_ACTIVITY {    ///
+impl CLR_ACTIVITY {
     /// Reading this register clears the ACTIVITY interrupt if the TWI controller is not active anymore. If the TWI  controller is still active on the bus, the ACTIVITY interrupt bit continues to be set. It is automatically cleared by hardware if the module is disabled and if there is no further activity on the bus. The value read from this register to get status of the R_ACTIVITY interrupt (bit 8) of the RAW_INTR_STAT register.
     pub fn clr_activity(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -149,7 +161,7 @@ impl CLR_ACTIVITY {    ///
 /// Clear GEN_CALL interrupt
 #[derive(From, Into)]
 pub struct CLR_GEN_CALL(u32);
-impl CLR_GEN_CALL {    ///
+impl CLR_GEN_CALL {
     /// Read this register to clear the R_GEN_CALL interrupt (bit 11) of RAW_INTR_STAT register.
     pub fn clr_gen_call(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -167,7 +179,7 @@ impl CLR_GEN_CALL {    ///
 /// Clear combined and individual interrupt
 #[derive(From, Into)]
 pub struct CLR_INTR(u32);
-impl CLR_INTR {    ///
+impl CLR_INTR {
     /// Read this register to clear the combined interrupt, all individual interrupts, and the TX_ABRT_SOURCE register. This bit does not clear hardware clearable interrupts but software clearable interrupts. Refer to Bit 9 of the TX_ABRT_SOURCE register for an exception to clearing TX_ABRT_SOURCE.
     pub fn clr_intr(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -185,7 +197,7 @@ impl CLR_INTR {    ///
 /// Clear RD_REQ interrupt
 #[derive(From, Into)]
 pub struct CLR_RD_REQ(u32);
-impl CLR_RD_REQ {    ///
+impl CLR_RD_REQ {
     /// Read this register to clear the R_RD_REQ interrupt (bit 5) of the RAW_INTR_STAT register.
     pub fn clr_rd_req(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -203,7 +215,7 @@ impl CLR_RD_REQ {    ///
 /// Clear RX_DONE interrupt
 #[derive(From, Into)]
 pub struct CLR_RX_DONE(u32);
-impl CLR_RX_DONE {    ///
+impl CLR_RX_DONE {
     /// Read this register to clear the R_RX_DONE interrupt (bit 7) of the RAW_INTR_STAT register.
     pub fn clr_rx_done(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -221,7 +233,7 @@ impl CLR_RX_DONE {    ///
 /// Clear RX_OVER interrupt
 #[derive(From, Into)]
 pub struct CLR_RX_OVER(u32);
-impl CLR_RX_OVER {    ///
+impl CLR_RX_OVER {
     /// Read this register to clear the R_RX_OVER interrupt (bit 1) of the RAW_INTR_STAT register.
     pub fn clr_rx_over(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -239,7 +251,7 @@ impl CLR_RX_OVER {    ///
 /// Clear RX_UNDER interrupt
 #[derive(From, Into)]
 pub struct CLR_RX_UNDER(u32);
-impl CLR_RX_UNDER {    ///
+impl CLR_RX_UNDER {
     /// Read this register to clear the R_RX_UNDER interrupt (bit 0) of the RAW_INTR_STAT register.
     pub fn clr_rx_under(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -257,7 +269,7 @@ impl CLR_RX_UNDER {    ///
 /// Clear START_DET interrupt
 #[derive(From, Into)]
 pub struct CLR_START_DET(u32);
-impl CLR_START_DET {    ///
+impl CLR_START_DET {
     /// Read this register to clear the R_START_DET interrupt (bit 10) of the RAW_INTR_STAT register.
     pub fn clr_start_det(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -275,7 +287,7 @@ impl CLR_START_DET {    ///
 /// Clear STOP_DET interrupt
 #[derive(From, Into)]
 pub struct CLR_STOP_DET(u32);
-impl CLR_STOP_DET {    ///
+impl CLR_STOP_DET {
     /// Read this register to clear the R_STOP_DET interrupt (bit 9) of the RAW_INTR_STAT register.
     pub fn clr_stop_det(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -293,7 +305,7 @@ impl CLR_STOP_DET {    ///
 /// Clear TX_ABRT interrupt
 #[derive(From, Into)]
 pub struct CLR_TX_ABRT(u32);
-impl CLR_TX_ABRT {    ///
+impl CLR_TX_ABRT {
     /// Read this register to clear the R_TX_ABRT interrupt (bit 6) of the RAW_INTR_STAT register, and the TX_ABRT_SOURCE register. Refer to Bit 9 of the TX_ABRT_SOURCE register for an exception to clearing TX_ABRT_SOURCE.
     pub fn clr_tx_abrt(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -311,7 +323,7 @@ impl CLR_TX_ABRT {    ///
 /// Clear TX_OVER interrupt
 #[derive(From, Into)]
 pub struct CLR_TX_OVER(u32);
-impl CLR_TX_OVER {    ///
+impl CLR_TX_OVER {
     /// Read this register to clear the R_TX_OVER interrupt (bit 3) of the RAW_INTR_STAT register.
     pub fn clr_tx_over(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -329,9 +341,11 @@ impl CLR_TX_OVER {    ///
 /// Component parameter
 #[derive(From, Into)]
 pub struct COMP_PARAM_1(u32);
-impl COMP_PARAM_1 {    ///
+impl COMP_PARAM_1 {
     /// This value indicates if this register is valid or not.
+
     ///
+
     /// '0': Dones not have encoded parameters. '1': Has encoded parameters.
     pub fn add_encoded_params(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -341,9 +355,11 @@ impl COMP_PARAM_1 {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// The value of this register is derived from the APB_DATA_WIDTH coreConsultant parameter.
+
     ///
+
     /// 0: 8 bits 1: 16 bits 2: 32 bits
     pub fn apb_data_width(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -353,7 +369,7 @@ impl COMP_PARAM_1 {    ///
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
-    }    ///
+    }
     /// '0': Does not have DMA interface. '1': Has DMA interface.
     pub fn has_dma(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -363,7 +379,7 @@ impl COMP_PARAM_1 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// The value of this register is derived from the HC_COUNT_VALUES coreConsultant parameter.
     pub fn hc_count_values(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -373,7 +389,7 @@ impl COMP_PARAM_1 {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// The value of this register is derived from the IC_INTR_IO coreConsultant parameter.
     pub fn intr_io(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -383,9 +399,11 @@ impl COMP_PARAM_1 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// The maximum TWI speed of the controller.
+
     ///
+
     /// 1: Standard 2: Fast 3: High
     pub fn max_speed_mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -395,7 +413,7 @@ impl COMP_PARAM_1 {    ///
         assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
-    }    ///
+    }
     /// The depth of the RX buffer.
     pub fn rx_buffer_depth(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -405,7 +423,7 @@ impl COMP_PARAM_1 {    ///
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    ///
+    }
     /// The depth of the TX buffer.
     pub fn tx_buffer_depth(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
@@ -423,15 +441,15 @@ impl COMP_PARAM_1 {    ///
 /// Component type
 #[derive(From, Into)]
 pub struct COMP_TYPE(u32);
-impl COMP_TYPE {    ///
+impl COMP_TYPE {
     /// Component Type number = 0x44_57_01_40, this assigned unique hex value is constant.
     pub fn comp_type(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_comp_type(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -441,15 +459,15 @@ impl COMP_TYPE {    ///
 /// Component version
 #[derive(From, Into)]
 pub struct COMP_VERSION(u32);
-impl COMP_VERSION {    ///
+impl COMP_VERSION {
     /// Specific values for this register are described in the Releases Table in the Release Notes.
     pub fn comp_version(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_comp_version(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -459,9 +477,11 @@ impl COMP_VERSION {    ///
 /// TWI control
 #[derive(From, Into)]
 pub struct CTRL(u32);
-impl CTRL {    ///
+impl CTRL {
     /// Controls whether the TWI controller is enabled. Software can disable the controller while it is active. However, it is important that care be taken to ensure that the controller is disabled properly. When TWI controller is disabled, the following occurs: The TX FIFO and RX FIFO get flushed. The interrupt bits in the RAW_INTR_STAT register are cleared. Status bits in the INTR_STAT register are still active until the TWI controller goes into IDLE state. If the module is transmitting, it stops as well as deletes the contents of the transmit buffer after the current transfer is complete. If the module is receiving, the controller stops the current transfer at the end of the current byte and does not acknowledge the transfer.
+
     ///
+
     /// '0': Disables TWI controller '1': Enables TWI controller
     pub fn enable(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -479,9 +499,11 @@ impl CTRL {    ///
 /// Rx/Tx data buffer and command
 #[derive(From, Into)]
 pub struct DATA_CMD(u32);
-impl DATA_CMD {    ///
+impl DATA_CMD {
     /// This bit controls whether a read or a write is performed. This bit does not control the direction when the TWI acts as a slave. It controls only the direction when it acts as a master. When a command is entered in the TX FIFO, this bit distinguishes the write and read commands. In slave-receiver mode, this bit is a "don't care" because writes to this register are not required. In slave-transmitter mode, a "0" indicates that CPU data is to be transmitted and as DATA. When programming this bit, remember the following: attempting to perform a read operation after a General Call command has been sent results in a TX_ABRT interrupt (RAW_INTR_STAT.R_TX_ABRT), unless TAR.GC_OR_START_ENA has been cleared. If a "1" is written to this bit after receiving a RD_REQ interrupt, then a TX_ABRT interrupt occurs. NOTE: It is possible that while attempting a master TWI read transfer, a RD_REQ interrupt may have occurred simultaneously due to a remote TWI master addressing this controller. In this type of scenario, the TWI controller ignores the DATA_CMD write, generates a TX_ABRT interrupt, and waits to service the RD_REQ interrupt.
+
     ///
+
     /// '1' = Read '0' = Write
     pub fn cmd(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -491,7 +513,7 @@ impl DATA_CMD {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// This register contains the data to be transmitted or received on the TWI bus. If you are writing to this register and want to perform a read, this field is ignored by the controller. However, when you read this register, these bits return the value of data received on the TWI interface.
     pub fn data(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -509,7 +531,7 @@ impl DATA_CMD {    ///
 /// Enable status
 #[derive(From, Into)]
 pub struct ENABLE_STATUS(u32);
-impl ENABLE_STATUS {    ///
+impl ENABLE_STATUS {
     /// When read as 1, the TWI controller is deemed to be actively involved in an TWI transfer, irrespective of whether being in an address or data phase for all master or slave modes. When read as 0, the TWI controller is deemed completely inactive.
     pub fn busy(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -519,7 +541,7 @@ impl ENABLE_STATUS {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Slave FIFO Filled and Flushed. This bit indicates if a Slave-Receiver operation has been aborted with at least 1 data byte received from a TWI transfer due to the setting of ENABLE from 1 to 0. When read as 1, the TWI controller is deemed to have been actively engaged in an aborted TWI transfer (with matching address) and the data phase of the TWI transfer has been entered, even though the data byte has been responded with a NACK. When read as 0, the TWI controller is deemed to have been disabled when the TWI bus is idle.
     pub fn slv_fifo_filled_and_flushed(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -529,7 +551,7 @@ impl ENABLE_STATUS {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Slave-Receiver Operation Aborted. This bit indicates if a Slave-Receiver operation has been aborted due to the setting of the ENABLE register from 1 to 0. When read as 1, the TWI controller is deemed to have forced a NACK during any part of a TWI transfer, irrespective of whether the TWI address matches the slave address set in the TWI controller (SAR register). When read as 0, the TWI controller is deemed to have been disabled when the TWI bus is idle.
     pub fn slv_rx_aborted(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -549,7 +571,7 @@ impl ENABLE_STATUS {    ///
 /// The clock for the TWI controller is the VCore system clock. This field must be set accordingly to the VCore system frequency; value = (0.6us / VCore clock period) - 8. Example: a 178.6MHz clock correspond to a period of 5.6ns, for this frequency this field must not be set lower than (round up): 100 = (0.6us / 5.6ns) - 8.
 #[derive(From, Into)]
 pub struct FS_SCL_HCNT(u32);
-impl FS_SCL_HCNT {    ///
+impl FS_SCL_HCNT {
     /// This register sets the SCL clock divider for the high-period in fast speed. This value must result in a value no less than 0.6us.
     pub fn fs_scl_hcnt(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -569,7 +591,7 @@ impl FS_SCL_HCNT {    ///
 /// The clock for the TWI controller is the VCore system clock. This field must be set accordingly to the VCore system frequency; value = (1.3us / VCore clock period) - 1. Example: a 178.6MHz clock correspond to a period of 5.6ns, for this frequency this field must not be set lower than (round up): 232 = (1.3us / 5.6ns) - 1.
 #[derive(From, Into)]
 pub struct FS_SCL_LCNT(u32);
-impl FS_SCL_LCNT {    ///
+impl FS_SCL_LCNT {
     /// This register sets the SCL clock divider for the low-period in fast speed. This value must result in a value no less than 1.3us.
     pub fn fs_scl_lcnt(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -801,7 +823,7 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
 /// Unlike the INTR_STAT register, these fields are not masked so they always show the true status of the TWI controller.
 #[derive(From, Into)]
 pub struct RAW_INTR_STAT(u32);
-impl RAW_INTR_STAT {    ///
+impl RAW_INTR_STAT {
     /// This bit captures TWI activity and stays set until it is cleared. There are four ways to clear it: Disabling the TWI controller Reading the CLR_ACTIVITY register Reading the CLR_INTR register VCore system reset Once this bit is set, it stays set unless one of the four methods is used to clear it. Even if the TWI controller module is idle, this bit remains set until cleared, indicating that there was activity on the bus.
     pub fn r_activity(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -811,7 +833,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Set only when a General Call address is received and it is acknowledged. It stays set until it is cleared either by disabling TWI controller or when the CPU reads bit 0 of the CLR_GEN_CALL register. The TWI controller stores the received data in the Rx buffer.
     pub fn r_gen_call(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -821,7 +843,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set to 1 when the TWI controller acts as a slave and another TWI master is attempting to read data from this controller. The TWI controller holds the TWI bus in a wait state (SCL=0) until this interrupt is serviced, which means that the slave has been addressed by a remote master that is asking for data to be transferred. The processor must respond to this interrupt and then write the requested data to the DATA_CMD register. This bit is set to 0 just after the required data is written to the DATA_CMD register.
     pub fn r_rd_req(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -831,7 +853,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// When the TWI controller is acting as a slave-transmitter, this bit is set to 1 if the master does not acknowledge a transmitted byte. This occurs on the last byte of the transmission, indicating that the transmission is done.
     pub fn r_rx_done(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -841,7 +863,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Set when the receive buffer reaches or goes above the RX_TL threshold in the RX_TL register. It is automatically cleared by hardware when buffer level goes below the threshold. If the module is disabled (ENABLE=0), the RX FIFO is flushed and held in reset; therefore the RX FIFO is not full. So this bit is cleared once the ENABLE field is programmed with a 0, regardless of the activity that continues.
     pub fn r_rx_full(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -851,7 +873,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set if the receive buffer is completely filled to RX_BUFFER_DEPTH and an additional byte is received from an external TWI device. The TWI controller acknowledges this, but any data bytes received after the FIFO is full are lost. If the module is disabled (ENABLE=0), this bit keeps its level until the master or slave state machines go into idle, and when ENABLE_STATUS.BUSY goes to 0, this interrupt is cleared.
     pub fn r_rx_over(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -861,7 +883,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set if the processor attempts to read the receive buffer when it is empty by reading from the DATA_CMD register. If the module is disabled (ENABLE=0), this bit keeps its level until the master or slave state machines go into idle, and when ENABLE_STATUS.BUSY goes to 0, this interrupt is cleared.
     pub fn r_rx_under(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -871,7 +893,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates whether a START or RESTART condition has occurred on the TWI regardless of whether the TWI controller is operating in slave or master mode.
     pub fn r_start_det(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -881,7 +903,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates whether a STOP condition has occurred on the TWI controller regardless of whether the TWI controller is operating in slave or master mode.
     pub fn r_stop_det(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -891,7 +913,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set to 1 when the TWI controller is acting as a master is unable to complete a command that the processor has sent. The conditions that set this field are: No slave acknowledges the address byte. The addressed slave receiver does not acknowledge a byte of data. Attempting to send a master command when configured only to be a slave. When CFG.RESTART_ENA is set to 0 (RESTART condition disabled), and the processor attempts to issue a TWI function that is impossible to perform without using RESTART conditions. High-speed master code is acknowledged (this controller does not support high-speed). START BYTE is acknowledged. General Call address is not acknowledged. When a read request interrupt occurs and the processor has previously placed data in the Tx buffer that has not been transmitted yet. This data could have been intended to service a multi-byte RD_REQ that ended up having fewer numbers of bytes requested. The TWI controller loses arbitration of the bus between transfers and is then accessed as a slave-transmitter. If a read command is issued after a General Call command has been issued. Disabling the TWI reverts it back to normal operation. If the CPU attempts to issue read command before a RD_REQ is serviced. Anytime this bit is set, the contents of the transmit and receive buffers are flushed.
     pub fn r_tx_abrt(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -901,7 +923,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// This bit is set to 1 when the transmit buffer is at or below the threshold value set in the TX_TL register. It is automatically cleared by hardware when the buffer level goes above the threshold. When ENABLE is 0, the TX FIFO is flushed and held in reset. There the TX FIFO looks like it has no data within it, so this bit is set to 1, provided there is activity in the master or slave state machines. When there is no longer activity, then with ENABLE_STATUS.BUSY=0, this bit is set to 0.
     pub fn r_tx_empty(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -911,7 +933,7 @@ impl RAW_INTR_STAT {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Set during transmit if the transmit buffer is filled to TX_BUFFER_DEPTH and the processor attempts to issue another TWI command by writing to the DATA_CMD register. When the module is disabled, this bit keeps its level until the master or slave state machines go into idle, and when ENABLE_STATUS.BUSY goes to 0, this interrupt is cleared.
     pub fn r_tx_over(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -930,12 +952,12 @@ impl RAW_INTR_STAT {    ///
 #[derive(From, Into)]
 pub struct RESERVED1(u32);
 impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_reserved1(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -946,12 +968,12 @@ impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED2(u32);
 impl RESERVED2 {    pub fn reserved2(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_reserved2(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -962,12 +984,12 @@ impl RESERVED2 {    pub fn reserved2(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED3(u32);
 impl RESERVED3 {    pub fn reserved3(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_reserved3(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -978,12 +1000,12 @@ impl RESERVED3 {    pub fn reserved3(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED4(u32);
 impl RESERVED4 {    pub fn reserved4(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_reserved4(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -994,12 +1016,12 @@ impl RESERVED4 {    pub fn reserved4(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED5(u32);
 impl RESERVED5 {    pub fn reserved5(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_reserved5(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -1010,12 +1032,12 @@ impl RESERVED5 {    pub fn reserved5(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED6(u32);
 impl RESERVED6 {    pub fn reserved6(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_reserved6(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -1026,12 +1048,12 @@ impl RESERVED6 {    pub fn reserved6(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED7(u32);
 impl RESERVED7 {    pub fn reserved7(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_reserved7(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -1042,12 +1064,12 @@ impl RESERVED7 {    pub fn reserved7(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED8(u32);
 impl RESERVED8 {    pub fn reserved8(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_reserved8(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -1057,7 +1079,7 @@ impl RESERVED8 {    pub fn reserved8(&self) -> u32 {
 /// Receive FIFO level
 #[derive(From, Into)]
 pub struct RXFLR(u32);
-impl RXFLR {    ///
+impl RXFLR {
     /// Receive FIFO Level. Contains the number of valid data entries in the receive FIFO.
     pub fn rxflr(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -1075,7 +1097,7 @@ impl RXFLR {    ///
 /// Receive FIFO threshold
 #[derive(From, Into)]
 pub struct RX_TL(u32);
-impl RX_TL {    ///
+impl RX_TL {
     /// Controls the level of entries (or above) that triggers the RX_FULL interrupt (bit 2 in RAW_INTR_STAT register). The valid range is 0-7. A value of 0 sets the threshold for 1 entry, and a value of 7 sets the threshold for 8 entries.
     pub fn rx_tl(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -1093,7 +1115,7 @@ impl RX_TL {    ///
 /// Slave address
 #[derive(From, Into)]
 pub struct SAR(u32);
-impl SAR {    ///
+impl SAR {
     /// The SAR holds the slave address when the TWI is operating as a slave. For 7-bit addressing, only SAR[6:0] is used. This register can be written only when the TWI interface is disabled (ENABLE = 0).
     pub fn sar(&self) -> u32 {
         (self.0 & 0x3ff) >> 0
@@ -1113,7 +1135,7 @@ impl SAR {    ///
 /// This field must be set accordingly to the VCore system frequency; value = 100ns / VCore clock period. Example: a 178.6MHz clock correspond to a period of 5.6ns, for this frequency and fast TWI speed this field must not be set lower than (round up): 18 = 100ns / 5.6ns. For normal TWI speed this field must not be set lower than (round up): 45 = 250ns / 5.6ns.
 #[derive(From, Into)]
 pub struct SDA_SETUP(u32);
-impl SDA_SETUP {    ///
+impl SDA_SETUP {
     /// This register controls the amount of time delay (in terms of number of VCore clock periods) introduced in the rising edge of SCL, relative to SDA changing, when the TWI controller services a read request in a slave-receiver operation. The minimum for fast mode is 100ns, for nomal mode the minimum is 250ns.
     pub fn sda_setup(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -1133,7 +1155,7 @@ impl SDA_SETUP {    ///
 /// The clock for the TWI controller is the VCore system clock. This field must be set accordingly to the VCore system frequency; value = (4us / VCore clock period) - 8. Example: a 178.6MHz clock correspond to a period of 5.6ns, for this frequency this field must not be set lower than (round up): 707 = (4us / 5.6ns) - 8.
 #[derive(From, Into)]
 pub struct SS_SCL_HCNT(u32);
-impl SS_SCL_HCNT {    ///
+impl SS_SCL_HCNT {
     /// This register sets the SCL clock divider for the high-period in standard speed. This value must result in a high period of no less than 4us.
     pub fn ss_scl_hcnt(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -1153,7 +1175,7 @@ impl SS_SCL_HCNT {    ///
 /// The clock for the TWI controller is the VCore system clock. This field must be set accordingly to the VCore system frequency; value = (4.7us / VCore clock period) - 1. Example: a 178.6MHz clock correspond to a period of 5.6ns, for this frequency this field must not be set lower than (round up): 839 = (4.7us / 5.6ns) - 1.
 #[derive(From, Into)]
 pub struct SS_SCL_LCNT(u32);
-impl SS_SCL_LCNT {    ///
+impl SS_SCL_LCNT {
     /// This register sets the SCL clock divider for the low-period in standard speed. This value must result in a value no less than 4.7us.
     pub fn ss_scl_lcnt(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -1171,7 +1193,7 @@ impl SS_SCL_LCNT {    ///
 /// TWI status
 #[derive(From, Into)]
 pub struct STAT(u32);
-impl STAT {    ///
+impl STAT {
     /// TWI Activity Status.
     pub fn bus_activity(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -1181,9 +1203,11 @@ impl STAT {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Master FSM Activity Status. When the Master Finite State Machine (FSM) is not in the IDLE state, this bit is set.
+
     ///
+
     /// '0': Master FSM is in IDLE state so the Master part of the controller is not Active '1': Master FSM is not in IDLE state so the Master part of the controller is Active
     pub fn mst_activity(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -1193,9 +1217,11 @@ impl STAT {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Receive FIFO Completely Full. When the receive FIFO is completely full, this bit is set. When the receive FIFO contains one or more empty location, this bit is cleared.
+
     ///
+
     /// '0': Receive FIFO is not full '1': Receive FIFO is full
     pub fn rff(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -1205,9 +1231,11 @@ impl STAT {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Receive FIFO Not Empty. Set when the receive FIFO contains one or more entries and is cleared when the receive FIFO is empty. This bit can be polled by software to completely empty the receive FIFO.
+
     ///
+
     /// '0': Receive FIFO is empty '1': Receive FIFO is not empty
     pub fn rfne(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -1217,9 +1245,11 @@ impl STAT {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Slave FSM Activity Status. When the Slave Finite State Machine (FSM) is not in the IDLE state, this bit is set.
+
     ///
+
     /// '0': Slave FSM is in IDLE state so the Slave part of the controller is not Active '1': Slave FSM is not in IDLE state so the Slave part of the controller is Active
     pub fn slv_activity(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -1229,9 +1259,11 @@ impl STAT {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Transmit FIFO Completely Empty. When the transmit FIFO is completely empty, this bit is set. When it contains one or more valid entries, this bit is cleared. This bit field does not request an interrupt.
+
     ///
+
     /// '0': Transmit FIFO is not empty '1': Transmit FIFO is empty
     pub fn tfe(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -1241,9 +1273,11 @@ impl STAT {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Transmit FIFO Not Full. Set when the transmit FIFO contains one or more empty locations, and is cleared when the FIFO is full.
+
     ///
+
     /// '0': Transmit FIFO is full '1': Transmit FIFO is not full
     pub fn tfnf(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -1261,9 +1295,11 @@ impl STAT {    ///
 /// Target address
 #[derive(From, Into)]
 pub struct TAR(u32);
-impl TAR {    ///
+impl TAR {
     /// If TAR.GC_OR_START_ENA is set to 1, then this bit indicates whether a General Call or START byte command is to be performed.
+
     ///
+
     /// '0': General Call Address - after issuing a General Call, only writes may be performed. Attempting to issue a read command results in setting RAW_INTR_STAT.R_TX_ABRT. The TWI controller remains in General Call mode until the TAR.GC_OR_START_ENA field is cleared. '1': START BYTE
     pub fn gc_or_start(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -1273,9 +1309,11 @@ impl TAR {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// This bit indicates whether software performs a General Call or START BYTE command.
+
     ///
+
     /// '0': ignore bit 10 GC_OR_START and use TAR normally '1': perform special TWI command as specified in GC_OR_START bit
     pub fn gc_or_start_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -1285,7 +1323,7 @@ impl TAR {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// This is the target address for any master transaction. When transmitting a General Call, these bits are ignored. To generate a START BYTE, the CPU needs to write only once into these bits. If the TAR and SAR are the same, loopback exists but the FIFOs are shared between master and slave, so full loopback is not feasible. Only one direction loopback mode is supported (simplex), not duplex. A master cannot transmit to itself; it can transmit to only a slave.
     pub fn tar(&self) -> u32 {
         (self.0 & 0x3ff) >> 0
@@ -1303,7 +1341,7 @@ impl TAR {    ///
 /// Transmit FIFO level
 #[derive(From, Into)]
 pub struct TXFLR(u32);
-impl TXFLR {    ///
+impl TXFLR {
     /// Transmit FIFO Level. Contains the number of valid data entries in the transmit FIFO.
     pub fn txflr(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -1321,7 +1359,7 @@ impl TXFLR {    ///
 /// Transmit abort source
 #[derive(From, Into)]
 pub struct TX_ABRT_SOURCE(u32);
-impl TX_ABRT_SOURCE {    ///
+impl TX_ABRT_SOURCE {
     /// Master is in 10-bit address mode and the first 10-bit address byte was not acknowledged by any slave.
     pub fn abrt_10addr1_noack(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -1331,7 +1369,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Master is in 10-bit address mode and the second address byte of the 10-bit address was not acknowledged by any slave.
     pub fn abrt_10addr2_noack(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -1341,7 +1379,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// The restart is disabled (RESTART_ENA bit (CFG[5]) = 0) and the master sends a read command in 10-bit addressing mode.
     pub fn abrt_10b_rd_norstrt(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -1351,7 +1389,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Master is in 7-bit addressing mode and the address sent was not acknowledged by any slave.
     pub fn abrt_7b_addr_noack(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -1361,7 +1399,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// TWI controller in master mode sent a General Call and no slave on the bus acknowledged the General Call.
     pub fn abrt_gcall_noack(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -1371,7 +1409,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// TWI controller in master mode sent a General Call but the user programmed the byte following the General Call to be a read from the bus (DATA_CMD[9] is set to 1).
     pub fn abrt_gcall_read(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -1381,7 +1419,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Master is in High Speed mode and the High Speed Master code was acknowledged (wrong behavior).
     pub fn abrt_hs_ackdet(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -1391,7 +1429,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// The restart is disabled (RESTART_ENA bit (CFG[5]) = 0) and the user is trying to use the master to transfer data in High Speed mode.
     pub fn abrt_hs_norstrt(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -1401,7 +1439,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// User tries to initiate a Master operation with the Master mode disabled.
     pub fn abrt_master_dis(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -1411,7 +1449,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// Master has sent a START Byte and the START Byte was acknowledged (wrong behavior).
     pub fn abrt_sbyte_ackdet(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -1421,9 +1459,11 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// To clear Bit 9, the source of the ABRT_SBYTE_NORSTRT must be fixed first; restart must be enabled (CFG[5]=1), the SPECIAL bit must be cleared (TAR[11]), or the GC_OR_START bit must be cleared (TAR[10]). Once the source of the ABRT_SBYTE_NORSTRT is fixed, then this bit can be cleared in the same manner as other bits in this register. If the source of the ABRT_SBYTE_NORSTRT is not fixed before attempting to clear this bit, bit 9 clears for one cycle and then gets re-asserted.
+
     ///
+
     /// '1': The restart is disabled (RESTART_ENA bit (CFG[5]) = 0) and the user is trying to send a START Byte.
     pub fn abrt_sbyte_norstrt(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -1433,7 +1473,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Slave has received a read command and some data exists in the TX FIFO so the slave issues a TX_ABRT interrupt to flush old data in TX FIFO.
     pub fn abrt_slvflush_txfifo(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -1443,7 +1483,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// When the processor side responds to a slave mode request for data to be transmitted to a remote master and user writes a 1 to DATA_CMD.CMD.
     pub fn abrt_slvrd_intx(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -1453,7 +1493,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Slave lost the bus while transmitting data to a remote master. TX_ABRT_SOURCE[12] is set at the same time. Note: Even though the slave never "owns" the bus, something could go wrong on the bus. This is a fail safe check. For instance, during a data transmission at the low-to-high transition of SCL, if what is on the data bus is not what is supposed to be transmitted, then the TWI controller no longer own the bus.
     pub fn abrt_slv_arblost(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -1463,7 +1503,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// This is a master-mode only bit. Master has received an acknowledgement for the address, but when it sent data byte(s) following the address, it did not receive an acknowledge from the remote slave(s).
     pub fn abrt_txdata_noack(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -1473,7 +1513,7 @@ impl TX_ABRT_SOURCE {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Master has lost arbitration, or if TX_ABRT_SOURCE[14] is also set, then the slave transmitter has lost arbitration. Note: the TWI controller can be both master and slave at the same time.
     pub fn arb_lost(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -1491,7 +1531,7 @@ impl TX_ABRT_SOURCE {    ///
 /// Transmit FIFO threshold
 #[derive(From, Into)]
 pub struct TX_TL(u32);
-impl TX_TL {    ///
+impl TX_TL {
     /// Controls the level of entries (or below) that trigger the TX_EMPTY interrupt (bit 4 in RAW_INTR_STAT register). The valid range is 0-7. A value of 0 sets the threshold for 0 entries, and a value of 7 sets the threshold for 7 entries.
     pub fn tx_tl(&self) -> u32 {
         (self.0 & 0x7) >> 0

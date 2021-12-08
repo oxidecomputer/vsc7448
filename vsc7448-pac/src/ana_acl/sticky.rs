@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Configuration of how VOE loopback is performed
 #[derive(From, Into)]
 pub struct VOE_LOOPBACK_CFG(u32);
-impl VOE_LOOPBACK_CFG {    ///
+impl VOE_LOOPBACK_CFG {
     /// Controls how loopback port is selected.
+
     ///
+
     /// 0: Loop to req.port_num 1: Loop to logical port found in ANA_AC:PGID[req.port_num+VOE_LOOP_PGID_OFFSET]
     pub fn voe_loop_pgid_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0

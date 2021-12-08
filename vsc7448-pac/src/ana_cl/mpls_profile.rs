@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// MIP_TBL CCM hit me once set control
 #[derive(From, Into)]
 pub struct MIP_CTRL(u32);
-impl MIP_CTRL {    ///
+impl MIP_CTRL {
     /// Set all CCM Hit me once bits. Cleared when the access completes. Ref: ANA_CL:MIP_TBL:CCM_HMO_CTRL
+
     ///
+
     /// 0: Idle 1: Initiate setting all ANA_CL:MIP_TBL:CCM_HMO_CTRL.CCM_COPY_ONCE_ENA where MIP_CCM_INTERVAL_MASK[CCM_HMO_CTRL.CCM_INTERVAL] is set The bit is cleared upon completion
     pub fn mip_ccm_hmo_set_shot(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -45,9 +47,11 @@ impl MIP_CTRL {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Specifies which MIP CCM intervales that will have CCM_COPY_ONCE_ENA set.
+
     ///
+
     /// x0x: Interval is ignored x1x: ANA_CL:MIP_TBL:CCM_HMO_CTRL.CCM_COPY_ONCE_ENA is set where MIP_CCM_INTERVAL_MASK[CCM_HMO_CTRL.CCM_INTERVAL] is set.
     pub fn mip_ccm_interval_mask(&self) -> u32 {
         (self.0 & 0xf) >> 0

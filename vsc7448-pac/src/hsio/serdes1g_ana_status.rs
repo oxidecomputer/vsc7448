@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Configuration register for SERDES1G RCPLL
 #[derive(From, Into)]
 pub struct SERDES1G_PLL_CFG(u32);
-impl SERDES1G_PLL_CFG {    ///
+impl SERDES1G_PLL_CFG {
     /// Enable feedback divider (divide by two)
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn pll_ena_fb_div2(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -47,9 +49,11 @@ impl SERDES1G_PLL_CFG {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable reference clock divider (divide by two)
+
     ///
+
     /// 0: Disable 1: Enable
     pub fn pll_ena_rc_div2(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -59,7 +63,7 @@ impl SERDES1G_PLL_CFG {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Control data for FSM
     pub fn pll_fsm_ctrl_data(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -69,7 +73,7 @@ impl SERDES1G_PLL_CFG {    ///
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    ///
+    }
     /// Enable FSM
     pub fn pll_fsm_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -79,7 +83,7 @@ impl SERDES1G_PLL_CFG {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Enable FSM forcing
     pub fn pll_fsm_force_set_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -89,7 +93,7 @@ impl SERDES1G_PLL_CFG {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Enable FSM recalibration
     pub fn pll_fsm_oor_recal_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -99,7 +103,7 @@ impl SERDES1G_PLL_CFG {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Select RB data
     pub fn pll_rb_data_sel(&self) -> u32 {
         (self.0 & 0x8) >> 3

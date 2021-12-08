@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Current time of day, nanoseconds part.
 #[derive(From, Into)]
 pub struct PTP_CUR_NSEC(u32);
-impl PTP_CUR_NSEC {    ///
+impl PTP_CUR_NSEC {
     /// Time of day naoseconds, latched when NSF was read.
     pub fn ptp_cur_nsec(&self) -> u32 {
         (self.0 & 0x3fffffff) >> 0
@@ -53,15 +53,15 @@ impl PTP_CUR_NSEC {    ///
 /// Current timestamping value
 #[derive(From, Into)]
 pub struct PTP_CUR_NSF(u32);
-impl PTP_CUR_NSF {    ///
+impl PTP_CUR_NSF {
     /// Returns the current value of the timestamping clock. The time of day registers will be latched when this register is read.
     pub fn ptp_cur_nsf(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_ptp_cur_nsf(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -71,15 +71,15 @@ impl PTP_CUR_NSF {    ///
 /// Current time of day
 #[derive(From, Into)]
 pub struct PTP_CUR_SEC_LSB(u32);
-impl PTP_CUR_SEC_LSB {    ///
+impl PTP_CUR_SEC_LSB {
     /// Value of current tod secs, latched when NSF was read.
     pub fn ptp_cur_sec_lsb(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_ptp_cur_sec_lsb(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -89,7 +89,7 @@ impl PTP_CUR_SEC_LSB {    ///
 /// System clock configuration
 #[derive(From, Into)]
 pub struct PTP_SYS_CLK_CFG(u32);
-impl PTP_SYS_CLK_CFG {    ///
+impl PTP_SYS_CLK_CFG {
     /// Must be configured to running system clock period, rounded down to closest interger nanoseconds value.
     pub fn ptp_sys_clk_per_ns(&self) -> u32 {
         (self.0 & 0x1f0) >> 4
@@ -99,7 +99,7 @@ impl PTP_SYS_CLK_CFG {    ///
         assert!(value <= 0x1f0);
         self.0 &= !0x1f0;
         self.0 |= value;
-    }    ///
+    }
     /// Must be configured to number of 100ps to add on top of the PTP_SYS_CLK_PER_NS value to get to the correct clock period.
     pub fn ptp_sys_clk_per_ps100(&self) -> u32 {
         (self.0 & 0xf) >> 0

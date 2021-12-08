@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training apc_timer
 #[derive(From, Into)]
 pub struct APC_TMR(u32);
-impl APC_TMR {    ///
+impl APC_TMR {
     /// Delay between LP tap update, and capture of direct-connect apc values
     pub fn apc_tmr(&self) -> u32 {
         (self.0 & 0xffff) >> 0

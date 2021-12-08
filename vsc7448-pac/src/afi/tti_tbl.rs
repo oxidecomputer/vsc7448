@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// DTI control
 #[derive(From, Into)]
 pub struct DTI_CTRL(u32);
-impl DTI_CTRL {    ///
+impl DTI_CTRL {
     /// DTI bandwidth. Used to give arbitration precedence to high bandwidth DTIs.
+
     ///
+
     /// 0: <5Gbps 1: >=5Gbps
     pub fn bw(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -45,7 +47,7 @@ impl DTI_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Enable DTI. If MODE=0 or MODE=2, then ENA is cleared by AFI when configured number of sequences have been injected. Before (re)starting a DTI the following initialization should be done: DURATION must be set to 0. NEXT_FRM_PTR should be set to FIRST_FRM_PTR. DTI_CNT_DOWN.CNT_DOWN should be set to 0. FRM_INJ_CNT should be set to 0 AFI::MISC_CTRL.AFI_ENA must be set to 1. If MODE=2, then the AFI will set ENA=1 for the DTI pointed to by DTI_NEXT once the DTI with MODE=2 completes.
     pub fn ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -63,7 +65,7 @@ impl DTI_CTRL {    ///
 /// Frame pointer for TTI
 #[derive(From, Into)]
 pub struct TTI_FRM(u32);
-impl TTI_FRM {    ///
+impl TTI_FRM {
     /// Pointer to the frame in Frame Table, which TTI shall inject.
     pub fn frm_ptr(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -81,7 +83,7 @@ impl TTI_FRM {    ///
 /// Miscellaneous TTI parameters
 #[derive(From, Into)]
 pub struct TTI_MISC_CFG(u32);
-impl TTI_MISC_CFG {    ///
+impl TTI_MISC_CFG {
     /// Enable counting of injected frames in AFI:TTI_MISC:TTI_INJ_CNT.TTI_INJ_CNT.
     pub fn inj_cnt_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -99,7 +101,7 @@ impl TTI_MISC_CFG {    ///
 /// Port and queue for injected frames.
 #[derive(From, Into)]
 pub struct TTI_PORT_QU(u32);
-impl TTI_PORT_QU {    ///
+impl TTI_PORT_QU {
     /// Port number which injection queue transmits on. Injection queue is selected by QU_NUM. PORT_NUM must not be changed when timer is enabled.
     pub fn port_num(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -109,7 +111,7 @@ impl TTI_PORT_QU {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// QU_NUM selects the queue, which the frame is injected into. For details, refer to the functional description of the queue system in the datasheet. QU_NUM must not be changed when timer is enabled.
     pub fn qu_num(&self) -> u32 {
         (self.0 & 0xffff00) >> 8
@@ -127,7 +129,7 @@ impl TTI_PORT_QU {    ///
 /// Current state of TTI's tick counter
 #[derive(From, Into)]
 pub struct TTI_TICKS(u32);
-impl TTI_TICKS {    ///
+impl TTI_TICKS {
     /// Ticks era value last time TTI was processed.
     pub fn last_tick_era(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -137,7 +139,7 @@ impl TTI_TICKS {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Number of ticks until next injection. Frame is injected when TICK_CNT=0. Upon injection TICK_CNT gets set to TIMER_LEN. Should be set to a random value in range 1-TIMER_LEN before starting TTI.
     pub fn tick_cnt(&self) -> u32 {
         (self.0 & 0x1ff) >> 0
@@ -155,9 +157,11 @@ impl TTI_TICKS {    ///
 /// TTI Timer configuration
 #[derive(From, Into)]
 pub struct TTI_TIMER(u32);
-impl TTI_TIMER {    ///
+impl TTI_TIMER {
     /// Configuration of injection time jitter for TTI.
+
     ///
+
     /// 0: No jitter 1: Timer is set to a random value in the range [TIMER_LEN*0.75; TIMER_LEN] 2: Timer is set to a random value in the range [TIMER_LEN*0.50; TIMER_LEN] 3: Timer is set to a random value in the range [1;TIMER_LEN]
     pub fn jitter(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -167,7 +171,7 @@ impl TTI_TIMER {    ///
         assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
-    }    ///
+    }
     /// Timer Tick, which TTI shall use.
     pub fn tick_idx(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -177,7 +181,7 @@ impl TTI_TIMER {    ///
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    ///
+    }
     /// Enable timer. Note that disabling a timer can also be achieved by setting TIMER_LEN to 0. Before enabling a timer AFI::MISC_CTRL.AFI_ENA must be set to 1.
     pub fn timer_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -187,9 +191,11 @@ impl TTI_TIMER {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Number of ticks of configured TICK_IDX between frame injections. The period between each injection becomes tick_period x TIMER_LEN Setting TIMER_LEN to non-zero value enables TTI. 0x1FF (= Inject ASAP) is intended for removal of frame from buffer memory. Upon injection, HW sets TIMER_LEN to 0 (=Disable). Before setting TIMER_LEN, TICK_CNT should be set to a random value in range 1-TIMER_LEN (unless a specific initial timer value is desirable).
+
     ///
+
     /// 0 => Disable TTI. 1 => 1 tick 2 => 2 ticks ... 0x1ff => Inject ASAP, then set to TIMER_LEN=0 by AFI.
     pub fn timer_len(&self) -> u32 {
         (self.0 & 0x1ff0000) >> 16

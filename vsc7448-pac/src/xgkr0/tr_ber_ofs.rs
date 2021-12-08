@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training BER threshold settings
 #[derive(From, Into)]
 pub struct TR_BER_THR(u32);
-impl TR_BER_THR {    ///
+impl TR_BER_THR {
     /// Only consider error count > ber_err_th
     pub fn ber_err_th(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -43,7 +43,7 @@ impl TR_BER_THR {    ///
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    ///
+    }
     /// Only consider errored range > ber_wid_th
     pub fn ber_wid_th(&self) -> u32 {
         (self.0 & 0xff) >> 0

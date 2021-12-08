@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// CIR status
 #[derive(From, Into)]
 pub struct CIR_STATE(u32);
-impl CIR_STATE {    ///
+impl CIR_STATE {
     /// Current fill level. Unit is 1 bit.
     pub fn cir_lvl(&self) -> u32 {
         (self.0 & 0xffffff) >> 0
@@ -51,7 +51,7 @@ impl CIR_STATE {    ///
 /// EIR status
 #[derive(From, Into)]
 pub struct EIR_STATE(u32);
-impl EIR_STATE {    ///
+impl EIR_STATE {
     /// Current fill level. Unit is 1 bit.
     pub fn eir_lvl(&self) -> u32 {
         (self.0 & 0xffffff) >> 0
@@ -69,7 +69,7 @@ impl EIR_STATE {    ///
 /// Configuration of which fill levels in the queue system that the DLB shapers use to trigger excess information rate
 #[derive(From, Into)]
 pub struct SE_DLB_SENSE(u32);
-impl SE_DLB_SENSE {    ///
+impl SE_DLB_SENSE {
     /// Destination port used when SE_DLB_DPORT_ENA is set.
     pub fn se_dlb_dport(&self) -> u32 {
         (self.0 & 0x3f00) >> 8
@@ -79,7 +79,7 @@ impl SE_DLB_SENSE {    ///
         assert!(value <= 0x3f00);
         self.0 &= !0x3f00;
         self.0 |= value;
-    }    ///
+    }
     /// Enable destination port awareness by the DLB shaper. If set, the DLB shaper allows excess information rate when the egress buffer use for destination port SE_DLB_SPORT has reached threshold BUF_P_RSRV_E[SE_DLB_DPORT] minus 3000 bytes. If multiple awareness functions (SE_DLB_PRIO_ENA, SE_DLB_SPORT_ENA, SE_DLB_DPORT_ENA) are enabled, all relevant thresholds must be exceeded before excess information rate is allowed.
     pub fn se_dlb_dport_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -89,7 +89,7 @@ impl SE_DLB_SENSE {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// QoS class used when SE_DLB_PRIO_ENA is set.
     pub fn se_dlb_prio(&self) -> u32 {
         (self.0 & 0x1c000) >> 14
@@ -99,7 +99,7 @@ impl SE_DLB_SENSE {    ///
         assert!(value <= 0x1c000);
         self.0 &= !0x1c000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable priority awareness by the DLB shaper. If set, the DLB shaper allows excess information rate when the egress buffer use for QoS class SE_DLB_PRIO has reached threshold BUF_PRIO_SHR_E[SE_DLB_PRIO] minus 3000 bytes. If both SE_DLB_PRIO_ENA and SE_DLB_SPORT_ENA are set, the excess information rate is alllowed when the ingress buffer use for QoS class per source port has reached threshold BUF_Q_RSRV_I[SE_DLB_PRIO, SE_DLB_SPORT] minus 3000 bytes. If both SE_DLB_PRIO_ENA and SE_DLB_DPORT_ENA are set, the excess information rate is alllowed when the egress buffer use for QoS class per destination port has reached threshold BUF_Q_RSRV_E[SE_DLB_PRIO, SE_DLB_DPORT] minus 3000 bytes. If multiple awareness functions (SE_DLB_PRIO_ENA, SE_DLB_SPORT_ENA, SE_DLB_DPORT_ENA) are enabled, all relevant thresholds must be exceeded before excess information rate is allowed.
     pub fn se_dlb_prio_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -109,7 +109,7 @@ impl SE_DLB_SENSE {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Not connected.
     pub fn se_dlb_sport_obsolete(&self) -> u32 {
         (self.0 & 0xfc) >> 2

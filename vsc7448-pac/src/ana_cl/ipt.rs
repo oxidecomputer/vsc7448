@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// ISDX configuration
 #[derive(From, Into)]
 pub struct ISDX_CFG(u32);
-impl ISDX_CFG {    ///
+impl ISDX_CFG {
     /// The index selects which profile in the Layer-2 control protocol table to use (ANA_CL:L2CP_TBL).
+
     ///
+
     /// 0: Disable use of L2CP_IDX. Default port-based index used instead. >0: L2CP_IDX selects the L2CP profile to use.
     pub fn l2cp_idx(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -45,7 +47,7 @@ impl ISDX_CFG {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// MIP table index. The index is used when enabled by VCAP_CLM action MIP_SEL and selects which MIP table entry to use (ANA_CL:MIP_TBL).
     pub fn mip_idx(&self) -> u32 {
         (self.0 & 0xffc0) >> 6
@@ -63,7 +65,7 @@ impl ISDX_CFG {    ///
 /// Entry in mapping table
 #[derive(From, Into)]
 pub struct MAP_ENTRY(u32);
-impl MAP_ENTRY {    ///
+impl MAP_ENTRY {
     /// COS ID. The classified COS ID is set to COSID_VAL if SET_CTRL.COSID_ENA is set.
     pub fn cosid_val(&self) -> u32 {
         (self.0 & 0xe000) >> 13
@@ -73,7 +75,7 @@ impl MAP_ENTRY {    ///
         assert!(value <= 0xe000);
         self.0 &= !0xe000;
         self.0 |= value;
-    }    ///
+    }
     /// DEI value. The classified DEI is set to DEI_VAL if SET_CTRL.DEI_ENA is set.
     pub fn dei_val(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -83,7 +85,7 @@ impl MAP_ENTRY {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Drop precedence level. The classified DP level is set to DP_VAL if SET_CTRL.DP_ENA is set.
     pub fn dp_val(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -93,7 +95,7 @@ impl MAP_ENTRY {    ///
         assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
-    }    ///
+    }
     /// DSCP value. The classified DSCP is set to DSCP_VAL if SET_CTRL.DSCP_ENA is set.
     pub fn dscp_val(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -103,7 +105,7 @@ impl MAP_ENTRY {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// Disable forwarding for frames hitting this entry.
     pub fn fwd_dis(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -113,7 +115,7 @@ impl MAP_ENTRY {    ///
         assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
-    }    ///
+    }
     /// Path color value used by OAM MEP.
     pub fn path_color_val(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -123,7 +125,7 @@ impl MAP_ENTRY {    ///
         assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
-    }    ///
+    }
     /// Path COS ID used by OAM MEP.
     pub fn path_cosid_val(&self) -> u32 {
         (self.0 & 0xe00000) >> 21
@@ -133,7 +135,7 @@ impl MAP_ENTRY {    ///
         assert!(value <= 0xe00000);
         self.0 &= !0xe00000;
         self.0 |= value;
-    }    ///
+    }
     /// PCP value. The classified PCP is set to PCP_VAL if SET_CTRL.PCP_ENA is set.
     pub fn pcp_val(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -143,7 +145,7 @@ impl MAP_ENTRY {    ///
         assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
-    }    ///
+    }
     /// QoS class. The classified QoS class is set to QOS_VAL if SET_CTRL.QOS_ENA is set.
     pub fn qos_val(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
@@ -153,7 +155,7 @@ impl MAP_ENTRY {    ///
         assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
-    }    ///
+    }
     /// TC bits. The classified TC bits are set to TC_VAL if SET_CTRL.TC_ENA is set.
     pub fn tc_val(&self) -> u32 {
         (self.0 & 0x1c0000) >> 18
@@ -171,7 +173,7 @@ impl MAP_ENTRY {    ///
 /// OAM MEP configuration
 #[derive(From, Into)]
 pub struct OAM_MEP_CFG(u32);
-impl OAM_MEP_CFG {    ///
+impl OAM_MEP_CFG {
     /// Force selected VOE to handle all frames as data.
     pub fn independent_mel_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -181,7 +183,7 @@ impl OAM_MEP_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// VOE index.
     pub fn mep_idx(&self) -> u32 {
         (self.0 & 0xffc) >> 2
@@ -191,7 +193,7 @@ impl OAM_MEP_CFG {    ///
         assert!(value <= 0xffc);
         self.0 &= !0xffc;
         self.0 |= value;
-    }    ///
+    }
     /// Enable use of MEP_IDX for selecting which VOE to use for EVC OAM processing.
     pub fn mep_idx_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -209,9 +211,11 @@ impl OAM_MEP_CFG {    ///
 /// Virtual Switching Instance configuration
 #[derive(From, Into)]
 pub struct VSI_CFG(u32);
-impl VSI_CFG {    ///
+impl VSI_CFG {
     /// Configures if learning and forwarding is based on VLAN or Virtual Switching Instance. If VSI_ENA=1, then the following entry is used for lookup in ANA_L3:VLAN: ANA_L3:VLAN[vsi_val + 4096] i.e. the upper 1K entries in ANA_L3:VLAN are "VSI entries".
+
     ///
+
     /// 0: Use classified VID for lookup in VLAN table 1: Use VSI for lookup in VLAN table
     pub fn vsi_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -221,7 +225,7 @@ impl VSI_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Virtual Switching Instance used if VSI_ENA is set.
     pub fn vsi_val(&self) -> u32 {
         (self.0 & 0x7fe) >> 1

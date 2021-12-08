@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Configuration register 6 for PLL5G
 #[derive(From, Into)]
 pub struct PLL5G_CFG6(u32);
-impl PLL5G_CFG6 {    ///
+impl PLL5G_CFG6 {
     /// Setting for DDR clock divider
+
     ///
+
     /// 2: 500 MHz 5: 250 MHz 6: 416.66 MHz 14: 312.5 MHz 15: 166.66 MHz Others: Reserved
     pub fn ddr_clk_div(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -47,7 +49,7 @@ impl PLL5G_CFG6 {    ///
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
-    }    ///
+    }
     /// enable feedback divider CMOS 1/2 clock (for FSM)
     pub fn ena_fbclkc2(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -57,7 +59,7 @@ impl PLL5G_CFG6 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Enable reference CMOS 1/2 clock
     pub fn ena_refclkc2(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -77,7 +79,7 @@ impl PLL5G_CFG6 {    ///
 /// Status register 0 for the PLL5G
 #[derive(From, Into)]
 pub struct PLL5G_STATUS0(u32);
-impl PLL5G_STATUS0 {    ///
+impl PLL5G_STATUS0 {
     /// RCPLL Flag that indicates that the calibration procedure has finished.
     pub fn calibration_done(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -87,7 +89,7 @@ impl PLL5G_STATUS0 {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// RCPLL Flag that indicates errors that may occur during the calibration procedure.
     pub fn calibration_err(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -97,7 +99,7 @@ impl PLL5G_STATUS0 {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// PLL lock status 0: not locked, 1: locked
     pub fn lock_status(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -107,7 +109,7 @@ impl PLL5G_STATUS0 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// RCPLL Flag that indicates a out of range condition while NOT in calibration mode.
     pub fn out_of_range_err(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -117,7 +119,7 @@ impl PLL5G_STATUS0 {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// RCPLL Flag range limiter signaling
     pub fn range_lim(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -127,7 +129,7 @@ impl PLL5G_STATUS0 {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// RCPLL Interface to read back internal data of the FSM.
     pub fn readback_data(&self) -> u32 {
         (self.0 & 0x1fe) >> 1

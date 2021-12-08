@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Status register for miscellaneous functions
 #[derive(From, Into)]
 pub struct SERDES1G_MISC_STATUS(u32);
-impl SERDES1G_MISC_STATUS {    ///
+impl SERDES1G_MISC_STATUS {
     /// Phase selection of DES in 100fx mode
+
     ///
+
     /// 0: CDR locked at bit 9 1: CDR locked at bit 4
     pub fn des_100fx_phase_sel(&self) -> u32 {
         (self.0 & 0x1) >> 0

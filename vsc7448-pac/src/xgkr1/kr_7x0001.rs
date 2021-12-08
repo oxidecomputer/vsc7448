@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// AN control
 #[derive(From, Into)]
 pub struct KR_7X0000(u32);
-impl KR_7X0000 {    ///
+impl KR_7X0000 {
     /// AN enable
     pub fn an_enable(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -43,7 +43,7 @@ impl KR_7X0000 {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// AN reset   (SC)
     pub fn an_reset(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -53,7 +53,7 @@ impl KR_7X0000 {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// AN restart (SC)
     pub fn an_restart(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -63,7 +63,7 @@ impl KR_7X0000 {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Extended next page control
     pub fn npctl(&self) -> u32 {
         (self.0 & 0x2000) >> 13

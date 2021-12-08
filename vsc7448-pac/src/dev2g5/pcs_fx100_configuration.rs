@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// PCS1G testpattern status register
 #[derive(From, Into)]
 pub struct PCS1G_TSTPAT_STATUS(u32);
-impl PCS1G_TSTPAT_STATUS {    ///
+impl PCS1G_TSTPAT_STATUS {
     /// Jitter Test Pattern Error
+
     ///
+
     /// 0: Jitter pattern checker has found no error 1: Jitter pattern checker has found an error
     pub fn jtp_err(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -47,7 +49,7 @@ impl PCS1G_TSTPAT_STATUS {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Jitter Test Pattern Error Counter. Due to re-sync measures it might happen that single errors are not counted (applies for 2.5gpbs mode). The counter saturates at 255 and is only cleared when writing 0 to the register
     pub fn jtp_err_cnt(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -57,9 +59,11 @@ impl PCS1G_TSTPAT_STATUS {    ///
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    ///
+    }
     /// Jitter Test Pattern Lock
+
     ///
+
     /// 0: Jitter pattern checker has not locked 1: Jitter pattern checker has locked
     pub fn jtp_lock(&self) -> u32 {
         (self.0 & 0x1) >> 0

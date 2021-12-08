@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Chip ID register
 #[derive(From, Into)]
 pub struct CHIP_ID(u32);
-impl CHIP_ID {    ///
+impl CHIP_ID {
     /// Manufacturer ID.
     pub fn mfg_id(&self) -> u32 {
         (self.0 & 0xffe) >> 1
@@ -43,7 +43,7 @@ impl CHIP_ID {    ///
         assert!(value <= 0xffe);
         self.0 &= !0xffe;
         self.0 |= value;
-    }    ///
+    }
     /// Always 1.
     pub fn one(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -53,7 +53,7 @@ impl CHIP_ID {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Part ID: Part ID for identification of Vitesse Chips.
     pub fn part_id(&self) -> u32 {
         (self.0 & 0xffff000) >> 12
@@ -63,15 +63,15 @@ impl CHIP_ID {    ///
         assert!(value <= 0xffff000);
         self.0 &= !0xffff000;
         self.0 |= value;
-    }    ///
+    }
     /// Revision ID : Chip revision starting from 0.
     pub fn rev_id(&self) -> u32 {
-        (self.0 & 0xfffffff) >> 28
+        (self.0 & 0xf0000000) >> 28
     }
     pub fn set_rev_id(&mut self, value: u32) {
         let value = value << 28;
-        assert!(value <= 0xfffffff);
-        self.0 &= !0xfffffff;
+        assert!(value <= 0xf0000000);
+        self.0 &= !0xf0000000;
         self.0 |= value;
     }
 }
@@ -81,15 +81,15 @@ impl CHIP_ID {    ///
 /// Encoded features
 #[derive(From, Into)]
 pub struct FEA_STAT(u32);
-impl FEA_STAT {    ///
+impl FEA_STAT {
     /// Efuse values. Some of these bits controls the hardware of the chip, others are free for SW to use.
     pub fn fea_stat(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_fea_stat(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -99,15 +99,15 @@ impl FEA_STAT {    ///
 /// General purpose register
 #[derive(From, Into)]
 pub struct GPR(u32);
-impl GPR {    ///
+impl GPR {
     /// General purpose register for software development.
     pub fn gpr(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_gpr(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -117,7 +117,7 @@ impl GPR {    ///
 /// Various configrations
 #[derive(From, Into)]
 pub struct HW_CFG(u32);
-impl HW_CFG {    ///
+impl HW_CFG {
     /// Set to enable the DFT clock monitor feature on the GPIOs.
     pub fn dft_clk_mon_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -127,7 +127,7 @@ impl HW_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Set to enable the DFT STAToutput on the GPIOs.
     pub fn dft_stat_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -145,7 +145,7 @@ impl HW_CFG {    ///
 /// Additional configuration of SGPIO signal detect
 #[derive(From, Into)]
 pub struct HW_SGPIO_SD_CFG(u32);
-impl HW_SGPIO_SD_CFG {    ///
+impl HW_SGPIO_SD_CFG {
     /// Set bits in this field to use 2G5 and 10G signal detects from 3'rd SIO controller instead of default positions inside 1'st and 2'nd controllers. Bit 0 in this field corresponds to dev2g5_0, bit 1 corresponds ot dev2g5_1 and so on. Bit 24 corrsponds to NPI port. Bit 25 corresponds to dev10g_0, bit 26 corresponds to dev10g_1 and so on. For the dev10g devices; signal detect is provided to both the 10g device and the corresponding dev2g5 (see HSIO::HW_CFG.DEV10G_0_MODE for more information.)
     pub fn sd_high_ena(&self) -> u32 {
         (self.0 & 0x1fffffff) >> 0
@@ -163,7 +163,7 @@ impl HW_SGPIO_SD_CFG {    ///
 /// Various status indications
 #[derive(From, Into)]
 pub struct HW_STAT(u32);
-impl HW_STAT {    ///
+impl HW_STAT {
     /// This field is set if a hardware fail has been detected in any of the memories during startup-initialization of the chip. This field is valid after release of reset.
     pub fn mem_fail(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -181,7 +181,7 @@ impl HW_STAT {    ///
 /// Reset control register
 #[derive(From, Into)]
 pub struct SOFT_RST(u32);
-impl SOFT_RST {    ///
+impl SOFT_RST {
     /// Set this field to reset the whole chip. This field is automatically cleared by the reset. Note: It is possible for the VCore to protect itself from this soft-reset, for more info see ICPU_CFG::RESET.CORE_RST_PROTECT.
     pub fn soft_chip_rst(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -191,7 +191,7 @@ impl SOFT_RST {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to reset everything except the chip configuration. The reset remains asserted until this field is cleared.
     pub fn soft_non_cfg_rst(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -201,7 +201,7 @@ impl SOFT_RST {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to reset the switch core (everything except the SERDES IO and PLL blocks.) This field is automatically cleared by the reset. Note: It is possible for the VCore to protect itself from this soft-reset, for more info see ICPU_CFG::RESET.CORE_RST_PROTECT.
     pub fn soft_swc_rst(&self) -> u32 {
         (self.0 & 0x2) >> 1

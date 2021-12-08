@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// VS training config 0
 #[derive(From, Into)]
 pub struct TR_CFG0(u32);
-impl TR_CFG0 {    ///
+impl TR_CFG0 {
     /// Set local taps starting point
+
     ///
+
     /// 0: Set to INITIALIZE 1: Set to PRESET
     pub fn ld_pre_init(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -45,9 +47,11 @@ impl TR_CFG0 {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Send first LP request
+
     ///
+
     /// 0: Send   INITIALIZE 1: Send   PRESET
     pub fn lp_pre_init(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -57,7 +61,7 @@ impl TR_CFG0 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Update taps regardless of v2,vp sum.
     pub fn nosum(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -67,7 +71,7 @@ impl TR_CFG0 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Enable partial OB tap configuration.
     pub fn part_cfg_en(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -77,7 +81,7 @@ impl TR_CFG0 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Invert recieved prbs11 within training frame
     pub fn rx_inv(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -87,7 +91,7 @@ impl TR_CFG0 {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Clear all state machine history
     pub fn sm_hist_clr(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -97,7 +101,7 @@ impl TR_CFG0 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Allow LP to to control tap settings.
     pub fn tapctl_en(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -107,7 +111,7 @@ impl TR_CFG0 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Clock divider value for timer clocks.
     pub fn tmr_dvdr(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -117,7 +121,7 @@ impl TR_CFG0 {    ///
         assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
-    }    ///
+    }
     /// Invert transmitted prbs11 within training frame
     pub fn tx_inv(&self) -> u32 {
         (self.0 & 0x200) >> 9

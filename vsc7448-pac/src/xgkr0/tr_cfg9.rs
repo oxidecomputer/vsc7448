@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training config 8
 #[derive(From, Into)]
 pub struct TR_CFG8(u32);
-impl TR_CFG8 {    ///
+impl TR_CFG8 {
     /// Weighted average calculation of DFE tap 1
     pub fn wt1(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -43,7 +43,7 @@ impl TR_CFG8 {    ///
         assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
-    }    ///
+    }
     /// Weighted average calculation of DFE tap 2
     pub fn wt2(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -53,7 +53,7 @@ impl TR_CFG8 {    ///
         assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
-    }    ///
+    }
     /// Weighted average calculation of DFE tap 3
     pub fn wt3(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -63,7 +63,7 @@ impl TR_CFG8 {    ///
         assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
-    }    ///
+    }
     /// Weighted average calculation of DFE tap 4
     pub fn wt4(&self) -> u32 {
         (self.0 & 0x3) >> 0

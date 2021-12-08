@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Total raw memory use before tail dropping is activated
 #[derive(From, Into)]
 pub struct ATOP_TOT_CFG(u32);
-impl ATOP_TOT_CFG {    ///
+impl ATOP_TOT_CFG {
     /// Tail dropping is activate on a port when the port use has exceeded the ATOP watermark for the port, and the total memory use has exceeded this watermark.
+
     ///
+
     /// See RES_CFG
     pub fn atop_tot(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -53,7 +55,7 @@ impl ATOP_TOT_CFG {    ///
 /// Packet memory status
 #[derive(From, Into)]
 pub struct MMGT(u32);
-impl MMGT {    ///
+impl MMGT {
     /// Number of 6 free memory words.
     pub fn freecnt(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -63,15 +65,15 @@ impl MMGT {    ///
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
-    }    ///
+    }
     /// Number of 6 frames awaiting releasing.
     pub fn relcnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_relcnt(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }
 }

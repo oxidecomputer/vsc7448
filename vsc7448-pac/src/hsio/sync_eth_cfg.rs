@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Status register bits for the RCOMP
 #[derive(From, Into)]
 pub struct RCOMP_STATUS(u32);
-impl RCOMP_STATUS {    ///
+impl RCOMP_STATUS {
     /// Resistor comparison activity
+
     ///
+
     /// 0: resistor measurement finished or inactive 1: resistor measurement in progress
     pub fn busy(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -47,9 +49,11 @@ impl RCOMP_STATUS {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Alarm signal if rcomp isn't best choice anymore
+
     ///
+
     /// 0: inactive 1: active
     pub fn delta_alert(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -59,9 +63,11 @@ impl RCOMP_STATUS {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Measured resistor value
+
     ///
+
     /// 0: maximum resistance value 15: minimum resistance value
     pub fn rcomp(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -81,9 +87,11 @@ impl RCOMP_STATUS {    ///
 /// This register is replicated once per recovered clock output.
 #[derive(From, Into)]
 pub struct SYNC_ETH_CFG(u32);
-impl SYNC_ETH_CFG {    ///
+impl SYNC_ETH_CFG {
     /// Set to enable recovered clock pad
+
     ///
+
     /// 0: Disable (high-impedance) 1: Enable (output recovered clock)
     pub fn reco_clk_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -93,9 +101,11 @@ impl SYNC_ETH_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Select recovered clock divider.
+
     ///
+
     /// 0: No clock dividing 1: Divide clock by 5 2: Divide clock by 4 3: Reserved
     pub fn sel_reco_clk_div(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -105,9 +115,11 @@ impl SYNC_ETH_CFG {    ///
         assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
-    }    ///
+    }
     /// Select recovered clock source.
+
     ///
+
     /// 0 through 8: Select SD1G 0 through 8. 9 through 24: Select SD6G 0 through 15. 25 through 28: Select SD10G 0 through 3. 29 through 36: Select SD6G 16 through 23. 37 selects LCPLL2 CPU clock output. Other values are reserved.
     pub fn sel_reco_clk_src(&self) -> u32 {
         (self.0 & 0x1f8) >> 3
@@ -125,7 +137,7 @@ impl SYNC_ETH_CFG {    ///
 /// Configuration of recovered clock from 2'nd PLL
 #[derive(From, Into)]
 pub struct SYNC_ETH_PLL2_CFG(u32);
-impl SYNC_ETH_PLL2_CFG {    ///
+impl SYNC_ETH_PLL2_CFG {
     /// This field is used instead of HSIO::PLL5G_CFG0.CPU_CLK_DIV for the PLL number 2.
     pub fn cpu_clk_div(&self) -> u32 {
         (self.0 & 0xfc) >> 2
@@ -135,7 +147,7 @@ impl SYNC_ETH_PLL2_CFG {    ///
         assert!(value <= 0xfc);
         self.0 &= !0xfc;
         self.0 |= value;
-    }    ///
+    }
     /// Enable auto-squelching for sync. ethernet clock output: when set the clock output will stop toggling (keep its last value constantly) when PLL is out of lock.
     pub fn pll2_auto_squelch_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -145,9 +157,11 @@ impl SYNC_ETH_PLL2_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Divider setting for the PLL number 2's recovered clock output. These settings are applied prior to sending recovered clock to the optional PAD-divder (see HSIO::SYNC_ETH_CFG.SEL_RECO_CLK_DIV.)
+
     ///
+
     /// 0: No clock dividing 1: Divide clock by 2
     pub fn pll2_reco_clk_div(&self) -> u32 {
         (self.0 & 0x2) >> 1

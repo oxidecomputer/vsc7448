@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Configuration register 0 for SD10G65 MoebiusDivider
 #[derive(From, Into)]
 pub struct SD10G65_MOEBDIV_CFG0(u32);
-impl SD10G65_MOEBDIV_CFG0 {    ///
+impl SD10G65_MOEBDIV_CFG0 {
     /// Bandwidth selection for cp/md of cdr loop when core NOT flags valid data detected
     pub fn moebdiv_bw_cdr_sel_a(&self) -> u32 {
         (self.0 & 0xe00) >> 9
@@ -45,7 +45,7 @@ impl SD10G65_MOEBDIV_CFG0 {    ///
         assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
-    }    ///
+    }
     /// Bandwidth selection for cp/md of cdr loop when core flags valid data detected
     pub fn moebdiv_bw_cdr_sel_b(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -55,7 +55,7 @@ impl SD10G65_MOEBDIV_CFG0 {    ///
         assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
-    }    ///
+    }
     /// Bandwidth selection for cp/md signals towards core
     pub fn moebdiv_bw_core_sel(&self) -> u32 {
         (self.0 & 0x38) >> 3
@@ -65,7 +65,7 @@ impl SD10G65_MOEBDIV_CFG0 {    ///
         assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
-    }    ///
+    }
     /// CP/MD swapping
     pub fn moebdiv_cpmd_swap(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -75,7 +75,7 @@ impl SD10G65_MOEBDIV_CFG0 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Divider disable
     pub fn moebdiv_dis(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -85,7 +85,7 @@ impl SD10G65_MOEBDIV_CFG0 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// MD divider enable
     pub fn moebdiv_div32_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -105,7 +105,7 @@ impl SD10G65_MOEBDIV_CFG0 {    ///
 /// Configuration register 0 for SD10G65 OB.
 #[derive(From, Into)]
 pub struct SD10G65_OB_CFG0(u32);
-impl SD10G65_OB_CFG0 {    ///
+impl SD10G65_OB_CFG0 {
     /// Bypass data path (e.g. for JTAG), allows to drive output when EN_DIRECT=1 and EN_OB=1
     pub fn byp_d(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -115,7 +115,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    ///
+    }
     /// Control of common mode voltage of clock buffer between synthesizer and OB.
     pub fn clk_buf_cmv(&self) -> u32 {
         (self.0 & 0x600000) >> 21
@@ -125,7 +125,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x600000);
         self.0 &= !0x600000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable direct path
     pub fn en_direct(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -135,7 +135,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable input loop
     pub fn en_inp_loop(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -145,7 +145,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable output buffer and serializer
     pub fn en_ob(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -155,7 +155,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable pad loop
     pub fn en_pad_loop(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -165,7 +165,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects amplitude range controled via levn. See description of levn.
     pub fn incr_levn(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -175,7 +175,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Amplitude control value. Step size is 25 mVpp, decreasing amplitude with increasing control value. Range depends on incr_levn. Coding for incr_levn=0: 31: 500mVpp, 30: 525mVpp, 29: 550mVpp, ..., 0: 1275mVpp. Coding for incr_levn=1: 31: 300mVpp, 30: 325mVpp, 29: 350mVpp, .., 0: 1075mVpp. (Note: maximum achievable amplitude depends on the supply voltage)
     pub fn levn(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -185,7 +185,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
-    }    ///
+    }
     /// Pool of spare bits for use in late design changes.
     pub fn ob_spare_pool(&self) -> u32 {
         (self.0 & 0x180000) >> 19
@@ -195,7 +195,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x180000);
         self.0 &= !0x180000;
         self.0 |= value;
-    }    ///
+    }
     /// Set digital part into pseudo reset
     pub fn rst(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -205,9 +205,11 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    ///
+    }
     /// Interface width
+
     ///
+
     /// 0: 8 1: 10 2: 16 3: 20 4: 32 5: 40 6-7: Reserved
     pub fn sel_ifw(&self) -> u32 {
         (self.0 & 0xe0) >> 5
@@ -217,7 +219,7 @@ impl SD10G65_OB_CFG0 {    ///
         assert!(value <= 0xe0);
         self.0 &= !0xe0;
         self.0 |= value;
-    }    ///
+    }
     /// Invert input to serializer
     pub fn ser_inv(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -237,7 +239,7 @@ impl SD10G65_OB_CFG0 {    ///
 /// Configuration register 1 for SD10G65 OB.
 #[derive(From, Into)]
 pub struct SD10G65_OB_CFG1(u32);
-impl SD10G65_OB_CFG1 {    ///
+impl SD10G65_OB_CFG1 {
     /// Enable amplitude compensation of AB bleed current
     pub fn ab_comp_en(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -247,9 +249,11 @@ impl SD10G65_OB_CFG1 {    ///
         assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
-    }    ///
+    }
     /// Bleed current for class AB operation of driver
+
     ///
+
     /// 0: 1% 1: 0.5% 2: 2% 3: reserved
     pub fn diode_cur(&self) -> u32 {
         (self.0 & 0x3800000) >> 23
@@ -259,9 +263,11 @@ impl SD10G65_OB_CFG1 {    ///
         assert!(value <= 0x3800000);
         self.0 &= !0x3800000;
         self.0 |= value;
-    }    ///
+    }
     /// Level shift ctrl of class AB bias generator
+
     ///
+
     /// 0: 50mV 1: 100mV 2:150mV 3: 200mV
     pub fn lev_shft(&self) -> u32 {
         (self.0 & 0x600000) >> 21
@@ -271,9 +277,11 @@ impl SD10G65_OB_CFG1 {    ///
         assert!(value <= 0x600000);
         self.0 &= !0x600000;
         self.0 |= value;
-    }    ///
+    }
     /// Slew rate ctrl of OB (C)
+
     ///
+
     /// C=3 R=3: 25ps C=3 R=0: 35ps C=0 R=3: 55ps C=1 R=0: 70ps C=0 R=0: 120 ps
     pub fn predrv_c_ctrl(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -283,7 +291,7 @@ impl SD10G65_OB_CFG1 {    ///
         assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
-    }    ///
+    }
     /// Slew rate ctrl of OB (R), encoding see PREDRV_C_CTRL
     pub fn predrv_r_ctrl(&self) -> u32 {
         (self.0 & 0xc0000) >> 18
@@ -293,7 +301,7 @@ impl SD10G65_OB_CFG1 {    ///
         assert!(value <= 0xc0000);
         self.0 &= !0xc0000;
         self.0 |= value;
-    }    ///
+    }
     /// Additional resistor calibration trim
     pub fn r_cor(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -303,9 +311,11 @@ impl SD10G65_OB_CFG1 {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Offset resistance adjustment for CML cells (two-complement)
+
     ///
+
     /// 1000: -8 1111: -1 0000: 0 0111: 7
     pub fn r_i(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -315,9 +325,11 @@ impl SD10G65_OB_CFG1 {    ///
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
-    }    ///
+    }
     /// Ctrl of cascade volt in drv stage
+
     ///
+
     /// 0: reserved 1: 0 2: 1/12 4: 2/12 8: 3/12 16: 4/12 Intermediate values possible when setting two bits
     pub fn vcas(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
@@ -327,9 +339,11 @@ impl SD10G65_OB_CFG1 {    ///
         assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
-    }    ///
+    }
     /// Tail voltage driver settings
+
     ///
+
     /// 0: reserved 1: 75mV 2: 100mV 4: 125mV 8: 150mV 16: 175mV 32: 200mV Intermediate values possible when setting two bits
     pub fn vtail(&self) -> u32 {
         (self.0 & 0xfc00) >> 10
@@ -349,9 +363,11 @@ impl SD10G65_OB_CFG1 {    ///
 /// Configuration register 2 for SD10G65 OB. D_filter contains four 6-bit precalculated DA input values. Please note the differences in programming for various interface (IF) bit widths. For calculation details see documentation of OB10G.
 #[derive(From, Into)]
 pub struct SD10G65_OB_CFG2(u32);
-impl SD10G65_OB_CFG2 {    ///
+impl SD10G65_OB_CFG2 {
     /// Transmit filter coefficients for FIR taps. Suggested start value (no emphasis, max amplitude)
+
     ///
+
     /// 0x820820: for I/F width 8/10 bits 0x7DF820: for I/F width 16/20/32/40 bits
     pub fn d_filter(&self) -> u32 {
         (self.0 & 0xffffff) >> 0
@@ -371,7 +387,7 @@ impl SD10G65_OB_CFG2 {    ///
 /// Configuration register 3 for SD10G65 OB.
 #[derive(From, Into)]
 pub struct SD10G65_OB_CFG3(u32);
-impl SD10G65_OB_CFG3 {    ///
+impl SD10G65_OB_CFG3 {
     /// Indicates a completed receiver detect measurement. Should be one few us after rec_det_start is set.
     pub fn rec_det_done(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -381,7 +397,7 @@ impl SD10G65_OB_CFG3 {    ///
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    ///
+    }
     /// Enable reciver detect function. MUST be disabled for normal operation !!!
     pub fn rec_det_enable(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -391,7 +407,7 @@ impl SD10G65_OB_CFG3 {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Rising edge starts receiver detect measurement. Has to be keept set until rec_det_value has been read.
     pub fn rec_det_start(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -401,9 +417,11 @@ impl SD10G65_OB_CFG3 {    ///
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    ///
+    }
     /// Reciver detect threshold (suggested start value: 2)
+
     ///
+
     /// 0: reserved 1: 0mV 2: 8.3mV 4: 16.7mV 8: 25mV Intermediate values possible when setting two bits
     pub fn rec_det_thrs(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -413,7 +431,7 @@ impl SD10G65_OB_CFG3 {    ///
         assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
-    }    ///
+    }
     /// Holds the time between the start and the flag of the receiver detect measuremnet. Time [ns +/- 4 ns] = 8 * value - 12
     pub fn rec_det_value(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -433,7 +451,7 @@ impl SD10G65_OB_CFG3 {    ///
 /// Configuration register for Service-Bus related setting. Note: this register is only used for configuration if Tx is used stand alone, otherwise SD10G65_SBUS_RX_CFG (Rx macro) is used for configuration!
 #[derive(From, Into)]
 pub struct SD10G65_SBUS_TX_CFG(u32);
-impl SD10G65_SBUS_TX_CFG {    ///
+impl SD10G65_SBUS_TX_CFG {
     /// Enable analog test output
     pub fn sbus_anaout_en(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -443,9 +461,11 @@ impl SD10G65_SBUS_TX_CFG {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Analog test output
+
     ///
+
     /// 0: l0_ctrlspeed[0] 1: vbulk 2: nref 3: vref820m 4: vddfilt 5: vddfilt 6: ie_aout 7: ib_aout 8: ob_aout2 9: pll_frange 10: pll_srange 11: pll_vreg820m_tx 12: pll_vreg820m_rx 13: ob_aout_n 14: ob_aout_p 15: vddfilt
     pub fn sbus_anaout_sel(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -455,9 +475,11 @@ impl SD10G65_SBUS_TX_CFG {    ///
         assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
-    }    ///
+    }
     /// Bias enable
+
     ///
+
     /// 1: Enable 0: Disable
     pub fn sbus_bias_en(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -467,9 +489,11 @@ impl SD10G65_SBUS_TX_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Bias speed selection
+
     ///
+
     /// 0: Below 4Gbps 1: 4Gbps to 6Gbps 2: 6Gbps to 9Gbps 3: Above 9Gbps
     pub fn sbus_bias_speed_sel(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -479,7 +503,7 @@ impl SD10G65_SBUS_TX_CFG {    ///
         assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
-    }    ///
+    }
     /// Enable BiDi loop driver for F2DF testing
     pub fn sbus_loopdrv_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -489,9 +513,11 @@ impl SD10G65_SBUS_TX_CFG {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Offset value for BIAS resistor calibration (2-complement)
+
     ///
+
     /// 1000: -8 1111: -1 0000: 0 0111: 7
     pub fn sbus_rcomp(&self) -> u32 {
         (self.0 & 0x78) >> 3
@@ -501,7 +527,7 @@ impl SD10G65_SBUS_TX_CFG {    ///
         assert!(value <= 0x78);
         self.0 &= !0x78;
         self.0 |= value;
-    }    ///
+    }
     /// Pool of spare bits for use in late design changes.
     pub fn sbus_spare_pool(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -521,15 +547,15 @@ impl SD10G65_SBUS_TX_CFG {    ///
 /// Subversion revision number for the RTL used in SD10G65_TX
 #[derive(From, Into)]
 pub struct SD10G65_TX_SVN_ID(u32);
-impl SD10G65_TX_SVN_ID {    ///
+impl SD10G65_TX_SVN_ID {
     /// SVN revision number of RTL sources
     pub fn tx_svn_id(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_tx_svn_id(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Tail dropping level
 #[derive(From, Into)]
 pub struct ATOP(u32);
-impl ATOP {    ///
+impl ATOP {
     /// When a source port consumes more than this level in the packet memory, frames are tail dropped, unconditionally of destination.
+
     ///
+
     /// See RES_CFG
     pub fn atop(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -55,7 +57,7 @@ impl ATOP {    ///
 /// Core events.
 #[derive(From, Into)]
 pub struct EVENTS_CORE(u32);
-impl EVENTS_CORE {    ///
+impl EVENTS_CORE {
     /// Look in the RTL!
     pub fn ev_fdc(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -65,7 +67,7 @@ impl EVENTS_CORE {    ///
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    ///
+    }
     /// Look in the RTL!
     pub fn ev_fwr(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -83,9 +85,11 @@ impl EVENTS_CORE {    ///
 /// Forward pressure level
 #[derive(From, Into)]
 pub struct FWD_PRESSURE(u32);
-impl FWD_PRESSURE {    ///
+impl FWD_PRESSURE {
     /// When ingress queue request count exceeds this level, maximum number of generated frame copies is limited to the FWD_PRESSURE_COPYCNT value.
+
     ///
+
     /// See RES_CFG
     pub fn fwd_pressure(&self) -> u32 {
         (self.0 & 0x7ff8) >> 3
@@ -95,7 +99,7 @@ impl FWD_PRESSURE {    ///
         assert!(value <= 0x7ff8);
         self.0 &= !0x7ff8;
         self.0 |= value;
-    }    ///
+    }
     /// Maximum frame copy count when fwd pressure is activated.
     pub fn fwd_pressure_copycnt(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -113,7 +117,7 @@ impl FWD_PRESSURE {    ///
 /// Watermarks for flow control condition per switch port.
 #[derive(From, Into)]
 pub struct PAUSE_CFG(u32);
-impl PAUSE_CFG {    ///
+impl PAUSE_CFG {
     /// Enable pause feedback to the MAC, allowing transmission of pause frames or HDX collisions to limit ingress data rate.
     pub fn pause_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -123,9 +127,11 @@ impl PAUSE_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Start pausing ingress stream when the amount of memory consumed by the port exceeds this watermark. The TOTPAUSE condition must also be met.
+
     ///
+
     /// See RES_CFG
     pub fn pause_start(&self) -> u32 {
         (self.0 & 0x1ffe000) >> 13
@@ -135,9 +141,11 @@ impl PAUSE_CFG {    ///
         assert!(value <= 0x1ffe000);
         self.0 &= !0x1ffe000;
         self.0 |= value;
-    }    ///
+    }
     /// Stop pausing ingress stream when the amount of memory consumed by the port is below  this watermark.
+
     ///
+
     /// See RES_CFG.
     pub fn pause_stop(&self) -> u32 {
         (self.0 & 0x1ffe) >> 1
@@ -155,9 +163,11 @@ impl PAUSE_CFG {    ///
 /// Configure total memory pause condition
 #[derive(From, Into)]
 pub struct PAUSE_TOT_CFG(u32);
-impl PAUSE_TOT_CFG {    ///
+impl PAUSE_TOT_CFG {
     /// Assert TOTPAUSE condition when total memory allocation is above this watermark.
+
     ///
+
     /// See RES_CFG
     pub fn pause_tot_start(&self) -> u32 {
         (self.0 & 0xfff000) >> 12
@@ -167,9 +177,11 @@ impl PAUSE_TOT_CFG {    ///
         assert!(value <= 0xfff000);
         self.0 &= !0xfff000;
         self.0 |= value;
-    }    ///
+    }
     /// Deassert TOTPAUSE condition when total memory allocation is below this watermark.
+
     ///
+
     /// See RES_CFG
     pub fn pause_tot_stop(&self) -> u32 {
         (self.0 & 0xfff) >> 0

@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Status register 1B for PLL5G BIST.
 #[derive(From, Into)]
 pub struct PLL5G_BIST_STAT1B(u32);
-impl PLL5G_BIST_STAT1B {    ///
+impl PLL5G_BIST_STAT1B {
     /// BIST compare divider phase difference
     pub fn pllb_cnt_out(&self) -> u32 {
         (self.0 & 0xffff) >> 0

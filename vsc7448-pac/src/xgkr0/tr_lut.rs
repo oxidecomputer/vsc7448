@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training frames_sent lsw
 #[derive(From, Into)]
 pub struct FRSENT_MSW(u32);
-impl FRSENT_MSW {    ///
+impl FRSENT_MSW {
     /// Number of training frames sent to complete training.
     pub fn frsent_msw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl FRSENT_MSW {    ///
 /// VS training lut_read lsw
 #[derive(From, Into)]
 pub struct LUT_LSW(u32);
-impl LUT_LSW {    ///
+impl LUT_LSW {
     /// Measured value of selected LUT.
     pub fn lut_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0

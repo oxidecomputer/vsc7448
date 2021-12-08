@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Common frame type configuration
 #[derive(From, Into)]
 pub struct GLOBAL_CNT_FRM_TYPE_CFG(u32);
-impl GLOBAL_CNT_FRM_TYPE_CFG {    ///
+impl GLOBAL_CNT_FRM_TYPE_CFG {
     /// Configures which frames is counted in relation to FCS error and configured event mask (GLOBAL_EVENT_MASK).
+
     ///
+
     /// "000": Frames without any event signal or FCS errored frames are counted. "001": Frames with unmasked (enabled) events without FCS error are counted. "010": Frames with unmasked (enabled) events with FCS error are counted. "011": Frames with unmasked (enabled) events independent of FCS error are counted. "100": Frames with FCS error but with no event signal are counted. "101": Frames with FCS error are unconditionally counted.
     pub fn global_cfg_cnt_frm_type(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -55,9 +57,11 @@ impl GLOBAL_CNT_FRM_TYPE_CFG {    ///
 /// Global configuration register
 #[derive(From, Into)]
 pub struct STAT_GLOBAL_CFG(u32);
-impl STAT_GLOBAL_CFG {    ///
+impl STAT_GLOBAL_CFG {
     /// This field is to configure the counters of all flows to count the byte number or the frame number.
+
     ///
+
     /// '0': Count frames. '1': Count bytes.
     pub fn global_cfg_cnt_byte(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -75,7 +79,7 @@ impl STAT_GLOBAL_CFG {    ///
 /// The counter's most significant 8 bits.
 #[derive(From, Into)]
 pub struct STAT_MSB_CNT(u32);
-impl STAT_MSB_CNT {    ///
+impl STAT_MSB_CNT {
     /// The counter's most significant 8 bits. The field stores the value in the counters of a flow from bit 32 to the most significant bit. Reading: The MSB part of the counter is latched to a shadow register, when the LSB part is read. As a result, the LSB part must always be read first, and the MSB part must be read immediately after the LSB part is read. Writing: The procedure for writing differs depending on counter group: ANA_AC:STAT_CNT_CFG_PORT: LSB part must be written first, followed by MSB part. All other counter groups: MSB part must be written first, followed by LSB part.
     pub fn msb_cnt(&self) -> u32 {
         (self.0 & 0xff) >> 0

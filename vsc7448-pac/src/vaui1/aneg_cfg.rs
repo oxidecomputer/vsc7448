@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// 48 bits that contain the advertised abilities link code word for auto-negotiation (here: lower 32 bit).
 #[derive(From, Into)]
 pub struct ANEG_ADV_ABILITY_0(u32);
-impl ANEG_ADV_ABILITY_0 {    ///
+impl ANEG_ADV_ABILITY_0 {
     /// Acknowledge bit (this bit is automatically overwritten by ANEG)
     pub fn ackn(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -45,19 +45,21 @@ impl ANEG_ADV_ABILITY_0 {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Reserved for future technology as defined in IEEE 802.3ap clause 73.
     pub fn adv_abil_lsb(&self) -> u32 {
-        (self.0 & 0xffffff) >> 24
+        (self.0 & 0xff000000) >> 24
     }
     pub fn set_adv_abil_lsb(&mut self, value: u32) {
         let value = value << 24;
-        assert!(value <= 0xffffff);
-        self.0 &= !0xffffff;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
         self.0 |= value;
-    }    ///
+    }
     /// Technology Ability to be advertised (here: 10GBase-KR)
+
     ///
+
     /// 0: Do not advertise 10GB-KR capability 1: Advertise 10GB-KR capability
     pub fn cap_10gkr(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -67,9 +69,11 @@ impl ANEG_ADV_ABILITY_0 {    ///
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    ///
+    }
     /// Technology Ability to be advertised (here: 10GBase-KX4)
+
     ///
+
     /// 0: Do not advertise 10GB-KX4 capability 1: Advertise 10GB-KX4 capability
     pub fn cap_10gkx4(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -79,9 +83,11 @@ impl ANEG_ADV_ABILITY_0 {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Technology Ability to be advertised (here: 1000Base-KX)
+
     ///
+
     /// 0: Do not advertise 1GB-KX capability 1: Advertise 1GB-KX capability
     pub fn cap_1gkx(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -91,7 +97,7 @@ impl ANEG_ADV_ABILITY_0 {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Reserved for echoed nonce field (must be cleared)
     pub fn echoed_nonce(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
@@ -101,9 +107,11 @@ impl ANEG_ADV_ABILITY_0 {    ///
         assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
-    }    ///
+    }
     /// Next page exchange desired
+
     ///
+
     /// 0: Disable NP exchange 1: Enable NP exchange
     pub fn np(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -113,7 +121,7 @@ impl ANEG_ADV_ABILITY_0 {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Pause field
     pub fn pause(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
@@ -123,7 +131,7 @@ impl ANEG_ADV_ABILITY_0 {    ///
         assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
-    }    ///
+    }
     /// RF bit (initial value)
     pub fn rf(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -133,7 +141,7 @@ impl ANEG_ADV_ABILITY_0 {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Selector field (must be 0x1)
     pub fn sel_field(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -143,7 +151,7 @@ impl ANEG_ADV_ABILITY_0 {    ///
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
-    }    ///
+    }
     /// Initial value for Transmit-Nonce field
     pub fn tx_nonce(&self) -> u32 {
         (self.0 & 0x1f0000) >> 16
@@ -163,7 +171,7 @@ impl ANEG_ADV_ABILITY_0 {    ///
 /// 48 bits that contain the advertised abilities link code word for auto-negotiation (here: upper 16 bit).
 #[derive(From, Into)]
 pub struct ANEG_ADV_ABILITY_1(u32);
-impl ANEG_ADV_ABILITY_1 {    ///
+impl ANEG_ADV_ABILITY_1 {
     /// Reserved for future technology as defined in IEEE 802.3ap clause 73.
     pub fn adv_abil_msb(&self) -> u32 {
         (self.0 & 0x3fff) >> 0
@@ -173,7 +181,7 @@ impl ANEG_ADV_ABILITY_1 {    ///
         assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
         self.0 |= value;
-    }    ///
+    }
     /// FEC capability (bit 14: FEC ability, bit 15: FEC requested) - Only used with 10GBase-KR
     pub fn fec(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -193,9 +201,11 @@ impl ANEG_ADV_ABILITY_1 {    ///
 /// Auto-negotiation configuration register. Note: Setting one of the parallel detect wait times to 0 disables parallel detect function for that specific mode.
 #[derive(From, Into)]
 pub struct ANEG_CFG(u32);
-impl ANEG_CFG {    ///
+impl ANEG_CFG {
     /// Auto-negotiation enable
+
     ///
+
     /// 1: Enable 0: Disable
     pub fn aneg_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -205,9 +215,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Disable automatic ANEG speed setting
+
     ///
+
     /// 0: Allow ANEG to select frequency 1: Frequency is programmed using mode2g5_ena and hr_mode_ena
     pub fn aneg_freqsel_dis(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -217,9 +229,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Disable automatic ANEG OB configuration
+
     ///
+
     /// 0: Allow ANEG block to control OB during auto-negotiation 1: OB settings are not touched by ANEG block
     pub fn aneg_ob_ctrl_dis(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -229,9 +243,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Disable automatic power down of lane controlled by ANEG
+
     ///
+
     /// 0: Allow ANEG to power down unused lane 1: Power down is not controlled by ANEG
     pub fn aneg_pwdn_dis(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -241,21 +257,25 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// Asynchronous reset reseting all auto-negotiation logic
+
     ///
+
     /// 1: Reset
     pub fn aneg_reset_one_shot(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_aneg_reset_one_shot(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
-    }    ///
+    }
     /// Reserved for test purposes. ANEG wait timer values are divided by 2^15 and the parallel detect timers are divided by 2^10
+
     ///
+
     /// 1: Enable division 0: Normal operation
     pub fn arb_testmode(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -265,9 +285,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
-    }    ///
+    }
     /// Reserved for test purposes. Disable nonce/link_status checks
+
     ///
+
     /// 1: Disable checks 0: Normal operation
     pub fn ate_testmode(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -277,7 +299,7 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    ///
+    }
     /// Reserved
     pub fn bltd_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -287,9 +309,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Parallel detect wait time for 10G using four lanes
+
     ///
+
     /// 0: 0 ms 1: 10 ms 2: 20 ms 3: 40 ms
     pub fn pd_timer_10gkx4(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -299,9 +323,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
-    }    ///
+    }
     /// Parallel detect wait time for 1G using single lane
+
     ///
+
     /// 0: 0 ms 1: 10 ms 2: 20 ms 3: 40 ms
     pub fn pd_timer_1gkx(&self) -> u32 {
         (self.0 & 0xc00) >> 10
@@ -311,9 +337,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0xc00);
         self.0 &= !0xc00;
         self.0 |= value;
-    }    ///
+    }
     /// Parallel detect wait time for 2.5G using single lane
+
     ///
+
     /// 0: 0 ms 1: 10 ms 2: 20 ms 3: 40 ms
     pub fn pd_timer_2g5(&self) -> u32 {
         (self.0 & 0x300) >> 8
@@ -323,9 +351,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x300);
         self.0 &= !0x300;
         self.0 |= value;
-    }    ///
+    }
     /// Restart negotiation process
+
     ///
+
     /// 1: Restart
     pub fn restart_aneg_one_shot(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -335,9 +365,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Reserved for test purposes. Control of page_test_max_timer_done check
+
     ///
+
     /// 1: Disable check 0: Normal operation
     pub fn rx_testmode(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -347,9 +379,11 @@ impl ANEG_CFG {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Reserved for test purposes. Transmit data 0 on all bit positions if ANEG is active
+
     ///
+
     /// 1: Bypass ANEG data 0: Normal operation
     pub fn txbyp_testmode(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -369,15 +403,15 @@ impl ANEG_CFG {    ///
 /// 48 bits that contain the new next page to transmit during auto-negotiation (here: lower 32 bits).
 #[derive(From, Into)]
 pub struct ANEG_NEXT_PAGE_0(u32);
-impl ANEG_NEXT_PAGE_0 {    ///
+impl ANEG_NEXT_PAGE_0 {
     /// Lower 32 bits of next page link code word
     pub fn np_tx_lsb(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_np_tx_lsb(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -389,9 +423,11 @@ impl ANEG_NEXT_PAGE_0 {    ///
 /// Configuration register for specific vaui channel settings
 #[derive(From, Into)]
 pub struct VAUI_CHANNEL_CFG(u32);
-impl VAUI_CHANNEL_CFG {    ///
+impl VAUI_CHANNEL_CFG {
     /// Enable alignment of lane to a common clock (e.g. XAUI mode) and dock lane with ANEG of lane 0 (Master-ANEG)
+
     ///
+
     /// 0: Off 1: On
     pub fn lane_sync_ena(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -401,9 +437,11 @@ impl VAUI_CHANNEL_CFG {    ///
         assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
-    }    ///
+    }
     /// Combine signal_detect information for all 4 lanes.
+
     ///
+
     /// 0: Each lane provides own signal_detect 1: Signal_detect of all four lanes are ANDed
     pub fn sigdet_mode(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -413,9 +451,11 @@ impl VAUI_CHANNEL_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Combine signal_detect information for lanes 0 and 2.
+
     ///
+
     /// 0: Lane 0 and 2 provides own signal_detect 1: Signal_detect of lanes 0 and 2 are ANDed
     pub fn sigdet_mode_r(&self) -> u32 {
         (self.0 & 0x2) >> 1

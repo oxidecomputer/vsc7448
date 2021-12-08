@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// RX Sync control status register
 #[derive(From, Into)]
 pub struct RX_SYNC_CTRL_STAT(u32);
-impl RX_SYNC_CTRL_STAT {    ///
+impl RX_SYNC_CTRL_STAT {
     /// RX Lane synchronization fifo overflow
     pub fn rx_lane_sync_fifo_of_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -55,7 +55,7 @@ impl RX_SYNC_CTRL_STAT {    ///
 /// Configuration register 0 for SD10G65 RX RCPLL BIST.
 #[derive(From, Into)]
 pub struct SD10G65_RCPLL_BIST_CFG0(u32);
-impl SD10G65_RCPLL_BIST_CFG0 {    ///
+impl SD10G65_RCPLL_BIST_CFG0 {
     /// BIST compare uncertainty
     pub fn pllb_comp_uncert(&self) -> u32 {
         (self.0 & 0xff0) >> 4
@@ -65,17 +65,17 @@ impl SD10G65_RCPLL_BIST_CFG0 {    ///
         assert!(value <= 0xff0);
         self.0 &= !0xff0;
         self.0 |= value;
-    }    ///
+    }
     /// BIST frequency deviation limit, correlates to compare dividers
     pub fn pllb_freq_devi(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_pllb_freq_devi(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
-    }    ///
+    }
     /// BIST ramp-up/down mode, 0: ramp up and down, 1: ramp-up only, 2: ramp-down only, 3: reserved
     pub fn pllb_inc_dec_mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -85,7 +85,7 @@ impl SD10G65_RCPLL_BIST_CFG0 {    ///
         assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
-    }    ///
+    }
     /// BIST start, 0: reset BIST, 1: start/enable BIST
     pub fn pllb_start_bist(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -105,7 +105,7 @@ impl SD10G65_RCPLL_BIST_CFG0 {    ///
 /// Configuration register 1 for SD10G65 RX RCPLL BIST.
 #[derive(From, Into)]
 pub struct SD10G65_RCPLL_BIST_CFG1(u32);
-impl SD10G65_RCPLL_BIST_CFG1 {    ///
+impl SD10G65_RCPLL_BIST_CFG1 {
     /// BIST compare pre divider M
     pub fn pllb_div_factor_pre(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -115,7 +115,7 @@ impl SD10G65_RCPLL_BIST_CFG1 {    ///
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
-    }    ///
+    }
     /// BIST compare divider repeat count
     pub fn pllb_lock_repeat(&self) -> u32 {
         (self.0 & 0xf00000) >> 20
@@ -125,7 +125,7 @@ impl SD10G65_RCPLL_BIST_CFG1 {    ///
         assert!(value <= 0xf00000);
         self.0 &= !0xf00000;
         self.0 |= value;
-    }    ///
+    }
     /// BIST compare divider phase uncertainty
     pub fn pllb_lock_uncert(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -145,7 +145,7 @@ impl SD10G65_RCPLL_BIST_CFG1 {    ///
 /// Configuration register 2 for SD10G65 RX RCPLL BIST.
 #[derive(From, Into)]
 pub struct SD10G65_RCPLL_BIST_CFG2(u32);
-impl SD10G65_RCPLL_BIST_CFG2 {    ///
+impl SD10G65_RCPLL_BIST_CFG2 {
     /// BIST compare divider M
     pub fn pllb_div_factor_m(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -165,7 +165,7 @@ impl SD10G65_RCPLL_BIST_CFG2 {    ///
 /// Configuration register 3 for SD10G65 RX RCPLL BIST.
 #[derive(From, Into)]
 pub struct SD10G65_RCPLL_BIST_CFG3(u32);
-impl SD10G65_RCPLL_BIST_CFG3 {    ///
+impl SD10G65_RCPLL_BIST_CFG3 {
     /// BIST compare divider N
     pub fn pllb_div_factor_n(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -185,7 +185,7 @@ impl SD10G65_RCPLL_BIST_CFG3 {    ///
 /// Status register 0 for SD10G65 RX RCPLL BIST.
 #[derive(From, Into)]
 pub struct SD10G65_RCPLL_BIST_STAT0(u32);
-impl SD10G65_RCPLL_BIST_STAT0 {    ///
+impl SD10G65_RCPLL_BIST_STAT0 {
     /// BIST busy, 0: not busy, 1: busy
     pub fn pllb_busy(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -195,7 +195,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// BIST done (inverted), 0: done, 1: not done
     pub fn pllb_done_n(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -205,7 +205,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// BIST pass/fail, 0: passed, 1: failed
     pub fn pllb_fail(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -215,7 +215,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// BIST compare divider phase lock
     pub fn pllb_phase_lock(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -225,7 +225,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// BIST pll_cnt upper limit at max. frequency
     pub fn pllb_pll_cnt_high(&self) -> u32 {
         (self.0 & 0x7ff0000) >> 16
@@ -235,7 +235,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {    ///
         assert!(value <= 0x7ff0000);
         self.0 &= !0x7ff0000;
         self.0 |= value;
-    }    ///
+    }
     /// BIST pll_cnt lower limit at min. frequency
     pub fn pllb_pll_cnt_low(&self) -> u32 {
         (self.0 & 0xffe0) >> 5
@@ -255,7 +255,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {    ///
 /// Status register 1 for SD10G65 RX RCPLL BIST.
 #[derive(From, Into)]
 pub struct SD10G65_RCPLL_BIST_STAT1(u32);
-impl SD10G65_RCPLL_BIST_STAT1 {    ///
+impl SD10G65_RCPLL_BIST_STAT1 {
     /// BIST compare divider phase difference
     pub fn pllb_phase_diff(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -275,7 +275,7 @@ impl SD10G65_RCPLL_BIST_STAT1 {    ///
 /// Configuration register 4 for SD10G65 RX RCPLL BIST.
 #[derive(From, Into)]
 pub struct SD10G65_RX_RCPLL_BIST_CFG4(u32);
-impl SD10G65_RX_RCPLL_BIST_CFG4 {    ///
+impl SD10G65_RX_RCPLL_BIST_CFG4 {
     /// BIST macro clock (parallel) clock selection, 0: RX, 1: TX
     pub fn pllb_clock_sel(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -285,7 +285,7 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// BIST measure mode, 0: frequency, 1: phase
     pub fn pllb_meas_mode(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -295,7 +295,7 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// BIST select 125MHz feedback clock from synthesizer
     pub fn pllb_sel125clk(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -305,7 +305,7 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// BIST SPI base address for rcpll10g FSM inside the macro (e.g. RX or TX)
     pub fn pllb_spi_base_addr(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -315,7 +315,7 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {    ///
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    ///
+    }
     /// BIST start measure, 1: start
     pub fn pllb_start_meas(&self) -> u32 {
         (self.0 & 0x4) >> 2

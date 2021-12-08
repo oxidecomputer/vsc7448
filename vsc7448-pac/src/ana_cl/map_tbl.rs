@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// L2CP table entry
 #[derive(From, Into)]
 pub struct L2CP_ENTRY_CFG(u32);
-impl L2CP_ENTRY_CFG {    ///
+impl L2CP_ENTRY_CFG {
     /// Enable use of COSID_VAL as COS ID.
     pub fn cosid_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -43,7 +43,7 @@ impl L2CP_ENTRY_CFG {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// COS ID for L2CP frame.
     pub fn cosid_val(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -53,9 +53,11 @@ impl L2CP_ENTRY_CFG {    ///
         assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
-    }    ///
+    }
     /// CPU forward configuration for L2CP frame.
+
     ///
+
     /// 0: Normal forward 1: Enable redirection to CPU queue 2: Enable copy to CPU queue 3: Discard the frame
     pub fn cpu_fwd_cfg(&self) -> u32 {
         (self.0 & 0x18) >> 3
@@ -65,7 +67,7 @@ impl L2CP_ENTRY_CFG {    ///
         assert!(value <= 0x18);
         self.0 &= !0x18;
         self.0 |= value;
-    }    ///
+    }
     /// CPU extraction queue for L2CP frame copied or redirected to CPU by CPU_FWD_CFG.
     pub fn cpu_l2cp_qu(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -83,7 +85,7 @@ impl L2CP_ENTRY_CFG {    ///
 /// Configures which entry fields to use if row is matched
 #[derive(From, Into)]
 pub struct SET_CTRL(u32);
-impl SET_CTRL {    ///
+impl SET_CTRL {
     /// If set, COSID_VAL replaces the classified COS ID if the entry is matched.
     pub fn cosid_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -93,7 +95,7 @@ impl SET_CTRL {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// If set, DEI_VAL replaces the classified DEI value if the entry is matched.
     pub fn dei_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -103,7 +105,7 @@ impl SET_CTRL {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// If set, DP_VAL replaces the classified DP level if the entry is matched.
     pub fn dp_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -113,7 +115,7 @@ impl SET_CTRL {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// If set, DSCP_VAL replaces the classified DSCP value if the entry is matched.
     pub fn dscp_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -123,7 +125,7 @@ impl SET_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// If set, PATH_COSID_VAL and PATH_COLOR_VAL are used if the entry is matched.
     pub fn path_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -133,7 +135,7 @@ impl SET_CTRL {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// If set, PCP_VAL replaces the classified PCP value if the entry is matched.
     pub fn pcp_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -143,7 +145,7 @@ impl SET_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// If set, QOS_VAL replaces the classified QoS class if the entry is matched.
     pub fn qos_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -153,7 +155,7 @@ impl SET_CTRL {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// If set, TC_VAL replaces the classified TC bits if the entry is matched.
     pub fn tc_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6

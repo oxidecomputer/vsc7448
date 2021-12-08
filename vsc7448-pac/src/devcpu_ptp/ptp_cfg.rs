@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// One replication exsists per time domain
 #[derive(From, Into)]
 pub struct CLK_ADJ_CFG(u32);
-impl CLK_ADJ_CFG {    ///
+impl CLK_ADJ_CFG {
     /// Clock frequency adjustment direction.
+
     ///
+
     /// 0: Positive adjustment. Every adjustment adds 1ns to the counter. => clock period is decreased, clock frequency is increased 1: Negative adjustment. Every adjustment subtracts 1ns from the counter. => clock period is increased, clock frequency is decreased
     pub fn clk_adj_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -47,9 +49,11 @@ impl CLK_ADJ_CFG {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Clock frequency adjust enable.
+
     ///
+
     /// 0: Adjustment Disabled 1: Adjustment Enabled
     pub fn clk_adj_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -69,9 +73,11 @@ impl CLK_ADJ_CFG {    ///
 /// Adjust master timer acording to detected PPB error. Ex: 1PBB: Adjust every 1ns. 50.006PBB: Adjust every 19.997.600ps
 #[derive(From, Into)]
 pub struct CLK_ADJ_FRQ(u32);
-impl CLK_ADJ_FRQ {    ///
+impl CLK_ADJ_FRQ {
     /// Clock frequency adjust./
+
     ///
+
     /// N: Number of unadjusted CLK_ADJ_UNIT after which the counter for the clock must be adjusted.
     pub fn clk_adj(&self) -> u32 {
         (self.0 & 0x3fffffff) >> 0
@@ -81,9 +87,11 @@ impl CLK_ADJ_FRQ {    ///
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
-    }    ///
+    }
     /// Clock frequency adjust unit./
+
     ///
+
     /// 0: Adjustment made every CLK_ADJ picoseconds. 1: Adjustment made every CLK_ADJ nanoseconds.
     pub fn clk_adj_unit(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -101,7 +109,7 @@ impl CLK_ADJ_FRQ {    ///
 /// Current interrupt status
 #[derive(From, Into)]
 pub struct PTP_INTR_IDENT(u32);
-impl PTP_INTR_IDENT {    ///
+impl PTP_INTR_IDENT {
     /// Bit n will be high if an interrupt is currently pending for pin <n>.
     pub fn intr_ptp_ident(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -119,9 +127,11 @@ impl PTP_INTR_IDENT {    ///
 /// Misc PTP configurations
 #[derive(From, Into)]
 pub struct PTP_MISC_CFG(u32);
-impl PTP_MISC_CFG {    ///
+impl PTP_MISC_CFG {
     /// Enable master counter.
+
     ///
+
     /// 0: Master counter disabled and reset 1: Master counter enabled
     pub fn ptp_ena(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -131,9 +141,11 @@ impl PTP_MISC_CFG {    ///
         assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
-    }    ///
+    }
     /// Hold master counter.
+
     ///
+
     /// 0: Master counter counts if enabled 1: Master counter will stay at the reached value
     pub fn ptp_hold(&self) -> u32 {
         (self.0 & 0x38) >> 3
@@ -143,7 +155,7 @@ impl PTP_MISC_CFG {    ///
         assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
-    }    ///
+    }
     /// The PTP_CUR timers will be frozen when this field is set for a domain, in order to return concurrent values.
     pub fn ptp_tod_freeze(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -161,7 +173,7 @@ impl PTP_MISC_CFG {    ///
 /// Pending interrupt mask
 #[derive(From, Into)]
 pub struct PTP_PIN_INTR(u32);
-impl PTP_PIN_INTR {    ///
+impl PTP_PIN_INTR {
     /// One bit per pin set when an active edge is seen.
     pub fn intr_ptp(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -179,7 +191,7 @@ impl PTP_PIN_INTR {    ///
 /// Enable interrupts per pin
 #[derive(From, Into)]
 pub struct PTP_PIN_INTR_ENA(u32);
-impl PTP_PIN_INTR_ENA {    ///
+impl PTP_PIN_INTR_ENA {
     /// Enable interrupt per ptp pin.
     pub fn intr_ptp_ena(&self) -> u32 {
         (self.0 & 0x1f) >> 0

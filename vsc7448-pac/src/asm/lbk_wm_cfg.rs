@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Current timer per priority
 #[derive(From, Into)]
 pub struct PFC_TIMER(u32);
-impl PFC_TIMER {    ///
+impl PFC_TIMER {
     /// The current timer value per priority. Value >0 indicates that the priority is paused.
+
     ///
+
     /// Unit is 1024 bit times.
     pub fn pfc_timer_val(&self) -> u32 {
         (self.0 & 0xffff) >> 0

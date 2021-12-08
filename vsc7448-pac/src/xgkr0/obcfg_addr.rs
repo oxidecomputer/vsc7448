@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training break_mask msw
 #[derive(From, Into)]
 pub struct BRKMASK_MSW(u32);
-impl BRKMASK_MSW {    ///
+impl BRKMASK_MSW {
     /// Select lptrain state machine breakpoints. Each bit correpsonds to a state (see design doc)
     pub fn brkmask_msw(&self) -> u32 {
         (self.0 & 0xffff) >> 0

@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// Test Pattern Generator/Checker Control Register
 #[derive(From, Into)]
 pub struct PCS_XAUI_TSTPAT_CFG(u32);
-impl PCS_XAUI_TSTPAT_CFG {    ///
+impl PCS_XAUI_TSTPAT_CFG {
     /// Capture current error counter values
+
     ///
+
     /// 1: Capture
     pub fn freeze_err_cnt_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -47,9 +49,11 @@ impl PCS_XAUI_TSTPAT_CFG {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Enable Test pattern checker
+
     ///
+
     /// 1: Check 0: No checking
     pub fn vt_chk_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -59,9 +63,11 @@ impl PCS_XAUI_TSTPAT_CFG {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Check test pattern
+
     ///
+
     /// 000: Idle 011: MFPAT 100: CRPAT 101: CJPAT all others: Idle Note: LFPAT and HFPAT can not be checked since sync is impossible
     pub fn vt_chk_sel(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -71,9 +77,11 @@ impl PCS_XAUI_TSTPAT_CFG {    ///
         assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
-    }    ///
+    }
     /// Enable Test pattern generator
+
     ///
+
     /// 1: Generate test vectors 0: Normal operation
     pub fn vt_gen_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -83,9 +91,11 @@ impl PCS_XAUI_TSTPAT_CFG {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Generate test pattern
+
     ///
+
     /// 000: Idle 001: HFPAT 010: LFPAT 011: MFPAT 100: CRPAT 101: CJPAT All others: Idle
     pub fn vt_gen_sel(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -105,15 +115,15 @@ impl PCS_XAUI_TSTPAT_CFG {    ///
 /// Random Sequence Master Counter. The counter is used only if frame based pattern are to be checked (CRPAT, CJPAT) and it is incremented by one every 8th received symbol. The counter is started when a start of frame is detected and the counter stops when the last symbol of the (internally stored) reference frame was compared. The idle phase between two frames is not checked.
 #[derive(From, Into)]
 pub struct PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS(u32);
-impl PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS {    ///
+impl PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS {
     /// Random sequence master counter
     pub fn rnd_seq_timer(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_rnd_seq_timer(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

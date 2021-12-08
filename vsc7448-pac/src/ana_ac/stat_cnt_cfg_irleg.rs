@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Event mask for counters.
 #[derive(From, Into)]
 pub struct STAT_GLOBAL_EVENT_MASK(u32);
-impl STAT_GLOBAL_EVENT_MASK {    ///
+impl STAT_GLOBAL_EVENT_MASK {
     /// This value stores the event mask which indicates the counter of all flows to count certain events. If set to '1' the respective event is not filtered and can trigger the counter. If set to '0' the respective event is filtered and the counter will treat the frame as if no event has occurred. Which type of frame is counted is defined in: STAT_CFG, CFG_CNT_FRM_TYPE. The following events apply to irleg stat: Bit0: Count acl_discarded traffic Bit1: Count received IP UC traffic Bit2: Count received IP MC traffic Bit3: Count ip_uc_routed traffic Bit4: Count ip_mc_routed traffic Bit5: Count ip_mc_rpf_discarded traffic Bit6: Count ip_ttl_discarded traffic
+
     ///
+
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
     pub fn global_event_mask(&self) -> u32 {
         (self.0 & 0x7f) >> 0
@@ -53,15 +55,15 @@ impl STAT_GLOBAL_EVENT_MASK {    ///
 /// The counter's least significant 32 bits.
 #[derive(From, Into)]
 pub struct STAT_LSB_CNT(u32);
-impl STAT_LSB_CNT {    ///
+impl STAT_LSB_CNT {
     /// This register contains the least significant 32 bits of a counter.
     pub fn lsb_cnt(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_lsb_cnt(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

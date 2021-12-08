@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training status 1
 #[derive(From, Into)]
 pub struct TR_STS1(u32);
-impl TR_STS1 {    ///
+impl TR_STS1 {
     /// Indicates prbs11 checker is active
     pub fn ber_busy(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -43,7 +43,7 @@ impl TR_STS1 {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates a DME violation has occured (LH)
     pub fn dme_viol(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -53,7 +53,7 @@ impl TR_STS1 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates loss of training frames (LH)
     pub fn frloss(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -63,7 +63,7 @@ impl TR_STS1 {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates gain_target was not reached during LP training
     pub fn gain_fail(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -73,7 +73,7 @@ impl TR_STS1 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// LP training state machine
     pub fn lpt_sm(&self) -> u32 {
         (self.0 & 0x1f0) >> 4
@@ -83,7 +83,7 @@ impl TR_STS1 {    ///
         assert!(value <= 0x1f0);
         self.0 &= !0x1f0;
         self.0 |= value;
-    }    ///
+    }
     /// training variable from training state machine
     pub fn training(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -93,7 +93,7 @@ impl TR_STS1 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Indicates that local and remote training has completed
     pub fn tr_done(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -103,7 +103,7 @@ impl TR_STS1 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Training state machine
     pub fn tr_sm(&self) -> u32 {
         (self.0 & 0xe00) >> 9

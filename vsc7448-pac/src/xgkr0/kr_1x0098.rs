@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// KR PMD status
 #[derive(From, Into)]
 pub struct KR_1X0097(u32);
-impl KR_1X0097 {    ///
+impl KR_1X0097 {
     /// Frame lock
+
     ///
+
     /// 1: Training frame delineation detected, 0: Training frame delineation not detected
     pub fn frlock(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -45,9 +47,11 @@ impl KR_1X0097 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Receiver status
+
     ///
+
     /// 1: Receiver trained and ready to receive data 0: Receiver training
     pub fn rcvr_rdy(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -57,9 +61,11 @@ impl KR_1X0097 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Startup protocol status
+
     ///
+
     /// 1: Start-up protocol in progress 0: Start-up protocol complete
     pub fn stprot(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -69,9 +75,11 @@ impl KR_1X0097 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Training failure
+
     ///
+
     /// 1: Training failure has been detected 0: Training failure has not been detected
     pub fn tr_fail(&self) -> u32 {
         (self.0 & 0x8) >> 3

@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Priority-based flow control configuration
 #[derive(From, Into)]
 pub struct PFC_CFG(u32);
-impl PFC_CFG {    ///
+impl PFC_CFG {
     /// Configures the link speed. This is used to evaluate the time specifications in incoming pause frames.
+
     ///
+
     /// 0: 12000 Mbps 1: 10000 Mbps 2: 2500 Mbps 3: 1000 Mbps 4: 100 Mbps 5: 10 Mbps
     pub fn fc_link_speed(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -45,7 +47,7 @@ impl PFC_CFG {    ///
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    ///
+    }
     /// Enable PFC per priority. Bit n enables PFC on priority n.
     pub fn rx_pfc_ena(&self) -> u32 {
         (self.0 & 0x7f8) >> 3
@@ -65,9 +67,11 @@ impl PFC_CFG {    ///
 /// This register holds all the sticky bits that exists for each port.
 #[derive(From, Into)]
 pub struct PORT_STICKY(u32);
-impl PORT_STICKY {    ///
+impl PORT_STICKY {
     /// This field indicates if one or more Ethernet frames have been discarded due to aging.
+
     ///
+
     /// '0': No Ethernet frames have been discarded due to aging. '1': One or more Ethernet frames have been discarded due to aging. Bit is cleared by writing a '1' to this position.
     pub fn frm_aging_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -77,7 +81,7 @@ impl PORT_STICKY {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if the PORT_CFG.INJ_FORMAT_CFG field is set to one of the IFH modes and the incoming frame's format does not comply with the configured prefix.
     pub fn ifh_prefix_err_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1

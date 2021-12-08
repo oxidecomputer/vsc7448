@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Ingress service counter set, offset per COS ID
 #[derive(From, Into)]
 pub struct ISDX_COS_CFG(u32);
-impl ISDX_COS_CFG {    ///
+impl ISDX_COS_CFG {
     /// Ingress service counter set offset per COS ID.
     pub fn isdx_cos_offset(&self) -> u32 {
         (self.0 & 0x7) >> 0

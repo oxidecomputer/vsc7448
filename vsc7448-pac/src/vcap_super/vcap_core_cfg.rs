@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Operations on the VCAP cache is done via this register. The UPDATE_CMD field specifies the operation to perform when UPDATE_SHOT is set. For all of the operations it is possible to disable read/write of entries, actions, and/or counter by setting VCAP_UPDATE_CTRL.UPDATE_ENTRY_DIS, VCAP_UPDATE_CTRL.UPDATE_ACTION_DIS, and/or VCAP_UPDATE_CTRL.UPDATE_CNT_DIS respectively. Writing/moving to unimplemented addresses are ignored. Reading/moving from unimplemented addresses returns never-match for entries, and zeros from actions/counters. Active rules may only be written to empty (initialized) addresses. Software must not overwrite active rules (unless when initializing rules). To initialize a region of addresses use the init operation with CLEAR_CACHE bits set to '1'. Move operations automatically disable rules when moved; so it is OK when source and destination ranges overlap.
 #[derive(From, Into)]
 pub struct VCAP_UPDATE_CTRL(u32);
-impl VCAP_UPDATE_CTRL {    ///
+impl VCAP_UPDATE_CTRL {
     /// Set to clear the cache. This field is cleared immediately by hardware (at the same time as clearing the cache). The contents of the cache will be set to disabled/empty.
     pub fn clear_cache(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -45,7 +45,7 @@ impl VCAP_UPDATE_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// For version 1 VCAPs: Set to ignore interrupting traffic during move operations, this will increase speed of the move operations but counter-events may be lost for the VCAP addresses that are moved. When this field is cleared, then interrupting traffic will cause a restart of the move operation (to ensure consistent counter values) and becasue of this, move operations on a heavily loaded device may take a long time to finish. This field is not used for version 2 VCAPs, moving of counters are safe.
     pub fn mv_traffic_ign(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -55,7 +55,7 @@ impl VCAP_UPDATE_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Set to disable update of actions for VCAP operations: For read-operations action-cache will remain unchanged. For write/move/init operations the VCAP-action will remain unchanged.
     pub fn update_action_dis(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -65,9 +65,11 @@ impl VCAP_UPDATE_CTRL {    ///
         assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
-    }    ///
+    }
     /// The address to access for VCAP operations.
+
     ///
+
     /// ES0 defaults at 0x1000-0x1034
     pub fn update_addr(&self) -> u32 {
         (self.0 & 0x7fff8) >> 3
@@ -77,9 +79,11 @@ impl VCAP_UPDATE_CTRL {    ///
         assert!(value <= 0x7fff8);
         self.0 &= !0x7fff8;
         self.0 |= value;
-    }    ///
+    }
     /// Write and read operations access VCAP memory at address specified by UPDATE_ADDR. Move up opeation moves one or more VCAP addresses from a high address to a lower address, this is equivalent to decreasing priority of a rule. The starting address is specified by UPDATE_ADDR, the number of addresses (the range) that is moved is defined by VCAP_MV_CFG.MV_SIZE, the distance to move is defined by VCAP_MV_CFG. MV_NUM_POS. Move down opeation moves one or more VCAP addresses from a low address to a higer address, this is equivalent to increasing priority of a rule. This operation is equivalent to "Move up" except for the direction that it moves addresses, see "Move up" for more details. Init operation writes the contents of the cache to one or more VCAP addresses. The starting address is specified by UPDATE_ADDR, the number of addresses (the range) that is written is defined by VCAP_MV_CFG.MV_SIZE. Setting CLEAR_CACHE at the same time as starting the operation will clear the cache and cause the init operation to initialize the range of addresses.
+
     ///
+
     /// 000: Write from cache to VCAP 001: Read from VCAP to cache 010: Move entry and/or action up (decreasing addresses) 011: Move entry and/or action down (increasing addresses) 100: Initialize VCAP with the cache-value
     pub fn update_cmd(&self) -> u32 {
         (self.0 & 0x1c00000) >> 22
@@ -89,7 +93,7 @@ impl VCAP_UPDATE_CTRL {    ///
         assert!(value <= 0x1c00000);
         self.0 &= !0x1c00000;
         self.0 |= value;
-    }    ///
+    }
     /// Set to disable update of counter for VCAP operations: For read-operations counter-cache will remain unchanged. For write/init operations the VCAP-counter will remain unchanged. For move operations the destination VCAP-counters will be set to zeros.
     pub fn update_cnt_dis(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -99,7 +103,7 @@ impl VCAP_UPDATE_CTRL {    ///
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    ///
+    }
     /// Set to disable update of entries for VCAP operations: For read-operations entry-cache will remain unchanged. For write/move/init operations the VCAP-entry will remain unchanged.
     pub fn update_entry_dis(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -109,7 +113,7 @@ impl VCAP_UPDATE_CTRL {    ///
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    ///
+    }
     /// Set to initiate the opeation specified in UPDATE_CMD. This bit is automatically cleared by hardware when the operation is finished. Software must not change write fields in the VCAP target while this field is set (while operation is active.)
     pub fn update_shot(&self) -> u32 {
         (self.0 & 0x4) >> 2

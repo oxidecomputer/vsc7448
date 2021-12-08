@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// General control
 #[derive(From, Into)]
 pub struct GENERAL_CTRL(u32);
-impl GENERAL_CTRL {    ///
+impl GENERAL_CTRL {
     /// Use this field to change from Boot mode to Normal mode. In Boot mode, the reset vector of the VCore CPU maps to CS0 on the FLASH interface. When in Normal mode, this address maps instead to the DRAM Controller. The DRAM Controller must be operational before disabling Boot mode. After setting Boot mode, this register must be read back. The change in Boot mode takes effect during read.
+
     ///
+
     /// 0: The VCore memory map is in Normal mode. 1: The VCore memory map is in Boot mode.
     pub fn boot_mode_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -45,7 +47,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// The default value of this field depends on strapping of the VCore. Set this field to make the 8051 boot from internal ROM image, the purpose of this boot-mode is implementing simple startup procedure for chips w.o. internal CPU running.
     pub fn cpu_8051_irom_ena(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -55,7 +57,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    ///
+    }
     /// The default value of this field depends on strapping of the VCore. Set this field to force the MIPS VCore CPU into Big-Endian mode.
     pub fn cpu_be_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -65,7 +67,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to disable sleep of the VCore CPU bus interface.
     pub fn cpu_busif_sleep_dis(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -75,7 +77,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to enable interrupt from the VCore CPU bus interface in case of write errors on the internal bus. Clear this field to clear pending write-error interrupts (then reenable field to receive new interrupts).
     pub fn cpu_busif_werr_ena(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -85,9 +87,11 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    ///
+    }
     /// The default value of this field depends on strapping of the VCore. Clear this field to allow booting of the VCore CPU, while this field is set the VCore CPU is held in reset.
+
     ///
+
     /// 0: VCore CPU is allowed to boot 1: VCore CPU is forced in reset
     pub fn cpu_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -97,7 +101,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to disable the MIPS core (and instead enable 8051).
     pub fn cpu_mips_dis(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -107,7 +111,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    ///
+    }
     /// The default value of this field depends on strapping of the VCore. Set this field to enable the MIIM slave-interface on the GPIOs.
     pub fn if_miim_slv_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -117,7 +121,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// The default value of this field depends on strapping of the VCore. Set this field to force PI interfaces into master mode (and enable PI on GPIOs).
     pub fn if_pi_mst_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -127,7 +131,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// The default value of this field depends on strapping of the VCore (the PI_nDone signal).
     pub fn if_pi_slv_donepol(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -137,7 +141,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// The default value of this field depends on strapping of the VCore. Set this field to force PI interfaces into slave mode (and enable PI on GPIOs).
     pub fn if_pi_slv_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -147,9 +151,11 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Select the owner of the GPIO overlaid SI interface.
+
     ///
+
     /// 0: SI Slave 1: SI Boot Master 2: SI Master Controller
     pub fn if_si1_owner(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -159,9 +165,11 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
-    }    ///
+    }
     /// The default value of this field depends on strapping of the VCore. Select the owner of the SI interface.
+
     ///
+
     /// 0: SI Slave 1: SI Boot Master 2: SI Master Controller
     pub fn if_si_owner(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -171,7 +179,7 @@ impl GENERAL_CTRL {    ///
         assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field when enabling SI Master Controller for SSP protocol. See SIMC::CTRLR0.FRF for more information.
     pub fn simc_ssp_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -189,15 +197,15 @@ impl GENERAL_CTRL {    ///
 /// General Purpose Register
 #[derive(From, Into)]
 pub struct GPR(u32);
-impl GPR {    ///
+impl GPR {
     /// General purpose 8 times 32-bit registers for software development and debug. Note: This register is only reset by the device's reset input, i.e. it is not affected by soft reset!
     pub fn gpr(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_gpr(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -207,9 +215,11 @@ impl GPR {    ///
 /// Reset Settings
 #[derive(From, Into)]
 pub struct RESET(u32);
-impl RESET {    ///
+impl RESET {
     /// Set this field to enable VCore System reset protection. It is possible to protect the VCore System from soft-reset (issued via RESET.CORE_RST_FORCE) and watchdog-timeout. When this field is set the aforementioned resets only reset the VCore CPU, not the VCore System.
+
     ///
+
     /// 0: Soft-reset and WDT-event and reset entire VCore 1: Soft-reset and WDT-event only reset the VCore CPU
     pub fn core_rst_cpu_only(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -219,9 +229,11 @@ impl RESET {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to generate a soft reset for the VCore. This field will be cleared when the reset has taken effect. It is possible to protect the VCore system (everyhing else than the VCore CPU) from reset via  RESET.CORE_RST_CPU_ONLY.
+
     ///
+
     /// 0: VCore is not reset 1: Initiate soft reset of the VCore
     pub fn core_rst_force(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -231,9 +243,11 @@ impl RESET {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set this field to enable VCore reset protection. It is possible to protect the entire VCore from chip-level soft-reset (issued via DEVCPU_GCB::SOFT_RST.SOFT_CHIP_RST). Setting this field does not protect agains hard-reset of the chip (by asserting the reset pin).
+
     ///
+
     /// 0: No reset protection 1: VCore is protected from chip-level-soft-reset
     pub fn core_rst_protect(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -243,9 +257,11 @@ impl RESET {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Clear this field to release the DDR2/3 controller from reset.
+
     ///
+
     /// 0: Memory controller is not reset 1: Memory controller is forced in reset
     pub fn mem_rst_force(&self) -> u32 {
         (self.0 & 0x1) >> 0

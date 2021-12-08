@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Sequence number configuration
 #[derive(From, Into)]
 pub struct PTP_SEQ_NO(u32);
-impl PTP_SEQ_NO {    ///
+impl PTP_SEQ_NO {
     /// Sequence number for the flow given by the timestamp field in IFH. Sequence number will automatically increase at each transmission referring to the sequence entry.
     pub fn ptp_seq_no(&self) -> u32 {
         (self.0 & 0xffff) >> 0

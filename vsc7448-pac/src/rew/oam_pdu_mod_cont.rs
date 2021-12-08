@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Temp CCM-LM info
 #[derive(From, Into)]
 pub struct CCM_LM_INFO_REG(u32);
-impl CCM_LM_INFO_REG {    ///
+impl CCM_LM_INFO_REG {
     /// Indicates whether this entry in the RAM contains valid CCM-LM sample values.
     pub fn ccm_lm_info_vld(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -43,7 +43,7 @@ impl CCM_LM_INFO_REG {    ///
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    ///
+    }
     /// The number of the VOE for which the LM information was received.
     pub fn ccm_lm_voe_idx(&self) -> u32 {
         (self.0 & 0x7ff) >> 0
@@ -63,15 +63,15 @@ impl CCM_LM_INFO_REG {    ///
 /// Contains the sampled value of CCM_LM.tx_fc_b from the last valid CCM_LM frame.
 #[derive(From, Into)]
 pub struct CCM_LM_TX_B_REG(u32);
-impl CCM_LM_TX_B_REG {    ///
+impl CCM_LM_TX_B_REG {
     /// Contains the sampled value of CCM_LM.tx_fc_b from the last valid CCM_LM frame.
     pub fn ccm_lm_tx_b(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_ccm_lm_tx_b(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -81,7 +81,7 @@ impl CCM_LM_TX_B_REG {    ///
 /// Temp LM cnt
 #[derive(From, Into)]
 pub struct LM_CNT_FRAME(u32);
-impl LM_CNT_FRAME {    ///
+impl LM_CNT_FRAME {
     /// Determines if the current frame should be counted by the Path LM counter, based on the color / mapping and possibly being killed in the ingress DLB.
     pub fn path_cnt_frm(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -91,7 +91,7 @@ impl LM_CNT_FRAME {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Determines if the current frame should be counted by the Service LM counter, based on the color / mapping and possibly being killed in the ingress DLB.
     pub fn srv_cnt_frm(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -111,15 +111,15 @@ impl LM_CNT_FRAME {    ///
 /// Byte count of all frames passing through the Port VOE. Whenever this RAM is read, the value of this register will be sampled into the following register: * ANA_AC_OAM_MOD::RD_LAST_PORT_BYTE_CNT_LSB.RD_LAST_PORT_BYTE_CNT_LSB (ANA) * REW::RD_LAST_PORT_BYTE_CNT_LSB.RD_LAST_PORT_BYTE_CNT_LSB (REW)
 #[derive(From, Into)]
 pub struct PORT_BYTE_CNT_LSB(u32);
-impl PORT_BYTE_CNT_LSB {    ///
+impl PORT_BYTE_CNT_LSB {
     /// See Register Description.
     pub fn port_byte_cnt_lsb(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_port_byte_cnt_lsb(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

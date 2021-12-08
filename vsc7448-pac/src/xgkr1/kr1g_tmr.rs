@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS AN rate_detect_1g timer lsw
 #[derive(From, Into)]
 pub struct KR1G_LSW(u32);
-impl KR1G_LSW {    ///
+impl KR1G_LSW {
     /// rate_detect_1g_timer setting
     pub fn kr1g_tmr_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl KR1G_LSW {    ///
 /// VS AN rate_detect_3g timer msw
 #[derive(From, Into)]
 pub struct KR3G_MSW(u32);
-impl KR3G_MSW {    ///
+impl KR3G_MSW {
     /// rate_detect_3g_timer setting
     pub fn kr3g_tmr_msw(&self) -> u32 {
         (self.0 & 0xffff) >> 0

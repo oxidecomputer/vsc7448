@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Fan controller configuration
 #[derive(From, Into)]
 pub struct FAN_CFG(u32);
-impl FAN_CFG {    ///
+impl FAN_CFG {
     /// The system clock period given in the clock period in PS divided by 100.
+
     ///
+
     /// Values below 40 are reserved.
     pub fn clk_period(&self) -> u32 {
         (self.0 & 0x7f80) >> 7
@@ -45,9 +47,11 @@ impl FAN_CFG {    ///
         assert!(value <= 0x7f80);
         self.0 &= !0x7f80;
         self.0 |= value;
-    }    ///
+    }
     /// Define the duty cycle
+
     ///
+
     /// 0x00: Always "off" 0xFF: Always "on"
     pub fn duty_cycle(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
@@ -57,7 +61,7 @@ impl FAN_CFG {    ///
         assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
-    }    ///
+    }
     /// Configure behavior of TACH input tick counter, see DEVCPU_GCB::FAN_CNT for more infromation.
     pub fn fan_stat_cfg(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -67,9 +71,11 @@ impl FAN_CFG {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable gating of the TACH input by the PWM output so that only TACH pulses received when PWM is "on" are counted.
+
     ///
+
     /// 0: Disabled 1: Enabled
     pub fn gate_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -79,9 +85,11 @@ impl FAN_CFG {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Define the polarity of the PWM output.
+
     ///
+
     /// 0: PWM is logic 1 when "on" 1: PWM is logic 0 when "on"
     pub fn inv_pol(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -91,9 +99,11 @@ impl FAN_CFG {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Set the frequency of the PWM output
+
     ///
+
     /// 0: 25 kHz 1: 120 Hz 2: 100 Hz 3: 80 Hz 4: 60 Hz 5: 40 Hz 6: 20 Hz 7: 10 Hz
     pub fn pwm_freq(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -103,7 +113,7 @@ impl FAN_CFG {    ///
         assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
-    }    ///
+    }
     /// Configure the PWM output to be open collector
     pub fn pwm_open_col_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -121,17 +131,19 @@ impl FAN_CFG {    ///
 /// Currently active interrupts
 #[derive(From, Into)]
 pub struct SIO_INTR_IDENT(u32);
-impl SIO_INTR_IDENT {    ///
+impl SIO_INTR_IDENT {
     /// Shows the currently active interrupts. This register is the result of the SIO_INTR interrupts with the disabled interrupts (from SIO_INTR_ENA and SIO_GPIO_INTR_ENA) removed.
+
     ///
+
     /// 0: No active interrupt for given gpio 1: Active interrupt for given gpio
     pub fn sio_intr_ident(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_sio_intr_ident(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

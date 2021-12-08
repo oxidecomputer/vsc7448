@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Per port mapping of qgrp
 #[derive(From, Into)]
 pub struct QMAP_QOS_TBL(u32);
-impl QMAP_QOS_TBL {    ///
+impl QMAP_QOS_TBL {
     /// Configures which classified parameter to use when selecting scheduling input.
+
     ///
+
     /// 0: Use IPRIO as input selector (SRCP for normal queue mode) 1: Use COSID as input selector 2: Use TC as input selector 3: Use PCP as input selector
     pub fn qmap_qos_sel(&self) -> u32 {
         (self.0 & 0x3) >> 0
@@ -53,7 +55,7 @@ impl QMAP_QOS_TBL {    ///
 /// Per port mapping of qgrp
 #[derive(From, Into)]
 pub struct QMAP_SE_TBL(u32);
-impl QMAP_SE_TBL {    ///
+impl QMAP_SE_TBL {
     /// Scheduling element to use for frames going to the specific port with the specific lookup index
     pub fn qmap_se_val(&self) -> u32 {
         (self.0 & 0xfff) >> 0

@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// GLAG member count configuration
 #[derive(From, Into)]
 pub struct MBR_CNT_CFG(u32);
-impl MBR_CNT_CFG {    ///
+impl MBR_CNT_CFG {
     /// GLAG member count. This is used to select the GLAG port mask within the GLAG part of ANA_AC:PGID. Using GLAG_MBR_CNT a GLAG_MBR_IDX is calculated as follows: GLAG_MBR_IDX = frame.ac % GLAG_MBR_CNT The frame's GLAGID and GLAG_MBR_IDX are then used for lookup in ANA_AC:PGID.
+
     ///
+
     /// 0: One member 1: Two members ... 7: Eight members
     pub fn glag_mbr_cnt(&self) -> u32 {
         (self.0 & 0x70000) >> 16
@@ -53,17 +55,19 @@ impl MBR_CNT_CFG {    ///
 /// PGID port mask / destination configuration
 #[derive(From, Into)]
 pub struct PGID_CFG(u32);
-impl PGID_CFG {    ///
+impl PGID_CFG {
     /// PGID port mask or stack forwarding information, depending on STACK_TYPE_ENA. Related parameters: ANA_AC:PGID:PGID_MISC_CFG.STACK_TYPE_ENA
+
     ///
+
     /// PGID_MISC_CFG.STACK_TYPE_ENA=0: Destination port mask. PGID_MISC_CFG.STACK_TYPE_ENA=1: Bit 4:0 VStaX destination UPSPN. Bit 5 VStaX destination port type. 0=Normal UPSPN, 1=Internal port (advanced use). Bit 10:6 VStaX destination UPSID Bit 13:11 VStaX forwarding mode. Only used if PGID origins from multicast index in MAC table. In all other cases bit 13:11 must be 0. Encoding: '001': fwd_logical. Forward to logical front port at specific UPS, using (UPSID, UPSPN). '010': fwd_physical. Forward to physical front port at specific UPS, using (UPSID, UPSPN). '101': fwd_gcpu_ups. Forward to GCPU of specific UPS (identified by UPSID). Other: Reserved. If bit 10:6 is a remote UPSID, then 20:16 must be set to 0. If bit 10:6 is the a UPSID, then 20:16 must be set to same value as bit 4:0.
     pub fn port_mask(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_port_mask(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -73,7 +77,7 @@ impl PGID_CFG {    ///
 /// PGID port mask / destination configuration
 #[derive(From, Into)]
 pub struct PGID_CFG1(u32);
-impl PGID_CFG1 {    ///
+impl PGID_CFG1 {
     /// Refer to PGID_CFG.PORT_MASK description.
     pub fn port_mask1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0

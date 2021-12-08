@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// KR LP status report
 #[derive(From, Into)]
 pub struct KR_1X0099(u32);
-impl KR_1X0099 {    ///
+impl KR_1X0099 {
     /// Received status report field
     pub fn lpstat(&self) -> u32 {
         (self.0 & 0xffff) >> 0

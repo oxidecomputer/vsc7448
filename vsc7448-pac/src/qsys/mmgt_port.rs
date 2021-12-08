@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Packet Memory Status
 #[derive(From, Into)]
 pub struct MMGT_FAST(u32);
-impl MMGT_FAST {    ///
+impl MMGT_FAST {
     /// Number of words in the fast pool
     pub fn freevld(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -43,7 +43,7 @@ impl MMGT_FAST {    ///
         assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
-    }    ///
+    }
     /// Number of frames awaiting release in the fast pool
     pub fn relvld(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -61,7 +61,7 @@ impl MMGT_FAST {    ///
 /// Ingress queue status
 #[derive(From, Into)]
 pub struct MMGT_IQ_STAT(u32);
-impl MMGT_IQ_STAT {    ///
+impl MMGT_IQ_STAT {
     /// Number of frame copies pending in the ingress queue
     pub fn mmgt_iq_size(&self) -> u32 {
         (self.0 & 0xfffff) >> 0
@@ -79,7 +79,7 @@ impl MMGT_IQ_STAT {    ///
 /// Total consumption per ingress port
 #[derive(From, Into)]
 pub struct MMGT_PORT_USE(u32);
-impl MMGT_PORT_USE {    ///
+impl MMGT_PORT_USE {
     /// Total consumption per port in the memory manager. Unit is one cell (176 bytes).
     pub fn mmgt_port_use(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -97,7 +97,7 @@ impl MMGT_PORT_USE {    ///
 /// Port to see values for
 #[derive(From, Into)]
 pub struct MMGT_PORT_VIEW(u32);
-impl MMGT_PORT_VIEW {    ///
+impl MMGT_PORT_VIEW {
     /// Select port to see consumption values for
     pub fn mmgt_port_view(&self) -> u32 {
         (self.0 & 0x3f) >> 0

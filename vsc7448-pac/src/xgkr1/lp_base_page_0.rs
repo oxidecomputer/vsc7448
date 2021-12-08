@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// LD advertised abilities 47-32
 #[derive(From, Into)]
 pub struct KR_7X0012(u32);
-impl KR_7X0012 {    ///
+impl KR_7X0012 {
     /// Local advertised abilities D[47:32]
     pub fn adv2(&self) -> u32 {
         (self.0 & 0xffff) >> 0

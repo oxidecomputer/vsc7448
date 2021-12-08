@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Number of TTIs to service in slot before moving to next TTI Calendar slot.
 #[derive(From, Into)]
 pub struct TTI_CAL_SLOT_CNT(u32);
-impl TTI_CAL_SLOT_CNT {    ///
+impl TTI_CAL_SLOT_CNT {
     /// Number of TTIs to service in slot before moving to next TTI Calendar Slot.
+
     ///
+
     /// 0: 1 1: 1 2: 2 ...
     pub fn slot_cnt(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -53,7 +55,7 @@ impl TTI_CAL_SLOT_CNT {    ///
 /// Start and end Frame Table pointers for Calendar Slot
 #[derive(From, Into)]
 pub struct TTI_CAL_SLOT_PTRS(u32);
-impl TTI_CAL_SLOT_PTRS {    ///
+impl TTI_CAL_SLOT_PTRS {
     /// Calendar Slot's Frame Table end pointer.
     pub fn slot_end_ptr(&self) -> u32 {
         (self.0 & 0xfff0000) >> 16
@@ -63,7 +65,7 @@ impl TTI_CAL_SLOT_PTRS {    ///
         assert!(value <= 0xfff0000);
         self.0 &= !0xfff0000;
         self.0 |= value;
-    }    ///
+    }
     /// Calendar Slot's Frame Table start pointer.
     pub fn slot_start_ptr(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -81,7 +83,7 @@ impl TTI_CAL_SLOT_PTRS {    ///
 /// TTI Calendar state information
 #[derive(From, Into)]
 pub struct TTI_CAL_STATE(u32);
-impl TTI_CAL_STATE {    ///
+impl TTI_CAL_STATE {
     /// Current value of Calendar Slot's TTI Table Pointer.
     pub fn slot_tti_tbl_ptr(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -99,7 +101,7 @@ impl TTI_CAL_STATE {    ///
 /// TTI Control
 #[derive(From, Into)]
 pub struct TTI_CTRL(u32);
-impl TTI_CTRL {    ///
+impl TTI_CTRL {
     /// Number of remaining TTI Table entries to service for current Calendar Slot.
     pub fn tti_cal_cnt(&self) -> u32 {
         (self.0 & 0xff00000) >> 20
@@ -109,9 +111,11 @@ impl TTI_CTRL {    ///
         assert!(value <= 0xff00000);
         self.0 &= !0xff00000;
         self.0 |= value;
-    }    ///
+    }
     /// Length of TTI Calendar.
+
     ///
+
     /// 0: Length=1 (Slot 0) 1: Length=2 (Slot 0-1) 2: Length=3 (Slot 0-2) 3: Length=4 (Slot 0-3)
     pub fn tti_cal_len(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -121,7 +125,7 @@ impl TTI_CTRL {    ///
         assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
-    }    ///
+    }
     /// Current TTI Calendar slot.
     pub fn tti_cal_ptr(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -131,9 +135,11 @@ impl TTI_CTRL {    ///
         assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
-    }    ///
+    }
     /// Maximum number of clock cycles that CSR accesses have to wait before gaining access to TTI table. Note that writes need two accesses and may thus have to await 2x the configured number of clock cycles. Setting this parameter too low while doing excessive TTI Table CSR accesses may cause TTIs (in TTI Table) to be serviced too infrequently for their configured timer values.
+
     ///
+
     /// 0 => CSR accesses takes precedence. 1 => 1 clock cycle ...
     pub fn tti_csr_rsv(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -143,7 +149,7 @@ impl TTI_CTRL {    ///
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    ///
+    }
     /// Enable TTIs. Before enabling TTIs, TTI_INIT should be used to initialize Calendar state.
     pub fn tti_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -153,7 +159,7 @@ impl TTI_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// When set, initialize Calendar to start at Calendar Slot 0. Cleared by AFI when done.
     pub fn tti_init(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -163,7 +169,7 @@ impl TTI_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// If set only one TTI is processed at-a-time. This imposes some TTI limitations and is only intended to be used as work around for unexpected RTL bugs.
     pub fn tti_serial_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -181,7 +187,7 @@ impl TTI_CTRL {    ///
 /// TTI Control
 #[derive(From, Into)]
 pub struct TTI_CTRL2(u32);
-impl TTI_CTRL2 {    ///
+impl TTI_CTRL2 {
     /// Minium number of clock cycles between TUPE accessing TTI Table. TUPE access to TTI Table takes precedence over both CSR accesses and normal TTI processing. TUPE will at least consume 4 clock cycles per processed TTI, so setting TTI_TUPE_RSV<4 results in same behaviour as setting it to 4.
     pub fn tti_tupe_rsv(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -199,7 +205,7 @@ impl TTI_CTRL2 {    ///
 /// TTI Injection Counter
 #[derive(From, Into)]
 pub struct TTI_INJ_CNT(u32);
-impl TTI_INJ_CNT {    ///
+impl TTI_INJ_CNT {
     /// Number of TTI frame injections. Enabled per TTI using AFI:TTI_TBL:TTI_MISC_CFG.INJ_CNT_ENA. Frames injected for removal are also counted.
     pub fn tti_inj_cnt(&self) -> u32 {
         (self.0 & 0x3fffffff) >> 0
@@ -217,7 +223,7 @@ impl TTI_INJ_CNT {    ///
 /// State of random algorithm used for TTI jitter calculation
 #[derive(From, Into)]
 pub struct TTI_RAND_STATE(u32);
-impl TTI_RAND_STATE {    ///
+impl TTI_RAND_STATE {
     /// State of random algorithm used for TTI jitter calculation. Updated by AFI for each jitter calculation. Should be initialized by SW to a random, non-zero value.
     pub fn tti_rand_state(&self) -> u32 {
         (self.0 & 0x3ffff) >> 0
@@ -237,7 +243,7 @@ impl TTI_RAND_STATE {    ///
 /// The TTI Tick counters are permanently running. Their current state (CNT and ERA) can be inspected and written to through these registers.
 #[derive(From, Into)]
 pub struct TTI_TICK_STATE(u32);
-impl TTI_TICK_STATE {    ///
+impl TTI_TICK_STATE {
     /// Tick's current counter value.
     pub fn tick_cnt(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -247,7 +253,7 @@ impl TTI_TICK_STATE {    ///
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
-    }    ///
+    }
     /// Tick's current era. Each tick counts up to its configured LEN. When LEN is reached TICK_ERA toggles and the tick restarts counting from 0. When a TTI in TTI_TBL is processed, then the LAST_TICK_ERA of the TTI is compared with the TICK_ERA of the tick used by the TTI and if they differ the TTI's TICK_CNT is decremented.
     pub fn tick_era(&self) -> u32 {
         (self.0 & 0x10000) >> 16

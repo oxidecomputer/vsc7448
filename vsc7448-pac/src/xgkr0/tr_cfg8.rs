@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training config 7
 #[derive(From, Into)]
 pub struct TR_CFG7(u32);
-impl TR_CFG7 {    ///
+impl TR_CFG7 {
     /// initialize settings for local transmitter.
     pub fn cm_init(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
@@ -43,7 +43,7 @@ impl TR_CFG7 {    ///
         assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
-    }    ///
+    }
     /// Signed value to adjust final LP C(+1) tap position from calculated optimal setting.
     pub fn dfe_ofs(&self) -> u32 {
         (self.0 & 0x3f) >> 0

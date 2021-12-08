@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Hierarchy configuration
 #[derive(From, Into)]
 pub struct HSCH_L0_CFG(u32);
-impl HSCH_L0_CFG {    ///
+impl HSCH_L0_CFG {
     /// Index of layer 1 element connected to.
     pub fn l1_idx(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
@@ -43,7 +43,7 @@ impl HSCH_L0_CFG {    ///
         assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
-    }    ///
+    }
     /// Input of layer 1 element connected to
     pub fn l1_inp(&self) -> u32 {
         (self.0 & 0x3f) >> 0

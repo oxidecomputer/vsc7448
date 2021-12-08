@@ -51,7 +51,7 @@ impl QLIMIT_CONG_CNT_MAX_STAT {    pub fn qlimit_cong_cnt_max(&self) -> u32 {
 /// Replicated for each classified priority
 #[derive(From, Into)]
 pub struct QLIMIT_MON_CFG(u32);
-impl QLIMIT_MON_CFG {    ///
+impl QLIMIT_MON_CFG {
     /// Clear shared memory pool monitoring statistics.
     pub fn qlimit_shr_mon_clr(&self) -> u32 {
         (self.0 & 0x1) >> 0

@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Diagnostic bits related to longest prefix matching.
 #[derive(From, Into)]
 pub struct L3_LPM_REMAP_STICKY(u32);
-impl L3_LPM_REMAP_STICKY {    ///
+impl L3_LPM_REMAP_STICKY {
     /// Set if an IPv4 multicast longest prefix match has been found and the returned L3MC_IDX is less than the number of L3MC table entries.
     pub fn lpm_ip4mc_found_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -45,7 +45,7 @@ impl L3_LPM_REMAP_STICKY {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Set if routing lookup found an IPv4 unicast longest prefix match.
     pub fn lpm_ip4uc_found_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -55,7 +55,7 @@ impl L3_LPM_REMAP_STICKY {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set if an IPv6 multicast longest prefix match has been found and the returned L3MC_IDX is less than the number of L3MC table entries.
     pub fn lpm_ip6mc_found_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -65,7 +65,7 @@ impl L3_LPM_REMAP_STICKY {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set if routing lookup found an IPv6 unicast longest prefix match.
     pub fn lpm_ip6uc_found_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -75,7 +75,7 @@ impl L3_LPM_REMAP_STICKY {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Set if an IPv4 SIP security lookup has found a match in LPM lookup. Note that this bit is not set for DIP security LPM lookups
     pub fn secur_ip4_lpm_found_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -85,7 +85,7 @@ impl L3_LPM_REMAP_STICKY {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Set if an IPv6 SIP security lookup has found a match in LPM lookup. Note that this bit is not set for DIP security LPM lookups
     pub fn secur_ip6_lpm_found_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -103,7 +103,7 @@ impl L3_LPM_REMAP_STICKY {    ///
 /// VLAN Diagnostic
 #[derive(From, Into)]
 pub struct VLAN_STICKY(u32);
-impl VLAN_STICKY {    ///
+impl VLAN_STICKY {
     /// Set if a frame has been filtered due to MSTP_FWD_MASK. Related parameters: ANA_L3:MSTP:MSTP_FWD_CFG.MSTP_FWD_MASK
     pub fn mstp_discard_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -113,7 +113,7 @@ impl VLAN_STICKY {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Set if MSTP_FWD_MASK has allowed forwarding of a frame. Related parameters: ANA_L3:MSTP:MSTP_FWD_CFG.MSTP_FWD_MASK
     pub fn mstp_fwd_allowed_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -123,7 +123,7 @@ impl VLAN_STICKY {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Set if MSTP_LRN_MASK has allowed learning for a frame. Related parameters: ANA_L3:MSTP:MSTP_LRN_CFG.MSTP_LRN_MASK
     pub fn mstp_lrn_allowed_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -133,7 +133,7 @@ impl VLAN_STICKY {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Set if MSTP_LRN_MASK has denied learning for a frame. Related parameters: ANA_L3:MSTP:MSTP_LRN_CFG.MSTP_LRN_MASK
     pub fn mstp_lrn_deny_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -143,7 +143,7 @@ impl VLAN_STICKY {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Set if a frame has been denied forwarding due to ANA_L3:COMMON:PORT_FWD_CTRL.PORT_FWD_ENA = 0
     pub fn port_fwd_deny_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -153,7 +153,7 @@ impl VLAN_STICKY {    ///
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if learning has been denied for a frame due to ANA_L3:COMMON:PORT_LRN_CTRL.PORT_LRN_ENA = 0
     pub fn port_lrn_deny_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -163,7 +163,7 @@ impl VLAN_STICKY {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Set if a frame has been filtered due to VLAN ingress filtering. Related parameters: ANA_L3:COMMON:VLAN_FILTER_CTRL.VLAN_IGR_FILTER_ENA
     pub fn vlan_igr_filter_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -173,7 +173,7 @@ impl VLAN_STICKY {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Set if a frame has been classified to a VLAN with an empty port mask. Related parameters: ANA_L3:VLAN:VLAN_MASK_CFG.VLAN_PORT_MASK
     pub fn vlan_lookup_invld_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -183,7 +183,7 @@ impl VLAN_STICKY {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Set if VLAN_LRN_DIS has denied learning for a frame. Related parameters: ANA_L3:VLAN:VLAN_CFG.VLAN_LRN_DIS
     pub fn vlan_lrn_deny_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4

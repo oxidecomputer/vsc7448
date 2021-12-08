@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// TACH counter
 #[derive(From, Into)]
 pub struct FAN_CNT(u32);
-impl FAN_CNT {    ///
+impl FAN_CNT {
     /// Counts the number of TACH input ticks. If DEVCPU_GCB::FAN_CFG.FAN_STAT_CFG is set then this is a wrapping counter that shows the total number of registered TACH ticks. If DEVCPU_GCB::FAN_CFG.FAN_STAT_CFG is cleared then this counter is updated once every second with the number of TACH ticks registered during the last second.
     pub fn fan_cnt(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl FAN_CNT {    ///
 /// Monitor control
 #[derive(From, Into)]
 pub struct MEMITGR_CTRL(u32);
-impl MEMITGR_CTRL {    ///
+impl MEMITGR_CTRL {
     /// Setting this field transitions the integrity monitor between operating modes. Transitioning between modes takes time, this field remains set until the new mode is reached. During this time the monitor also reports busy DEVCPU_GCB::MEMITGR_STAT.MODE_BUSY is set). From IDLE (DEVCPU_GCB::MEMITGR_STAT.MODE_IDLE is set) the monitor can transition into either DETECT or LISTEN mode, the DETECT mode is entered if a memory reports an indication - the LISTEN mode is entered if no indications are reported. The first time after reset the monitor will not detect indications, that is; it will transition directly from IDLE to LISTEN mode. From DETECT (DEVCPU_GCB::MEMITGR_STAT.MODE_DETECT is set) the monitor can transition into either DETECT or LISTEN mode, the DETECT mode is entered if more indications are reported - the LISTEN mode is entered if no more indications are reported. From LISTEN (DEVCPU_GCB::MEMITGR_STAT.MODE_LISTEN is set) the monitor can transition into IDLE mode. Software shall not set this field when the monitor is BUSY (when DEVCPU_GCB::MEMITGR_STAT.MODE_BUSY is set.)
     pub fn activate(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -69,9 +69,11 @@ impl MEMITGR_CTRL {    ///
 /// Monitor speed
 #[derive(From, Into)]
 pub struct MEMITGR_DIV(u32);
-impl MEMITGR_DIV {    ///
+impl MEMITGR_DIV {
     /// Configure divider for generating the sync-pulse to memories (controls the speed at which the monitor talks to the memories). The lower this is set the faster indications can be read out of the memories.
+
     ///
+
     /// See datasheet for appropriate value.
     pub fn mem_div(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -91,7 +93,7 @@ impl MEMITGR_DIV {    ///
 /// This field is only valid when the monitor is in the DETECT (DEVCPU_GCB::MEMITGR_STAT.MODE_DETECT is set) mode.
 #[derive(From, Into)]
 pub struct MEMITGR_IDX(u32);
-impl MEMITGR_IDX {    ///
+impl MEMITGR_IDX {
     /// This field contains a unique index for the memory for which info is currently provided in DEVCPU_GCB::MEMITGR_INFO. Indexes are counted from 1 (not 0).
     pub fn mem_idx(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -111,7 +113,7 @@ impl MEMITGR_IDX {    ///
 /// This field is only valid when the monitor is in the DETECT (DEVCPU_GCB::MEMITGR_STAT.MODE_DETECT is set) mode.
 #[derive(From, Into)]
 pub struct MEMITGR_INFO(u32);
-impl MEMITGR_INFO {    ///
+impl MEMITGR_INFO {
     /// This field is valid only when DEVCPU_GCB::MEMITGR_INFO.MEM_ERR or DEVCPU_GCB::MEMITGR_INFO.MEM_COR is set.
     pub fn mem_addr(&self) -> u32 {
         (self.0 & 0xfffffff) >> 0
@@ -121,7 +123,7 @@ impl MEMITGR_INFO {    ///
         assert!(value <= 0xfffffff);
         self.0 &= !0xfffffff;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if the monitor has detected a correction.
     pub fn mem_cor(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -131,7 +133,7 @@ impl MEMITGR_INFO {    ///
         assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if the monitor has correction indication for which the address has not been recorded. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR is set then there has also been a parity indication (or an unrecoverable correction) which takes priority over correction indications. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR is cleared and DEVCPU_GCB::MEMITGR_INFO.MEM_COR is set then there has been more than one correction indication, then only the address of the newest correction indication has been kept. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR and DEVCPU_GCB::MEMITGR_INFO.MEM_COR is both cleared then a correction indication has occurred for which the address could not be stored, this is a very rare situation that can only happen if an indication is detected just as the memory is talking to the monitor.
     pub fn mem_cor_ovf(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
@@ -141,17 +143,17 @@ impl MEMITGR_INFO {    ///
         assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if the monitor has detected a parity indication (or an unrecoverable correction).
     pub fn mem_err(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_mem_err(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if the monitor has detected a parity indication (or an unrecoverable correction) for which the address has not been recorded. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR is set then there has been more than one indication, then only the address of the newest indication has been kept. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR is cleared then an indication has occurred for which the address could not be stored, this is a very rare situation that can only happen if an indication is detected just as the memory is talking to the monitor.
     pub fn mem_err_ovf(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
@@ -169,7 +171,7 @@ impl MEMITGR_INFO {    ///
 /// Monitor status
 #[derive(From, Into)]
 pub struct MEMITGR_STAT(u32);
-impl MEMITGR_STAT {    ///
+impl MEMITGR_STAT {
     /// If this field is set then there is an indication from one of the memories that needs to be analyzed. An indication is either a parity detection or an error correction. This field is only set when the monitor is in LISTEN mode (DEVCPU_GCB::MEMITGR_STAT.MODE_LISTEN is set), in all other states (including BUSY) this field returns 0.
     pub fn indication(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -179,7 +181,7 @@ impl MEMITGR_STAT {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set if there is an overflow when recording indications from the memories. If this happens (setting of this field) the value of the DEVCPU_GCB::MEMITGR_DIV.MEM_DIV field is set too low!
     pub fn indication_ovf(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -189,7 +191,7 @@ impl MEMITGR_STAT {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// The busy signal is a copy of the DEVCPU_GCB::MEMITGR_CTRL.ACTIVATE field, see description of that field for more information about the different states/modes of the monitor.
     pub fn mode_busy(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -199,7 +201,7 @@ impl MEMITGR_STAT {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set when the monitor is in DETECT mode, during detect mode the DEVCPU_GCB::MEMITGR_INFO and DEVCPU_GCB::MEMITGR_IDX registers contains valid information about one indication.
     pub fn mode_detect(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -209,7 +211,7 @@ impl MEMITGR_STAT {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set when the monitor is in IDLE mode.
     pub fn mode_idle(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -219,7 +221,7 @@ impl MEMITGR_STAT {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// This field is set when the monitor is in LISTEN mode, during listen mode the monitor continually check for parity/correction indications from the memories.
     pub fn mode_listen(&self) -> u32 {
         (self.0 & 0x8) >> 3

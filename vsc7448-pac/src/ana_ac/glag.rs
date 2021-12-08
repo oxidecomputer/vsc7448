@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Refer to UPSID_CFG.
 #[derive(From, Into)]
 pub struct UPSID_CFG1(u32);
-impl UPSID_CFG1 {    ///
+impl UPSID_CFG1 {
     /// Refer to UPSID_CFG.UPSID_PORT_MASK.
     pub fn upsid_port_mask1(&self) -> u32 {
         (self.0 & 0x1fffff) >> 0

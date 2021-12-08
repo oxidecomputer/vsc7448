@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Receive comma alignment status Register
 #[derive(From, Into)]
 pub struct PCS_XAUI_CGALIGN_STATUS(u32);
-impl PCS_XAUI_CGALIGN_STATUS {    ///
+impl PCS_XAUI_CGALIGN_STATUS {
     /// Delay through the lane barrelshifter. Lane N delay is stored in bits 5N+4 to 5N. Unit is line bit times
     pub fn lane_cgalign_delay(&self) -> u32 {
         (self.0 & 0xfffff) >> 0
@@ -55,7 +55,7 @@ impl PCS_XAUI_CGALIGN_STATUS {    ///
 /// Receive deskew status Register
 #[derive(From, Into)]
 pub struct PCS_XAUI_DESKEW_STATUS(u32);
-impl PCS_XAUI_DESKEW_STATUS {    ///
+impl PCS_XAUI_DESKEW_STATUS {
     /// Delay through deskew fifo for each lane. Lane N delay is stored in bits 4N+3 to 4N. Unit is PCS clock cycles
     pub fn lane_deskew_delay(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -75,9 +75,11 @@ impl PCS_XAUI_DESKEW_STATUS {    ///
 /// Configuration register for Low Power Idle (Energy Efficient Ethernet)
 #[derive(From, Into)]
 pub struct PCS_XAUI_LPI_CFG(u32);
-impl PCS_XAUI_LPI_CFG {    ///
+impl PCS_XAUI_LPI_CFG {
     /// Max wake-up time before link_fail
+
     ///
+
     /// 00: 8 us 01: 11 us 10: 15 us 11: 18 us
     pub fn lpi_rx_wtim(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -87,9 +89,11 @@ impl PCS_XAUI_LPI_CFG {    ///
         assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
-    }    ///
+    }
     /// LPI-Timer test mode.
+
     ///
+
     /// 0: Normal timing constants are used 1: Shortened timing constants are used
     pub fn lpi_testmode(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -99,9 +103,11 @@ impl PCS_XAUI_LPI_CFG {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Disable output of Low-Power Idle in receive direction (to core)
+
     ///
+
     /// 0: Enable 1: Disable
     pub fn rx_lpi_out_dis(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -111,9 +117,11 @@ impl PCS_XAUI_LPI_CFG {    ///
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    ///
+    }
     /// Assert Low-Power Idle (LPI) in transmit mode
+
     ///
+
     /// 0: Disable LPI transmission 1: Enable LPI transmission
     pub fn tx_assert_lpidle(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -133,9 +141,11 @@ impl PCS_XAUI_LPI_CFG {    ///
 /// Receiver Lane Error Status register
 #[derive(From, Into)]
 pub struct PCS_XAUI_RX_ERROR_STATUS(u32);
-impl PCS_XAUI_RX_ERROR_STATUS {    ///
+impl PCS_XAUI_RX_ERROR_STATUS {
     /// Alignment lost in deskew logic
+
     ///
+
     /// 0: No misalignment occured 1: A (temporary) misalignment has been detected Bit is cleared by writing a 1 to this position.
     pub fn alignment_lost_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -145,9 +155,11 @@ impl PCS_XAUI_RX_ERROR_STATUS {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Coding error detected in received 8B/10B encoded data
+
     ///
+
     /// 0: No error found 1: Coding error detected Bit is cleared by writing a 1 to this position.
     pub fn c8b10b_err_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -157,9 +169,11 @@ impl PCS_XAUI_RX_ERROR_STATUS {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Synchronization lost in lane i (i = 0...3, one bit per lane)
+
     ///
+
     /// 0: No sync lost occured 1: Synchronization lost in lane i (temporarily) Bit is cleared by writing a 1 to this position.
     pub fn sync_lost_sticky(&self) -> u32 {
         (self.0 & 0xf) >> 0
@@ -179,15 +193,15 @@ impl PCS_XAUI_RX_ERROR_STATUS {    ///
 /// 10b8b Decoder Codegroup error counter. In test pattern check mode, this counter counts the errors of lane 3. In the latter case the counter is incremented by one whenever at least one out of eighty received bits (eight symbols) is corrupted.
 #[derive(From, Into)]
 pub struct PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS(u32);
-impl PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS {    ///
+impl PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS {
     /// Number of detected codegroup errors/Number of errors in lane 3
     pub fn err_cnt_10b8b_cg_l3(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_err_cnt_10b8b_cg_l3(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -199,15 +213,15 @@ impl PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS {    ///
 /// 10b8b Decoder Disparity error counter. In test pattern check mode, this counter counts the errors of lane 2. In the latter case the counter is incremented by one whenever at least one out of eighty received bits (eight symbols) is corrupted.
 #[derive(From, Into)]
 pub struct PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS(u32);
-impl PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS {    ///
+impl PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS {
     /// Number of detected disparity errors/Number of errors in lane 2
     pub fn err_cnt_10b8b_d_l2(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_err_cnt_10b8b_d_l2(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -219,15 +233,15 @@ impl PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS {    ///
 /// Receive Fifo Overflow error counter. In test pattern check mode, this counter counts the errors of lane 0. In the latter case the counter is incremented by one whenever at least one out of eighty received bits (eight symbols) is corrupted.
 #[derive(From, Into)]
 pub struct PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS(u32);
-impl PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS {    ///
+impl PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS {
     /// Number of detected fifo overflow errors/Number of errors in lane 0
     pub fn err_cnt_fifo_of_l0(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_err_cnt_fifo_of_l0(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -239,15 +253,15 @@ impl PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS {    ///
 /// Receive Fifo Underflow error counter. In test pattern check mode, this counter counts the errors of lane 1. In the latter case the counter is incremented by one whenever at least one out of eighty received bits (eight symbols) is corrupted.
 #[derive(From, Into)]
 pub struct PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS(u32);
-impl PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS {    ///
+impl PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS {
     /// Number of detected fifo underflow errors/Number of errors in lane 1
     pub fn err_cnt_fifo_uf_l1(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_err_cnt_fifo_uf_l1(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -259,19 +273,21 @@ impl PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS {    ///
 /// Sequence Receive Status Register
 #[derive(From, Into)]
 pub struct PCS_XAUI_RX_SEQ_REC_STATUS(u32);
-impl PCS_XAUI_RX_SEQ_REC_STATUS {    ///
+impl PCS_XAUI_RX_SEQ_REC_STATUS {
     /// Received ||Q|| code (Sequence information, i.e. lower 24 bit of a Sequence)
     pub fn rx_q(&self) -> u32 {
-        (self.0 & 0xff) >> 8
+        (self.0 & 0xffffff00) >> 8
     }
     pub fn set_rx_q(&mut self, value: u32) {
         let value = value << 8;
-        assert!(value <= 0xff);
-        self.0 &= !0xff;
+        assert!(value <= 0xffffff00);
+        self.0 &= !0xffffff00;
         self.0 |= value;
-    }    ///
+    }
     /// Received ||Q|| code changed
+
     ///
+
     /// 1: New ||Q|| has been received 0: No new ||Q|| since last read Bit is cleared by writing a 1 to this position.
     pub fn rx_q_changed_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -291,9 +307,11 @@ impl PCS_XAUI_RX_SEQ_REC_STATUS {    ///
 /// Receive Lane Status Register
 #[derive(From, Into)]
 pub struct PCS_XAUI_RX_STATUS(u32);
-impl PCS_XAUI_RX_STATUS {    ///
+impl PCS_XAUI_RX_STATUS {
     /// Status of lane alignment
+
     ///
+
     /// 1: All lanes are aligned 0: No alignment reached
     pub fn alignment_status(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -303,9 +321,11 @@ impl PCS_XAUI_RX_STATUS {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Local Fault status (one or more of sync/align/fifo_of/fifo_uf/8b10b error)
+
     ///
+
     /// 1: A fault occured 0: No fault detected Bit is cleared by writing a 1 to this position.
     pub fn local_fault_sticky(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -315,7 +335,7 @@ impl PCS_XAUI_RX_STATUS {    ///
         assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
-    }    ///
+    }
     /// Current status of selected signal_detect input lines
     pub fn signal_detect(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -325,9 +345,11 @@ impl PCS_XAUI_RX_STATUS {    ///
         assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
-    }    ///
+    }
     /// Status of code group alignment (lane independent)
+
     ///
+
     /// 1111: All lanes in sync 0001: Lane 0 is in sync ...
     pub fn sync_status(&self) -> u32 {
         (self.0 & 0xf) >> 0

@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// L3 multicast control register
 #[derive(From, Into)]
 pub struct L3MC_CTRL(u32);
-impl L3MC_CTRL {    ///
+impl L3MC_CTRL {
     /// CPU queue used for frames redirected due to CPU_REDIR_MODE.
     pub fn cpu_qu(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -45,9 +45,11 @@ impl L3MC_CTRL {    ///
         assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
-    }    ///
+    }
     /// Redirect/copy frame to CPU. CPU queue used is configured in CPU_QU.
+
     ///
+
     /// 0b00: No CPU redirection/copy. 0b01: Copy CPU 0b10: Copy to CPU, skip L3 forwarding but preserve L2 forwarding. 0b11: Redirect to CPU, skip L2 and L3 forwarding.
     pub fn cpu_redir_mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -57,7 +59,7 @@ impl L3MC_CTRL {    ///
         assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
-    }    ///
+    }
     /// Enable CPU copy of frames, which are otherwise candidates for routing, but have TTL/HL<2. Such frames are not L3 forwarded, but may still be subject to L2 forwarding. CPU queue used is configured in ANA_L3:COMMON:CPU_QU_CFG.CPU_IP_TTL_FAIL_QU.
     pub fn ipmc_ttl_copy_ena(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -67,7 +69,7 @@ impl L3MC_CTRL {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable reverse path forwarding check, i.e. only allow routing of frames received on a specific router leg (RPF_VMID), i.e. IVMID=RPF_VMID. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.MC_RPF_FILTER_STICKY Note that this check is a different check than SIP RPF check, ref. ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_SIP_RPF_MODE ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_SIP_RPF_MODE
     pub fn rpf_chk_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -77,7 +79,7 @@ impl L3MC_CTRL {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Expected IVMID if RPF check is enabled, ref. RPF_CHK_ENA.
     pub fn rpf_vmid(&self) -> u32 {
         (self.0 & 0x7f00) >> 8

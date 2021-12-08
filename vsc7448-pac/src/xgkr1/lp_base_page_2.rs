@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// LP base page advertised abilities 31-16
 #[derive(From, Into)]
 pub struct KR_7X0014(u32);
-impl KR_7X0014 {    ///
+impl KR_7X0014 {
     /// LP advertised abilities D[31:16]
     pub fn lp_bp_adv1(&self) -> u32 {
         (self.0 & 0xffff) >> 0

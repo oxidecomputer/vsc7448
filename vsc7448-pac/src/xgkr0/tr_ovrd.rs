@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS training status report override
 #[derive(From, Into)]
 pub struct TR_STAT_OVRD(u32);
-impl TR_STAT_OVRD {    ///
+impl TR_STAT_OVRD {
     /// Override Stat_report field to transmit
     pub fn stat_ovrd(&self) -> u32 {
         (self.0 & 0xffff) >> 0

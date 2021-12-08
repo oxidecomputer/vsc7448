@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// CIR status
 #[derive(From, Into)]
 pub struct QSHP_CIR_STATE(u32);
-impl QSHP_CIR_STATE {    ///
+impl QSHP_CIR_STATE {
     /// Current fill level. Unit is 1 bit.
     pub fn cir_lvl(&self) -> u32 {
         (self.0 & 0xffffff) >> 0

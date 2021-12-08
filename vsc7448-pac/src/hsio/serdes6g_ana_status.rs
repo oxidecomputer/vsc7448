@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// Status register of (AC)JTAG debug capability
 #[derive(From, Into)]
 pub struct SERDES6G_ACJTAG_STATUS(u32);
-impl SERDES6G_ACJTAG_STATUS {    ///
+impl SERDES6G_ACJTAG_STATUS {
     /// ACJTAG captured data for n leg
     pub fn acjtag_capt_data_n(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -45,7 +45,7 @@ impl SERDES6G_ACJTAG_STATUS {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// ACJTAG captured data for p leg
     pub fn acjtag_capt_data_p(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -55,7 +55,7 @@ impl SERDES6G_ACJTAG_STATUS {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// JTAG direct input (directly driven)
     pub fn ib_direct(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -75,7 +75,7 @@ impl SERDES6G_ACJTAG_STATUS {    ///
 /// General purpose register A
 #[derive(From, Into)]
 pub struct SERDES6G_GP_CFG(u32);
-impl SERDES6G_GP_CFG {    ///
+impl SERDES6G_GP_CFG {
     /// Bit 9: SNFBC Select negative feedback center - enable for hysteresis suppression in main sampler FFs Bit 8: SNFBV Select negative feedback Vscope - enable for hysteresis suppression in vscope sampler FFs Bit 1: ERLS (used for debug only, allows for manual stepping through calibration procedure) Bit 0: CRLS (used for debug only, allows for manual stepping through calibration procedure)
     pub fn gp_lsb(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -85,15 +85,15 @@ impl SERDES6G_GP_CFG {    ///
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
-    }    ///
+    }
     /// To be defined
     pub fn gp_msb(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_gp_msb(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }
 }
@@ -105,7 +105,7 @@ impl SERDES6G_GP_CFG {    ///
 /// Status register for Signal Detect
 #[derive(From, Into)]
 pub struct SERDES6G_IB_STATUS0(u32);
-impl SERDES6G_IB_STATUS0 {    ///
+impl SERDES6G_IB_STATUS0 {
     /// Signals mission mode after calibration was done.
     pub fn ib_cal_done(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -115,7 +115,7 @@ impl SERDES6G_IB_STATUS0 {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Flag high-pass-gain regulation activity. Caution: currently this signal is generated with a clock of datarate/16 and NOT captured (sticky).
     pub fn ib_hp_gain_act(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -125,7 +125,7 @@ impl SERDES6G_IB_STATUS0 {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Flag low-pass-gain regulation activity. Caution: currently this signal is generated with a clock of datarate/16 and NOT captured (sticky).
     pub fn ib_lp_gain_act(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -135,7 +135,7 @@ impl SERDES6G_IB_STATUS0 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// Flag mid-pass-gain regulation activity. Caution: currently this signal is generated with a clock of datarate/16 and NOT captured (sticky).
     pub fn ib_mid_gain_act(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -145,7 +145,7 @@ impl SERDES6G_IB_STATUS0 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Detection of offset direction in selected (ib_offsx) sampling channels
     pub fn ib_offsdir(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -155,7 +155,7 @@ impl SERDES6G_IB_STATUS0 {    ///
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    ///
+    }
     /// Flag offset regulation activity. Caution: currently this signal is generated with a clock of datarate/16 and NOT captured (sticky).
     pub fn ib_offset_act(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -165,7 +165,7 @@ impl SERDES6G_IB_STATUS0 {    ///
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    ///
+    }
     /// Overflow error during calibration process. Value at ib_offset_stat not valid.
     pub fn ib_offset_err(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -175,7 +175,7 @@ impl SERDES6G_IB_STATUS0 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Valid average data of calibration process at ib_offset_stat available.
     pub fn ib_offset_vld(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -185,7 +185,7 @@ impl SERDES6G_IB_STATUS0 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// Detection of toggling signal at PADP and PADN
     pub fn ib_sig_det(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -205,7 +205,7 @@ impl SERDES6G_IB_STATUS0 {    ///
 /// Regulation stage status register
 #[derive(From, Into)]
 pub struct SERDES6G_IB_STATUS1(u32);
-impl SERDES6G_IB_STATUS1 {    ///
+impl SERDES6G_IB_STATUS1 {
     /// Current high-pass-gain regulation value
     pub fn ib_hp_gain_stat(&self) -> u32 {
         (self.0 & 0xfc0000) >> 18
@@ -215,7 +215,7 @@ impl SERDES6G_IB_STATUS1 {    ///
         assert!(value <= 0xfc0000);
         self.0 &= !0xfc0000;
         self.0 |= value;
-    }    ///
+    }
     /// Current low-pass-gain regulation value
     pub fn ib_lp_gain_stat(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
@@ -225,7 +225,7 @@ impl SERDES6G_IB_STATUS1 {    ///
         assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
-    }    ///
+    }
     /// Current mid-pass-gain regulation value
     pub fn ib_mid_gain_stat(&self) -> u32 {
         (self.0 & 0x3f000) >> 12
@@ -235,7 +235,7 @@ impl SERDES6G_IB_STATUS1 {    ///
         assert!(value <= 0x3f000);
         self.0 &= !0x3f000;
         self.0 |= value;
-    }    ///
+    }
     /// Current offset regulation value
     pub fn ib_offset_stat(&self) -> u32 {
         (self.0 & 0x3f) >> 0
@@ -255,9 +255,11 @@ impl SERDES6G_IB_STATUS1 {    ///
 /// Status register of SERDES6G RCPLL
 #[derive(From, Into)]
 pub struct SERDES6G_PLL_STATUS(u32);
-impl SERDES6G_PLL_STATUS {    ///
+impl SERDES6G_PLL_STATUS {
     /// Calibration error
+
     ///
+
     /// 0: No error during calibration 1: Errors occured during calibration
     pub fn pll_cal_err(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -267,9 +269,11 @@ impl SERDES6G_PLL_STATUS {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Calibration status
+
     ///
+
     /// 0: Calibration not started or ongoing 1: Calibration finished
     pub fn pll_cal_not_done(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -279,9 +283,11 @@ impl SERDES6G_PLL_STATUS {    ///
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    ///
+    }
     /// Out of range error
+
     ///
+
     /// 0: No out of range condition detected 1: Out of range condition since last calibration detected
     pub fn pll_out_of_range_err(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -291,7 +297,7 @@ impl SERDES6G_PLL_STATUS {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// PLL read-back data, depending on "pll_rb_data_sel" either the calibrated setting or the measured period
     pub fn pll_rb_data(&self) -> u32 {
         (self.0 & 0xff) >> 0

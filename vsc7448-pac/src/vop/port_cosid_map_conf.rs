@@ -35,9 +35,11 @@ use derive_more::{From, Into};
 /// The bit fields in this register determines the source of the COSID mapping / COLOR of frames not processed by the VOE.
 #[derive(From, Into)]
 pub struct COSID_MAP_CFG_REW(u32);
-impl COSID_MAP_CFG_REW {    ///
+impl COSID_MAP_CFG_REW {
     /// Determines if the VOE LM counters counts all frames or only GREEN frames.
+
     ///
+
     /// '0': do not include yellow frames in the LM count. '1': include yellow frames in the LM count.
     pub fn cnt_yellow_rew(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -47,9 +49,11 @@ impl COSID_MAP_CFG_REW {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Determines which internal signal carries color for the current VOE.
+
     ///
+
     /// "00": ifh.dp_color "01": ifh.cl_dei "10": REW:MAP_RES_X:MAP_VAL_A.OAM_COLOR (Output from the mapping table) "11": reserved for future use (do not use)
     pub fn color_src_sel_rew(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -59,9 +63,11 @@ impl COSID_MAP_CFG_REW {    ///
         assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
-    }    ///
+    }
     /// Selects the source of the COSID mapping.
+
     ///
+
     /// "00": ifh.cosid "01": ifh.tc "10": ifh_iprio "11": REW:MAP_RES_X:MAP_VAL_A.OAM_COSID (Output from the mapping table)
     pub fn cosid_src_sel_rew(&self) -> u32 {
         (self.0 & 0x18) >> 3
@@ -81,15 +87,15 @@ impl COSID_MAP_CFG_REW {    ///
 /// This register contains the lower 32 bits of the Port VOE Rx (ANA) COSID mapping table. The mapping in this register is used when Port DEI = 0.
 #[derive(From, Into)]
 pub struct PORT_RX_COSID_MAP(u32);
-impl PORT_RX_COSID_MAP {    ///
+impl PORT_RX_COSID_MAP {
     /// See register description.
     pub fn port_rx_cosid_map(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_port_rx_cosid_map(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -101,15 +107,15 @@ impl PORT_RX_COSID_MAP {    ///
 /// This register contains the upper 32 bits of the Port VOE Rx (ANA) COSID mapping table. This mapping in this register is used when Port DEI = 1
 #[derive(From, Into)]
 pub struct PORT_RX_COSID_MAP1(u32);
-impl PORT_RX_COSID_MAP1 {    ///
+impl PORT_RX_COSID_MAP1 {
     /// See register description.
     pub fn port_rx_cosid_map1(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_port_rx_cosid_map1(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -121,15 +127,15 @@ impl PORT_RX_COSID_MAP1 {    ///
 /// This register contains the lower 32 bits of the Port VOE Tx (REW) COSID mapping table. This mapping in this register is used when Port DEI = 0
 #[derive(From, Into)]
 pub struct PORT_TX_COSID_MAP(u32);
-impl PORT_TX_COSID_MAP {    ///
+impl PORT_TX_COSID_MAP {
     /// See register description.
     pub fn port_tx_cosid_map(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_port_tx_cosid_map(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

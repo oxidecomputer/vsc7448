@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// AN status
 #[derive(From, Into)]
 pub struct KR_7X0001(u32);
-impl KR_7X0001 {    ///
+impl KR_7X0001 {
     /// AN ability
     pub fn an_able(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -43,7 +43,7 @@ impl KR_7X0001 {    ///
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    ///
+    }
     /// AN complete
     pub fn an_complete(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -53,7 +53,7 @@ impl KR_7X0001 {    ///
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    ///
+    }
     /// LP AN ability
     pub fn an_lp_able(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -63,7 +63,7 @@ impl KR_7X0001 {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Link status (LL)
     pub fn linkstat(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -73,7 +73,7 @@ impl KR_7X0001 {    ///
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    ///
+    }
     /// Extended next page status
     pub fn npstat(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -83,7 +83,7 @@ impl KR_7X0001 {    ///
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    ///
+    }
     /// Parallel detection fault (LH)
     pub fn pardetflt(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -93,7 +93,7 @@ impl KR_7X0001 {    ///
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    ///
+    }
     /// Page received (LH)
     pub fn pg_rcvd(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -103,7 +103,7 @@ impl KR_7X0001 {    ///
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    ///
+    }
     /// Remote fault (LH)
     pub fn rem_flt(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -121,7 +121,7 @@ impl KR_7X0001 {    ///
 /// LD advertised abilities 15-0
 #[derive(From, Into)]
 pub struct KR_7X0010(u32);
-impl KR_7X0010 {    ///
+impl KR_7X0010 {
     /// Local advertised abilities D[15:0]
     pub fn adv0(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -139,7 +139,7 @@ impl KR_7X0010 {    ///
 /// LD advertised abilities 31-16
 #[derive(From, Into)]
 pub struct KR_7X0011(u32);
-impl KR_7X0011 {    ///
+impl KR_7X0011 {
     /// Local advertised abilities D[31:16]
     pub fn adv1(&self) -> u32 {
         (self.0 & 0xffff) >> 0

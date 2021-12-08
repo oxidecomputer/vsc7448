@@ -33,9 +33,11 @@ use derive_more::{From, Into};
 /// Sticky bit register
 #[derive(From, Into)]
 pub struct KR_FEC_STICKY(u32);
-impl KR_FEC_STICKY {    ///
+impl KR_FEC_STICKY {
     /// This sticky bit is set whenever fixed error count crosses configured FIXED_ERROR_COUNT_THRESHOLD. Note: write '1' to clear this bit.
+
     ///
+
     /// 0: Error counter has not exceeded threshold since the last time this bit was cleared. 1: Error count exceeded threshold since the last time this bit was cleared.
     pub fn fec_fixed_error_count_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -45,9 +47,11 @@ impl KR_FEC_STICKY {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// FEC in frame lock indication This is a sticky bit that latches the low state.
+
     ///
+
     /// 0: FEC decoder has not achieved lock 1: FEC decoder has achieved lock
     pub fn fec_frame_lock_sticky(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -57,9 +61,11 @@ impl KR_FEC_STICKY {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// This sticky bit is set whenever fixed error count crosses configured UNFIXABLE_ERROR_COUNT_THRESHOLD. Note: write '1' to clear this bit.
+
     ///
+
     /// 0: Error counter has not exceeded threshold since the last time this bit was cleared. 1: Error count exceeded threshold since the last time this bit was cleared.
     pub fn fec_unfixable_error_count_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -77,9 +83,11 @@ impl KR_FEC_STICKY {    ///
 /// Sticky bit mask register
 #[derive(From, Into)]
 pub struct KR_FEC_STICKY_MASK(u32);
-impl KR_FEC_STICKY_MASK {    ///
+impl KR_FEC_STICKY_MASK {
     /// Enable interruput generation when FEC_FIXED_ERROR_COUNT_STICKY is set
+
     ///
+
     /// 0: Disable interrupt generation 1: Enable interrupt generation
     pub fn fec_fixed_error_count_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -89,9 +97,11 @@ impl KR_FEC_STICKY_MASK {    ///
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// Enable interruput generation when FEC_FRAME_LOCK_STICKY is set
+
     ///
+
     /// 0: Disable interrupt generation 1: Enable interrupt generation
     pub fn fec_frame_lock_sticky_mask(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -101,9 +111,11 @@ impl KR_FEC_STICKY_MASK {    ///
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    ///
+    }
     /// Enable interruput generation when FEC_UNFIXABLE_ERROR_COUNT_STICKY is set
+
     ///
+
     /// 0: Disable interrupt generation 1: Enable interrupt generation
     pub fn fec_unfixable_error_count_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -121,15 +133,15 @@ impl KR_FEC_STICKY_MASK {    ///
 /// KR FEC uncorrected block count
 #[derive(From, Into)]
 pub struct KR_FEC_UNCORRECTED(u32);
-impl KR_FEC_UNCORRECTED {    ///
+impl KR_FEC_UNCORRECTED {
     /// FEC uncorrectable block count.
     pub fn fec_uncorrected_blocks(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_fec_uncorrected_blocks(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

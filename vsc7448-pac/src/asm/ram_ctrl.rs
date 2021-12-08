@@ -31,17 +31,19 @@ use derive_more::{From, Into};
 /// Register `LBK_AGING_STICKY`
 #[derive(From, Into)]
 pub struct LBK_AGING_STICKY(u32);
-impl LBK_AGING_STICKY {    ///
+impl LBK_AGING_STICKY {
     /// Frames are dropped due to aging in loopback FIFO.
+
     ///
+
     /// bitmask per port.
     pub fn lbk_aging_sticky(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_lbk_aging_sticky(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

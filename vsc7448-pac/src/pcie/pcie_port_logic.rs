@@ -90,12 +90,12 @@ impl ACK_F_ASPM_CTRL {    pub fn ack_freq(&self) -> u32 {
 #[derive(From, Into)]
 pub struct ACK_LATENCY_TIMER(u32);
 impl ACK_LATENCY_TIMER {    pub fn replay_time_limit(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_replay_time_limit(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }    pub fn round_trip_latency_time_limit(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -145,15 +145,15 @@ impl AMBA_MUL_OB_DECOMP_NP_SUB_REQ_CTRL {    pub fn ib_ob_rd_split_burst_en(&sel
 /// Address translation upper base address
 #[derive(From, Into)]
 pub struct ATU_BASE_ADDR_HIGH(u32);
-impl ATU_BASE_ADDR_HIGH {    ///
+impl ATU_BASE_ADDR_HIGH {
     /// Outbound: Not used. Inbound: Bits 63:32 of the starting address of the address region to be translated.
     pub fn atu_base_addr_high(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_atu_base_addr_high(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -163,15 +163,15 @@ impl ATU_BASE_ADDR_HIGH {    ///
 /// Address translation lower base address
 #[derive(From, Into)]
 pub struct ATU_BASE_ADDR_LOW(u32);
-impl ATU_BASE_ADDR_LOW {    ///
+impl ATU_BASE_ADDR_LOW {
     /// Bits 31:16 of the starting address of the address region to be translated.
     pub fn atu_base_addr_low(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_atu_base_addr_low(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }
 }
@@ -189,7 +189,7 @@ impl ATU_CFG1 {    pub fn atu_at(&self) -> u32 {
         assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
-    }    ///
+    }
     /// When the address of an outbound TLP is matched to this region, then the ATTR field of the TLP is changed to the value in this register.
     pub fn atu_attr(&self) -> u32 {
         (self.0 & 0x600) >> 9
@@ -199,7 +199,7 @@ impl ATU_CFG1 {    pub fn atu_at(&self) -> u32 {
         assert!(value <= 0x600);
         self.0 &= !0x600;
         self.0 |= value;
-    }    ///
+    }
     /// Must be 0.
     pub fn atu_fn(&self) -> u32 {
         (self.0 & 0x1f00000) >> 20
@@ -209,7 +209,7 @@ impl ATU_CFG1 {    pub fn atu_at(&self) -> u32 {
         assert!(value <= 0x1f00000);
         self.0 &= !0x1f00000;
         self.0 |= value;
-    }    ///
+    }
     /// When the address of an outbound TLP is matched to this region, then the TC field of the TLP is changed to the value in this register.
     pub fn atu_tc(&self) -> u32 {
         (self.0 & 0xe0) >> 5
@@ -219,7 +219,7 @@ impl ATU_CFG1 {    pub fn atu_at(&self) -> u32 {
         assert!(value <= 0xe0);
         self.0 &= !0xe0;
         self.0 |= value;
-    }    ///
+    }
     /// When the address of an outbound TLP is matched to this region, then the TD field of the TLP is changed to the value in this register.
     pub fn atu_td(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -229,9 +229,11 @@ impl ATU_CFG1 {    pub fn atu_at(&self) -> u32 {
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    ///
+    }
     /// When the address of an outbound TLP is matched to this region, then the TYPE field of the TLP is changed to the value in this register.
+
     ///
+
     /// 0: MRd/MWr 1: MRdLk 2: IORd/IOWr 4: CfgRd0/CfgWr0 5: CfgRd1/CfgWr1 16-23: Msg/MsgD
     pub fn atu_type(&self) -> u32 {
         (self.0 & 0x1f) >> 0
@@ -257,7 +259,7 @@ impl ATU_CFG2 {    pub fn atu_cfg_shift_ena(&self) -> u32 {
         assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
-    }    ///
+    }
     /// Must be 0.
     pub fn atu_fn_match_ena(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -275,7 +277,7 @@ impl ATU_CFG2 {    pub fn atu_cfg_shift_ena(&self) -> u32 {
         assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
-    }    ///
+    }
     /// When the address of an outbound TLP is matched to this region, and the translated TLP TYPE field is Msg or MsgD; then the Message field of the TLP is changed to the value in this register.
     pub fn atu_msg_code(&self) -> u32 {
         (self.0 & 0xff) >> 0
@@ -285,15 +287,15 @@ impl ATU_CFG2 {    pub fn atu_cfg_shift_ena(&self) -> u32 {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
-    }    ///
+    }
     /// This bit must be set for address translation to take place.
     pub fn atu_region_ena(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_atu_region_ena(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
     }
 }
@@ -304,12 +306,12 @@ impl ATU_CFG2 {    pub fn atu_cfg_shift_ena(&self) -> u32 {
 #[derive(From, Into)]
 pub struct ATU_CFG3(u32);
 impl ATU_CFG3 {    pub fn vf_active(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_vf_active(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
     }    pub fn vf_number(&self) -> u32 {
         (self.0 & 0x1) >> 0
@@ -327,15 +329,15 @@ impl ATU_CFG3 {    pub fn vf_active(&self) -> u32 {
 /// Address translation limit address
 #[derive(From, Into)]
 pub struct ATU_LIMIT_ADDR(u32);
-impl ATU_LIMIT_ADDR {    ///
+impl ATU_LIMIT_ADDR {
     /// Bits 31:16 of the ending address of the address region to be translated.
     pub fn atu_limit_addr(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_atu_limit_addr(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }    pub fn reserved_3(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -355,19 +357,21 @@ impl ATU_LIMIT_ADDR {    ///
 /// The address translation unit supports 2 outbound regions. The registers PCIE::ATU_CFG1, PCIE::ATU_CFG2, PCIE::ATU_BASE_ADDR_LOW, PCIE::ATU_BASE_ADDR_HIGH, PCIE::ATU_LIMIT_ADDR, PCIE::ATU_TGT_ADDR_LOW, and PCIE::ATU_TGT_ADDR_HIGH all maps to the currently configured region (as configured in this register).
 #[derive(From, Into)]
 pub struct ATU_REGION(u32);
-impl ATU_REGION {    ///
+impl ATU_REGION {
     /// Selects either inbound or outbound regions.
+
     ///
+
     /// 0: Outbound. 1: Inbound.
     pub fn atu_direction(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_atu_direction(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
-    }    ///
+    }
     /// Selects region index, set to 0 or 1.
     pub fn atu_idx(&self) -> u32 {
         (self.0 & 0x7) >> 0
@@ -385,15 +389,15 @@ impl ATU_REGION {    ///
 /// Address translation upper target address
 #[derive(From, Into)]
 pub struct ATU_TGT_ADDR_HIGH(u32);
-impl ATU_TGT_ADDR_HIGH {    ///
+impl ATU_TGT_ADDR_HIGH {
     /// Bits 63:32 of the new address of the translated region. Set to 0 to force new address into 32bit PCIe memory space.
     pub fn atu_tgt_addr_high(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_atu_tgt_addr_high(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -403,15 +407,15 @@ impl ATU_TGT_ADDR_HIGH {    ///
 /// Address translation lower target address
 #[derive(From, Into)]
 pub struct ATU_TGT_ADDR_LOW(u32);
-impl ATU_TGT_ADDR_LOW {    ///
+impl ATU_TGT_ADDR_LOW {
     /// Bits 31:16 of the new address of the translated region.
     pub fn atu_tgt_addr_low(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_atu_tgt_addr_low(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }
 }
@@ -478,12 +482,12 @@ impl AXI_MASTER_CTRL_REG_1 {    pub fn resize_master_response(&self) -> u32 {
 #[derive(From, Into)]
 pub struct DEBUG_REG_0(u32);
 impl DEBUG_REG_0 {    pub fn deb_reg_0(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_deb_reg_0(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -494,12 +498,12 @@ impl DEBUG_REG_0 {    pub fn deb_reg_0(&self) -> u32 {
 #[derive(From, Into)]
 pub struct DEBUG_REG_1(u32);
 impl DEBUG_REG_1 {    pub fn deb_reg_1(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_deb_reg_1(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -510,12 +514,12 @@ impl DEBUG_REG_1 {    pub fn deb_reg_1(&self) -> u32 {
 #[derive(From, Into)]
 pub struct FILTER_MASK_REG_2(u32);
 impl FILTER_MASK_REG_2 {    pub fn mask_radm_2(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_mask_radm_2(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -550,12 +554,12 @@ impl GEN2_CTRL {    pub fn gen1_ei_inference(&self) -> u32 {
 #[derive(From, Into)]
 pub struct HDR_LOG_REG_3(u32);
 impl HDR_LOG_REG_3 {    pub fn fourth_dword(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_fourth_dword(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -574,12 +578,12 @@ impl LANE_SKEW {    pub fn ack_nak_disable(&self) -> u32 {
         self.0 &= !0x2000000;
         self.0 |= value;
     }    pub fn disable_lane_to_lane_deskew(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_disable_lane_to_lane_deskew(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
     }    pub fn flow_ctrl_disable(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -622,12 +626,12 @@ impl MISC_CONTROL_1 {    pub fn dbi_ro_wr_en(&self) -> u32 {
 #[derive(From, Into)]
 pub struct PHY_CONTROL(u32);
 impl PHY_CONTROL {    pub fn phy_control(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_phy_control(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -638,12 +642,12 @@ impl PHY_CONTROL {    pub fn phy_control(&self) -> u32 {
 #[derive(From, Into)]
 pub struct PHY_STATUS(u32);
 impl PHY_STATUS {    pub fn phy_status(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_phy_status(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }
@@ -654,12 +658,12 @@ impl PHY_STATUS {    pub fn phy_status(&self) -> u32 {
 #[derive(From, Into)]
 pub struct PORT_FORCE(u32);
 impl PORT_FORCE {    pub fn cpl_sent_count(&self) -> u32 {
-        (self.0 & 0xffffff) >> 24
+        (self.0 & 0xff000000) >> 24
     }
     pub fn set_cpl_sent_count(&mut self, value: u32) {
         let value = value << 24;
-        assert!(value <= 0xffffff);
-        self.0 &= !0xffffff;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
         self.0 |= value;
     }    pub fn forced_ltssm(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -790,12 +794,12 @@ impl PORT_LINK_CTRL {    pub fn beacon_enable(&self) -> u32 {
         self.0 &= !0xc00000;
         self.0 |= value;
     }    pub fn reserved3(&self) -> u32 {
-        (self.0 & 0xfffffff) >> 28
+        (self.0 & 0xf0000000) >> 28
     }
     pub fn set_reserved3(&mut self, value: u32) {
         let value = value << 28;
-        assert!(value <= 0xfffffff);
-        self.0 &= !0xfffffff;
+        assert!(value <= 0xf0000000);
+        self.0 &= !0xf0000000;
         self.0 |= value;
     }    pub fn reset_assert(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -862,12 +866,12 @@ impl Q_STATUS {    pub fn rx_queue_non_empty(&self) -> u32 {
         self.0 &= !0x1fff0000;
         self.0 |= value;
     }    pub fn timer_mod_flow_control_en(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_timer_mod_flow_control_en(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
     }    pub fn tx_retry_buffer_ne(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -902,12 +906,12 @@ impl SYMBOL_TIMER_FILTER_1 {    pub fn disable_fc_wd_timer(&self) -> u32 {
         self.0 &= !0x7800;
         self.0 |= value;
     }    pub fn mask_radm_1(&self) -> u32 {
-        (self.0 & 0xffff) >> 16
+        (self.0 & 0xffff0000) >> 16
     }
     pub fn set_mask_radm_1(&mut self, value: u32) {
         let value = value << 16;
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }    pub fn skp_int_val(&self) -> u32 {
         (self.0 & 0x7ff) >> 0
@@ -1046,12 +1050,12 @@ impl VC0_CPL_RX_Q_CTRL {    pub fn reserved8(&self) -> u32 {
         self.0 &= !0x100000;
         self.0 |= value;
     }    pub fn reserved9(&self) -> u32 {
-        (self.0 & 0xffffff) >> 24
+        (self.0 & 0xff000000) >> 24
     }
     pub fn set_reserved9(&mut self, value: u32) {
         let value = value << 24;
-        assert!(value <= 0xffffff);
-        self.0 &= !0xffffff;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
         self.0 |= value;
     }    pub fn vc0_cpl_data_credit(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -1094,12 +1098,12 @@ impl VC0_NP_RX_Q_CTRL {    pub fn reserved6(&self) -> u32 {
         self.0 &= !0x100000;
         self.0 |= value;
     }    pub fn reserved7(&self) -> u32 {
-        (self.0 & 0xffffff) >> 24
+        (self.0 & 0xff000000) >> 24
     }
     pub fn set_reserved7(&mut self, value: u32) {
         let value = value << 24;
-        assert!(value <= 0xffffff);
-        self.0 &= !0xffffff;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
         self.0 |= value;
     }    pub fn vc0_np_data_credit(&self) -> u32 {
         (self.0 & 0xfff) >> 0
@@ -1182,12 +1186,12 @@ impl VC0_P_RX_Q_CTRL {    pub fn reserved4(&self) -> u32 {
         self.0 &= !0xe00000;
         self.0 |= value;
     }    pub fn vc_ordering_rx_q(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_vc_ordering_rx_q(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
     }
 }
@@ -1222,12 +1226,12 @@ impl VC_TX_ARBI_REG_1 {    pub fn wrr_weight_vc_0(&self) -> u32 {
         self.0 &= !0xff0000;
         self.0 |= value;
     }    pub fn wrr_weight_vc_3(&self) -> u32 {
-        (self.0 & 0xffffff) >> 24
+        (self.0 & 0xff000000) >> 24
     }
     pub fn set_wrr_weight_vc_3(&mut self, value: u32) {
         let value = value << 24;
-        assert!(value <= 0xffffff);
-        self.0 &= !0xffffff;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
         self.0 |= value;
     }
 }
@@ -1262,12 +1266,12 @@ impl VC_TX_ARBI_REG_2 {    pub fn wrr_weight_vc_4(&self) -> u32 {
         self.0 &= !0xff0000;
         self.0 |= value;
     }    pub fn wrr_weight_vc_7(&self) -> u32 {
-        (self.0 & 0xffffff) >> 24
+        (self.0 & 0xff000000) >> 24
     }
     pub fn set_wrr_weight_vc_7(&mut self, value: u32) {
         let value = value << 24;
-        assert!(value <= 0xffffff);
-        self.0 &= !0xffffff;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
         self.0 |= value;
     }
 }
@@ -1278,12 +1282,12 @@ impl VC_TX_ARBI_REG_2 {    pub fn wrr_weight_vc_4(&self) -> u32 {
 #[derive(From, Into)]
 pub struct VENDOR_SPEC_DLLP(u32);
 impl VENDOR_SPEC_DLLP {    pub fn vendor_spec_dllp(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_vendor_spec_dllp(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

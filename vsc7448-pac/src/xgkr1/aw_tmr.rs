@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// VS AN aneg_wait timer lsw
 #[derive(From, Into)]
 pub struct AW_LSW(u32);
-impl AW_LSW {    ///
+impl AW_LSW {
     /// an_wait_timer setting
     pub fn aw_tmr_lsw(&self) -> u32 {
         (self.0 & 0xffff) >> 0
@@ -51,7 +51,7 @@ impl AW_LSW {    ///
 /// VS AN break_link timer msw
 #[derive(From, Into)]
 pub struct BL_MSW(u32);
-impl BL_MSW {    ///
+impl BL_MSW {
     /// break_link_timer setting
     pub fn bl_tmr_msw(&self) -> u32 {
         (self.0 & 0xffff) >> 0

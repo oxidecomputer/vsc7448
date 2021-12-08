@@ -450,12 +450,12 @@ impl LINK_CAPABILITIES {    pub fn pcie_cap_active_state_link_pm_support(&self) 
         self.0 &= !0x3f0;
         self.0 |= value;
     }    pub fn pcie_cap_port_num(&self) -> u32 {
-        (self.0 & 0xffffff) >> 24
+        (self.0 & 0xff000000) >> 24
     }
     pub fn set_pcie_cap_port_num(&mut self, value: u32) {
         let value = value << 24;
-        assert!(value <= 0xffffff);
-        self.0 &= !0xffffff;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
         self.0 |= value;
     }    pub fn pcie_cap_surprise_down_err_rep_cap(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -538,12 +538,12 @@ impl LINK_CONTROL_LINK_STATUS {    pub fn pcie_cap_active_state_link_pm_control(
         self.0 &= !0x80;
         self.0 |= value;
     }    pub fn pcie_cap_link_auot_bw_status(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 31
+        (self.0 & 0x80000000) >> 31
     }
     pub fn set_pcie_cap_link_auot_bw_status(&mut self, value: u32) {
         let value = value << 31;
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
         self.0 |= value;
     }    pub fn pcie_cap_link_auto_bw_int_en(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -634,12 +634,12 @@ impl LINK_CONTROL_LINK_STATUS {    pub fn pcie_cap_active_state_link_pm_control(
 #[derive(From, Into)]
 pub struct MSI_PENDING_BIT(u32);
 impl MSI_PENDING_BIT {    pub fn pci_msi_pending_bit(&self) -> u32 {
-        (self.0 & 0x0) >> 0
+        (self.0 & 0xffffffff) >> 0
     }
     pub fn set_pci_msi_pending_bit(&mut self, value: u32) {
         let value = value << 0;
-        assert!(value <= 0x0);
-        self.0 &= !0x0;
+        assert!(value <= 0xffffffff);
+        self.0 &= !0xffffffff;
         self.0 |= value;
     }
 }

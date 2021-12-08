@@ -35,7 +35,7 @@ use derive_more::{From, Into};
 /// PCS2X6G error counter
 #[derive(From, Into)]
 pub struct PCS2X6G_ERR_CNT_STAT(u32);
-impl PCS2X6G_ERR_CNT_STAT {    ///
+impl PCS2X6G_ERR_CNT_STAT {
     /// Number of errors detected in 64B/66B decoder.
     pub fn err_64b66bdec(&self) -> u32 {
         (self.0 & 0xffffff) >> 0

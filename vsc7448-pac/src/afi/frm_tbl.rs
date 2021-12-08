@@ -33,7 +33,7 @@ use derive_more::{From, Into};
 /// Lenght of DTI Duration Tick
 #[derive(From, Into)]
 pub struct DTI_DURATION_TICK_LEN(u32);
-impl DTI_DURATION_TICK_LEN {    ///
+impl DTI_DURATION_TICK_LEN {
     /// Lenght of DTI Duration Tick in clock cycles. Default value corresponds to 0.1ms.
     pub fn dti_duration_tick_len(&self) -> u32 {
         (self.0 & 0x3ffff) >> 0
@@ -53,9 +53,11 @@ impl DTI_DURATION_TICK_LEN {    ///
 /// Note: Write operations to entries in the frame table, which are in the process of being removed (FRM_RM=1, see FRM_ENTRY_PART0) are not allowed.
 #[derive(From, Into)]
 pub struct FRM_NEXT_AND_TYPE(u32);
-impl FRM_NEXT_AND_TYPE {    ///
+impl FRM_NEXT_AND_TYPE {
     /// Entry Type. Delay entries are only applicable to DTI. The Entry Type controls the use of FRM_ENTRY_PART0.PART0.
+
     ///
+
     /// 0: Frame 1: Delay
     pub fn entry_type(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -65,7 +67,7 @@ impl FRM_NEXT_AND_TYPE {    ///
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    ///
+    }
     /// Pointer to next Frame Table entry. Only applicable for frames used for DTI.
     pub fn next_ptr(&self) -> u32 {
         (self.0 & 0xfff) >> 0
