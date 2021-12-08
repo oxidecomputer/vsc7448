@@ -359,14 +359,17 @@ impl {0} {{",
                     if let Some(brief) = &field.brief {
                         writeln!(
                             &mut gfile,
-                            "    ///\n    /// {}",
+                            "\n    /// {}",
                             brief.replace("\n", "\n    /// ")
                         )?;
                     }
                     if let Some(details) = &field.details {
+                        if field.brief.is_some() {
+                            writeln!(&mut gfile, "\n    ///")?;
+                        }
                         writeln!(
                             &mut gfile,
-                            "    ///\n    /// {}",
+                            "\n    /// {}",
                             details.replace("\n", "\n    /// ")
                         )?;
                     }
