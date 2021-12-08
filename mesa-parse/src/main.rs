@@ -386,7 +386,7 @@ impl {0} {{",
     }}",
                         field = fname.to_lowercase(),
                         shift = field.lo,
-                        mask = ((1 << field.hi) - 1) ^ ((1 << field.lo) - 1)
+                        mask = (((1u64 << field.hi) - 1) ^ ((1u64 << field.lo) - 1)) as u32
                     )?;
                 }
                 writeln!(&mut gfile, "\n}}")?;
