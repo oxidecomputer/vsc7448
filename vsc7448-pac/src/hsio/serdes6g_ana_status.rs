@@ -238,9 +238,7 @@ impl SERDES6G_IB_STATUS1 {
 pub struct SERDES6G_PLL_STATUS(u32);
 impl SERDES6G_PLL_STATUS {
     /// Calibration error
-
     ///
-
     /// 0: No error during calibration 1: Errors occured during calibration
     pub fn pll_cal_err(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -252,9 +250,7 @@ impl SERDES6G_PLL_STATUS {
         self.0 |= value;
     }
     /// Calibration status
-
     ///
-
     /// 0: Calibration not started or ongoing 1: Calibration finished
     pub fn pll_cal_not_done(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -266,9 +262,7 @@ impl SERDES6G_PLL_STATUS {
         self.0 |= value;
     }
     /// Out of range error
-
     ///
-
     /// 0: No out of range condition detected 1: Out of range condition since last calibration detected
     pub fn pll_out_of_range_err(&self) -> u32 {
         (self.0 & 0x100) >> 8

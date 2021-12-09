@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct FID_LIMIT_STATUS(u32);
 impl FID_LIMIT_STATUS {
     /// Contains the number of MAC table entries currently learned associated with a given FID.
-
     ///
-
     /// 0 : no entries
     pub fn fid_lrn_cnt(&self) -> u32 {
         self.0 & 0xffff
@@ -47,9 +45,7 @@ impl FID_LIMIT_STATUS {
         self.0 |= value;
     }
     /// Set if specified MAX learn cnt limit is exceeded and max learn cnt was enabled. Write '1' to clear this field.
-
     ///
-
     /// 0: Learn cnt not exceeded. 1: Learning operation has failed due to FID max learn cnt exceeded. Write '1' to clear this field.
     pub fn fid_lrn_limit_exceeded_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -66,9 +62,7 @@ impl FID_LIMIT_STATUS {
 pub struct INTR_IDENT(u32);
 impl INTR_IDENT {
     /// Status of FID_LIMIT_INTR interrupts
-
     ///
-
     /// 0: No interrupt 1: Interrupt to CPU
     pub fn fid_limit_intr_ident(&self) -> u32 {
         self.0 & 0x1
@@ -79,9 +73,7 @@ impl INTR_IDENT {
         self.0 |= value;
     }
     /// Status of LRN_ACCESS_COMPLETE_INTR interrupts
-
     ///
-
     /// 0: No interrupt 1: Interrupt to CPU
     pub fn lrn_access_complete_intr_ident(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -93,9 +85,7 @@ impl INTR_IDENT {
         self.0 |= value;
     }
     /// Status of PORT_LRN_LIMIT_INTR interrupts
-
     ///
-
     /// 0: No interrupt 1: Interrupt to CPU
     pub fn port_lrn_limit_intr_ident(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -107,9 +97,7 @@ impl INTR_IDENT {
         self.0 |= value;
     }
     /// Status of SUPER_VCAP_INTR interrupts
-
     ///
-
     /// 0: No interrupt 1: Interrupt to CPU
     pub fn super_vcap_intr_ident(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -121,9 +109,7 @@ impl INTR_IDENT {
         self.0 |= value;
     }
     /// Status of VCAP_S2_INTR interrupts
-
     ///
-
     /// 0: No interrupt 1: Interrupt to CPU
     pub fn vcap_s2_intr_ident(&self) -> u32 {
         (self.0 & 0x4) >> 2

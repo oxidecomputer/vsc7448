@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct DFT_MST(u32);
 impl DFT_MST {
     /// Use this field to configure default master.
-
     ///
-
     /// 0: No default master 1: Master 1 2: Master 2 3: Master 3
     pub fn dft_mst(&self) -> u32 {
         self.0 & 0xf
@@ -80,9 +78,7 @@ impl EBT_COUNT {
 pub struct EBT_EN(u32);
 impl EBT_EN {
     /// Use this field to enable early burst termination.
-
     ///
-
     /// 0: Disabled 1: Enabled
     pub fn ebt_en(&self) -> u32 {
         self.0 & 0x1
@@ -98,9 +94,7 @@ impl EBT_EN {
 pub struct PL_CPU(u32);
 impl PL_CPU {
     /// Arbitration priority for the master. When multiple masters request the bus at the same time, the one with the highest priority is ganted bus access.
-
     ///
-
     /// Values 0x1 through 0xF, higher values are prioritized over lower values.
     pub fn pl1(&self) -> u32 {
         self.0 & 0xf
@@ -142,7 +136,8 @@ impl PL_PCIE {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED1(u32);
-impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
+impl RESERVED1 {
+    pub fn reserved1(&self) -> u32 {
         self.0
     }
     pub fn set_reserved1(&mut self, value: u32) {

@@ -43,9 +43,7 @@ impl SD10G65_DES_CFG0 {
         self.0 |= value;
     }
     /// Interface width
-
     ///
-
     /// 0: 8 1: 10 2: 16 (energy efficient) 3: 20 (energy efficient) 4: 32 5: 40 6: 16 bit (fast) 7: 20 bit (fast)
     pub fn des_if_mode_sel(&self) -> u32 {
         (self.0 & 0x1c) >> 2

@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct SERVICE_CFG(u32);
 impl SERVICE_CFG {
     /// Force Egress FID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when ANA_CL:IPT:VSI_CFG.VSI_ENA==1 and frame has multicast DMAC. See also SERVICE_CFG.VSI_FORCE_MC_EFID_ENA.
-
     ///
-
     /// 0: Normal EFID behaviour for multicast  DMAC. 1: Force EFID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when VSI_ENA==1 and frame has multicast DMAC.
     pub fn isdx_force_mc_efid_ena(&self) -> u32 {
         self.0 & 0x1
@@ -47,9 +45,7 @@ impl SERVICE_CFG {
         self.0 |= value;
     }
     /// Force Egress FID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when ISDX > 0 and frame has multicast DMAC. See also SERVICE_CFG.VSI_FORCE_MC_EFID_ENA.
-
     ///
-
     /// 0: Normal EFID behaviour for multicast  DMAC. 1: Force EFID=ANA_L3:VLAN:VLAN_CFG.VLAN_FIDfor multicast DMAC when ISDX > 0.
     pub fn vsi_force_mc_efid_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -90,9 +86,7 @@ impl TUPE_ADDR {
 pub struct TUPE_CMD_PORT_MASK_CLR(u32);
 impl TUPE_CMD_PORT_MASK_CLR {
     /// Mask with ports, which shall be cleared in VLAN_PORT_MASK in VLAN table if VLAN table entry meets the critierias enabled in TUPE_MISC. If a port has its bit set in both TUPE_CMD_PORT_MASK_CLR and TUPE_CMD_PORT_MASK_SET then the value in VLAN_PORT_MASK is toggled.
-
     ///
-
     /// CLR=0, SET=0: No change to VLAN_PORT_MASK bit CLR=0, SET=1: VLAN_PORT_MASK bit shall be set. CLR=1, SET=0: VLAN_PORT_MASK bit shall be cleared. CLR=1, SET=1: VLAN_PORT_MASK bit shall be toggled..
     pub fn tupe_cmd_port_mask_clr(&self) -> u32 {
         self.0
@@ -120,9 +114,7 @@ impl TUPE_CMD_PORT_MASK_CLR1 {
 pub struct TUPE_CMD_PORT_MASK_SET(u32);
 impl TUPE_CMD_PORT_MASK_SET {
     /// Mask with ports, which shall be set in VLAN_PORT_MASK in VLAN table if VLAN table entry meets the critierias enabled in TUPE_MISC. If a port has its bit set in both TUPE_CMD_PORT_MASK_CLR and TUPE_CMD_PORT_MASK_SET then the value in VLAN_PORT_MASK is toggled.
-
     ///
-
     /// CLR=0, SET=0: No change to VLAN_PORT_MASK bit CLR=0, SET=1: VLAN_PORT_MASK bit shall be set. CLR=1, SET=0: VLAN_PORT_MASK bit shall be cleared. CLR=1, SET=1: VLAN_PORT_MASK bit shall be toggled..
     pub fn tupe_cmd_port_mask_set(&self) -> u32 {
         self.0

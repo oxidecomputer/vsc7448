@@ -74,9 +74,7 @@ impl VSCOPE_CNT {
 pub struct VSCOPE_HW_SCAN_CFG1(u32);
 impl VSCOPE_HW_SCAN_CFG1 {
     /// Amplitude increment per scan step
-
     ///
-
     /// Increment = ampl_incr + 1
     pub fn ampl_incr(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -98,9 +96,7 @@ impl VSCOPE_HW_SCAN_CFG1 {
         self.0 |= value;
     }
     /// Enables HW scan with N results per scan or fast-scan
-
     ///
-
     /// 0: off 1: N-point scan 2: fast-scan (sq) 3: fast-scan (diag)
     pub fn hw_scan_ena(&self) -> u32 {
         self.0 & 0x3
@@ -131,9 +127,7 @@ impl VSCOPE_HW_SCAN_CFG1 {
         self.0 |= value;
     }
     /// Number of scans per iteration in N-point-scan mode
-
     ///
-
     /// 0: 1 1: 2 2: 4 3: 8
     pub fn num_scans_per_itr(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -145,9 +139,7 @@ impl VSCOPE_HW_SCAN_CFG1 {
         self.0 |= value;
     }
     /// Phase increment per scan step
-
     ///
-
     /// Increment = phase_incr + 1
     pub fn phase_incr(&self) -> u32 {
         (self.0 & 0x380) >> 7
@@ -196,9 +188,7 @@ impl VSCOPE_HW_SCAN_CFG2 {
         self.0 |= value;
     }
     /// Threshold for error_counter in fast-scan mode
-
     ///
-
     /// N+1
     pub fn fast_scan_thres(&self) -> u32 {
         (self.0 & 0xe0000000) >> 29
@@ -210,9 +200,7 @@ impl VSCOPE_HW_SCAN_CFG2 {
         self.0 |= value;
     }
     /// Left shift for threshold of error_counter in fast-scan mode
-
     ///
-
     /// threshold = (fast_scan_thres+1) shift_left fs_thres_shift
     pub fn fs_thres_shift(&self) -> u32 {
         (self.0 & 0x1f000000) >> 24
@@ -250,9 +238,7 @@ impl VSCOPE_HW_SCAN_CFG2 {
 pub struct VSCOPE_MAIN_CFG(u32);
 impl VSCOPE_MAIN_CFG {
     /// Enable Counting
-
     ///
-
     /// 0: disable counting and assign counter output; internal counters get their preload value 1: enable counting
     pub fn cnt_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -264,9 +250,7 @@ impl VSCOPE_MAIN_CFG {
         self.0 |= value;
     }
     /// Counter output selection
-
     ///
-
     /// 0-3: error counter 0-3 4: hit counter 5: clock counter 6: 8 LSBs of error counter 3-1 and hit counter 7: 8 LSBs of error counter 3-0
     pub fn cnt_out_sel(&self) -> u32 {
         (self.0 & 0x1c000000) >> 26
@@ -278,9 +262,7 @@ impl VSCOPE_MAIN_CFG {
         self.0 |= value;
     }
     /// Comparator input selection
-
     ///
-
     /// [REF] 0 or 1: auxL 4 or 5: auxH 2 or 7: main [SUB] 5 or 7: auxL 0 or 2: auxH 1 or 4: main (3 or 6: reserved)
     pub fn comp_sel(&self) -> u32 {
         (self.0 & 0x3800000) >> 23
@@ -292,9 +274,7 @@ impl VSCOPE_MAIN_CFG {
         self.0 |= value;
     }
     /// Counter period: preload value for clock counter
-
     ///
-
     /// After preload clock counter = 2**32 - 2**(count_per + 1)
     pub fn count_per(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
@@ -316,9 +296,7 @@ impl VSCOPE_MAIN_CFG {
         self.0 |= value;
     }
     /// Select GP reg input
-
     ///
-
     /// 0: rx (main) 1: low aux 2: high aux 3: counter
     pub fn gp_select(&self) -> u32 {
         (self.0 & 0x600000) >> 21
@@ -350,9 +328,7 @@ impl VSCOPE_MAIN_CFG {
         self.0 |= value;
     }
     /// Interface Width
-
     ///
-
     /// 0: 8 bit 1: 10 bit 2: 16 bit 3: 20 bit 4: 32 bit 5: 40 bit others: reserved
     pub fn if_mode(&self) -> u32 {
         (self.0 & 0xe) >> 1
@@ -374,9 +350,7 @@ impl VSCOPE_MAIN_CFG {
         self.0 |= value;
     }
     /// Preload value for error counter
-
     ///
-
     /// After preload error counter = 2**32 - 2**(preload_val + 1)
     pub fn preload_val(&self) -> u32 {
         (self.0 & 0x3e000) >> 13
@@ -398,9 +372,7 @@ impl VSCOPE_MAIN_CFG {
         self.0 |= value;
     }
     /// Scan limit, selects which counter saturation limits the other counters
-
     ///
-
     /// 0: clock counter 1: hit counter 2: error counters 3: no limit
     pub fn scan_lim(&self) -> u32 {
         (self.0 & 0xc0000) >> 18
@@ -448,9 +420,7 @@ impl VSCOPE_MAIN_CFG {
 pub struct VSCOPE_PAT_LOCK_CFG(u32);
 impl VSCOPE_PAT_LOCK_CFG {
     /// Don't Care mask: Enable history mask usage.
-
     ///
-
     /// 0: enable history mask bit 1: history mask bit is "don't care"
     pub fn dc_mask(&self) -> u32 {
         (self.0 & 0xffc00) >> 10
@@ -471,9 +441,7 @@ impl VSCOPE_PAT_LOCK_CFG {
         self.0 |= value;
     }
     /// Preload value for hit counter
-
     ///
-
     /// After preload hit counter = 2**32 - 2**(preload_hit_cnt + 1)
     pub fn preload_hit_cnt(&self) -> u32 {
         (self.0 & 0x1f00000) >> 20

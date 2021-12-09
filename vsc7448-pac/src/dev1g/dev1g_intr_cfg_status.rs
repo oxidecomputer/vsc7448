@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct DEV1G_INTR(u32);
 impl DEV1G_INTR {
     /// ANEG Link down interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
     pub fn an_link_down_intr_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -48,9 +46,7 @@ impl DEV1G_INTR {
         self.0 |= value;
     }
     /// ANEG Link up interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
     pub fn an_link_up_intr_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -62,9 +58,7 @@ impl DEV1G_INTR {
         self.0 |= value;
     }
     /// ANEG next page receive interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
     pub fn an_page_rx_intr_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -76,9 +70,7 @@ impl DEV1G_INTR {
         self.0 |= value;
     }
     /// Far-end-fault indication found interrupt (only PCS_fx100)
-
     ///
-
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
     pub fn fef_found_intr_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -90,9 +82,7 @@ impl DEV1G_INTR {
         self.0 |= value;
     }
     /// Link down interrupt
-
     ///
-
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
     pub fn link_down_intr_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -103,9 +93,7 @@ impl DEV1G_INTR {
         self.0 |= value;
     }
     /// Link up interrupt
-
     ///
-
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
     pub fn link_up_intr_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -117,9 +105,7 @@ impl DEV1G_INTR {
         self.0 |= value;
     }
     /// Low Power Idle Receive interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
     pub fn rx_lpi_intr_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -131,9 +117,7 @@ impl DEV1G_INTR {
         self.0 |= value;
     }
     /// Low Power Idle Transmit interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
     pub fn tx_lpi_intr_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -152,9 +136,7 @@ impl DEV1G_INTR {
 pub struct DEV1G_INTR_CFG(u32);
 impl DEV1G_INTR_CFG {
     /// ANEG Link down interrupt enable (only PCS1g)
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn an_link_down_intr_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -166,9 +148,7 @@ impl DEV1G_INTR_CFG {
         self.0 |= value;
     }
     /// ANEG Link up interrupt enable (only PCS1g)
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn an_link_up_intr_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -180,9 +160,7 @@ impl DEV1G_INTR_CFG {
         self.0 |= value;
     }
     /// ANEG next page receive interrupt enable (only PCS1g)
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn an_page_rx_intr_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -194,9 +172,7 @@ impl DEV1G_INTR_CFG {
         self.0 |= value;
     }
     /// Far-end-fault indication found interrupt enable (only PCS_fx100)
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn fef_found_intr_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -208,9 +184,7 @@ impl DEV1G_INTR_CFG {
         self.0 |= value;
     }
     /// Link down interrupt enable
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn link_down_intr_ena(&self) -> u32 {
         self.0 & 0x1
@@ -221,9 +195,7 @@ impl DEV1G_INTR_CFG {
         self.0 |= value;
     }
     /// Link up interrupt enable
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn link_up_intr_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -235,9 +207,7 @@ impl DEV1G_INTR_CFG {
         self.0 |= value;
     }
     /// Low Power Idle Receive interrupt enable (only PCS1g)
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn rx_lpi_intr_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -249,9 +219,7 @@ impl DEV1G_INTR_CFG {
         self.0 |= value;
     }
     /// Low Power Idle Transmit interrupt enable (only PCS1g)
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn tx_lpi_intr_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -270,9 +238,7 @@ impl DEV1G_INTR_CFG {
 pub struct DEV1G_INTR_IDENT(u32);
 impl DEV1G_INTR_IDENT {
     /// ANEG Link down interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt pending
     pub fn an_link_down_intr_ident(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -284,9 +250,7 @@ impl DEV1G_INTR_IDENT {
         self.0 |= value;
     }
     /// ANEG Link up interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt pending
     pub fn an_link_up_intr_ident(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -298,9 +262,7 @@ impl DEV1G_INTR_IDENT {
         self.0 |= value;
     }
     /// ANEG next page receive interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt pending
     pub fn an_page_rx_intr_ident(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -312,9 +274,7 @@ impl DEV1G_INTR_IDENT {
         self.0 |= value;
     }
     /// Far-end-fault indication found interrupt (only PCS_fx100)
-
     ///
-
     /// 0: No interrupt 1: Interrupt pending
     pub fn fef_found_intr_ident(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -326,9 +286,7 @@ impl DEV1G_INTR_IDENT {
         self.0 |= value;
     }
     /// Link down interrupt
-
     ///
-
     /// 0: No interrupt 1: Interrupt pending
     pub fn link_down_intr_ident(&self) -> u32 {
         self.0 & 0x1
@@ -339,9 +297,7 @@ impl DEV1G_INTR_IDENT {
         self.0 |= value;
     }
     /// Link up interrupt
-
     ///
-
     /// 0: No interrupt 1: Interrupt pending
     pub fn link_up_intr_ident(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -353,9 +309,7 @@ impl DEV1G_INTR_IDENT {
         self.0 |= value;
     }
     /// Low Power Idle Receive interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt pending
     pub fn rx_lpi_intr_ident(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -367,9 +321,7 @@ impl DEV1G_INTR_IDENT {
         self.0 |= value;
     }
     /// Low Power Idle Transmit interrupt (only PCS1g)
-
     ///
-
     /// 0: No interrupt 1: Interrupt pending
     pub fn tx_lpi_intr_ident(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -398,9 +350,7 @@ impl PCS_FX100_STATUS {
         self.0 |= value;
     }
     /// Far-end Fault state has occurred
-
     ///
-
     /// 1: A Far-End Fault has been detected 0: No Far-End Fault occurred Bit is cleared by writing a 1 to this position.
     pub fn fef_found_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -412,9 +362,7 @@ impl PCS_FX100_STATUS {
         self.0 |= value;
     }
     /// Current status of Far-end Fault detection state
-
     ///
-
     /// 1: Link currently in fault state 0: Link is in normal state
     pub fn fef_status(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -426,9 +374,7 @@ impl PCS_FX100_STATUS {
         self.0 |= value;
     }
     /// PCS error has occurred
-
     ///
-
     /// 1: RX_ER was high while RX_DV active 0: No RX_ER indication found while RX_DV active Bit is cleared by writing a 1 to this position.
     pub fn pcs_error_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -440,9 +386,7 @@ impl PCS_FX100_STATUS {
         self.0 |= value;
     }
     /// Current status of selected signal_detect input line
-
     ///
-
     /// 1: Proper signal detected 0: No proper signal found
     pub fn signal_detect(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -454,9 +398,7 @@ impl PCS_FX100_STATUS {
         self.0 |= value;
     }
     /// Stream Start Delimiter error occurred
-
     ///
-
     /// 1: A Start-of-Stream Delimiter error has been detected 0: No SSD error occurred Bit is cleared by writing a 1 to this position.
     pub fn ssd_error_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -468,9 +410,7 @@ impl PCS_FX100_STATUS {
         self.0 |= value;
     }
     /// Synchronization lost
-
     ///
-
     /// 1: Synchronization lost 0: No sync lost occurred Bit is cleared by writing a 1 to this position.
     pub fn sync_lost_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -482,9 +422,7 @@ impl PCS_FX100_STATUS {
         self.0 |= value;
     }
     /// Status of synchronization
-
     ///
-
     /// 1: Link established 0: No link found
     pub fn sync_status(&self) -> u32 {
         self.0 & 0x1

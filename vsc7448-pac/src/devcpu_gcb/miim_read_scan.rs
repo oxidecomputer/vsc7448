@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct MII_SCAN_LAST_RSLTS_VLD(u32);
 impl MII_SCAN_LAST_RSLTS_VLD {
     /// Indicates for each PHY if a PHY register matched are valid or not.
-
     ///
-
     /// 0 : Scan result not valid. 1 : Scan result valid.
     pub fn miim_last_rslt_vld(&self) -> u32 {
         self.0

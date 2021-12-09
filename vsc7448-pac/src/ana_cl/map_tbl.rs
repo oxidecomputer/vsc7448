@@ -52,9 +52,7 @@ impl L2CP_ENTRY_CFG {
         self.0 |= value;
     }
     /// CPU forward configuration for L2CP frame.
-
     ///
-
     /// 0: Normal forward 1: Enable redirection to CPU queue 2: Enable copy to CPU queue 3: Discard the frame
     pub fn cpu_fwd_cfg(&self) -> u32 {
         (self.0 & 0x18) >> 3

@@ -104,7 +104,10 @@ impl COMMON_BUM_SLB {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
-    pub fn TRAFFIC_MASK_CFG(&self, index: u32) -> RegisterAddress<common_bum_slb::TRAFFIC_MASK_CFG> {
+    pub fn TRAFFIC_MASK_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<common_bum_slb::TRAFFIC_MASK_CFG> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
@@ -151,11 +154,17 @@ impl POL_ALL_CFG {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x40 + index * 0x4)
     }
-    pub fn POL_STORM_RATE_CFG(&self, index: u32) -> RegisterAddress<pol_all_cfg::POL_STORM_RATE_CFG> {
+    pub fn POL_STORM_RATE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<pol_all_cfg::POL_STORM_RATE_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn POL_STORM_THRES_CFG(&self, index: u32) -> RegisterAddress<pol_all_cfg::POL_STORM_THRES_CFG> {
+    pub fn POL_STORM_THRES_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<pol_all_cfg::POL_STORM_THRES_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
@@ -167,11 +176,17 @@ impl POL_ALL_CFG {
 /// Rate and threshold configuration for port policers.
 pub struct POL_PORT_CFG(pub(super) u32);
 impl POL_PORT_CFG {
-    pub fn POL_PORT_THRES_CFG_0(&self, index: u32) -> RegisterAddress<pol_port_cfg::POL_PORT_THRES_CFG_0> {
+    pub fn POL_PORT_THRES_CFG_0(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<pol_port_cfg::POL_PORT_THRES_CFG_0> {
         assert!(index < 228);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn POL_PORT_THRES_CFG_1(&self, index: u32) -> RegisterAddress<pol_port_cfg::POL_PORT_THRES_CFG_1> {
+    pub fn POL_PORT_THRES_CFG_1(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<pol_port_cfg::POL_PORT_THRES_CFG_1> {
         assert!(index < 228);
         RegisterAddress::new(self.0 + 0x400 + index * 0x4)
     }
@@ -186,7 +201,10 @@ impl POL_PORT_CTRL {
     pub fn POL_PORT_GAP(&self) -> RegisterAddress<pol_port_ctrl::POL_PORT_GAP> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn POL_PORT_RATE_CFG(&self, index: u32) -> RegisterAddress<pol_port_ctrl::POL_PORT_RATE_CFG> {
+    pub fn POL_PORT_RATE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<pol_port_ctrl::POL_PORT_RATE_CFG> {
         assert!(index < 228);
         RegisterAddress::new(self.0 + 0x800 + index * 0x4)
     }

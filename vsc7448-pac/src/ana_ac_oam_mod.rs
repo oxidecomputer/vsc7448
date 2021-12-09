@@ -66,13 +66,19 @@ impl PDU_MOD_CFG {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn RD_LAST_PORT_BYTE_CNT_LSB(&self) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_BYTE_CNT_LSB> {
+    pub fn RD_LAST_PORT_BYTE_CNT_LSB(
+        &self,
+    ) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_BYTE_CNT_LSB> {
         RegisterAddress::new(self.0 + 0xe0)
     }
-    pub fn RD_LAST_PORT_BYTE_CNT_MSB(&self) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_BYTE_CNT_MSB> {
+    pub fn RD_LAST_PORT_BYTE_CNT_MSB(
+        &self,
+    ) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_BYTE_CNT_MSB> {
         RegisterAddress::new(self.0 + 0xdc)
     }
-    pub fn RD_LAST_PORT_FRM_CNT_LSB(&self) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_FRM_CNT_LSB> {
+    pub fn RD_LAST_PORT_FRM_CNT_LSB(
+        &self,
+    ) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_FRM_CNT_LSB> {
         RegisterAddress::new(self.0 + 0xd8)
     }
     pub fn RD_LAST_PORT_LM_CNT_LSB(&self) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_LM_CNT_LSB> {
@@ -99,5 +105,4 @@ impl VOE_PORT_LM_CNT {
 
 /// OAM Service LM counters pr. priority
 pub struct VOE_SRV_LM_CNT(pub(super) u32);
-impl VOE_SRV_LM_CNT {
-}
+impl VOE_SRV_LM_CNT {}

@@ -76,7 +76,8 @@ impl PORT_LM_CNT_LSB {
 /// Implements the OAM VOE LM counters. Depending on whether the OAM_PDU_MOD block is instantiated in the REW or the ANA these counters will be either egress (REW) or ingress (ANA) counters. Y.1731 LM counters count frames and are 32 bit wide.
 #[derive(From, Into)]
 pub struct SRV_LM_CNT_LSB(u32);
-impl SRV_LM_CNT_LSB {    pub fn srv_lm_cnt_lsb(&self) -> u32 {
+impl SRV_LM_CNT_LSB {
+    pub fn srv_lm_cnt_lsb(&self) -> u32 {
         self.0
     }
     pub fn set_srv_lm_cnt_lsb(&mut self, value: u32) {

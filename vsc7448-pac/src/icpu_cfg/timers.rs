@@ -58,9 +58,7 @@ impl TIMER_RELOAD_VALUE {
 pub struct TIMER_TICK_DIV(u32);
 impl TIMER_TICK_DIV {
     /// The timer tick generator runs from the VCore System frequency. By default, the divider value generates a timer tick every 100 us (10KHz). The timer tick is used for all of the timers (except the WDT). This field must not be set to generate a timer tick of less than 0.1 us (higher than 10MHz). If this field is changed, it may take up to 2ms before the timers are running stable at the new frequency.
-
     ///
-
     /// The timer tick frequency is: 250MHz/(TIMER_TICK_DIV+1).
     pub fn timer_tick_div(&self) -> u32 {
         self.0 & 0x3ffff
@@ -88,9 +86,7 @@ impl TIMER_VALUE {
 pub struct WDT(u32);
 impl WDT {
     /// Use this field to enable or disable the watchdog timer. When the WDT is enabled, it causes a reset after 2 seconds if it is not periodically reset. This field is only read by the WDT after a sucessful lock sequence (see ICPU_CFG::WDT.WDT_LOCK).
-
     ///
-
     /// 0: WDT is disabled 1: WDT is enabled
     pub fn wdt_enable(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -111,9 +107,7 @@ impl WDT {
         self.0 |= value;
     }
     /// Shows whether the last reset was caused by a watchdog timer reset. This field is updated during reset, therefore it is always valid.
-
     ///
-
     /// 0: Reset was not caused by WDT 1: Reset was caused by WDT timeout
     pub fn wdt_status(&self) -> u32 {
         (self.0 & 0x200) >> 9

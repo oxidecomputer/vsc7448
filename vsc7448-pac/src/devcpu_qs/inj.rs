@@ -72,9 +72,7 @@ impl INJ_CTRL {
         self.0 |= value;
     }
     /// Set to indicate how many bytes of the next data written to DEVCPU_QS::INJ_WR which are valid. This field is only used during end-of-frame words (see DEVCPU_QS::INJ_CTRL.EOF for more information). The position of the valid bytes follows the endianness encoding and swapping.
-
     ///
-
     /// 0: All bytes are valid n: 'n' byte are valid
     pub fn vld_bytes(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -115,9 +113,7 @@ impl INJ_ERR {
 pub struct INJ_GRP_CFG(u32);
 impl INJ_GRP_CFG {
     /// This field allows swapping the endianess of the DEVCPU_QS::INJ_WR register. Most software will want to write injection data in network order (big-endian mode), i.e. the first byte of the destiantion MAC address to be placed on byte-address 0 of DEVCPU_QS::INJ_WR. In order to do this a little endian CPU must set this field, a big endian CPU must clear this field. This field only applies to manual extraction mode (see DEVCPU_QS::INJ_GRP_CFG.MODE).
-
     ///
-
     /// 0: Same endianess as CPU 1: Swap endianness
     pub fn byte_swap(&self) -> u32 {
         self.0 & 0x1
@@ -128,9 +124,7 @@ impl INJ_GRP_CFG {
         self.0 |= value;
     }
     /// Configures mode of the injection group. Each injection group can be assigned to one of three owners. Note: The VRAP block support only one context, if more than one injection group is assigned the lowest group-number will be used.
-
     ///
-
     /// 0: VRAP block 1: Manual injection (via DEVCPU_QS registers) 2: FDMA injection and manual injection via SBA registers
     pub fn mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -147,9 +141,7 @@ impl INJ_GRP_CFG {
 pub struct INJ_STATUS(u32);
 impl INJ_STATUS {
     /// When '1' the injector group's FIFO is ready for additional data written through the DEVCPU_QS::INJ_WR register.
-
     ///
-
     /// 0: The injector group cannot accept additional data 1: The injector group is able to accept additional data
     pub fn fifo_rdy(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -161,9 +153,7 @@ impl INJ_STATUS {
         self.0 |= value;
     }
     /// When '1' the injector group is in the process of receiving a frame, and at least one write to INJ_WR remains before the frame is forwarded to the front ports. When '0' the injector group is waiting for an initiation of a frame injection.
-
     ///
-
     /// 0: A frame injection is not in progress 1: A frame injection is in progress
     pub fn inj_in_progress(&self) -> u32 {
         self.0 & 0x3
@@ -174,9 +164,7 @@ impl INJ_STATUS {
         self.0 |= value;
     }
     /// Before the CPU injects a frame, software may check if the input queue has reached high watermark. If wathermark in the IQS has been reached this bit will be set.
-
     ///
-
     /// 0: Input queue has not reached high watermark 1: Input queue has reached high watermark, and frames injected may be dropped due to buffer overflow
     pub fn wmark_reached(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -205,9 +193,7 @@ impl INJ_WR {
 pub struct VTSS_DBG(u32);
 impl VTSS_DBG {
     /// For debugging purpose, frames injected are counted with a small wrapping counter.
-
     ///
-
     /// 0: No frames has been injected 1: 1 frame has been injected ... 15: 15 frames have been injected
     pub fn frm_cnt(&self) -> u32 {
         self.0 & 0xf
@@ -233,9 +219,7 @@ impl XTR_CFG {
         self.0 |= value;
     }
     /// Overflow in extraction FIFO. If this happens, SCH_WM must be decreased.
-
     ///
-
     /// 0: No buffer overruns detected 1: Buffer has overrruned at least once
     pub fn oflw_err_sticky(&self) -> u32 {
         self.0 & 0x3

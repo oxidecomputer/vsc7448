@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct DEV_LB_CFG(u32);
 impl DEV_LB_CFG {
     /// An internal loopback from the egress Taxi bus to the ingress Taxi bus can be enabled.
-
     ///
-
     /// '0': Loopback from Taxi egress to Taxi ingress is disabled '1': Loopback from Taxi egress to Taxi ingress is enabled
     pub fn taxi_host_lb_ena(&self) -> u32 {
         self.0 & 0x1
@@ -47,9 +45,7 @@ impl DEV_LB_CFG {
         self.0 |= value;
     }
     /// An internal loopback from the igress Taxi bus to the egress Taxi bus can be enabled.
-
     ///
-
     /// '0': Loopback from Taxi ingress bus to Taxi egress bus disabled '1': Loopback from Taxi ingress bus to Taxi egress bus enabled
     pub fn taxi_phy_lb_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -66,9 +62,7 @@ impl DEV_LB_CFG {
 pub struct DEV_MISC_CFG(u32);
 impl DEV_MISC_CFG {
     /// Clears RX_RESYNC_MAX_FILL_LVL that holds the max. fill level of RX RESYNC FIFO. This is a on shot bit automatically cleared by HW.
-
     ///
-
     /// '0': No action '1': clears RX_RESYNC_MAX_FILL_LVL (Bit is automatically cleared)
     pub fn rx_resync_max_fill_lvl_clr(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -80,9 +74,7 @@ impl DEV_MISC_CFG {
         self.0 |= value;
     }
     /// The device can be configured to disregard the fcs_update indication from the DSM and not update the FCS of any transmitted frames.
-
     ///
-
     /// 0: The FCS of transmitted frames is updated according to the fcs_update indication from the DSM. 1: The FCS of transmitted frames is never updated. 2: The FCS of transmitted frames is always updated.
     pub fn tx_fcs_update_sel(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -101,9 +93,7 @@ impl DEV_MISC_CFG {
 pub struct DEV_PORT_PROTECT(u32);
 impl DEV_PORT_PROTECT {
     /// Enables snooping of egress data from another port. The port from which egress data is copied and transmitted at the Ethernet port is determined by the PORT_PROTECT_ID configuration.
-
     ///
-
     /// '0': Port protection is disabled. '1': Port protection is enabled.
     pub fn port_protect_ena(&self) -> u32 {
         self.0 & 0x1
@@ -114,9 +104,7 @@ impl DEV_PORT_PROTECT {
         self.0 |= value;
     }
     /// Indicates from which port egress data must be copied and transmitted at this Ethernet port. The port from which egress data is copied must always be a port that is closer to the ASM. I.e. DEV(X) may be configured to snoop egress data destined for DEV(X+n), where DEV(X+n) is closer to the ASM - but NOT vice versa.
-
     ///
-
     /// 0: Reserved 1: Egress data destined for DEV(1) is also transmitted by this device. 2: Egress data destined for DEV(2) is also transmitted by this device. ..
     pub fn port_protect_id(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -133,9 +121,7 @@ impl DEV_PORT_PROTECT {
 pub struct DEV_RST_CTRL(u32);
 impl DEV_RST_CTRL {
     /// Reset MAC Rx clock domains of the device.
-
     ///
-
     /// '0': The MAC Rx clock domain is NOT reset '1': The MAC Rx clock domain is reset Note: MAC_RX_RST is NOT a one-shot operation. The MAC Rx clock domain remains reset until a '0' is written to MAC_RX_RST.
     pub fn mac_rx_rst(&self) -> u32 {
         self.0 & 0x1
@@ -146,9 +132,7 @@ impl DEV_RST_CTRL {
         self.0 |= value;
     }
     /// Reset MAC Tx clock domain of device.
-
     ///
-
     /// '0': The MAC Tx clock domain is not reset. '1': The MAC Tx clock domain is reset. Note: The MAC Tx clock domain remains reset until 0 is written to this register field.
     pub fn mac_tx_rst(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -160,9 +144,7 @@ impl DEV_RST_CTRL {
         self.0 |= value;
     }
     /// Backplane Ethernet: Enable parallel detection mode for autonegotiation
-
     ///
-
     /// '0':  Parallel detection mode disabled '1': Parallel detection mode enabled
     pub fn pardet_mode_ena(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -174,9 +156,7 @@ impl DEV_RST_CTRL {
         self.0 |= value;
     }
     /// Reset PCS Rx clock domains of the device.
-
     ///
-
     /// '0': The PCS Rx clock domain is NOT reset '1': The PCS Rx clock domain is reset Note: PCS_RX_RST is NOT a one-shot operation. The PCS Rx clock domain remains reset until a '0' is written to PCS_RX_RST.
     pub fn pcs_rx_rst(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -188,9 +168,7 @@ impl DEV_RST_CTRL {
         self.0 |= value;
     }
     /// Reset PCS Tx clock domains of the device.
-
     ///
-
     /// '0': The PCS Tx clock domain is NOT reset '1': The PCS Tx clock domain is reset Note: PCS_TX_RST is NOT a one-shot operation. The PCS Tx clock domain remains reset until a '0' is written to PCS_TX_RST.
     pub fn pcs_tx_rst(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -202,9 +180,7 @@ impl DEV_RST_CTRL {
         self.0 |= value;
     }
     /// This field is used to configure the MAC and PCS Rx/Tx clock frequencies.
-
     ///
-
     /// '100':  XAUI/RXAUI 10 Gbps or 12Gbps OXAUI '110':  Both MAC and PCS Rx/Tx clocks are disabled '111':  XFI 10 Gbps Unused values are reserved.
     pub fn speed_sel(&self) -> u32 {
         (self.0 & 0x700000) >> 20
@@ -237,9 +213,7 @@ impl DEV_RX_STATUS {
 pub struct DEV_STICKY(u32);
 impl DEV_STICKY {
     /// Indicates that a missing EOF has been detected. Writing a '1' clears the sticky bit.
-
     ///
-
     /// '0': No EOF error detected '1': Missing EOF indication detected in Rx path of DEV10G.
     pub fn rx_eof_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -251,9 +225,7 @@ impl DEV_STICKY {
         self.0 |= value;
     }
     /// Indicates if an overflow has occured in the ingress resynchronization FIFO. Writing a '1' clears the sticky bit.
-
     ///
-
     /// '0': No overflow has occurred in the ingress resynchronization FIFO. '1': An overflow has occurred in the ingress resynchronization FIFO.
     pub fn rx_resync_fifo_oflw_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -265,9 +237,7 @@ impl DEV_STICKY {
         self.0 |= value;
     }
     /// Indicates that a missing SOF has been detected in the Rx path of the DEV10G. Writing a '1' clears the sticky bit.
-
     ///
-
     /// '0': No missing SOF detected '1': Missing SOF indication detected in Rx path of DEV10G.
     pub fn rx_sof_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -279,9 +249,7 @@ impl DEV_STICKY {
         self.0 |= value;
     }
     /// Indicates that a missing EOF has been detected. Writing a '1' clears the sticky bit.
-
     ///
-
     /// '0': No EOF error detected '1': Missing EOF indication detected in Tx path of DEV10G.
     pub fn tx_eof_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -293,9 +261,7 @@ impl DEV_STICKY {
         self.0 |= value;
     }
     /// Indicates that a missing SOF has been detected in the Tx path of the DEV10G. Writing a '1' clears the sticky bit.
-
     ///
-
     /// '0': No missing SOF detected '1': Missing SOF indication detected in Tx path of DEV10G.
     pub fn tx_sof_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -322,9 +288,7 @@ impl EEE_CFG {
         self.0 |= value;
     }
     /// Maximum time frames in any queue must wait before the port is activated. The default value corresponds to 48 us.
-
     ///
-
     /// Time = 4**(EEE_TIMER_AGE/16) * (EEE_TIMER_AGE mod 16) microseconds
     pub fn eee_timer_age(&self) -> u32 {
         (self.0 & 0x3f8000) >> 15
@@ -336,9 +300,7 @@ impl EEE_CFG {
         self.0 |= value;
     }
     /// When all queues are empty, the port is kept active until this time has passed. Default value corresponds to 5 us.
-
     ///
-
     /// Time = 4**(EEE_TIMER_HOLDOFF/16) * (EEE_TIMER_HOLDOFF mod 16) microseconds
     pub fn eee_timer_holdoff(&self) -> u32 {
         (self.0 & 0xfe) >> 1
@@ -350,9 +312,7 @@ impl EEE_CFG {
         self.0 |= value;
     }
     /// Time from the egress port is activated until frame transmission is restarted. Default value corresponds to 16 us.
-
     ///
-
     /// Time = 4**(EEE_TIMER_WAKEUP/16) * (EEE_TIMER_WAKEUP mod 16) microseconds
     pub fn eee_timer_wakeup(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
@@ -380,9 +340,7 @@ impl EEE_CFG {
 pub struct INTR(u32);
 impl INTR {
     /// Link status is down (source: PCS1G, PCS10G or PCS2x6G depending on current DEV10G mode)
-
     ///
-
     /// 0 = no indication 1 = active indication
     pub fn link_dwn_intr(&self) -> u32 {
         self.0 & 0x1
@@ -393,9 +351,7 @@ impl INTR {
         self.0 |= value;
     }
     /// Link status is up (source: PCS1G, PCS10G or PCS2x6G depending on current DEV10G mode)
-
     ///
-
     /// 0 = no indication 1 = active indication
     pub fn link_up_intr(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -417,9 +373,7 @@ impl INTR {
         self.0 |= value;
     }
     /// PCS10G, PCS1G: RX Low Power Idle mode has changed
-
     ///
-
     /// 0 = no indication 1 = active indication
     pub fn rx_lpi_intr(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -431,9 +385,7 @@ impl INTR {
         self.0 |= value;
     }
     /// PCS10G, PCS1G: TX Low Power Idle mode has changed
-
     ///
-
     /// 0 = no indication 1 = active indication
     pub fn tx_lpi_intr(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -564,9 +516,7 @@ impl INTR_IDENT {
 pub struct PCS2X6G_EXT_CFG(u32);
 impl PCS2X6G_EXT_CFG {
     /// Flip HM-Bus, i.e. map lane 0 on 1 and lane 1 on 0
-
     ///
-
     /// 0: Normal operation 1: Flipped lane assignment
     pub fn flip_hmbus(&self) -> u32 {
         self.0 & 0x1
@@ -577,9 +527,7 @@ impl PCS2X6G_EXT_CFG {
         self.0 |= value;
     }
     /// Invert HM-Bus, invert all data signals from/to SERDES
-
     ///
-
     /// 0: Normal operation 1: Inverted HM-bus
     pub fn invert_hmbus(&self) -> u32 {
         (self.0 & 0x2) >> 1

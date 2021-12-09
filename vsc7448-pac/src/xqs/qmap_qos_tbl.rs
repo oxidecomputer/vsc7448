@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct QMAP_QOS_TBL(u32);
 impl QMAP_QOS_TBL {
     /// Configures which classified parameter to use when selecting scheduling input.
-
     ///
-
     /// 0: Use IPRIO as input selector (SRCP for normal queue mode) 1: Use COSID as input selector 2: Use TC as input selector 3: Use PCP as input selector
     pub fn qmap_qos_sel(&self) -> u32 {
         self.0 & 0x3

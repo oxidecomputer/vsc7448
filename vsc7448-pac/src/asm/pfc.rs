@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct PFC_CFG(u32);
 impl PFC_CFG {
     /// Configures the link speed. This is used to evaluate the time specifications in incoming pause frames.
-
     ///
-
     /// 0: 12000 Mbps 1: 10000 Mbps 2: 2500 Mbps 3: 1000 Mbps 4: 100 Mbps 5: 10 Mbps
     pub fn fc_link_speed(&self) -> u32 {
         self.0 & 0x7
@@ -62,9 +60,7 @@ impl PFC_CFG {
 pub struct PORT_STICKY(u32);
 impl PORT_STICKY {
     /// This field indicates if one or more Ethernet frames have been discarded due to aging.
-
     ///
-
     /// '0': No Ethernet frames have been discarded due to aging. '1': One or more Ethernet frames have been discarded due to aging. Bit is cleared by writing a '1' to this position.
     pub fn frm_aging_sticky(&self) -> u32 {
         self.0 & 0x1

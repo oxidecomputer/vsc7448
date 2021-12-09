@@ -31,9 +31,7 @@ use derive_more::{From, Into};
 pub struct LBK_AGING_STICKY(u32);
 impl LBK_AGING_STICKY {
     /// Frames are dropped due to aging in loopback FIFO.
-
     ///
-
     /// bitmask per port.
     pub fn lbk_aging_sticky(&self) -> u32 {
         self.0

@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct MII_SCAN_RSLTS_STICKY(u32);
 impl MII_SCAN_RSLTS_STICKY {
     /// Indicates for each PHY if a PHY register has had a mismatch of the expected value (with mask) since last reading of MIIM_SCAN_RSLTS_STICKY. Result is sticky, and result will indicate if there has been a mismatch since the last reading of this register. Upon reading this register, all bits are reset to '1'.
-
     ///
-
     /// 0 : Mismatch 1 : Match.
     pub fn miim_scan_rslts_sticky(&self) -> u32 {
         self.0
@@ -48,9 +46,7 @@ impl MII_SCAN_RSLTS_STICKY {
 pub struct TEMP_SENSOR_CFG(u32);
 impl TEMP_SENSOR_CFG {
     /// The time to keep RUN asserted during a sample period, time is in 1024 SwC clock cycles.
-
     ///
-
     /// 0: Reserved n: n * 1024 * clock-period between samples
     pub fn run_wid(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -62,9 +58,7 @@ impl TEMP_SENSOR_CFG {
         self.0 |= value;
     }
     /// The delay between temperature sensor samples in 1024 SwC clock cycles. The default value corresponds to 500us. The delay have to be big enough to allow the temperature sensor to complete its sample.
-
     ///
-
     /// 0: Reserved n: n * 1024 * clock-period between samples
     pub fn sample_per(&self) -> u32 {
         self.0 & 0xff

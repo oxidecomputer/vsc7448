@@ -101,9 +101,7 @@ impl STICKY_INFO {
         self.0 |= value;
     }
     /// Number of times STICKY_INFO.PORT_NUM and  STICKY_INFO.TTI_PTR is allowed to be updated.
-
     ///
-
     /// 0: Illegal 1: Max one update of STICKY_INFO allowed (decremented for each update). 2: Max two updates of STICKY_INFO allowed (decremented for each update). ... 15: Any number of updates of STICKY_INFO allowed (not decremented).
     pub fn sticky_info_wr_cnt(&self) -> u32 {
         (self.0 & 0xf0000000) >> 28

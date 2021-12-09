@@ -44,9 +44,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// Top-ctrl FSM recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Auto-restart on missing input signal after Restart-Delay-Timer has expired 2: Auto-restart on missing input signal
     pub fn apc_fsm_recover_mode(&self) -> u32 {
         (self.0 & 0xc000000) >> 26
@@ -58,9 +56,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// APC operation mode
-
     ///
-
     /// 0: Off 1: Manual mode 2: Perform calibrarion and run FSM1 3: Perform calibration and run FSM2 4: Perform calibration and run FSM1 and FSM2 in ping-pong operation 5: Perform calibration and then enter manual mode
     pub fn apc_mode(&self) -> u32 {
         self.0 & 0x7
@@ -71,9 +67,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// Select flexctrl block in order to read internal counters. Counter values readable from APC_FLEXCTRL_CNT_STATUS.
-
     ///
-
     /// 0: Offset-ctrl 1: L-ctrl 2: C-ctrl 3: AGC-ctrl 4: DFE1-ctrl 5: DFE2-ctrl 6: DFE3-ctrl 7: DFE4-ctrl 8: SAM_Offset-cal 9: Level-cal 10: HML sampling errors
     pub fn block_read_sel(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -95,9 +89,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// Freeze current state
-
     ///
-
     /// 0: Normal operation 1: Freeze APC
     pub fn freeze_apc(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -109,9 +101,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// Clear HML sampling error counter
-
     ///
-
     /// 1: Clear counter
     pub fn hml_clr_cnt(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -123,9 +113,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// HML sampling error correction enable. Invalid samples are not used for parameter control (smart sampling).
-
     ///
-
     /// 0: Disable smart sampling 1: Enable smart sampling
     pub fn hml_errcorr_ena(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
@@ -137,9 +125,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// HML sampling error correction mode. Correctable sampling errors can be automatically corrected.
-
     ///
-
     /// 0: Disable auto-correctin 1: Enable auto-correction
     pub fn hml_errcorr_mode(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -151,9 +137,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// H/L swapping in HML sampling error correction logic
-
     ///
-
     /// 0: No H/L swapping 1: H/L swapped
     pub fn hml_swap_hl(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
@@ -165,9 +149,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// Interface bit-width
-
     ///
-
     /// 0: 8-bit 1: 10-bit 2: 16-bit 3: 20-bit 4: 32-bit 5: 40-bit
     pub fn if_width(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -179,9 +161,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// Reset APC core logic (configuration registers are not reset)
-
     ///
-
     /// 1: Reset APC 0: Normal operation (mission mode)
     pub fn reset_apc(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -193,9 +173,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// Signal detect valid configuration (Offs/AGC/L/C/DFE)
-
     ///
-
     /// 0: Signal_detect input directly used 1: Signal_detect input gated with gain_ctrl ramp-up done (EQZ_GAIN_CTRL_DONE)
     pub fn sig_det_valid_cfg(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -227,9 +205,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// APC throttling mode
-
     ///
-
     /// 0: Disable no power reduction (continuous operation) 1: Enable power reduced operation (pulsed operation)
     pub fn throttle_mode(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -241,9 +217,7 @@ impl APC_COMMON_CFG0 {
         self.0 |= value;
     }
     /// Current state of APC top control state machine
-
     ///
-
     /// 0: Off 1: Power-up 2: Power-down 3: Manual mode 4: Calibrate IS 5: Calibrate LD 6: Not used 7: Gain-control ramp-up 8: Mission mode (FSM1 controlled) 9: Mission mode (FSM2 controlled) 10-12: Debug states 13: Snooze 14-15: Not used
     pub fn top_ctrl_state(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -272,9 +246,7 @@ impl APC_DFE1_CTRL {
         self.0 |= value;
     }
     /// Parameter control state in one-time mode
-
     ///
-
     /// 1: Finished
     pub fn dfe1_ctrl_done(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -286,9 +258,7 @@ impl APC_DFE1_CTRL {
         self.0 |= value;
     }
     /// Parameter control mode for DFE1 parameter
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn dfe1_ctrl_mode(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -310,9 +280,7 @@ impl APC_DFE1_CTRL {
         self.0 |= value;
     }
     /// Enable use of alternative threshold for DFE1 parameter
-
     ///
-
     /// 0: Use default threshold 1: Use alternative threshold
     pub fn dfe1_ctrl_thres_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -324,9 +292,7 @@ impl APC_DFE1_CTRL {
         self.0 |= value;
     }
     /// Operation mode
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn dfe1_op_mode(&self) -> u32 {
         self.0 & 0x3
@@ -337,9 +303,7 @@ impl APC_DFE1_CTRL {
         self.0 |= value;
     }
     /// Select counter to be read
-
     ///
-
     /// 0: dfe1_value 1: Hit counter 2: Error counter
     pub fn dfe1_read_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -351,9 +315,7 @@ impl APC_DFE1_CTRL {
         self.0 |= value;
     }
     /// DFE1 recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze DFE1 on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze DFE1 on weak signal and restart on missing input signal 3: Freeze DFE1 on missing input signal 4: Freeze DFE1 on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart DFE1 on missing input signal 6-7: Reserved
     pub fn dfe1_recover_mode(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
@@ -375,9 +337,7 @@ impl APC_DFE1_CTRL {
         self.0 |= value;
     }
     /// Synchronization mode
-
     ///
-
     /// 0: Independent 1: Attached to parctrl FSM 1 2: Attached to parctrl FSM 2 3: Attached to both parctrl FSMs
     pub fn dfe1_sync_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -396,9 +356,7 @@ impl APC_DFE1_CTRL {
 pub struct APC_DFE1_PAR_CFG(u32);
 impl APC_DFE1_PAR_CFG {
     /// Parameter change mode
-
     ///
-
     /// 0: Automatic update 1: Preset (use DFE1_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn dfe1_chg_mode(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -410,9 +368,7 @@ impl APC_DFE1_PAR_CFG {
         self.0 |= value;
     }
     /// Select parameter update direction
-
     ///
-
     /// 0: Normal 1: Inverted
     pub fn dfe1_dir_sel(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -479,9 +435,7 @@ impl APC_DFE1_TIMER_CFG {
         self.0 |= value;
     }
     /// Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn dfe1_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -510,9 +464,7 @@ impl APC_DFE2_CTRL {
         self.0 |= value;
     }
     /// Parameter control state in one-time mode
-
     ///
-
     /// 1: Finished
     pub fn dfe2_ctrl_done(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -524,9 +476,7 @@ impl APC_DFE2_CTRL {
         self.0 |= value;
     }
     /// Parameter control mode for DFE2 parameter
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn dfe2_ctrl_mode(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -548,9 +498,7 @@ impl APC_DFE2_CTRL {
         self.0 |= value;
     }
     /// Enable use of alternative threshold for DFE2 parameter
-
     ///
-
     /// 0: Use default threshold 1: Use alternative threshold
     pub fn dfe2_ctrl_thres_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -562,9 +510,7 @@ impl APC_DFE2_CTRL {
         self.0 |= value;
     }
     /// Operation mode
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn dfe2_op_mode(&self) -> u32 {
         self.0 & 0x3
@@ -575,9 +521,7 @@ impl APC_DFE2_CTRL {
         self.0 |= value;
     }
     /// Select counter to be read
-
     ///
-
     /// 0: dfe2_value 1: Hit counter 2: Error counter
     pub fn dfe2_read_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -589,9 +533,7 @@ impl APC_DFE2_CTRL {
         self.0 |= value;
     }
     /// DFE2 recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze DFE2 on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze DFE2 on weak signal and restart on missing input signal 3: Freeze DFE2 on missing input signal 4: Freeze DFE2 on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart DFE2 on missing input signal 6-7: Reserved
     pub fn dfe2_recover_mode(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
@@ -613,9 +555,7 @@ impl APC_DFE2_CTRL {
         self.0 |= value;
     }
     /// Synchronization mode
-
     ///
-
     /// 0: Independent 1: Attached to parctrl FSM 1 2: Attached to parctrl FSM 2 3: Attached to both parctrl FSMs
     pub fn dfe2_sync_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -634,9 +574,7 @@ impl APC_DFE2_CTRL {
 pub struct APC_DFE2_PAR_CFG(u32);
 impl APC_DFE2_PAR_CFG {
     /// Parameter change mode
-
     ///
-
     /// 0: Automatic update 1: Preset (use DFE2_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn dfe2_chg_mode(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -648,9 +586,7 @@ impl APC_DFE2_PAR_CFG {
         self.0 |= value;
     }
     /// Select parameter update direction
-
     ///
-
     /// 0: Normal 1: Inverted
     pub fn dfe2_dir_sel(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -717,9 +653,7 @@ impl APC_DFE2_TIMER_CFG {
         self.0 |= value;
     }
     /// Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn dfe2_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -748,9 +682,7 @@ impl APC_DFE3_CTRL {
         self.0 |= value;
     }
     /// Parameter control state in one-time mode
-
     ///
-
     /// 1: Finished
     pub fn dfe3_ctrl_done(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -762,9 +694,7 @@ impl APC_DFE3_CTRL {
         self.0 |= value;
     }
     /// Parameter control mode for DFE3 parameter
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn dfe3_ctrl_mode(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -786,9 +716,7 @@ impl APC_DFE3_CTRL {
         self.0 |= value;
     }
     /// Enable use of alternative threshold for DFE3 parameter
-
     ///
-
     /// 0: Use default threshold 1: Use alternative threshold
     pub fn dfe3_ctrl_thres_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -800,9 +728,7 @@ impl APC_DFE3_CTRL {
         self.0 |= value;
     }
     /// Operation mode
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn dfe3_op_mode(&self) -> u32 {
         self.0 & 0x3
@@ -813,9 +739,7 @@ impl APC_DFE3_CTRL {
         self.0 |= value;
     }
     /// Select counter to be read
-
     ///
-
     /// 0: dfe3_value 1: Hit counter 2: Error counter
     pub fn dfe3_read_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -827,9 +751,7 @@ impl APC_DFE3_CTRL {
         self.0 |= value;
     }
     /// DFE3 recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze DFE3 on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze DFE3 on weak signal and restart on missing input signal 3: Freeze DFE3 on missing input signal 4: Freeze DFE3 on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart DFE3 on missing input signal 6-7: Reserved
     pub fn dfe3_recover_mode(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
@@ -851,9 +773,7 @@ impl APC_DFE3_CTRL {
         self.0 |= value;
     }
     /// Synchronization mode
-
     ///
-
     /// 0: Independent 1: Attached to parctrl FSM 1 2: Attached to parctrl FSM 2 3: Attached to both parctrl FSMs
     pub fn dfe3_sync_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -872,9 +792,7 @@ impl APC_DFE3_CTRL {
 pub struct APC_DFE3_PAR_CFG(u32);
 impl APC_DFE3_PAR_CFG {
     /// Parameter change mode
-
     ///
-
     /// 0: Automatic update 1: Preset (use DFE3_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn dfe3_chg_mode(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -886,9 +804,7 @@ impl APC_DFE3_PAR_CFG {
         self.0 |= value;
     }
     /// Select parameter update direction
-
     ///
-
     /// 0: Normal 1: Inverted
     pub fn dfe3_dir_sel(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -955,9 +871,7 @@ impl APC_DFE3_TIMER_CFG {
         self.0 |= value;
     }
     /// Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn dfe3_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -986,9 +900,7 @@ impl APC_DFE4_CTRL {
         self.0 |= value;
     }
     /// Parameter control state in one-time mode
-
     ///
-
     /// 1: Finished
     pub fn dfe4_ctrl_done(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -1000,9 +912,7 @@ impl APC_DFE4_CTRL {
         self.0 |= value;
     }
     /// Parameter control mode for DFE4 parameter
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn dfe4_ctrl_mode(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -1024,9 +934,7 @@ impl APC_DFE4_CTRL {
         self.0 |= value;
     }
     /// Enable use of alternative threshold for DFE4 parameter
-
     ///
-
     /// 0: Use default threshold 1: Use alternative threshold
     pub fn dfe4_ctrl_thres_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -1038,9 +946,7 @@ impl APC_DFE4_CTRL {
         self.0 |= value;
     }
     /// Operation mode
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn dfe4_op_mode(&self) -> u32 {
         self.0 & 0x3
@@ -1051,9 +957,7 @@ impl APC_DFE4_CTRL {
         self.0 |= value;
     }
     /// Select counter to be read
-
     ///
-
     /// 0: dfe4_value 1: Hit counter 2: Error counter
     pub fn dfe4_read_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -1065,9 +969,7 @@ impl APC_DFE4_CTRL {
         self.0 |= value;
     }
     /// DFE4 recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze DFE4 on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze DFE4 on weak signal and restart on missing input signal 3: Freeze DFE4 on missing input signal 4: Freeze DFE4 on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart DFE4 on missing input signal 6-7: Reserved
     pub fn dfe4_recover_mode(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
@@ -1089,9 +991,7 @@ impl APC_DFE4_CTRL {
         self.0 |= value;
     }
     /// Synchronization mode
-
     ///
-
     /// 0: Independent 1: Attached to parctrl FSM 1 2: Attached to parctrl FSM 2 3: Attached to both parctrl FSMs
     pub fn dfe4_sync_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -1110,9 +1010,7 @@ impl APC_DFE4_CTRL {
 pub struct APC_DFE4_PAR_CFG(u32);
 impl APC_DFE4_PAR_CFG {
     /// Parameter change mode
-
     ///
-
     /// 0: Automatic update 1: Preset (use DFE4_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn dfe4_chg_mode(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -1124,9 +1022,7 @@ impl APC_DFE4_PAR_CFG {
         self.0 |= value;
     }
     /// Select parameter update direction
-
     ///
-
     /// 0: Normal 1: Inverted
     pub fn dfe4_dir_sel(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -1193,9 +1089,7 @@ impl APC_DFE4_TIMER_CFG {
         self.0 |= value;
     }
     /// Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn dfe4_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -1224,9 +1118,7 @@ impl APC_EQZ_AGC_CTRL {
         self.0 |= value;
     }
     /// Parameter control state in one-time mode
-
     ///
-
     /// 1: Finished
     pub fn eqz_agc_ctrl_done(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -1238,9 +1130,7 @@ impl APC_EQZ_AGC_CTRL {
         self.0 |= value;
     }
     /// Parameter control mode for EQZ_AGC parameter
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn eqz_agc_ctrl_mode(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -1262,9 +1152,7 @@ impl APC_EQZ_AGC_CTRL {
         self.0 |= value;
     }
     /// Enable use of alternative threshold for EQZ_AGC parameter
-
     ///
-
     /// 0: Use default threshold 1: Use alternative threshold
     pub fn eqz_agc_ctrl_thres_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -1276,9 +1164,7 @@ impl APC_EQZ_AGC_CTRL {
         self.0 |= value;
     }
     /// Operation mode
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn eqz_agc_op_mode(&self) -> u32 {
         self.0 & 0x3
@@ -1289,9 +1175,7 @@ impl APC_EQZ_AGC_CTRL {
         self.0 |= value;
     }
     /// Select counter to be read
-
     ///
-
     /// 0: eqz_agc_value 1: Hit counter 2: Error counter
     pub fn eqz_agc_read_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -1303,9 +1187,7 @@ impl APC_EQZ_AGC_CTRL {
         self.0 |= value;
     }
     /// EQZ_AGC recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze EQZ_AGC on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze EQZ_AGC on weak signal and restart on missing input signal 3: Freeze EQZ_AGC on missing input signal 4: Freeze EQZ_AGC on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart EQZ_AGC on missing input signal 6-7: Reserved
     pub fn eqz_agc_recover_mode(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
@@ -1327,9 +1209,7 @@ impl APC_EQZ_AGC_CTRL {
         self.0 |= value;
     }
     /// Synchronization mode
-
     ///
-
     /// 0: Independent 1: Attached to parctrl FSM 1 2: Attached to parctrl FSM 2 3: Attached to both parctrl FSMs
     pub fn eqz_agc_sync_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -1348,9 +1228,7 @@ impl APC_EQZ_AGC_CTRL {
 pub struct APC_EQZ_AGC_PAR_CFG(u32);
 impl APC_EQZ_AGC_PAR_CFG {
     /// Parameter change mode
-
     ///
-
     /// 0: Automatic update 1: Preset (use EQZ_AGC_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn eqz_agc_chg_mode(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -1362,9 +1240,7 @@ impl APC_EQZ_AGC_PAR_CFG {
         self.0 |= value;
     }
     /// Select parameter update direction
-
     ///
-
     /// 0: Normal 1: Inverted
     pub fn eqz_agc_dir_sel(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -1431,9 +1307,7 @@ impl APC_EQZ_AGC_TIMER_CFG {
         self.0 |= value;
     }
     /// Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn eqz_agc_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -1482,9 +1356,7 @@ impl APC_EQZ_COMMON_CFG {
         self.0 |= value;
     }
     /// Gain calibration mode
-
     ///
-
     /// 0: Use successive approximation to find required gain 1: use max gain and reduce linearly to find required gain
     pub fn eqz_gain_cal_mode(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -1496,9 +1368,7 @@ impl APC_EQZ_COMMON_CFG {
         self.0 |= value;
     }
     /// Parameter change mode
-
     ///
-
     /// 0: Automatic update 1: Preset (use PAR_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn eqz_gain_chg_mode(&self) -> u32 {
         self.0 & 0x3
@@ -1519,9 +1389,7 @@ impl APC_EQZ_COMMON_CFG {
         self.0 |= value;
     }
     /// Operation mode (only when EQZ_GAIN_STOP_CTRL = 1)
-
     ///
-
     /// 0: Idle 1: Calibrate and work 2: Work
     pub fn eqz_gain_op_mode(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -1533,9 +1401,7 @@ impl APC_EQZ_COMMON_CFG {
         self.0 |= value;
     }
     /// Gain recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze gain on missing input signal and auto-restart after Restart-Delay-Timer has expired 2: Auto-restart Gain control on missing input signal 3: Reserved
     pub fn eqz_gain_recover_mode(&self) -> u32 {
         (self.0 & 0x1800) >> 11
@@ -1640,9 +1506,7 @@ impl APC_EQZ_C_CTRL {
         self.0 |= value;
     }
     /// Parameter control state in one-time mode
-
     ///
-
     /// 1: Finished
     pub fn eqz_c_ctrl_done(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -1654,9 +1518,7 @@ impl APC_EQZ_C_CTRL {
         self.0 |= value;
     }
     /// Parameter control mode for EQZ_C parameter
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn eqz_c_ctrl_mode(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -1678,9 +1540,7 @@ impl APC_EQZ_C_CTRL {
         self.0 |= value;
     }
     /// Enable use of alternative threshold for EQZ_C parameter
-
     ///
-
     /// 0: Use default threshold 1: Use alternative threshold
     pub fn eqz_c_ctrl_thres_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -1692,9 +1552,7 @@ impl APC_EQZ_C_CTRL {
         self.0 |= value;
     }
     /// Operation mode
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn eqz_c_op_mode(&self) -> u32 {
         self.0 & 0x3
@@ -1705,9 +1563,7 @@ impl APC_EQZ_C_CTRL {
         self.0 |= value;
     }
     /// Select counter to be read
-
     ///
-
     /// 0: eqz_c_value 1: Hit counter 2: Error counter
     pub fn eqz_c_read_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -1719,9 +1575,7 @@ impl APC_EQZ_C_CTRL {
         self.0 |= value;
     }
     /// EQZ_C recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze EQZ_C on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze EQZ_C on weak signal and restart on missing input signal 3: Freeze EQZ_C on missing input signal 4: Freeze EQZ_C on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart EQZ_C on missing input signal 6-7: Reserved
     pub fn eqz_c_recover_mode(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
@@ -1743,9 +1597,7 @@ impl APC_EQZ_C_CTRL {
         self.0 |= value;
     }
     /// Synchronization mode
-
     ///
-
     /// 0: Independent 1: Attached to parctrl FSM 1 2: Attached to parctrl FSM 2 3: Attached to both parctrl FSMs
     pub fn eqz_c_sync_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -1764,9 +1616,7 @@ impl APC_EQZ_C_CTRL {
 pub struct APC_EQZ_C_PAR_CFG(u32);
 impl APC_EQZ_C_PAR_CFG {
     /// Parameter change mode
-
     ///
-
     /// 0: Automatic update 1: Preset (use EQZ_C_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn eqz_c_chg_mode(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -1778,9 +1628,7 @@ impl APC_EQZ_C_PAR_CFG {
         self.0 |= value;
     }
     /// Select parameter update direction
-
     ///
-
     /// 0: Normal 1: Inverted
     pub fn eqz_c_dir_sel(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -1847,9 +1695,7 @@ impl APC_EQZ_C_TIMER_CFG {
         self.0 |= value;
     }
     /// Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn eqz_c_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -2108,9 +1954,7 @@ impl APC_EQZ_L_CTRL {
         self.0 |= value;
     }
     /// Parameter control state in one-time mode
-
     ///
-
     /// 1: Finished
     pub fn eqz_l_ctrl_done(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -2122,9 +1966,7 @@ impl APC_EQZ_L_CTRL {
         self.0 |= value;
     }
     /// Parameter control mode for EQZ_L parameter
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn eqz_l_ctrl_mode(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -2146,9 +1988,7 @@ impl APC_EQZ_L_CTRL {
         self.0 |= value;
     }
     /// Enable use of alternative threshold for EQZ_L parameter
-
     ///
-
     /// 0: Use default threshold 1: Use alternative threshold
     pub fn eqz_l_ctrl_thres_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -2160,9 +2000,7 @@ impl APC_EQZ_L_CTRL {
         self.0 |= value;
     }
     /// Operation mode
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn eqz_l_op_mode(&self) -> u32 {
         self.0 & 0x3
@@ -2173,9 +2011,7 @@ impl APC_EQZ_L_CTRL {
         self.0 |= value;
     }
     /// Select counter to be read
-
     ///
-
     /// 0: eqz_l_value 1: Hit counter 2: Error counter
     pub fn eqz_l_read_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -2187,9 +2023,7 @@ impl APC_EQZ_L_CTRL {
         self.0 |= value;
     }
     /// EQZ_L recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze EQZ_L on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze EQZ_L on weak signal and restart on missing input signal 3: Freeze EQZ_L on missing input signal 4: Freeze EQZ_L on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart EQZ_L on missing input signal 6-7: Reserved
     pub fn eqz_l_recover_mode(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
@@ -2211,9 +2045,7 @@ impl APC_EQZ_L_CTRL {
         self.0 |= value;
     }
     /// Synchronization mode
-
     ///
-
     /// 0: Independent 1: Attached to parctrl FSM 1 2: Attached to parctrl FSM 2 3: Attached to both parctrl FSMs
     pub fn eqz_l_sync_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -2232,9 +2064,7 @@ impl APC_EQZ_L_CTRL {
 pub struct APC_EQZ_L_PAR_CFG(u32);
 impl APC_EQZ_L_PAR_CFG {
     /// Parameter change mode
-
     ///
-
     /// 0: Automatic update 1: Preset (use EQZ_L_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn eqz_l_chg_mode(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -2246,9 +2076,7 @@ impl APC_EQZ_L_PAR_CFG {
         self.0 |= value;
     }
     /// Select parameter update direction
-
     ///
-
     /// 0: Normal 1: Inverted
     pub fn eqz_l_dir_sel(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -2315,9 +2143,7 @@ impl APC_EQZ_L_TIMER_CFG {
         self.0 |= value;
     }
     /// Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn eqz_l_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -2346,9 +2172,7 @@ impl APC_EQZ_OFFS_CTRL {
         self.0 |= value;
     }
     /// Parameter control state in one-time mode
-
     ///
-
     /// 1: Finished
     pub fn eqz_offs_ctrl_done(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -2360,9 +2184,7 @@ impl APC_EQZ_OFFS_CTRL {
         self.0 |= value;
     }
     /// Parameter control mode for EQZ_OFFS parameter
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn eqz_offs_ctrl_mode(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -2384,9 +2206,7 @@ impl APC_EQZ_OFFS_CTRL {
         self.0 |= value;
     }
     /// Enable use of alternative threshold for EQZ_OFFS parameter
-
     ///
-
     /// 0: Use default threshold 1: Use alternative threshold
     pub fn eqz_offs_ctrl_thres_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -2398,9 +2218,7 @@ impl APC_EQZ_OFFS_CTRL {
         self.0 |= value;
     }
     /// Operation mode
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn eqz_offs_op_mode(&self) -> u32 {
         self.0 & 0x3
@@ -2411,9 +2229,7 @@ impl APC_EQZ_OFFS_CTRL {
         self.0 |= value;
     }
     /// Select counter to be read
-
     ///
-
     /// 0: eqz_offs_value 1: Hit counter 2: Error counter
     pub fn eqz_offs_read_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -2425,9 +2241,7 @@ impl APC_EQZ_OFFS_CTRL {
         self.0 |= value;
     }
     /// EQZ_OFFS recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze EQZ_OFFS on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze EQZ_OFFS on weak signal and restart on missing input signal 3: Freeze EQZ_OFFS on missing input signal 4: Freeze EQZ_OFFS on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart EQZ_OFFS on missing input signal 6-7: Reserved
     pub fn eqz_offs_recover_mode(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
@@ -2449,9 +2263,7 @@ impl APC_EQZ_OFFS_CTRL {
         self.0 |= value;
     }
     /// Synchronization mode
-
     ///
-
     /// 0: Independent 1: Attached to parctrl FSM 1 2: Attached to parctrl FSM 2 3: Attached to both parctrl FSMs
     pub fn eqz_offs_sync_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -2470,9 +2282,7 @@ impl APC_EQZ_OFFS_CTRL {
 pub struct APC_EQZ_OFFS_PAR_CFG(u32);
 impl APC_EQZ_OFFS_PAR_CFG {
     /// Parameter change mode
-
     ///
-
     /// 0: Automatic update 1: Preset (use EQZ_OFFS_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn eqz_offs_chg_mode(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -2484,9 +2294,7 @@ impl APC_EQZ_OFFS_PAR_CFG {
         self.0 |= value;
     }
     /// Select parameter update direction
-
     ///
-
     /// 0: Normal 1: Inverted
     pub fn eqz_offs_dir_sel(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -2553,9 +2361,7 @@ impl APC_EQZ_OFFS_TIMER_CFG {
         self.0 |= value;
     }
     /// Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn eqz_offs_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -2846,9 +2652,7 @@ impl APC_IS_CAL_CFG1 {
         self.0 |= value;
     }
     /// Offset calibration state
-
     ///
-
     /// 1: finished
     pub fn offscal_done(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -2926,9 +2730,7 @@ impl APC_IS_CAL_CFG1 {
 pub struct APC_LC_SOFTCTRL_CFG(u32);
 impl APC_LC_SOFTCTRL_CFG {
     /// EQZ_AGC threshold for mandatory increase of L and C. If EQZ_AGC > (128+LC_SC_AGC_THRESHOLD) then L and C control values are increased.
-
     ///
-
     /// 0: 128 1: 129 ... 127: 255
     pub fn lc_sc_agc_threshold(&self) -> u32 {
         (self.0 & 0xfe00) >> 9
@@ -2940,9 +2742,7 @@ impl APC_LC_SOFTCTRL_CFG {
         self.0 |= value;
     }
     /// DFE1/2 and EQZ_AGC averaging behavior. DFE/AGC parameters are averaged over 2^(8+LC_SC_AVGSHFT) input values.
-
     ///
-
     /// 0: Average over 256 values 1: Average over 512 values ...
     pub fn lc_sc_avgshft(&self) -> u32 {
         (self.0 & 0xf000000) >> 24
@@ -2974,9 +2774,7 @@ impl APC_LC_SOFTCTRL_CFG {
         self.0 |= value;
     }
     /// Select divider for C-control used in mode 1 (Divider = 4+LC_SC_DIV_C)
-
     ///
-
     /// 0: Divide by 4 1: Devide by 5 ... 7: Devide by 11
     pub fn lc_sc_div_c(&self) -> u32 {
         (self.0 & 0x1c) >> 2
@@ -2988,9 +2786,7 @@ impl APC_LC_SOFTCTRL_CFG {
         self.0 |= value;
     }
     /// Define DFE2 comparison parameter for EQZ_C control in mode 1
-
     ///
-
     /// 0: EQZ_L 1: EQZ_C
     pub fn lc_sc_div_c_sel(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -3002,9 +2798,7 @@ impl APC_LC_SOFTCTRL_CFG {
         self.0 |= value;
     }
     /// Select divider for L-control used in mode 1 (Divider = 4+LC_SC_DIV_L)
-
     ///
-
     /// 0: Divide by 4 1: Devide by 5 ... 7: Devide by 11
     pub fn lc_sc_div_l(&self) -> u32 {
         (self.0 & 0xe0) >> 5
@@ -3016,9 +2810,7 @@ impl APC_LC_SOFTCTRL_CFG {
         self.0 |= value;
     }
     /// Select LC soft-control mode. LC soft-control modes must be enabled first after INI/MIN/MAX values of all parameters have been programmed.
-
     ///
-
     /// 0: Disabled 1: Mode 1 2: Mode 2 3: Reserved
     pub fn lc_sc_mode(&self) -> u32 {
         self.0 & 0x3
@@ -3029,9 +2821,7 @@ impl APC_LC_SOFTCTRL_CFG {
         self.0 |= value;
     }
     /// Operation timer configuration: L/C-control operates in every 2^(2*LC_SC_TIMER)-th clock cycle.
-
     ///
-
     /// 0: Operate every clock cycle 1: Operate every 4th clock cycle 2: Operate every 16th clock cycle ...
     pub fn lc_sc_timer(&self) -> u32 {
         (self.0 & 0xf0000000) >> 28
@@ -3050,9 +2840,7 @@ impl APC_LC_SOFTCTRL_CFG {
 pub struct APC_LD_CAL_CFG(u32);
 impl APC_LD_CAL_CFG {
     /// Calibration clock divider. Clock used in calibration blocks is divided by 2^(2*CAL_CLK_DIV)
-
     ///
-
     /// 0: No clock division 1: Clock is divided by 4 2: Clock is divided by 16 ... 7: Clock is divided by 16384
     pub fn cal_clk_div(&self) -> u32 {
         (self.0 & 0x70000000) >> 28
@@ -3064,9 +2852,7 @@ impl APC_LD_CAL_CFG {
         self.0 |= value;
     }
     /// Detect level calibration state
-
     ///
-
     /// 1: finished
     pub fn detlev_cal_done(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -3078,9 +2864,7 @@ impl APC_LD_CAL_CFG {
         self.0 |= value;
     }
     /// Timer for calibration process
-
     ///
-
     /// 14: Use for 400MHz rx_clk
     pub fn detlvl_timer(&self) -> u32 {
         (self.0 & 0x1e) >> 1
@@ -3092,9 +2876,7 @@ impl APC_LD_CAL_CFG {
         self.0 |= value;
     }
     /// Level for IE signal detect (when controlled by APC)
-
     ///
-
     /// 0: 20mV
     pub fn ie_sdet_level(&self) -> u32 {
         (self.0 & 0x7e0) >> 5
@@ -3151,9 +2933,7 @@ impl APC_PARCTRL_FSM1_TIMER_CFG {
         self.0 |= value;
     }
     /// FSM1 Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn fsm1_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -3181,9 +2961,7 @@ impl APC_PARCTRL_FSM2_TIMER_CFG {
         self.0 |= value;
     }
     /// FSM2 Pause time
-
     ///
-
     /// (in number of rx_clk cycles)
     pub fn fsm2_ps_time(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -3212,9 +2990,7 @@ impl APC_PARCTRL_SYNC_CFG {
         self.0 |= value;
     }
     /// Parameter control state of FSM1 in one-time mode
-
     ///
-
     /// 1: finished
     pub fn fsm1_ctrl_done(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -3226,9 +3002,7 @@ impl APC_PARCTRL_SYNC_CFG {
         self.0 |= value;
     }
     /// Parameter control mode for FSM1
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn fsm1_ctrl_mode(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -3240,9 +3014,7 @@ impl APC_PARCTRL_SYNC_CFG {
         self.0 |= value;
     }
     /// Operation mode of FSM1
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn fsm1_op_mode(&self) -> u32 {
         self.0 & 0x3
@@ -3253,9 +3025,7 @@ impl APC_PARCTRL_SYNC_CFG {
         self.0 |= value;
     }
     /// FSM1 recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze FSM1 on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze FSM1 on weak signal and restart on missing input signal 3: Freeze FSM1 on missing input signal 4: Freeze FSM1 on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart FSM1 on missing input signal 6-7: Reserved
     pub fn fsm1_recover_mode(&self) -> u32 {
         (self.0 & 0x700) >> 8
@@ -3277,9 +3047,7 @@ impl APC_PARCTRL_SYNC_CFG {
         self.0 |= value;
     }
     /// Parameter control state of FSM2 in one-time mode
-
     ///
-
     /// 1: finished
     pub fn fsm2_ctrl_done(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -3291,9 +3059,7 @@ impl APC_PARCTRL_SYNC_CFG {
         self.0 |= value;
     }
     /// Parameter control mode for FSM2
-
     ///
-
     /// 0: Discrete 1: Continuous
     pub fn fsm2_ctrl_mode(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -3305,9 +3071,7 @@ impl APC_PARCTRL_SYNC_CFG {
         self.0 |= value;
     }
     /// Operation mode of FSM2
-
     ///
-
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn fsm2_op_mode(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -3319,9 +3083,7 @@ impl APC_PARCTRL_SYNC_CFG {
         self.0 |= value;
     }
     /// FSM2 recovery behavior
-
     ///
-
     /// 0: No auto-recovery 1: Freeze FSM2 on weak (eqz_gain > eqz_gain_freeze_thres) or missing input signal 2: Freeze FSM2 on weak signal and restart on missing input signal 3: Freeze FSM2 on missing input signal 4: Freeze FSM2 on missing input signal and auto-restart after Restart-Delay-Timer has expired 5: Auto-restart FSM2 on missing input signal 6-7: Reserved
     pub fn fsm2_recover_mode(&self) -> u32 {
         (self.0 & 0x3800) >> 11

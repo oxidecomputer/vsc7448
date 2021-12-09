@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct FAN_CFG(u32);
 impl FAN_CFG {
     /// The system clock period given in the clock period in PS divided by 100.
-
     ///
-
     /// Values below 40 are reserved.
     pub fn clk_period(&self) -> u32 {
         (self.0 & 0x7f80) >> 7
@@ -46,9 +44,7 @@ impl FAN_CFG {
         self.0 |= value;
     }
     /// Define the duty cycle
-
     ///
-
     /// 0x00: Always "off" 0xFF: Always "on"
     pub fn duty_cycle(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
@@ -69,9 +65,7 @@ impl FAN_CFG {
         self.0 |= value;
     }
     /// Enable gating of the TACH input by the PWM output so that only TACH pulses received when PWM is "on" are counted.
-
     ///
-
     /// 0: Disabled 1: Enabled
     pub fn gate_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -83,9 +77,7 @@ impl FAN_CFG {
         self.0 |= value;
     }
     /// Define the polarity of the PWM output.
-
     ///
-
     /// 0: PWM is logic 1 when "on" 1: PWM is logic 0 when "on"
     pub fn inv_pol(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -97,9 +89,7 @@ impl FAN_CFG {
         self.0 |= value;
     }
     /// Set the frequency of the PWM output
-
     ///
-
     /// 0: 25 kHz 1: 120 Hz 2: 100 Hz 3: 80 Hz 4: 60 Hz 5: 40 Hz 6: 20 Hz 7: 10 Hz
     pub fn pwm_freq(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -126,9 +116,7 @@ impl FAN_CFG {
 pub struct SIO_INTR_IDENT(u32);
 impl SIO_INTR_IDENT {
     /// Shows the currently active interrupts. This register is the result of the SIO_INTR interrupts with the disabled interrupts (from SIO_INTR_ENA and SIO_GPIO_INTR_ENA) removed.
-
     ///
-
     /// 0: No active interrupt for given gpio 1: Active interrupt for given gpio
     pub fn sio_intr_ident(&self) -> u32 {
         self.0

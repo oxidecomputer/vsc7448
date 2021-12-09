@@ -60,9 +60,7 @@ impl LB_BUCKET_VAL {
 pub struct LB_CFG(u32);
 impl LB_CFG {
     /// Specify rate in steps of configured granularity. The rate granularity is configured in TIMESCALE_VAL.
-
     ///
-
     /// 0: Disable leak. For THRES_VAL = 0 bucket is always closed. For THRES_VAL > 0, the configured burst size is available. 1: 1 * granularity 2: 2 * granularity ... max_value-1: (max_value-1)*granularity max_value: Disable leaky bucket (always open)
     pub fn rate_val(&self) -> u32 {
         self.0 & 0x7ff
@@ -73,9 +71,7 @@ impl LB_CFG {
         self.0 |= value;
     }
     /// Policer threshold size (a.ka. burst capacity). Unit is 2048 bytes
-
     ///
-
     /// 0: Threshold = 0 bytes (no burst allowed) 1: Threshold = 2048 bytes n: Threshold = n x 2048 bytes
     pub fn thres_val(&self) -> u32 {
         (self.0 & 0x7f0000) >> 16
@@ -92,9 +88,7 @@ impl LB_CFG {
 pub struct MISC_CFG(u32);
 impl MISC_CFG {
     /// Enables frame rate mode for the policer, where policer rates are measured in frames per second instead of bits per second.
-
     ///
-
     /// 0: Rates measured in bits per second 1: Rates measured in frames per second
     pub fn frame_rate_ena(&self) -> u32 {
         self.0 & 0x1
@@ -110,9 +104,7 @@ impl MISC_CFG {
 pub struct SLB_CFG(u32);
 impl SLB_CFG {
     /// Configures if stripped encapsulation data (normalized data) is policed by the policer.
-
     ///
-
     /// 0: Encapsulation data is counted as frame data. 1: Encapsulation data in not counted as frame data.
     pub fn encap_data_dis(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -124,9 +116,7 @@ impl SLB_CFG {
         self.0 |= value;
     }
     /// Value added to each frame before updating the bucket. Gap value range: -64 to +63 in two's complement format. Setting GAP_VALUE to 20 corresponds to a line-rate measurement, since on the line each frame will be preceded by 12 bytes of IFG and 8 bytes of preamble. Setting GAP_VALUE to 0 corresponds to a data-rate measurement.
-
     ///
-
     /// 0x40: -64 0x41: -63 ... 0x7F: -1 0x00: 0 0x01: 1 ... 0x3F: 63
     pub fn gap_val(&self) -> u32 {
         (self.0 & 0x1fc) >> 2
@@ -138,9 +128,7 @@ impl SLB_CFG {
         self.0 |= value;
     }
     /// TIMESCALE_VAL and BASE_TICK_CNT controls the the rate interval as well as the rate granularity available for LB rate configuration The rate granularity is calculated as follows: 8 / (BASE_TICK_CNT*1e-10 * 2^(3 * TIMESCALE_VAL) The rate granularity also becomes the smallest configurable rate. The largest configurable rate is granularity * (2**<width of RATE_VAL>-2)
-
     ///
-
     /// Assuming BASE_TICK_CNT= 9765, RATE_VAL width = 11 bits: 0: Granularity: 8,192,524bps. Range: 8193kbps - 16.7Gbps 1: Granularity: 1,024,066bps. Range 1024kbps - 2Gbps 2: Granularity: 128,008bps. Range: 128kbps - 262Mbps 3: Granularity: 16,001bps. Range: 16kbps - 32Mbps
     pub fn timescale_val(&self) -> u32 {
         self.0 & 0x3
@@ -166,9 +154,7 @@ impl SLB_CFG {
 pub struct SLB_STICKY(u32);
 impl SLB_STICKY {
     /// Set when a LB scan completes. Bit is cleared by writing a 1 to this position.
-
     ///
-
     /// 0: No event has occured 1: Leak scan completes
     pub fn leak_scan_completed_sticky(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -180,9 +166,7 @@ impl SLB_STICKY {
         self.0 |= value;
     }
     /// Set when a LB scan starts. Bit is cleared by writing a 1 to this position.
-
     ///
-
     /// 0: No event has occured 1: Leak scan started
     pub fn leak_scan_started_sticky(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -194,9 +178,7 @@ impl SLB_STICKY {
         self.0 |= value;
     }
     /// Set when a LB scan could not start because a scan is already ongoing. If this occur, BASE_TICK_CNT is set too low and must be increased. Bit is cleared by writing a 1 to this position.
-
     ///
-
     /// 0: No event has occured 1: Leak scan could not start at time
     pub fn leak_start_delayed_sticky(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
@@ -208,9 +190,7 @@ impl SLB_STICKY {
         self.0 |= value;
     }
     /// Set when the frame rate is exceeding the configured rate. Bit is cleared by writing a 1 to this position.
-
     ///
-
     /// 0: No event has occured 1: CIR exceeded
     pub fn slb_closed_sticky(&self) -> u32 {
         self.0 & 0x7

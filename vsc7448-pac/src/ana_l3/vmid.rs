@@ -76,9 +76,7 @@ impl RLEG_CTRL {
         self.0 |= value;
     }
     /// SIP RPF mode for IPv4. If SIP RPF check fails, then frame is not allowed to be L3 forwarded. Disabled: No SIP RPF check. RGID Mode: Verify that SIP belongs to a known subnet and verify that SIP's RGID is enabled in ingress router leg's RLEG_RGID_MASK. Rleg Mode: Verify that SIP belongs to a known subnet, and that the frame is received on the router leg through which that subnet is reached. If SIP is reached through an ECMP path then no SIP RPF check is performed. Combined Mode: Apply Rleg Mode for non ECMP paths and RGID Mode for ECMP paths. Related parameters: ANA_L3:COMMON:SIP_RPF_ENA ANA_L3:COMMON:ROUTING_CFG.RLEG_IP4_SIP_RPF_REDIR_ENA ANA_L3:COMMON:CPU_QU_CFG.CPU_SIP_RPF_QU ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.IP4_SIP_RPF_FILTER_STICKY ANA_L3:VMID:SIP_RPF.RLEG_RGID_MASK
-
     ///
-
     /// 0: Disabled 1: RGID Mode 2: Rleg Mode 3: Combined Mode
     pub fn rleg_ip4_sip_rpf_mode(&self) -> u32 {
         (self.0 & 0x300) >> 8
@@ -129,9 +127,7 @@ impl RLEG_CTRL {
         self.0 |= value;
     }
     /// SIP RPF mode for IPv6. If SIP RPF check fails, then frame is not allowed to be L3 forwarded. Disabled: No SIP RPF check. RGID Mode: Verify that SIP belongs to a known subnet and verify that SIP's RGID is enabled in ingress router leg's RGID_MASK. Rleg Mode: Verify that SIP belongs to a known subnet, and that the frame is received on the router leg through which that subnet is reached. If SIP is reached through an ECMP path then no SIP RPF check is performed. Combined Mode: Apply Rleg Mode for non ECMP paths and RGID Mode for ECMP paths. Related parameters: ANA_L3:COMMON:SIP_RPF_ENA ANA_L3:COMMON:ROUTING_CFG.RLEG_IP6_SIP_RPF_REDIR_ENA ANA_L3:COMMON:CPU_QU_CFG.CPU_SIP_RPF_QU ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.IP6_SIP_RPF_FILTER_STICKY ANA_L3:VMID:SIP_RPF.RLEG_RGID_MASK
-
     ///
-
     /// 0: Disabled 1: RGID Mode 2: Rleg Mode 3: Combined Mode
     pub fn rleg_ip6_sip_rpf_mode(&self) -> u32 {
         (self.0 & 0xc00) >> 10
@@ -168,9 +164,7 @@ impl RLEG_CTRL {
 pub struct SIP_RPF(u32);
 impl SIP_RPF {
     /// Route Group IDs (RGIDs) accepted for this router leg when SIP_RPF_MODE is set to "RGID Mode". See description of RLEG_IP4_SIP_RPF_MODE / RLEG_IP6_SIP_RPF_MODE.
-
     ///
-
     /// Bit 0: Accept routes with RGID=0 Bit 1: Accept routes with RGID=1 ...
     pub fn rleg_rgid_mask(&self) -> u32 {
         self.0 & 0xff
@@ -196,9 +190,7 @@ impl VMID_MC {
         self.0 |= value;
     }
     /// IPv4 multicast TTL limit. Packets with TTL below the configured limit are not routed. TTL is checked against RLEG_IP4_MC_TTL before transmission on egress router leg. Note: Regardless of the value configured for this parameter, IPv4 MC packets with TTL<2 are not routed.
-
     ///
-
     /// 0: Router leg based MC TTL check disabled. 1-2: N/A - such packets are not routed anyway. 3: If packet's TTL is < 3 then packet is not routed. 4: If packet's TTL is < 4 then packet is not routed. ...
     pub fn rleg_ip4_mc_ttl(&self) -> u32 {
         self.0 & 0xff
@@ -219,9 +211,7 @@ impl VMID_MC {
         self.0 |= value;
     }
     /// IPv6 multicast HL limit. Packets with HL below the configured limit are not routed. HL is checked against RLEG_IP6_MC_TTL before transmission on egress router leg. Note: Regardless of the value configured for this parameter, IPv6 MC packets with HC<2 are not routed.
-
     ///
-
     /// 0: Router leg based MC HL check disabled 1-2: N/A - such packets are not routed anyway. 3: If packet's HC is < 3 then packet is not routed. 4: If packet's HC is < 4 then packet is not routed. ...
     pub fn rleg_ip6_mc_ttl(&self) -> u32 {
         (self.0 & 0xff00) >> 8

@@ -35,8 +35,8 @@ pub mod hsch_cfg;
 pub mod hsch_dwrr;
 pub mod hsch_inp_state;
 pub mod hsch_l0_cfg;
-pub mod hsch_l1w;
 pub mod hsch_l1_cfg;
+pub mod hsch_l1w;
 pub mod hsch_leak_lists;
 pub mod hsch_misc;
 pub mod hsch_status;
@@ -83,8 +83,7 @@ impl HSCH_INP_STATE {
 
 /// Hierarchy configuration
 pub struct HSCH_L0_CFG(pub(super) u32);
-impl HSCH_L0_CFG {
-}
+impl HSCH_L0_CFG {}
 
 /// Win data for layer 1
 pub struct HSCH_L1W(pub(super) u32);

@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct GPIO_ALT(u32);
 impl GPIO_ALT {
     /// Configures alternate functions for individual GPIOs. See datasheet for information on possible alternate functions. The LSB of the GPIO encoding is placed in replication 0, MSB is placed in replication 1. For example; to encode Alternate mode 2 for GPIO[n] write DEVCPU_GCB::GPIO_ALT[0][n] = 0, and DEVCPU_GCB::GPIO_ALT[1][n] = 1. Note: This register is only reset by the device's reset input, i.e. it is not affected by soft reset!
-
     ///
-
     /// 00: GPIO mode 01: Alternate mode 1 10: Alternate mode 2 11: Alternate mode 3
     pub fn g_alt(&self) -> u32 {
         self.0
@@ -48,9 +46,7 @@ impl GPIO_ALT {
 pub struct GPIO_ALT1(u32);
 impl GPIO_ALT1 {
     /// Bit 32-63 of field G_ALT.
-
     ///
-
     /// 00: GPIO mode 01: Alternate mode 1 10: Alternate mode 2 11: Alternate mode 3
     pub fn g_alt1(&self) -> u32 {
         self.0
@@ -88,9 +84,7 @@ impl GPIO_IN1 {
 pub struct GPIO_INTR(u32);
 impl GPIO_INTR {
     /// Indicates whether a GPIO input has changed since last clear.
-
     ///
-
     /// '0': No change '1': GPIO has changed
     pub fn g_intr(&self) -> u32 {
         self.0
@@ -104,9 +98,7 @@ impl GPIO_INTR {
 pub struct GPIO_INTR1(u32);
 impl GPIO_INTR1 {
     /// Bit 32-63 of field G_INTR.
-
     ///
-
     /// '0': No change '1': GPIO has changed
     pub fn g_intr1(&self) -> u32 {
         self.0
@@ -168,9 +160,7 @@ impl GPIO_INTR_IDENT1 {
 pub struct GPIO_OE(u32);
 impl GPIO_OE {
     /// Configures the direction of the GPIO pins.
-
     ///
-
     /// '0': Input '1': Output
     pub fn g_oe(&self) -> u32 {
         self.0
@@ -184,9 +174,7 @@ impl GPIO_OE {
 pub struct GPIO_OE1(u32);
 impl GPIO_OE1 {
     /// Bit 32-63 of field G_OE.
-
     ///
-
     /// '0': Input '1': Output
     pub fn g_oe1(&self) -> u32 {
         self.0
@@ -228,9 +216,7 @@ impl GPIO_OUT1 {
 pub struct GPIO_OUT_CLR(u32);
 impl GPIO_OUT_CLR {
     /// Setting a bit in this field will immediately clear the corresponding bit in GPIO_OUT.G_OUT. Reading this register always return 0.
-
     ///
-
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is cleared.
     pub fn g_out_clr(&self) -> u32 {
         self.0
@@ -244,9 +230,7 @@ impl GPIO_OUT_CLR {
 pub struct GPIO_OUT_CLR1(u32);
 impl GPIO_OUT_CLR1 {
     /// Bit 32-63 of field G_OUT_CLR.
-
     ///
-
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is cleared.
     pub fn g_out_clr1(&self) -> u32 {
         self.0
@@ -260,9 +244,7 @@ impl GPIO_OUT_CLR1 {
 pub struct GPIO_OUT_SET(u32);
 impl GPIO_OUT_SET {
     /// Setting a bit in this field will immediately set the corresponding bit in GPIO_OUT.G_OUT. Reading this register always return 0.
-
     ///
-
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is set.
     pub fn g_out_set(&self) -> u32 {
         self.0
@@ -276,9 +258,7 @@ impl GPIO_OUT_SET {
 pub struct GPIO_OUT_SET1(u32);
 impl GPIO_OUT_SET1 {
     /// Bit 32-63 of field G_OUT_SET.
-
     ///
-
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is set.
     pub fn g_out_set1(&self) -> u32 {
         self.0

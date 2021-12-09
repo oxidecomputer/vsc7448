@@ -142,9 +142,7 @@ impl VCAP_STICKY {
 pub struct VCAP_VER(u32);
 impl VCAP_VER {
     /// Version of the VCAP control logic.
-
     ///
-
     /// 0: Version 1 1: Version 2
     pub fn vcap_ver(&self) -> u32 {
         self.0

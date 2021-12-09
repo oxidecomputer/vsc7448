@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct COSID_MAP_CFG_ANA(u32);
 impl COSID_MAP_CFG_ANA {
     /// Determines if the VOE LM counters counts all frames or only GREEN frames.
-
     ///
-
     /// '0': do not include yellow frames in the LM count. '1': include yellow frames in the LM count.
     pub fn cnt_yellow_ana(&self) -> u32 {
         self.0 & 0x1
@@ -47,9 +45,7 @@ impl COSID_MAP_CFG_ANA {
         self.0 |= value;
     }
     /// Determines which internal signal carries color for the current VOE. This configuration is only used in ANA, the corresponding configuration in the REW is not used.
-
     ///
-
     /// "00": ifh.dp_color "01": ifh.cl_dei "10": ANA_CL:MAP_TBL:MAP_ENTRY.PATH_COLOR_VAL (Output from mapping table. Do not use for Up-MEP) "11": reserved for future use (do not use)
     pub fn color_src_sel_ana(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -61,9 +57,7 @@ impl COSID_MAP_CFG_ANA {
         self.0 |= value;
     }
     /// Selects the source of the COSID mapping.
-
     ///
-
     /// "00": ifh.cosid "01": ifh.tc "10": ifh_iprio "11": ANA_CL:MAP_TBL:MAP_ENTRY.PATH_COSID_VAL (Output from mapping table. Do not use for Up-MEP)
     pub fn cosid_src_sel_ana(&self) -> u32 {
         (self.0 & 0x18) >> 3

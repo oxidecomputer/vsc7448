@@ -550,9 +550,7 @@ impl ADV_CL_STICKY {
 pub struct CAT_STICKY(u32);
 impl CAT_STICKY {
     /// This bit is set if a 802.1ag control frame  (DMAC in the range 01-80-C2-00-00-30 to 01-80-C2-00-00-3F) has been detected.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ag_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -564,9 +562,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// This bit is set if a BPDU control frame  (DMAC in the range 01-80-C2-00-00-00 to 01-80-C2-00-00-0F) has been detected.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn bpdu_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -578,9 +574,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// Set if a frame has been received with a TPID disabled for CPU forwarding.
-
     ///
-
     /// 0: The event has not occured 1: The event did occour Bit is cleared by writing a 1 to this position.
     pub fn capture_tpid_dis_sticky(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -592,9 +586,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// This bit is set if a GxRP frame ( DMAC in the range 01-80-C2-00-00-20 to 01-80-C2-00-00-2F) has been detected.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn gxrp_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -606,9 +598,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// Set if an IGMP frame has been detected.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn igmp_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -620,9 +610,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// Set if an IP Multicast control frame has been detected. - DMAC = 0x01005Exxxxxx , Ethernet Type = IP, IP Protocol != IGMP, DIP = 224.0.0.x
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ip4_mc_ctrl_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -634,9 +622,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// Is set if an IPv6 frame with a hop by hop header and ICMPv6 was seen.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ip6_hop_by_hop_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -648,9 +634,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// Indicates that a IPv6 frame with hop by hop options and ICMPv6 was seen.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ip6_icmp_hop_by_hop_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -662,9 +646,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// Set if an IPv6 Multicast control frame has been detected. - DMAC = 0x3333xxxxxxxx , Ethernet Type = IPv6, DIP = FF02::/16
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ip6_mc_ctrl_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -676,9 +658,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// Set if an MLD frame has been detected.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn mld_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -690,9 +670,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// Set if a VRAP frame has been detected.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn vrap_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -704,9 +682,7 @@ impl CAT_STICKY {
         self.0 |= value;
     }
     /// Indicates that a frame with a VStax2 TTL value of 0 was dropped.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn vstax2_ttl_zero_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -723,9 +699,7 @@ impl CAT_STICKY {
 pub struct CLASS_STICKY(u32);
 impl CLASS_STICKY {
     /// This sticky bit indicates that the QoS class was used as index into the DSCP_REWR_VAL table to determine the DSCP value.
-
     ///
-
     /// 0: No event 1: QoS class has been used to determine the DSCP Bit is cleared by writing a 1 to this position.
     pub fn dscp_qos_rewr_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -737,9 +711,7 @@ impl CLASS_STICKY {
         self.0 |= value;
     }
     /// Set when the  DSCP value is based on the DSCP_TRANSLATE_VAL.
-
     ///
-
     /// 0: No event 1: DSCP_TRANSLATE_VAL has been used. Bit is cleared by writing a 1 to this position.
     pub fn dscp_translate_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -751,9 +723,7 @@ impl CLASS_STICKY {
         self.0 |= value;
     }
     /// Set when the default port QoS has been used.
-
     ///
-
     /// 0: No event 1: Port default has been used for QoS classification Bit is cleared by writing a 1 to this position.
     pub fn qos_default_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -765,9 +735,7 @@ impl CLASS_STICKY {
         self.0 |= value;
     }
     /// Set when the DSCP QoS has been used.
-
     ///
-
     /// 0: No event 1: DSCP QoS class has been used for QoS classification Bit is cleared by writing a 1 to this position.
     pub fn qos_dscp_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -779,9 +747,7 @@ impl CLASS_STICKY {
         self.0 |= value;
     }
     /// Set when the classified PCP and DEI value is used to to determeine the QoS class.
-
     ///
-
     /// 0: No event 1: PCP value has been used for QoS classification Bit is cleared by writing a 1 to this position.
     pub fn qos_pcp_dei_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -793,9 +759,7 @@ impl CLASS_STICKY {
         self.0 |= value;
     }
     /// Set when the stacking QoS has been used.
-
     ///
-
     /// 0: No event 1: Stacking header QoS class has been used for QoS classification Bit is cleared by writing a 1 to this position.
     pub fn qos_stack_tag_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -806,9 +770,7 @@ impl CLASS_STICKY {
         self.0 |= value;
     }
     /// Set when the port VLAN has been used.
-
     ///
-
     /// 0: The event has not occured 1: Port default value has been used for VLAN classification Bit is cleared by writing a 1 to this position.
     pub fn vid_port_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -820,9 +782,7 @@ impl CLASS_STICKY {
         self.0 |= value;
     }
     /// Set when the VID information from Stacking TAG has been used.
-
     ///
-
     /// 0: The event has not occured 1: Stacking Header VID has been used for VLAN classification Bit is cleared by writing a 1 to this position.
     pub fn vid_stack_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -834,9 +794,7 @@ impl CLASS_STICKY {
         self.0 |= value;
     }
     /// Set when vid from the TAG has been used.
-
     ///
-
     /// 0: The event has not occured 1: TCI VID value has been used for VLAN classification Bit is cleared by writing a 1 to this position.
     pub fn vid_tag_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -853,9 +811,7 @@ impl CLASS_STICKY {
 pub struct FILTER_STICKY(u32);
 impl FILTER_STICKY {
     /// Set if a frame is dropped due to zero MAC addresses filtering or multicast source MAC address filtering.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn bad_macs_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -866,9 +822,7 @@ impl FILTER_STICKY {
         self.0 |= value;
     }
     /// Set if a frame has been filtered due to wrong stacking information (e.g. not expected stacking tag etc.).
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn stacking_filter_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -959,9 +913,7 @@ impl MIP_STICKY {
 pub struct PP_CFG(u32);
 impl PP_CFG {
     /// Protection state vector with one bit per protection group. The protection group, used by a given service, is configured in ANA_CL:IPT:IPT.PPT_IDX. For protection group n, the protection status bit is derived the following way: ANA_CL:PPT:PP_CFG[n DIV 32].STATE[n MOD 32].
-
     ///
-
     /// 0: Protection group uses working entity. 1: Protection group uses protection entity.
     pub fn state(&self) -> u32 {
         self.0
@@ -977,9 +929,7 @@ impl PP_CFG {
 pub struct VLAN_FILTER_STICKY(u32);
 impl VLAN_FILTER_STICKY {
     /// Set if a frame is dropped due to C-TAG filtering at the given tag position.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn filter_ctag_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -991,9 +941,7 @@ impl VLAN_FILTER_STICKY {
         self.0 |= value;
     }
     /// Set if a frame is dropped due to priority C-TAG filtering at the given tag position.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn filter_prio_ctag_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -1005,9 +953,7 @@ impl VLAN_FILTER_STICKY {
         self.0 |= value;
     }
     /// Set if a frame is dropped due priority S-TAG filtering at the given tag position.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn filter_prio_stag_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -1019,9 +965,7 @@ impl VLAN_FILTER_STICKY {
         self.0 |= value;
     }
     /// Set if a frame is dropped due required tag was not found.
-
     ///
-
     /// 0: No Event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn filter_required_tag_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -1033,9 +977,7 @@ impl VLAN_FILTER_STICKY {
         self.0 |= value;
     }
     /// Set if a frame is dropped due to S-TAG filtering at the given tag position.
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn filter_stag_sticky(&self) -> u32 {
         self.0 & 0x1

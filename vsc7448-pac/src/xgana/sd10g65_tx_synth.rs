@@ -103,9 +103,7 @@ impl F2DF_CFG_STAT {
         self.0 |= value;
     }
     /// Sample '0' => decrement 8bit filter saturating counter by 2**n. Cnt <
-
     ///
-
     /// 0x40 => WrongSide detected.
     pub fn f2df_side_det_zeros_weight(&self) -> u32 {
         (self.0 & 0x3800) >> 11

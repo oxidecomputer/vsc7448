@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct STAT_GLOBAL_EVENT_MASK(u32);
 impl STAT_GLOBAL_EVENT_MASK {
     /// This value stores the event mask which indicates the counter of all flows to count certain events. If set to '1' the respective event is not filtered and can trigger the counter. If set to '0' the respective event is filtered and the counter will treat the frame as if no event has occurred. Which type of frame is counted is defined in: STAT_GLOBAL_CFG. The following events apply to ISDX stat: For CE: Bit0: Count GREEN traffic Bit1: Count YELLOW traffic Bit2: Count RED traffic For SME: Bit3: Count unicast traffic Bit4: Count multicast traffic Bit5: Count flooded traffic Bit6: Count broadcast traffic
-
     ///
-
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
     pub fn global_event_mask(&self) -> u32 {
         self.0 & 0x7f

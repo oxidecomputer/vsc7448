@@ -70,9 +70,7 @@ impl EEE_THRES {
 pub struct FRM_AGING(u32);
 impl FRM_AGING {
     /// Frames are aged and removed from the queue system when the frame's age timer becomes two. The frame age timer is increased for all frames whenever the configured time, MAX_AGE,  has passed. Effectively, this means that a frame is aged when the frame has waited in the queue system between one or two times the period specified by MAX_AGE. The periodd configured by MAX_AGE is also termed an "age era". A value of zero disables frame aging. Frame aging related parameters: QSYS:SYSTEM:FRM_AGING.MAX_AGE HSCH:HSCH_MISC:PORT_MODE.AGE_DIS DSM:CFG:BUF_CFG.AGING_ENA
-
     ///
-
     /// 0: Disable frame aging. >=1: Era length in unit of 4us.
     pub fn max_age(&self) -> u32 {
         self.0 & 0xfffff

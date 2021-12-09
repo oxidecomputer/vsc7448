@@ -44,9 +44,7 @@ impl BFD_CONFIG {
         self.0 |= value;
     }
     /// The VOE can accept two different G-ACH Channel Types as being valid BFD CC PDUs, depending of the setting of this register. If the VOE receives a MPLS-TP with the G-ACH Channel Type which is not the one configured for BFD CC, the PDU will be classified as either Generic or Unknown G-ACH Channel Type. I.e. if BFD_CC_RFC6428 = 1, MPLS-TP PDUs with G-ACH Channel Type = 0x0007 will be classified as either Generic or UNKNOWN G-ACH Channel Type.
-
     ///
-
     /// The pending on configuration of this bit field, the VOE will expect the following G-ACH Channel Type for BFD CC PDUs: 0: 0x0007 (RFC_5885) 1: 0x0022 (RFC_6428)
     pub fn bfd_cc_rfc6428(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -157,9 +155,7 @@ impl BFD_CONFIG {
         self.0 |= value;
     }
     /// The configuration of this bit field specifies the LOC timeout counter to be used for LOC scan for this VOE. Every time the LOC timeout counter indicated by this register causes a scan, the VOE LOC counter is incremented. The LOC counter is cleared upon reception of a valid BFD CC/CV PDU. The LOC counter is located in the following bit field: * VOP_MPLS:VOE_STAT_MPLS:BFD_STAT.BFD_MISS_CNT
-
     ///
-
     /// 0: Indicates that the LOC counter is not incremented. 1: Indicates that the LOC counter is incremented by LOC timeout counter 0 2: Indicates that the LOC counter is incremented by LOC timeout counter 1 3: Indicates that the LOC counter is incremented by LOC timeout counter 2 4: Indicates that the LOC counter is incremented by LOC timeout counter 3 5: Indicates that the LOC counter is incremented by LOC timeout counter 4 6: Indicates that the LOC counter is incremented by LOC timeout counter 5 7: Indicates that the LOC counter is incremented by LOC timeout counter 6
     pub fn bfd_scan_period(&self) -> u32 {
         (self.0 & 0x380000) >> 19
@@ -230,9 +226,7 @@ impl BFD_REMOTE_DISCR_SRC {
 pub struct CPU_COPY_CTRL_MPLS(u32);
 impl CPU_COPY_CTRL_MPLS {
     /// If asserted all valid BFD CC PDUs received by the VOE are extracted to the CPU. Extraction queue is determined by: * VOP::CPU_EXTR_MPLS.BFD_CC_CPU_QU
-
     ///
-
     /// '0': No extraction to CPU '1': Extract valid BFD CC PDUs to CPU
     pub fn bfd_cc_cpu_copy_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -244,9 +238,7 @@ impl CPU_COPY_CTRL_MPLS {
         self.0 |= value;
     }
     /// If asserted all valid BFD CV PDUs received by the VOE are extracted to the CPU. Extraction queue is determined by: * VOP::CPU_EXTR_MPLS.BFD_CV_CPU_QU
-
     ///
-
     /// '0': No extraction to CPU '1': Extract valid BFD CV frames to CPU
     pub fn bfd_cv_cpu_copy_ena(&self) -> u32 {
         self.0 & 0x1
@@ -257,9 +249,7 @@ impl CPU_COPY_CTRL_MPLS {
         self.0 |= value;
     }
     /// This bit field contains 8 bits each of which represent one of the Generic G-ACH Channel Types. If the bit representing a specific Generic G-ACH Channel Type is asserted, all valid PDUs received by the VOE of that type are extracted to the CPU queue configured in the following bit fields: * VOP::MPLS_GENERIC_CODEPOINT.GENERIC_CODEPOINT_CPU_QU
-
     ///
-
     /// x0x: No CPU copy x1x: Copy to CPU
     pub fn generic_copy_mask(&self) -> u32 {
         (self.0 & 0x7f8) >> 3
@@ -271,9 +261,7 @@ impl CPU_COPY_CTRL_MPLS {
         self.0 |= value;
     }
     /// Configures whether MPLS-TP OAM PDUs with UNKNOWN G-ACH Channel Type should be extracted to the CPU. Extracted frames are extracted to the default CPU queue, configured in: * VOP::CPU_EXTR_CFG.DEF_COPY_QU
-
     ///
-
     /// '0': No CPU copy '1': Copy to CPU
     pub fn unk_cpt_cpu_copy_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -292,9 +280,7 @@ impl CPU_COPY_CTRL_MPLS {
 pub struct OAM_CNT_DATA_MPLS(u32);
 impl OAM_CNT_DATA_MPLS {
     /// Enable / disable count of valid BFD CC OAM PDUs as part of the LM counters.
-
     ///
-
     /// '0': Do not count as data '1': Count as data
     pub fn bfd_cc_cnt_data_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -306,9 +292,7 @@ impl OAM_CNT_DATA_MPLS {
         self.0 |= value;
     }
     /// Enable / disable count of valid BFD CV OAM PDUs as part of the LM counters.
-
     ///
-
     /// '0': Do not count as data '1': Count as data
     pub fn bfd_cv_cnt_data_ena(&self) -> u32 {
         self.0 & 0x1
@@ -319,9 +303,7 @@ impl OAM_CNT_DATA_MPLS {
         self.0 |= value;
     }
     /// Enable / disable that valid MPLS-TP OAM PDUs with Generic G-ACH Channel Type are counted by the VOE LM counters. This bit field contains a separate bit for each of the possible 8 Generic G-ACH Channel Types.
-
     ///
-
     /// x0x: Do NOT count generic Channel Type in LM counters. x1x: DO count generic Channel Type in LM counters.
     pub fn generic_cpt_cnt_data_mask(&self) -> u32 {
         (self.0 & 0x7f8) >> 3
@@ -333,9 +315,7 @@ impl OAM_CNT_DATA_MPLS {
         self.0 |= value;
     }
     /// If a PDU is received with an G-ACH Channel Type which does not match any Specific G-ACH Channel Type or a Generic G-ACH Channel Type, it will be processed as an UNKNOWN G-ACH Channel Type. This bit field configures if OAM frames with UNKNOWN G-ACH Channel Type are counted as data in the LM counters.
-
     ///
-
     /// '0': Do not count as data '1': Count as data
     pub fn unk_cpt_cnt_data_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -354,9 +334,7 @@ impl OAM_CNT_DATA_MPLS {
 pub struct OAM_CNT_SEL_MPLS(u32);
 impl OAM_CNT_SEL_MPLS {
     /// This register configures whether valid BFD CC PDUs are counted Selected OAM or NON Selected OAM.
-
     ///
-
     /// '0': Count as other OAM '1': Count as selected OAM
     pub fn bfd_cc_cnt_sel_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -368,9 +346,7 @@ impl OAM_CNT_SEL_MPLS {
         self.0 |= value;
     }
     /// This register configures whether valid BFD CV PDUs are counted Selected OAM or NON Selected OAM.
-
     ///
-
     /// '0': Count as other OAM '1': Count as selected OAM
     pub fn bfd_cv_cnt_sel_ena(&self) -> u32 {
         self.0 & 0x1
@@ -381,9 +357,7 @@ impl OAM_CNT_SEL_MPLS {
         self.0 |= value;
     }
     /// Enable / disable that valid OAM PDUs with Generic G-ACH Channel Type are counted as selected OAM. This bit field contains a separate bit for each of the possible 8 Generic opcodes.
-
     ///
-
     /// x0x: Count as other OAM x1x: Count as selected OAM
     pub fn generic_cpt_cnt_sel_mask(&self) -> u32 {
         (self.0 & 0x7f8) >> 3
@@ -395,9 +369,7 @@ impl OAM_CNT_SEL_MPLS {
         self.0 |= value;
     }
     /// MPLS-TP OAM PDUs not recognized as either one of the PDUs with special configuration or as a Generic G-ACH Channel Type, will be classified as an UNKNOWN PDU. This register configures whether UNKNOWN PDUs should be counted as selected OAM.
-
     ///
-
     /// '0': Count as other OAM '1': Count as selected OAM
     pub fn unk_cpt_cnt_sel_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2

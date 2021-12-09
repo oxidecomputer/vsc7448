@@ -30,14 +30,16 @@ use derive_more::{From, Into};
 /// Contains info om G.8113.1 LBM/LBR TLVs
 #[derive(From, Into)]
 pub struct CT_CCM_TLV_INFO_ANA(u32);
-impl CT_CCM_TLV_INFO_ANA {    pub fn ct_if_status_value_ana(&self) -> u32 {
+impl CT_CCM_TLV_INFO_ANA {
+    pub fn ct_if_status_value_ana(&self) -> u32 {
         self.0 & 0x7
     }
     pub fn set_ct_if_status_value_ana(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
-    }    pub fn ct_if_status_vld_ana(&self) -> u32 {
+    }
+    pub fn ct_if_status_vld_ana(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ct_if_status_vld_ana(&mut self, value: u32) {
@@ -45,7 +47,8 @@ impl CT_CCM_TLV_INFO_ANA {    pub fn ct_if_status_value_ana(&self) -> u32 {
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    pub fn ct_port_statis_value_ana(&self) -> u32 {
+    }
+    pub fn ct_port_statis_value_ana(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
     pub fn set_ct_port_statis_value_ana(&mut self, value: u32) {
@@ -53,7 +56,8 @@ impl CT_CCM_TLV_INFO_ANA {    pub fn ct_if_status_value_ana(&self) -> u32 {
         assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
-    }    pub fn ct_port_status_vld_ana(&self) -> u32 {
+    }
+    pub fn ct_port_status_vld_ana(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ct_port_status_vld_ana(&mut self, value: u32) {
@@ -66,7 +70,8 @@ impl CT_CCM_TLV_INFO_ANA {    pub fn ct_if_status_value_ana(&self) -> u32 {
 /// Context data
 #[derive(From, Into)]
 pub struct CT_OAM_DATA1_REW(u32);
-impl CT_OAM_DATA1_REW {    pub fn ct_oam_misc_rew(&self) -> u32 {
+impl CT_OAM_DATA1_REW {
+    pub fn ct_oam_misc_rew(&self) -> u32 {
         self.0
     }
     pub fn set_ct_oam_misc_rew(&mut self, value: u32) {
@@ -90,7 +95,8 @@ impl CT_OAM_DATA_ANA {
 /// [MCC_DEBUG] Tx LM frame counters  by VOE.
 #[derive(From, Into)]
 pub struct CT_OAM_INFO_ANA(u32);
-impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
+impl CT_OAM_INFO_ANA {
+    pub fn ct_block_data_ana(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ct_block_data_ana(&mut self, value: u32) {
@@ -98,7 +104,8 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    pub fn ct_ccm_lm_as_sel_ana(&self) -> u32 {
+    }
+    pub fn ct_ccm_lm_as_sel_ana(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ct_ccm_lm_as_sel_ana(&mut self, value: u32) {
@@ -106,7 +113,8 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    pub fn ct_chk_seq_ana(&self) -> u32 {
+    }
+    pub fn ct_chk_seq_ana(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ct_chk_seq_ana(&mut self, value: u32) {
@@ -124,7 +132,8 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
         assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
-    }    pub fn ct_frame_prio_ana(&self) -> u32 {
+    }
+    pub fn ct_frame_prio_ana(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
     pub fn set_ct_frame_prio_ana(&mut self, value: u32) {
@@ -134,9 +143,7 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
         self.0 |= value;
     }
     /// [MCC_DEBUG]
-
     ///
-
     /// 0: OAM Frame is TX 1: OAM Frame is RX
     pub fn ct_lookup_type_ana(&self) -> u32 {
         (self.0 & 0x3c000000) >> 26
@@ -146,7 +153,8 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
         assert!(value <= 0x3c000000);
         self.0 &= !0x3c000000;
         self.0 |= value;
-    }    pub fn ct_non_oam_err_cnt_ana(&self) -> u32 {
+    }
+    pub fn ct_non_oam_err_cnt_ana(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ct_non_oam_err_cnt_ana(&mut self, value: u32) {
@@ -154,7 +162,8 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    pub fn ct_non_oam_fwd_err_ana(&self) -> u32 {
+    }
+    pub fn ct_non_oam_fwd_err_ana(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ct_non_oam_fwd_err_ana(&mut self, value: u32) {
@@ -162,7 +171,8 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    pub fn ct_oam_gen_idx_ana(&self) -> u32 {
+    }
+    pub fn ct_oam_gen_idx_ana(&self) -> u32 {
         (self.0 & 0x1c0000) >> 18
     }
     pub fn set_ct_oam_gen_idx_ana(&mut self, value: u32) {
@@ -191,9 +201,7 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
         self.0 |= value;
     }
     /// Determines if the PDU is to be counted as Selected OAM or NON Selected OAM.
-
     ///
-
     /// 0: Count as NON Selected OAM 1: Count as Selected OAM
     pub fn ct_sel_oam_ana(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -230,7 +238,8 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
 /// [MCC_DEBUG]
 #[derive(From, Into)]
 pub struct CT_OAM_STICKY_ANA(u32);
-impl CT_OAM_STICKY_ANA {    pub fn ct_ccm_nonzero_endtlv_ana(&self) -> u32 {
+impl CT_OAM_STICKY_ANA {
+    pub fn ct_ccm_nonzero_endtlv_ana(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_ct_ccm_nonzero_endtlv_ana(&mut self, value: u32) {
@@ -268,7 +277,8 @@ impl CT_OAM_STICKY_ANA {    pub fn ct_ccm_nonzero_endtlv_ana(&self) -> u32 {
         assert!(value <= 0x3e000);
         self.0 &= !0x3e000;
         self.0 |= value;
-    }    pub fn ct_extract_qu_ana(&self) -> u32 {
+    }
+    pub fn ct_extract_qu_ana(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
     }
     pub fn set_ct_extract_qu_ana(&mut self, value: u32) {
@@ -296,7 +306,8 @@ impl CT_OAM_STICKY_ANA {    pub fn ct_ccm_nonzero_endtlv_ana(&self) -> u32 {
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    pub fn ct_sam_seq_ccm_ana(&self) -> u32 {
+    }
+    pub fn ct_sam_seq_ccm_ana(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ct_sam_seq_ccm_ana(&mut self, value: u32) {
@@ -304,7 +315,8 @@ impl CT_OAM_STICKY_ANA {    pub fn ct_ccm_nonzero_endtlv_ana(&self) -> u32 {
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    pub fn ct_sam_seq_idx_ana(&self) -> u32 {
+    }
+    pub fn ct_sam_seq_idx_ana(&self) -> u32 {
         (self.0 & 0xf8) >> 3
     }
     pub fn set_ct_sam_seq_idx_ana(&mut self, value: u32) {
@@ -312,7 +324,8 @@ impl CT_OAM_STICKY_ANA {    pub fn ct_ccm_nonzero_endtlv_ana(&self) -> u32 {
         assert!(value <= 0xf8);
         self.0 &= !0xf8;
         self.0 |= value;
-    }    pub fn ct_sam_seq_lbm_ana(&self) -> u32 {
+    }
+    pub fn ct_sam_seq_lbm_ana(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ct_sam_seq_lbm_ana(&mut self, value: u32) {
@@ -320,7 +333,8 @@ impl CT_OAM_STICKY_ANA {    pub fn ct_ccm_nonzero_endtlv_ana(&self) -> u32 {
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    pub fn ct_synlm_peer_idx_ana(&self) -> u32 {
+    }
+    pub fn ct_synlm_peer_idx_ana(&self) -> u32 {
         self.0 & 0x7
     }
     pub fn set_ct_synlm_peer_idx_ana(&mut self, value: u32) {

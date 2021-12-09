@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct RCOMP_CFG0(u32);
 impl RCOMP_CFG0 {
     /// Overwrite measured resistor value with value programmed in rcomp_val
-
     ///
-
     /// 0: normal mode 1: overwrite mode
     pub fn force_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -48,9 +46,7 @@ impl RCOMP_CFG0 {
         self.0 |= value;
     }
     /// RCOMP operation mode
-
     ///
-
     /// 0: inactive 1: perform calibration permanently 2: perform calibration once 3: perform calibration once and generate alarm if necessary
     pub fn mode_sel(&self) -> u32 {
         (self.0 & 0x300) >> 8
@@ -62,9 +58,7 @@ impl RCOMP_CFG0 {
         self.0 |= value;
     }
     /// Enable power-down after calibration was done
-
     ///
-
     /// 0: disable power-down 1: enable power-down
     pub fn pwd_ena(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -76,9 +70,7 @@ impl RCOMP_CFG0 {
         self.0 |= value;
     }
     /// Resistor comparator value
-
     ///
-
     /// 0: maximum resistance value 15: minimum resistance value
     pub fn rcomp_val(&self) -> u32 {
         self.0 & 0xf
@@ -89,9 +81,7 @@ impl RCOMP_CFG0 {
         self.0 |= value;
     }
     /// Start calibration
-
     ///
-
     /// 0: idle/inactive 1: start (activate)
     pub fn run_cal(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -103,9 +93,7 @@ impl RCOMP_CFG0 {
         self.0 |= value;
     }
     /// Speed selection. Setting time for analog circuit after changing resistor settings.
-
     ///
-
     /// 0: max period 1: max period/2 2: max period/4 3: max period/8
     pub fn speed_sel(&self) -> u32 {
         (self.0 & 0xc00) >> 10

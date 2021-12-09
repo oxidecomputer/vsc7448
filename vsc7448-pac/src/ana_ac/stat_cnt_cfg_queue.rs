@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct STAT_GLOBAL_EVENT_MASK(u32);
 impl STAT_GLOBAL_EVENT_MASK {
     /// This value stores the event mask which indicates the counter of all flows to count certain events. If set to '1' the respective event is not filtered and can trigger the counter. If set to '0' the respective event is filtered and the counter will treat the frame as if no event has occurred. The following events apply to queue stat: Bit0: Count traffic applicable for queue policer but not discarded Bit1: Count traffic discarded by queue policer
-
     ///
-
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
     pub fn global_event_mask(&self) -> u32 {
         self.0 & 0x3

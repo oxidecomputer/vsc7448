@@ -103,7 +103,9 @@ impl SD10G65_APC {
     pub fn APC_EQZ_C_TIMER_CFG(&self) -> RegisterAddress<sd10g65_apc::APC_EQZ_C_TIMER_CFG> {
         RegisterAddress::new(self.0 + 0x58)
     }
-    pub fn APC_EQZ_GAIN_ADJ_CTRL_CFG(&self) -> RegisterAddress<sd10g65_apc::APC_EQZ_GAIN_ADJ_CTRL_CFG> {
+    pub fn APC_EQZ_GAIN_ADJ_CTRL_CFG(
+        &self,
+    ) -> RegisterAddress<sd10g65_apc::APC_EQZ_GAIN_ADJ_CTRL_CFG> {
         RegisterAddress::new(self.0 + 0x2c)
     }
     pub fn APC_EQZ_GAIN_CTRL_CFG(&self) -> RegisterAddress<sd10g65_apc::APC_EQZ_GAIN_CTRL_CFG> {
@@ -157,10 +159,14 @@ impl SD10G65_APC {
     pub fn APC_LD_CAL_CFG(&self) -> RegisterAddress<sd10g65_apc::APC_LD_CAL_CFG> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    pub fn APC_PARCTRL_FSM1_TIMER_CFG(&self) -> RegisterAddress<sd10g65_apc::APC_PARCTRL_FSM1_TIMER_CFG> {
+    pub fn APC_PARCTRL_FSM1_TIMER_CFG(
+        &self,
+    ) -> RegisterAddress<sd10g65_apc::APC_PARCTRL_FSM1_TIMER_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn APC_PARCTRL_FSM2_TIMER_CFG(&self) -> RegisterAddress<sd10g65_apc::APC_PARCTRL_FSM2_TIMER_CFG> {
+    pub fn APC_PARCTRL_FSM2_TIMER_CFG(
+        &self,
+    ) -> RegisterAddress<sd10g65_apc::APC_PARCTRL_FSM2_TIMER_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
     pub fn APC_PARCTRL_SYNC_CFG(&self) -> RegisterAddress<sd10g65_apc::APC_PARCTRL_SYNC_CFG> {
@@ -239,25 +245,39 @@ impl SD10G65_RCPLL_BIST {
     pub fn RX_SYNC_CTRL_STAT(&self) -> RegisterAddress<sd10g65_rcpll_bist::RX_SYNC_CTRL_STAT> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn SD10G65_RCPLL_BIST_CFG0(&self) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_CFG0> {
+    pub fn SD10G65_RCPLL_BIST_CFG0(
+        &self,
+    ) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_CFG0> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn SD10G65_RCPLL_BIST_CFG1(&self) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_CFG1> {
+    pub fn SD10G65_RCPLL_BIST_CFG1(
+        &self,
+    ) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_CFG1> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn SD10G65_RCPLL_BIST_CFG2(&self) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_CFG2> {
+    pub fn SD10G65_RCPLL_BIST_CFG2(
+        &self,
+    ) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_CFG2> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn SD10G65_RCPLL_BIST_CFG3(&self) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_CFG3> {
+    pub fn SD10G65_RCPLL_BIST_CFG3(
+        &self,
+    ) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_CFG3> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn SD10G65_RCPLL_BIST_STAT0(&self) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_STAT0> {
+    pub fn SD10G65_RCPLL_BIST_STAT0(
+        &self,
+    ) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_STAT0> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    pub fn SD10G65_RCPLL_BIST_STAT1(&self) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_STAT1> {
+    pub fn SD10G65_RCPLL_BIST_STAT1(
+        &self,
+    ) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_STAT1> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    pub fn SD10G65_RX_RCPLL_BIST_CFG4(&self) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RX_RCPLL_BIST_CFG4> {
+    pub fn SD10G65_RX_RCPLL_BIST_CFG4(
+        &self,
+    ) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RX_RCPLL_BIST_CFG4> {
         RegisterAddress::new(self.0 + 0x10)
     }
 }

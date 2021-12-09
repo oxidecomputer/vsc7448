@@ -42,9 +42,7 @@ impl PROBE_CFG {
         self.0 |= value;
     }
     /// The set of CPU extraction ports from where traffic is Tx mirrored by this mirror probe. Only works when Tx mirroring is  enabled. Related parameters: ANA_AC:MIRROR_PROBE:PROBE_CFG.PROBE_DIRECTION
-
     ///
-
     /// 0: CPU extraction port is not Tx mirrored 1: CPU extraction port is Tx mirrored
     pub fn probe_cpu_set(&self) -> u32 {
         (self.0 & 0x3fc0000) >> 18
@@ -56,9 +54,7 @@ impl PROBE_CFG {
         self.0 |= value;
     }
     /// Direction of traffic that is mirrored.
-
     ///
-
     /// "00" : Mirroring is disabled. "01" : TX - Only traffic to destination ports in the probe port set "10" : RX - Only traffic from source ports in the probe port set "11" : RX+TX - Traffic to and from ports in the probe port set (always mirrored as RX)
     pub fn probe_direction(&self) -> u32 {
         self.0 & 0x3
@@ -69,9 +65,7 @@ impl PROBE_CFG {
         self.0 |= value;
     }
     /// Mirror probe's MAC address filtering mode, based on the mirror bit in the MAC table.
-
     ///
-
     /// "00" : No MAC filtering "01" : Mirror only traffic with mirror bit set for known DMAC "10" : Mirror only traffic with mirror bit set for known SMAC "11" : Mirror only traffic with mirror bit set for known DMAC and/or known SMAC
     pub fn probe_mac_mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -83,9 +77,7 @@ impl PROBE_CFG {
         self.0 |= value;
     }
     /// Controls whether physical or masqueraded port number will be used for lookup in PROBE_PORT_MASK. CPU injected frames with masqueraded port number are identfied by having IFH.MIWC.PIPELINE_ACT == INJ_MASQ. Frames, which have been looped back from Up-MEP can only be mirrored if masqueraded port number is used for lookup in PROBE_PORT_MASK. Related parameters: ANA_AC:MIRROR_PROBE:PROBE_PORT_CFG.PROBE_PORT_MASK.
-
     ///
-
     /// 0: If frame is masqueraded, then use masqueraded port number for lookup in PROBE_PORT_MASK. Otherwise use physical port number for lookup in PROBE_PORT_MASK. 1: Use physical port.number for lookup in PROBE_PORT_MASK.
     pub fn probe_phys_rx_port(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -97,9 +89,7 @@ impl PROBE_CFG {
         self.0 |= value;
     }
     /// Mirror traffic received from CPU by this mirror probe. PROBE_RX_CPU_AND_VD works as an extension of the PROBE_PORT_MASK to cover CPU ports and VD0/VD1.
-
     ///
-
     /// "0000": No RX mirror "xxx1": Rx from CPU port 53 is mirrored "xx1x": Rx from CPU port 54 is mirrored "x1xx": Rx from VD0 is mirrored "1xxx": Rx from VD1 is mirrored Only works with RX mirror enabled. See ANA_AC:MIRROR_PROBE:PROBE_CFG.PROBE_DIRECTION.
     pub fn probe_rx_cpu_and_vd(&self) -> u32 {
         (self.0 & 0x3c000000) >> 26
@@ -121,9 +111,7 @@ impl PROBE_CFG {
         self.0 |= value;
     }
     /// Mirror probe's VLAN filtering mode. Related parameters: ANA_L3:VLAN:VLAN_CFG.VLAN_MIRROR_ENA
-
     ///
-
     /// 00 : No VLAN filtering 01 : Mirror only traffic in VLANs with ANA_L3:VLAN:VLAN_CFG.VLAN_MIRROR_ENA set 10 : Mirror only traffic with CL-IVID = PROBE_VID. 11 : Reserved.
     pub fn probe_vlan_mode(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -140,9 +128,7 @@ impl PROBE_CFG {
 pub struct PROBE_PORT_CFG(u32);
 impl PROBE_PORT_CFG {
     /// Specifies the set of ingress port(s) subject to Rx mirroring and the set of egress port(s) subject to Tx mirroring. PROBE_PHYS_RX_PORT controls whether physical or masqueraded port number is used for lookup in PROBE_PORT_MASK. PROBE_RX_CPU_AND_VD works as an extension of the PROBE_PORT_MASK to cover CPU ports and VD0/VD1. Ports enabled in PROBE_PORT_MASK are either RX mirrored (ingress mirrored) and/or TX mirrored (egress mirrored) as determined by PROBE_DIRECTION. Mirror destination port(s) are determined by QFWD:SYSTEM:FRAME_COPY_CFG For exact TX mirror, the configuration of this register must be consistent with the configuration of REW:COMMON:MIRROR_PROBE_CFG.MIRROR_TX_PORT. See also description for register group ANA_AC:MIRROR_PROBE. Related parameters: ANA_AC:MIRROR_PROBE:PROBE_CFG.PROBE_PHYS_RX_PORT ANA_AC:MIRROR_PROBE:PROBE_CFG.PROBE_RX_CPU_AND_VD ANA_AC:MIRROR_PROBE:PROBE_CFG.PROBE_DIRECTION REW:COMMON:MIRROR_PROBE_CFG.MIRROR_TX_PORT QFWD:SYSTEM:FRAME_COPY_CFG
-
     ///
-
     /// 0: Port is not mirrored 1: Port is mirrored
     pub fn probe_port_mask(&self) -> u32 {
         self.0
@@ -156,9 +142,7 @@ impl PROBE_PORT_CFG {
 pub struct PS_DBG_CTRL(u32);
 impl PS_DBG_CTRL {
     /// If ZERO_DST_REDIR_ENA is set and the destination port set calculation for the frame results in an empty port set, then the frame gets redirected to the CPU queue configured by this parameter. Related parameters: ANA_AC::PS_DBG_CTRL.ZERO_DST_REDIR_ENA
-
     ///
-
     /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
     pub fn cpu_qu_zero_dst(&self) -> u32 {
         (self.0 & 0x70) >> 4

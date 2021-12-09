@@ -66,9 +66,7 @@ impl TR_LUTSEL {
         self.0 |= value;
     }
     /// Selects LUT for lut_o
-
     ///
-
     /// 0: Gain 1: DFE_1 2: DFE_2 3: DFE_avg_1 4: DFE_avg_2 5: BER_1 6: BER_2 7: BER_3
     pub fn lut_sel(&self) -> u32 {
         self.0 & 0x7

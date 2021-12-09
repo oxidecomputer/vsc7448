@@ -46,7 +46,8 @@ impl CCM_LM_RX_B_REG {
 /// Jaguar2-R supports three PTP time domains. The Delay Measurements (Y.1731) uses the PTP timing for updating the DM PDUs. For this to work, each port on the switch must be configured for which PTP timedomain to use. This is done by configuring this register. The settings must be the same in the REW and the ANA_AC instatiation of the OAM_PDU_MOD block.
 #[derive(From, Into)]
 pub struct DM_PTP_DOMAIN_CFG(u32);
-impl DM_PTP_DOMAIN_CFG {    pub fn ptp_domain(&self) -> u32 {
+impl DM_PTP_DOMAIN_CFG {
+    pub fn ptp_domain(&self) -> u32 {
         self.0 & 0x3
     }
     pub fn set_ptp_domain(&mut self, value: u32) {

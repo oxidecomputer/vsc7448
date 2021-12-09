@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct MSTP_FWD_CFG(u32);
 impl MSTP_FWD_CFG {
     /// Enable/disable forwarding per port. Ports in MSTP Forwarding state must be enabled in this port mask. If a port is disabled in this mask, frames received on the port are not forwarded, and frames are not forwarded to the port. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_DISCARD_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_FWD_ALLOWED_STICKY
-
     ///
-
     /// '0': forwarding is disabled from/to respective port '1': forwarding is enabled from/to respective port
     pub fn mstp_fwd_mask(&self) -> u32 {
         self.0
@@ -68,9 +66,7 @@ impl MSTP_FWD_CFG1 {
 pub struct MSTP_LRN_CFG(u32);
 impl MSTP_LRN_CFG {
     /// Enable/disable learning per port. If a port is disabled in the mask, L2 learning of the (FID, SMAC) pair is not done. Ports in MSTP Learning and Forwarding state must be enabled in this mask. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_LRN_DENY_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_LRN_ALLOWED_STICKY
-
     ///
-
     /// '0': Learning is disabled for frames from respective port '1': Learning is enabled for frames from respective port
     pub fn mstp_lrn_mask(&self) -> u32 {
         self.0

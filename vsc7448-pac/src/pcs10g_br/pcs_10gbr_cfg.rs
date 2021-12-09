@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct PCS_CFG(u32);
 impl PCS_CFG {
     /// Enable link control using backplane Ethernet ANEG (Auto-Negotiation)
-
     ///
-
     /// 0: Disable link control 1: Enable link control
     pub fn an_link_ctrl_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -48,9 +46,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Disable RX local fault generation when no alignment has been reached
-
     ///
-
     /// 0: Output local fault symbol at XGMII when not aligned 1: Output IDLE symbols at XGMII when not aligned
     pub fn lf_gen_dis(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -62,9 +58,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Global PCS Enable/Disable configuration bit.
-
     ///
-
     /// 0 = Disable PCS 1 = Enable PCS
     pub fn pcs_ena(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -76,9 +70,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Enable PMA loopback operation. When set, Transmit PMA data is loopbacked to Receive PMA data.
-
     ///
-
     /// 0 = Normal mode 1 = Loopback Tx PMA to Rx PMA
     pub fn pma_loopback_ena(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -90,9 +82,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Force re-synchronization of receive logic. When asserted, the receive sync state machine is forced into the LOCK_INIT state and block_lock is lost.
-
     ///
-
     /// 0: Normal operation 1: Reset synchronization
     pub fn resync_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -104,9 +94,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Flip the data bus bits at the WIS/PMA interface such that bit 63 is mapped to bit 0 and bit 0 to 63. i.e. the output bus (63 down to 0) is remapped to (0 to 63) and bit 63 is the first bit.
-
     ///
-
     /// 0: No flip (LSB first) 1: Flip bus (MSB first)
     pub fn rx_data_flip(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -118,9 +106,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Disable the descrambler. When disabled, the data is passed through without being descrambled.
-
     ///
-
     /// 0: Decrambler active 1: Decrambler disabled
     pub fn rx_scr_disable(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -132,9 +118,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Enable test pattern checking mode.
-
     ///
-
     /// 0: Normal operation 1: Test pattern mode
     pub fn rx_test_mode(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -146,9 +130,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Number of sync headers required for block lock. The actual number used is this number plus 1. i.e. entering 63 implies a value of 64.
-
     ///
-
     /// Binary number
     pub fn sh_cnt_max(&self) -> u32 {
         (self.0 & 0x3f000000) >> 24
@@ -160,9 +142,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Flip the data bus bits at the WIS/PMA interface such that bit 63 is mapped to bit 0 and bit 0 to 63. i.e. the output bus (63 downto 0) is remapped to (0 to 63) and bit 63 is the first bit.
-
     ///
-
     /// 0 = No flip (LSB first) 1 = Flip bus (MSB first)
     pub fn tx_data_flip(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -174,9 +154,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Disable the scrambler. When disabled, the data is passed through without being scrambled.
-
     ///
-
     /// 0: Scrambler active 1: Scrambler disabled
     pub fn tx_scr_disable(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -188,9 +166,7 @@ impl PCS_CFG {
         self.0 |= value;
     }
     /// Enable test pattern generation mode
-
     ///
-
     /// 0: Normal operation 1: Test pattern mode
     pub fn tx_test_mode(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -209,9 +185,7 @@ impl PCS_CFG {
 pub struct PCS_INTR_MASK(u32);
 impl PCS_INTR_MASK {
     /// Mask for the C64B66B_ERR_STICKY bit
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn c64b66b_err_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -223,9 +197,7 @@ impl PCS_INTR_MASK {
         self.0 |= value;
     }
     /// Mask for the LOCK_CHANGED_STICKY bit
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn lock_changed_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -237,9 +209,7 @@ impl PCS_INTR_MASK {
         self.0 |= value;
     }
     /// Mask for the RX_FSET_FIFO_FULL_STICKY bit
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn rx_fset_fifo_full_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -251,9 +221,7 @@ impl PCS_INTR_MASK {
         self.0 |= value;
     }
     /// Mask for the RX_FSET_STICKY bit
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn rx_fset_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -265,9 +233,7 @@ impl PCS_INTR_MASK {
         self.0 |= value;
     }
     /// Mask for the RX_HI_BER_STICKY bit
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn rx_hi_ber_mask(&self) -> u32 {
         self.0 & 0x1
@@ -278,9 +244,7 @@ impl PCS_INTR_MASK {
         self.0 |= value;
     }
     /// Mask for RX_OSET_FIFO_FULL_STICKY
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn rx_oset_fifo_full_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -292,9 +256,7 @@ impl PCS_INTR_MASK {
         self.0 |= value;
     }
     /// Mask for the RX_OSET_STICKY bit
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn rx_oset_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -306,9 +268,7 @@ impl PCS_INTR_MASK {
         self.0 |= value;
     }
     /// Mask for the XGMII_ERR_STICKY bit
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn xgmii_err_mask(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -327,9 +287,7 @@ impl PCS_INTR_MASK {
 pub struct PCS_SD_CFG(u32);
 impl PCS_SD_CFG {
     /// Signal Detect Enable
-
     ///
-
     /// 0: The Signal Detect input pin is ignored. The PCS assumes an active Signal Detect at all times 1: The Signal Detect input pin is used to determine if a signal is detected
     pub fn sd_ena(&self) -> u32 {
         self.0 & 0x1
@@ -340,9 +298,7 @@ impl PCS_SD_CFG {
         self.0 |= value;
     }
     /// Signal detect polarity: The signal level on signal_detect input pin must be equal to SD_POL to indicate signal detection (SD_ENA must be set)
-
     ///
-
     /// 0: Signal Detect input pin must be '0' to indicate a signal detection 1: Signal Detect input pin must be '1' to indicate a signal detection
     pub fn sd_pol(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -354,9 +310,7 @@ impl PCS_SD_CFG {
         self.0 |= value;
     }
     /// Signal detect selection (select input for internal signal_detect line)
-
     ///
-
     /// 0: Select signal_detect line from hardmacro 1: Select external signal_detect line
     pub fn sd_sel(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -419,9 +373,7 @@ impl RX_PRBS31_INIT {
 pub struct TEST_CFG(u32);
 impl TEST_CFG {
     /// Disables inversion of seeds and data in the pseudo-random test pattern
-
     ///
-
     /// 0: Inversion enabled 1: Inversion disabled
     pub fn rx_dsbl_inv(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -433,9 +385,7 @@ impl TEST_CFG {
         self.0 |= value;
     }
     /// Select the test pattern used by the test pattern checker. This register is only used if RX_TEST_MODE is active.
-
     ///
-
     /// 0: unused 1: Pseudo random 2: PRBS31 3: User defined
     pub fn rx_testpat_sel(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -447,9 +397,7 @@ impl TEST_CFG {
         self.0 |= value;
     }
     /// Disables inversion of seeds and data in the pseudo-random test pattern
-
     ///
-
     /// 0: Inversion enabled 1: Inversion disabled
     pub fn tx_dsbl_inv(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -461,9 +409,7 @@ impl TEST_CFG {
         self.0 |= value;
     }
     /// Period of square wave. Value in the register is (Period-4). Valid values of period are 4 to 11.
-
     ///
-
     /// Period = (TX_SQPW_4B+4)
     pub fn tx_sqpw_4b(&self) -> u32 {
         (self.0 & 0x1c) >> 2
@@ -475,9 +421,7 @@ impl TEST_CFG {
         self.0 |= value;
     }
     /// Select the test pattern used by the test pattern generator. This register is only used if TX_TEST_MODE is active.
-
     ///
-
     /// 0: Square wave 1: Pseudo random 2: PRBS31 3: User defined
     pub fn tx_testpat_sel(&self) -> u32 {
         self.0 & 0x3

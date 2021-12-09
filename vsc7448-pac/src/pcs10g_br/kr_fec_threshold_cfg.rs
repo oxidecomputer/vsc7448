@@ -44,9 +44,7 @@ impl FIXED_ERROR_COUNT_THRESHOLD {
 pub struct KR_FEC_CFG(u32);
 impl KR_FEC_CFG {
     /// Enables enabling/disabling FEC using backplane Ethernet ANEG (Auto-Negotiation)
-
     ///
-
     /// 0: ANEG doesn't control Enable/Disable of FEC 1: ANEG controls Enable/Diable of FEC
     pub fn an_fec_ctrl_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -58,9 +56,7 @@ impl KR_FEC_CFG {
         self.0 |= value;
     }
     /// Enables FEC decoder to indicate errors to PCS by sync bits
-
     ///
-
     /// 0: FEC Decoding errors have no effect on PCS sync bits 1: Enable FEC decoder to indicate errors to PCS sync bits
     pub fn enable_error_indication(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -72,9 +68,7 @@ impl KR_FEC_CFG {
         self.0 |= value;
     }
     /// Global FEC Enable/Disable configuration bit.
-
     ///
-
     /// 0 = Disable FEC 1 = Enable FEC
     pub fn fec_ena(&self) -> u32 {
         self.0 & 0x1
@@ -85,9 +79,7 @@ impl KR_FEC_CFG {
         self.0 |= value;
     }
     /// When set FEC counters are reset.
-
     ///
-
     /// 0: no effect 1: reset FEC counters
     pub fn reset_monitor_counters(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -99,9 +91,7 @@ impl KR_FEC_CFG {
         self.0 |= value;
     }
     /// Flip the data bus bits at PCS interface such that bit 65 is mapped to bit 0 and bit 0 to 65. i.e. the output bus (65 downto 0) is remapped to (0 to 65) and bit 65 is the first bit.
-
     ///
-
     /// 0 = No flip (LSB first) 1 = Flip bus (MSB first)
     pub fn rx_data_flip(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -113,9 +103,7 @@ impl KR_FEC_CFG {
         self.0 |= value;
     }
     /// Flip the data bus bits at PCS interface such that bit 65 is mapped to bit 0 and bit 0 to 65. i.e. the output bus (65 downto 0) is remapped to (0 to 65) and bit 65 is the first bit.
-
     ///
-
     /// 0 = No flip (LSB first) 1 = Flip bus (MSB first)
     pub fn tx_data_flip(&self) -> u32 {
         (self.0 & 0x100) >> 8

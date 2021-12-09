@@ -45,9 +45,7 @@ impl LBK_FIFO_CFG {
 pub struct LBK_OVFLW_STICKY(u32);
 impl LBK_OVFLW_STICKY {
     /// Frames are dropped due to FIFO overflow.
-
     ///
-
     /// bitmask per port.
     pub fn lbk_ovflw_sticky(&self) -> u32 {
         self.0

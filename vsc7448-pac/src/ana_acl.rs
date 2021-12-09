@@ -113,7 +113,10 @@ impl VCAP_S2 {
     pub fn VCAP_S2_RNG_OFFSET_CFG(&self) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_OFFSET_CFG> {
         RegisterAddress::new(self.0 + 0x1b0)
     }
-    pub fn VCAP_S2_RNG_VALUE_CFG(&self, index: u32) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_VALUE_CFG> {
+    pub fn VCAP_S2_RNG_VALUE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_VALUE_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x190 + index * 0x4)
     }

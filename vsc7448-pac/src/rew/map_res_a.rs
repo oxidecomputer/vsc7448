@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct MAP_VAL_A(u32);
 impl MAP_VAL_A {
     /// Mapped DEI value
-
     ///
-
     /// n: New DEI value
     pub fn dei_val(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -48,9 +46,7 @@ impl MAP_VAL_A {
         self.0 |= value;
     }
     /// Mapped DSCP value
-
     ///
-
     /// n: New DSCP value
     pub fn dscp_val(&self) -> u32 {
         (self.0 & 0x3f0) >> 4
@@ -62,9 +58,7 @@ impl MAP_VAL_A {
         self.0 |= value;
     }
     /// Mapped OAM COLOR value
-
     ///
-
     /// n: New OAM COLOR value
     pub fn oam_color(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -76,9 +70,7 @@ impl MAP_VAL_A {
         self.0 |= value;
     }
     /// Mapped OAM COSID value
-
     ///
-
     /// n: New OAM COSID value
     pub fn oam_cosid(&self) -> u32 {
         (self.0 & 0xe000) >> 13
@@ -90,9 +82,7 @@ impl MAP_VAL_A {
         self.0 |= value;
     }
     /// Mapped PCP value
-
     ///
-
     /// n: New PCP value
     pub fn pcp_val(&self) -> u32 {
         self.0 & 0x7
@@ -103,9 +93,7 @@ impl MAP_VAL_A {
         self.0 |= value;
     }
     /// Mapped TC value
-
     ///
-
     /// n: New TC value
     pub fn tc_val(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
@@ -124,9 +112,7 @@ impl MAP_VAL_A {
 pub struct MIP_STICKY_EVENT(u32);
 impl MIP_STICKY_EVENT {
     /// This bit is set if a CCM CPU is copied to CPU
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn mip_ccm_copy_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -138,9 +124,7 @@ impl MIP_STICKY_EVENT {
         self.0 |= value;
     }
     /// This bit is set if a Generic PDU has been handled
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn mip_generic_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -152,9 +136,7 @@ impl MIP_STICKY_EVENT {
         self.0 |= value;
     }
     /// This bit is set if a destination MAC address check has failed for LBM frame
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn mip_lbm_da_chk_fail_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -166,9 +148,7 @@ impl MIP_STICKY_EVENT {
         self.0 |= value;
     }
     /// This bit is set if a LBM PDU has been redirected to the CPU
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn mip_lbm_redir_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -180,9 +160,7 @@ impl MIP_STICKY_EVENT {
         self.0 |= value;
     }
     /// This bit is set if a LTM PDU has been redirected to the CPU
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn mip_ltm_redir_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -194,9 +172,7 @@ impl MIP_STICKY_EVENT {
         self.0 |= value;
     }
     /// This bit is set if a MEL check has failed for enabled OAM frames
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn mip_mel_chk_fail_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -207,9 +183,7 @@ impl MIP_STICKY_EVENT {
         self.0 |= value;
     }
     /// This bit is set if a Ring APS PDU has been handled
-
     ///
-
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn mip_raps_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3

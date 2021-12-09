@@ -126,16 +126,24 @@ impl SD10G65_OB {
 /// SD10G65 RX RCPLL Configuration and Status Register set
 pub struct SD10G65_RX_RCPLL(pub(super) u32);
 impl SD10G65_RX_RCPLL {
-    pub fn SD10G65_RX_RCPLL_CFG0(&self) -> RegisterAddress<sd10g65_rx_rcpll::SD10G65_RX_RCPLL_CFG0> {
+    pub fn SD10G65_RX_RCPLL_CFG0(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_rcpll::SD10G65_RX_RCPLL_CFG0> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn SD10G65_RX_RCPLL_CFG1(&self) -> RegisterAddress<sd10g65_rx_rcpll::SD10G65_RX_RCPLL_CFG1> {
+    pub fn SD10G65_RX_RCPLL_CFG1(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_rcpll::SD10G65_RX_RCPLL_CFG1> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn SD10G65_RX_RCPLL_CFG2(&self) -> RegisterAddress<sd10g65_rx_rcpll::SD10G65_RX_RCPLL_CFG2> {
+    pub fn SD10G65_RX_RCPLL_CFG2(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_rcpll::SD10G65_RX_RCPLL_CFG2> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn SD10G65_RX_RCPLL_STAT0(&self) -> RegisterAddress<sd10g65_rx_rcpll::SD10G65_RX_RCPLL_STAT0> {
+    pub fn SD10G65_RX_RCPLL_STAT0(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_rcpll::SD10G65_RX_RCPLL_STAT0> {
         RegisterAddress::new(self.0 + 0xc)
     }
     pub fn SD10G65_RX_REV_ID(&self) -> RegisterAddress<sd10g65_rx_rcpll::SD10G65_RX_REV_ID> {
@@ -146,34 +154,54 @@ impl SD10G65_RX_RCPLL {
 /// SD10G65 RX SYNTH Configuration and Status Register set
 pub struct SD10G65_RX_SYNTH(pub(super) u32);
 impl SD10G65_RX_SYNTH {
-    pub fn SD10G65_RX_RCPLL_STAT1(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_RCPLL_STAT1> {
+    pub fn SD10G65_RX_RCPLL_STAT1(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_RCPLL_STAT1> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    pub fn SD10G65_RX_SYNTH_CDRLF(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CDRLF> {
+    pub fn SD10G65_RX_SYNTH_CDRLF(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CDRLF> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    pub fn SD10G65_RX_SYNTH_CFG0(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG0> {
+    pub fn SD10G65_RX_SYNTH_CFG0(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG0> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn SD10G65_RX_SYNTH_CFG1(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG1> {
+    pub fn SD10G65_RX_SYNTH_CFG1(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG1> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn SD10G65_RX_SYNTH_CFG2(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG2> {
+    pub fn SD10G65_RX_SYNTH_CFG2(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG2> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn SD10G65_RX_SYNTH_CFG3(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG3> {
+    pub fn SD10G65_RX_SYNTH_CFG3(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG3> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn SD10G65_RX_SYNTH_CFG4(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG4> {
+    pub fn SD10G65_RX_SYNTH_CFG4(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_CFG4> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    pub fn SD10G65_RX_SYNTH_QUALIFIER0(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_QUALIFIER0> {
+    pub fn SD10G65_RX_SYNTH_QUALIFIER0(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_QUALIFIER0> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    pub fn SD10G65_RX_SYNTH_QUALIFIER1(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_QUALIFIER1> {
+    pub fn SD10G65_RX_SYNTH_QUALIFIER1(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_QUALIFIER1> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    pub fn SD10G65_RX_SYNTH_SYNC_CTRL(&self) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_SYNC_CTRL> {
+    pub fn SD10G65_RX_SYNTH_SYNC_CTRL(
+        &self,
+    ) -> RegisterAddress<sd10g65_rx_synth::SD10G65_RX_SYNTH_SYNC_CTRL> {
         RegisterAddress::new(self.0 + 0x20)
     }
 }
@@ -184,19 +212,29 @@ impl SD10G65_TX_RCPLL {
     pub fn SD10G65_SSC_CFG1(&self) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_SSC_CFG1> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    pub fn SD10G65_TX_RCPLL_CFG0(&self) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_CFG0> {
+    pub fn SD10G65_TX_RCPLL_CFG0(
+        &self,
+    ) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_CFG0> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn SD10G65_TX_RCPLL_CFG1(&self) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_CFG1> {
+    pub fn SD10G65_TX_RCPLL_CFG1(
+        &self,
+    ) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_CFG1> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn SD10G65_TX_RCPLL_CFG2(&self) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_CFG2> {
+    pub fn SD10G65_TX_RCPLL_CFG2(
+        &self,
+    ) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_CFG2> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn SD10G65_TX_RCPLL_STAT0(&self) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_STAT0> {
+    pub fn SD10G65_TX_RCPLL_STAT0(
+        &self,
+    ) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_STAT0> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn SD10G65_TX_RCPLL_STAT1(&self) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_STAT1> {
+    pub fn SD10G65_TX_RCPLL_STAT1(
+        &self,
+    ) -> RegisterAddress<sd10g65_tx_rcpll::SD10G65_TX_RCPLL_STAT1> {
         RegisterAddress::new(self.0 + 0x10)
     }
 }
@@ -210,16 +248,24 @@ impl SD10G65_TX_SYNTH {
     pub fn SD10G65_SSC_CFG0(&self) -> RegisterAddress<sd10g65_tx_synth::SD10G65_SSC_CFG0> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    pub fn SD10G65_TX_SYNTH_CFG0(&self) -> RegisterAddress<sd10g65_tx_synth::SD10G65_TX_SYNTH_CFG0> {
+    pub fn SD10G65_TX_SYNTH_CFG0(
+        &self,
+    ) -> RegisterAddress<sd10g65_tx_synth::SD10G65_TX_SYNTH_CFG0> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn SD10G65_TX_SYNTH_CFG1(&self) -> RegisterAddress<sd10g65_tx_synth::SD10G65_TX_SYNTH_CFG1> {
+    pub fn SD10G65_TX_SYNTH_CFG1(
+        &self,
+    ) -> RegisterAddress<sd10g65_tx_synth::SD10G65_TX_SYNTH_CFG1> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn SD10G65_TX_SYNTH_CFG3(&self) -> RegisterAddress<sd10g65_tx_synth::SD10G65_TX_SYNTH_CFG3> {
+    pub fn SD10G65_TX_SYNTH_CFG3(
+        &self,
+    ) -> RegisterAddress<sd10g65_tx_synth::SD10G65_TX_SYNTH_CFG3> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn SD10G65_TX_SYNTH_CFG4(&self) -> RegisterAddress<sd10g65_tx_synth::SD10G65_TX_SYNTH_CFG4> {
+    pub fn SD10G65_TX_SYNTH_CFG4(
+        &self,
+    ) -> RegisterAddress<sd10g65_tx_synth::SD10G65_TX_SYNTH_CFG4> {
         RegisterAddress::new(self.0 + 0xc)
     }
 }

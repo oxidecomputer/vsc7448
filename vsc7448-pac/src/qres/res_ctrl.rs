@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct RES_CFG(u32);
 impl RES_CFG {
     /// Watermark for resource. Note, the default value depends on the index. Refer to the congestion scheme documentation for details.
-
     ///
-
     /// Bit 10:   Unit; 0:1, 1:16 Bits 9-0: Value to be multiplied with unit
     pub fn wm_high(&self) -> u32 {
         self.0 & 0xfff

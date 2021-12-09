@@ -159,9 +159,7 @@ impl VLAN_CFG {
         self.0 |= value;
     }
     /// Enable secure forwarding on a per VLAN basis. When secure forwarding is enabled, only frames with known SMAC are forwarded.
-
     ///
-
     /// 0: Forwarding is allowed regardless of SMAC being known or unknown. 1: Forwarding is only allowed for frames with known SMAC.
     pub fn vlan_sec_fwd_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -180,9 +178,7 @@ impl VLAN_CFG {
 pub struct VLAN_MASK_CFG(u32);
 impl VLAN_MASK_CFG {
     /// Specify mask of ports belonging to VLAN. Note: Initialization value for addresses 0,1 and 4095 is '1...1' Initialization value for all other addresses is 0 Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.VLAN_LOOKUP_INVLD_STICKY
-
     ///
-
     /// 0: Port does not belong to the VLAN 1: Port belongs to the VLAN
     pub fn vlan_port_mask(&self) -> u32 {
         self.0

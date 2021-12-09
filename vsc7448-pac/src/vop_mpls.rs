@@ -72,7 +72,9 @@ impl VOE_CONF_MPLS {
 /// Per VOE statistics and counters (MPLS-TP OAM)
 pub struct VOE_STAT_MPLS(pub(super) u32);
 impl VOE_STAT_MPLS {
-    pub fn BFD_CC_RX_INVLD_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CC_RX_INVLD_CNT_REG> {
+    pub fn BFD_CC_RX_INVLD_CNT_REG(
+        &self,
+    ) -> RegisterAddress<voe_stat_mpls::BFD_CC_RX_INVLD_CNT_REG> {
         RegisterAddress::new(self.0 + 0x48)
     }
     pub fn BFD_CC_RX_VLD_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CC_RX_VLD_CNT_REG> {
@@ -81,7 +83,9 @@ impl VOE_STAT_MPLS {
     pub fn BFD_CC_TX_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CC_TX_CNT_REG> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    pub fn BFD_CV_RX_INVLD_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CV_RX_INVLD_CNT_REG> {
+    pub fn BFD_CV_RX_INVLD_CNT_REG(
+        &self,
+    ) -> RegisterAddress<voe_stat_mpls::BFD_CV_RX_INVLD_CNT_REG> {
         RegisterAddress::new(self.0 + 0x4c)
     }
     pub fn BFD_CV_RX_VLD_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CV_RX_VLD_CNT_REG> {
@@ -123,13 +127,17 @@ impl VOE_STAT_MPLS {
     pub fn PDU_EXTRACT_MPLS(&self) -> RegisterAddress<voe_stat_mpls::PDU_EXTRACT_MPLS> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    pub fn RX_CNT_NON_SEL_OAM_MPLS(&self) -> RegisterAddress<voe_stat_mpls::RX_CNT_NON_SEL_OAM_MPLS> {
+    pub fn RX_CNT_NON_SEL_OAM_MPLS(
+        &self,
+    ) -> RegisterAddress<voe_stat_mpls::RX_CNT_NON_SEL_OAM_MPLS> {
         RegisterAddress::new(self.0 + 0x4)
     }
     pub fn RX_CNT_SEL_OAM_MPLS(&self) -> RegisterAddress<voe_stat_mpls::RX_CNT_SEL_OAM_MPLS> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn TX_CNT_NON_SEL_OAM_MPLS(&self) -> RegisterAddress<voe_stat_mpls::TX_CNT_NON_SEL_OAM_MPLS> {
+    pub fn TX_CNT_NON_SEL_OAM_MPLS(
+        &self,
+    ) -> RegisterAddress<voe_stat_mpls::TX_CNT_NON_SEL_OAM_MPLS> {
         RegisterAddress::new(self.0 + 0xc)
     }
     pub fn TX_CNT_SEL_OAM_MPLS(&self) -> RegisterAddress<voe_stat_mpls::TX_CNT_SEL_OAM_MPLS> {

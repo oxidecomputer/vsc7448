@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct STICKY(u32);
 impl STICKY {
     /// Set if frame is redirected due to VCAP IS2. Write 1 to clear this field.
-
     ///
-
     /// 0: No redir event 1: A frame was redirected.
     pub fn acl_redir_sticky(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -48,9 +46,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a frame has been forwarded with a non-zero destination set. Write 1 to clear this field.
-
     ///
-
     /// 0: No frames forwarded 1: Frame forward event
     pub fn frame_fwd_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -142,9 +138,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a mirror probe has been triggered. Write 1 to clear this field.
-
     ///
-
     /// 0: Mirror probe not triggered 1: Mirror probe triggered
     pub fn probe_sticky(&self) -> u32 {
         (self.0 & 0x700000) >> 20
@@ -166,9 +160,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a sFlow destination sample event has taken place. Write 1 to clear this field.
-
     ///
-
     /// 0: No event 1: A sample event has occured
     pub fn sflow_dst_sample_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -180,9 +172,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a sFlow sample event has taken place. Write 1 to clear this field.
-
     ///
-
     /// 0: No event 1: A sample event has occured
     pub fn sflow_sample_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -194,9 +184,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a sFlow source sample event has taken place. Write 1 to clear this field.
-
     ///
-
     /// 0: No event 1: A sample event has occured
     pub fn sflow_src_sample_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13

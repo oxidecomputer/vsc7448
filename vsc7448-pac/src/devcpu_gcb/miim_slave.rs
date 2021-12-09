@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct TEMP_SENSOR_STAT(u32);
 impl TEMP_SENSOR_STAT {
     /// Temperature data readout, this field is valid when DEVCPU_GCB::TEMP_SENSOR_STAT.TEMP_VALID is set. This field is continually updated (approximately every 500us) while the termperature sensor is enabled, see DEVCPU_GCB::TEMP_SENSOR_CTRL.SAMPLE_ENA for more information.
-
     ///
-
     /// Temperature(C)=177.4 - 0.8777*DATA
     pub fn temp(&self) -> u32 {
         self.0 & 0xff

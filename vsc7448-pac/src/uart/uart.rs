@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct HTX(u32);
 impl HTX {
     /// This register is use to halt transmissions for testing, so that the transmit FIFO can be filled by the master when FIFOs are enabled.
-
     ///
-
     /// 0: Halt tx disabled 1: Halt tx enabled
     pub fn htx(&self) -> u32 {
         self.0 & 0x1
@@ -52,9 +50,7 @@ impl HTX {
 pub struct IER(u32);
 impl IER {
     /// Enable modem status interrupt. This is used to enable or disable the generation of Modem Status interrupt. This is the fourth highest priority interrupt.
-
     ///
-
     /// 0: Disabled 1: Enabled
     pub fn edssi(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -66,9 +62,7 @@ impl IER {
         self.0 |= value;
     }
     /// Enable receiver line status interrupt. This is used to enable or disable the generation of Receiver Line Status interrupt. This is the highest priority interrupt.
-
     ///
-
     /// 0: Disabled 1: Enabled
     pub fn elsi(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -80,9 +74,7 @@ impl IER {
         self.0 |= value;
     }
     /// Enable received data available interrupt. This is used to enable or disable the generation of Received Data Available interrupt and the Character Timeout interrupt (if FIFOs are enabled). These are the second highest priority interrupts.
-
     ///
-
     /// 0: Disabled 1: Enabled
     pub fn erbfi(&self) -> u32 {
         self.0 & 0x1
@@ -93,9 +85,7 @@ impl IER {
         self.0 |= value;
     }
     /// Enable transmit holding register empty interrupt. This is used to enable or disable the generation of Transmitter Holding Register Empty interrupt. This is the third highest priority interrupt.
-
     ///
-
     /// 0: Disabled 1: Enabled
     pub fn etbei(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -107,9 +97,7 @@ impl IER {
         self.0 |= value;
     }
     /// Programmable THRE interrupt mode enable. This is used to enable or disable the generation of THRE interrupt.
-
     ///
-
     /// 0: Disabled 1: Enabled
     pub fn ptime(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -137,9 +125,7 @@ impl IIR_FCR {
         self.0 |= value;
     }
     /// When reading this field, the current status of the FIFO is returned; 00 for disabled or 11 for enabled. Writing this field selects the trigger level in the receive FIFO at which the Received Data Available interrupt is generated (see encoding.) In auto flow control mode, it is used to determine when to generate back-pressure using the RTS signal.
-
     ///
-
     /// 00: 1 character in the Rx FIFO 01: Rx FIFO 1/4 full 10: Rx FIFO 1/2 full 11: Rx FIFO 2 less than full
     pub fn fifose_rt(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -161,9 +147,7 @@ impl IIR_FCR {
         self.0 |= value;
     }
     /// Tx empty trigger. When the THRE mode is enabled (IER.PTIME), this field selects the empty threshold level at which the THRE Interrupts are generated.
-
     ///
-
     /// 00: Tx FIFO empty 01: 2 characters in the Tx FIFO 10: Tx FIFO 1/4 full 11: Tx FIFO 1/2 full
     pub fn tet(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -212,9 +196,7 @@ impl LCR {
         self.0 |= value;
     }
     /// Data length select. This is used to select the number of data bits per character that the peripheral transmits and receives. The following settings specify the number of bits that may be selected.
-
     ///
-
     /// 00: 5 bits 01: 6 bits 10: 7 bits 11: 8 bits
     pub fn dls(&self) -> u32 {
         self.0 & 0x3
@@ -235,9 +217,7 @@ impl LCR {
         self.0 |= value;
     }
     /// Parity enable. This bit is used to enable or disable parity generation and detection in both transmitted and received serial characters.
-
     ///
-
     /// 0: Parity disabled 1: Parity enabled
     pub fn pen(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -249,9 +229,7 @@ impl LCR {
         self.0 |= value;
     }
     /// Number of stop bits. This is used to select the number of stop bits per character that the peripheral transmits and receives. If set to zero, one stop bit is transmitted in the serial data. If set to one and the data bits are set to 5 (LCR.DLS), one and a half stop bits are transmitted. Otherwise, two stop bits are transmitted. Note that regardless of the number of stop bits selected, the receiver checks only the first stop bit.
-
     ///
-
     /// 0: 1 stop bit 1: 1.5 stop bits when LCR.DLS is zero, otherwise, 2 stop bits
     pub fn stop(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -278,9 +256,7 @@ impl LSR {
         self.0 |= value;
     }
     /// Data ready. This is used to indicate that the receiver contains at least one character in the receiver FIFO. This bit is cleared when the RX FIFO is empty.
-
     ///
-
     /// 0: No data ready 1: Data ready
     pub fn dr(&self) -> u32 {
         self.0 & 0x1
@@ -291,9 +267,7 @@ impl LSR {
         self.0 |= value;
     }
     /// Framing error bit. This is used to indicate the a framing error in the receiver. A framing error occurs when the receiver does not detect a valid STOP bit in the received data. A framing error is associated with a received character. Therefore, in FIFO mode, an error is revealed when the character with the framing error is at the top of the FIFO. When a framing error occurs, the UART tries to resynchronize. It does this by assuming that the error was due to the start bit of the next character and then continues to receive the other bit, that is, data and/or parity, and then stops. Note that this field is set if a break interrupt has occurred, as indicated by Break Interrupt (LSR.BI). This field is cleared on read.
-
     ///
-
     /// 0: No framing error 1: Framing error
     pub fn fe(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -305,9 +279,7 @@ impl LSR {
         self.0 |= value;
     }
     /// Overrun error bit. This is used to indicate the occurrence of an overrun error. This occurs if a new data character was received before the previous data was read. In non-FIFO mode, the OE bit is set when a new character arrives before the previous character was read. When this happens, the data in the RBR is overwritten. In FIFO mode, an overrun error occurs when the FIFO is full and a new character arrives at the receiver. The data in the FIFO is retained and the data in the receive shift register is lost. This field is cleared on read.
-
     ///
-
     /// 0: No overrun error 1: Overrun error
     pub fn oe(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -319,9 +291,7 @@ impl LSR {
         self.0 |= value;
     }
     /// Parity error bit. This is used to indicate the occurrence of a parity error in the receiver if the Parity Enable bit (LCR.PEN) is set. A parity error is associated with a received character. Therefore, in FIFO mode, an error is revealed when the character with the parity error arrives at the top of the FIFO. Note that this field is set if a break interrupt has occurred, as indicated by Break Interrupt (LSR.BI). This field is cleared on read.
-
     ///
-
     /// 0: No parity error 1: Parity error
     pub fn pe(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -333,9 +303,7 @@ impl LSR {
         self.0 |= value;
     }
     /// Receiver FIFO error bit. This bit is only valid when FIFOs are enabled. This is used to indicate whether there is at least one parity error, framing error, or break indication in the FIFO. This bit is cleared when the LSR is read, the character with the error is at the top of the receiver FIFO, and there are no subsequent errors in the FIFO.
-
     ///
-
     /// 0: No error in Rx FIFO 1: Error in Rx FIFO
     pub fn rfe(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -372,9 +340,7 @@ impl LSR {
 pub struct MCR(u32);
 impl MCR {
     /// Auto flow control enable. This mode requires that FIFOs are enabled and that MCR.RTS is set.
-
     ///
-
     /// 0: Auto flow control mode disabled 1: Auto flow control mode enabled
     pub fn afce(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -396,9 +362,7 @@ impl MCR {
         self.0 |= value;
     }
     /// Request to send. This is used to directly control the Request to Send (RTS) output. The RTS output is used to inform the partner that the UART is ready to exchange data. The RTS is still controlled from this field when Auto RTS Flow Control is enabled (MCR.AFCE), but the output can be forced high by the flow control mechanism. If this field is cleared, the UART permanently indicates backpressure to the partner.
-
     ///
-
     /// 0: RTS is set high 1: RTS is set low
     pub fn rts(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -415,9 +379,7 @@ impl MCR {
 pub struct MSR(u32);
 impl MSR {
     /// Clear to send. This field indicates the current state of the modem control line, CTS. When the Clear to Send input (CTS) is asserted, it is an indication that the partner is ready to exchange data with the UART.
-
     ///
-
     /// 0: CTS input is deasserted (logic 0) 1: CTS input is asserted (logic 1)
     pub fn cts(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -429,9 +391,7 @@ impl MSR {
         self.0 |= value;
     }
     /// Delta clear to send. This is used to indicate that the modem control line, CTS, has changed since the last time the MSR was read. Reading the MSR clears the DCTS bit. Note: If the DCTS bit is not set, the CTS signal is asserted, and a reset occurs (software or otherwise), then the DCTS bit is set when the reset is removed, if the CTS signal remains asserted. A read of the MSR after reset can be performed to prevent unwanted interrupts.
-
     ///
-
     /// 0: No change on CTS since the last read of the MSR 1: Change on CTS since the last read of the MSR
     pub fn dcts(&self) -> u32 {
         self.0 & 0x1
@@ -461,7 +421,8 @@ impl RBR_THR {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED1(u32);
-impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
+impl RESERVED1 {
+    pub fn reserved1(&self) -> u32 {
         self.0
     }
     pub fn set_reserved1(&mut self, value: u32) {
@@ -471,7 +432,8 @@ impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED2(u32);
-impl RESERVED2 {    pub fn reserved2(&self) -> u32 {
+impl RESERVED2 {
+    pub fn reserved2(&self) -> u32 {
         self.0
     }
     pub fn set_reserved2(&mut self, value: u32) {
@@ -497,9 +459,7 @@ impl SCR {
 pub struct USR(u32);
 impl USR {
     /// UART busy.
-
     ///
-
     /// 0: UART is idle or inactive 1: UART is busy (actively transferring data)
     pub fn busy(&self) -> u32 {
         self.0 & 0x1

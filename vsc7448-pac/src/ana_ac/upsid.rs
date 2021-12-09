@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct SFLOW_CNT(u32);
 impl SFLOW_CNT {
     /// The number of forwarded frames. The counter is free running (wraps around when reaching max value). This counter can be reset using ANA_AC::SFLOW_RESET_CTRL.SFLOW_FRAME_RESET_SHOT.
-
     ///
-
     /// 0 : no entries
     pub fn sflow_frame_fwd_cnt(&self) -> u32 {
         self.0 & 0xffffff

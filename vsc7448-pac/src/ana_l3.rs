@@ -34,8 +34,8 @@ use crate::types::RegisterAddress;
 pub mod arp;
 pub mod arp_ptr_remap;
 pub mod common;
-pub mod l3mc;
 pub mod l3_sticky_mask;
+pub mod l3mc;
 pub mod lpm_remap_sticky;
 pub mod mstp;
 pub mod tupe;
@@ -284,7 +284,9 @@ impl VLAN {
 /// Diagnostic information
 pub struct VLAN_ARP_L3MC_STICKY(pub(super) u32);
 impl VLAN_ARP_L3MC_STICKY {
-    pub fn L3_LPM_REMAP_STICKY(&self) -> RegisterAddress<vlan_arp_l3mc_sticky::L3_LPM_REMAP_STICKY> {
+    pub fn L3_LPM_REMAP_STICKY(
+        &self,
+    ) -> RegisterAddress<vlan_arp_l3mc_sticky::L3_LPM_REMAP_STICKY> {
         RegisterAddress::new(self.0 + 0x0)
     }
     pub fn VLAN_STICKY(&self) -> RegisterAddress<vlan_arp_l3mc_sticky::VLAN_STICKY> {

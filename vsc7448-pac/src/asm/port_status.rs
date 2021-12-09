@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct PRE_CNT_OFLW_STICKY(u32);
 impl PRE_CNT_OFLW_STICKY {
     /// Will be set if one of the statistics pause frame pre counters has an overflow.
-
     ///
-
     /// '0': An overflow in	pre-counter has not occured '1': An overflow in	pre-counter has occured Bit is cleared by writing a '1' to this position.
     pub fn pause_frm_pre_cnt_oflw_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -47,9 +45,7 @@ impl PRE_CNT_OFLW_STICKY {
         self.0 |= value;
     }
     /// Will be set if one of the statistics pre counters for unsupported control frames has an overflow.
-
     ///
-
     /// '0': An overflow in	pre-counter has not occured '1': An overflow in	pre-counter has occured Bit is cleared by writing a '1' to this position.
     pub fn unsup_opcode_pre_cnt_oflw_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1

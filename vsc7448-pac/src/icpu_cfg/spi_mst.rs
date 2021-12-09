@@ -42,9 +42,7 @@ impl PI_SLV_CFG {
         self.0 |= value;
     }
     /// Configures number of clock cycles after detecting asserted CS to control/data is sampled.
-
     ///
-
     /// n: Wait n clocks after detecting CS before sampling control/data.
     pub fn cswait(&self) -> u32 {
         self.0 & 0xff
@@ -55,9 +53,7 @@ impl PI_SLV_CFG {
         self.0 |= value;
     }
     /// Configure a minimum number of cycles after release of NCS until ndone is no longer driven by device. The device will deassert ndone value when NCS is released, this setting allows parking of the ndone at inactive level before releasing drive of output.
-
     ///
-
     /// 0: Immediate release of ndone (async path from CS input). n: Wait at least n+1 clocks after CS release until ndone is released.
     pub fn donepark(&self) -> u32 {
         (self.0 & 0x3f0000) >> 16
@@ -89,9 +85,7 @@ impl PI_SLV_CFG {
         self.0 |= value;
     }
     /// Configures number of clock cycles to delay nDone indication for read operations after accerss is done.
-
     ///
-
     /// n: Wait n clocks after read data ready before asserting nDone indication.
     pub fn donewait(&self) -> u32 {
         (self.0 & 0xff00) >> 8
@@ -108,9 +102,7 @@ impl PI_SLV_CFG {
 pub struct SPI_MST_CFG(u32);
 impl SPI_MST_CFG {
     /// Set to enable 32bit address mode. In 32bit addressing mode only CS0 is used, the SPI address region is limited to 256MByte reserved for the SI interface.
-
     ///
-
     /// 0: Use 24bit addressing with 4 different CS. 1: Use 32bit addressing on CS0, max 256MByte
     pub fn a32b_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -122,9 +114,7 @@ impl SPI_MST_CFG {
         self.0 |= value;
     }
     /// Controls the clock frequency for the SPI interface (SI_Clk). The clock frequency is VCore system clock divided by the value of this field. Setting this field to 0 or 1 value is illegal.
-
     ///
-
     /// The SPI interface frequency is: 250MHz/CLK_DIV.
     pub fn clk_div(&self) -> u32 {
         self.0 & 0x1f
@@ -145,9 +135,7 @@ impl SPI_MST_CFG {
         self.0 |= value;
     }
     /// The type of read-instruction that the SPI Controller generates for reads.
-
     ///
-
     /// 0: READ (slow read - Instruction code - 0x03) 1: FAST READ (fast read - Instruction code - 0x0B)
     pub fn fast_read_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10

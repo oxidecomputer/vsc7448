@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct DFT_BIST_CFG0(u32);
 impl DFT_BIST_CFG0 {
     /// BIST FSM: threshold to enter FINISHED state (refer to cfg field frame_len_cfg)
-
     ///
-
     /// N: time = (N+1) * (frame_len_cfg+1) 40-bit clock cycles
     pub fn max_bist_frames_cfg(&self) -> u32 {
         self.0 & 0xffff
@@ -47,9 +45,7 @@ impl DFT_BIST_CFG0 {
         self.0 |= value;
     }
     /// BIST FSM: threshold to leave DOZE state
-
     ///
-
     /// N: time = (N+1) 40-bit clock cycles
     pub fn wakeup_dly_cfg(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -68,9 +64,7 @@ impl DFT_BIST_CFG0 {
 pub struct DFT_BIST_CFG1(u32);
 impl DFT_BIST_CFG1 {
     /// BIST FSM: threshold to iterate counter for max_stable_attempts
-
     ///
-
     /// N: attempts = (N+1)
     pub fn max_unstable_cyc_cfg(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -82,9 +76,7 @@ impl DFT_BIST_CFG1 {
         self.0 |= value;
     }
     /// BIST FSM: threshold to enter CHECK state
-
     ///
-
     /// N: time = (N+1) 40-bit clock cycles
     pub fn stable_thres_cfg(&self) -> u32 {
         self.0 & 0xffff
@@ -102,9 +94,7 @@ impl DFT_BIST_CFG1 {
 pub struct DFT_BIST_CFG2(u32);
 impl DFT_BIST_CFG2 {
     /// BIST FSM: threshold to iterate counter for max_bist_frames (refer to cfg field max_bist_frames_cfg)
-
     ///
-
     /// N: multiplier = (N+1)
     pub fn frame_len_cfg(&self) -> u32 {
         self.0
@@ -120,9 +110,7 @@ impl DFT_BIST_CFG2 {
 pub struct DFT_BIST_CFG3(u32);
 impl DFT_BIST_CFG3 {
     /// BIST FSM: threshold to enter SYNC_ERR state
-
     ///
-
     /// N: attempts = (N+1)
     pub fn max_stable_attempts_cfg(&self) -> u32 {
         self.0
@@ -138,9 +126,7 @@ impl DFT_BIST_CFG3 {
 pub struct DFT_CLK_CMP_CFG(u32);
 impl DFT_CLK_CMP_CFG {
     /// Clock compare divider for RX clock
-
     ///
-
     /// 0: rx clk 1: rx_clk/2 2: rx_clk/4 3: rx_clk/8
     pub fn clk_cmp_div_rx(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -152,9 +138,7 @@ impl DFT_CLK_CMP_CFG {
         self.0 |= value;
     }
     /// Clock compare divider for TX clock
-
     ///
-
     /// 0: tx clk 1: tx_clk/2 2: tx_clk/4 3: tx_clk/8
     pub fn clk_cmp_div_tx(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -175,9 +159,7 @@ impl DFT_CLK_CMP_CFG {
         self.0 |= value;
     }
     /// Clock comparison mode
-
     ///
-
     /// 0: single shot 1: continuous
     pub fn clk_cmp_mode(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -189,9 +171,7 @@ impl DFT_CLK_CMP_CFG {
         self.0 |= value;
     }
     /// Clock compare selection
-
     ///
-
     /// 0: rx_clk vs. tx_clk 1: rx_clk 2: tx_clk 3: Reserved
     pub fn clk_cmp_sel(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -213,9 +193,7 @@ impl DFT_CLK_CMP_CFG {
         self.0 |= value;
     }
     /// Enable clock comparison counter wrap
-
     ///
-
     /// 0: counter saturates 1: counter wraps
     pub fn clk_cmp_wrap_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -380,9 +358,7 @@ impl DFT_PRBS_STAT {
 pub struct DFT_RX_CFG(u32);
 impl DFT_RX_CFG {
     /// States in which error counting is enabled
-
     ///
-
     /// 3:all but IDLE; 2:check 1:stable+check 0:wait_stable+stable+check
     pub fn bist_cnt_cfg(&self) -> u32 {
         (self.0 & 0x300000) >> 20
@@ -394,9 +370,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// BIST mode
-
     ///
-
     /// 0: off 1: BIST 2: BER 3:CONT (infinite mode)
     pub fn bist_mode_cfg(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -408,9 +382,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Selects pattern to check
-
     ///
-
     /// 0: PRBS pattern 1: constant pattern
     pub fn chk_mode_cfg(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -422,9 +394,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Selects compare mode
-
     ///
-
     /// 0: compare mode possible 1 learn mode is forced
     pub fn cmp_mode_cfg(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -436,9 +406,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Selects modes in which error counter is active
-
     ///
-
     /// 0:learn and compare mode 1:transition between modes 2:learn mode 3:compare mode
     pub fn cnt_cfg(&self) -> u32 {
         (self.0 & 0x18) >> 3
@@ -460,9 +428,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Enable RX DFT capability
-
     ///
-
     /// 0: Disable DFT 1: Enable DFT
     pub fn dft_rx_ena(&self) -> u32 {
         self.0 & 0x1
@@ -513,9 +479,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Number of consecutive errors/non-errors before transitioning to respective state
-
     ///
-
     /// value = num-40-bits-words + 1
     pub fn lrn_cnt_cfg(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -527,9 +491,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Data source selection
-
     ///
-
     /// 0: main path 1: vscope high path 2: vscope low path
     pub fn rx_data_src_sel(&self) -> u32 {
         (self.0 & 0xc00000) >> 22
@@ -541,9 +503,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Selects PRBS check
-
     ///
-
     /// 0: prbs7 1: prbs15 2: prbs23 3: prbs11 4: prbs31 (default) 5: prbs9
     pub fn rx_prbs_sel_cfg(&self) -> u32 {
         (self.0 & 0x3800) >> 11
@@ -555,9 +515,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Selects DES interface width
-
     ///
-
     /// 0:8 1:10 2:16 3:20 4:32 5:40 (default)
     pub fn rx_wid_sel_cfg(&self) -> u32 {
         (self.0 & 0x38000) >> 15
@@ -579,9 +537,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Disables error generation based on stuck_at_01 errors,
-
     ///
-
     /// 0: stuck_at_01 error generates 63 errors per clock cycle (in PRBS mode only) 1: stuck_at_01 error does not generate errors
     pub fn stuck_at_01_mask_cfg(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -593,9 +549,7 @@ impl DFT_RX_CFG {
         self.0 |= value;
     }
     /// Disables error generation based on stuck_at_par errors,
-
     ///
-
     /// 0: stuck_at_par error generates 63 errors per clock cycle (in PRBS mode only) 1: stuck_at_par error does not generate errors
     pub fn stuck_at_par_mask_cfg(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
@@ -674,9 +628,7 @@ impl DFT_RX_PAT_CFG {
 pub struct DFT_TX_CFG(u32);
 impl DFT_TX_CFG {
     /// Enable TX DFT capability
-
     ///
-
     /// 0: Disable DFT 1: Enable DFT
     pub fn dft_tx_ena(&self) -> u32 {
         self.0 & 0x1
@@ -687,9 +639,7 @@ impl DFT_TX_CFG {
         self.0 |= value;
     }
     /// Selects PRBS generator input
-
     ///
-
     /// 0:pat-gen 1:core
     pub fn ipath_cfg(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -701,9 +651,7 @@ impl DFT_TX_CFG {
         self.0 |= value;
     }
     /// Selects DFT-TX output
-
     ///
-
     /// 0:PRBS/scrambler (default) 1:bypass 2:clock pattern generator
     pub fn opath_cfg(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -735,9 +683,7 @@ impl DFT_TX_CFG {
         self.0 |= value;
     }
     /// Selects PRBS generator
-
     ///
-
     /// 0: prbs7 1: prbs15 2: prbs23 3: prbs11 4: prbs31 (default) 5: prbs9
     pub fn tx_prbs_sel_cfg(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -749,9 +695,7 @@ impl DFT_TX_CFG {
         self.0 |= value;
     }
     /// Selects SER interface width
-
     ///
-
     /// 0:8 1:10 2:16 3:20 4:32 5:40 (default)
     pub fn tx_wid_sel_cfg(&self) -> u32 {
         (self.0 & 0xe00) >> 9
@@ -763,9 +707,7 @@ impl DFT_TX_CFG {
         self.0 |= value;
     }
     /// Word width of constant pattern generator
-
     ///
-
     /// 0:bytes mode; 1:10-bits word mode
     pub fn tx_word_mode_cfg(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -820,9 +762,7 @@ impl DFT_TX_ERR_INSERT_CFG {
         self.0 |= value;
     }
     /// Frequency of continous/limited error insertion in steps of 40 bits (refer also to err_posit_offs_cfg)
-
     ///
-
     /// 0: disable continous insertion 1-15: step between 2 errors = 2^(err_freq_cfg + 5) 40 bit words
     pub fn err_freq_cfg(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -834,9 +774,7 @@ impl DFT_TX_ERR_INSERT_CFG {
         self.0 |= value;
     }
     /// Position within 40 bit word where an error is inserted by inverting the bit value
-
     ///
-
     /// 0: LSB 39: MSB 40-63: reserved
     pub fn err_posit_cfg(&self) -> u32 {
         (self.0 & 0xfc00) >> 10
@@ -848,9 +786,7 @@ impl DFT_TX_ERR_INSERT_CFG {
         self.0 |= value;
     }
     /// Offset of bit position increased per inserted error; allows 'walking' error. Offset is reset when continous/limited error insertion is disabled or burst mode is enabled and burst insertion is finished or err_posit_offs_cfg = 0
-
     ///
-
     /// 0: disabled 1: move 1 bit (from LSB to MSB) ... 39: move 39 bit (from LSB to MSB) 40-63: reserved
     pub fn err_posit_offs_cfg(&self) -> u32 {
         (self.0 & 0x3f0) >> 4
@@ -862,9 +798,7 @@ impl DFT_TX_ERR_INSERT_CFG {
         self.0 |= value;
     }
     /// Trigger a single error or a burst of errors (refer to num_err_cfg)
-
     ///
-
     /// 0 to 1 (edge) activates this function
     pub fn err_trig_oneshot_cfg(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -876,9 +810,7 @@ impl DFT_TX_ERR_INSERT_CFG {
         self.0 |= value;
     }
     /// Limited error insertion: burst mode (err_freq_cfg must be > 0; each burst is triggered by a 0 to 1 transition of configuration field err_trig_oneshot_cfg)
-
     ///
-
     /// 0: burst mode is disabled 1-15: number of errors per burst = 2^(num_err_cfg + 5)
     pub fn num_err_cfg(&self) -> u32 {
         self.0 & 0xf

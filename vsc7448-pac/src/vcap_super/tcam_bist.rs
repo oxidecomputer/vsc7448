@@ -262,9 +262,7 @@ impl TCAM_STAT {
         self.0 |= value;
     }
     /// Indicates the current operational state of the TCAM.
-
     ///
-
     /// '0': Busy with initialization. '1': Ready to be used.
     pub fn tcam_rdy(&self) -> u32 {
         self.0 & 0x1

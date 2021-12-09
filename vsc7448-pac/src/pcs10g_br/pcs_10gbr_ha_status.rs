@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct PCS_STATUS(u32);
 impl PCS_STATUS {
     /// The block_lock status from the synchronization state machine
-
     ///
-
     /// 0: Not synchronized 1: Synchronized, lock obtained
     pub fn rx_block_lock(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -48,9 +46,7 @@ impl PCS_STATUS {
         self.0 |= value;
     }
     /// Set by the Rx BER state machine when a high bit-error-rate condition is detected
-
     ///
-
     /// 0: Normal BER 1: High BER
     pub fn rx_hi_ber(&self) -> u32 {
         self.0 & 0x1
@@ -61,9 +57,7 @@ impl PCS_STATUS {
         self.0 |= value;
     }
     /// When in test pattern check mode, this bit will read 1 if the test pattern checker detects a match. When 0, the test pattern does not match. The test pattern error counts should still be used along with this register bit to determine proper test match status. The bit will read back 1 only when the test pattern is matching. This may happen even while test pattern errors are counted on other clock cycles.
-
     ///
-
     /// 0: Test pattern mismatch 1: Test pattern match
     pub fn testpat_match(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -126,9 +120,7 @@ impl RX_ERRBLK_CNT {
 pub struct RX_FSET_FIFO_STAT(u32);
 impl RX_FSET_FIFO_STAT {
     /// Indicates if the FIFO is full
-
     ///
-
     /// 0: FIFO not full 1: FIFO full
     pub fn rx_fset_fifo_full(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -140,9 +132,7 @@ impl RX_FSET_FIFO_STAT {
         self.0 |= value;
     }
     /// Number of valid ordered sets in the FIFO that can be read
-
     ///
-
     /// Binary number
     pub fn rx_fset_fifo_num(&self) -> u32 {
         self.0 & 0x7
@@ -177,9 +167,7 @@ impl RX_OSET_FIFO_DATA {
 pub struct RX_OSET_FIFO_STAT(u32);
 impl RX_OSET_FIFO_STAT {
     /// Indicates if the FIFO is full
-
     ///
-
     /// 0: FIFO not full 1: FIFO full
     pub fn rx_oset_fifo_full(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -191,9 +179,7 @@ impl RX_OSET_FIFO_STAT {
         self.0 |= value;
     }
     /// Number of valid ordered sets in the FIFO that can be read
-
     ///
-
     /// Binary number
     pub fn rx_oset_fifo_num(&self) -> u32 {
         self.0 & 0x7

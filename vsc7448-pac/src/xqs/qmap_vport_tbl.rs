@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct STAT_CFG(u32);
 impl STAT_CFG {
     /// Set STAT_CLEAR_SHOT to clear counters for the port or service index selected by STAT_VIEW. Auto-cleared when complete (1us). Multiple counters can be cleared at the same time by setting multiple bits in STAT_CLEAR_SHOT.
-
     ///
-
     /// Bit 0: Clear Rx port counters (Packet, LS byte and MS byte) Bit 1: Clear Tx port counters (Packet, LS byte and MS byte) Bit 2: Clear ingress service counters (Packet, LS byte and MS byte) Bit 3: Clear egress service counters (Packet, LS byte and MS byte) When bits 0-1 are used a port number must be configured in STAT_VIEW. When bits 2 is used an ingress service index must be configured in STAT_VIEW. When bits 3 is used an egress service index must be configured in STAT_VIEW.
     pub fn stat_clear_shot(&self) -> u32 {
         (self.0 & 0x3c0000) >> 18

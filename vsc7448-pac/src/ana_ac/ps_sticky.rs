@@ -41,9 +41,7 @@ impl PGID_MISC_CFG {
         self.0 |= value;
     }
     /// CPU queue for frames copied to CPU due to PGID_CPU_COPY_ENA. Related parameters: ANA_AC:PGID:PGID_MISC_CFG.PGID_CPU_COPY_ENA
-
     ///
-
     /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
     pub fn pgid_cpu_qu(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -55,9 +53,7 @@ impl PGID_MISC_CFG {
         self.0 |= value;
     }
     /// Encoding of PGID_CFG.PORT_MASK. Related parameters: ANA_AC:PGID[0-1076]:PGID_CFG.PORT_MASK
-
     ///
-
     /// 0: Port mask encoding 1: Stack forwarding encoding
     pub fn stack_type_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1

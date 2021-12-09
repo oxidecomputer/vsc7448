@@ -66,9 +66,7 @@ impl AN_STS0 {
         self.0 |= value;
     }
     /// speed setting
-
     ///
-
     /// 0: 10G 1: 1G 2: 3G
     pub fn line_rate(&self) -> u32 {
         self.0 & 0x3
@@ -79,9 +77,7 @@ impl AN_STS0 {
         self.0 |= value;
     }
     /// AN link_control variable
-
     ///
-
     /// 0: ENABLE 1: DISABLE 2: SCAN_FOR_CARRIER
     pub fn link_ctl(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -93,9 +89,7 @@ impl AN_STS0 {
         self.0 |= value;
     }
     /// Negotiated HCD
-
     ///
-
     /// 0: KX_1G 1: KX4_10G 2: KR_10G 3: KR4_40G 4: CR4_40G 5: CR10_100G
     pub fn link_hcd(&self) -> u32 {
         (self.0 & 0x70) >> 4

@@ -90,9 +90,7 @@ impl MIP_CFG {
         self.0 |= value;
     }
     /// Handling of OAM Y.1731 frames with OpCode=GENERIC_OPCODE_VAL, correct encapsulation, and correct MEL.
-
     ///
-
     /// 0: No handling 1: Copy to CPU 2: Redirect to CPU 3: Discard
     pub fn generic_opcode_cfg(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -144,9 +142,7 @@ impl MIP_CFG {
         self.0 |= value;
     }
     /// MIP location.
-
     ///
-
     /// 0: ANA_IN_MIP 1: ANA_OU_MIP
     pub fn pipeline_pt(&self) -> u32 {
         self.0 & 0x1
@@ -157,9 +153,7 @@ impl MIP_CFG {
         self.0 |= value;
     }
     /// Handling of OAM Y.1731 frames with OpCode=RAPS, correct encapsulation, and correct MEL.
-
     ///
-
     /// 0: No handling 1: Copy to CPU 2: Redirect to CPU 3: Discard
     pub fn raps_cfg(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -176,9 +170,7 @@ impl MIP_CFG {
 pub struct MIP_CL_VID_CTRL(u32);
 impl MIP_CL_VID_CTRL {
     /// Check of VID to match before frame is accepted as MIP.
-
     ///
-
     /// 0: VID check is disabled. Frame is always accepted. 1: Accept untagged frames. Tagged frames are not accepted. 2: Accept tagged frames with outer VID = VID_VAL. Untagged frames are not accepted. 3: Accept untagged frames or tagged frames with outer VID = VID_VAL
     pub fn vid_sel(&self) -> u32 {
         self.0 & 0x3
@@ -215,9 +207,7 @@ impl PROFILE_CFG {
         self.0 |= value;
     }
     /// Controls S2 custom rule selection.
-
     ///
-
     /// Bit 0: Selects custom key to use (0: CUSTOM_1, 1: CUSTOM_2) Bit 1: Enables custom key for first lookup Bit 2: Enables custom key for second lookup
     pub fn custom_ace_ena(&self) -> u32 {
         (self.0 & 0x38000) >> 15
@@ -229,9 +219,7 @@ impl PROFILE_CFG {
         self.0 |= value;
     }
     /// CPU forward configuration per profile.
-
     ///
-
     /// 0: Normal forward 1: Enable redirection to CPU queue: PROFILE_CFG.CPU_QU 2: Enable copy to CPU queue: PROFILE_CFG.CPU_QU 3: Discard the frame
     pub fn fwd_sel(&self) -> u32 {
         (self.0 & 0x18) >> 3
@@ -263,9 +251,7 @@ impl PROFILE_CFG {
         self.0 |= value;
     }
     /// Determines the next CLM lookup. Could also specify no further CLM lookups
-
     ///
-
     /// 0: no overrule 2: SGL_MLBS 3: DBL_MLBS 4: TRI_MLBS 12: CUSTOM1 13: CUSTOM2 14: CUSTOM4 15: No Lookup other: reserved
     pub fn nxt_key_type(&self) -> u32 {
         (self.0 & 0x1e0) >> 5
@@ -287,9 +273,7 @@ impl PROFILE_CFG {
         self.0 |= value;
     }
     /// Controls Protocol layer (frame_type) at frame pointer position after update PROFILE_CFG.NXT_NORM_W16_OFFSET.
-
     ///
-
     /// 0: ETH  - Frame pointer points to start of DMAC. 1: CW (IP / MPLS PW CW / MPLS ACH) - Frame pointer points to MPLS CW/ACH or IP version. 2: MPLS - Frame pointer points to MPLS label. 3: DATA -"Raw" data, i.e. unknown protocol type.
     pub fn nxt_type_after_offset(&self) -> u32 {
         (self.0 & 0x6000) >> 13

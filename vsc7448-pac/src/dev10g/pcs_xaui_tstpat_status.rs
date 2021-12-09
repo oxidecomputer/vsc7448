@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct PCS_XAUI_TSTPAT_CFG(u32);
 impl PCS_XAUI_TSTPAT_CFG {
     /// Capture current error counter values
-
     ///
-
     /// 1: Capture
     pub fn freeze_err_cnt_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -48,9 +46,7 @@ impl PCS_XAUI_TSTPAT_CFG {
         self.0 |= value;
     }
     /// Enable Test pattern checker
-
     ///
-
     /// 1: Check 0: No checking
     pub fn vt_chk_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -62,9 +58,7 @@ impl PCS_XAUI_TSTPAT_CFG {
         self.0 |= value;
     }
     /// Check test pattern
-
     ///
-
     /// 000: Idle 011: MFPAT 100: CRPAT 101: CJPAT all others: Idle Note: LFPAT and HFPAT can not be checked since sync is impossible
     pub fn vt_chk_sel(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -76,9 +70,7 @@ impl PCS_XAUI_TSTPAT_CFG {
         self.0 |= value;
     }
     /// Enable Test pattern generator
-
     ///
-
     /// 1: Generate test vectors 0: Normal operation
     pub fn vt_gen_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -90,9 +82,7 @@ impl PCS_XAUI_TSTPAT_CFG {
         self.0 |= value;
     }
     /// Generate test pattern
-
     ///
-
     /// 000: Idle 001: HFPAT 010: LFPAT 011: MFPAT 100: CRPAT 101: CJPAT All others: Idle
     pub fn vt_gen_sel(&self) -> u32 {
         self.0 & 0x7

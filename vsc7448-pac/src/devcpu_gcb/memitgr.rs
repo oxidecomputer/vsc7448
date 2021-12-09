@@ -60,9 +60,7 @@ impl MEMITGR_CTRL {
 pub struct MEMITGR_DIV(u32);
 impl MEMITGR_DIV {
     /// Configure divider for generating the sync-pulse to memories (controls the speed at which the monitor talks to the memories). The lower this is set the faster indications can be read out of the memories.
-
     ///
-
     /// See datasheet for appropriate value.
     pub fn mem_div(&self) -> u32 {
         self.0 & 0xffff

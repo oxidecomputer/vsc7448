@@ -53,9 +53,7 @@ impl ARP_CFG_0 {
         self.0 |= value;
     }
     /// 16 most significant bits of MAC address. Used for ARP entry and/or (SMAC,SIP)/(DMAC,DIP) check. Least significant bits are configured in ARP_CFG_1.MAC_LSB. If MAC address for ARP entry is all-zeros, then the frame is redirected to CPU. CPU queue used for such frames is configured in ZERO_DMAC_CPU_QU.
-
     ///
-
     /// Bit 0: MAC address bit 32 ... Bit 15: MAC address bit 47
     pub fn mac_msb(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -123,9 +121,7 @@ impl ARP_PTR_REMAP_CFG {
         self.0 |= value;
     }
     /// Number of Equal Cost Multiple Paths. Overrules any value in LPM VCAP action.
-
     ///
-
     /// 0: 1 path 1: 2 paths 2: 3 paths ...
     pub fn ecmp_cnt(&self) -> u32 {
         (self.0 & 0xf0000) >> 16

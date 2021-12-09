@@ -128,7 +128,9 @@ impl DEV_STATISTICS {
     pub fn RX_IN_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics::RX_IN_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0xc4)
     }
-    pub fn RX_IN_RANGE_LEN_ERR_CNT(&self) -> RegisterAddress<dev_statistics::RX_IN_RANGE_LEN_ERR_CNT> {
+    pub fn RX_IN_RANGE_LEN_ERR_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics::RX_IN_RANGE_LEN_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x30)
     }
     pub fn RX_IPG_SHRINK_CNT(&self) -> RegisterAddress<dev_statistics::RX_IPG_SHRINK_CNT> {
@@ -146,7 +148,9 @@ impl DEV_STATISTICS {
     pub fn RX_OK_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics::RX_OK_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0xc8)
     }
-    pub fn RX_OUT_OF_RANGE_LEN_ERR_CNT(&self) -> RegisterAddress<dev_statistics::RX_OUT_OF_RANGE_LEN_ERR_CNT> {
+    pub fn RX_OUT_OF_RANGE_LEN_ERR_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics::RX_OUT_OF_RANGE_LEN_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x34)
     }
     pub fn RX_OVERSIZE_CNT(&self) -> RegisterAddress<dev_statistics::RX_OVERSIZE_CNT> {

@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct ARP_CFG_1(u32);
 impl ARP_CFG_1 {
     /// 32 least significant bits of MAC address. Used for ARP entry and/or (SMAC,SIP)/(DMAC,DIP) check. Most significant bits are configured in ARP_CFG_0.MAC_MSB. If MAC address for ARP entry is all-zeros, then the frame is redirected to CPU. CPU queue used for such frames is configured in ZERO_DMAC_CPU_QU.
-
     ///
-
     /// Bit 0: MAC bit 0 ... Bit 31: MAC bit 31
     pub fn mac_lsb(&self) -> u32 {
         self.0

@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct RX_ALIGNMENT_LOST_CNT(u32);
 impl RX_ALIGNMENT_LOST_CNT {
     /// The number of frames received with Alignment (dribble-nibble) error.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_alignment_lost_cnt(&self) -> u32 {
         self.0
@@ -48,9 +46,7 @@ impl RX_ALIGNMENT_LOST_CNT {
 pub struct RX_BAD_BYTES_CNT(u32);
 impl RX_BAD_BYTES_CNT {
     /// The number of received bytes in bad frames.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_bad_bytes_cnt(&self) -> u32 {
         self.0
@@ -66,9 +62,7 @@ impl RX_BAD_BYTES_CNT {
 pub struct RX_BAD_BYTES_MSB_CNT(u32);
 impl RX_BAD_BYTES_MSB_CNT {
     /// Upper 4 bits of RX_BAD_BYTES_CNT.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_bad_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
@@ -84,9 +78,7 @@ impl RX_BAD_BYTES_MSB_CNT {
 pub struct RX_BC_CNT(u32);
 impl RX_BC_CNT {
     /// The number of good broadcast frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_bc_cnt(&self) -> u32 {
         self.0
@@ -100,9 +92,7 @@ impl RX_BC_CNT {
 pub struct RX_CRC_ERR_CNT(u32);
 impl RX_CRC_ERR_CNT {
     /// The number of frames received with CRC error only.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_crc_err_cnt(&self) -> u32 {
         self.0
@@ -116,9 +106,7 @@ impl RX_CRC_ERR_CNT {
 pub struct RX_FRAGMENTS_CNT(u32);
 impl RX_FRAGMENTS_CNT {
     /// The number of undersize frames with CRC error received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_fragments_cnt(&self) -> u32 {
         self.0
@@ -132,9 +120,7 @@ impl RX_FRAGMENTS_CNT {
 pub struct RX_IN_BYTES_CNT(u32);
 impl RX_IN_BYTES_CNT {
     /// The number of bytes received (good, bad, and framing).
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_in_bytes_cnt(&self) -> u32 {
         self.0
@@ -150,9 +136,7 @@ impl RX_IN_BYTES_CNT {
 pub struct RX_IN_BYTES_MSB_CNT(u32);
 impl RX_IN_BYTES_MSB_CNT {
     /// Upper 4 bits of RX_IN_BYTES_CNT.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_in_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
@@ -168,9 +152,7 @@ impl RX_IN_BYTES_MSB_CNT {
 pub struct RX_IN_RANGE_LEN_ERR_CNT(u32);
 impl RX_IN_RANGE_LEN_ERR_CNT {
     /// The number of frames with legal length field that doesn't match length of MAC client data.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_in_range_len_err_cnt(&self) -> u32 {
         self.0
@@ -184,9 +166,7 @@ impl RX_IN_RANGE_LEN_ERR_CNT {
 pub struct RX_IPG_SHRINK_CNT(u32);
 impl RX_IPG_SHRINK_CNT {
     /// Number of inter packet gap shrinks detected (IPG < 12 bytes).
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_ipg_shrink_cnt(&self) -> u32 {
         self.0
@@ -200,9 +180,7 @@ impl RX_IPG_SHRINK_CNT {
 pub struct RX_JABBERS_CNT(u32);
 impl RX_JABBERS_CNT {
     /// The number of oversize frames with CRC error received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_jabbers_cnt(&self) -> u32 {
         self.0
@@ -216,9 +194,7 @@ impl RX_JABBERS_CNT {
 pub struct RX_MC_CNT(u32);
 impl RX_MC_CNT {
     /// The number of good multicast frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_mc_cnt(&self) -> u32 {
         self.0
@@ -232,9 +208,7 @@ impl RX_MC_CNT {
 pub struct RX_OK_BYTES_CNT(u32);
 impl RX_OK_BYTES_CNT {
     /// The number of received bytes in good frames.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_ok_bytes_cnt(&self) -> u32 {
         self.0
@@ -250,9 +224,7 @@ impl RX_OK_BYTES_CNT {
 pub struct RX_OK_BYTES_MSB_CNT(u32);
 impl RX_OK_BYTES_MSB_CNT {
     /// Upper 4 bits of RX_OK_BYTES_CNT.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_ok_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
@@ -268,9 +240,7 @@ impl RX_OK_BYTES_MSB_CNT {
 pub struct RX_OUT_OF_RANGE_LEN_ERR_CNT(u32);
 impl RX_OUT_OF_RANGE_LEN_ERR_CNT {
     /// The number of frames with illegal length field (frames using type field are not counted here).
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_out_of_range_len_err_cnt(&self) -> u32 {
         self.0
@@ -284,9 +254,7 @@ impl RX_OUT_OF_RANGE_LEN_ERR_CNT {
 pub struct RX_OVERSIZE_CNT(u32);
 impl RX_OVERSIZE_CNT {
     /// The number of oversize well-formed frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_oversize_cnt(&self) -> u32 {
         self.0
@@ -300,9 +268,7 @@ impl RX_OVERSIZE_CNT {
 pub struct RX_PAUSE_CNT(u32);
 impl RX_PAUSE_CNT {
     /// Number of pause control frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_pause_cnt(&self) -> u32 {
         self.0
@@ -316,9 +282,7 @@ impl RX_PAUSE_CNT {
 pub struct RX_SIZE1024TO1518_CNT(u32);
 impl RX_SIZE1024TO1518_CNT {
     /// The number of 1024 to 1518 bytes frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_size1024to1518_cnt(&self) -> u32 {
         self.0
@@ -332,9 +296,7 @@ impl RX_SIZE1024TO1518_CNT {
 pub struct RX_SIZE128TO255_CNT(u32);
 impl RX_SIZE128TO255_CNT {
     /// The number of 128 to 255 bytes frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_size128to255_cnt(&self) -> u32 {
         self.0
@@ -348,9 +310,7 @@ impl RX_SIZE128TO255_CNT {
 pub struct RX_SIZE1519TOMAX_CNT(u32);
 impl RX_SIZE1519TOMAX_CNT {
     /// The number of frames received longer than 1518 bytes and not longer than Maximum Length Register (Maximum Length Register + 4 if the frame is VLAN tagged).
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_size1519tomax_cnt(&self) -> u32 {
         self.0
@@ -364,9 +324,7 @@ impl RX_SIZE1519TOMAX_CNT {
 pub struct RX_SIZE256TO511_CNT(u32);
 impl RX_SIZE256TO511_CNT {
     /// The number of 256 to 511 bytes frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_size256to511_cnt(&self) -> u32 {
         self.0
@@ -380,9 +338,7 @@ impl RX_SIZE256TO511_CNT {
 pub struct RX_SIZE512TO1023_CNT(u32);
 impl RX_SIZE512TO1023_CNT {
     /// The number of 512 to 1023 bytes frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_size512to1023_cnt(&self) -> u32 {
         self.0
@@ -396,9 +352,7 @@ impl RX_SIZE512TO1023_CNT {
 pub struct RX_SIZE64_CNT(u32);
 impl RX_SIZE64_CNT {
     /// The number of 64 bytes frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_size64_cnt(&self) -> u32 {
         self.0
@@ -412,9 +366,7 @@ impl RX_SIZE64_CNT {
 pub struct RX_SIZE65TO127_CNT(u32);
 impl RX_SIZE65TO127_CNT {
     /// The number of 65 to 127 bytes frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_size65to127_cnt(&self) -> u32 {
         self.0
@@ -428,9 +380,7 @@ impl RX_SIZE65TO127_CNT {
 pub struct RX_SYMBOL_ERR_CNT(u32);
 impl RX_SYMBOL_ERR_CNT {
     /// The number of frames received with one or more symbol errors.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_symbol_err_cnt(&self) -> u32 {
         self.0
@@ -444,9 +394,7 @@ impl RX_SYMBOL_ERR_CNT {
 pub struct RX_TAGGED_FRMS_CNT(u32);
 impl RX_TAGGED_FRMS_CNT {
     /// The number of frames received with C-Tag or S-Tag information
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_tagged_frms_cnt(&self) -> u32 {
         self.0
@@ -460,9 +408,7 @@ impl RX_TAGGED_FRMS_CNT {
 pub struct RX_UC_CNT(u32);
 impl RX_UC_CNT {
     /// The number of good unicast frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_uc_cnt(&self) -> u32 {
         self.0
@@ -476,9 +422,7 @@ impl RX_UC_CNT {
 pub struct RX_UNDERSIZE_CNT(u32);
 impl RX_UNDERSIZE_CNT {
     /// The number of undersize well-formed frames received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_undersize_cnt(&self) -> u32 {
         self.0
@@ -492,9 +436,7 @@ impl RX_UNDERSIZE_CNT {
 pub struct RX_UNSUP_OPCODE_CNT(u32);
 impl RX_UNSUP_OPCODE_CNT {
     /// Number of control frames with unsupported opcode received.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_unsup_opcode_cnt(&self) -> u32 {
         self.0
@@ -508,9 +450,7 @@ impl RX_UNSUP_OPCODE_CNT {
 pub struct RX_UNTAGGED_FRMS_CNT(u32);
 impl RX_UNTAGGED_FRMS_CNT {
     /// The number of frames received without C-Tag and S-Tag information.
-
     ///
-
     /// Counter can be written by SW.
     pub fn rx_untagged_frms_cnt(&self) -> u32 {
         self.0
@@ -526,9 +466,7 @@ impl RX_UNTAGGED_FRMS_CNT {
 pub struct TX_BACKOFF1_CNT(u32);
 impl TX_BACKOFF1_CNT {
     /// Number of frames sent successfully after 1 backoff/collision.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_backoff1_cnt(&self) -> u32 {
         self.0
@@ -542,9 +480,7 @@ impl TX_BACKOFF1_CNT {
 pub struct TX_BC_CNT(u32);
 impl TX_BC_CNT {
     /// The number of broadcast frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_bc_cnt(&self) -> u32 {
         self.0
@@ -560,9 +496,7 @@ impl TX_BC_CNT {
 pub struct TX_CSENSE_CNT(u32);
 impl TX_CSENSE_CNT {
     /// The number of times CarrierSenseError is true at the end of a frame transmission.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_csense_cnt(&self) -> u32 {
         self.0
@@ -578,9 +512,7 @@ impl TX_CSENSE_CNT {
 pub struct TX_DEFER_CNT(u32);
 impl TX_DEFER_CNT {
     /// The number of frames being deferred on first transmission attempt. Note: This counter always counts when a defer event is present, even when it is an excessive defer (TX_XDEFER_CNT).
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_defer_cnt(&self) -> u32 {
         self.0
@@ -596,9 +528,7 @@ impl TX_DEFER_CNT {
 pub struct TX_LATE_COLL_CNT(u32);
 impl TX_LATE_COLL_CNT {
     /// The number of late collisions detected.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_late_coll_cnt(&self) -> u32 {
         self.0
@@ -612,9 +542,7 @@ impl TX_LATE_COLL_CNT {
 pub struct TX_MC_CNT(u32);
 impl TX_MC_CNT {
     /// The number of multicast frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_mc_cnt(&self) -> u32 {
         self.0
@@ -630,9 +558,7 @@ impl TX_MC_CNT {
 pub struct TX_MULTI_COLL_CNT(u32);
 impl TX_MULTI_COLL_CNT {
     /// The number of frames transmitted without errors after multiple collisions.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_multi_coll_cnt(&self) -> u32 {
         self.0
@@ -646,9 +572,7 @@ impl TX_MULTI_COLL_CNT {
 pub struct TX_OK_BYTES_CNT(u32);
 impl TX_OK_BYTES_CNT {
     /// The number of bytes transmitted successfully.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_ok_bytes_cnt(&self) -> u32 {
         self.0
@@ -664,9 +588,7 @@ impl TX_OK_BYTES_CNT {
 pub struct TX_OK_BYTES_MSB_CNT(u32);
 impl TX_OK_BYTES_MSB_CNT {
     /// Upper 4 bits of TX_OK_BYTES_CNT.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_ok_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
@@ -682,9 +604,7 @@ impl TX_OK_BYTES_MSB_CNT {
 pub struct TX_OUT_BYTES_CNT(u32);
 impl TX_OUT_BYTES_CNT {
     /// The number of bytes transmitted (good, bad and framing).
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_out_bytes_cnt(&self) -> u32 {
         self.0
@@ -700,9 +620,7 @@ impl TX_OUT_BYTES_CNT {
 pub struct TX_OUT_BYTES_MSB_CNT(u32);
 impl TX_OUT_BYTES_MSB_CNT {
     /// Upper 4 bits of TX_OUT_BYTES_CNT.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_out_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
@@ -718,9 +636,7 @@ impl TX_OUT_BYTES_MSB_CNT {
 pub struct TX_PAUSE_CNT(u32);
 impl TX_PAUSE_CNT {
     /// The number of pause control frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_pause_cnt(&self) -> u32 {
         self.0
@@ -734,9 +650,7 @@ impl TX_PAUSE_CNT {
 pub struct TX_SIZE1024TO1518_CNT(u32);
 impl TX_SIZE1024TO1518_CNT {
     /// The number of 1024 to 1518 bytes frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_size1024to1518_cnt(&self) -> u32 {
         self.0
@@ -750,9 +664,7 @@ impl TX_SIZE1024TO1518_CNT {
 pub struct TX_SIZE128TO255_CNT(u32);
 impl TX_SIZE128TO255_CNT {
     /// The number of 128 to 255 bytes frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_size128to255_cnt(&self) -> u32 {
         self.0
@@ -766,9 +678,7 @@ impl TX_SIZE128TO255_CNT {
 pub struct TX_SIZE1519TOMAX_CNT(u32);
 impl TX_SIZE1519TOMAX_CNT {
     /// The number of frames transmitted longer than 1518 bytes and not longer than Maximum Length Register (Maximum Length Register + 4 if the frame is VLAN tagged).
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_size1519tomax_cnt(&self) -> u32 {
         self.0
@@ -782,9 +692,7 @@ impl TX_SIZE1519TOMAX_CNT {
 pub struct TX_SIZE256TO511_CNT(u32);
 impl TX_SIZE256TO511_CNT {
     /// The number of 256 to 511 bytes frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_size256to511_cnt(&self) -> u32 {
         self.0
@@ -798,9 +706,7 @@ impl TX_SIZE256TO511_CNT {
 pub struct TX_SIZE512TO1023_CNT(u32);
 impl TX_SIZE512TO1023_CNT {
     /// The number of 512 to 1023 bytes frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_size512to1023_cnt(&self) -> u32 {
         self.0
@@ -814,9 +720,7 @@ impl TX_SIZE512TO1023_CNT {
 pub struct TX_SIZE64_CNT(u32);
 impl TX_SIZE64_CNT {
     /// The number of 64 bytes frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_size64_cnt(&self) -> u32 {
         self.0
@@ -830,9 +734,7 @@ impl TX_SIZE64_CNT {
 pub struct TX_SIZE65TO127_CNT(u32);
 impl TX_SIZE65TO127_CNT {
     /// The number of 65 to 127 bytes frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_size65to127_cnt(&self) -> u32 {
         self.0
@@ -858,9 +760,7 @@ impl TX_TAGGED_FRMS_CNT {
 pub struct TX_UC_CNT(u32);
 impl TX_UC_CNT {
     /// The number of unicast frames transmitted.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_uc_cnt(&self) -> u32 {
         self.0
@@ -888,9 +788,7 @@ impl TX_UNTAGGED_FRMS_CNT {
 pub struct TX_XCOLL_CNT(u32);
 impl TX_XCOLL_CNT {
     /// The number of frames lost due to excessive collisions.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_xcoll_cnt(&self) -> u32 {
         self.0
@@ -906,9 +804,7 @@ impl TX_XCOLL_CNT {
 pub struct TX_XDEFER_CNT(u32);
 impl TX_XDEFER_CNT {
     /// The number of frames sent with excessive deferral.
-
     ///
-
     /// Counter can be written by SW.
     pub fn tx_xdefer_cnt(&self) -> u32 {
         self.0

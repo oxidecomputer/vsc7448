@@ -52,9 +52,7 @@ impl TR_MTHD {
         self.0 |= value;
     }
     /// Training method for remote C(+1)
-
     ///
-
     /// 0 : BER method 1 : Gain method 2 : DFE method
     pub fn mthd_cp(&self) -> u32 {
         (self.0 & 0xc00) >> 10
@@ -66,9 +64,7 @@ impl TR_MTHD {
         self.0 |= value;
     }
     /// remote tap to optimize first
-
     ///
-
     /// 0 : C(-1) 1 : C(0) 2 : C(+1)
     pub fn ord1(&self) -> u32 {
         (self.0 & 0x30) >> 4

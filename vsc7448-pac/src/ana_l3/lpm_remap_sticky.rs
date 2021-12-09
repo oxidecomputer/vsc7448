@@ -44,9 +44,7 @@ impl L3MC_CTRL {
         self.0 |= value;
     }
     /// Redirect/copy frame to CPU. CPU queue used is configured in CPU_QU.
-
     ///
-
     /// 0b00: No CPU redirection/copy. 0b01: Copy CPU 0b10: Copy to CPU, skip L3 forwarding but preserve L2 forwarding. 0b11: Redirect to CPU, skip L2 and L3 forwarding.
     pub fn cpu_redir_mode(&self) -> u32 {
         (self.0 & 0xc) >> 2

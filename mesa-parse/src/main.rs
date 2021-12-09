@@ -175,6 +175,7 @@ fn print_pac_lib(
 #![allow(non_camel_case_types)]
 
 pub mod types;
+pub mod phy;
 
 // Top-level targets are stored in the tree as submodules
 "
@@ -289,7 +290,7 @@ impl {0} {{",
                     gname,
                     group.addr.base * 4,
                     group.addr.count,
-                    group.addr.width,
+                    group.addr.width * 4,
                 )?;
             } else {
                 write!(
@@ -340,7 +341,7 @@ impl {0} {{",
                         reg.addr.base * 4
                     )?;
                 }
-                write_reg(&mut gfile, rname, reg)?;
+                write_reg(&mut gfile, rname, "u32", reg)?;
             }
             writeln!(&mut tfile, "\n}}")?;
         }
@@ -348,12 +349,87 @@ impl {0} {{",
     }
     writeln!(&mut file)?;
 
+    // Now, write the Phy registers
+    let mut path = PathBuf::from(dir);
+    path.push("src");
+    path.push("phy.rs");
+    let mut file = File::create(&path)?;
+    path.pop();
+    path.push("phy/");
+    if !path.exists() {
+        std::fs::create_dir(path.clone())?;
+    }
+
+    // Special case for 1588, which isn't a valid identifier
+    let get_name = |pname: &str| -> String {
+        if pname.parse::<usize>().is_ok() {
+            format!("PAGE_{}", pname)
+        } else {
+            pname.to_string()
+        }
+    };
+    writeln!(&mut file, "{}", header)?;
+    writeln!(&mut file, "
+use crate::types::PhyRegisterAddress;
+")?;
+    for pname in pages.keys() {
+        writeln!(&mut file, "pub mod {};", get_name(pname).to_lowercase())?;
+    }
+
+    let mut pages = pages.iter().collect::<Vec<_>>();
+    pages.sort_by_key(|r| r.1.base);
+    for (pname, page) in &pages {
+        writeln!(&mut file, "\n/// {}", page.desc)?;
+        let pname = get_name(pname);
+        write!(
+            &mut file,
+            "pub struct {pname} {{}}
+impl {pname} {{",
+            pname = pname
+        )?;
+
+        path.push(format!("{}.rs", pname.to_lowercase()));
+        let mut pfile = File::create(&path)?;
+        path.pop();
+        writeln!(&mut pfile, "{}", header)?;
+        writeln!(&mut pfile, "use derive_more::{{From, Into}};")?;
+
+        let mut regs = page.regs.iter().collect::<Vec<_>>();
+        regs.sort_by_key(|r| r.1.addr.base);
+        for (rname, reg) in &regs {
+            let rname = if rname.chars().next().unwrap().is_numeric() {
+                format!("REG_{}", rname)
+            } else {
+                rname.to_string()
+            };
+            write_reg(&mut pfile, &rname, "u16", reg)?;
+
+            assert!(reg.addr.count == 1);
+            write!(&mut file, "
+    pub fn {0}() -> PhyRegisterAddress<{1}::{0}> {{
+        PhyRegisterAddress::new({2}, {3})
+    }}", rname, pname.to_lowercase(), page.base, reg.addr.base)?;
+        }
+        writeln!(&mut file, "}}")?; // end of impl block
+    }
+
+    // Run rustfmt on the result
+    let mut path = PathBuf::from(dir);
+    path.push("Cargo.toml");
+    std::process::Command::new("cargo")
+            .arg("fmt")
+            .arg("--manifest-path")
+            .arg(path)
+            .output()
+            .expect("failed to execute process");
+
     Ok(())
 }
 
 fn write_reg<W: std::io::Write>(
     gfile: &mut W,
     rname: &str,
+    inttype: &str,
     reg: &Register<String>,
 ) -> Result<(), std::io::Error> {
     if let Some(brief) = &reg.brief {
@@ -365,72 +441,95 @@ fn write_reg<W: std::io::Write>(
         }
         writeln!(gfile, "/// {}", details.replace("\n", "\n/// "))?;
     }
+    // If the register has no bitfields, then treat it as a simple wrapper
+    // type; otherwise, make the inner u32 private and force the user to
+    // interact with it through getter/setter functions.
     write!(
         gfile,
         "#[derive(From, Into)]
-pub struct {0}(u32);
-impl {0} {{",
-        rname
+pub struct {}({}{});",
+        rname,
+        if reg.fields.is_empty() { "pub " } else { "" },
+        inttype,
     )?;
-    assert!(!reg.fields.is_empty());
+    if !reg.fields.is_empty() {
+        write!(gfile, "\nimpl {0} {{", rname)?;
+    }
     for (fname, field) in reg.fields.iter() {
+        writeln!(gfile)?;
         if let Some(brief) = &field.brief {
-            writeln!(gfile, "\n    /// {}", brief.replace("\n", "\n    /// "))?;
+            writeln!(gfile, "    /// {}", brief.replace("\n", "\n    /// "))?;
         }
         if let Some(details) = &field.details {
             if field.brief.is_some() {
-                writeln!(gfile, "\n    ///")?;
+                writeln!(gfile, "    ///")?;
             }
-            writeln!(gfile, "\n    /// {}", details.replace("\n", "\n    /// "))?;
+            writeln!(gfile, "    /// {}", details.replace("\n", "\n    /// "))?;
         }
         // Write out bitfield access, tuned to avoid no-op shifts
         // and mask operations (which would otherwise produce
         // compiler warnings).
         let shift = field.lo;
         let mask = (((1u64 << field.hi) - 1) ^ ((1u64 << field.lo) - 1)) as u32;
+
+        // Special case for fields which aren't valid Rust identifiers
+        let get = if fname == "LOOP" || fname.chars().next().unwrap().is_numeric() {
+            "get_"
+        } else {
+            ""
+        };
         match (shift, mask) {
             (0, 0xFFFFFFFF) => write!(
                 gfile,
-                "    pub fn {field}(&self) -> u32 {{
+                "    pub fn {get}{field}(&self) -> {t} {{
         self.0
     }}
-    pub fn set_{field}(&mut self, value: u32) {{
+    pub fn set_{field}(&mut self, value: {t}) {{
         self.0 = value;
     }}",
+                get = get,
                 field = fname.to_lowercase(),
+                t = inttype
             )?,
             (0, _) => write!(
                 gfile,
-                "    pub fn {field}(&self) -> u32 {{
+                "    pub fn {get}{field}(&self) -> {t} {{
         self.0 & 0x{mask:x}
     }}
-    pub fn set_{field}(&mut self, value: u32) {{
+    pub fn set_{field}(&mut self, value: {t}) {{
         assert!(value <= 0x{mask:x});
         self.0 &= !0x{mask:x};
         self.0 |= value;
     }}",
+                get = get,
                 field = fname.to_lowercase(),
                 mask = mask,
+                t = inttype,
             )?,
             (_, 0xFFFFFFFF) => panic!("Cannot have a full mask and non-zero shift"),
             _ => write!(
                 gfile,
-                "    pub fn {field}(&self) -> u32 {{
+                "    pub fn {get}{field}(&self) -> {t} {{
         (self.0 & 0x{mask:x}) >> {shift}
     }}
-    pub fn set_{field}(&mut self, value: u32) {{
+    pub fn set_{field}(&mut self, value: {t}) {{
         let value = value << {shift};
         assert!(value <= 0x{mask:x});
         self.0 &= !0x{mask:x};
         self.0 |= value;
     }}",
+                get = get,
                 field = fname.to_lowercase(),
                 shift = shift,
-                mask = mask
+                mask = mask,
+                t = inttype,
             )?,
         }
     }
-    writeln!(gfile, "\n}}")?;
+    if !reg.fields.is_empty() {
+        write!(gfile, "\n}}")?;
+    }
+    writeln!(gfile)?;
     Ok(())
 }
 

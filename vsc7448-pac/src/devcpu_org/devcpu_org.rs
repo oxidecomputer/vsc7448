@@ -109,9 +109,7 @@ impl IF_CFGSTAT {
         self.0 |= value;
     }
     /// Interface number; software can use this field to determine which interface that is currently used for accessing the device.
-
     ///
-
     /// 0: VCore System 1: VRAP 2: SI 3: MIIM
     pub fn if_num(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
@@ -224,9 +222,7 @@ impl ORG_CFG {
 pub struct SEMA0(u32);
 impl SEMA0 {
     /// General Semaphore.The first interface to read this field will be granted the semaphore (reading this field returns 0x1). Once the semaphore has been granted, all reads return '0' from this field (until the semaphore has been released). Any interface can release the semaphore by writing (any value) to this field.
-
     ///
-
     /// 0: Semaphore ownership denied. 1: Semaphore has been granted.
     pub fn sema0(&self) -> u32 {
         self.0 & 0x1
@@ -242,9 +238,7 @@ impl SEMA0 {
 pub struct SEMA0_OWNER(u32);
 impl SEMA0_OWNER {
     /// Current owner of the semaphore. This field is a one-hot encoded vector, each bit in this vector correspond to an interface on the origin. If this field return 0, then the semaphore was free at the time of reading the register.
-
     ///
-
     /// 0: Semaphore is free. 1: VCore System owns semaphore 2: VRAP owns semaphore 4: SI owns smaphore 8: MIIM owns semaphore
     pub fn sema0_owner(&self) -> u32 {
         self.0
@@ -258,9 +252,7 @@ impl SEMA0_OWNER {
 pub struct SEMA1(u32);
 impl SEMA1 {
     /// General Semaphore.The first interface to read this field will be granted the semaphore (reading this field returns 0x1). Once the semaphore has been granted, all reads return '0' from this field (until the semaphore has been released). Any interface can release the semaphore by writing (any value) to this field.
-
     ///
-
     /// 0: Semaphore ownership denied. 1: Semaphore has been granted.
     pub fn sema1(&self) -> u32 {
         self.0 & 0x1
@@ -276,9 +268,7 @@ impl SEMA1 {
 pub struct SEMA1_OWNER(u32);
 impl SEMA1_OWNER {
     /// Current owner of the semaphore. This field is a one-hot encoded vector, each bit in this vector correspond to an interface on the origin. If this field return 0, then the semaphore was free at the time of reading the register.
-
     ///
-
     /// 0: Semaphore is free. 1: VCore System owns semaphore 2: VRAP owns semaphore 4: SI owns smaphore 8: MIIM owns semaphore
     pub fn sema1_owner(&self) -> u32 {
         self.0
@@ -294,9 +284,7 @@ impl SEMA1_OWNER {
 pub struct SEMA_CFG(u32);
 impl SEMA_CFG {
     /// By default semaphore-interrupt is generated when a semaphore is free. By setting this field interrupt is generated when semaphore is taken, bit 0 corresponds to semaphore 0, bit 1 to semaphore 1.
-
     ///
-
     /// 0: Interrupt on taken semaphore 1: Interrupt on free semaphore
     pub fn sema_intr_pol(&self) -> u32 {
         self.0 & 0x3

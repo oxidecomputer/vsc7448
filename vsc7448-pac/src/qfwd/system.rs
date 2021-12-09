@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct CPUQ_DISCARD(u32);
 impl CPUQ_DISCARD {
     /// Disable enqueuing of traffic to specific CPU queues.
-
     ///
-
     /// xxxxxxx1: Discard frames to CPU queue 0 xxxxxx1x: Discard frames to CPU queue 1 ... 1xxxxxxx: Discard frames to CPU queue 7
     pub fn cpuq_discard(&self) -> u32 {
         self.0 & 0xff
@@ -82,9 +80,7 @@ impl FRAME_COPY_CFG {
         self.0 |= value;
     }
     /// Use super priority enqueuing. Note that even when SP is used, QoS value still controls from which pool resources are allocated, so it may be relevant to also set FRMC_QOS_ENA=1 and FRMC_QOS_VAL.
-
     ///
-
     /// 0: Use normal queues 1: Use super priority queue bypassing all shapers 2: Use super priority queue obeying/updating port shaper 3: reserved
     pub fn frmc_sp_ena(&self) -> u32 {
         self.0 & 0x3
@@ -185,9 +181,7 @@ impl SWITCH_PORT_MODE {
         self.0 |= value;
     }
     /// Control whether frames forwarded to the port may use shared resources. If egress port or queue has reserved memory left to use, frame enqueuing is always allowed.
-
     ///
-
     /// 0: Use shared memory as well 1: Do not use shared memory
     pub fn egr_no_sharing(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -209,9 +203,7 @@ impl SWITCH_PORT_MODE {
         self.0 |= value;
     }
     /// Control whether frames received on the port may use shared resources. If ingress port or queue has reserved memory left to use, frame enqueuing is always allowed.
-
     ///
-
     /// 0: Use shared memory as well 1: Do not use shared memory
     pub fn igr_no_sharing(&self) -> u32 {
         (self.0 & 0x8) >> 3

@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct LL_TAG_REMARK_CFG(u32);
 impl LL_TAG_REMARK_CFG {
     /// Selects DEI for MPLS encapsulation tag Idx0:  TAG_A, Idx1:	TAG_B
-
     ///
-
     /// 0: Classified DEI 1: Encapsulation TAG_DEI_VAL:n 2: DP: REW::DP_MAP.DP 3: Reserved 4: Mapped using mapping table 0, otherwise use LL_TAG_VAL[N].TAG_DEI_VAL 5: Mapped using mapping table 1, otherwise use mapping table 0 6: Mapped using mapping table 2, otherwise use LL_TAG_VAL[N].TAG_DEI_VAL 7: Mapped using mapping table 3, otherwise use mapping table 2
     pub fn tag_dei_sel(&self) -> u32 {
         (self.0 & 0xe) >> 1
@@ -46,9 +44,7 @@ impl LL_TAG_REMARK_CFG {
         self.0 |= value;
     }
     /// Selects PCP for MPLS encapsulation tag Idx0:  TAG_A, Idx1:	TAG_B
-
     ///
-
     /// 0: Classified PCP 1: Encapsulation TAG_PCP_VAL:n 2-3: Reserved 4: Mapped using mapping table 0, otherwise use LL_TAG_VAL[N].TAG_PCP_VAL 5: Mapped using mapping table 1, otherwise use mapping table 0 6: Mapped using mapping table 2, otherwise use LL_TAG_VAL[N].TAG_PCP_VAL 7: Mapped using mapping table 3, otherwise use mapping table 2
     pub fn tag_pcp_sel(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -60,9 +56,7 @@ impl LL_TAG_REMARK_CFG {
         self.0 |= value;
     }
     /// Selects TPID for MPLS encapsulation tag Idx0:  TAG_A, Idx1:	TAG_B
-
     ///
-
     /// 0: Encapsulation LL_TAG_VAL[N].TAG_TPID 1: Classified.  ANA controls via IFH: If ifh.encap.tag_tipd = STD_TPID: If ifh.vstax.tag_type = 0 then 0x8100 else LL_TAG_VAL[N].TAG_TPID if ifh.encap.tag_tipd > 0: Custom TPID 1 to 3 configured by  REW::TPID_CFG[N].TPID_VAL
     pub fn tag_tpid_sel(&self) -> u32 {
         self.0 & 0x1
@@ -73,9 +67,7 @@ impl LL_TAG_REMARK_CFG {
         self.0 |= value;
     }
     /// Selects VID for MPLS encapsulation tag Idx0:  TAG_A, Idx1:	TAG_B
-
     ///
-
     /// 0: Classified VID + TAG_VID_VAL:n 1: TAG_VID_VAL:n
     pub fn tag_vid_sel(&self) -> u32 {
         (self.0 & 0x80) >> 7

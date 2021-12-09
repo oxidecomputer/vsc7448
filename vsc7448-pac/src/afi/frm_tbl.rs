@@ -48,9 +48,7 @@ impl DTI_DURATION_TICK_LEN {
 pub struct FRM_NEXT_AND_TYPE(u32);
 impl FRM_NEXT_AND_TYPE {
     /// Entry Type. Delay entries are only applicable to DTI. The Entry Type controls the use of FRM_ENTRY_PART0.PART0.
-
     ///
-
     /// 0: Frame 1: Delay
     pub fn entry_type(&self) -> u32 {
         (self.0 & 0x10000) >> 16

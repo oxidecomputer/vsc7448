@@ -178,7 +178,8 @@ impl MANUAL_XTR {
 /// Replicated per EXT_DST interrupt.
 #[derive(From, Into)]
 pub struct PCIE_INTR_STAT(u32);
-impl PCIE_INTR_STAT {    pub fn intr_pending_falling(&self) -> u32 {
+impl PCIE_INTR_STAT {
+    pub fn intr_pending_falling(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_intr_pending_falling(&mut self, value: u32) {
@@ -186,7 +187,8 @@ impl PCIE_INTR_STAT {    pub fn intr_pending_falling(&self) -> u32 {
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    pub fn intr_pending_rising(&self) -> u32 {
+    }
+    pub fn intr_pending_rising(&self) -> u32 {
         self.0 & 0x1
     }
     pub fn set_intr_pending_rising(&mut self, value: u32) {

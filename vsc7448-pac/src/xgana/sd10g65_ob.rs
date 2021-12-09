@@ -199,9 +199,7 @@ impl SD10G65_OB_CFG0 {
         self.0 |= value;
     }
     /// Interface width
-
     ///
-
     /// 0: 8 1: 10 2: 16 3: 20 4: 32 5: 40 6-7: Reserved
     pub fn sel_ifw(&self) -> u32 {
         (self.0 & 0xe0) >> 5
@@ -240,9 +238,7 @@ impl SD10G65_OB_CFG1 {
         self.0 |= value;
     }
     /// Bleed current for class AB operation of driver
-
     ///
-
     /// 0: 1% 1: 0.5% 2: 2% 3: reserved
     pub fn diode_cur(&self) -> u32 {
         (self.0 & 0x3800000) >> 23
@@ -254,9 +250,7 @@ impl SD10G65_OB_CFG1 {
         self.0 |= value;
     }
     /// Level shift ctrl of class AB bias generator
-
     ///
-
     /// 0: 50mV 1: 100mV 2:150mV 3: 200mV
     pub fn lev_shft(&self) -> u32 {
         (self.0 & 0x600000) >> 21
@@ -268,9 +262,7 @@ impl SD10G65_OB_CFG1 {
         self.0 |= value;
     }
     /// Slew rate ctrl of OB (C)
-
     ///
-
     /// C=3 R=3: 25ps C=3 R=0: 35ps C=0 R=3: 55ps C=1 R=0: 70ps C=0 R=0: 120 ps
     pub fn predrv_c_ctrl(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -302,9 +294,7 @@ impl SD10G65_OB_CFG1 {
         self.0 |= value;
     }
     /// Offset resistance adjustment for CML cells (two-complement)
-
     ///
-
     /// 1000: -8 1111: -1 0000: 0 0111: 7
     pub fn r_i(&self) -> u32 {
         self.0 & 0xf
@@ -315,9 +305,7 @@ impl SD10G65_OB_CFG1 {
         self.0 |= value;
     }
     /// Ctrl of cascade volt in drv stage
-
     ///
-
     /// 0: reserved 1: 0 2: 1/12 4: 2/12 8: 3/12 16: 4/12 Intermediate values possible when setting two bits
     pub fn vcas(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
@@ -329,9 +317,7 @@ impl SD10G65_OB_CFG1 {
         self.0 |= value;
     }
     /// Tail voltage driver settings
-
     ///
-
     /// 0: reserved 1: 75mV 2: 100mV 4: 125mV 8: 150mV 16: 175mV 32: 200mV Intermediate values possible when setting two bits
     pub fn vtail(&self) -> u32 {
         (self.0 & 0xfc00) >> 10
@@ -350,9 +336,7 @@ impl SD10G65_OB_CFG1 {
 pub struct SD10G65_OB_CFG2(u32);
 impl SD10G65_OB_CFG2 {
     /// Transmit filter coefficients for FIR taps. Suggested start value (no emphasis, max amplitude)
-
     ///
-
     /// 0x820820: for I/F width 8/10 bits 0x7DF820: for I/F width 16/20/32/40 bits
     pub fn d_filter(&self) -> u32 {
         self.0 & 0xffffff
@@ -400,9 +384,7 @@ impl SD10G65_OB_CFG3 {
         self.0 |= value;
     }
     /// Reciver detect threshold (suggested start value: 2)
-
     ///
-
     /// 0: reserved 1: 0mV 2: 8.3mV 4: 16.7mV 8: 25mV Intermediate values possible when setting two bits
     pub fn rec_det_thrs(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -440,9 +422,7 @@ impl SD10G65_SBUS_TX_CFG {
         self.0 |= value;
     }
     /// Analog test output
-
     ///
-
     /// 0: l0_ctrlspeed[0] 1: vbulk 2: nref 3: vref820m 4: vddfilt 5: vddfilt 6: ie_aout 7: ib_aout 8: ob_aout2 9: pll_frange 10: pll_srange 11: pll_vreg820m_tx 12: pll_vreg820m_rx 13: ob_aout_n 14: ob_aout_p 15: vddfilt
     pub fn sbus_anaout_sel(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -454,9 +434,7 @@ impl SD10G65_SBUS_TX_CFG {
         self.0 |= value;
     }
     /// Bias enable
-
     ///
-
     /// 1: Enable 0: Disable
     pub fn sbus_bias_en(&self) -> u32 {
         self.0 & 0x1
@@ -467,9 +445,7 @@ impl SD10G65_SBUS_TX_CFG {
         self.0 |= value;
     }
     /// Bias speed selection
-
     ///
-
     /// 0: Below 4Gbps 1: 4Gbps to 6Gbps 2: 6Gbps to 9Gbps 3: Above 9Gbps
     pub fn sbus_bias_speed_sel(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -491,9 +467,7 @@ impl SD10G65_SBUS_TX_CFG {
         self.0 |= value;
     }
     /// Offset value for BIAS resistor calibration (2-complement)
-
     ///
-
     /// 1000: -8 1111: -1 0000: 0 0111: 7
     pub fn sbus_rcomp(&self) -> u32 {
         (self.0 & 0x78) >> 3

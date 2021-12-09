@@ -30,7 +30,8 @@ use derive_more::{From, Into};
 /// Word offset 1
 #[derive(From, Into)]
 pub struct CON_STATUS(u32);
-impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
+impl CON_STATUS {
+    pub fn b2_b3_support(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_b2_b3_support(&mut self, value: u32) {
@@ -38,7 +39,8 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    pub fn bus_pwr_clk_con_en(&self) -> u32 {
+    }
+    pub fn bus_pwr_clk_con_en(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_bus_pwr_clk_con_en(&mut self, value: u32) {
@@ -46,7 +48,8 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    pub fn data_reg_add_info(&self) -> u32 {
+    }
+    pub fn data_reg_add_info(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_data_reg_add_info(&mut self, value: u32) {
@@ -54,7 +57,8 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
-    }    pub fn data_scale(&self) -> u32 {
+    }
+    pub fn data_scale(&self) -> u32 {
         (self.0 & 0x6000) >> 13
     }
     pub fn set_data_scale(&mut self, value: u32) {
@@ -62,7 +66,8 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         assert!(value <= 0x6000);
         self.0 &= !0x6000;
         self.0 |= value;
-    }    pub fn data_select(&self) -> u32 {
+    }
+    pub fn data_select(&self) -> u32 {
         (self.0 & 0x1e00) >> 9
     }
     pub fn set_data_select(&mut self, value: u32) {
@@ -70,7 +75,8 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         assert!(value <= 0x1e00);
         self.0 &= !0x1e00;
         self.0 |= value;
-    }    pub fn no_soft_rst(&self) -> u32 {
+    }
+    pub fn no_soft_rst(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_no_soft_rst(&mut self, value: u32) {
@@ -78,7 +84,8 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
-    }    pub fn pme_enable(&self) -> u32 {
+    }
+    pub fn pme_enable(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_pme_enable(&mut self, value: u32) {
@@ -86,7 +93,8 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    pub fn pme_status(&self) -> u32 {
+    }
+    pub fn pme_status(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_pme_status(&mut self, value: u32) {
@@ -94,7 +102,8 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    pub fn power_state(&self) -> u32 {
+    }
+    pub fn power_state(&self) -> u32 {
         self.0 & 0x3
     }
     pub fn set_power_state(&mut self, value: u32) {
@@ -106,7 +115,8 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
 /// Word offset 1
 #[derive(From, Into)]
 pub struct MSI_LOWER_32(u32);
-impl MSI_LOWER_32 {    pub fn pci_msi_lower_32(&self) -> u32 {
+impl MSI_LOWER_32 {
+    pub fn pci_msi_lower_32(&self) -> u32 {
         (self.0 & 0xfffffffc) >> 2
     }
     pub fn set_pci_msi_lower_32(&mut self, value: u32) {
@@ -119,7 +129,8 @@ impl MSI_LOWER_32 {    pub fn pci_msi_lower_32(&self) -> u32 {
 /// Word offset 2
 #[derive(From, Into)]
 pub struct MSI_UPPER_32(u32);
-impl MSI_UPPER_32 {    pub fn pci_msi_upper_32(&self) -> u32 {
+impl MSI_UPPER_32 {
+    pub fn pci_msi_upper_32(&self) -> u32 {
         self.0
     }
     pub fn set_pci_msi_upper_32(&mut self, value: u32) {
@@ -129,7 +140,8 @@ impl MSI_UPPER_32 {    pub fn pci_msi_upper_32(&self) -> u32 {
 /// Word offset 0
 #[derive(From, Into)]
 pub struct PCI_MSI_CAP_ID_NEXT_CTRL(u32);
-impl PCI_MSI_CAP_ID_NEXT_CTRL {    pub fn pci_msi_64_bit_addr_cap(&self) -> u32 {
+impl PCI_MSI_CAP_ID_NEXT_CTRL {
+    pub fn pci_msi_64_bit_addr_cap(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_pci_msi_64_bit_addr_cap(&mut self, value: u32) {
@@ -137,14 +149,16 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {    pub fn pci_msi_64_bit_addr_cap(&self) -> u32 
         assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
-    }    pub fn pci_msi_cap_id(&self) -> u32 {
+    }
+    pub fn pci_msi_cap_id(&self) -> u32 {
         self.0 & 0xff
     }
     pub fn set_pci_msi_cap_id(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
-    }    pub fn pci_msi_cap_next_offset(&self) -> u32 {
+    }
+    pub fn pci_msi_cap_next_offset(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_pci_msi_cap_next_offset(&mut self, value: u32) {
@@ -152,7 +166,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {    pub fn pci_msi_64_bit_addr_cap(&self) -> u32 
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    pub fn pci_msi_enable(&self) -> u32 {
+    }
+    pub fn pci_msi_enable(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_pci_msi_enable(&mut self, value: u32) {
@@ -160,7 +175,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {    pub fn pci_msi_64_bit_addr_cap(&self) -> u32 
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    pub fn pci_msi_multiple_msg_cap(&self) -> u32 {
+    }
+    pub fn pci_msi_multiple_msg_cap(&self) -> u32 {
         (self.0 & 0xe0000) >> 17
     }
     pub fn set_pci_msi_multiple_msg_cap(&mut self, value: u32) {
@@ -168,7 +184,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {    pub fn pci_msi_64_bit_addr_cap(&self) -> u32 
         assert!(value <= 0xe0000);
         self.0 &= !0xe0000;
         self.0 |= value;
-    }    pub fn pci_msi_multiple_msg_en(&self) -> u32 {
+    }
+    pub fn pci_msi_multiple_msg_en(&self) -> u32 {
         (self.0 & 0x700000) >> 20
     }
     pub fn set_pci_msi_multiple_msg_en(&mut self, value: u32) {
@@ -176,7 +193,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {    pub fn pci_msi_64_bit_addr_cap(&self) -> u32 
         assert!(value <= 0x700000);
         self.0 &= !0x700000;
         self.0 |= value;
-    }    pub fn pci_pvm_support(&self) -> u32 {
+    }
+    pub fn pci_pvm_support(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_pci_pvm_support(&mut self, value: u32) {

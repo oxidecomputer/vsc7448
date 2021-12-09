@@ -63,9 +63,7 @@ impl VCAP_UPDATE_CTRL {
         self.0 |= value;
     }
     /// The address to access for VCAP operations.
-
     ///
-
     /// ES0 defaults at 0x1000-0x1034
     pub fn update_addr(&self) -> u32 {
         (self.0 & 0x7fff8) >> 3
@@ -77,9 +75,7 @@ impl VCAP_UPDATE_CTRL {
         self.0 |= value;
     }
     /// Write and read operations access VCAP memory at address specified by UPDATE_ADDR. Move up opeation moves one or more VCAP addresses from a high address to a lower address, this is equivalent to decreasing priority of a rule. The starting address is specified by UPDATE_ADDR, the number of addresses (the range) that is moved is defined by VCAP_MV_CFG.MV_SIZE, the distance to move is defined by VCAP_MV_CFG. MV_NUM_POS. Move down opeation moves one or more VCAP addresses from a low address to a higer address, this is equivalent to increasing priority of a rule. This operation is equivalent to "Move up" except for the direction that it moves addresses, see "Move up" for more details. Init operation writes the contents of the cache to one or more VCAP addresses. The starting address is specified by UPDATE_ADDR, the number of addresses (the range) that is written is defined by VCAP_MV_CFG.MV_SIZE. Setting CLEAR_CACHE at the same time as starting the operation will clear the cache and cause the init operation to initialize the range of addresses.
-
     ///
-
     /// 000: Write from cache to VCAP 001: Read from VCAP to cache 010: Move entry and/or action up (decreasing addresses) 011: Move entry and/or action down (increasing addresses) 100: Initialize VCAP with the cache-value
     pub fn update_cmd(&self) -> u32 {
         (self.0 & 0x1c00000) >> 22

@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct CW_VAL(u32);
 impl CW_VAL {
     /// Control Word value. The control word is always placed after the last MPLS label.
-
     ///
-
     /// x: Control Word
     pub fn cw_val(&self) -> u32 {
         self.0
@@ -50,9 +48,7 @@ impl CW_VAL {
 pub struct LABEL_VAL(u32);
 impl LABEL_VAL {
     /// Label field value in MPLS  label N
-
     ///
-
     /// x: Label field value
     pub fn label_val(&self) -> u32 {
         (self.0 & 0xfffff000) >> 12
@@ -64,9 +60,7 @@ impl LABEL_VAL {
         self.0 |= value;
     }
     /// SBIT value in MPLS label N
-
     ///
-
     /// x: SBIT field value
     pub fn sbit_val(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -78,9 +72,7 @@ impl LABEL_VAL {
         self.0 |= value;
     }
     /// TC value in MPLS label N
-
     ///
-
     /// x: TC field value
     pub fn tc_val(&self) -> u32 {
         (self.0 & 0xe00) >> 9
@@ -92,9 +84,7 @@ impl LABEL_VAL {
         self.0 |= value;
     }
     /// TTL value in MPLS label N
-
     ///
-
     /// x: TTL field value
     pub fn ttl_val(&self) -> u32 {
         self.0 & 0xff
@@ -110,9 +100,7 @@ impl LABEL_VAL {
 pub struct LL_DMAC_LSB(u32);
 impl LL_DMAC_LSB {
     /// DMAC in Link layer. 32 LSB
-
     ///
-
     /// n: DMAC LSB
     pub fn dmac_lsb(&self) -> u32 {
         self.0
@@ -126,9 +114,7 @@ impl LL_DMAC_LSB {
 pub struct LL_DMAC_MSB(u32);
 impl LL_DMAC_MSB {
     /// DMAC in Link layer. 16 MSB
-
     ///
-
     /// n: DMAC MSB
     pub fn dmac_msb(&self) -> u32 {
         self.0 & 0xffff
@@ -144,9 +130,7 @@ impl LL_DMAC_MSB {
 pub struct LL_ETYPE(u32);
 impl LL_ETYPE {
     /// Ethertype in Link layer
-
     ///
-
     /// n: Ethertype
     pub fn etype(&self) -> u32 {
         self.0 & 0xffff
@@ -162,9 +146,7 @@ impl LL_ETYPE {
 pub struct LL_SMAC_LSB(u32);
 impl LL_SMAC_LSB {
     /// SMAC in Link layer. 32 LSB
-
     ///
-
     /// n: SMAC LSB
     pub fn smac_lsb(&self) -> u32 {
         self.0
@@ -178,9 +160,7 @@ impl LL_SMAC_LSB {
 pub struct LL_SMAC_MSB(u32);
 impl LL_SMAC_MSB {
     /// SMAC in Link layer. 16 MSB
-
     ///
-
     /// n: SMAC MSB
     pub fn smac_msb(&self) -> u32 {
         self.0 & 0xffff
@@ -196,9 +176,7 @@ impl LL_SMAC_MSB {
 pub struct LL_TAG_CFG(u32);
 impl LL_TAG_CFG {
     /// Enable IFH encapsulation mode for this entry. The frame link layer format is changed to: [LL_DMAC][LL_SMAC][0x8880][0x0009] Optionally one VLAN tag can be added if LL_TAG_CFG.TAG_CFG = 1 [LL_DMAC][LL_SMAC][LL_TAG:0][0x8880][0x0009] None of the other encapsulation fields are used in this mode
-
     ///
-
     /// 0: Normal encapsulation mode 1: IFH encapsulation mode
     pub fn ifh_encap_mode(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -210,9 +188,7 @@ impl LL_TAG_CFG {
         self.0 |= value;
     }
     /// Control VLAN tags in MPLS link layer
-
     ///
-
     /// 0: No tags in link layer 1: One tag after SMAC 2: Two tags after SMAC 3: Reserved
     pub fn tag_cfg(&self) -> u32 {
         self.0 & 0x3
@@ -230,9 +206,7 @@ impl LL_TAG_CFG {
 pub struct LL_TAG_VAL(u32);
 impl LL_TAG_VAL {
     /// DEI value in link layer tags
-
     ///
-
     /// x: DEI value
     pub fn tag_dei_val(&self) -> u32 {
         self.0 & 0x1
@@ -243,9 +217,7 @@ impl LL_TAG_VAL {
         self.0 |= value;
     }
     /// PCP value in link layer tags
-
     ///
-
     /// x: PCP value
     pub fn tag_pcp_val(&self) -> u32 {
         (self.0 & 0xe) >> 1
@@ -257,9 +229,7 @@ impl LL_TAG_VAL {
         self.0 |= value;
     }
     /// TPID of link layer VLAN tags
-
     ///
-
     /// x: TPID value
     pub fn tag_tpid(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -271,9 +241,7 @@ impl LL_TAG_VAL {
         self.0 |= value;
     }
     /// VID value in link layer tags
-
     ///
-
     /// x: VID value
     pub fn tag_vid_val(&self) -> u32 {
         (self.0 & 0xfff0) >> 4
@@ -290,9 +258,7 @@ impl LL_TAG_VAL {
 pub struct MPLS_LABEL_CFG(u32);
 impl MPLS_LABEL_CFG {
     /// Configure Control Word (CW) in label stack
-
     ///
-
     /// 0: No Control Word 1: Add Control Word
     pub fn cw_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -304,9 +270,7 @@ impl MPLS_LABEL_CFG {
         self.0 |= value;
     }
     /// Select innermost label. Source can be ES0 or encapsulation RAM
-
     ///
-
     /// 0: Use label from encapsulation table 1: Use label from ES0
     pub fn inner_lbl_sel(&self) -> u32 {
         self.0 & 0x1
@@ -317,9 +281,7 @@ impl MPLS_LABEL_CFG {
         self.0 |= value;
     }
     /// Configure the number of MPLS labels to use for this encapsulation entry
-
     ///
-
     /// 0: No Labels in encapsulation 1: One MPLS label 2: Two MPLS labels 3: Three MPLS labels
     pub fn label_cnt(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -338,9 +300,7 @@ impl MPLS_LABEL_CFG {
 pub struct MPLS_REMARK_CFG(u32);
 impl MPLS_REMARK_CFG {
     /// Configure the Label-field used in label N.
-
     ///
-
     /// 0 : LABEL_VAL[N].LABEL_VAL 1-3: Reserved 4 : Mapped using mapping table 0 5 : Mapped using mapping table 1 6 : Mapped using mapping table 2 7 : Mapped using mapping table 3
     pub fn lbl_sel(&self) -> u32 {
         (self.0 & 0x380) >> 7
@@ -352,9 +312,7 @@ impl MPLS_REMARK_CFG {
         self.0 |= value;
     }
     /// Configure the S-bit used in label N.
-
     ///
-
     /// 0: Classified SBIT (ISBIT) 1: Fixed: LABEL_VAL[N].SBIT_VAL 2: Mixed: Use Classified SBIT if IFH.DST.ENCAP.PDU_TYPE = OAM_MPLS_TP else LABEL_VAL[N].SBIT_VAL 3: Reserved
     pub fn sbit_sel(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -366,9 +324,7 @@ impl MPLS_REMARK_CFG {
         self.0 |= value;
     }
     /// Configure the TC-field used in label N.
-
     ///
-
     /// 0 : Classified TC 1 : LABEL_VAL[N].TC_VAL 2-3: Reserved 4: Mapped using mapping table 0, otherwise use LABEL_VAL[N].TC_VAL 5: Mapped using mapping table 1, otherwise use mapping table 0 6: Mapped using mapping table 2, otherwise use LABEL_VAL[N].TC_VAL 7: Mapped using mapping table 3, otherwise use mapping table 2
     pub fn tc_sel(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -380,9 +336,7 @@ impl MPLS_REMARK_CFG {
         self.0 |= value;
     }
     /// Configure the TTL-field used in label N.
-
     ///
-
     /// 0: Classified TTL (ITTL) 1: Fixed: LABEL_VAL[N].TTL_VAL 2: Mixed: Use Classified TTL if IFH.DST.ENCAP.PDU_TYPE = OAM_MPLS_TP else LABEL_VAL[N].TTL_VAL 3: Reserved
     pub fn ttl_sel(&self) -> u32 {
         self.0 & 0x3
@@ -412,9 +366,7 @@ impl PTP_RSRV_NOT_ZERO_1 {
 pub struct RSV_LABEL_CFG(u32);
 impl RSV_LABEL_CFG {
     /// Enable reserved MPLS label insertion for MPLS-OAM frames. When this bit is set, an additional MPLS label is inserted if CW insertion is disabled and IFH.DST.ENCAP.PDU_TYPE=OAM_MPLS_TP or IFH.DST.ENCAP.PDU_TYPE=Y1731 and IFH.DST.ENCAP.TYPE_AFTER_POP=CW Note: The reserved label can only be inserted if a CW is not inserted for the frame.
-
     ///
-
     /// 0: Disabled 1: Add reserved label if allowed
     pub fn rsv_lbl_ena(&self) -> u32 {
         self.0 & 0x1
@@ -425,9 +377,7 @@ impl RSV_LABEL_CFG {
         self.0 |= value;
     }
     /// Select position of the reserved label. It can be added before or after the last MPLS label
-
     ///
-
     /// 0: Add before last label 1: Add after last label like the CW
     pub fn rsv_lbl_pos(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -439,9 +389,7 @@ impl RSV_LABEL_CFG {
         self.0 |= value;
     }
     /// Configure TC-field used in the reserved label
-
     ///
-
     /// 0 : Classified TC 1 : RSV_LABEL_VAL.RSV_TC_VAL 2-3: Reserved 4: Mapped using mapping table 0, otherwise use RSV_LABEL_VAL.RSV_TC_VAL 5: Mapped using mapping table 1, otherwise use mapping table 0 6: Mapped using mapping table 2, otherwise use RSV_LABEL_VAL.RSV_TC_VAL 7: Mapped using mapping table 3, otherwise use mapping table 2
     pub fn rsv_tc_sel(&self) -> u32 {
         (self.0 & 0x1c) >> 2
@@ -460,9 +408,7 @@ impl RSV_LABEL_CFG {
 pub struct RSV_LABEL_VAL(u32);
 impl RSV_LABEL_VAL {
     /// Label field value in the reserved MPLS label
-
     ///
-
     /// x: Label field value
     pub fn rsv_lbl_val(&self) -> u32 {
         (self.0 & 0xfffff000) >> 12
@@ -474,9 +420,7 @@ impl RSV_LABEL_VAL {
         self.0 |= value;
     }
     /// SBIT value in reserved the MPLS label
-
     ///
-
     /// x: SBIT field value
     pub fn rsv_sbit_val(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -488,9 +432,7 @@ impl RSV_LABEL_VAL {
         self.0 |= value;
     }
     /// TC value in reserved the MPLS label
-
     ///
-
     /// x: TC field value
     pub fn rsv_tc_val(&self) -> u32 {
         (self.0 & 0xe00) >> 9
@@ -502,9 +444,7 @@ impl RSV_LABEL_VAL {
         self.0 |= value;
     }
     /// TTL value in reserved the MPLS label
-
     ///
-
     /// x: TTL field value
     pub fn rsv_ttl_val(&self) -> u32 {
         self.0 & 0xff

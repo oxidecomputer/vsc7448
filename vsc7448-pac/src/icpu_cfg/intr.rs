@@ -96,9 +96,7 @@ impl DEV_INTR_IDENT {
 pub struct DEV_INTR_POL(u32);
 impl DEV_INTR_POL {
     /// Set individual bits in this register to configure polarity of the corresponding device interrupt.
-
     ///
-
     /// 0: Device interrupt is active low 1: Device interrupt is active high
     pub fn dev_intr_pol(&self) -> u32 {
         self.0
@@ -178,9 +176,7 @@ impl DEV_INTR_STICKY1 {
 pub struct DEV_INTR_TRIGGER(u32);
 impl DEV_INTR_TRIGGER {
     /// Configure trigger mode of individual device interrupt sources. The trigger mode determines how the value of the ICPU_CFG::DEV_INTR_RAW register is transfered to the ICPU_CFG::DEV_INTR_STICKY register. This register is replicated, the first replication controls bit 0 in the encoding, the second replication controls bit 1 in the encoding. I.e. to configure edge-triggered interrupt for device 3; set ICPU_CFG::DEV_INTR_TRIGGER[0][3]='1' and ICPU_CFG::DEV_INTR_TRIGGER[1][3]='0'. For level-triggered interrupts ICPU_CFG::DEV_INTR_STICKY is set for as long as the corresponding bit in ICPU_CFG::DEV_INTR_RAW is high - i.e. is not possible to clear a bit in ICPU_CFG::DEV_INTR_STICKY until the corresponding ICPU_CFG::DEV_INTR_RAW is zero. For edge-triggeded interrupts ICPU_CFG::DEV_INTR_STICKY is set when the corresponding bit in ICPU_CFG::DEV_INTR_RAW changes value. For falling-edge-triggeded interrupts ICPU_CFG::DEV_INTR_STICKY is set when the corresponding bit in ICPU_CFG::DEV_INTR_RAW changes from '1' to '0'. For rising-edge-triggeded interrupts ICPU_CFG::DEV_INTR_STICKY is set when the corresponding bit in ICPU_CFG::DEV_INTR_RAW changes from '0' to '1'.
-
     ///
-
     /// 0: Interrupt is level-activated 1: Interrupt is edge-triggered 2: Interrupt is falling-edge-triggered 3: Interrupt is rising-edge-triggered
     pub fn dev_intr_trigger(&self) -> u32 {
         self.0
@@ -240,9 +236,7 @@ impl DST_INTR_MAP {
 pub struct EXT_DST_INTR_DRV(u32);
 impl EXT_DST_INTR_DRV {
     /// This register configures drive mode of the corresponding external destination interrupt.
-
     ///
-
     /// 0: Only drive external interrupt output when asserted (tristate when inactive) 1: External interrupt output is always driven
     pub fn ext_dst_intr_drv(&self) -> u32 {
         self.0 & 0x3
@@ -258,9 +252,7 @@ impl EXT_DST_INTR_DRV {
 pub struct EXT_DST_INTR_POL(u32);
 impl EXT_DST_INTR_POL {
     /// Set individual bits in this register to configure polarity of the corresponding external destination interrupt.
-
     ///
-
     /// 0: External interrupt output is active low 1: External interrupt output is active high
     pub fn ext_dst_intr_pol(&self) -> u32 {
         self.0 & 0x3
@@ -276,9 +268,7 @@ impl EXT_DST_INTR_POL {
 pub struct EXT_SRC_INTR_POL(u32);
 impl EXT_SRC_INTR_POL {
     /// Set individual bits in this register to configure polarity of the corresponding external source interrupt.
-
     ///
-
     /// 0: External interrupt input is active low 1: External interrupt input is active high
     pub fn ext_src_intr_pol(&self) -> u32 {
         self.0 & 0x3
@@ -406,9 +396,7 @@ impl INTR_STICKY {
 pub struct INTR_TRIGGER(u32);
 impl INTR_TRIGGER {
     /// Configure trigger mode of individual interrupt sources. The trigger mode determines how the value of the ICPU_CFG::INTR_RAW register is transfered to the ICPU_CFG::INTR_STICKY register. This register is replicated, the first replication controls bit 0 in the encoding, the second replication controls bit 1 in the encoding. I.e. to configure falling-edge-triggered interrupt for interrupt source 5; set ICPU_CFG::INTR_TRIGGER[0][5]='0' and ICPU_CFG::INTR_TRIGGER[1][5]='1'. For level-triggered interrupts ICPU_CFG::INTR_STICKY is set for as long as the corresponding bit in ICPU_CFG::INTR_RAW is high - i.e. is not possible to clear a bit in ICPU_CFG::INTR_STICKY until the corresponding ICPU_CFG::INTR_RAW is zero. For edge-triggeded interrupts ICPU_CFG::INTR_STICKY is set when the corresponding bit in ICPU_CFG::INTR_RAW changes value. For falling-edge-triggeded interrupts ICPU_CFG::INTR_STICKY is set when the corresponding bit in ICPU_CFG::INTR_RAW changes from '1' to '0'. For rising-edge-triggeded interrupts ICPU_CFG::INTR_STICKY is set when the corresponding bit in ICPU_CFG::INTR_RAW changes from '0' to '1'.
-
     ///
-
     /// 0: Interrupt is level-activated 1: Interrupt is edge-triggered 2: Interrupt is falling-edge-triggered 3: Interrupt is rising-edge-triggered
     pub fn intr_trigger(&self) -> u32 {
         self.0 & 0x1fffffff

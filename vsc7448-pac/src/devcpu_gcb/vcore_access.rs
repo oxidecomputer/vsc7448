@@ -89,9 +89,7 @@ impl VA_CTRL {
         self.0 |= value;
     }
     /// If the VCore access logic detects an error this field is set based on the nature of the error. This is a read-only field which is cleared by the VCore access logic when a new access is (sucessfully) accepted.
-
     ///
-
     /// 0: No errors detected. 1: SBA not ready when accessed. 2: SBA reported error. 3: DATA or ADDR written during active access.
     pub fn va_err(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -103,9 +101,7 @@ impl VA_CTRL {
         self.0 |= value;
     }
     /// Controls the size of the access inside VCore domain. It is possible to do 32-bit, 16-bit and 8-bit accesses. For 8bit and 16bit write-accesses data must be aligned appropriately inside the 32bit write-data word (i.e. for a byte-write to address 0x20001003 data has to be placed in [31:24]). Likewise for 8bit and 16bit read operations, here data is alligned accordingly to address.
-
     ///
-
     /// 0: 32bit 1: Reserved, do not use 2: 8bit 3: 16bit
     pub fn va_size(&self) -> u32 {
         (self.0 & 0x30) >> 4

@@ -183,7 +183,10 @@ impl SERDES1G_ANA_CFG {
     pub fn SERDES1G_SER_CFG(&self) -> RegisterAddress<serdes1g_ana_cfg::SERDES1G_SER_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn SYNC_ETH_SD10G_CFG(&self, index: u32) -> RegisterAddress<serdes1g_ana_cfg::SYNC_ETH_SD10G_CFG> {
+    pub fn SYNC_ETH_SD10G_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<serdes1g_ana_cfg::SYNC_ETH_SD10G_CFG> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x14 + index * 0x4)
     }
@@ -212,7 +215,9 @@ impl SERDES1G_DIG_CFG {
     pub fn SERDES1G_PLL_STATUS(&self) -> RegisterAddress<serdes1g_dig_cfg::SERDES1G_PLL_STATUS> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn SERDES1G_RC_PLL_BIST_CFG(&self) -> RegisterAddress<serdes1g_dig_cfg::SERDES1G_RC_PLL_BIST_CFG> {
+    pub fn SERDES1G_RC_PLL_BIST_CFG(
+        &self,
+    ) -> RegisterAddress<serdes1g_dig_cfg::SERDES1G_RC_PLL_BIST_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
     pub fn SERDES1G_TP_CFG(&self) -> RegisterAddress<serdes1g_dig_cfg::SERDES1G_TP_CFG> {
@@ -281,7 +286,9 @@ impl SERDES6G_ANA_CFG {
 /// SERDES6G Analog Status Registers
 pub struct SERDES6G_ANA_STATUS(pub(super) u32);
 impl SERDES6G_ANA_STATUS {
-    pub fn SERDES6G_ACJTAG_STATUS(&self) -> RegisterAddress<serdes6g_ana_status::SERDES6G_ACJTAG_STATUS> {
+    pub fn SERDES6G_ACJTAG_STATUS(
+        &self,
+    ) -> RegisterAddress<serdes6g_ana_status::SERDES6G_ACJTAG_STATUS> {
         RegisterAddress::new(self.0 + 0x8)
     }
     pub fn SERDES6G_GP_CFG(&self) -> RegisterAddress<serdes6g_ana_status::SERDES6G_GP_CFG> {
@@ -301,7 +308,9 @@ impl SERDES6G_ANA_STATUS {
 /// SERDES6G Digital Configuration Registers
 pub struct SERDES6G_DIG_CFG(pub(super) u32);
 impl SERDES6G_DIG_CFG {
-    pub fn MCB_SERDES1G_ADDR_CFG(&self) -> RegisterAddress<serdes6g_dig_cfg::MCB_SERDES1G_ADDR_CFG> {
+    pub fn MCB_SERDES1G_ADDR_CFG(
+        &self,
+    ) -> RegisterAddress<serdes6g_dig_cfg::MCB_SERDES1G_ADDR_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
     pub fn SERDES6G_DFT_CFG0(&self) -> RegisterAddress<serdes6g_dig_cfg::SERDES6G_DFT_CFG0> {
@@ -319,7 +328,9 @@ impl SERDES6G_DIG_CFG {
     pub fn SERDES6G_MISC_CFG(&self) -> RegisterAddress<serdes6g_dig_cfg::SERDES6G_MISC_CFG> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    pub fn SERDES6G_RC_PLL_BIST_CFG(&self) -> RegisterAddress<serdes6g_dig_cfg::SERDES6G_RC_PLL_BIST_CFG> {
+    pub fn SERDES6G_RC_PLL_BIST_CFG(
+        &self,
+    ) -> RegisterAddress<serdes6g_dig_cfg::SERDES6G_RC_PLL_BIST_CFG> {
         RegisterAddress::new(self.0 + 0x18)
     }
     pub fn SERDES6G_TP_CFG0(&self) -> RegisterAddress<serdes6g_dig_cfg::SERDES6G_TP_CFG0> {
@@ -339,7 +350,9 @@ impl SERDES6G_DIG_STATUS {
     pub fn SERDES6G_ERR_CNT(&self) -> RegisterAddress<serdes6g_dig_status::SERDES6G_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn SERDES6G_OB_ANEG_CFG(&self) -> RegisterAddress<serdes6g_dig_status::SERDES6G_OB_ANEG_CFG> {
+    pub fn SERDES6G_OB_ANEG_CFG(
+        &self,
+    ) -> RegisterAddress<serdes6g_dig_status::SERDES6G_OB_ANEG_CFG> {
         RegisterAddress::new(self.0 + 0x20)
     }
 }

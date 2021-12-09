@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct DTI_CTRL(u32);
 impl DTI_CTRL {
     /// DTI bandwidth. Used to give arbitration precedence to high bandwidth DTIs.
-
     ///
-
     /// 0: <5Gbps 1: >=5Gbps
     pub fn bw(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -136,9 +134,7 @@ impl TTI_TICKS {
 pub struct TTI_TIMER(u32);
 impl TTI_TIMER {
     /// Configuration of injection time jitter for TTI.
-
     ///
-
     /// 0: No jitter 1: Timer is set to a random value in the range [TIMER_LEN*0.75; TIMER_LEN] 2: Timer is set to a random value in the range [TIMER_LEN*0.50; TIMER_LEN] 3: Timer is set to a random value in the range [1;TIMER_LEN]
     pub fn jitter(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -169,9 +165,7 @@ impl TTI_TIMER {
         self.0 |= value;
     }
     /// Number of ticks of configured TICK_IDX between frame injections. The period between each injection becomes tick_period x TIMER_LEN Setting TIMER_LEN to non-zero value enables TTI. 0x1FF (= Inject ASAP) is intended for removal of frame from buffer memory. Upon injection, HW sets TIMER_LEN to 0 (=Disable). Before setting TIMER_LEN, TICK_CNT should be set to a random value in range 1-TIMER_LEN (unless a specific initial timer value is desirable).
-
     ///
-
     /// 0 => Disable TTI. 1 => 1 tick 2 => 2 ticks ... 0x1ff => Inject ASAP, then set to TIMER_LEN=0 by AFI.
     pub fn timer_len(&self) -> u32 {
         (self.0 & 0x1ff0000) >> 16

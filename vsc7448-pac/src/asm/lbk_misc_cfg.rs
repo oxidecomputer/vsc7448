@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct LBK_AGING_DIS(u32);
 impl LBK_AGING_DIS {
     /// Disable aging in loopback path.
-
     ///
-
     /// bitmask per port.
     pub fn lbk_aging_dis(&self) -> u32 {
         self.0

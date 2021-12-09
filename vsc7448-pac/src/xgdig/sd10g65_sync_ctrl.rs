@@ -44,9 +44,7 @@ impl DFT_CLK_GEN_CFG {
         self.0 |= value;
     }
     /// clock generator mode
-
     ///
-
     /// 0: normal operation; cg_per_cfg controls period 0->1 transition: after current period has finished (only) the next period is controlled by cg_per_jump_cfg afterwards normal operation 2: every N'th period the high value is replaced by a low value N is defined by cg_timer_cfg 3: every N'th period the low value is replaced by a high value N is defined by cg_timer_cfg
     pub fn cg_mode_cfg(&self) -> u32 {
         self.0 & 0x3
@@ -57,9 +55,7 @@ impl DFT_CLK_GEN_CFG {
         self.0 |= value;
     }
     /// (Half) clock period configuration in normal mode (refer also to configuration field cg_mode_cfg):
-
     ///
-
     /// high period = cg_per_cfg + cg_dcd_cfg low period = cg_per_cfg - cg_dcd_cfg
     pub fn cg_per_cfg(&self) -> u32 {
         (self.0 & 0xffc00000) >> 22
@@ -71,9 +67,7 @@ impl DFT_CLK_GEN_CFG {
         self.0 |= value;
     }
     /// (Half) clock period configuration in jump mode (refer also to configuration field cg_mode_cfg):
-
     ///
-
     /// high period = cg_per_jump_cfg + cg_dcd_cfg low period = cg_per_jump_cfg - cg_dcd_cfg
     pub fn cg_per_jump_cfg(&self) -> u32 {
         (self.0 & 0x3ff000) >> 12
@@ -112,9 +106,7 @@ impl RX_SYNC_CTRL_CFG {
         self.0 |= value;
     }
     /// Source selection for RX lane synchronization
-
     ///
-
     /// 0: Do not use external sync_ctrl info 1: Select sync_ctrl info from external DES
     pub fn rx_lane_sync_src(&self) -> u32 {
         self.0 & 0x1
@@ -132,9 +124,7 @@ impl RX_SYNC_CTRL_CFG {
 pub struct SYNC_CTRL_CFG(u32);
 impl SYNC_CTRL_CFG {
     /// Source selection for lane synchronization
-
     ///
-
     /// 0: Select external DES 1: Select F2DF 2: Select local DES 3: Disable sync_ctrl
     pub fn lane_sync_src(&self) -> u32 {
         self.0 & 0x3

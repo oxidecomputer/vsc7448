@@ -88,9 +88,7 @@ impl PTP_NSF {
 pub struct PTP_PIN_CFG(u32);
 impl PTP_PIN_CFG {
     /// Defined actions are: IDLE: No operation LOAD:   Load TimeOfDay with configured values STORE:  Store TimeOfDay and NSF of selected time domain CLOCK:  Generate a clock output DELTA:  Add PTP_TOD_NSEC field as a signed integer to TimeOfDay When the sync option is set, the action will be done when the pin sees an active edge. The action will automatically return to IDLE when complete.
-
     ///
-
     /// 0: IDLE 1: LOAD 2: STORE 3: CLOCK 4: DELTA 5-7: reserved
     pub fn ptp_pin_action(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -111,9 +109,7 @@ impl PTP_PIN_CFG {
         self.0 |= value;
     }
     /// Polarity of the PTP pin.
-
     ///
-
     /// 0: Active high 1: Active low
     pub fn ptp_pin_inv_pol(&self) -> u32 {
         (self.0 & 0x4) >> 2

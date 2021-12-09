@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct ATOP_TOT_CFG(u32);
 impl ATOP_TOT_CFG {
     /// Tail dropping is activate on a port when the port use has exceeded the ATOP watermark for the port, and the total memory use has exceeded this watermark.
-
     ///
-
     /// See RES_CFG
     pub fn atop_tot(&self) -> u32 {
         self.0 & 0xfff

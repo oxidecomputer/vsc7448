@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct EEE_INTR_MASK(u32);
 impl EEE_INTR_MASK {
     /// Mask for the RX_LPI_RECEIVED bit
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn rx_lpi_received_mask(&self) -> u32 {
         self.0 & 0x1
@@ -47,9 +45,7 @@ impl EEE_INTR_MASK {
         self.0 |= value;
     }
     /// Mask for the TX_LPI_RECEIVED bit
-
     ///
-
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn tx_lpi_received_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -86,9 +82,7 @@ impl EEE_STATUS {
         self.0 |= value;
     }
     /// When read as a one, receive PCS has received LPI signaling one or more times since the register was last read. When read as a zero, PCS has not received LPI signaling
-
     ///
-
     /// 1 = Rx PCS has received LPI 0 = LPI not received
     pub fn rx_lpi_received(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -110,9 +104,7 @@ impl EEE_STATUS {
         self.0 |= value;
     }
     /// When read as a one, transmit PCS has received LPI signaling one or more times since the register was last read. When read as a zero, PCS has not received LPI signaling.
-
     ///
-
     /// 1 = Tx PCS has received LPI 0 = LPI not received
     pub fn tx_lpi_received(&self) -> u32 {
         (self.0 & 0x800) >> 11

@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct PCS1G_TSTPAT_STATUS(u32);
 impl PCS1G_TSTPAT_STATUS {
     /// Jitter Test Pattern Error
-
     ///
-
     /// 0: Jitter pattern checker has found no error 1: Jitter pattern checker has found an error
     pub fn jtp_err(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -58,9 +56,7 @@ impl PCS1G_TSTPAT_STATUS {
         self.0 |= value;
     }
     /// Jitter Test Pattern Lock
-
     ///
-
     /// 0: Jitter pattern checker has not locked 1: Jitter pattern checker has locked
     pub fn jtp_lock(&self) -> u32 {
         self.0 & 0x1

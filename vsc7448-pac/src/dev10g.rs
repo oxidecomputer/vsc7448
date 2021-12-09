@@ -99,7 +99,9 @@ impl DEV_STATISTICS_32BIT {
     pub fn MAC_STICKY(&self) -> RegisterAddress<dev_statistics_32bit::MAC_STICKY> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    pub fn RX_ALIGNMENT_LOST_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_ALIGNMENT_LOST_CNT> {
+    pub fn RX_ALIGNMENT_LOST_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_ALIGNMENT_LOST_CNT> {
         RegisterAddress::new(self.0 + 0x80)
     }
     pub fn RX_BC_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_BC_CNT> {
@@ -111,10 +113,14 @@ impl DEV_STATISTICS_32BIT {
     pub fn RX_FRAGMENTS_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_FRAGMENTS_CNT> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    pub fn RX_HIH_CKSM_ERR_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_HIH_CKSM_ERR_CNT> {
+    pub fn RX_HIH_CKSM_ERR_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_HIH_CKSM_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x94)
     }
-    pub fn RX_IN_RANGE_LEN_ERR_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_IN_RANGE_LEN_ERR_CNT> {
+    pub fn RX_IN_RANGE_LEN_ERR_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_IN_RANGE_LEN_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x24)
     }
     pub fn RX_IPG_SHRINK_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_IPG_SHRINK_CNT> {
@@ -126,7 +132,9 @@ impl DEV_STATISTICS_32BIT {
     pub fn RX_MC_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_MC_CNT> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    pub fn RX_OUT_OF_RANGE_LEN_ERR_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_OUT_OF_RANGE_LEN_ERR_CNT> {
+    pub fn RX_OUT_OF_RANGE_LEN_ERR_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_OUT_OF_RANGE_LEN_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x28)
     }
     pub fn RX_OVERSIZE_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_OVERSIZE_CNT> {
@@ -135,19 +143,29 @@ impl DEV_STATISTICS_32BIT {
     pub fn RX_PAUSE_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_PAUSE_CNT> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn RX_SIZE1024TO1518_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_SIZE1024TO1518_CNT> {
+    pub fn RX_SIZE1024TO1518_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_SIZE1024TO1518_CNT> {
         RegisterAddress::new(self.0 + 0x48)
     }
-    pub fn RX_SIZE128TO255_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_SIZE128TO255_CNT> {
+    pub fn RX_SIZE128TO255_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_SIZE128TO255_CNT> {
         RegisterAddress::new(self.0 + 0x3c)
     }
-    pub fn RX_SIZE1519TOMAX_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_SIZE1519TOMAX_CNT> {
+    pub fn RX_SIZE1519TOMAX_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_SIZE1519TOMAX_CNT> {
         RegisterAddress::new(self.0 + 0x4c)
     }
-    pub fn RX_SIZE256TO511_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_SIZE256TO511_CNT> {
+    pub fn RX_SIZE256TO511_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_SIZE256TO511_CNT> {
         RegisterAddress::new(self.0 + 0x40)
     }
-    pub fn RX_SIZE512TO1023_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_SIZE512TO1023_CNT> {
+    pub fn RX_SIZE512TO1023_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_SIZE512TO1023_CNT> {
         RegisterAddress::new(self.0 + 0x44)
     }
     pub fn RX_SIZE64_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_SIZE64_CNT> {
@@ -168,10 +186,14 @@ impl DEV_STATISTICS_32BIT {
     pub fn RX_UNDERSIZE_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_UNDERSIZE_CNT> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    pub fn RX_UNSUP_OPCODE_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_UNSUP_OPCODE_CNT> {
+    pub fn RX_UNSUP_OPCODE_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_UNSUP_OPCODE_CNT> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn RX_UNTAGGED_FRMS_CNT(&self) -> RegisterAddress<dev_statistics_32bit::RX_UNTAGGED_FRMS_CNT> {
+    pub fn RX_UNTAGGED_FRMS_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::RX_UNTAGGED_FRMS_CNT> {
         RegisterAddress::new(self.0 + 0x88)
     }
     pub fn TX_BC_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_BC_CNT> {
@@ -183,19 +205,29 @@ impl DEV_STATISTICS_32BIT {
     pub fn TX_PAUSE_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_PAUSE_CNT> {
         RegisterAddress::new(self.0 + 0x54)
     }
-    pub fn TX_SIZE1024TO1518_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_SIZE1024TO1518_CNT> {
+    pub fn TX_SIZE1024TO1518_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::TX_SIZE1024TO1518_CNT> {
         RegisterAddress::new(self.0 + 0x78)
     }
-    pub fn TX_SIZE128TO255_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_SIZE128TO255_CNT> {
+    pub fn TX_SIZE128TO255_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::TX_SIZE128TO255_CNT> {
         RegisterAddress::new(self.0 + 0x6c)
     }
-    pub fn TX_SIZE1519TOMAX_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_SIZE1519TOMAX_CNT> {
+    pub fn TX_SIZE1519TOMAX_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::TX_SIZE1519TOMAX_CNT> {
         RegisterAddress::new(self.0 + 0x7c)
     }
-    pub fn TX_SIZE256TO511_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_SIZE256TO511_CNT> {
+    pub fn TX_SIZE256TO511_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::TX_SIZE256TO511_CNT> {
         RegisterAddress::new(self.0 + 0x70)
     }
-    pub fn TX_SIZE512TO1023_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_SIZE512TO1023_CNT> {
+    pub fn TX_SIZE512TO1023_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::TX_SIZE512TO1023_CNT> {
         RegisterAddress::new(self.0 + 0x74)
     }
     pub fn TX_SIZE64_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_SIZE64_CNT> {
@@ -210,7 +242,9 @@ impl DEV_STATISTICS_32BIT {
     pub fn TX_UC_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_UC_CNT> {
         RegisterAddress::new(self.0 + 0x58)
     }
-    pub fn TX_UNTAGGED_FRMS_CNT(&self) -> RegisterAddress<dev_statistics_32bit::TX_UNTAGGED_FRMS_CNT> {
+    pub fn TX_UNTAGGED_FRMS_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_32bit::TX_UNTAGGED_FRMS_CNT> {
         RegisterAddress::new(self.0 + 0x90)
     }
 }
@@ -221,22 +255,30 @@ impl DEV_STATISTICS_40BIT {
     pub fn RX_BAD_BYTES_CNT(&self) -> RegisterAddress<dev_statistics_40bit::RX_BAD_BYTES_CNT> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    pub fn RX_BAD_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics_40bit::RX_BAD_BYTES_MSB_CNT> {
+    pub fn RX_BAD_BYTES_MSB_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_40bit::RX_BAD_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0x14)
     }
     pub fn RX_IN_BYTES_CNT(&self) -> RegisterAddress<dev_statistics_40bit::RX_IN_BYTES_CNT> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn RX_IN_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics_40bit::RX_IN_BYTES_MSB_CNT> {
+    pub fn RX_IN_BYTES_MSB_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_40bit::RX_IN_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0x4)
     }
     pub fn RX_OK_BYTES_CNT(&self) -> RegisterAddress<dev_statistics_40bit::RX_OK_BYTES_CNT> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn RX_OK_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics_40bit::RX_OK_BYTES_MSB_CNT> {
+    pub fn RX_OK_BYTES_MSB_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_40bit::RX_OK_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn RX_XGMII_PROT_ERR_CNT(&self) -> RegisterAddress<dev_statistics_40bit::RX_XGMII_PROT_ERR_CNT> {
+    pub fn RX_XGMII_PROT_ERR_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_40bit::RX_XGMII_PROT_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x98)
     }
     pub fn TX_OK_BYTES_CNT(&self) -> RegisterAddress<dev_statistics_40bit::TX_OK_BYTES_CNT> {
@@ -245,7 +287,9 @@ impl DEV_STATISTICS_40BIT {
     pub fn TX_OUT_BYTES_CNT(&self) -> RegisterAddress<dev_statistics_40bit::TX_OUT_BYTES_CNT> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    pub fn TX_OUT_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics_40bit::TX_OUT_BYTES_MSB_CNT> {
+    pub fn TX_OUT_BYTES_MSB_CNT(
+        &self,
+    ) -> RegisterAddress<dev_statistics_40bit::TX_OUT_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0x1c)
     }
 }
@@ -292,7 +336,9 @@ impl MAC_CFG_STATUS {
 /// PCS2X6G Configuration Registers
 pub struct PCS2X6G_CONFIGURATION(pub(super) u32);
 impl PCS2X6G_CONFIGURATION {
-    pub fn PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS(&self) -> RegisterAddress<pcs2x6g_configuration::PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS> {
+    pub fn PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs2x6g_configuration::PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS> {
         RegisterAddress::new(self.0 + 0x4)
     }
 }
@@ -300,7 +346,9 @@ impl PCS2X6G_CONFIGURATION {
 /// PCS2x6G Extended Configuration Registers
 pub struct PCS2X6G_EXT_CONFIGURATION(pub(super) u32);
 impl PCS2X6G_EXT_CONFIGURATION {
-    pub fn PCS2X6G_ERR_CNT_STAT(&self) -> RegisterAddress<pcs2x6g_ext_configuration::PCS2X6G_ERR_CNT_STAT> {
+    pub fn PCS2X6G_ERR_CNT_STAT(
+        &self,
+    ) -> RegisterAddress<pcs2x6g_ext_configuration::PCS2X6G_ERR_CNT_STAT> {
         RegisterAddress::new(self.0 + 0x8)
     }
 }
@@ -328,19 +376,27 @@ impl PCS_XAUI_CONFIGURATION {
     pub fn PCS_XAUI_EXT_CFG(&self) -> RegisterAddress<pcs_xaui_configuration::PCS_XAUI_EXT_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn PCS_XAUI_INTERLEAVE_MODE_CFG(&self) -> RegisterAddress<pcs_xaui_configuration::PCS_XAUI_INTERLEAVE_MODE_CFG> {
+    pub fn PCS_XAUI_INTERLEAVE_MODE_CFG(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_configuration::PCS_XAUI_INTERLEAVE_MODE_CFG> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    pub fn PCS_XAUI_RX_ERR_CNT_CFG(&self) -> RegisterAddress<pcs_xaui_configuration::PCS_XAUI_RX_ERR_CNT_CFG> {
+    pub fn PCS_XAUI_RX_ERR_CNT_CFG(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_configuration::PCS_XAUI_RX_ERR_CNT_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
     pub fn PCS_XAUI_SD_CFG(&self) -> RegisterAddress<pcs_xaui_configuration::PCS_XAUI_SD_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn PCS_XAUI_TX_SEQ_CFG(&self) -> RegisterAddress<pcs_xaui_configuration::PCS_XAUI_TX_SEQ_CFG> {
+    pub fn PCS_XAUI_TX_SEQ_CFG(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_configuration::PCS_XAUI_TX_SEQ_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn TX_OK_BYTES_MSB_CNT(&self) -> RegisterAddress<pcs_xaui_configuration::TX_OK_BYTES_MSB_CNT> {
+    pub fn TX_OK_BYTES_MSB_CNT(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_configuration::TX_OK_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0x24)
     }
 }
@@ -348,31 +404,47 @@ impl PCS_XAUI_CONFIGURATION {
 /// PCS XAUI Status Registers
 pub struct PCS_XAUI_STATUS(pub(super) u32);
 impl PCS_XAUI_STATUS {
-    pub fn PCS_XAUI_CGALIGN_STATUS(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_CGALIGN_STATUS> {
+    pub fn PCS_XAUI_CGALIGN_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_CGALIGN_STATUS> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn PCS_XAUI_DESKEW_STATUS(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_DESKEW_STATUS> {
+    pub fn PCS_XAUI_DESKEW_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_DESKEW_STATUS> {
         RegisterAddress::new(self.0 + 0x4)
     }
     pub fn PCS_XAUI_LPI_CFG(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_LPI_CFG> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    pub fn PCS_XAUI_RX_ERROR_STATUS(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_ERROR_STATUS> {
+    pub fn PCS_XAUI_RX_ERROR_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_ERROR_STATUS> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS> {
+    pub fn PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    pub fn PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS> {
+    pub fn PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    pub fn PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS> {
+    pub fn PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    pub fn PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS> {
+    pub fn PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    pub fn PCS_XAUI_RX_SEQ_REC_STATUS(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_SEQ_REC_STATUS> {
+    pub fn PCS_XAUI_RX_SEQ_REC_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_SEQ_REC_STATUS> {
         RegisterAddress::new(self.0 + 0x10)
     }
     pub fn PCS_XAUI_RX_STATUS(&self) -> RegisterAddress<pcs_xaui_status::PCS_XAUI_RX_STATUS> {
@@ -383,7 +455,9 @@ impl PCS_XAUI_STATUS {
 /// PCS XAUI Testpattern Configuration Registers
 pub struct PCS_XAUI_TSTPAT_CONFIGURATION(pub(super) u32);
 impl PCS_XAUI_TSTPAT_CONFIGURATION {
-    pub fn PCS_XAUI_LPI_STATUS(&self) -> RegisterAddress<pcs_xaui_tstpat_configuration::PCS_XAUI_LPI_STATUS> {
+    pub fn PCS_XAUI_LPI_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_tstpat_configuration::PCS_XAUI_LPI_STATUS> {
         RegisterAddress::new(self.0 + 0x24)
     }
 }
@@ -391,10 +465,14 @@ impl PCS_XAUI_TSTPAT_CONFIGURATION {
 /// PCS XAUI Testpattern Status Registers
 pub struct PCS_XAUI_TSTPAT_STATUS(pub(super) u32);
 impl PCS_XAUI_TSTPAT_STATUS {
-    pub fn PCS_XAUI_TSTPAT_CFG(&self) -> RegisterAddress<pcs_xaui_tstpat_status::PCS_XAUI_TSTPAT_CFG> {
+    pub fn PCS_XAUI_TSTPAT_CFG(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_tstpat_status::PCS_XAUI_TSTPAT_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS(&self) -> RegisterAddress<pcs_xaui_tstpat_status::PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS> {
+    pub fn PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_xaui_tstpat_status::PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }

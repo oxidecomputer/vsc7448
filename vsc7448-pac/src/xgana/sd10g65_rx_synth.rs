@@ -44,9 +44,7 @@ impl SD10G65_RX_RCPLL_STAT1 {
         self.0 |= value;
     }
     /// Actual value of the FSM stage,
-
     ///
-
     /// 0: reset state 1: init state after reset 3: ramp up state checks for the counters and ramps up the frequency 6: additional wait state for internal BIAS settling 8: additional wait state 1 9: additional wait state 2 10; additional wait state 3 11: additional wait state 4 12: 1st locking state enables dynamic locking 13: final locking state checks for out of lock and overrun condition 14: error state low frequency 15: error state high frequency
     pub fn pllf_fsm_stat(&self) -> u32 {
         self.0 & 0xf
@@ -149,9 +147,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// selects feedback divider setting.
-
     ///
-
     /// 0: divide by 1 1: divide by 2 2: divide by 4 3: reserved
     pub fn synth_fbdiv_sel(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -243,9 +239,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// Enable for different offset compensation stages
-
     ///
-
     /// bit 0: Synthesizer main rotator bit 1: Feedback buffer bit 2: CDR rotator bit 3: VCO buffer
     pub fn synth_off_comp_ena(&self) -> u32 {
         (self.0 & 0x3c0000) >> 18
@@ -277,9 +271,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// reg. pool for late changes/fixes. Used bits: Bit3-1: Synthesizer BIAS adjust in steps of ~3%.
-
     ///
-
     /// 0: 100% 7: 121%
     pub fn synth_spare_pool(&self) -> u32 {
         (self.0 & 0x3fc00000) >> 22
@@ -291,9 +283,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// Selects circuit speed.
-
     ///
-
     /// 0: for settings with synth_fbdiv_sel = 2 1: for setting with synth_fbdiv_sel less than 2
     pub fn synth_speed_sel(&self) -> u32 {
         (self.0 & 0x10) >> 4

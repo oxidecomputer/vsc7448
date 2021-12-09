@@ -30,7 +30,8 @@ use derive_more::{From, Into};
 /// Word offset 0
 #[derive(From, Into)]
 pub struct CAP_ID_NXT_PTR(u32);
-impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
+impl CAP_ID_NXT_PTR {
+    pub fn aux_curr(&self) -> u32 {
         (self.0 & 0x1c00000) >> 22
     }
     pub fn set_aux_curr(&mut self, value: u32) {
@@ -38,7 +39,8 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
         assert!(value <= 0x1c00000);
         self.0 &= !0x1c00000;
         self.0 |= value;
-    }    pub fn d1_support(&self) -> u32 {
+    }
+    pub fn d1_support(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_d1_support(&mut self, value: u32) {
@@ -46,7 +48,8 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
         assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
-    }    pub fn d2_support(&self) -> u32 {
+    }
+    pub fn d2_support(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_d2_support(&mut self, value: u32) {
@@ -54,7 +57,8 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
         assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
-    }    pub fn dsi(&self) -> u32 {
+    }
+    pub fn dsi(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_dsi(&mut self, value: u32) {
@@ -62,7 +66,8 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
         assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
-    }    pub fn pme_clk(&self) -> u32 {
+    }
+    pub fn pme_clk(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_pme_clk(&mut self, value: u32) {
@@ -70,7 +75,8 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    pub fn pme_support(&self) -> u32 {
+    }
+    pub fn pme_support(&self) -> u32 {
         (self.0 & 0xf8000000) >> 27
     }
     pub fn set_pme_support(&mut self, value: u32) {
@@ -78,14 +84,16 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
         assert!(value <= 0xf8000000);
         self.0 &= !0xf8000000;
         self.0 |= value;
-    }    pub fn pm_cap_id(&self) -> u32 {
+    }
+    pub fn pm_cap_id(&self) -> u32 {
         self.0 & 0xff
     }
     pub fn set_pm_cap_id(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
-    }    pub fn pm_next_pointer(&self) -> u32 {
+    }
+    pub fn pm_next_pointer(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_pm_next_pointer(&mut self, value: u32) {
@@ -93,7 +101,8 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
         assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
-    }    pub fn pm_spec_ver(&self) -> u32 {
+    }
+    pub fn pm_spec_ver(&self) -> u32 {
         (self.0 & 0x70000) >> 16
     }
     pub fn set_pm_spec_ver(&mut self, value: u32) {
@@ -106,14 +115,16 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
 /// Word offset 15
 #[derive(From, Into)]
 pub struct MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE(u32);
-impl MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE {    pub fn int_line(&self) -> u32 {
+impl MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE {
+    pub fn int_line(&self) -> u32 {
         self.0 & 0xff
     }
     pub fn set_int_line(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
-    }    pub fn int_pin(&self) -> u32 {
+    }
+    pub fn int_pin(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_int_pin(&mut self, value: u32) {

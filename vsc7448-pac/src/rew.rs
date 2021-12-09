@@ -270,10 +270,14 @@ impl PDU_MOD_CFG {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn RD_LAST_PORT_BYTE_CNT_MSB(&self) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_BYTE_CNT_MSB> {
+    pub fn RD_LAST_PORT_BYTE_CNT_MSB(
+        &self,
+    ) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_BYTE_CNT_MSB> {
         RegisterAddress::new(self.0 + 0xdc)
     }
-    pub fn RD_LAST_PORT_FRM_CNT_LSB(&self) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_FRM_CNT_LSB> {
+    pub fn RD_LAST_PORT_FRM_CNT_LSB(
+        &self,
+    ) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_FRM_CNT_LSB> {
         RegisterAddress::new(self.0 + 0xd8)
     }
     pub fn RD_LAST_PORT_LM_CNT_LSB(&self) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_LM_CNT_LSB> {
@@ -369,7 +373,9 @@ impl PTP_SEQ_NO {
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
-    pub fn RD_LAST_PORT_BYTE_CNT_LSB(&self) -> RegisterAddress<ram_ctrl::RD_LAST_PORT_BYTE_CNT_LSB> {
+    pub fn RD_LAST_PORT_BYTE_CNT_LSB(
+        &self,
+    ) -> RegisterAddress<ram_ctrl::RD_LAST_PORT_BYTE_CNT_LSB> {
         RegisterAddress::new(self.0 + 0xe0)
     }
 }

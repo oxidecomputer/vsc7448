@@ -66,9 +66,7 @@ impl QSHP_ALLOC_CFG {
 pub struct QSHP_CFG(u32);
 impl QSHP_CFG {
     /// Accounting mode for this shaper.
-
     ///
-
     /// 0: Line rate. Shape bytes including HSCH_MISC_CFG.FRM_ADJ. 1: Data rate. Shape bytes excluding IPG. 2. Frame rate. Shape frames with rate unit = 100 fps and burst unit = 32.8 frames. 3: Frame rate. Shape framed with rate unit = 1 fps and burst unit = 0.3 frames.
     pub fn se_frm_mode(&self) -> u32 {
         self.0 & 0x3

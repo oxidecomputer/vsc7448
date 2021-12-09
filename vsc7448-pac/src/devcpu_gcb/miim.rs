@@ -75,9 +75,7 @@ impl MII_CFG {
         self.0 |= value;
     }
     /// The ST (start-of-frame) field of the MIIM frame format adopts the value of this field. This must be configured for either clause 22 or 45 MIIM operation.
-
     ///
-
     /// "01": Clause 22 "00": Clause 45 Other values are reserved.
     pub fn miim_st_cfg_field(&self) -> u32 {
         (self.0 & 0x600) >> 9
@@ -94,9 +92,7 @@ impl MII_CFG {
 pub struct MII_CFG_7226(u32);
 impl MII_CFG_7226 {
     /// Use of XAUI/XGMII translator device.
-
     ///
-
     /// 0 : Disable 1 : Enable.
     pub fn miim_7226_cfg_field(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -113,9 +109,7 @@ impl MII_CFG_7226 {
 pub struct MII_CMD(u32);
 impl MII_CMD {
     /// Indicates type of operation.
-
     ///
-
     /// Clause 22: 01 : Write 10 : Read Clause 45: 00 : Address 01 : Write 10 : Read inc. 11 : Read.
     pub fn miim_cmd_opr_field(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -147,9 +141,7 @@ impl MII_CMD {
         self.0 |= value;
     }
     /// Indicates whether automatic scanning of PHY registers is enabled. When enabled, the PHY-number for each automatic read is continuously round-robined from PHY_ADDR_LOW through PHY_ADDR_HIGH. This function is started upon a read operation (ACCESS_TYPE). Scan MUST be disabled when doing any configuration of the MIIM controller.
-
     ///
-
     /// 0 : Disabled 1 : Enabled.
     pub fn miim_cmd_scan(&self) -> u32 {
         self.0 & 0x1
@@ -160,9 +152,7 @@ impl MII_CMD {
         self.0 |= value;
     }
     /// Select if scanning of the PHY shall be done once, or scanning should be done continuously.
-
     ///
-
     /// 0 : Do continuously PHY scanning 1 : Stop once all PHY have been scanned.
     pub fn miim_cmd_single_scan(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -174,9 +164,7 @@ impl MII_CMD {
         self.0 |= value;
     }
     /// Must be set for starting a new PHY access. This bit is automatically cleared.
-
     ///
-
     /// 0 : Write to this register is ignored. 1 : Write to this register is processed.
     pub fn miim_cmd_vld(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -212,9 +200,7 @@ impl MII_DATA {
         self.0 |= value;
     }
     /// Indicates whether a read operation failed or succeeded.
-
     ///
-
     /// 00 : OK 11 : Error
     pub fn miim_data_success(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -279,9 +265,7 @@ impl MII_SCAN_1 {
 pub struct MII_SCAN_LAST_RSLTS(u32);
 impl MII_SCAN_LAST_RSLTS {
     /// Indicates for each PHY if a PHY register has matched the expected value (with mask). This register reflects the value of the last reading of the phy register.
-
     ///
-
     /// 0 : Mismatch. 1 : Match.
     pub fn miim_last_rslt(&self) -> u32 {
         self.0
@@ -295,9 +279,7 @@ impl MII_SCAN_LAST_RSLTS {
 pub struct MII_STATUS(u32);
 impl MII_STATUS {
     /// Signals if all PHYs have been scanned ( with auto scan ) at least once.
-
     ///
-
     /// 0 : Auto scan has not scanned all PHYs. 1 : Auto scan has scanned all PHY at least once.
     pub fn miim_scan_complete(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -309,9 +291,7 @@ impl MII_STATUS {
         self.0 |= value;
     }
     /// Indicates the current state of the MIIM controller. When read operations are done (no longer busy), then read data is available via the DEVCPU_GCB::MII_DATA register.
-
     ///
-
     /// 0: MIIM controller is in idle state 1: MIIM controller is busy performing MIIM cmd (Either read or read cmd).
     pub fn miim_stat_busy(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -323,9 +303,7 @@ impl MII_STATUS {
         self.0 |= value;
     }
     /// The MIIM controller has a CMD fifo of depth one. When this field is 0, then it is safe to write another MIIM command to the MIIM controller.
-
     ///
-
     /// 0 : Read or write not pending 1 : Read or write pending.
     pub fn miim_stat_opr_pend(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -337,9 +315,7 @@ impl MII_STATUS {
         self.0 |= value;
     }
     /// Indicates whether a read operation via the MIIM interface is in progress or not.
-
     ///
-
     /// 0 : Read not in progress 1 : Read in progress.
     pub fn miim_stat_pending_rd(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -351,9 +327,7 @@ impl MII_STATUS {
         self.0 |= value;
     }
     /// Indicates whether a write operation via the MIIM interface is in progress or not.
-
     ///
-
     /// 0 : Write not in progress 1 : Write in progress.
     pub fn miim_stat_pending_wr(&self) -> u32 {
         self.0 & 0x1

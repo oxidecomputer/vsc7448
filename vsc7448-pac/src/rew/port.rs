@@ -60,9 +60,7 @@ impl DEI_MAP_DE1 {
 pub struct DSCP_MAP(u32);
 impl DSCP_MAP {
     /// Enable use of a shared DSCP remap table (DSCP_REMAP). Map DSCP value resulting from DSCP_UPDATE_ENA and IFH.QOS.UPDATE_DSCP using the common mapping table (DSCP_REMAP).
-
     ///
-
     /// 0 : No remapping. 1 : Remap DSCP using DSCP remap table (DSCP_REMAP)
     pub fn dscp_remap_ena(&self) -> u32 {
         self.0 & 0x1
@@ -73,9 +71,7 @@ impl DSCP_MAP {
         self.0 |= value;
     }
     /// Update DSCP with value from Analyzer, if allowed by analyzer. (IFH.QOS.UPDATE_DSCP)
-
     ///
-
     /// 0 : No update 1 : Allow update of DSCP
     pub fn dscp_update_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -94,9 +90,7 @@ impl DSCP_MAP {
 pub struct MAP_LBL_B(u32);
 impl MAP_LBL_B {
     /// Mapped MPLS label value
-
     ///
-
     /// n: Label value
     pub fn label_val(&self) -> u32 {
         self.0 & 0xfffff
@@ -140,9 +134,7 @@ impl PCP_MAP_DE1 {
 pub struct PORT_VLAN_CFG(u32);
 impl PORT_VLAN_CFG {
     /// DEI field in the TCI.
-
     ///
-
     /// n: Port DEI value
     pub fn port_dei(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -154,9 +146,7 @@ impl PORT_VLAN_CFG {
         self.0 |= value;
     }
     /// PCP field in the TCI.
-
     ///
-
     /// n: Port PCP value
     pub fn port_pcp(&self) -> u32 {
         (self.0 & 0xe000) >> 13
@@ -168,9 +158,7 @@ impl PORT_VLAN_CFG {
         self.0 |= value;
     }
     /// VID field in the TCI.
-
     ///
-
     /// n: Port VID
     pub fn port_vid(&self) -> u32 {
         self.0 & 0xfff
@@ -257,9 +245,7 @@ impl PTP_MODE_CFG {
         self.0 |= value;
     }
     /// PTP operation mode for frames.
-
     ///
-
     /// 0: Front port 1: Backplane port using RSRV field 30 bit TS transfer 2: Backplane port using RSRV field 32 bit TS transfer 3: Backplane port using CF field for 44 bit TS transfer 4: Backplane port using CF field for 48 bit TS transfer 5: Monitor port. Frame updated to arrival stamper. 6: PTP Disabled port
     pub fn ptp_mode_val(&self) -> u32 {
         (self.0 & 0x1c) >> 2
@@ -302,9 +288,7 @@ impl PTP_SMAC_LOW {
 pub struct TAG_CTRL(u32);
 impl TAG_CTRL {
     /// Control port tagging. See TAG_CTRL.TAG_CFG_OBEY_WAS_TAGGED.
-
     ///
-
     /// 0: Port tagging disabled 1: Tag all frames, except when VID=PORT_VLAN_CFG.PORT_VID or VID=0 2: Tag all frames, except when VID=0 3: Tag all frames
     pub fn tag_cfg(&self) -> u32 {
         (self.0 & 0xc00) >> 10
@@ -316,9 +300,7 @@ impl TAG_CTRL {
         self.0 |= value;
     }
     /// Control how port tags are added. If this bit is set, the IFH field VSTAX.TAG.WAS_TAGGED must be '1' before a port tag is added to a frame. See TAG_CTRL.TAG_CFG
-
     ///
-
     /// 0: Normal port tagging mode 1: Frames are not port tagged, if VSTAX.TAG.WAS_TAGGED = '0' regardless of TAG_CTRL.TAG_CFG configuration
     pub fn tag_cfg_obey_was_tagged(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -330,9 +312,7 @@ impl TAG_CTRL {
         self.0 |= value;
     }
     /// Select DEI fields in port tag
-
     ///
-
     /// Select DEI in port tag. 0: Classified DEI 1: PORT_DEI 2: DE and QoS mapped to DEI (DEI_MAP_DEx) 3: DE level (Color) 4: DE and COSID mapped to DEI (DEI_MAP_DEx) 5: DE and classified PCP mapped to DEI (DEI_MAP_DEx) 6-7: Reserved
     pub fn tag_dei_cfg(&self) -> u32 {
         self.0 & 0x7
@@ -343,9 +323,7 @@ impl TAG_CTRL {
         self.0 |= value;
     }
     /// Select PCP fields in port tag
-
     ///
-
     /// Select PCP in port tag. 0: Classified PCP 1: PORT_PCP 2: DE and QoS mapped to PCP (PCP_MAP_DEx) 3: QoS class 4: DE and COSID mapped to PCP (PCP_MAP_DEx) 5: COSID 6: DE and classified PCP mapped to PCP (PCP_MAP_DEx) 7: Reserved
     pub fn tag_pcp_cfg(&self) -> u32 {
         (self.0 & 0x38) >> 3
@@ -357,9 +335,7 @@ impl TAG_CTRL {
         self.0 |= value;
     }
     /// Select Tag Protocol Identifier (TPID) for port tagging
-
     ///
-
     /// 0: 0x8100 1: 0x88A8 2: Custom1. REW::TPID_CFG[0].TPID_VAL 3: Custom2. REW::TPID_CFG[1].TPID_VAL 4: Custom3. REW::TPID_CFG[2].TPID_VAL 5: Select via ifh.vstax.tag_type and ifh.encap.tag_tpid If ifh.encap.tag_tipd = STD_TPID: If ifh.vstax.tag_type = 0 then 0x8100 else 0x88A8 If ifh.encap.tag_tipd = CUSTOM<n>: Custom<n> TPID 6-7: Reserved
     pub fn tag_tpid_cfg(&self) -> u32 {
         (self.0 & 0x380) >> 7
@@ -371,9 +347,7 @@ impl TAG_CTRL {
         self.0 |= value;
     }
     /// Select VID in port tag
-
     ///
-
     /// Select VID in port tag. 0: Use classified VID. 1: Use PORT_VLAN_CFG.PORT_VID
     pub fn tag_vid_cfg(&self) -> u32 {
         (self.0 & 0x40) >> 6

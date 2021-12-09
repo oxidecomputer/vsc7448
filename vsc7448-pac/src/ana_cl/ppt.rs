@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct IPT(u32);
 impl IPT {
     /// ISDX protection configuration.
-
     ///
-
     /// 0: No protection Value applicable for forwarding from UNI to a protected NNI: 1: Set PROT_ACTIVE=1 to REW if the ISDX's protection group uses the protection entity. Values applicable for forwarding from a protected NNI to UNI: 2: Working entity. Discard received frame if the ISDX's protection group uses the protection entity, i.e. ANA_CL:PPT:PP_CFG.STATE=1 3: Protection entity: Discard received frame if the ISDX's protection group uses the working entity, i.e. ANA_CL:PPT:PP_CFG.STATE=0
     pub fn ipt_cfg(&self) -> u32 {
         (self.0 & 0x1800) >> 11
@@ -55,9 +53,7 @@ impl IPT {
         self.0 |= value;
     }
     /// Configures the protection pipeline point where ISDX protection operates at.
-
     ///
-
     /// 0: ANA_IPT_PROT 1: ANA_OU_PROT 2: ANA_MID_PROT 3: ANA_IN_PROT
     pub fn prot_pipeline_pt(&self) -> u32 {
         (self.0 & 0x600) >> 9

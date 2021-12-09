@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct MEMCTRL_CFG(u32);
 impl MEMCTRL_CFG {
     /// Number of banks in the SDRAM configuration being used.
-
     ///
-
     /// 0 : 4 banks 1 : 8 banks
     pub fn bank_cnt(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -46,9 +44,7 @@ impl MEMCTRL_CFG {
         self.0 |= value;
     }
     /// The burst size that is used by the SDRAM controller. The SDRAM must be configured with the corresponding burst size (through the ICPU_CFG::MEMCTRL_MR0_VAL register.) Note: The number of data-bytes that is transmitted during one burst must be encoded in the ICPU_CFG::MEMCTRL_CFG.BURST_SIZE field.
-
     ///
-
     /// 0 : BURST4 1 : BURST8
     pub fn burst_len(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -60,9 +56,7 @@ impl MEMCTRL_CFG {
         self.0 |= value;
     }
     /// The number of data-bytes that is transmitted during one burst (of the defined burst length: ICPU_CFG::MEMCTRL_CFG.BURST_LEN).
-
     ///
-
     /// 0: 8 data-bytes per burst. 1: 16 data-bytes per burst.
     pub fn burst_size(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -114,9 +108,7 @@ impl MEMCTRL_CFG {
         self.0 |= value;
     }
     /// This field configures the operating mode of the SDRAM controller.
-
     ///
-
     /// 0: DDR2 1: DDR3
     pub fn ddr_mode(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -128,9 +120,7 @@ impl MEMCTRL_CFG {
         self.0 |= value;
     }
     /// This field configures the interface width of the SDRAM controller. If 8bit is selected then byte lane 0 must be populated by external SDRAM memory.
-
     ///
-
     /// 0: 8bit 1: 16bit
     pub fn ddr_width(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -208,7 +198,8 @@ impl MEMCTRL_CTRL {
 /// Design for test features
 #[derive(From, Into)]
 pub struct MEMCTRL_DFT(u32);
-impl MEMCTRL_DFT {    pub fn ddrdft_a10(&self) -> u32 {
+impl MEMCTRL_DFT {
+    pub fn ddrdft_a10(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ddrdft_a10(&mut self, value: u32) {
@@ -218,9 +209,7 @@ impl MEMCTRL_DFT {    pub fn ddrdft_a10(&self) -> u32 {
         self.0 |= value;
     }
     /// Set this field to enable testmode.
-
     ///
-
     /// 0: Disabled 1: Enabled
     pub fn ddrdft_ena(&self) -> u32 {
         self.0 & 0x1
@@ -251,9 +240,7 @@ impl MEMCTRL_DFT {    pub fn ddrdft_a10(&self) -> u32 {
         self.0 |= value;
     }
     /// Set this field to configure a specific testmode. For the SSO output pattern address output A10 will be forced to the value that is set in ICPU_CFG::MEMCTRL_DFT.DDRDFT_A10 (to be used for measuring swing).
-
     ///
-
     /// 0: Sample (expect signiture pattern) 1: Drive all-zeros (where possible) 2: Drive all-ones (where possible) 3: Drive SSO pattern (A10 value is determined by DDRDFT_A10)
     pub fn ddrdft_mode(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -265,9 +252,7 @@ impl MEMCTRL_DFT {    pub fn ddrdft_a10(&self) -> u32 {
         self.0 |= value;
     }
     /// Status for ReadTest.
-
     ///
-
     /// 0: Err 1: Pass
     pub fn ddrdft_stat(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -315,9 +300,7 @@ impl MEMCTRL_DQS_AUTO {
         self.0 |= value;
     }
     /// Selects either DQS or nDQS to be monitored for automatic drift detection.
-
     ///
-
     /// 0: DQS is monitored 1: nDQS is monitored
     pub fn dqs_auto_src(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -385,9 +368,7 @@ impl MEMCTRL_DQS_DLY {
         self.0 |= value;
     }
     /// This field allows fine tuning of the DQS signal (1'st DDR data-set) read-window delay (configured by DQS_DLY) by adding/removing an offset in steps of 25ps (typical).
-
     ///
-
     /// 0: -3 steps. 1: -2 steps. 2: -1 steps. 3: Norminal delay. 4: +1 steps. 5: +2 steps. 6: +3 steps. 7: +4 steps.
     pub fn dqs_dly_trm0(&self) -> u32 {
         (self.0 & 0xe0) >> 5
@@ -587,9 +568,7 @@ impl MEMCTRL_TERMRES_CTRL {
         self.0 |= value;
     }
     /// Set to enable ODT output during read operations.
-
     ///
-
     /// 0: Reading will not assert ODT 1: Assert ODT for CS0 read 2: Assert ODT for CS1 read 3: Assert ODT for any read Other values are reserved
     pub fn odt_rd_ena(&self) -> u32 {
         (self.0 & 0x780) >> 7
@@ -611,9 +590,7 @@ impl MEMCTRL_TERMRES_CTRL {
         self.0 |= value;
     }
     /// Set to assert ODT output(s) during write operations.
-
     ///
-
     /// 0: Writing will not assert ODT 1: Assert ODT for CS1 write 2: Assert ODT for CS0 write 3: Assert ODT for any write Others values are reserved
     pub fn odt_wr_ena(&self) -> u32 {
         (self.0 & 0x3c) >> 2
@@ -642,9 +619,7 @@ impl MEMCTRL_TERMRES_CTRL {
 pub struct MEMCTRL_TIMING0(u32);
 impl MEMCTRL_TIMING0 {
     /// Delay from RAS to precharge.
-
     ///
-
     /// tRAS_min-1
     pub fn ras_to_prech_dly(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
@@ -656,9 +631,7 @@ impl MEMCTRL_TIMING0 {
         self.0 |= value;
     }
     /// Delay from read to read on different chip selects.
-
     ///
-
     /// BL
     pub fn rd_cs_change_dly(&self) -> u32 {
         (self.0 & 0xf00000) >> 20
@@ -670,9 +643,7 @@ impl MEMCTRL_TIMING0 {
         self.0 |= value;
     }
     /// Delay from read command to data. Important; this delay is further increased by the DQS delay logic - see ICPU_CFG::MEMCTRL_DQS_DLY for more information.
-
     ///
-
     /// RL-3
     pub fn rd_data_xfr_dly(&self) -> u32 {
         self.0 & 0xf
@@ -683,9 +654,7 @@ impl MEMCTRL_TIMING0 {
         self.0 |= value;
     }
     /// Delay from read to precharge.
-
     ///
-
     /// BL-1
     pub fn rd_to_prech_dly(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -697,9 +666,7 @@ impl MEMCTRL_TIMING0 {
         self.0 |= value;
     }
     /// Delay from read to write on same chip select.
-
     ///
-
     /// RL+BL+1-WL
     pub fn rd_to_wr_dly(&self) -> u32 {
         (self.0 & 0xf0000000) >> 28
@@ -711,9 +678,7 @@ impl MEMCTRL_TIMING0 {
         self.0 |= value;
     }
     /// Delay from write to write on different chip selects. If ICPU_CFG::MEMCTRL_TERMRES_CTRL.ODT_WR_ENA==9 then increase this field by 2 (to allow ODT handover between destination devices).
-
     ///
-
     /// BL-1
     pub fn wr_cs_change_dly(&self) -> u32 {
         (self.0 & 0xf000000) >> 24
@@ -725,9 +690,7 @@ impl MEMCTRL_TIMING0 {
         self.0 |= value;
     }
     /// Delay from write command to data.
-
     ///
-
     /// WL-1
     pub fn wr_data_xfr_dly(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -739,9 +702,7 @@ impl MEMCTRL_TIMING0 {
         self.0 |= value;
     }
     /// Delay from write to precharge.
-
     ///
-
     /// WL+BL+tWR-1
     pub fn wr_to_prech_dly(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -760,9 +721,7 @@ impl MEMCTRL_TIMING0 {
 pub struct MEMCTRL_TIMING1(u32);
 impl MEMCTRL_TIMING1 {
     /// Four bank activate period.
-
     ///
-
     /// FAW-1
     pub fn bank8_faw_dly(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
@@ -774,9 +733,7 @@ impl MEMCTRL_TIMING1 {
         self.0 |= value;
     }
     /// Delay from precharge to RAS.
-
     ///
-
     /// tRP-1
     pub fn prech_to_ras_dly(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -788,9 +745,7 @@ impl MEMCTRL_TIMING1 {
         self.0 |= value;
     }
     /// Delay from RAS to CAS.
-
     ///
-
     /// tRCD-1
     pub fn ras_to_cas_dly(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -802,9 +757,7 @@ impl MEMCTRL_TIMING1 {
         self.0 |= value;
     }
     /// Delay from RAS to RAS.
-
     ///
-
     /// tRRD-1
     pub fn ras_to_ras_dly(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -816,9 +769,7 @@ impl MEMCTRL_TIMING1 {
         self.0 |= value;
     }
     /// Delay from RAS to RAS within same bank.
-
     ///
-
     /// tRC-1
     pub fn ras_to_ras_same_bank_dly(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
@@ -830,9 +781,7 @@ impl MEMCTRL_TIMING1 {
         self.0 |= value;
     }
     /// Delay from write to read.
-
     ///
-
     /// WL+BL+tWTR-1
     pub fn wr_to_rd_dly(&self) -> u32 {
         self.0 & 0xf
@@ -850,9 +799,7 @@ impl MEMCTRL_TIMING1 {
 pub struct MEMCTRL_TIMING2(u32);
 impl MEMCTRL_TIMING2 {
     /// Delay for initialization (see ICPU_CFG::MEMCTRL_CTRL.INITIALIZE).
-
     ///
-
     /// Before initialization: ID-1 After initialization: SD-1
     pub fn init_dly(&self) -> u32 {
         self.0 & 0xffff
@@ -863,9 +810,7 @@ impl MEMCTRL_TIMING2 {
         self.0 |= value;
     }
     /// Delay after register-write.
-
     ///
-
     /// MD-1
     pub fn mdset_dly(&self) -> u32 {
         (self.0 & 0xf000000) >> 24
@@ -877,9 +822,7 @@ impl MEMCTRL_TIMING2 {
         self.0 |= value;
     }
     /// Delay after precharge all.
-
     ///
-
     /// RP-1
     pub fn prech_all_dly(&self) -> u32 {
         (self.0 & 0xf0000000) >> 28
@@ -891,9 +834,7 @@ impl MEMCTRL_TIMING2 {
         self.0 |= value;
     }
     /// Delay after refresh.
-
     ///
-
     /// tRFC-1
     pub fn ref_dly(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
@@ -912,9 +853,7 @@ impl MEMCTRL_TIMING2 {
 pub struct MEMCTRL_TIMING3(u32);
 impl MEMCTRL_TIMING3 {
     /// Delay from read to local read-termination activate. Important; this delay is further increased by the DQS delay logic - see ICPU_CFG::MEMCTRL_DQS_DLY for more information. Local read-termination is enabled by ICPU_CFG::MEMCTRL_TERMRES_CTRL.LOCAL_ODT_RD_ENA.
-
     ///
-
     /// RL-3
     pub fn local_odt_rd_dly(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -926,9 +865,7 @@ impl MEMCTRL_TIMING3 {
         self.0 |= value;
     }
     /// Delay from read to ODT assert. External ODT assert for read commands is enabled by ICPU_CFG::MEMCTRL_TERMRES_CTRL.ODT_RD_ENA.
-
     ///
-
     /// OR-1
     pub fn odt_rd_dly(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -940,9 +877,7 @@ impl MEMCTRL_TIMING3 {
         self.0 |= value;
     }
     /// Delay from write to ODT assert. External ODT assert for write commands is enabled by ICPU_CFG::MEMCTRL_TERMRES_CTRL.ODT_WR_ENA.
-
     ///
-
     /// OW-1
     pub fn odt_wr_dly(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -964,9 +899,7 @@ impl MEMCTRL_TIMING3 {
         self.0 |= value;
     }
     /// Delay from write to write on different chip selects.
-
     ///
-
     /// WL+tWTR-1
     pub fn wr_to_rd_cs_change_dly(&self) -> u32 {
         self.0 & 0xf
@@ -984,9 +917,7 @@ impl MEMCTRL_TIMING3 {
 pub struct MEMCTRL_TIMING4(u32);
 impl MEMCTRL_TIMING4 {
     /// Delay for initial ZQ calibration.
-
     ///
-
     /// max(tZQinit, tDLLK)-3
     pub fn zqcal_init_dly(&self) -> u32 {
         (self.0 & 0xfff00000) >> 20
@@ -998,9 +929,7 @@ impl MEMCTRL_TIMING4 {
         self.0 |= value;
     }
     /// Delay for long ZQ calibration.
-
     ///
-
     /// tZQoper-3
     pub fn zqcal_long_dly(&self) -> u32 {
         (self.0 & 0xfff00) >> 8
@@ -1012,9 +941,7 @@ impl MEMCTRL_TIMING4 {
         self.0 |= value;
     }
     /// Delay for short ZQ calibration.
-
     ///
-
     /// tZQCS-3
     pub fn zqcal_short_dly(&self) -> u32 {
         self.0 & 0xff
@@ -1074,9 +1001,7 @@ impl MEMPHY_CFG {
         self.0 |= value;
     }
     /// Soft-reset to the byte lane DLLs in the memory controller physical interface.
-
     ///
-
     /// 0: PHY DLLs is in working mode. 1: PHY DLLs is forced in reset.
     pub fn phy_dll_bl_rst(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -1088,9 +1013,7 @@ impl MEMPHY_CFG {
         self.0 |= value;
     }
     /// Soft-reset to the Command lane DLL in the memory controller physical interface.
-
     ///
-
     /// 0: PHY DLL is in working mode. 1: PHY DLL is forced in reset.
     pub fn phy_dll_cl_rst(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -1112,9 +1035,7 @@ impl MEMPHY_CFG {
         self.0 |= value;
     }
     /// Soft-reset to the FIFO blocks in the memory controller physical interface. Leave at default value.
-
     ///
-
     /// 0: PHY FIFOs is in working mode. 1: PHY FIFOs is forced in reset.
     pub fn phy_fifo_rst(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -1156,9 +1077,7 @@ impl MEMPHY_CFG {
         self.0 |= value;
     }
     /// Master reset to the memory controller physical interface.
-
     ///
-
     /// 0: PHY is in working mode. 1: PHY is forced in reset.
     pub fn phy_rst(&self) -> u32 {
         self.0 & 0x1
@@ -1220,9 +1139,7 @@ impl MEMPHY_DFT {
 pub struct MEMPHY_DLLCFG0(u32);
 impl MEMPHY_DLLCFG0 {
     /// Master bias generator frequency trim.
-
     ///
-
     /// 0: Fmax trim: minimum adjust. 7: Fmax trim: maximum adjust.
     pub fn dllcfg_bias_trm0(&self) -> u32 {
         (self.0 & 0x7000) >> 12
@@ -1234,9 +1151,7 @@ impl MEMPHY_DLLCFG0 {
         self.0 |= value;
     }
     /// Master bias generator control voltage trim.
-
     ///
-
     /// 0: Vc level trim: minimum adjust. 7: Vc level trim: maximum adjust.
     pub fn dllcfg_bias_trm1(&self) -> u32 {
         (self.0 & 0x70000) >> 16
@@ -1248,9 +1163,7 @@ impl MEMPHY_DLLCFG0 {
         self.0 |= value;
     }
     /// Slave bias generator frequency trim.
-
     ///
-
     /// 0: Fmax trim: minimum adjust. 7: Fmax trim: maximum adjust.
     pub fn dllcfg_bias_trm2(&self) -> u32 {
         (self.0 & 0x700000) >> 20
@@ -1262,9 +1175,7 @@ impl MEMPHY_DLLCFG0 {
         self.0 |= value;
     }
     /// Slave bias generator control voltage trim.
-
     ///
-
     /// 0: Vc level trim: minimum adjust. 7: Vc level trim: maximum adjust.
     pub fn dllcfg_bias_trm3(&self) -> u32 {
         (self.0 & 0x7000000) >> 24
@@ -1276,9 +1187,7 @@ impl MEMPHY_DLLCFG0 {
         self.0 |= value;
     }
     /// Charge pump current trim.
-
     ///
-
     /// 0: Maximum current. 7: Minimum current.
     pub fn dllcfg_ipump_trm(&self) -> u32 {
         (self.0 & 0x1c) >> 2
@@ -1290,9 +1199,7 @@ impl MEMPHY_DLLCFG0 {
         self.0 |= value;
     }
     /// Lock detector enable.
-
     ///
-
     /// 0: Disable lock detector. 1: Enable lock detector.
     pub fn dllcfg_lock_det_en(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
@@ -1373,9 +1280,7 @@ impl MEMPHY_DLLCFG0 {
         self.0 |= value;
     }
     /// Analog test control. Selects the analog signal to be viewed at ATO (Analog Test Output) when enabled by DLLCFG_TEST_CTRL_EN and MEMPHY_DLLCFG1.DLLCFG_TEST_HIZB_A.
-
     ///
-
     /// 0: Filter output (Vc). 1: Replica bias output for NMOS (Vbn). 2: Replica bias output for PMOS (Vbp). 3: VDD.
     pub fn dllcfg_test_ctrl_a(&self) -> u32 {
         (self.0 & 0x600) >> 9
@@ -1387,9 +1292,7 @@ impl MEMPHY_DLLCFG0 {
         self.0 |= value;
     }
     /// Digital test control. Selects the digital signal to be viewed at DTO[1] (Digital Test Output), DTO[0] always output clk_0 when enabled by DLLCFG_TEST_CTRL_EN.
-
     ///
-
     /// 0: 0deg output clock (clk_0). 1: 90deg output clock (clk_90). 2: 180deg output clock (clk_180). 3: 270deg output clock (clk_270). 4: 360deg internal clock (clk_360_int). 5: Speed-up pulse (spdup). 6: Slow-down pulse (slwdn). 7: Output clock (cclk_0).
     pub fn dllcfg_test_ctrl_d(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -1401,9 +1304,7 @@ impl MEMPHY_DLLCFG0 {
         self.0 |= value;
     }
     /// Test control enable for ATO and DTO (Analog and Digital Test Outputs).
-
     ///
-
     /// 0: Digital and Analog test outputs are disabled and drive 0/VSS.
     pub fn dllcfg_test_ctrl_en(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -1422,9 +1323,7 @@ impl MEMPHY_DLLCFG0 {
 pub struct MEMPHY_DLLCFG1(u32);
 impl MEMPHY_DLLCFG1 {
     /// Feed-back delay adjust.
-
     ///
-
     /// 0:Minimum additional delay 7:Maximum additional delay
     pub fn dllcfg_fb_trm(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -1436,9 +1335,7 @@ impl MEMPHY_DLLCFG1 {
         self.0 |= value;
     }
     /// Feed-forward delay adjust.
-
     ///
-
     /// 0:Minimum additional delay 7:Maximum additional delay
     pub fn dllcfg_ff_trm(&self) -> u32 {
         (self.0 & 0xe00) >> 9
@@ -1479,9 +1376,7 @@ impl MEMPHY_DLLCFG1 {
         self.0 |= value;
     }
     /// Analog test output tri-stated control. Observe, all the DLLs are connected to the same analog test output. Only one DLL must have ATO enabled at any point in time.
-
     ///
-
     /// 0: ATO is tri-stated (High-Z). 1: ATO is driven.
     pub fn dllcfg_test_hizb_a(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -1500,9 +1395,7 @@ impl MEMPHY_DLLCFG1 {
 pub struct MEMPHY_DQ_DLY_TRM(u32);
 impl MEMPHY_DQ_DLY_TRM {
     /// Data input window placement trim for data latched on DQS and nDQS. Each DQ has 4 bit of associated trim-settings, these are replicated for each of the DQ pins. Bits 3:0 controls DQ0, bits 7:4 controls DQ1 and so on. Inside the 4 bits of trim configurations; [1:0] configrues strobe placement trim for data latched by DQS and [3:2] controls strobe placement trim for data latched by nDQS.
-
     ///
-
     /// 0: nominal delay. 1: nominal delay + 1 step. 2: nominal delay + 2 steps. 3: nominal delay + 3 steps.
     pub fn phy_dq_dly_trm(&self) -> u32 {
         self.0
@@ -1516,9 +1409,7 @@ impl MEMPHY_DQ_DLY_TRM {
 pub struct MEMPHY_ZCAL(u32);
 impl MEMPHY_ZCAL {
     /// Controls speed of the automatic impedance calibration.
-
     ///
-
     /// 0: Fast 1: Slow
     pub fn zcal_clk_sel(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -1539,9 +1430,7 @@ impl MEMPHY_ZCAL {
         self.0 |= value;
     }
     /// Together with the external reference resistor this field configures the SSTL output drive-strength. This field must be configured prior to, or at the same time as, setting the ICPU_CFG::MEMPHY_ZCAL.ZCAL_ENA field.
-
     ///
-
     /// 2: 150ohms 3: 120ohms 5: 75ohms 7: 60ohms 8: 50ohms 11: 40ohms 13: 34ohms Other values are reserved.
     pub fn zcal_prog(&self) -> u32 {
         (self.0 & 0x1e) >> 1
@@ -1553,9 +1442,7 @@ impl MEMPHY_ZCAL {
         self.0 |= value;
     }
     /// Together with the external reference resistor this field configures the SSTL On-Die-Termination (ODT) impedance. This field must be configured prior to, or at the same time as, setting the ICPU_CFG::MEMPHY_ZCAL.ZCAL_ENA field.
-
     ///
-
     /// 2: 150ohms 3: 120ohms 5: 75ohms 7: 60ohms 8: 50ohms 11: 40ohms 13: 34ohms Other values are reserved.
     pub fn zcal_prog_odt(&self) -> u32 {
         (self.0 & 0x1e0) >> 5
@@ -1635,9 +1522,7 @@ impl MEMPHY_ZCAL_STAT {
         self.0 |= value;
     }
     /// Status of On-Die-termination pull-down calibration.
-
     ///
-
     /// 0: Completed with no errors 1: Overflow error 2: Underflow errror 3: Calibration in progress
     pub fn zcal_stat_odtpd(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -1649,9 +1534,7 @@ impl MEMPHY_ZCAL_STAT {
         self.0 |= value;
     }
     /// Status of On-Die-termination pull-up calibration.
-
     ///
-
     /// 0: Completed with no errors 1: Overflow error 2: Underflow errror 3: Calibration in progress
     pub fn zcal_stat_odtpu(&self) -> u32 {
         (self.0 & 0x300) >> 8
@@ -1663,9 +1546,7 @@ impl MEMPHY_ZCAL_STAT {
         self.0 |= value;
     }
     /// Status of pull-down calibration.
-
     ///
-
     /// 0: Completed with no errors 1: Overflow error 2: Underflow errror 3: Calibration in progress
     pub fn zcal_stat_pd(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -1677,9 +1558,7 @@ impl MEMPHY_ZCAL_STAT {
         self.0 |= value;
     }
     /// Status of pull-up calibration.
-
     ///
-
     /// 0: Completed with no errors 1: Overflow error 2: Underflow errror 3: Calibration in progress
     pub fn zcal_stat_pu(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -1735,9 +1614,7 @@ impl TIMER_CTRL {
         self.0 |= value;
     }
     /// When enabled, the correponding timer decrements at each timer-tick. If TIMER_CTRL.ONE_SHOT_ENA is set this field is cleared when the timer reach 0 and interrupt is generated.
-
     ///
-
     /// 0: Timer is disabled 1: Timer is enabled
     pub fn timer_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1

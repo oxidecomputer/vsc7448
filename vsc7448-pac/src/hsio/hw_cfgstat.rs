@@ -42,9 +42,7 @@ impl HW_CFG {
         self.0 |= value;
     }
     /// Configure mode of DEV10G and hookup of SerDes10G blocks. The device has dedicated DEV10G for 10 Gbit/sec speed, and DEV2G5 for 2.5 Gbit/sec and lower speeds. The DEV10G and corresponding DEV2G5 cannot be active at the same time.
-
     ///
-
     /// 0: DEV10G_0 XFI-mode via SerDes10G_0. 1: DEV10G_0 XAUI-mode via SerDes6G_16, SerDes6G_17, SerDes6G_18, and SerDes6G_19. 2: DEV10G_0 RXAUI-mode via SerDes6G_16 and SerDes6G_18. 3: DEV2G5_25 via SerDes10G_0.
     pub fn dev10g_0_mode(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -56,9 +54,7 @@ impl HW_CFG {
         self.0 |= value;
     }
     /// See DEVCPU_GCB::DEV10G_0_MODE for description.
-
     ///
-
     /// 0: DEV10G_1 XFI-mode via SerDes10G_1. 1: DEV10G_1 XAUI-mode via SerDes6G_20, SerDes6G_21, SerDes6G_22, and SerDes6G_23. 2: DEV10G_1 RXAUI-mode via SerDes6G_20 and SerDes6G_22. 3: DEV2G5_26 via SerDes10G_1.
     pub fn dev10g_1_mode(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -70,9 +66,7 @@ impl HW_CFG {
         self.0 |= value;
     }
     /// See DEVCPU_GCB::DEV10G_0_MODE for description.
-
     ///
-
     /// 0: DEV10G_2 XFI-mode via SerDes10G_2. 1: DEV10G_2 XAUI-mode via SerDes6G_8, SerDes6G_9, SerDes6G_10, and SerDes6G_11. 2: DEV10G_2 RXAUI-mode via SerDes6G_8 and SerDes6G_10. 3: DEV2G5_27 via SerDes10G_2.
     pub fn dev10g_2_mode(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -84,9 +78,7 @@ impl HW_CFG {
         self.0 |= value;
     }
     /// See DEVCPU_GCB::DEV10G_0_MODE for description.
-
     ///
-
     /// 0: DEV10G_3 XFI-mode via SerDes10G_3. 1: DEV10G_3 XAUI-mode via SerDes6G_12, SerDes6G_13, SerDes6G_14, and SerDes6G_15. 2: DEV10G_3 RXAUI-mode via SerDes6G_12 and SerDes6G_14. 3: DEV2G5_28 via SerDes10G_3.
     pub fn dev10g_3_mode(&self) -> u32 {
         (self.0 & 0xc0000) >> 18
@@ -182,9 +174,7 @@ impl HW_QSGMII_STAT {
 pub struct MCB_SERDES6G_ADDR_CFG(u32);
 impl MCB_SERDES6G_ADDR_CFG {
     /// Activation vector for SERDES6G-Slaves, one-hot coded, each bit is related to one macro, e.g. bit 0 enables/disables access to macro no. 0.
-
     ///
-
     /// 0: Disable macro access via MCB 1: Enable macro access via MCB
     pub fn serdes6g_addr(&self) -> u32 {
         self.0 & 0x1ffffff
@@ -195,9 +185,7 @@ impl MCB_SERDES6G_ADDR_CFG {
         self.0 |= value;
     }
     /// Initiate a read access to marked SERDES6G Slaves
-
     ///
-
     /// 0: No read operation pending (read op finished after bit has been set) 1: Initiate a read access (kept 1 until read operation has finished)
     pub fn serdes6g_rd_one_shot(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -209,9 +197,7 @@ impl MCB_SERDES6G_ADDR_CFG {
         self.0 |= value;
     }
     /// Initiate a write access to marked SERDES6G Slaves
-
     ///
-
     /// 0: No write operation pending 1: Initiate write to slaves (kept 1 until write operation has finished)
     pub fn serdes6g_wr_one_shot(&self) -> u32 {
         (self.0 & 0x80000000) >> 31

@@ -42,9 +42,7 @@ impl DLB_CTRL {
         self.0 |= value;
     }
     /// Specifies the clock period in unit of 0.1ns.
-
     ///
-
     /// 40: 4ns (250MHz) 64: 6,4ns (156.25MHz) 192: 19,2 ns (52.08MHz)
     pub fn clk_period_01ns(&self) -> u32 {
         (self.0 & 0x7f80000) >> 19
@@ -56,9 +54,7 @@ impl DLB_CTRL {
         self.0 |= value;
     }
     /// Enables adding of frame bytes to the leaky buckets.
-
     ///
-
     /// 0: Disable bucket addition 1: Enable bucket addition
     pub fn dlb_add_ena(&self) -> u32 {
         self.0 & 0x1
@@ -69,9 +65,7 @@ impl DLB_CTRL {
         self.0 |= value;
     }
     /// Enables leaking from the leaky buckets.
-
     ///
-
     /// 0: Disable bucket leaking 1: Enable bucket leaking
     pub fn leak_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -112,9 +106,7 @@ impl LB_BUCKET_VAL {
 pub struct TRAFFIC_MASK_CFG(u32);
 impl TRAFFIC_MASK_CFG {
     /// Configures the frame types to be policed by the policer. Each bit in the mask enables policing of a specific frame type. Multiple frame types can be enabled at the same time and a frame can belong to multiple frame types. If a frame belongs to one or more enabled frame types, then the frame is policed.
-
     ///
-
     /// 'xxxxxx1' : Unknown broadcast frames are policed. 'xxxxx1x' : Unknown multicast frames are policed. 'xxxx1xx' : Unknown unicast frames are policed. 'xxx1xxx' : Known broadcast frames are policed. 'xx1xxxx' : Known multicast frames are policed. 'x1xxxxx' : Known unicast frames are policed. '1xxxxxx' : Learn frames are policed.
     pub fn traffic_type_mask(&self) -> u32 {
         self.0 & 0x7f

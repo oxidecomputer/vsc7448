@@ -116,9 +116,7 @@ impl PCIEMST_BAR2_OFFSET {
 pub struct PCIEMST_REPLY_INFO(u32);
 impl PCIEMST_REPLY_INFO {
     /// This field allows additional PCIe-transaction settings in addition to those provided via SBA. The settings in this register is applied to all PCIe inbound accesses.
-
     ///
-
     /// [0] SBA Response with bad EOT. Cause drop of inbound response. [1] EP-field. [2] TD-field. [4:3] Reserved, must be "01".
     pub fn mst_reply_info(&self) -> u32 {
         self.0 & 0x1f
@@ -207,9 +205,7 @@ impl PCIEPCS_CFG {
         self.0 |= value;
     }
     /// Set this field allows skewing TBI DATA vs. IDLE signals. When configured to -1 then IDLE_DATA_DIS will also need to be set, else first symbol transmitted will just be 0s'.
-
     ///
-
     /// 0: No delay of IDLE. 1: Delay IDLE by 1 symbol. 2: Delay IDLE by 2 symbols. 3: Delay IDLE by -1 symbol (is delaying data by 1 symbol).
     pub fn idle_dly(&self) -> u32 {
         (self.0 & 0x60) >> 5
@@ -251,9 +247,7 @@ impl PCIEPCS_CFG {
         self.0 |= value;
     }
     /// See ICPU_CFG::PCIEPCS_CFG.RXRST_FORCE for more information.
-
     ///
-
     /// 0: Reset is asserted 1: Reset is not asserted
     pub fn rxrst_val(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -335,9 +329,7 @@ impl PCIEPCS_CFG {
         self.0 |= value;
     }
     /// See ICPU_CFG::PCIEPCS_CFG.TXRST_FORCE for more information.
-
     ///
-
     /// 0: Reset is asserted 1: Reset is not asserted
     pub fn txrst_val(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -349,9 +341,7 @@ impl PCIEPCS_CFG {
         self.0 |= value;
     }
     /// Configure receiver detection result (when requested by PCIe MAC on pipe-if)
-
     ///
-
     /// 0: Receiver detected 1: Receiver not detected
     pub fn txrx_detect(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -373,9 +363,7 @@ impl PCIEPCS_CFG {
         self.0 |= value;
     }
     /// Set to permanently drive PCIe WAKE output, by default the WAKE output is only driven when active and thusly allowing pull-resistor network.
-
     ///
-
     /// 0: Only drive output when active. 1: Always drive output.
     pub fn wake_oe(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -387,9 +375,7 @@ impl PCIEPCS_CFG {
         self.0 |= value;
     }
     /// Polarity of the PCIe WAKE output, WAKE is typically an active low output - but if an amplifier is needed for driving a large WAKE net then polarity may need to be changed.
-
     ///
-
     /// 0: Active low 1: Active high
     pub fn wake_pol(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -416,9 +402,7 @@ impl PCIESLV_FDMA {
         self.0 |= value;
     }
     /// The FDMA has access to one 1GByte region (0xC0000000 though 0xFFFFFFFF) that maps accesses to PCIe interface. The value of this field is used for address-bits [31:30] towards the PCIe endpoint.
-
     ///
-
     /// Set this field to 1.
     pub fn fdma_offset(&self) -> u32 {
         self.0 & 0x3
@@ -484,9 +468,7 @@ impl PCIESLV_SBA {
         self.0 |= value;
     }
     /// SBA masters (non-FDMA) has access to one 1GByte region (0xC0000000 though 0xFFFFFFFF) that maps accesses to PCIe interface. The value of this field is used for address-bits [31:30] towards the PCIe endpoint.
-
     ///
-
     /// Set this field to 0.
     pub fn sba_offset(&self) -> u32 {
         self.0 & 0x3
@@ -537,9 +519,7 @@ impl PCIESLV_SBA {
         self.0 |= value;
     }
     /// This field allows configuration of outbound PCIe-transaction TYPE field. This is applied to all SBA (non-FDMA) initiated outbound PCIe accesses.
-
     ///
-
     /// Encoding as defined by PCIe standard.
     pub fn sba_type(&self) -> u32 {
         (self.0 & 0x7c) >> 2
@@ -832,9 +812,7 @@ impl PCIE_INTR_CFG {
 pub struct PCIE_INTR_COMMON_CFG(u32);
 impl PCIE_INTR_COMMON_CFG {
     /// Select the external interrupt from the VCore interrupt controller that must be used to generate PCIe legacy interrupt.
-
     ///
-
     /// 0: Use EXT_DST0 1: Use EXT_DST1
     pub fn legacy_mode_intr_sel(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -978,9 +956,7 @@ impl PCIE_INTR_IDENT {
 pub struct PCIE_STAT(u32);
 impl PCIE_STAT {
     /// Current Link State of the PCIe core.
-
     ///
-
     /// 0: L0 (or not working, check LTSSM) 1: L0s 2: L1 3: L2 4: L3
     pub fn link_state(&self) -> u32 {
         (self.0 & 0x38) >> 3
@@ -992,9 +968,7 @@ impl PCIE_STAT {
         self.0 |= value;
     }
     /// The current LTSSM state of the PCIe core.
-
     ///
-
     /// 0x00: DETECT_QUIET 0x01: DETECT_ACT 0x02: POLL_ACTIVE 0x03: POLL_COMPLIANCE 0x04: POLL_CONFIG 0x05: PRE_DETECT_QUIET 0x06: DETECT_WAIT 0x07: CFG_LINKWD_START 0x08: CFG_LINKWD_ACEPT 0x09: CFG_LANENUM_WAIT 0x0A: CFG_LANENUM_ACEPT 0x0B: CFG_COMPLETE 0x0C: CFG_IDLE 0x0D: RCVRY_LOCK 0x0E: RCVRY_SPEED 0x0F: RCVRY_RCVRCFG 0x10: RCVRY_IDLE 0x20: RCVRY_EQ0 0x21: RCVRY_EQ1 0x22: RCVRY_EQ2 0x23: RCVRY_EQ3 0x11: L0 0x12: L0S 0x13: L123_SEND_EIDLE 0x14: L1_IDLE 0x15: L2_IDLE 0x16: L2_WAKE 0x17: DISABLED_ENTRY 0x18: DISABLED_IDLE 0x19: DISABLED 0x1A: LPBK_ENTRY 0x1B: LPBK_ACTIVE 0x1C: LPBK_EXIT 0x1D: LPBK_EXIT_TIMEOUT 0x1E: HOT_RESET_ENTRY 0x1F: HOT_RESET
     pub fn ltssm_state(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
@@ -1006,9 +980,7 @@ impl PCIE_STAT {
         self.0 |= value;
     }
     /// The current power managment state of the PCIe core.
-
     ///
-
     /// 0: D0 1: D1 2: D2 3: D3 4: D0-Uninitialized
     pub fn pm_state(&self) -> u32 {
         self.0 & 0x7

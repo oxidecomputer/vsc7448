@@ -44,9 +44,7 @@ impl ANEG_LP_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Technology Ability advertised by LP (here: 10GBase-KR)
-
     ///
-
     /// 0: LP is not 10GB-KR capable 1: LP is 10GB-KR capable
     pub fn cap_10gkr(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -58,9 +56,7 @@ impl ANEG_LP_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Technology Ability advertised by LP (here: 10GBase-KX4)
-
     ///
-
     /// 0: LP is not 10GB-KX4 capable 1: LP is 10GB-KX4 capable
     pub fn cap_10gkx4(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -72,9 +68,7 @@ impl ANEG_LP_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Technology Ability advertised by LP (here: 1000Base-KX)
-
     ///
-
     /// 0: LP is not 1GB-KX capable 1: LP is 1GB-KX capable
     pub fn cap_1gkx(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -106,9 +100,7 @@ impl ANEG_LP_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Next page exchange desired by LP
-
     ///
-
     /// 0: No NP exchange desired 1: NP exchange desired
     pub fn np(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -218,9 +210,7 @@ impl ANEG_NEXT_PAGE_1 {
 pub struct ANEG_STATUS(u32);
 impl ANEG_STATUS {
     /// Error condition indicating an Arbitration state machine error.
-
     ///
-
     /// Bit is cleared by writing a 1 to this position.
     pub fn aneg_arb_fsm_err_sticky(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -241,9 +231,7 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Error condition indicating a Receive state machine error.
-
     ///
-
     /// Bit is cleared by writing a 1 to this position.
     pub fn aneg_rx_fsm_err_sticky(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -255,9 +243,7 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Error condition indicating a Transmit state machine error.
-
     ///
-
     /// Bit is cleared by writing a 1 to this position.
     pub fn aneg_tx_fsm_err_sticky(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -269,9 +255,7 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Current state of Arbiter State Machine
-
     ///
-
     /// 0000: AUTO_NEG_ENA 0001: TX_DISABLE 0010: ABILITY_DETECT 0011: ACKN_DETECT 0100: COMPLETE_ACKN 0101: AN_GOOD_CHECK 0110: AN_GOOD 0111: NEXT_PAGE_WAIT 1000: LINK_STATUS_CHECK 1001: PARALLEL_DET_FAULT 1010: PD_CHECK10GKR 1011: PD_CHECK2G5 1100: PD_CHECK1GKX 1101: PD_CHECK10GKX4
     pub fn arbiter_state(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -293,9 +277,7 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Link control information for 10G quad lane mode
-
     ///
-
     /// 00: Disabled 01: Enabled 11: Scan for carrier
     pub fn link_ctrl_10gkx4(&self) -> u32 {
         (self.0 & 0x30000000) >> 28
@@ -307,9 +289,7 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Link control information for 1G single lane mode
-
     ///
-
     /// 00: Disabled 01: Enabled 11: Scan for carrier
     pub fn link_ctrl_1gkx(&self) -> u32 {
         (self.0 & 0xc000000) >> 26
@@ -321,9 +301,7 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Link control information for 2.5G single lane mode
-
     ///
-
     /// 00: Disabled 01: Enabled 11: Scan for carrier
     pub fn link_ctrl_2g5(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -355,9 +333,7 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Error condition indicating errors during parallel detection.
-
     ///
-
     /// Bit is cleared by writing a 1 to this position.
     pub fn par_detect_fault_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16

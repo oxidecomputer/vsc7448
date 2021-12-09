@@ -50,9 +50,7 @@ impl BAUDR {
 pub struct CTRLR0(u32);
 impl CTRLR0 {
     /// Control Frame Size. Selects the length of the control word for the Microwire frame format.
-
     ///
-
     /// n: n+1 bit control word.
     pub fn cfs(&self) -> u32 {
         (self.0 & 0xf000) >> 12
@@ -64,9 +62,7 @@ impl CTRLR0 {
         self.0 |= value;
     }
     /// Selects the data frame length. See SIMC::DR register description for how to read/write words of less than 16 bit.
-
     ///
-
     /// 0-2: Reserved. n: n+1 bit serial data transfer.
     pub fn dfs(&self) -> u32 {
         self.0 & 0xf
@@ -77,9 +73,7 @@ impl CTRLR0 {
         self.0 |= value;
     }
     /// Selects which serial protocol transfers the data. Note: In addition to this field, software must also configure ICPU_CFG::GENERAL_CTRL.SIMC_SSP_ENA.
-
     ///
-
     /// 0: Motorola SPI 1: Texas Instruments SSP 2-3: Reserved
     pub fn frf(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -91,9 +85,7 @@ impl CTRLR0 {
         self.0 |= value;
     }
     /// Valid when the frame format (FRF) is set to Motorola SPI. The serial clock phase selects the relationship of the serial clock with the slave select signal. When SCPH = 0, data are captured on the first edge of the serial clock. When SCPH = 1, the serial clock starts toggling one cycle after the slave select line is activated, and data are captured on the second edge of the serial clock.
-
     ///
-
     /// 0: Serial clock toggles in middle of first data bit. 1: Serial clock toggles at start of first data bit.
     pub fn scph(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -105,9 +97,7 @@ impl CTRLR0 {
         self.0 |= value;
     }
     /// Valid when the frame format (FRF) is set to Motorola SPI. Used to select the polarity of the inactive serial clock, which is held inactive when the master is not actively transferring data on the serial bus.
-
     ///
-
     /// 0: Inactive state of serial clock is low. 1: Inactive state of serial clock is high.
     pub fn scpol(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -119,9 +109,7 @@ impl CTRLR0 {
         self.0 |= value;
     }
     /// Shift Register Loop. Used for testing purposes only. Set to connect the transmit shift register output to the receive shift register input.
-
     ///
-
     /// 0: Normal Mode Operation 1: Test Mode Operation
     pub fn srl(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -133,9 +121,7 @@ impl CTRLR0 {
         self.0 |= value;
     }
     /// Selects the mode of transfer for serial communication. In transmit-only mode, data received from the external device is not valid and is not stored in the receive FIFO memory; it is overwritten on the next transfer. In receive-only mode, transmitted data are not valid. After the first write to the transmit FIFO, the same word is retransmitted for the duration of the transfer. In transmit-and-receive mode, both transmit and receive data are valid. The transfer continues until the transmit FIFO is empty. Data received from the external device are stored into the receive FIFO memory, where it can be accessed by the host processor.
-
     ///
-
     /// 0: Transmit and Receive. 1: Transmit Only. 2: Receive Only. 3: Reserved.
     pub fn tmod(&self) -> u32 {
         (self.0 & 0x300) >> 8
@@ -354,9 +340,7 @@ impl MWCR {
         self.0 |= value;
     }
     /// Set to enable the busy/ready handshaking interface for the Microwire protocol. When enabled, the master checks for a ready status from the target slave, after the transfer of the last data/control bit, before clearing the BUSY status in the SR register.
-
     ///
-
     /// 0: handshaking interface is disabled 1: handshaking interface is enabled
     pub fn mhs(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -368,9 +352,7 @@ impl MWCR {
         self.0 |= value;
     }
     /// Defines whether the Microwire transfer is sequential or non-sequential. When sequential mode is used, only one control word is needed to transmit or receive a block of data words. When non-sequential mode is used, there must be a control word for each data word that is transmitted or received.
-
     ///
-
     /// 0: non-sequential transfer 1: sequential transfer
     pub fn mwmod(&self) -> u32 {
         self.0 & 0x1
@@ -508,9 +490,7 @@ impl RXUICR {
 pub struct SER(u32);
 impl SER {
     /// Each bit in this register corresponds to a slave select line from the master. When a bit in this register is set, the corresponding slave select line from the master is activated when a serial transfer begins. Setting or clearing bits in this register have no effect on the corresponding slave select outputs until a transfer is started. Before beginning a transfer, enable the bit in this register that corresponds to the slave device with which the master wants to communicate. When not operating in broadcast mode, only one bit in this field should be set.
-
     ///
-
     /// 1: Selected 0: Not Selected
     pub fn ser(&self) -> u32 {
         self.0 & 0xffff

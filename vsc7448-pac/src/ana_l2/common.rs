@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct AUTO_LRN_CFG(u32);
 impl AUTO_LRN_CFG {
     /// Configures per port automatic learning of incoming learn frames received on this port. Forwarding to CPU is still allowed. This does not influence the port move detection in ANA_L2::MOVELOG_STICKY.
-
     ///
-
     /// x0x: Disable automatic learning for the port x1x: Enable automatic learning of incoming learn frames received on this port
     pub fn auto_lrn_ena(&self) -> u32 {
         self.0
@@ -52,9 +50,7 @@ impl AUTO_LRN_CFG {
 pub struct AUTO_LRN_CFG1(u32);
 impl AUTO_LRN_CFG1 {
     /// Refer to AUTO_LRN_CFG.AUTO_LRN_ENA description.
-
     ///
-
     /// x0x: Disable automatic learning for the port x1x: Enable automatic learning of incoming learn frames received on this port
     pub fn auto_lrn_ena1(&self) -> u32 {
         self.0 & 0x1fffff
@@ -70,9 +66,7 @@ impl AUTO_LRN_CFG1 {
 pub struct FILTER_LOCAL_CTRL(u32);
 impl FILTER_LOCAL_CTRL {
     /// Configures additional front port SCAN filter for Automatic ageing and CPU scan. See LRN::SCAN_NEXT_CFG.SCAN_USE_PORT_FILTER_ENA and LRN::AUTOAGE_CFG_1.USE_PORT_FILTER_ENA.
-
     ///
-
     /// x0x: Handle entries associated with the front port during automatic ageing and CPU scan x1x: Ignore entries associated with the front port during automatic ageing and CPU scan
     pub fn filter_frontport_ena(&self) -> u32 {
         self.0
@@ -86,9 +80,7 @@ impl FILTER_LOCAL_CTRL {
 pub struct FILTER_LOCAL_CTRL1(u32);
 impl FILTER_LOCAL_CTRL1 {
     /// Refer to FILTER_LOCAL_CTRL.FILTER_FRONTPORT_ENA description.
-
     ///
-
     /// x0x: Handle entries associated with the front port during automatic ageing and CPU scan x1x: Ignore entries associated with the front port during automatic ageing and CPU scan
     pub fn filter_frontport_ena1(&self) -> u32 {
         self.0 & 0x1fffff
@@ -104,9 +96,7 @@ impl FILTER_LOCAL_CTRL1 {
 pub struct FILTER_OTHER_CTRL(u32);
 impl FILTER_OTHER_CTRL {
     /// Configures additional filtering of Remote entries (i.e. entries with UPSID != ANA_L2::VSTAX_CTRL.OWN_UPSID) for automatic ageing and CPU scan. See LRN::SCAN_NEXT_CFG.SCAN_USE_PORT_FILTER_ENA and LRN::AUTOAGE_CFG_1.USE_PORT_FILTER_ENA.
-
     ///
-
     /// 0: handle remote entries during automatic ageing and CPU scan 1: ignore remote entries during Automatic ageing and CPU scan
     pub fn filter_remote_ena(&self) -> u32 {
         self.0 & 0x1
@@ -134,9 +124,7 @@ impl FWD_CFG {
         self.0 |= value;
     }
     /// Configures the CPU queue for forwarded frames that have the CPU_COPY flag set when enabled with:	ANA_L2::FWD_CFG.CPU_DMAC_COPY_ENA. Applicable frames are sent to this CPU queue.
-
     ///
-
     /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
     pub fn cpu_dmac_qu(&self) -> u32 {
         (self.0 & 0x700) >> 8
@@ -148,9 +136,7 @@ impl FWD_CFG {
         self.0 |= value;
     }
     /// Configures use of LRN::MAC_ACCESS_CFG_2.MAC_ENTRY_VLAN_IGNORE FLAG from the MAC table entries as VLAN_IGNORE or as SRC_MASK_IGNORE. This also configures the use of ANA_L2::FWD_CFG.FLOOD_IGNORE_VLAN_ENA when frames are flooded.
-
     ///
-
     /// 0: Use as VLAN ignore which means that the VLAN mask from ANA_L3:VLAN:VLAN_MASK_CFG is not applied when forwarding by means of entry with VLAN_IGNORE set. 1: Use as Source mask ignore which means that the SOURCE mask from ANA_AC:SRC:SRC_CFG is not applied when forwarding (frames can be send back to the sending port)
     pub fn filter_mode_sel(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -192,9 +178,7 @@ impl FWD_CFG {
         self.0 |= value;
     }
     /// Configures use of MAC table for forwarding.
-
     ///
-
     /// 0: Disable all MAC fwd related lookups. All frames are flooded. 1: Enable all MAC fwd related lookups
     pub fn fwd_ena(&self) -> u32 {
         self.0 & 0x1
@@ -225,9 +209,7 @@ impl FWD_CFG {
         self.0 |= value;
     }
     /// Configures MAC table Size
-
     ///
-
     /// "00": No MAC tables "01": 8K CMAC table "10": 16K CMAC table "11": 32K CMAC table
     pub fn mac_tbl_split_sel(&self) -> u32 {
         (self.0 & 0x300000) >> 20
@@ -239,9 +221,7 @@ impl FWD_CFG {
         self.0 |= value;
     }
     /// Configures port DLB index into BDLB policers when no service policing has been selected (ISDX == 0 AND ANA_L2:ISDX:DLB_CFG.DLB_IDX == 0). Per port index configured by means of ANA_L2::PORT_DLB_CFG.PORT_DLB_IDX.
-
     ///
-
     /// 0: Disable. ANA_L2:ISDX[0]:MISC_CFG.BDLB_IDX used for all ports. 1: Enable. ANA_L2::PORT_DLB_CFG[port_num].PORT_DLB_IDX used when ISDX_VAL==0 AND ANA_L2:ISDX:DLB_CFG.DLB_IDX == 0
     pub fn port_default_bdlb_ena(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -253,9 +233,7 @@ impl FWD_CFG {
         self.0 |= value;
     }
     /// Configures queue DLB index into SDLB policers when no service has been selected (ISDX == 0 AND ANA_L2:ISDX:DLB_CFG.DLB_IDX == 0). Per queue DLB index configured by means of ANA_L2::PORT_DLB_CFG.QUEUE_DLB_IDX.
-
     ///
-
     /// 0: Disable. ANA_L2:ISDX[0]:DLB_CFG.DLB_IDX used for all ISDX_VAL values. 1: Enable. SDLB index = ANA_L2::PORT_DLB_CFG[port_num].QUEUE_DLB_IDX + IPRIO used when ISDX_VAL==0 AND ANA_L2:ISDX:DLB_CFG.DLB_IDX == 0
     pub fn queue_default_sdlb_ena(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -274,9 +252,7 @@ impl FWD_CFG {
 pub struct INTR(u32);
 impl INTR {
     /// Set if FID learn limit triggered interrupt. To enable interrupt of this events set the corresponding *_INTR_ENA
-
     ///
-
     /// 0: No event has occured 1: FID_LIMIT triggered inq occured Bit is cleared by writing a 1 to this position.
     pub fn fid_limit_intr(&self) -> u32 {
         self.0 & 0x1
@@ -287,9 +263,7 @@ impl INTR {
         self.0 |= value;
     }
     /// Set if LRN CPU access triggered interrupt. To enable interrupt of this events set the corresponding *_INTR_ENA
-
     ///
-
     /// 0: No event has occured 1: LRN_ACCESS_COMPLETE triggered inq occured Bit is cleared by writing a 1 to this position.
     pub fn lrn_access_complete_intr(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -301,9 +275,7 @@ impl INTR {
         self.0 |= value;
     }
     /// Set if Port learn limit triggered interrupt. To enable interrupt of this events set the corresponding *_INTR_ENA
-
     ///
-
     /// 0: No event has occured 1: PORT_LRN_LIMIT triggered inq occured Bit is cleared by writing a 1 to this position.
     pub fn port_lrn_limit_intr(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -315,9 +287,7 @@ impl INTR {
         self.0 |= value;
     }
     /// Set if SUPER_VCAP_INTR triggered interrupt. To enable interrupt of this events set the corresponding *_INTR_ENA
-
     ///
-
     /// 0: No event has occured 1: SUPER_VCAP_INTR triggered inq occured Bit is cleared by writing a 1 to this position.
     pub fn super_vcap_intr(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -329,9 +299,7 @@ impl INTR {
         self.0 |= value;
     }
     /// Set if VCAP_S2 triggered interrupt. To enable interrupt of this events set the corresponding *_INTR_ENA
-
     ///
-
     /// 0: No event has occured 1: VCAP_S2 triggered inq occured Bit is cleared by writing a 1 to this position.
     pub fn vcap_s2_intr(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -350,9 +318,7 @@ impl INTR {
 pub struct INTR_ENA(u32);
 impl INTR_ENA {
     /// Configures FID_LIMIT_INTR interrupts
-
     ///
-
     /// 0: Disable interrupt 1: Enable interrupt
     pub fn fid_limit_intr_ena(&self) -> u32 {
         self.0 & 0x1
@@ -363,9 +329,7 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Configures LRN_ACCESS_COMPLETE_INTR interrupts
-
     ///
-
     /// 0: Disable interrupt 1: Enable interrupt
     pub fn lrn_access_complete_intr_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -377,9 +341,7 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Configures PORT_LRN_LIMIT interrupts
-
     ///
-
     /// 0: Disable interrupt 1: Enable interrupt
     pub fn port_lrn_limit_intr_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -391,9 +353,7 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Configures SUPER_VCAP_INTR interrupts
-
     ///
-
     /// 0: Disable interrupt 1: Enable interrupt
     pub fn super_vcap_intr_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -405,9 +365,7 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Configures VCAP_S2_INTR interrupts
-
     ///
-
     /// 0: Disable interrupt 1: Enable interrupt
     pub fn vcap_s2_intr_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -426,9 +384,7 @@ impl INTR_ENA {
 pub struct LRN_CFG(u32);
 impl LRN_CFG {
     /// Configures if aged entries are choosen before nonaged when randomly selecting a non locket entry to replace
-
     ///
-
     /// 0: age flags are not considered when selecting an entry 1: age flags are considered when selecting an entry.
     pub fn aged_before_nonaged(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -440,9 +396,7 @@ impl LRN_CFG {
         self.0 |= value;
     }
     /// Configures clearing of the age bit in the source entry (LRN::MAC_ACCESS_CFG_2.MAC_ENTRY_AGE_FLAG) when receiving traffic from known stations which has the  LOCKED bit (LRN::MAC_ACCESS_CFG_2.MAC_ENTRY_LOCKED) in the source entry set.
-
     ///
-
     /// 0: LOCKED entries are not touched. 1: The AGE flag for LOCKED entries will be cleared.
     pub fn age_locked_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -454,9 +408,7 @@ impl LRN_CFG {
         self.0 |= value;
     }
     /// Configures the AGE_FLAG size
-
     ///
-
     /// 0: one bit ageing periods used 1: two bit ageing periods used.
     pub fn age_size(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -468,9 +420,7 @@ impl LRN_CFG {
         self.0 |= value;
     }
     /// Configures how already known MAC table entries are replace of in case of hash depletion when receiving traffic from an unknown station.
-
     ///
-
     /// 0: Non locked entries are replaced 1: Known entries are never replaced.
     pub fn auto_lrn_replace_dis(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -482,9 +432,7 @@ impl LRN_CFG {
         self.0 |= value;
     }
     /// Configures auto learning use of entries in the CAM. See ANA_L2::AUTO_LRN_CFG
-
     ///
-
     /// 0: Auto learn is limited to CMAC table 1: Auto learn may also use MAC CAM entries.
     pub fn auto_lrn_use_mac_cam_ena(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -496,9 +444,7 @@ impl LRN_CFG {
         self.0 |= value;
     }
     /// Configures the CPU queue for frames copied to CPU due to FID LEARN limit check. Frames are sent to this CPU queue.
-
     ///
-
     /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
     pub fn cpu_fid_limit_qu(&self) -> u32 {
         (self.0 & 0x700000) >> 20
@@ -510,9 +456,7 @@ impl LRN_CFG {
         self.0 |= value;
     }
     /// Configures the CPU queue for CPU based learning when enabled by means of ANA_L2::LRN_COPY_CFG. Frames are sent to this CPU queue.
-
     ///
-
     /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
     pub fn cpu_lrn_qu(&self) -> u32 {
         (self.0 & 0x70) >> 4
@@ -524,9 +468,7 @@ impl LRN_CFG {
         self.0 |= value;
     }
     /// Configures use of entries in the CAM row for CPU learning.
-
     ///
-
     /// 0: CPU learn is limited to MAC table 1: CPU learn may also use MAC CAM entries.
     pub fn cpu_lrn_use_mac_cam_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -577,9 +519,7 @@ impl LRN_CFG {
         self.0 |= value;
     }
     /// Configures entries in CAM row to be moved back to MAC table when empty entries exists
-
     ///
-
     /// 0: Known CAM entries are not moved back to MAC table 1: Known CAM entries are moved to MAC table when empty entries exists on a hashed row.
     pub fn lrn_move_cam_entry_back(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -591,9 +531,7 @@ impl LRN_CFG {
         self.0 |= value;
     }
     /// Configures use Basic or advanced VStaX2 learning mode.
-
     ///
-
     /// 0: Entries are learned on UPSID and UPSPN ports (VSTAX Advanced forwarding mode) 1: Entries are learned on stacking ports (VSTAX basic forwarding mode).
     pub fn vstax_basic_lrn_mode_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -622,9 +560,7 @@ impl LRN_CFG {
 pub struct LRN_COPY_CFG(u32);
 impl LRN_COPY_CFG {
     /// Configures per port copy of incoming learn frames received received on this port. Copies are sent to the CPU queue specified by ANA_L2::LRN_CFG.CPU_LRN_QU. This does not influence the port move detection in ANA_L2::MOVELOG_STICKY.
-
     ///
-
     /// x0x: Disable x1x: incoming learn frames received on this port are copied to the CPU.
     pub fn cpu_lrn_copy_ena(&self) -> u32 {
         self.0
@@ -640,9 +576,7 @@ impl LRN_COPY_CFG {
 pub struct LRN_COPY_CFG1(u32);
 impl LRN_COPY_CFG1 {
     /// Refer to LRN_COPY_CFG.CPU_LRN_COPY_ENA description.
-
     ///
-
     /// x0x: Disable x1x: incoming learn frames received on this port are copied to the CPU.
     pub fn cpu_lrn_copy_ena1(&self) -> u32 {
         self.0 & 0x1fffff
@@ -660,9 +594,7 @@ impl LRN_COPY_CFG1 {
 pub struct LRN_SECUR_CFG(u32);
 impl LRN_SECUR_CFG {
     /// Configures per port discard of incoming learn frames received on this port. Forwarding to CPU is still allowed. This does not influence the port move detection in ANA_L2::MOVELOG_STICKY.
-
     ///
-
     /// x0x: Disable drop of incoming learn frames for the port x1x: Enable drop of incoming learn frames received on this port
     pub fn drop_unknown_src_ena(&self) -> u32 {
         self.0
@@ -678,9 +610,7 @@ impl LRN_SECUR_CFG {
 pub struct LRN_SECUR_CFG1(u32);
 impl LRN_SECUR_CFG1 {
     /// Refer to LRN_SECUR_CFG.DROP_UNKNOWN_SRC_ENA description.
-
     ///
-
     /// x0x: Disable drop of incoming learn frames for the port x1x: Enable drop of incoming learn frames received on this port
     pub fn drop_unknown_src_ena1(&self) -> u32 {
         self.0 & 0x1fffff
@@ -698,9 +628,7 @@ impl LRN_SECUR_CFG1 {
 pub struct LRN_SECUR_LOCKED_CFG(u32);
 impl LRN_SECUR_LOCKED_CFG {
     /// Configures per port discard of incoming frames triggering a port move for a locked entry in the MAC table received on this port. Forwarding to CPU is still allowed. This does not influence the port move detection in ANA_L2::MOVELOG_STICKY.
-
     ///
-
     /// x0x: Disable x1x: Enable drop of incoming frames triggering a port move for a locked entry in the MAC table received on this port
     pub fn drop_moved_locked_ena(&self) -> u32 {
         self.0
@@ -716,9 +644,7 @@ impl LRN_SECUR_LOCKED_CFG {
 pub struct LRN_SECUR_LOCKED_CFG1(u32);
 impl LRN_SECUR_LOCKED_CFG1 {
     /// Refer to LRN_SECUR_LOCKED_CFG.DROP_MOVED_LOCKED_ENA description.
-
     ///
-
     /// x0x: Disable x1x: Enable drop of incoming frames triggering a port move for a locked entry in the MAC table received on this port
     pub fn drop_moved_locked_ena1(&self) -> u32 {
         self.0 & 0x1fffff
@@ -736,9 +662,7 @@ impl LRN_SECUR_LOCKED_CFG1 {
 pub struct MOVELOG_STICKY(u32);
 impl MOVELOG_STICKY {
     /// When a known station identified by (IFID, SMAC) pair with port information (LRN::MAC_ACCESS_CFG_2.MAC_ENTRY_ADDR_TYPE and LRN::MAC_ACCESS_CFG_2.MAC_ENTRY_ADDR) is seen with changed port information, the new port is set in this mask. Write 1 to clear the corresponding bit. Notice: If operation VSTAX AF mode (ANA_L2::LRN_CFG.VSTAX_BASIC_LRN_MODE_ENA)  port move operates a little different since different types of port moves are supported see: ANA_L2::STICKY.LOCAL_TO_REMOTE_PORTMOVE_STICKY ANA_L2::STICKY.REMOTE_TO_LOCAL_PORTMOVE_STICKY ANA_L2::STICKY.REMOTE_TO_REMOTE_PORTMOVE_STICKY ANA_L2::STICKY.GLOBAL_TO_GLOBAL_PORTMOVE_STICKY ANA_L2::STICKY.GLOBAL_TO_LOCAL_PORTMOVE_STICKY ANA_L2::STICKY.LOCAL_TO_GLOBAL_PORTMOVE_STICKY ANA_L2::STICKY.LOCAL_TO_LOCAL_PORTMOVE_STICKY
-
     ///
-
     /// 'XX...XXX': If port X is set, at least one station has moved to logical port X.
     pub fn portmove_log_sticky(&self) -> u32 {
         self.0
@@ -754,9 +678,7 @@ impl MOVELOG_STICKY {
 pub struct MOVELOG_STICKY1(u32);
 impl MOVELOG_STICKY1 {
     /// Refer to MOVELOG_STICKY.PORTMOVE_LOG_STICKY description.
-
     ///
-
     /// 'XX...XXX': If port X is set, at least one station has moved to logical port X.
     pub fn portmove_log_sticky1(&self) -> u32 {
         self.0 & 0x1fffff
@@ -800,9 +722,7 @@ impl PORT_DLB_CFG {
 pub struct SCAN_FID_CFG(u32);
 impl SCAN_FID_CFG {
     /// Configures additional FID/VID filters doing scan if LRN:COMMON:SCAN_NEXT_CFG.FID_FILTER_ENA and ANA_L2:COMMON:SCAN_FID_CTRL.SCAN_FID_ENA is set.
-
     ///
-
     /// 0x1fff: Disable FID/VID filter
     pub fn scan_fid_val(&self) -> u32 {
         self.0 & 0x1fff
@@ -820,9 +740,7 @@ impl SCAN_FID_CFG {
 pub struct SCAN_FID_CTRL(u32);
 impl SCAN_FID_CTRL {
     /// Controls use of additional FID filters used during scan when LRN:COMMON:SCAN_NEXT_CFG.FID_FILTER_ENA is set.
-
     ///
-
     /// 0: FID/VID filters only depend on LRN:COMMON:SCAN_NEXT_CFG.FID_FILTER_ENA. 1: Additional FID filter values are specified in ANA_L2:COMMON:SCAN_FID_CFG.SCAN_FID_VAL if LRN:COMMON:SCAN_NEXT_CFG.FID_FILTER_ENA is set.
     pub fn scan_fid_ena(&self) -> u32 {
         self.0 & 0x1
@@ -840,9 +758,7 @@ impl SCAN_FID_CTRL {
 pub struct VSTAX_CTRL(u32);
 impl VSTAX_CTRL {
     /// Configures CPU queue for VSTAX2 triggered events (Configurable using ANA_L2::VSTAX_CTRL).
-
     ///
-
     /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
     pub fn cpu_vstax_qu(&self) -> u32 {
         (self.0 & 0x7000) >> 12

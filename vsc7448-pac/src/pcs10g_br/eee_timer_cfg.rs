@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct KR_FEC_CAPABILITY(u32);
 impl KR_FEC_CAPABILITY {
     /// This is a status bit indicating whether PHY supports FEC or not.
-
     ///
-
     /// 0: This PHY device does not support FEC. 1: This PHY device supports FEC.
     pub fn fec_capable(&self) -> u32 {
         self.0 & 0x1

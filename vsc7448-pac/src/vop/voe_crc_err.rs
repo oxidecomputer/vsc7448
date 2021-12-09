@@ -30,7 +30,8 @@ use derive_more::{From, Into};
 /// Analyzer Context data
 #[derive(From, Into)]
 pub struct CT_OAM_DATA1_ANA(u32);
-impl CT_OAM_DATA1_ANA {    pub fn ct_oam_misc_ana(&self) -> u32 {
+impl CT_OAM_DATA1_ANA {
+    pub fn ct_oam_misc_ana(&self) -> u32 {
         self.0
     }
     pub fn set_ct_oam_misc_ana(&mut self, value: u32) {

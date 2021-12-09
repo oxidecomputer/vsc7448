@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct GLOBAL_CNT_FRM_TYPE_CFG(u32);
 impl GLOBAL_CNT_FRM_TYPE_CFG {
     /// Configures which frames is counted in relation to FCS error and configured event mask (GLOBAL_EVENT_MASK).
-
     ///
-
     /// "000": Frames without any event signal or FCS errored frames are counted. "001": Frames with unmasked (enabled) events without FCS error are counted. "010": Frames with unmasked (enabled) events with FCS error are counted. "011": Frames with unmasked (enabled) events independent of FCS error are counted. "100": Frames with FCS error but with no event signal are counted. "101": Frames with FCS error are unconditionally counted.
     pub fn global_cfg_cnt_frm_type(&self) -> u32 {
         self.0 & 0x7
@@ -52,9 +50,7 @@ impl GLOBAL_CNT_FRM_TYPE_CFG {
 pub struct STAT_GLOBAL_CFG(u32);
 impl STAT_GLOBAL_CFG {
     /// This field is to configure the counters of all flows to count the byte number or the frame number.
-
     ///
-
     /// '0': Count frames. '1': Count bytes.
     pub fn global_cfg_cnt_byte(&self) -> u32 {
         self.0 & 0x1

@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct GENERAL_CTRL(u32);
 impl GENERAL_CTRL {
     /// Use this field to change from Boot mode to Normal mode. In Boot mode, the reset vector of the VCore CPU maps to CS0 on the FLASH interface. When in Normal mode, this address maps instead to the DRAM Controller. The DRAM Controller must be operational before disabling Boot mode. After setting Boot mode, this register must be read back. The change in Boot mode takes effect during read.
-
     ///
-
     /// 0: The VCore memory map is in Normal mode. 1: The VCore memory map is in Boot mode.
     pub fn boot_mode_ena(&self) -> u32 {
         self.0 & 0x1
@@ -85,9 +83,7 @@ impl GENERAL_CTRL {
         self.0 |= value;
     }
     /// The default value of this field depends on strapping of the VCore. Clear this field to allow booting of the VCore CPU, while this field is set the VCore CPU is held in reset.
-
     ///
-
     /// 0: VCore CPU is allowed to boot 1: VCore CPU is forced in reset
     pub fn cpu_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -149,9 +145,7 @@ impl GENERAL_CTRL {
         self.0 |= value;
     }
     /// Select the owner of the GPIO overlaid SI interface.
-
     ///
-
     /// 0: SI Slave 1: SI Boot Master 2: SI Master Controller
     pub fn if_si1_owner(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -163,9 +157,7 @@ impl GENERAL_CTRL {
         self.0 |= value;
     }
     /// The default value of this field depends on strapping of the VCore. Select the owner of the SI interface.
-
     ///
-
     /// 0: SI Slave 1: SI Boot Master 2: SI Master Controller
     pub fn if_si_owner(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -204,9 +196,7 @@ impl GPR {
 pub struct RESET(u32);
 impl RESET {
     /// Set this field to enable VCore System reset protection. It is possible to protect the VCore System from soft-reset (issued via RESET.CORE_RST_FORCE) and watchdog-timeout. When this field is set the aforementioned resets only reset the VCore CPU, not the VCore System.
-
     ///
-
     /// 0: Soft-reset and WDT-event and reset entire VCore 1: Soft-reset and WDT-event only reset the VCore CPU
     pub fn core_rst_cpu_only(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -218,9 +208,7 @@ impl RESET {
         self.0 |= value;
     }
     /// Set this field to generate a soft reset for the VCore. This field will be cleared when the reset has taken effect. It is possible to protect the VCore system (everyhing else than the VCore CPU) from reset via  RESET.CORE_RST_CPU_ONLY.
-
     ///
-
     /// 0: VCore is not reset 1: Initiate soft reset of the VCore
     pub fn core_rst_force(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -232,9 +220,7 @@ impl RESET {
         self.0 |= value;
     }
     /// Set this field to enable VCore reset protection. It is possible to protect the entire VCore from chip-level soft-reset (issued via DEVCPU_GCB::SOFT_RST.SOFT_CHIP_RST). Setting this field does not protect agains hard-reset of the chip (by asserting the reset pin).
-
     ///
-
     /// 0: No reset protection 1: VCore is protected from chip-level-soft-reset
     pub fn core_rst_protect(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -246,9 +232,7 @@ impl RESET {
         self.0 |= value;
     }
     /// Clear this field to release the DDR2/3 controller from reset.
-
     ///
-
     /// 0: Memory controller is not reset 1: Memory controller is forced in reset
     pub fn mem_rst_force(&self) -> u32 {
         self.0 & 0x1

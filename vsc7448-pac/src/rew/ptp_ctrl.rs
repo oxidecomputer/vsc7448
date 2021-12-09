@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct COS_CTRL(u32);
 impl COS_CTRL {
     /// The auto updated COSID value is determined according to the following algorithm: mask = IFH.TS.INJ_LBK.COS_MASK[7:0] isdx = IFH.VSTAX.MISC.ISDX cos_nxt_sel = IFH.TS.INJ_LBK.COS_NXT_SEL if (cos_nxt_sel > 0 and isdx > 0 and mask > 0) { cos_nxt = REW:ISDX_TBL:COS_CTRL[IFH.VSTAX.MISC.ISDX].COS_NXT[cos_nxt_sel-1] # Use cos_nxt to find next bit in cos_mask for idx in 0:7 { if (mask[(idx+cos_nxt) mod 8] = '1') { cosid_new = idx break } } # Update next pointer REW:ISDX_TBL:COS_CTRL[IFH.VSTAX.MISC.ISDX].COS_NXT[cos_nxt_sel-1] = ((cosid_new+1) mod 8) }
-
     ///
-
     /// 0-7: Next COS value to use
     pub fn cos_nxt(&self) -> u32 {
         self.0 & 0x7
@@ -63,9 +61,7 @@ impl PTP_CPUVD_MODE_CFG {
         self.0 |= value;
     }
     /// PTP operation mode for frames.
-
     ///
-
     /// 0: Front port 1: Backplane port using RSRV field 30 bit TS transfer 2: Backplane port using RSRV field 32 bit TS transfer 3: Backplane port using CF field for 44 bit TS transfer 4: Backplane port using CF field for 48 bit TS transfer 5: Monitor port. Frame updated to arrival stamper. 6: PTP Disabled port
     pub fn ptp_mode_val(&self) -> u32 {
         (self.0 & 0x1c) >> 2

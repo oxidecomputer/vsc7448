@@ -41,9 +41,7 @@ impl HSCH_FORCE_CTRL {
         self.0 |= value;
     }
     /// Set to layer in which an element must be updated.
-
     ///
-
     /// 0: Update a layer 0 element 1: Update a layer 1 element 2: Update a layer 2 element 3: Reserved
     pub fn hforce_layer(&self) -> u32 {
         (self.0 & 0x6000) >> 13
@@ -94,9 +92,7 @@ impl HSCH_LEAK_CFG {
 pub struct HSCH_TIMER_CFG(u32);
 impl HSCH_TIMER_CFG {
     /// Number of nanoseconds between each traversal of the leak list. A value of 10000 correspond to 10us. Each traversal subtracts the configured rate from the shaper buckets, counting bits. With the value of 10000, a rate of 1 corresponds to 1 bit per 10us, or 100kbps. A leak group can be set up for 16kbps unit by seting the leak_time to 1 bit per 62500 nanoseconds.
-
     ///
-
     /// 0: Leaking disabled 62500: 16kbps unit 10000: 100kbps unit 1000:  1Mbps unit (any other)
     pub fn leak_time(&self) -> u32 {
         self.0 & 0x3ffff

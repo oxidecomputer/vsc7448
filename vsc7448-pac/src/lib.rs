@@ -31,15 +31,16 @@
 #![allow(non_snake_case)]
 #![allow(non_camel_case_types)]
 
+pub mod phy;
 pub mod types;
 
 // Top-level targets are stored in the tree as submodules
 
 pub mod afi;
 pub mod ana_ac;
-pub mod ana_acl;
 pub mod ana_ac_oam_mod;
 pub mod ana_ac_pol;
+pub mod ana_acl;
 pub mod ana_cl;
 pub mod ana_l2;
 pub mod ana_l3;
@@ -232,32 +233,31 @@ impl Vsc7448 {
 /// The Automatic Frame Injector (AFI) provides mechanisms for periodic injection of PDUs. E.g. injection of - OAM PDUs for continuity check, loss and delay measurement - OAM PDUs for high service activation test, ref. ITU Y.1564. - IEEE 1588 PDUs
 pub struct AFI(u32);
 impl AFI {
-
     pub fn DTI_MISC(&self, index: u32) -> afi::DTI_MISC {
         assert!(index < 32);
-        afi::DTI_MISC(self.0 + 0x285e8 + index * 0x3)
+        afi::DTI_MISC(self.0 + 0x285e8 + index * 0xc)
     }
     pub fn DTI_TBL(&self, index: u32) -> afi::DTI_TBL {
         assert!(index < 32);
-        afi::DTI_TBL(self.0 + 0x28000 + index * 0x8)
+        afi::DTI_TBL(self.0 + 0x28000 + index * 0x20)
     }
     pub fn FRM_TBL(&self, index: u32) -> afi::FRM_TBL {
         assert!(index < 4096);
-        afi::FRM_TBL(self.0 + 0x20000 + index * 0x2)
+        afi::FRM_TBL(self.0 + 0x20000 + index * 0x8)
     }
     pub fn MISC(&self) -> afi::MISC {
         afi::MISC(self.0 + 0x285c8)
     }
     pub fn PORT_TBL(&self, index: u32) -> afi::PORT_TBL {
         assert!(index < 57);
-        afi::PORT_TBL(self.0 + 0x28400 + index * 0x2)
+        afi::PORT_TBL(self.0 + 0x28400 + index * 0x8)
     }
     pub fn TTI_MISC(&self) -> afi::TTI_MISC {
         afi::TTI_MISC(self.0 + 0x28794)
     }
     pub fn TTI_TBL(&self, index: u32) -> afi::TTI_TBL {
         assert!(index < 4096);
-        afi::TTI_TBL(self.0 + 0x0 + index * 0x8)
+        afi::TTI_TBL(self.0 + 0x0 + index * 0x20)
     }
     pub fn TTI_TICKS(&self) -> afi::TTI_TICKS {
         afi::TTI_TICKS(self.0 + 0x28768)
@@ -270,25 +270,24 @@ impl AFI {
 /// Controls mask handling etc.
 pub struct ANA_AC(u32);
 impl ANA_AC {
-
     pub fn AGGR(&self, index: u32) -> ana_ac::AGGR {
         assert!(index < 16);
-        ana_ac::AGGR(self.0 + 0x94380 + index * 0x2)
+        ana_ac::AGGR(self.0 + 0x94380 + index * 0x8)
     }
     pub fn COREMEM(&self) -> ana_ac::COREMEM {
         ana_ac::COREMEM(self.0 + 0x94350)
     }
     pub fn GLAG(&self, index: u32) -> ana_ac::GLAG {
         assert!(index < 32);
-        ana_ac::GLAG(self.0 + 0x94700 + index * 0x1)
+        ana_ac::GLAG(self.0 + 0x94700 + index * 0x4)
     }
     pub fn MIRROR_PROBE(&self, index: u32) -> ana_ac::MIRROR_PROBE {
         assert!(index < 3);
-        ana_ac::MIRROR_PROBE(self.0 + 0x94780 + index * 0x8)
+        ana_ac::MIRROR_PROBE(self.0 + 0x94780 + index * 0x20)
     }
     pub fn PGID(&self, index: u32) -> ana_ac::PGID {
         assert!(index < 1077);
-        ana_ac::PGID(self.0 + 0x90000 + index * 0x4)
+        ana_ac::PGID(self.0 + 0x90000 + index * 0x10)
     }
     pub fn PS_COMMON(&self) -> ana_ac::PS_COMMON {
         ana_ac::PS_COMMON(self.0 + 0x94da8)
@@ -298,50 +297,50 @@ impl ANA_AC {
     }
     pub fn PS_STICKY_MASK(&self, index: u32) -> ana_ac::PS_STICKY_MASK {
         assert!(index < 4);
-        ana_ac::PS_STICKY_MASK(self.0 + 0x94ebc + index * 0x10)
+        ana_ac::PS_STICKY_MASK(self.0 + 0x94ebc + index * 0x40)
     }
     pub fn RAM_CTRL(&self) -> ana_ac::RAM_CTRL {
         ana_ac::RAM_CTRL(self.0 + 0x94358)
     }
     pub fn SFLOW(&self, index: u32) -> ana_ac::SFLOW {
         assert!(index < 53);
-        ana_ac::SFLOW(self.0 + 0x94c00 + index * 0x2)
+        ana_ac::SFLOW(self.0 + 0x94c00 + index * 0x8)
     }
     pub fn SRC(&self, index: u32) -> ana_ac::SRC {
         assert!(index < 89);
-        ana_ac::SRC(self.0 + 0x94400 + index * 0x2)
+        ana_ac::SRC(self.0 + 0x94400 + index * 0x8)
     }
     pub fn STAT_CNT_CFG_ACL(&self, index: u32) -> ana_ac::STAT_CNT_CFG_ACL {
         assert!(index < 32);
-        ana_ac::STAT_CNT_CFG_ACL(self.0 + 0x94a00 + index * 0x4)
+        ana_ac::STAT_CNT_CFG_ACL(self.0 + 0x94a00 + index * 0x10)
     }
     pub fn STAT_CNT_CFG_BDLB(&self, index: u32) -> ana_ac::STAT_CNT_CFG_BDLB {
         assert!(index < 1024);
-        ana_ac::STAT_CNT_CFG_BDLB(self.0 + 0x98000 + index * 0x4)
+        ana_ac::STAT_CNT_CFG_BDLB(self.0 + 0x98000 + index * 0x10)
     }
     pub fn STAT_CNT_CFG_BUM(&self, index: u32) -> ana_ac::STAT_CNT_CFG_BUM {
         assert!(index < 1024);
-        ana_ac::STAT_CNT_CFG_BUM(self.0 + 0x80000 + index * 0x10)
+        ana_ac::STAT_CNT_CFG_BUM(self.0 + 0x80000 + index * 0x40)
     }
     pub fn STAT_CNT_CFG_ERLEG(&self, index: u32) -> ana_ac::STAT_CNT_CFG_ERLEG {
         assert!(index < 256);
-        ana_ac::STAT_CNT_CFG_ERLEG(self.0 + 0xa0000 + index * 0x10)
+        ana_ac::STAT_CNT_CFG_ERLEG(self.0 + 0xa0000 + index * 0x40)
     }
     pub fn STAT_CNT_CFG_IRLEG(&self, index: u32) -> ana_ac::STAT_CNT_CFG_IRLEG {
         assert!(index < 256);
-        ana_ac::STAT_CNT_CFG_IRLEG(self.0 + 0x9c000 + index * 0x10)
+        ana_ac::STAT_CNT_CFG_IRLEG(self.0 + 0x9c000 + index * 0x40)
     }
     pub fn STAT_CNT_CFG_ISDX(&self, index: u32) -> ana_ac::STAT_CNT_CFG_ISDX {
         assert!(index < 8192);
-        ana_ac::STAT_CNT_CFG_ISDX(self.0 + 0x0 + index * 0x10)
+        ana_ac::STAT_CNT_CFG_ISDX(self.0 + 0x0 + index * 0x40)
     }
     pub fn STAT_CNT_CFG_PORT(&self, index: u32) -> ana_ac::STAT_CNT_CFG_PORT {
         assert!(index < 57);
-        ana_ac::STAT_CNT_CFG_PORT(self.0 + 0x95000 + index * 0x10)
+        ana_ac::STAT_CNT_CFG_PORT(self.0 + 0x95000 + index * 0x40)
     }
     pub fn STAT_CNT_CFG_QUEUE(&self, index: u32) -> ana_ac::STAT_CNT_CFG_QUEUE {
         assert!(index < 456);
-        ana_ac::STAT_CNT_CFG_QUEUE(self.0 + 0x96000 + index * 0x4)
+        ana_ac::STAT_CNT_CFG_QUEUE(self.0 + 0x96000 + index * 0x10)
     }
     pub fn STAT_GLOBAL_CFG_ACL(&self) -> ana_ac::STAT_GLOBAL_CFG_ACL {
         ana_ac::STAT_GLOBAL_CFG_ACL(self.0 + 0x946c8)
@@ -369,25 +368,24 @@ impl ANA_AC {
     }
     pub fn UPSID(&self, index: u32) -> ana_ac::UPSID {
         assert!(index < 32);
-        ana_ac::UPSID(self.0 + 0x94800 + index * 0x4)
+        ana_ac::UPSID(self.0 + 0x94800 + index * 0x10)
     }
 }
 
 /// Access Control List sub block of the Analyzer
 pub struct ANA_ACL(u32);
 impl ANA_ACL {
-
     pub fn CNT_TBL(&self, index: u32) -> ana_acl::CNT_TBL {
         assert!(index < 4096);
-        ana_acl::CNT_TBL(self.0 + 0x0 + index * 0x1)
+        ana_acl::CNT_TBL(self.0 + 0x0 + index * 0x4)
     }
     pub fn PORT(&self, index: u32) -> ana_acl::PORT {
         assert!(index < 57);
-        ana_acl::PORT(self.0 + 0x4000 + index * 0x3)
+        ana_acl::PORT(self.0 + 0x4000 + index * 0xc)
     }
     pub fn PTP_DOM(&self, index: u32) -> ana_acl::PTP_DOM {
         assert!(index < 3);
-        ana_acl::PTP_DOM(self.0 + 0x446c + index * 0x4)
+        ana_acl::PTP_DOM(self.0 + 0x446c + index * 0x10)
     }
     pub fn STICKY(&self) -> ana_acl::STICKY {
         ana_acl::STICKY(self.0 + 0x4464)
@@ -400,35 +398,33 @@ impl ANA_ACL {
 /// This block os part of the Vitesse OAM MEP Processor (VOP). It is directly controlled by the VOP and performs all frame modification related OAM functions. This block is included in both the REW and the ANA_AC. The HW support for implementing an OAM MEP is implemented in a sub block, known as: Vitesse OAM Endpoint (VOE). The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs
 pub struct ANA_AC_OAM_MOD(u32);
 impl ANA_AC_OAM_MOD {
-
     pub fn OAM_PDU_MOD_CONT(&self, index: u32) -> ana_ac_oam_mod::OAM_PDU_MOD_CONT {
         assert!(index < 110);
-        ana_ac_oam_mod::OAM_PDU_MOD_CONT(self.0 + 0xa000 + index * 0x8)
+        ana_ac_oam_mod::OAM_PDU_MOD_CONT(self.0 + 0xa000 + index * 0x20)
     }
     pub fn PDU_MOD_CFG(&self) -> ana_ac_oam_mod::PDU_MOD_CFG {
         ana_ac_oam_mod::PDU_MOD_CFG(self.0 + 0x9a80)
     }
     pub fn VOE_PORT_LM_CNT(&self, index: u32) -> ana_ac_oam_mod::VOE_PORT_LM_CNT {
         assert!(index < 424);
-        ana_ac_oam_mod::VOE_PORT_LM_CNT(self.0 + 0x8000 + index * 0x4)
+        ana_ac_oam_mod::VOE_PORT_LM_CNT(self.0 + 0x8000 + index * 0x10)
     }
     pub fn VOE_SRV_LM_CNT(&self, index: u32) -> ana_ac_oam_mod::VOE_SRV_LM_CNT {
         assert!(index < 8192);
-        ana_ac_oam_mod::VOE_SRV_LM_CNT(self.0 + 0x0 + index * 0x1)
+        ana_ac_oam_mod::VOE_SRV_LM_CNT(self.0 + 0x0 + index * 0x4)
     }
 }
 
 /// Controls the various policers.
 pub struct ANA_AC_POL(u32);
 impl ANA_AC_POL {
-
     pub fn BDLB(&self, index: u32) -> ana_ac_pol::BDLB {
         assert!(index < 1024);
-        ana_ac_pol::BDLB(self.0 + 0x28000 + index * 0x8)
+        ana_ac_pol::BDLB(self.0 + 0x28000 + index * 0x20)
     }
     pub fn BUM_SLB(&self, index: u32) -> ana_ac_pol::BUM_SLB {
         assert!(index < 1024);
-        ana_ac_pol::BUM_SLB(self.0 + 0x30000 + index * 0x8)
+        ana_ac_pol::BUM_SLB(self.0 + 0x30000 + index * 0x20)
     }
     pub fn COMMON_BDLB(&self) -> ana_ac_pol::COMMON_BDLB {
         ana_ac_pol::COMMON_BDLB(self.0 + 0x237dc)
@@ -447,48 +443,47 @@ impl ANA_AC_POL {
     }
     pub fn POL_PORT_CTRL(&self, index: u32) -> ana_ac_pol::POL_PORT_CTRL {
         assert!(index < 57);
-        ana_ac_pol::POL_PORT_CTRL(self.0 + 0x23800 + index * 0x8)
+        ana_ac_pol::POL_PORT_CTRL(self.0 + 0x23800 + index * 0x20)
     }
     pub fn PORT_PT_CTRL(&self, index: u32) -> ana_ac_pol::PORT_PT_CTRL {
         assert!(index < 64);
-        ana_ac_pol::PORT_PT_CTRL(self.0 + 0x25000 + index * 0x5)
+        ana_ac_pol::PORT_PT_CTRL(self.0 + 0x25000 + index * 0x14)
     }
     pub fn SDLB(&self, index: u32) -> ana_ac_pol::SDLB {
         assert!(index < 4520);
-        ana_ac_pol::SDLB(self.0 + 0x0 + index * 0x8)
+        ana_ac_pol::SDLB(self.0 + 0x0 + index * 0x20)
     }
 }
 
 /// Classifier sub block of the Analyzer
 pub struct ANA_CL(u32);
 impl ANA_CL {
-
     pub fn COMMON(&self) -> ana_cl::COMMON {
         ana_cl::COMMON(self.0 + 0x23a80)
     }
     pub fn IPT(&self, index: u32) -> ana_cl::IPT {
         assert!(index < 4096);
-        ana_cl::IPT(self.0 + 0x0 + index * 0x4)
+        ana_cl::IPT(self.0 + 0x0 + index * 0x10)
     }
     pub fn L2CP_TBL(&self, index: u32) -> ana_cl::L2CP_TBL {
         assert!(index < 3744);
-        ana_cl::L2CP_TBL(self.0 + 0x20000 + index * 0x1)
+        ana_cl::L2CP_TBL(self.0 + 0x20000 + index * 0x4)
     }
     pub fn MAP_TBL(&self, index: u32) -> ana_cl::MAP_TBL {
         assert!(index < 512);
-        ana_cl::MAP_TBL(self.0 + 0x18000 + index * 0x10)
+        ana_cl::MAP_TBL(self.0 + 0x18000 + index * 0x40)
     }
     pub fn MIP_TBL(&self, index: u32) -> ana_cl::MIP_TBL {
         assert!(index < 1024);
-        ana_cl::MIP_TBL(self.0 + 0x10000 + index * 0x8)
+        ana_cl::MIP_TBL(self.0 + 0x10000 + index * 0x20)
     }
     pub fn MPLS_PROFILE(&self, index: u32) -> ana_cl::MPLS_PROFILE {
         assert!(index < 18);
-        ana_cl::MPLS_PROFILE(self.0 + 0x23d68 + index * 0x1)
+        ana_cl::MPLS_PROFILE(self.0 + 0x23d68 + index * 0x4)
     }
     pub fn PORT(&self, index: u32) -> ana_cl::PORT {
         assert!(index < 57);
-        ana_cl::PORT(self.0 + 0x24000 + index * 0x40)
+        ana_cl::PORT(self.0 + 0x24000 + index * 0x100)
     }
     pub fn PPT(&self) -> ana_cl::PPT {
         ana_cl::PPT(self.0 + 0x23db0)
@@ -498,88 +493,85 @@ impl ANA_CL {
     }
     pub fn STICKY_MASK(&self, index: u32) -> ana_cl::STICKY_MASK {
         assert!(index < 4);
-        ana_cl::STICKY_MASK(self.0 + 0x23e18 + index * 0x8)
+        ana_cl::STICKY_MASK(self.0 + 0x23e18 + index * 0x20)
     }
 }
 
 /// Layer 2 sub block of the Analyzer
 pub struct ANA_L2(u32);
 impl ANA_L2 {
-
     pub fn COMMON(&self) -> ana_l2::COMMON {
         ana_l2::COMMON(self.0 + 0x8a2a8)
     }
     pub fn ISDX(&self, index: u32) -> ana_l2::ISDX {
         assert!(index < 4096);
-        ana_l2::ISDX(self.0 + 0x0 + index * 0x20)
+        ana_l2::ISDX(self.0 + 0x0 + index * 0x80)
     }
     pub fn LRN_LIMIT(&self, index: u32) -> ana_l2::LRN_LIMIT {
         assert!(index < 5120);
-        ana_l2::LRN_LIMIT(self.0 + 0x80000 + index * 0x2)
+        ana_l2::LRN_LIMIT(self.0 + 0x80000 + index * 0x8)
     }
     pub fn PORT_LIMIT(&self, index: u32) -> ana_l2::PORT_LIMIT {
         assert!(index < 85);
-        ana_l2::PORT_LIMIT(self.0 + 0x8a000 + index * 0x2)
+        ana_l2::PORT_LIMIT(self.0 + 0x8a000 + index * 0x8)
     }
     pub fn STICKY(&self) -> ana_l2::STICKY {
         ana_l2::STICKY(self.0 + 0x8a40c)
     }
     pub fn STICKY_MASK(&self, index: u32) -> ana_l2::STICKY_MASK {
         assert!(index < 4);
-        ana_l2::STICKY_MASK(self.0 + 0x8a410 + index * 0x1)
+        ana_l2::STICKY_MASK(self.0 + 0x8a410 + index * 0x4)
     }
 }
 
 /// ANA_L3 provides the following functionality: - VLAN handling - MSTP handling - IP routing
 pub struct ANA_L3(u32);
 impl ANA_L3 {
-
     pub fn ARP(&self, index: u32) -> ana_l3::ARP {
         assert!(index < 2048);
-        ana_l3::ARP(self.0 + 0x30000 + index * 0x2)
+        ana_l3::ARP(self.0 + 0x30000 + index * 0x8)
     }
     pub fn ARP_PTR_REMAP(&self, index: u32) -> ana_l3::ARP_PTR_REMAP {
         assert!(index < 64);
-        ana_l3::ARP_PTR_REMAP(self.0 + 0x35500 + index * 0x1)
+        ana_l3::ARP_PTR_REMAP(self.0 + 0x35500 + index * 0x4)
     }
     pub fn COMMON(&self) -> ana_l3::COMMON {
         ana_l3::COMMON(self.0 + 0x35420)
     }
     pub fn L3MC(&self, index: u32) -> ana_l3::L3MC {
         assert!(index < 1024);
-        ana_l3::L3MC(self.0 + 0x28000 + index * 0x8)
+        ana_l3::L3MC(self.0 + 0x28000 + index * 0x20)
     }
     pub fn L3_STICKY_MASK(&self, index: u32) -> ana_l3::L3_STICKY_MASK {
         assert!(index < 4);
-        ana_l3::L3_STICKY_MASK(self.0 + 0x35600 + index * 0x4)
+        ana_l3::L3_STICKY_MASK(self.0 + 0x35600 + index * 0x10)
     }
     pub fn LPM_REMAP_STICKY(&self) -> ana_l3::LPM_REMAP_STICKY {
         ana_l3::LPM_REMAP_STICKY(self.0 + 0x354d0)
     }
     pub fn MSTP(&self, index: u32) -> ana_l3::MSTP {
         assert!(index < 66);
-        ana_l3::MSTP(self.0 + 0x35000 + index * 0x4)
+        ana_l3::MSTP(self.0 + 0x35000 + index * 0x10)
     }
     pub fn TUPE(&self) -> ana_l3::TUPE {
         ana_l3::TUPE(self.0 + 0x3549c)
     }
     pub fn VLAN(&self, index: u32) -> ana_l3::VLAN {
         assert!(index < 5120);
-        ana_l3::VLAN(self.0 + 0x0 + index * 0x8)
+        ana_l3::VLAN(self.0 + 0x0 + index * 0x20)
     }
     pub fn VLAN_ARP_L3MC_STICKY(&self) -> ana_l3::VLAN_ARP_L3MC_STICKY {
         ana_l3::VLAN_ARP_L3MC_STICKY(self.0 + 0x354d4)
     }
     pub fn VMID(&self, index: u32) -> ana_l3::VMID {
         assert!(index < 128);
-        ana_l3::VMID(self.0 + 0x34000 + index * 0x8)
+        ana_l3::VMID(self.0 + 0x34000 + index * 0x20)
     }
 }
 
 /// Assembler
 pub struct ASM(u32);
 impl ASM {
-
     pub fn CFG(&self) -> asm::CFG {
         asm::CFG(self.0 + 0x3508)
     }
@@ -591,7 +583,7 @@ impl ASM {
     }
     pub fn DEV_STATISTICS(&self, index: u32) -> asm::DEV_STATISTICS {
         assert!(index < 53);
-        asm::DEV_STATISTICS(self.0 + 0x0 + index * 0x40)
+        asm::DEV_STATISTICS(self.0 + 0x0 + index * 0x100)
     }
     pub fn LBK_MISC_CFG(&self) -> asm::LBK_MISC_CFG {
         asm::LBK_MISC_CFG(self.0 + 0x3994)
@@ -604,7 +596,7 @@ impl ASM {
     }
     pub fn PFC(&self, index: u32) -> asm::PFC {
         assert!(index < 55);
-        asm::PFC(self.0 + 0x4000 + index * 0x10)
+        asm::PFC(self.0 + 0x4000 + index * 0x40)
     }
     pub fn PORT_STATUS(&self) -> asm::PORT_STATUS {
         asm::PORT_STATUS(self.0 + 0x38b0)
@@ -617,7 +609,6 @@ impl ASM {
 /// \see vtss_target_DEV10G_e VAUI @ 12Gbps 2 lanes, XAUI @ 10 Gbps, XAUI @ 12 Gbps, VAUI @ 10Gbps 2 lanes and SGMII @ 10/100/1000/2500 Mbps
 pub struct DEV10G(u32);
 impl DEV10G {
-
     pub fn DEV_CFG_STATUS(&self) -> dev10g::DEV_CFG_STATUS {
         dev10g::DEV_CFG_STATUS(self.0 + 0x160)
     }
@@ -656,7 +647,6 @@ impl DEV10G {
 /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
 pub struct DEV1G(u32);
 impl DEV1G {
-
     pub fn DEV1G_INTR_CFG_STATUS(&self) -> dev1g::DEV1G_INTR_CFG_STATUS {
         dev1g::DEV1G_INTR_CFG_STATUS(self.0 + 0x94)
     }
@@ -683,7 +673,6 @@ impl DEV1G {
 /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
 pub struct DEV2G5(u32);
 impl DEV2G5 {
-
     pub fn DEV1G_INTR_CFG_STATUS(&self) -> dev2g5::DEV1G_INTR_CFG_STATUS {
         dev2g5::DEV1G_INTR_CFG_STATUS(self.0 + 0x94)
     }
@@ -710,7 +699,6 @@ impl DEV2G5 {
 /// General Configuration Block
 pub struct DEVCPU_GCB(u32);
 impl DEVCPU_GCB {
-
     pub fn CHIP_REGS(&self) -> devcpu_gcb::CHIP_REGS {
         devcpu_gcb::CHIP_REGS(self.0 + 0x0)
     }
@@ -725,7 +713,7 @@ impl DEVCPU_GCB {
     }
     pub fn MIIM(&self, index: u32) -> devcpu_gcb::MIIM {
         assert!(index < 3);
-        devcpu_gcb::MIIM(self.0 + 0xc8 + index * 0x9)
+        devcpu_gcb::MIIM(self.0 + 0xc8 + index * 0x24)
     }
     pub fn MIIM_READ_SCAN(&self) -> devcpu_gcb::MIIM_READ_SCAN {
         devcpu_gcb::MIIM_READ_SCAN(self.0 + 0x134)
@@ -735,7 +723,7 @@ impl DEVCPU_GCB {
     }
     pub fn SIO_CTRL(&self, index: u32) -> devcpu_gcb::SIO_CTRL {
         assert!(index < 3);
-        devcpu_gcb::SIO_CTRL(self.0 + 0x150 + index * 0x43)
+        devcpu_gcb::SIO_CTRL(self.0 + 0x150 + index * 0x10c)
     }
     pub fn SW_REGS(&self) -> devcpu_gcb::SW_REGS {
         devcpu_gcb::SW_REGS(self.0 + 0x20)
@@ -754,7 +742,6 @@ impl DEVCPU_GCB {
 /// CPU device origin
 pub struct DEVCPU_ORG(u32);
 impl DEVCPU_ORG {
-
     pub fn DEVCPU_ORG(&self) -> devcpu_org::DEVCPU_ORG {
         devcpu_org::DEVCPU_ORG(self.0 + 0x0)
     }
@@ -763,24 +750,22 @@ impl DEVCPU_ORG {
 /// DEVCPU Precision Timing Protocol Originator
 pub struct DEVCPU_PTP(u32);
 impl DEVCPU_PTP {
-
     pub fn PTP_CFG(&self) -> devcpu_ptp::PTP_CFG {
         devcpu_ptp::PTP_CFG(self.0 + 0xa0)
     }
     pub fn PTP_PINS(&self, index: u32) -> devcpu_ptp::PTP_PINS {
         assert!(index < 5);
-        devcpu_ptp::PTP_PINS(self.0 + 0x0 + index * 0x8)
+        devcpu_ptp::PTP_PINS(self.0 + 0x0 + index * 0x20)
     }
     pub fn PTP_STATUS(&self, index: u32) -> devcpu_ptp::PTP_STATUS {
         assert!(index < 3);
-        devcpu_ptp::PTP_STATUS(self.0 + 0xcc + index * 0x4)
+        devcpu_ptp::PTP_STATUS(self.0 + 0xcc + index * 0x10)
     }
 }
 
 /// CPU Device Queue System
 pub struct DEVCPU_QS(u32);
 impl DEVCPU_QS {
-
     pub fn INJ(&self) -> devcpu_qs::INJ {
         devcpu_qs::INJ(self.0 + 0x24)
     }
@@ -792,7 +777,6 @@ impl DEVCPU_QS {
 /// Disassembler
 pub struct DSM(u32);
 impl DSM {
-
     pub fn CFG(&self) -> dsm::CFG {
         dsm::CFG(self.0 + 0xc)
     }
@@ -816,60 +800,58 @@ impl DSM {
 /// Hierarchical Scheduler Configuration
 pub struct HSCH(u32);
 impl HSCH {
-
     pub fn HSCH_CFG(&self, index: u32) -> hsch::HSCH_CFG {
         assert!(index < 3400);
-        hsch::HSCH_CFG(self.0 + 0x0 + index * 0x8)
+        hsch::HSCH_CFG(self.0 + 0x0 + index * 0x20)
     }
     pub fn HSCH_DWRR(&self, index: u32) -> hsch::HSCH_DWRR {
         assert!(index < 64);
-        hsch::HSCH_DWRR(self.0 + 0x1ad00 + index * 0x1)
+        hsch::HSCH_DWRR(self.0 + 0x1ad00 + index * 0x4)
     }
     pub fn HSCH_INP_STATE(&self, index: u32) -> hsch::HSCH_INP_STATE {
         assert!(index < 2);
-        hsch::HSCH_INP_STATE(self.0 + 0x1ae00 + index * 0x1)
+        hsch::HSCH_INP_STATE(self.0 + 0x1ae00 + index * 0x4)
     }
     pub fn HSCH_L0_CFG(&self, index: u32) -> hsch::HSCH_L0_CFG {
         assert!(index < 3400);
-        hsch::HSCH_L0_CFG(self.0 + 0x38000 + index * 0x1)
+        hsch::HSCH_L0_CFG(self.0 + 0x38000 + index * 0x4)
     }
     pub fn HSCH_L1W(&self, index: u32) -> hsch::HSCH_L1W {
         assert!(index < 64);
-        hsch::HSCH_L1W(self.0 + 0x1c000 + index * 0x40)
+        hsch::HSCH_L1W(self.0 + 0x1c000 + index * 0x100)
     }
     pub fn HSCH_L1_CFG(&self, index: u32) -> hsch::HSCH_L1_CFG {
         assert!(index < 64);
-        hsch::HSCH_L1_CFG(self.0 + 0x1a900 + index * 0x1)
+        hsch::HSCH_L1_CFG(self.0 + 0x1a900 + index * 0x4)
     }
     pub fn HSCH_LEAK_LISTS(&self, index: u32) -> hsch::HSCH_LEAK_LISTS {
         assert!(index < 4);
-        hsch::HSCH_LEAK_LISTS(self.0 + 0x1b034 + index * 0x8)
+        hsch::HSCH_LEAK_LISTS(self.0 + 0x1b034 + index * 0x20)
     }
     pub fn HSCH_MISC(&self) -> hsch::HSCH_MISC {
         hsch::HSCH_MISC(self.0 + 0x1ae08)
     }
     pub fn HSCH_STATUS(&self, index: u32) -> hsch::HSCH_STATUS {
         assert!(index < 3400);
-        hsch::HSCH_STATUS(self.0 + 0x20000 + index * 0x4)
+        hsch::HSCH_STATUS(self.0 + 0x20000 + index * 0x10)
     }
     pub fn QSHP_ALLOC_CFG(&self, index: u32) -> hsch::QSHP_ALLOC_CFG {
         assert!(index < 3400);
-        hsch::QSHP_ALLOC_CFG(self.0 + 0x30000 + index * 0x2)
+        hsch::QSHP_ALLOC_CFG(self.0 + 0x30000 + index * 0x8)
     }
     pub fn QSHP_CFG(&self, index: u32) -> hsch::QSHP_CFG {
         assert!(index < 64);
-        hsch::QSHP_CFG(self.0 + 0x1aa00 + index * 0x2)
+        hsch::QSHP_CFG(self.0 + 0x1aa00 + index * 0x8)
     }
     pub fn QSHP_STATUS(&self, index: u32) -> hsch::QSHP_STATUS {
         assert!(index < 64);
-        hsch::QSHP_STATUS(self.0 + 0x1ac00 + index * 0x1)
+        hsch::QSHP_STATUS(self.0 + 0x1ac00 + index * 0x4)
     }
 }
 
 /// Register Collection for Control of Macros (SERDES1G, SERDES6G, LCPLL)
 pub struct HSIO(u32);
 impl HSIO {
-
     pub fn HW_CFGSTAT(&self) -> hsio::HW_CFGSTAT {
         hsio::HW_CFGSTAT(self.0 + 0x16c)
     }
@@ -881,19 +863,19 @@ impl HSIO {
     }
     pub fn PLL5G_BIST_CFG(&self, index: u32) -> hsio::PLL5G_BIST_CFG {
         assert!(index < 2);
-        hsio::PLL5G_BIST_CFG(self.0 + 0x48 + index * 0x4)
+        hsio::PLL5G_BIST_CFG(self.0 + 0x48 + index * 0x10)
     }
     pub fn PLL5G_BIST_STATUS(&self, index: u32) -> hsio::PLL5G_BIST_STATUS {
         assert!(index < 2);
-        hsio::PLL5G_BIST_STATUS(self.0 + 0x68 + index * 0x3)
+        hsio::PLL5G_BIST_STATUS(self.0 + 0x68 + index * 0xc)
     }
     pub fn PLL5G_CFG(&self, index: u32) -> hsio::PLL5G_CFG {
         assert!(index < 2);
-        hsio::PLL5G_CFG(self.0 + 0x0 + index * 0x7)
+        hsio::PLL5G_CFG(self.0 + 0x0 + index * 0x1c)
     }
     pub fn PLL5G_STATUS(&self, index: u32) -> hsio::PLL5G_STATUS {
         assert!(index < 2);
-        hsio::PLL5G_STATUS(self.0 + 0x38 + index * 0x2)
+        hsio::PLL5G_STATUS(self.0 + 0x38 + index * 0x8)
     }
     pub fn RCOMP_CFG(&self) -> hsio::RCOMP_CFG {
         hsio::RCOMP_CFG(self.0 + 0x80)
@@ -933,7 +915,6 @@ impl HSIO {
 /// VCore Configuration
 pub struct ICPU_CFG(u32);
 impl ICPU_CFG {
-
     pub fn CPU_SYSTEM_CTRL(&self) -> icpu_cfg::CPU_SYSTEM_CTRL {
         icpu_cfg::CPU_SYSTEM_CTRL(self.0 + 0x0)
     }
@@ -975,7 +956,6 @@ impl ICPU_CFG {
 /// Learn block
 pub struct LRN(u32);
 impl LRN {
-
     pub fn COMMON(&self) -> lrn::COMMON {
         lrn::COMMON(self.0 + 0x0)
     }
@@ -984,7 +964,6 @@ impl LRN {
 /// PCIe Endpoint Configuration Space
 pub struct PCIE(u32);
 impl PCIE {
-
     pub fn PCIE_AER_CAP(&self) -> pcie::PCIE_AER_CAP {
         pcie::PCIE_AER_CAP(self.0 + 0x100)
     }
@@ -1008,7 +987,6 @@ impl PCIE {
 /// \see vtss_target_PCS_10GBASE_R_e PCS configuration and status registers and counters
 pub struct PCS10G_BR(u32);
 impl PCS10G_BR {
-
     pub fn EEE_STATS(&self) -> pcs10g_br::EEE_STATS {
         pcs10g_br::EEE_STATS(self.0 + 0xa8)
     }
@@ -1044,7 +1022,6 @@ impl PCS10G_BR {
 /// Queue System Configuration
 pub struct QFWD(u32);
 impl QFWD {
-
     pub fn SYSTEM(&self) -> qfwd::SYSTEM {
         qfwd::SYSTEM(self.0 + 0x0)
     }
@@ -1053,24 +1030,22 @@ impl QFWD {
 /// Queue System Configuration
 pub struct QRES(u32);
 impl QRES {
-
     pub fn RES_CTRL(&self, index: u32) -> qres::RES_CTRL {
         assert!(index < 5120);
-        qres::RES_CTRL(self.0 + 0x0 + index * 0x4)
+        qres::RES_CTRL(self.0 + 0x0 + index * 0x10)
     }
     pub fn RES_QOS_ADV(&self) -> qres::RES_QOS_ADV {
         qres::RES_QOS_ADV(self.0 + 0x14120)
     }
     pub fn RES_WRED(&self, index: u32) -> qres::RES_WRED {
         assert!(index < 72);
-        qres::RES_WRED(self.0 + 0x14000 + index * 0x1)
+        qres::RES_WRED(self.0 + 0x14000 + index * 0x4)
     }
 }
 
 /// Queue System Configuration
 pub struct QSYS(u32);
 impl QSYS {
-
     pub fn CALCFG(&self) -> qsys::CALCFG {
         qsys::CALCFG(self.0 + 0x3d4)
     }
@@ -1100,7 +1075,6 @@ impl QSYS {
 /// Rewriter
 pub struct REW(u32);
 impl REW {
-
     pub fn COMMON(&self) -> rew::COMMON {
         rew::COMMON(self.0 + 0x53c00)
     }
@@ -1109,34 +1083,34 @@ impl REW {
     }
     pub fn ENCAP(&self, index: u32) -> rew::ENCAP {
         assert!(index < 1024);
-        rew::ENCAP(self.0 + 0x0 + index * 0x20)
+        rew::ENCAP(self.0 + 0x0 + index * 0x80)
     }
     pub fn ISDX_TBL(&self, index: u32) -> rew::ISDX_TBL {
         assert!(index < 4096);
-        rew::ISDX_TBL(self.0 + 0x20000 + index * 0x4)
+        rew::ISDX_TBL(self.0 + 0x20000 + index * 0x10)
     }
     pub fn MAP_RES_A(&self, index: u32) -> rew::MAP_RES_A {
         assert!(index < 4096);
-        rew::MAP_RES_A(self.0 + 0x30000 + index * 0x2)
+        rew::MAP_RES_A(self.0 + 0x30000 + index * 0x8)
     }
     pub fn MAP_RES_B(&self, index: u32) -> rew::MAP_RES_B {
         assert!(index < 4096);
-        rew::MAP_RES_B(self.0 + 0x38000 + index * 0x2)
+        rew::MAP_RES_B(self.0 + 0x38000 + index * 0x8)
     }
     pub fn MIP_TBL(&self, index: u32) -> rew::MIP_TBL {
         assert!(index < 1024);
-        rew::MIP_TBL(self.0 + 0x40000 + index * 0x8)
+        rew::MIP_TBL(self.0 + 0x40000 + index * 0x20)
     }
     pub fn OAM_PDU_MOD_CONT(&self, index: u32) -> rew::OAM_PDU_MOD_CONT {
         assert!(index < 106);
-        rew::OAM_PDU_MOD_CONT(self.0 + 0x56000 + index * 0x8)
+        rew::OAM_PDU_MOD_CONT(self.0 + 0x56000 + index * 0x20)
     }
     pub fn PDU_MOD_CFG(&self) -> rew::PDU_MOD_CFG {
         rew::PDU_MOD_CFG(self.0 + 0x53e74)
     }
     pub fn PORT(&self, index: u32) -> rew::PORT {
         assert!(index < 53);
-        rew::PORT(self.0 + 0x50000 + index * 0x40)
+        rew::PORT(self.0 + 0x50000 + index * 0x100)
     }
     pub fn PTP_CTRL(&self) -> rew::PTP_CTRL {
         rew::PTP_CTRL(self.0 + 0x53508)
@@ -1149,22 +1123,21 @@ impl REW {
     }
     pub fn VMID(&self, index: u32) -> rew::VMID {
         assert!(index < 128);
-        rew::VMID(self.0 + 0x53600 + index * 0x1)
+        rew::VMID(self.0 + 0x53600 + index * 0x4)
     }
     pub fn VOE_PORT_LM_CNT(&self, index: u32) -> rew::VOE_PORT_LM_CNT {
         assert!(index < 424);
-        rew::VOE_PORT_LM_CNT(self.0 + 0x54000 + index * 0x4)
+        rew::VOE_PORT_LM_CNT(self.0 + 0x54000 + index * 0x10)
     }
     pub fn VOE_SRV_LM_CNT(&self, index: u32) -> rew::VOE_SRV_LM_CNT {
         assert!(index < 8192);
-        rew::VOE_SRV_LM_CNT(self.0 + 0x48000 + index * 0x1)
+        rew::VOE_SRV_LM_CNT(self.0 + 0x48000 + index * 0x4)
     }
 }
 
 /// Shared Bus Arbiter
 pub struct SBA(u32);
 impl SBA {
-
     pub fn SBA(&self) -> sba::SBA {
         sba::SBA(self.0 + 0x0)
     }
@@ -1173,7 +1146,6 @@ impl SBA {
 /// SI Master Controller
 pub struct SIMC(u32);
 impl SIMC {
-
     pub fn SIMC(&self) -> simc::SIMC {
         simc::SIMC(self.0 + 0x0)
     }
@@ -1182,7 +1154,6 @@ impl SIMC {
 /// \see vtss_target_TWI_e Two-Wire Interface Controller
 pub struct TWI(u32);
 impl TWI {
-
     pub fn TWI(&self) -> twi::TWI {
         twi::TWI(self.0 + 0x0)
     }
@@ -1191,7 +1162,6 @@ impl TWI {
 /// \see vtss_target_TWI_e Two-Wire Interface Controller
 pub struct TWI2(u32);
 impl TWI2 {
-
     pub fn TWI(&self) -> twi2::TWI {
         twi2::TWI(self.0 + 0x0)
     }
@@ -1200,7 +1170,6 @@ impl TWI2 {
 /// \see vtss_target_UART_e UART Controller
 pub struct UART(u32);
 impl UART {
-
     pub fn UART(&self) -> uart::UART {
         uart::UART(self.0 + 0x0)
     }
@@ -1209,7 +1178,6 @@ impl UART {
 /// \see vtss_target_UART_e UART Controller
 pub struct UART2(u32);
 impl UART2 {
-
     pub fn UART(&self) -> uart2::UART {
         uart2::UART(self.0 + 0x0)
     }
@@ -1218,14 +1186,13 @@ impl UART2 {
 /// \see vtss_target_VAUI_CHANNEL_e Vaui channel configuration and status register set
 pub struct VAUI0(u32);
 impl VAUI0 {
-
     pub fn ANEG_CFG(&self, index: u32) -> vaui0::ANEG_CFG {
         assert!(index < 8);
-        vaui0::ANEG_CFG(self.0 + 0x8 + index * 0x5)
+        vaui0::ANEG_CFG(self.0 + 0x8 + index * 0x14)
     }
     pub fn ANEG_STATUS(&self, index: u32) -> vaui0::ANEG_STATUS {
         assert!(index < 8);
-        vaui0::ANEG_STATUS(self.0 + 0xa8 + index * 0x3)
+        vaui0::ANEG_STATUS(self.0 + 0xa8 + index * 0xc)
     }
     pub fn VAUI_CHANNEL_CFG(&self) -> vaui0::VAUI_CHANNEL_CFG {
         vaui0::VAUI_CHANNEL_CFG(self.0 + 0x0)
@@ -1235,14 +1202,13 @@ impl VAUI0 {
 /// \see vtss_target_VAUI_CHANNEL_e Vaui channel configuration and status register set
 pub struct VAUI1(u32);
 impl VAUI1 {
-
     pub fn ANEG_CFG(&self, index: u32) -> vaui1::ANEG_CFG {
         assert!(index < 8);
-        vaui1::ANEG_CFG(self.0 + 0x8 + index * 0x5)
+        vaui1::ANEG_CFG(self.0 + 0x8 + index * 0x14)
     }
     pub fn ANEG_STATUS(&self, index: u32) -> vaui1::ANEG_STATUS {
         assert!(index < 8);
-        vaui1::ANEG_STATUS(self.0 + 0xa8 + index * 0x3)
+        vaui1::ANEG_STATUS(self.0 + 0xa8 + index * 0xc)
     }
     pub fn VAUI_CHANNEL_CFG(&self) -> vaui1::VAUI_CHANNEL_CFG {
         vaui1::VAUI_CHANNEL_CFG(self.0 + 0x0)
@@ -1252,7 +1218,6 @@ impl VAUI1 {
 /// \see vtss_target_VCAP_CORE_e Vitesse Content Aware Processor
 pub struct VCAP_ES0(u32);
 impl VCAP_ES0 {
-
     pub fn TCAM_BIST(&self) -> vcap_es0::TCAM_BIST {
         vcap_es0::TCAM_BIST(self.0 + 0x3c0)
     }
@@ -1276,7 +1241,6 @@ impl VCAP_ES0 {
 /// \see vtss_target_VCAP_CORE_e Vitesse Content Aware Processor
 pub struct VCAP_SUPER(u32);
 impl VCAP_SUPER {
-
     pub fn TCAM_BIST(&self) -> vcap_super::TCAM_BIST {
         vcap_super::TCAM_BIST(self.0 + 0x3c0)
     }
@@ -1300,10 +1264,9 @@ impl VCAP_SUPER {
 /// The Vitesse OAM MEP Processor (VOP) implements the HW support for implementing OAM MEPs. The HW support for implementing an OAM MEP is implemented in a sub block, referred to as: Vitesse OAM Endpoint (VOE). The VOEs can be configured for either Ethernet PDU processing or MPLS-TP PDU processing. This CSR target us used for configuring VOEs configured for Ethernet processing. The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs (10 front ports + NPI) VOEs are configured for either Ethernet or MPLS-TP support using the following register: * VOP:VOE_CONF_REG:VOE_MISC_CONFIG.MPLS_OAM_ENA Use CSR target VOP to configure VOEs configured for Ethernet. To configure VOEs configured for MPLS-TP, use CSR target: VOP_MPLS. For VOEs configured for MPLS-TP, the following register groups are invalid: * VOP:VOE_CONF:* * VOP:VOE_STAT:*
 pub struct VOP(u32);
 impl VOP {
-
     pub fn ANA_COSID_MAP_CONF(&self, index: u32) -> vop::ANA_COSID_MAP_CONF {
         assert!(index < 1024);
-        vop::ANA_COSID_MAP_CONF(self.0 + 0x48000 + index * 0x2)
+        vop::ANA_COSID_MAP_CONF(self.0 + 0x48000 + index * 0x8)
     }
     pub fn COMMON(&self) -> vop::COMMON {
         vop::COMMON(self.0 + 0x43508)
@@ -1313,67 +1276,65 @@ impl VOP {
     }
     pub fn PORT_COSID_MAP_CONF(&self, index: u32) -> vop::PORT_COSID_MAP_CONF {
         assert!(index < 53);
-        vop::PORT_COSID_MAP_CONF(self.0 + 0x46400 + index * 0x4)
+        vop::PORT_COSID_MAP_CONF(self.0 + 0x46400 + index * 0x10)
     }
     pub fn RAM_CTRL(&self) -> vop::RAM_CTRL {
         vop::RAM_CTRL(self.0 + 0x43638)
     }
     pub fn REW_COSID_MAP_CONF(&self, index: u32) -> vop::REW_COSID_MAP_CONF {
         assert!(index < 1024);
-        vop::REW_COSID_MAP_CONF(self.0 + 0x4a000 + index * 0x2)
+        vop::REW_COSID_MAP_CONF(self.0 + 0x4a000 + index * 0x8)
     }
     pub fn SAM_COSID_SEQ_CNT(&self, index: u32) -> vop::SAM_COSID_SEQ_CNT {
         assert!(index < 32);
-        vop::SAM_COSID_SEQ_CNT(self.0 + 0x4c000 + index * 0x40)
+        vop::SAM_COSID_SEQ_CNT(self.0 + 0x4c000 + index * 0x100)
     }
     pub fn VOE_CCM_LM(&self, index: u32) -> vop::VOE_CCM_LM {
         assert!(index < 1077);
-        vop::VOE_CCM_LM(self.0 + 0x44000 + index * 0x2)
+        vop::VOE_CCM_LM(self.0 + 0x44000 + index * 0x8)
     }
     pub fn VOE_CONF(&self, index: u32) -> vop::VOE_CONF {
         assert!(index < 1077);
-        vop::VOE_CONF(self.0 + 0x0 + index * 0x40)
+        vop::VOE_CONF(self.0 + 0x0 + index * 0x100)
     }
     pub fn VOE_CONF_REG(&self, index: u32) -> vop::VOE_CONF_REG {
         assert!(index < 1077);
-        vop::VOE_CONF_REG(self.0 + 0x4e000 + index * 0x1)
+        vop::VOE_CONF_REG(self.0 + 0x4e000 + index * 0x4)
     }
     pub fn VOE_CONTEXT_ANA(&self, index: u32) -> vop::VOE_CONTEXT_ANA {
         assert!(index < 110);
-        vop::VOE_CONTEXT_ANA(self.0 + 0x47000 + index * 0x8)
+        vop::VOE_CONTEXT_ANA(self.0 + 0x47000 + index * 0x20)
     }
     pub fn VOE_CONTEXT_REW(&self, index: u32) -> vop::VOE_CONTEXT_REW {
         assert!(index < 53);
-        vop::VOE_CONTEXT_REW(self.0 + 0x43800 + index * 0x8)
+        vop::VOE_CONTEXT_REW(self.0 + 0x43800 + index * 0x20)
     }
     pub fn VOE_CRC_ERR(&self, index: u32) -> vop::VOE_CRC_ERR {
         assert!(index < 1077);
-        vop::VOE_CRC_ERR(self.0 + 0x50000 + index * 0x1)
+        vop::VOE_CRC_ERR(self.0 + 0x50000 + index * 0x4)
     }
     pub fn VOE_STAT(&self, index: u32) -> vop::VOE_STAT {
         assert!(index < 1077);
-        vop::VOE_STAT(self.0 + 0x80000 + index * 0x20)
+        vop::VOE_STAT(self.0 + 0x80000 + index * 0x80)
     }
 }
 
 /// The Vitesse OAM MEP Processor (VOP) implements the HW support for implementing OAM MEPs. The HW support for implementing an OAM MEP is implemented in a sub block, referred to as: Vitesse OAM Endpoint (VOE). The VOEs can be configured for either Ethernet PDU processing or MPLS-TP PDU processing. This CSR target us used for configuring VOEs configured for MPLS-TP processing. The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs (11 front ports) VOEs are configured for either Ethernet or MPLS-TP support using the following register: * VOP:VOE_CONF_REG:VOE_MISC_CONFIG.MPLS_OAM_ENA Use CSR target VOP_MPLS to configure VOEs configured for MPLS_TP. To configure VOEs configured for Ethernet use CSR target: VOP. For VOEs configured for Ethernet, the following register groups are invalid: * VOP:CONF_MPLS:* * VOP:STAT_MPLS:* Note that the VOP_MPLS CSR target shares the same physical RAM as VOP CSR target. The RAM is initialized to the VOP CSR target values (Ethernet VOE). Hence the initial values listed in the VOP_MPLS are not valid. Prior to using a VOE configured for MPLS, all REGISTERS MUST BE INITIALIZED.
 pub struct VOP_MPLS(u32);
 impl VOP_MPLS {
-
     pub fn VOE_CONF_MPLS(&self, index: u32) -> vop_mpls::VOE_CONF_MPLS {
         assert!(index < 1077);
-        vop_mpls::VOE_CONF_MPLS(self.0 + 0x40000 + index * 0x10)
+        vop_mpls::VOE_CONF_MPLS(self.0 + 0x40000 + index * 0x40)
     }
     pub fn VOE_STAT_MPLS(&self, index: u32) -> vop_mpls::VOE_STAT_MPLS {
         assert!(index < 1077);
-        vop_mpls::VOE_STAT_MPLS(self.0 + 0x0 + index * 0x20)
+        vop_mpls::VOE_STAT_MPLS(self.0 + 0x0 + index * 0x80)
     }
 }
 
 /// \see vtss_target_SD10G65_e Configuration and status for high speed macro.
 pub struct XGANA(u32);
 impl XGANA {
-
     pub fn SD10G65_DES(&self) -> xgana::SD10G65_DES {
         xgana::SD10G65_DES(self.0 + 0x0)
     }
@@ -1400,7 +1361,6 @@ impl XGANA {
 /// \see vtss_target_SD10G65_DIG_e Configuration and status of digital peripherals for high speed macro.
 pub struct XGDIG(u32);
 impl XGDIG {
-
     pub fn SD10G65_APC(&self) -> xgdig::SD10G65_APC {
         xgdig::SD10G65_APC(self.0 + 0x0)
     }
@@ -1421,7 +1381,6 @@ impl XGDIG {
 /// \see vtss_target_KR_DEV1_e
 pub struct XGKR0(u32);
 impl XGKR0 {
-
     pub fn APC_TMR(&self) -> xgkr0::APC_TMR {
         xgkr0::APC_TMR(self.0 + 0x80)
     }
@@ -1541,7 +1500,6 @@ impl XGKR0 {
 /// \see vtss_target_KR_DEV7_e
 pub struct XGKR1(u32);
 impl XGKR1 {
-
     pub fn AN_CFG0(&self) -> xgkr1::AN_CFG0 {
         xgkr1::AN_CFG0(self.0 + 0x48)
     }
@@ -1616,7 +1574,6 @@ impl XGKR1 {
 /// \see vtss_target_XFI_SHELL_e XFI shell
 pub struct XGXFI(u32);
 impl XGXFI {
-
     pub fn XFI_CONTROL(&self) -> xgxfi::XFI_CONTROL {
         xgxfi::XFI_CONTROL(self.0 + 0x0)
     }
@@ -1625,45 +1582,43 @@ impl XGXFI {
 /// Queue Transfer Configuration
 pub struct XQS(u32);
 impl XQS {
-
     pub fn QLIMIT_MON(&self, index: u32) -> xqs::QLIMIT_MON {
         assert!(index < 4);
-        xqs::QLIMIT_MON(self.0 + 0x1910 + index * 0x3)
+        xqs::QLIMIT_MON(self.0 + 0x1910 + index * 0xc)
     }
     pub fn QLIMIT_PORT(&self, index: u32) -> xqs::QLIMIT_PORT {
         assert!(index < 57);
-        xqs::QLIMIT_PORT(self.0 + 0x1638 + index * 0x2)
+        xqs::QLIMIT_PORT(self.0 + 0x1638 + index * 0x8)
     }
     pub fn QLIMIT_QUEUE(&self, index: u32) -> xqs::QLIMIT_QUEUE {
         assert!(index < 4);
-        xqs::QLIMIT_QUEUE(self.0 + 0x1450 + index * 0x1)
+        xqs::QLIMIT_QUEUE(self.0 + 0x1450 + index * 0x4)
     }
     pub fn QLIMIT_SE(&self, index: u32) -> xqs::QLIMIT_SE {
         assert!(index < 4);
-        xqs::QLIMIT_SE(self.0 + 0x1420 + index * 0x2)
+        xqs::QLIMIT_SE(self.0 + 0x1420 + index * 0x8)
     }
     pub fn QLIMIT_SHR(&self, index: u32) -> xqs::QLIMIT_SHR {
         assert!(index < 4);
-        xqs::QLIMIT_SHR(self.0 + 0x1800 + index * 0x11)
+        xqs::QLIMIT_SHR(self.0 + 0x1800 + index * 0x44)
     }
     pub fn QMAP_QOS_TBL(&self, index: u32) -> xqs::QMAP_QOS_TBL {
         assert!(index < 4);
-        xqs::QMAP_QOS_TBL(self.0 + 0x1400 + index * 0x2)
+        xqs::QMAP_QOS_TBL(self.0 + 0x1400 + index * 0x8)
     }
     pub fn QMAP_SE_TBL(&self, index: u32) -> xqs::QMAP_SE_TBL {
         assert!(index < 4);
-        xqs::QMAP_SE_TBL(self.0 + 0x1440 + index * 0x1)
+        xqs::QMAP_SE_TBL(self.0 + 0x1440 + index * 0x4)
     }
     pub fn QMAP_VPORT_TBL(&self, index: u32) -> xqs::QMAP_VPORT_TBL {
         assert!(index < 4);
-        xqs::QMAP_VPORT_TBL(self.0 + 0x1000 + index * 0x40)
+        xqs::QMAP_VPORT_TBL(self.0 + 0x1000 + index * 0x100)
     }
     pub fn STAT(&self, index: u32) -> xqs::STAT {
         assert!(index < 1024);
-        xqs::STAT(self.0 + 0x0 + index * 0x1)
+        xqs::STAT(self.0 + 0x0 + index * 0x4)
     }
     pub fn SYSTEM(&self) -> xqs::SYSTEM {
         xqs::SYSTEM(self.0 + 0x1460)
     }
 }
-

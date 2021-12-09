@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct STAT_GLOBAL_EVENT_MASK(u32);
 impl STAT_GLOBAL_EVENT_MASK {
     /// This value stores the event mask which indicates the counter of all flows to count certain events. If set to '1' the respective event is not filtered and can trigger the counter. If set to '0' the respective event is filtered and the counter will treat the frame as if no event has occurred. Which type of frame is counted is defined in: STAT_CFG, CFG_CNT_FRM_TYPE. The following events apply to irleg stat: Bit0: Count acl_discarded traffic Bit1: Count received IP UC traffic Bit2: Count received IP MC traffic Bit3: Count ip_uc_routed traffic Bit4: Count ip_mc_routed traffic Bit5: Count ip_mc_rpf_discarded traffic Bit6: Count ip_ttl_discarded traffic
-
     ///
-
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
     pub fn global_event_mask(&self) -> u32 {
         self.0 & 0x7f

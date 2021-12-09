@@ -188,9 +188,7 @@ impl FDMA_CH_INJ_TOKEN_TICK_CNT {
 pub struct FDMA_CH_INJ_TOKEN_TICK_RLD(u32);
 impl FDMA_CH_INJ_TOKEN_TICK_RLD {
     /// Automatic incrementing of the token counter is enabled by setting this field different from 0. This field holds the reload value for the ICPU_CFG::FDMA_CH_INJ_TOKEN_TICK_CNT. Note: When changing the value of this field the same value should also be written to the ICPU_CH_INJ_TOKEN_TICK_CNT field, this is needed for speeding up token counter increments when changing from a high reload value to a low reload value.
-
     ///
-
     /// 0: Token tick counter is disabled n: Add one token every n * 200ns clock cycles
     pub fn ch_inj_token_tick_rld(&self) -> u32 {
         self.0
@@ -218,9 +216,7 @@ impl FDMA_CH_SAFE {
 pub struct FDMA_CH_STAT(u32);
 impl FDMA_CH_STAT {
     /// Shows status for all FDMA channels, there is one bit per channel.
-
     ///
-
     /// 0:Disabled 1:Updating, or Active
     pub fn ch_stat(&self) -> u32 {
         self.0 & 0x3ff
@@ -379,9 +375,7 @@ impl FDMA_EVT_ERR {
 pub struct FDMA_EVT_ERR_CODE(u32);
 impl FDMA_EVT_ERR_CODE {
     /// This field shows information about Error-events that has been recorded by the FDMA, this can be used for software development and debugging. If multiple errors happen in succession, only the newest of the err-codes is shown.
-
     ///
-
     /// 0:Default (no error has occurred) 1:CH_ACTIVATE set for channel w. DCB_LLP==NULL 2:Got DCB w. DATAP==NULL 3:Got extraction DCB w. DATAL==0 4:Got extraction DCB w. DATAL<=BLOCKO 5:Got injection DCB w. BLOCKL==0 6:Got injection DCB w. SOF for already active channel 7:Activate attempted for channel w. error indication. 8:Activate attempted for channel enabled for manual mode. 9:Manual mode enabled for channel in active FDMA mode.
     pub fn evt_err_code(&self) -> u32 {
         self.0 & 0xf
@@ -397,9 +391,7 @@ impl FDMA_EVT_ERR_CODE {
 pub struct FDMA_GCFG(u32);
 impl FDMA_GCFG {
     /// Injection resync FIFO fill-level watermark, when exceeded backpressure will be asserted towards SBA. The maximum fill-level for the FIFO is reported via ICPU_CFG::FDMA_GSTAT.INJ_RF_HIGH.
-
     ///
-
     /// n: backpressure when n+1 or more words in buffer.
     pub fn inj_rf_wm(&self) -> u32 {
         (self.0 & 0xf80) >> 7
@@ -440,9 +432,7 @@ impl FDMA_GCFG {
         self.0 |= value;
     }
     /// Extraction resync fifo fill-level watermark, when exceeded backpressure will be asserted towards towards QS. The maximum fill-level for the fifo is reported via ICPU_CFG::FDMA_GSTAT.XTR_RF_HIGH. This field must not be modified at the same time as frames are extracted through the FDMA.
-
     ///
-
     /// n: backpressure when n+1 or more words in buffer.
     pub fn xtr_rf_wm(&self) -> u32 {
         (self.0 & 0x78) >> 3

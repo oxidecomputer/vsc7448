@@ -30,7 +30,8 @@ use derive_more::{From, Into};
 /// Maximum amount of congested scheduling elements in the share
 #[derive(From, Into)]
 pub struct QLIMIT_CONG_CNT_MAX_STAT(u32);
-impl QLIMIT_CONG_CNT_MAX_STAT {    pub fn qlimit_cong_cnt_max(&self) -> u32 {
+impl QLIMIT_CONG_CNT_MAX_STAT {
+    pub fn qlimit_cong_cnt_max(&self) -> u32 {
         self.0 & 0xfff
     }
     pub fn set_qlimit_cong_cnt_max(&mut self, value: u32) {
@@ -58,7 +59,8 @@ impl QLIMIT_MON_CFG {
 /// Current per SE watermark
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_WM_STAT(u32);
-impl QLIMIT_SHR_WM_STAT {    pub fn qlimit_shr_wm(&self) -> u32 {
+impl QLIMIT_SHR_WM_STAT {
+    pub fn qlimit_shr_wm(&self) -> u32 {
         self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_wm(&mut self, value: u32) {

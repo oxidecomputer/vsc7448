@@ -39,7 +39,8 @@ impl QLIMIT_CONG_CNT_STAT {
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
-    }    pub fn qlimit_cong_cnt(&self) -> u32 {
+    }
+    pub fn qlimit_cong_cnt(&self) -> u32 {
         (self.0 & 0x7ff8000) >> 15
     }
     pub fn set_qlimit_cong_cnt(&mut self, value: u32) {
@@ -78,7 +79,8 @@ impl QLIMIT_DIS_CFG {
 /// Size of an active queue
 #[derive(From, Into)]
 pub struct QLIMIT_QUE_ACT_CFG(u32);
-impl QLIMIT_QUE_ACT_CFG {    pub fn qlimit_que_act(&self) -> u32 {
+impl QLIMIT_QUE_ACT_CFG {
+    pub fn qlimit_que_act(&self) -> u32 {
         self.0 & 0x3f
     }
     pub fn set_qlimit_que_act(&mut self, value: u32) {
@@ -90,7 +92,8 @@ impl QLIMIT_QUE_ACT_CFG {    pub fn qlimit_que_act(&self) -> u32 {
 /// Size of a congested queue
 #[derive(From, Into)]
 pub struct QLIMIT_QUE_CONG_CFG(u32);
-impl QLIMIT_QUE_CONG_CFG {    pub fn qlimit_que_cong(&self) -> u32 {
+impl QLIMIT_QUE_CONG_CFG {
+    pub fn qlimit_que_cong(&self) -> u32 {
         self.0 & 0x3f
     }
     pub fn set_qlimit_que_cong(&mut self, value: u32) {
@@ -144,7 +147,8 @@ impl QLIMIT_SHR_CTOP_CFG {
 /// Current use of the shared area
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_FILL_STAT(u32);
-impl QLIMIT_SHR_FILL_STAT {    pub fn qlimit_shr_fill(&self) -> u32 {
+impl QLIMIT_SHR_FILL_STAT {
+    pub fn qlimit_shr_fill(&self) -> u32 {
         self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_fill(&mut self, value: u32) {

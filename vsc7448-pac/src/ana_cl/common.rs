@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct ADV_CL_CFG(u32);
 impl ADV_CL_CFG {
     /// VCAP_CLM key type used for frame types other than MPLS and IPv4/IPv6.
-
     ///
-
     /// 0: No Lookup 1: MLL 2: SGL_MLBS 3: DBL_MLBS 4: TRI_MLBS 5: TRI_VID 6: LL_FULL 7: NORMAL with SRC information 8: NORMAL with DST information 9: NORMAL_7TUPLE 10 NORMAL_5TUPLE_IP4 11 PURE_5TUPLE_IP4 15: No Lookup other: reserved
     pub fn etype_clm_key_sel(&self) -> u32 {
         (self.0 & 0x1e) >> 1
@@ -48,9 +46,7 @@ impl ADV_CL_CFG {
         self.0 |= value;
     }
     /// VCAP_CLM key type used for IPv4 frames.
-
     ///
-
     /// 0: Follow ETYPE_CLM_KEY_SEL selection 1: MLL 2: SGL_MLBS 3: DBL_MLBS 4: TRI_MLBS 5: TRI_VID 6: LL_FULL 7: NORMAL with SRC information 8: NORMAL with DST information 9: NORMAL_7TUPLE 10 NORMAL_5TUPLE_IP4 11 PURE_5TUPLE_IP4 15: No Lookup other: reserved
     pub fn ip4_clm_key_sel(&self) -> u32 {
         (self.0 & 0x1e00000) >> 21
@@ -62,9 +58,7 @@ impl ADV_CL_CFG {
         self.0 |= value;
     }
     /// VCAP_CLM key type used for IPv6 frames.
-
     ///
-
     /// 0: Follow ETYPE_CLM_KEY_SEL selection 1: MLL 2: SGL_MLBS 3: DBL_MLBS 4: TRI_MLBS 5: TRI_VID 6: LL_FULL 7: NORMAL with SRC information 8: NORMAL with DST information 9: NORMAL_7TUPLE 10 NORMAL_5TUPLE_IP4 11 PURE_5TUPLE_IP4 15: No Lookup other: reserved
     pub fn ip6_clm_key_sel(&self) -> u32 {
         (self.0 & 0x1e0000) >> 17
@@ -76,9 +70,7 @@ impl ADV_CL_CFG {
         self.0 |= value;
     }
     /// Enable VCAP_CLM lookup.
-
     ///
-
     /// 1: Enable 0: Disable
     pub fn lookup_ena(&self) -> u32 {
         self.0 & 0x1
@@ -89,9 +81,7 @@ impl ADV_CL_CFG {
         self.0 |= value;
     }
     /// VCAP_CLM key type used when current protocol layer is MPLS label stack.
-
     ///
-
     /// 0: Follow ETYPE_CLM_KEY_SEL selection 2: SGL_MLBS 3: DBL_MLBS 4: TRI_MLBS 15: No Lookup other: reserved
     pub fn mlbs_clm_key_sel(&self) -> u32 {
         (self.0 & 0x1e0) >> 5
@@ -103,9 +93,7 @@ impl ADV_CL_CFG {
         self.0 |= value;
     }
     /// VCAP_CLM key type used for multicast MPLS frames (EtherType = 0x8847).
-
     ///
-
     /// 0: Follow ETYPE_CLM_KEY_SEL selection 1: MLL 2: SGL_MLBS 3: DBL_MLBS 4: TRI_MLBS 5: TRI_VID 6: LL_FULL 7: NORMAL with SRC information 8: NORMAL with DST information 9: NORMAL_7TUPLE 10 NORMAL_5TUPLE_IP4 11 PURE_5TUPLE_IP4 15: No Lookup other: reserved
     pub fn mpls_mc_clm_key_sel(&self) -> u32 {
         (self.0 & 0x1e00) >> 9
@@ -117,9 +105,7 @@ impl ADV_CL_CFG {
         self.0 |= value;
     }
     /// VCAP_CLM key type used for unicast MPLS frames (EtherType = 0x8847).
-
     ///
-
     /// 0: Follow ETYPE_CLM_KEY_SEL selection 1: MLL 2: SGL_MLBS 3: DBL_MLBS 4: TRI_MLBS 5: TRI_VID 6: LL_FULL 7: NORMAL with SRC information 8: NORMAL with DST information 9: NORMAL_7TUPLE 10 NORMAL_5TUPLE_IP4 11 PURE_5TUPLE_IP4 15: No Lookup other: reserved
     pub fn mpls_uc_clm_key_sel(&self) -> u32 {
         (self.0 & 0x1e000) >> 13
@@ -131,9 +117,7 @@ impl ADV_CL_CFG {
         self.0 |= value;
     }
     /// If set, the VCAP_CLM lookup uses the basic classified DSCP instead of the value from the frame.
-
     ///
-
     /// 1: Enable 0: Disable
     pub fn use_cl_dscp_ena(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -145,9 +129,7 @@ impl ADV_CL_CFG {
         self.0 |= value;
     }
     /// If set, the VCAP_CLM lookup uses the basic classified VID, DEI and PCP instead of the values from the frame.
-
     ///
-
     /// 1: Enable 0: Disable
     pub fn use_cl_tci0_ena(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -166,9 +148,7 @@ impl ADV_CL_CFG {
 pub struct ADV_RNG_CTRL(u32);
 impl ADV_RNG_CTRL {
     /// Selected frame field is matched against the range defined in ANA_CL::ADV_RNG_VALUE_CFG.
-
     ///
-
     /// 0: Idle (no matching) 1: TCP/UDP destination port is matched against range 2: TCP/UDP source port is matched against range 3: TCP/UDP destination and source ports are matched against range. There is a match if either of them matches. 4: Basic classified VID is matched against range 5: Basic classified DSCP value is matched against range 6: EtherType is matched against range.
     pub fn rng_type_sel(&self) -> u32 {
         self.0 & 0x7
@@ -210,9 +190,7 @@ impl ADV_RNG_VALUE_CFG {
 pub struct AGGR_CFG(u32);
 impl AGGR_CFG {
     /// Allow destination MAC address to contribute to the aggregation code calculation.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_dmac_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -224,9 +202,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Allow reversed DMAC address contribute to the aggregation code calculation.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_dmac_reversed_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -238,9 +214,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Allow source and destination IPv4 addresses to contribute to the aggregation code calculation.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_ip4_sipdip_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -252,9 +226,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Allow IPv4 UDP/TCP destination and source port numbers to contribute to the aggregation code calculation.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_ip4_tcpudp_port_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -266,9 +238,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Allow IPv6 flow label to contribute to the aggregation code calculation.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_ip6_flow_lbl_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -280,9 +250,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Enable source and destination IPv6 addresses to contribute to the aggregation code calculation.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_ip6_sipdip_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -294,9 +262,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Allow IPv6 UDP/TCP destination and source port numbers to contribute to the aggregation code calculation.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_ip6_tcpudp_port_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -308,9 +274,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Allow the classified ISDX value to contribute to the aggregation code calculation.
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn aggr_isdx_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -322,9 +286,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Enable a randomly generated aggregation code.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_rnd_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -336,9 +298,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Allow source MAC address to contribute to the aggregation code calculation.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_smac_ena(&self) -> u32 {
         self.0 & 0x1
@@ -349,9 +309,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Use the AC code received in the VStaX header as aggregation code.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn aggr_use_vstax_ac_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -363,9 +321,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Enable routed frames to update the aggregation code.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn rt_upd_vstax_ac_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -377,9 +333,7 @@ impl AGGR_CFG {
         self.0 |= value;
     }
     /// Enable aggregation code calculations as in Jaguar1.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn short_aggr_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -398,9 +352,7 @@ impl AGGR_CFG {
 pub struct CLM_KEY_CFG(u32);
 impl CLM_KEY_CFG {
     /// Select version of TRI_VID key.
-
     ///
-
     /// 0: Use TRI_VID 1: Use TRI_VID_IDX
     pub fn clm_tri_vid_sel(&self) -> u32 {
         self.0 & 0x1
@@ -416,9 +368,7 @@ impl CLM_KEY_CFG {
 pub struct CLM_MISC_CTRL(u32);
 impl CLM_MISC_CTRL {
     /// Select default value of the G_IDX field in VCAP CLM.
-
     ///
-
     /// 0: Set G_IDX to zero 1: Set G_IDX to the frame's logical port number 2: Set G_IDX to the frame's masqueraded port number 3: Reserved
     pub fn clm_gidx_def_sel(&self) -> u32 {
         (self.0 & 0x180000) >> 19
@@ -430,9 +380,7 @@ impl CLM_MISC_CTRL {
         self.0 |= value;
     }
     /// Enable VCAP_CLM key field IGR_PORT_MASK_SEL=3 for CPU injected frames.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn cpu_igr_mask_ena(&self) -> u32 {
         self.0 & 0x1
@@ -443,9 +391,7 @@ impl CLM_MISC_CTRL {
         self.0 |= value;
     }
     /// Select VCAP_CLM key when a VCAP_CLM lookup is enforced by LBK_CLM_FORCE_ENA or IGR_PORT_CLM_FORCE_ENA.
-
     ///
-
     /// 0: Use NORMAL key with destination information 1: Use NORMAL key with source information 2: Use NORMAL_7TUPLE key 3: Use NORMAL_5TUPLE_IP4 key
     pub fn forced_key_sel(&self) -> u32 {
         (self.0 & 0x60000) >> 17
@@ -457,9 +403,7 @@ impl CLM_MISC_CTRL {
         self.0 |= value;
     }
     /// Force no VCAP_CLM lookup if frame is discarded or redirected by VCAP_CLM (this can be overruled with IGR_PORT_CLM_FORCE_ENA).
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn force_no_clm_for_basic_dis(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -471,9 +415,7 @@ impl CLM_MISC_CTRL {
         self.0 |= value;
     }
     /// Enable VCAP_CLM key field IGR_PORT_MASK_SEL=3 for frames received with VStaX header.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn fp_vs2_igr_mask_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -485,9 +427,7 @@ impl CLM_MISC_CTRL {
         self.0 |= value;
     }
     /// By default, frames discarded or redirected at a earlier pipeline point are not subject to further VCAP_CLM lookups. This configuration controls whether a VCAP_CLM lookup is enforced. See FORCED_KEY_SEL for key selection. When enforcing a VCAP_CLM lookup, the classified ISDX is placed in the VCAP_CLM key field G_IDX.
-
     ///
-
     /// Bit 0: Force VCAP_CLM lookup #0 with key selected by FORCED_KEY_SEL Bit 1: Force VCAP_CLM lookup #1 with key selected by FORCED_KEY_SEL ...
     pub fn igr_port_clm_force_ena(&self) -> u32 {
         (self.0 & 0x7e0) >> 5
@@ -499,9 +439,7 @@ impl CLM_MISC_CTRL {
         self.0 |= value;
     }
     /// By default, looped frames are not subject to VCAP_CLM lookups. This configuration controls whether a VCAP_CLM lookup is enforced. See FORCED_KEY_SEL for key selection. When enforcing a VCAP_CLM lookup for looped frames, the classified ISDX is placed in the VCAP_CLM key field G_IDX.
-
     ///
-
     /// Bit 0: Force VCAP_CLM lookup #0 with key selected by FORCED_KEY_SEL Bit 1: Force VCAP_CLM lookup #1 with key selected by FORCED_KEY_SEL ...
     pub fn lbk_clm_force_ena(&self) -> u32 {
         (self.0 & 0x1f800) >> 11
@@ -513,9 +451,7 @@ impl CLM_MISC_CTRL {
         self.0 |= value;
     }
     /// Force VCAP_CLM lookup to use VCAP_CLM key field IGR_PORT_MASK_SEL=3 for looped frames instead of IGR_PORT_MASK_SEL=1.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn lbk_igr_mask_sel3_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -527,9 +463,7 @@ impl CLM_MISC_CTRL {
         self.0 |= value;
     }
     /// Enable VCAP_CLM key field IGR_PORT_MASK_SEL=2 for masqueraded frames.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn masq_igr_mask_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -541,9 +475,7 @@ impl CLM_MISC_CTRL {
         self.0 |= value;
     }
     /// Enable VCAP_CLM key field IGR_PORT_MASK_SEL=3 for frames from VD0 or VD1.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn vd_igr_mask_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -560,9 +492,7 @@ impl CLM_MISC_CTRL {
 pub struct COMMON_VSTAX_CFG(u32);
 impl COMMON_VSTAX_CFG {
     /// Enable / disable getting DSCP from VSTAX MISC field when encoding as AC.
-
     ///
-
     /// 0: Disable 1: Enable (VSTAX MISC contains DSCP)
     pub fn vstax2_misc_dscp_ena(&self) -> u32 {
         self.0 & 0x1
@@ -778,9 +708,7 @@ impl HM_CFG {
         self.0 |= value;
     }
     /// Enable the configured port as HMD port.
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn hmd_port_vld(&self) -> u32 {
         self.0 & 0x1
@@ -791,9 +719,7 @@ impl HM_CFG {
         self.0 |= value;
     }
     /// If set, VCAP_CLM action MAP_KEY = 2 uses HIH.PCP and HIH.DEI instead of PCP and DEI from the frame's third tag. This enables mapping HIH values to internal values (DP, COS ID).
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn hm_force_mode_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -1040,9 +966,7 @@ impl MPLS_LM_CFG {
 pub struct MPLS_MISC_CFG(u32);
 impl MPLS_MISC_CFG {
     /// Enable skipping of reserved label during label extract. In order for a reserved label to be skipped, either MPLS_RSV_LBL_CFG[<label>].RSVD_LBL_SKIP_ENA or MPLS_MISC_CFG.CLM_RSVD_LBL_SKIP_ENA[<clm idx>] must be set.
-
     ///
-
     /// Bit 0: Skip reserved label when generating MPLS label keys for VCAP_CLM lookup #0. Bit 1: Skip reserved label when generating MPLS label keys for VCAP_CLM lookup #1. ...
     pub fn clm_rsvd_lbl_skip_ena(&self) -> u32 {
         self.0 & 0x3f
@@ -1070,9 +994,7 @@ impl MPLS_MISC_CFG {
 pub struct MPLS_RSV_LBL_CFG(u32);
 impl MPLS_RSV_LBL_CFG {
     /// Enable skipping of reserved label during label extract. In order for a reserved label to be skipped, either MPLS_RSV_LBL_CFG[<label>].RSVD_LBL_SKIP_ENA or MPLS_MISC_CFG.CLM_RSVD_LBL_SKIP_ENA[<clm idx>] must be set.
-
     ///
-
     /// 0: Allow reserved label to be part of MPLS label keys 1: Reserved label will be skipped when generating MPLS label keys
     pub fn rsvd_lbl_skip_ena(&self) -> u32 {
         self.0 & 0x1
@@ -1088,9 +1010,7 @@ impl MPLS_RSV_LBL_CFG {
 pub struct OAM_CFG(u32);
 impl OAM_CFG {
     /// Used to enable VCCV2 OAM signalling. If not enabled, VCCV2 signalling can not be configured.
-
     ///
-
     /// 0: Disable VCCV2 signalling 1: Enable VCCV2 signalling
     pub fn vccv2_ena(&self) -> u32 {
         self.0 & 0x1

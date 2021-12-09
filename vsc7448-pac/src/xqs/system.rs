@@ -149,9 +149,7 @@ impl QMAP_PORT_MODE {
         self.0 |= value;
     }
     /// Scheduling mode for frames classified to queing group /=0 (service frames). In NORMAL mode, the queue number is looked up in the map tables at index 1024+qos_value. In GROUP mode, a scheduling element is assigned per queueing group, with 8 queues attached. The queue number is looked up in the tables at index qgrp. In MBH mode, the qos is looked up at index qgrp, and the scheduling index is looked up at index "(grp and not 0xf) + qos_value". A minimum hierachy also exist. It corresponds to GROUP mode, but the qgrp is regarded zero in the mapping.
-
     ///
-
     /// 0: Normal mode 1: Hier mode 2: Mbh mode 3: Mini mode
     pub fn qmap_mode_service(&self) -> u32 {
         (self.0 & 0xc) >> 2

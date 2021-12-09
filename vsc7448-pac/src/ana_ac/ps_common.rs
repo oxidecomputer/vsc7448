@@ -44,9 +44,7 @@ impl CM_DATA {
 pub struct COMMON_EQUAL_STACK_LINK_TTL_CFG(u32);
 impl COMMON_EQUAL_STACK_LINK_TTL_CFG {
     /// Controls flooding in ring topology stacks. When set, frames to be flooded will be forwarded on only stack port A or only stack port B. TTL will be set to VSTAX2_EQUAL_STACK_LINK_TTL_VAL. This feature can be used to forward flooded frames in one or the other way around the ring, In such case VSTAX2_EQUAL_STACK_LINK_TTL_VAL must be set to the number of units in the ring minus 1. Frames with even AC will be forwarded on stack port A. Frames with odd AC will be forwarded on stack port B. Note that this feature is not related to equal cost forwarding. It is applicable to any ring topology stack regardless of whether the number of units is even or odd.
-
     ///
-
     /// 0: Disable (flood on both stack ports using the stack port's TTL) 1: Enable (flood on one stack port using VSTAX2_EQUAL_STACK_LINK_TTL_VAL)
     pub fn vstax2_equal_stack_links_flood_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -81,9 +79,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Allow FWD_LOGICAL entries in MAC table to control internal port number in VStaX header. If MAC table entry for DMAC specifies vstax.general.fwd_mode=FWD_LOGICAL and a destination port number of type port_type_intpn, then this bit controls the outgoing destination port number in the VStaX header. If this bit is clear, then the destination port number in VStaX header is set to intpn=15, regardless of the port number specified in the MAC table entry. If this bit is set, then the destination port number in VStaX header is set to the value of the port number specified in the MAC table entry.
-
     ///
-
     /// 0: Disable (set destination port to intpn=15) 1: Enable (set destination port to value in MAC table)
     pub fn vstax2_allow_upsid_cpu_or_int_pn_ena(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -95,9 +91,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// CPU queue for VStaX frames forwarding error.
-
     ///
-
     /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
     pub fn vstax2_fwd_err_qu(&self) -> u32 {
         (self.0 & 0x700) >> 8
@@ -109,9 +103,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// This can be used to enable GLAG in a stack If enabled the upper GLAG*8 number of PGID multicast entries will be used for GLAG
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn vstax2_glag_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -133,9 +125,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Forward unicast frames from front ports as fwd_mode==fwd_llookup (instead of fwd_logical)
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn vstax2_logical_llookup_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -147,9 +137,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Forward multicast frames as fwd_mode==fwd_llookup (instead of fwd_mc). Note that PTP frames will always be forwarded using fwd_llookup, regardless of the value of VSTAX2_MC_LLOOKUP_ENA.
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn vstax2_mc_llookup_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -161,9 +149,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Forward non flooded multicast frames w. fwd_mode==fwd_llookup (instead of fwd_mc)
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn vstax2_mc_llookup_non_flood_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -175,9 +161,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Configures handling of IP multicast routing on stack link. If IP multicast routing is performed in egress unit, then routed copies shall not be forwarded on the stack ports and this parameter must thus be set to 0. If IP multicast routing is performed in ingress unit (or centralized), then routed copies shall be forwarded on the stack ports and this parameter must thus be set to 3.
-
     ///
-
     /// 0: Disable multicast on both links 1: Enable multicast routing on stack link A 2: Enable multicast routing on stack link B 3: Enable multicast routing on both links
     pub fn vstax2_mc_route_to_stack_link_ena(&self) -> u32 {
         (self.0 & 0x60000) >> 17
@@ -199,9 +183,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Enable putting ISDX into VStaX header. Related parameters: ANA_CL:PORT:STACKING_CTRL.VSTAX_ISDX_ENA
-
     ///
-
     /// 0: Disable (VSTAX MISC contains Aggregation code) 1: Enable (VSTAX MISC contains ISDX)
     pub fn vstax2_misc_isdx_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -213,9 +195,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Allow routing of VStaX frames received on stack port with vstax.fwd_mode==FWD_LOGICAL with vstax.upsid=COMMON_VSTAX_CFG.OWN_UPSID regardless of vstax.dst.dst_port.
-
     ///
-
     /// 0: Disable (allow only routing of FWD_LOGICAL if dst_port_type == port_type_intpn and dst_pn == intpn_dlookup or dst_pn == intpn_router) 1: Enable
     pub fn vstax2_rt_all_fwd_logical_ena(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -227,9 +207,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Configures value used for vstax.lrn_mode when forwarding routed IP multicast frames on stack port(s).
-
     ///
-
     /// 0: lrn_mode=lrn_normal 1: lrn_mode=lrn_skip
     pub fn vstax2_rt_mc_src_lrn_skip_ena(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -241,9 +219,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Allow update of vstax.src field for multicast routed frames.
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn vstax2_rt_mc_src_update_ena(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -255,9 +231,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Configures value used for vstax.lrn_mode when forwarding routed IP unicast frames on stack port(s).
-
     ///
-
     /// 0: lrn_mode=lrn_normal 1: lrn_mode=lrn_skip
     pub fn vstax2_rt_uc_src_lrn_skip_ena(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -269,9 +243,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Allow update of vstax.src field for unicast routed frames
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn vstax2_rt_uc_src_update_ena(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -283,9 +255,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// This feature is to be used in 48 port switches consisting of two units (i.e. chips) and where the CPU is disabled one of the units. Only the unit with the disabled CPU shall have vstax2_ttl_keep==1
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn vstax2_ttl_keep_ena(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -297,9 +267,7 @@ impl COMMON_VSTAX_CFG {
         self.0 |= value;
     }
     /// Forward unicast frames from front ports taking congestion management into account
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn vstax2_use_cm_ena(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -316,9 +284,7 @@ impl COMMON_VSTAX_CFG {
 pub struct CPU_CFG(u32);
 impl CPU_CFG {
     /// Specifies a group of CPU queues which will only receive one frame copy in total
-
     ///
-
     /// '00000000' : A frame copy will be generated for all CPU queues applicable for reception ... 'xxxxxx11' : Only one CPU copy will be generated for CPU queue 1 and 0 ... '11111111' : At most one frame copy will be generated for all CPU queues applicable for reception
     pub fn one_cpu_copy_only_mask(&self) -> u32 {
         self.0 & 0xff
@@ -334,9 +300,7 @@ impl CPU_CFG {
 pub struct MISC_CTRL(u32);
 impl MISC_CTRL {
     /// Increase DP level for flooded traffic.
-
     ///
-
     /// 0: Disabled 1: Increase DP by 1 for flooded traffic 2: Increase DP by 2 for flooded traffic 3: Increase DP by 3 for flooded traffic
     pub fn cmac_flood_dp_inc(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -373,9 +337,7 @@ impl MISC_CTRL {
 pub struct PHYS_SRC_AGGR_CFG(u32);
 impl PHYS_SRC_AGGR_CFG {
     /// Enable use of physical source port number for aggregation towards this port. This is intended to be used when interconnecting two devices using two interconnect ports, which are aggregated in a LLAG, to form a 48 port system.
-
     ///
-
     /// 'xxx0xx': Use normal aggregation code when finding aggregation mask for this port 'xxx1xx': Use only physical source port number in aggregation code when finding aggregation mask for this port.
     pub fn phys_src_aggr_mask(&self) -> u32 {
         self.0
@@ -456,9 +418,7 @@ impl SFLOW_CFG {
 pub struct SFLOW_RESET_CTRL(u32);
 impl SFLOW_RESET_CTRL {
     /// When set to 1, the following counters are reset for all sFlow Samplers: ANA_AC:SFLOW:SFLOW_CNT.SFLOW_SAMPLE_CNT ANA_AC:SFLOW:SFLOW_CNT.SFLOW_SAMPLE_FWD_CNT Upon resetting the counters, the device will set the parameter back to 0.
-
     ///
-
     /// 0: No action 1: Reset counters.
     pub fn sflow_frame_reset_shot(&self) -> u32 {
         self.0 & 0x1
@@ -474,9 +434,7 @@ impl SFLOW_RESET_CTRL {
 pub struct STACK_A_CFG(u32);
 impl STACK_A_CFG {
     /// Port mask with ports of stack port A. This mask is only used when forwarding to UPSIDs w. STACK_LINK_EQUAL_COST_CFG.STACK_LINK_EQUAL_ENA=1. If STACK_LINK_EQUAL_ENA is set, then the stack forwarding mask is calculated as one of the following two, depending on AC: Even AC: UPSID.UPSID_PORT_VEC* & STACK_A_CFG.STACK_A_VEC* Odd AC: UPSID.UPSID_PORT_VEC* & ~STACK_A_CFG.STACK_A_VEC*
-
     ///
-
     /// 'XX...XXX': Where X is '0' or '1', representing a stacking link A destination port.
     pub fn stack_a_mask(&self) -> u32 {
         self.0
@@ -504,9 +462,7 @@ impl STACK_A_CFG1 {
 pub struct STACK_CFG(u32);
 impl STACK_CFG {
     /// Stack port mask. For ports used for stacking, the corresponding bit must be set in this port mask.
-
     ///
-
     /// 'XX...XXX': Where X is '0' or '1', representing a destination port.
     pub fn stack_mask(&self) -> u32 {
         self.0
@@ -534,9 +490,7 @@ impl STACK_CFG1 {
 pub struct VSTAX_CTRL(u32);
 impl VSTAX_CTRL {
     /// Specify learn and forwarding operation for the port
-
     ///
-
     /// 0: VStaX2/BF mode (Basic Forwarding mode) 1: VStaX2/AF mode (Advanced Forwarding mode)
     pub fn vstax2_stack_port_mode(&self) -> u32 {
         self.0 & 0x1

@@ -299,7 +299,10 @@ impl STICKY_MASK {
     pub fn MIP_STICKY_MASK(&self) -> RegisterAddress<sticky_mask::MIP_STICKY_MASK> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    pub fn VLAN_FILTER_STICKY_MASK(&self, index: u32) -> RegisterAddress<sticky_mask::VLAN_FILTER_STICKY_MASK> {
+    pub fn VLAN_FILTER_STICKY_MASK(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<sticky_mask::VLAN_FILTER_STICKY_MASK> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }

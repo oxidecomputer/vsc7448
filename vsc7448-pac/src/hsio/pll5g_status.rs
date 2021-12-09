@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct PLL5G_CFG6(u32);
 impl PLL5G_CFG6 {
     /// Setting for DDR clock divider
-
     ///
-
     /// 2: 500 MHz 5: 250 MHz 6: 416.66 MHz 14: 312.5 MHz 15: 166.66 MHz Others: Reserved
     pub fn ddr_clk_div(&self) -> u32 {
         self.0 & 0x3f

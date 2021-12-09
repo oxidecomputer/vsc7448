@@ -90,9 +90,7 @@ impl DTI_MODE {
         self.0 |= value;
     }
     /// Controls whether FC_POSTPONE_LEN is added to DTI_FC_CNT_DOWN or DTI_CNT_DOWN when flow control from FRD is encountered.
-
     ///
-
     /// 0: Add FC_POSTPONE_LEN to DTI_FC_CNT_DOWN when FC is encountered. 1: Add FC_POSTPONE_LEN to DTI_CNT_DOWN when FC is encountered.
     pub fn fc_postpone_mode(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -114,9 +112,7 @@ impl DTI_MODE {
         self.0 |= value;
     }
     /// Configuration of DTI mode.
-
     ///
-
     /// 0: Frame sequence shall be injected DTI_CNT.CNT times. 1: Frame sequence shall be injected until stopped (DTI_CTRL.ENA=0). Number of frames injected is counted in DTI_CNT.CNT. 2: Frame sequence shall be injected DTI_CNT.CNT times. Once this is done, the DTI pointed to by AFI:DTI_TBL:DTI_MODE.DTI_NEXT will be enabled. This can be used to concatenate DTIs. 3: Reserved.
     pub fn mode(&self) -> u32 {
         self.0 & 0x3
@@ -127,9 +123,7 @@ impl DTI_MODE {
         self.0 |= value;
     }
     /// If the last frame table entry of a DTI sequence is a delay, then this is termed a "trailing delay". By setting TRAILING_DELAY_SEQ_CNT=N a trailing delay is only applied for every Nth sequence injection. This can be used to "fine tune" the bandwidth of a DTI sequence. TRAILING_DELAY_SEQ_CNT=0 disables this feature. If a DTI sequence (in the frame table) has no trailing delay, then TRAILING_DELAY_SEQ_CNT has no effect.
-
     ///
-
     /// 0: Disable feature. 1: Apply trailing delay for every sequence injected. 2: Apply trailing delay for every 2nd sequence injected. 3: Apply trailing delay for every 3rd sequence injected. ...
     pub fn trailing_delay_seq_cnt(&self) -> u32 {
         (self.0 & 0xfc) >> 2
@@ -172,9 +166,7 @@ impl DTI_PORT_QU {
 pub struct FRM_ENTRY_PART0(u32);
 impl FRM_ENTRY_PART0 {
     /// Configuration of frame or delay entry in Frame Table. Delay entries are only used for DTI. Delay entry fields: DELAY: Delay between injection of start of frames. Unit: One system clock cycle. Frame entry fields: INJ_CNT: Injection count. Number times to inject frame. Frame is ignored if INJ_CNT=0 or FRM_RM=1. Only applicable for DTI. FRM_RM: When set, next frame injection causes frame to be removed from buffer memory. This injection will not be transmitted on the destination port. Once removed, HW sets FRM_GONE=1. FRM_GONE: Set by AFI when frame has been removed from buffer memory. FRM_INFO: Frame information, ref. AFI:MISC:NEW_FRM_INFO.FRM_INFO.
-
     ///
-
     /// Delay entry type: Bit 0-29: DELAY Frame entry type: Bit 0-7: INJ_CNT Bit 8-10: Reserved, must be set to 0 Bit 11: FRM_RM Bit 12: FRM_GONE Bit 13-29: FRM_INFO
     pub fn part0(&self) -> u32 {
         self.0 & 0x3fffffff

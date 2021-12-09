@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct TTI_CAL_SLOT_CNT(u32);
 impl TTI_CAL_SLOT_CNT {
     /// Number of TTIs to service in slot before moving to next TTI Calendar Slot.
-
     ///
-
     /// 0: 1 1: 1 2: 2 ...
     pub fn slot_cnt(&self) -> u32 {
         self.0 & 0xff
@@ -98,9 +96,7 @@ impl TTI_CTRL {
         self.0 |= value;
     }
     /// Length of TTI Calendar.
-
     ///
-
     /// 0: Length=1 (Slot 0) 1: Length=2 (Slot 0-1) 2: Length=3 (Slot 0-2) 3: Length=4 (Slot 0-3)
     pub fn tti_cal_len(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -122,9 +118,7 @@ impl TTI_CTRL {
         self.0 |= value;
     }
     /// Maximum number of clock cycles that CSR accesses have to wait before gaining access to TTI table. Note that writes need two accesses and may thus have to await 2x the configured number of clock cycles. Setting this parameter too low while doing excessive TTI Table CSR accesses may cause TTIs (in TTI Table) to be serviced too infrequently for their configured timer values.
-
     ///
-
     /// 0 => CSR accesses takes precedence. 1 => 1 clock cycle ...
     pub fn tti_csr_rsv(&self) -> u32 {
         (self.0 & 0xff00) >> 8

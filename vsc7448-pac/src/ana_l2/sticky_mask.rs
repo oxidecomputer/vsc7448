@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct STICKY(u32);
 impl STICKY {
     /// Set if an autonomous learning operation has failed due to specified lrn rate is exceeded and LEARN max cnt was enabled. Write '1' to clear this field.
-
     ///
-
     /// 0: No cnt exceeded. 1: An autonomous learning operation has failed due to cnt exceeded. Write '1' to clear this field.
     pub fn auto_lrn_rate_exceed_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -46,9 +44,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a frame has been dropped due to ANA_L2::LRN_SECUR_CFG.DROP_UNKNOWN_SRC_ENA. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No frames have been dropped 1: A frame has been dropped. Bit is cleared by writing a 1 to this position.
     pub fn drop_unknown_src_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -60,9 +56,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a valid (EFID, DMAC) entry was found to be used for forwarding. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No (EFID, DMAC) entries have been found 1: An (EFID, DMAC) entry has been found. Bit is cleared by writing a 1 to this position.
     pub fn fwd_entry_found_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -74,9 +68,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if flood has been removed due to indication from VLAN table. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: An integrity error has occured Bit is cleared by writing a 1 to this position.
     pub fn fwd_flood_kill_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -88,9 +80,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if forwarding is based on flood. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0:  No flood event 1: Flood event Bit is cleared by writing a 1 to this position.
     pub fn fwd_flood_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -102,9 +92,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Indication of a frame received on a GLAG which was previously learned with a different GLAG. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: A GLAG to GLAG port move has been detected Bit is cleared by writing a 1 to this position.
     pub fn global_to_global_portmove_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -116,9 +104,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Indication of a frame received at a front local port which was previously learned with a GLAG . To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: A GLAG to local port move has been detected Bit is cleared by writing a 1 to this position.
     pub fn global_to_local_portmove_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -130,9 +116,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a valid (IFID, SMAC) entry was found. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No known source entries (IFID, SMAC) has been found 1: At least one known entry (IFID, SMAC) has been found. Write 1 to clear this field.
     pub fn learn_known_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -144,9 +128,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if no valid (IFID, SMAC) entry was found. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No unknown sources (IFID, SMAC) has been found 1: At least one unknown source IFID, SMAC) has been found. Write 1 to clear this field.
     pub fn learn_unknown_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -157,9 +139,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Indication of a frame received with GLAG which was previously learned at a front local port. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: A Local to GLAG port move has been detected Bit is cleared by writing a 1 to this position.
     pub fn local_to_global_portmove_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -171,9 +151,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Indication of a frame received on a local front port, which was previously learned at a different local front port. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: A Local to local port move has been detected Bit is cleared by writing a 1 to this position.
     pub fn local_to_local_portmove_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -185,9 +163,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Indication of a frame received with an UPSID != own UPSID (ANA_L2::VSTAX_CTRL.OWN_UPSID) which was previously learned on own front local port. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: A Local to remote port move has been detected Bit is cleared by writing a 1 to this position.
     pub fn local_to_remote_portmove_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -199,9 +175,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Indication of a frame received on a local front port, which was previously learned on a remote UPSID front port. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: A remote port to local port move has been detected Bit is cleared by writing a 1 to this position.
     pub fn remote_to_local_portmove_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -213,9 +187,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Indication of a frame received on a remote front port, which was previously learned on another remote UPSID front port. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: A remote port to remote port move has been detected Bit is cleared by writing a 1 to this position.
     pub fn remote_to_remote_portmove_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -227,9 +199,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if forwarding is performed without SRC contribution either because of a known Destination entry with VLAN ignore set (LRN.MAC_ACCESS_CFG_2.MAC_ENTRY_VLAN_IGNORE FLAG) set or for an unknown destination with flood VLAN ignore set (ANA_L2::FWD_CFG.FLOOD_IGNORE_VLAN_ENA) and filter_mode_sel set to SRC ignore. To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: VLAN ignore as occured Bit is cleared by writing a 1 to this position.
     pub fn src_ignore_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -241,9 +211,7 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if forwarding is performed without VLAN contribution either because of a known Destination entry with VLAN ignore set (LRN.MAC_ACCESS_CFG_2.MAC_ENTRY_VLAN_IGNORE FLAG) set or for an unknown destination with flood VLAN ignore set (ANA_L2::FWD_CFG.FLOOD_IGNORE_VLAN_ENA). To enable the event as one of four counter events to the PORT STAT block set the corresponding *_STICKY_MASK
-
     ///
-
     /// 0: No event has occured 1: VLAN ignore as occured Bit is cleared by writing a 1 to this position.
     pub fn vlan_ignore_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -260,9 +228,7 @@ impl STICKY {
 pub struct STICKY_MASK(u32);
 impl STICKY_MASK {
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn auto_lrn_rate_exceed_sticky_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -274,9 +240,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn drop_unknown_src_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -288,9 +252,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn fwd_entry_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -302,9 +264,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn fwd_flood_kill_sticky_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -316,9 +276,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn fwd_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -330,9 +288,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn global_to_global_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -344,9 +300,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn global_to_local_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -358,9 +312,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn learn_known_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -372,9 +324,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn learn_unknown_sticky_mask(&self) -> u32 {
         self.0 & 0x1
@@ -385,9 +335,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn local_to_global_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -399,9 +347,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn local_to_local_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -413,9 +359,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn local_to_remote_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -427,9 +371,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn remote_to_local_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -441,9 +383,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn remote_to_remote_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -455,9 +395,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn src_ignore_sticky_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -469,9 +407,7 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask count of sticky event.
-
     ///
-
     /// 0: Disable event count 1: Enable event count
     pub fn vlan_ignore_sticky_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13

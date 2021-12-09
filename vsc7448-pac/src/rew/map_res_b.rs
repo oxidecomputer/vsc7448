@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct MAP_LBL_A(u32);
 impl MAP_LBL_A {
     /// Mapped MPLS label value
-
     ///
-
     /// n: Label value
     pub fn label_val(&self) -> u32 {
         self.0 & 0xfffff
@@ -54,9 +52,7 @@ impl MAP_LBL_A {
 pub struct MAP_VAL_B(u32);
 impl MAP_VAL_B {
     /// Mapped DEI value
-
     ///
-
     /// n: New DEI value
     pub fn dei_val(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -68,9 +64,7 @@ impl MAP_VAL_B {
         self.0 |= value;
     }
     /// Mapped DSCP value
-
     ///
-
     /// n: New DSCP value
     pub fn dscp_val(&self) -> u32 {
         (self.0 & 0x3f0) >> 4
@@ -82,9 +76,7 @@ impl MAP_VAL_B {
         self.0 |= value;
     }
     /// Mapped OAM COLOR value
-
     ///
-
     /// n: New OAM COLOR value
     pub fn oam_color(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -96,9 +88,7 @@ impl MAP_VAL_B {
         self.0 |= value;
     }
     /// Mapped OAM COSID value
-
     ///
-
     /// n: New OAM COSID value
     pub fn oam_cosid(&self) -> u32 {
         (self.0 & 0xe000) >> 13
@@ -110,9 +100,7 @@ impl MAP_VAL_B {
         self.0 |= value;
     }
     /// Mapped PCP value
-
     ///
-
     /// n: New PCP value
     pub fn pcp_val(&self) -> u32 {
         self.0 & 0x7
@@ -123,9 +111,7 @@ impl MAP_VAL_B {
         self.0 |= value;
     }
     /// Mapped TC value
-
     ///
-
     /// n: New TC value
     pub fn tc_val(&self) -> u32 {
         (self.0 & 0x1c00) >> 10

@@ -100,7 +100,10 @@ impl COMMON {
     pub fn MASTER_INTR_CTRL(&self) -> RegisterAddress<common::MASTER_INTR_CTRL> {
         RegisterAddress::new(self.0 + 0x94)
     }
-    pub fn MPLS_GENERIC_CODEPOINT(&self, index: u32) -> RegisterAddress<common::MPLS_GENERIC_CODEPOINT> {
+    pub fn MPLS_GENERIC_CODEPOINT(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<common::MPLS_GENERIC_CODEPOINT> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x3c + index * 0x4)
     }
@@ -160,7 +163,10 @@ impl PORT_COSID_MAP_CONF {
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
-    pub fn SAM_LBR_RX_TRANSID_ERR_CNT(&self, index: u32) -> RegisterAddress<ram_ctrl::SAM_LBR_RX_TRANSID_ERR_CNT> {
+    pub fn SAM_LBR_RX_TRANSID_ERR_CNT(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<ram_ctrl::SAM_LBR_RX_TRANSID_ERR_CNT> {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x70 + index * 0x4)
     }
@@ -183,19 +189,31 @@ impl SAM_COSID_SEQ_CNT {
     pub fn PORT_TX_COSID_MAP1(&self) -> RegisterAddress<sam_cosid_seq_cnt::PORT_TX_COSID_MAP1> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn SAM_LBM_TX_TRANSID(&self, index: u32) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBM_TX_TRANSID> {
+    pub fn SAM_LBM_TX_TRANSID(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBM_TX_TRANSID> {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn SAM_LBR_RX_FRM_CNT(&self, index: u32) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_FRM_CNT> {
+    pub fn SAM_LBR_RX_FRM_CNT(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_FRM_CNT> {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x38 + index * 0x4)
     }
-    pub fn SAM_LBR_RX_TRANSID(&self, index: u32) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_TRANSID> {
+    pub fn SAM_LBR_RX_TRANSID(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_TRANSID> {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x54 + index * 0x4)
     }
-    pub fn SAM_LBR_TX_FRM_CNT(&self, index: u32) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_TX_FRM_CNT> {
+    pub fn SAM_LBR_TX_FRM_CNT(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_TX_FRM_CNT> {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x1c + index * 0x4)
     }

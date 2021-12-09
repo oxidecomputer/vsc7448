@@ -205,7 +205,9 @@ impl MIIM {
 /// Not documented
 pub struct MIIM_READ_SCAN(pub(super) u32);
 impl MIIM_READ_SCAN {
-    pub fn MII_SCAN_LAST_RSLTS_VLD(&self) -> RegisterAddress<miim_read_scan::MII_SCAN_LAST_RSLTS_VLD> {
+    pub fn MII_SCAN_LAST_RSLTS_VLD(
+        &self,
+    ) -> RegisterAddress<miim_read_scan::MII_SCAN_LAST_RSLTS_VLD> {
         RegisterAddress::new(self.0 + 0x20)
     }
 }
@@ -281,7 +283,10 @@ impl SW_REGS {
 /// Temperature sensor control
 pub struct TEMP_SENSOR(pub(super) u32);
 impl TEMP_SENSOR {
-    pub fn MII_SCAN_RSLTS_STICKY(&self, index: u32) -> RegisterAddress<temp_sensor::MII_SCAN_RSLTS_STICKY> {
+    pub fn MII_SCAN_RSLTS_STICKY(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<temp_sensor::MII_SCAN_RSLTS_STICKY> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }

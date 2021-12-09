@@ -56,9 +56,7 @@ impl VCAP_CNT_DAT {
 pub struct VCAP_ENTRY_DAT(u32);
 impl VCAP_ENTRY_DAT {
     /// The cache register that holds entry data. The register is replicated; index 0 is the 32 LSBs of the entry-data. Together with VCAP_MASK_DAT.MASK_DAT this field defines match parameters for TCAM entries. Version 2 VCAPs allows programming of never-match, this is needed when disabling entries. Version 1 VCAPs converts match-off to match-any when reading/writing entries.
-
     ///
-
     /// Match-0: Entry=0, Mask=0 Match-1: Entry=1, Mask=0 Match-any (don't care): Entry=0, Mask=1 Match-off (never-match): Entry=1, Mask=1
     pub fn entry_dat(&self) -> u32 {
         self.0
@@ -84,9 +82,7 @@ impl VCAP_MASK_DAT {
 pub struct VCAP_MV_CFG(u32);
 impl VCAP_MV_CFG {
     /// Specifies the distance during move operations. I.e. if this field is set to 4 for a move-down operation, then source address n is moved to destination address n+5.
-
     ///
-
     /// 0: Distance is one position 1: Distance is two positions n: Distance is n+1 positions
     pub fn mv_num_pos(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
@@ -98,9 +94,7 @@ impl VCAP_MV_CFG {
         self.0 |= value;
     }
     /// Specifies the number of addresses to move/initialize during	move/init operations.
-
     ///
-
     /// 0: Address VCAP_UPDATE_CTRL.UPDATE_ADDR is moved/initialized n: Addresses VCAP_UPDATE_CTRL.UPDATE_ADDR through VCAP_UPDATE_CTRL.UPDATE_ADDR+n are moved/initialized
     pub fn mv_size(&self) -> u32 {
         self.0 & 0xffff

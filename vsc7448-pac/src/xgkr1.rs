@@ -147,8 +147,7 @@ impl KR3G_TMR {
 
 /// Not documented
 pub struct KR_7X0000(pub(super) u32);
-impl KR_7X0000 {
-}
+impl KR_7X0000 {}
 
 /// Not documented
 pub struct KR_7X0001(pub(super) u32);

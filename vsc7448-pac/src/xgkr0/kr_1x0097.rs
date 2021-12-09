@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct KR_1X0096(u32);
 impl KR_1X0096 {
     /// Training enable
-
     ///
-
     /// 1: Enable KR start-up protocol 0: Disable KR start-up protocol
     pub fn tr_enable(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -46,9 +44,7 @@ impl KR_1X0096 {
         self.0 |= value;
     }
     /// Restart training (SC)
-
     ///
-
     /// 1: Reset KR start-up protocol 0: Normal operation
     pub fn tr_restart(&self) -> u32 {
         self.0 & 0x1

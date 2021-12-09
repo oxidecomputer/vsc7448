@@ -73,5 +73,4 @@ impl RES_QOS_ADV {
 
 /// Not documented
 pub struct RES_WRED(pub(super) u32);
-impl RES_WRED {
-}
+impl RES_WRED {}

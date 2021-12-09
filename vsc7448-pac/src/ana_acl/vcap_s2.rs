@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct PTP_CFG(u32);
 impl PTP_CFG {
     /// Selects the PTP time domain to use when updating receiveTimestamp in Delay_Resp frames.
-
     ///
-
     /// 0: Use time domain 0 1: Use time domain 1 2: Use time domain 2 3: Reserved.
     pub fn ptp_domain(&self) -> u32 {
         self.0 & 0x3
@@ -71,9 +69,7 @@ impl PTP_MISC_CTRL {
         self.0 |= value;
     }
     /// IP6 PTP operation.
-
     ///
-
     /// 0: No IP6 PTP updates. 1: IP6 PTP updates with UDP chksum updates. 2: IP6 PTP updates with UDP chksum updates, redirect frame to CPU using extraction queue PTP_DELAY_REDIR_QU. 3: IP6 PTP updates with UDP chksum clear.
     pub fn ptp_delay_ip6_sel(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -208,9 +204,7 @@ impl SWAP_SIP {
 pub struct VCAP_S2_CFG(u32);
 impl VCAP_S2_CFG {
     /// Enable/disable VCAP_IS2 lookups. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_ena(&self) -> u32 {
         self.0 & 0x3
@@ -221,9 +215,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For frames to be routed, enable/disable the use of IRLEG VID and ERLEG VID as the value for the VID field in the VCAP_IS2 keys. First VCAP_IS2 lookup uses IRLEG VID, second lookup uses ERLEG VID.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_route_handling_ena(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -235,9 +227,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For ARP frames (EtherType 0x0806), enable matching against control entries of type ARP in VCAP_IS2. Otherwise, ARP frames are matched against control entries of type MAC_ETYPE. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_arp_ena(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -249,9 +239,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For IPv4 frames, enable matching against control entries of type IP4_OTHER in VCAP_IS2. Otherwise, IPv4 frames are matched against control entries of type MAC_ETYPE. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_ip4_other_ena(&self) -> u32 {
         (self.0 & 0x300) >> 8
@@ -263,9 +251,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For IPv4 TCP/UDP frames, enable matching against control entries of type IP_TCP_UDP in VCAP_IS2. Otherwise, IPv4 TCP/UDP frames are handled as IPv4 Other frames, see SEC_TYPE_IP4_OTHER_ENA. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_ip4_tcpudp_ena(&self) -> u32 {
         (self.0 & 0xc00) >> 10
@@ -277,9 +263,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For IPv4 multicast frames, enable matching against control entries of type IP4_VID in VCAP_IS2. Otherwise, IPv4 multicast frames are handled as either IPv4 TCP/UDP frames or IPv4 Other frames, see SEC_TYPE_IP4_TCPUDP_ENA and SEC_TYPE_IP4_OTHER_ENA. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_ip4_vid_ena(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -291,9 +275,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For IPv6 frames, enable matching against control entries of type IP6_OTHER in VCAP_IS2. Otherwise, IPv6 Other frames are handled as IPv6 standard frames, SEC_TYPE_IP6_STD_ENA. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_ip6_other_ena(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -305,9 +287,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For IPv6 frames, enable matching against control entries of type IP6_STD in VCAP_IS2. Otherwise, IPv6 frames are handled as IPv4 frames, see SEC_TYPE_IP6_TCPUDP_OTHER_ENA. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_ip6_std_ena(&self) -> u32 {
         (self.0 & 0xc0000) >> 18
@@ -319,9 +299,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For IPv6 TCP/UDP frames, enable matching against control entries of type IP6_TCP_UDP in VCAP_IS2. Otherwise, IPv6 TCP/UDP frames are handled as IPv6 standard frames, SEC_TYPE_IP6_STD_ENA. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_ip6_tcpudp_ena(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -333,9 +311,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For IPv6 frames, enable matching against control entries of types IP4_TCP_UDP and IP4_OTHER in VCAP_IS2. The SIP and DIP fields of IP4_TCP_UDP and IP4_OTHER control entries are used to match against bits 63:0 of IPv6 SIP. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable the classification. 1: Enable the classification.
     pub fn sec_type_ip6_tcpudp_other_ena(&self) -> u32 {
         (self.0 & 0xc00000) >> 22
@@ -347,9 +323,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For IPv6 multicast frames, enable matching against control entries of type IP6_VID in VCAP_IS2. Otherwise, IPv6 multicast frames are handled as either IPv6 TCP/UDP frames or IPv6 Other frames, see SEC_TYPE_IP6_TCPUDP_ENA and SEC_TYPE_IP6_OTHER_ENA. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_ip6_vid_ena(&self) -> u32 {
         (self.0 & 0x300000) >> 20
@@ -361,9 +335,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For LLC frames, enable matching against control entries of type MAC_LLC in VCAP_IS2. Otherwise, LLC frames are matched against control entries of type MAC_ETYPE. LLC frames are identified as frames with EtherType < 0x0600 that are not SNAP frames. Note that SNAP frames can be handled as LLC frames by disabling SEC_TYPE_MAC_SNAP_ENA. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_mac_llc_ena(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -375,9 +347,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For SNAP frames, enable matching against control entries of type MAC_SNAP in VCAP_IS2. Otherwise SNAP frames frames are handled as LLC frames, see SEC_TYPE_MAC_LLC_ENA. SNAP frames are identified by EtherType < 0x0600 DSAP = 0xAA SSAP = 0xAA CTRL = 0x03 Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_mac_snap_ena(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -389,9 +359,7 @@ impl VCAP_S2_CFG {
         self.0 |= value;
     }
     /// For OAM frames (with up to three VLAN tags), enable matching against control entries of type OAM in VCAP_IS2. Otherwise, OAM frames are matched against control entries of type MAC_ETYPE. OAM frames are identified by the following EtherType values: 0x8902 - ITU-T Y.1731 0x8809 - Link Level OAM 0x88EE - MEF-16 (E-LMI) Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn sec_type_oam_ena(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
@@ -408,9 +376,7 @@ impl VCAP_S2_CFG {
 pub struct VCAP_S2_MISC_CTRL(u32);
 impl VCAP_S2_MISC_CTRL {
     /// Controls how to update routing statistics events for egress ACL actions.
-
     ///
-
     /// 0: If routed frame is dropped by VCAP_IS2 rule, then clear ivmid_ip_uc_received/ivmid_ip_mc_received (as if frame never left the router) 1: If routed frame is dropped by VCAP_IS2 rule, then leave ivmid_ip_uc_received/ivmid_ip_mc_received set (as if frame did leave the router and was dropped in the L2 switch)
     pub fn acl_rt_egr_rleg_stat_mode(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -422,9 +388,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// If set, force use of VID key type in VCAP_ES0 when routing in ANA_ACL.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn acl_rt_force_es0_vid_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -436,9 +400,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// Controls how to update routing statistics events for ingress ANA_ACL actions.
-
     ///
-
     /// 0: UC: If frame is dropped by VCAP_IS2 rule, then clear ivmid_ip_uc_received (as if frame never reached the router) MC: If frame is dropped by VCAP_IS2 rule, then leave ivmid_ip_mc_received unchanged (as if frame may reach the router) 1: If frame is dropped by VCAP_IS2 rule, then clear ivmid_ip_uc_received/ivmid_ip_mc_received (as if frame never reached the router, but was dropped in the L2 switch)
     pub fn acl_rt_igr_rleg_stat_mode(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -450,9 +412,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// Controls routing related frame edits in ANA_ACL block. By default, routing related frame edits are done in REW, but when combining routing with PTP, ANA_ACL must be configured to change DMAC to next-hop DMAC in order to allow other information to be stored in the IFH. ANA_ACL can rewrite the following routing related fields: 1) Change DMAC to next-hop MAC address (as determined by ANA_L3). 2) Set IFH.FWD.DST_MODE=ENCAP to prevent REW from doing routing related frame editting. Decrement of TTL/Hop limit is still performed by REW. When performing routing related frame edits in ANA_ACL, editing of SMAC must be performed by ANA_L3 (ANA_L3::ROUTING_CFG.RT_SMAC_UPDATE_ENA).
-
     ///
-
     /// 0: Disable routing in ANA_ACL block. 1: Enable routing related frame edits independently of VCAP_IS2 action ACL_RT_MODE. 2: Enable routing related frame edits if VCAP_IS2 action ACL_RT_MODE allows routing.
     pub fn acl_rt_sel(&self) -> u32 {
         (self.0 & 0x60) >> 5
@@ -464,9 +424,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// If set, classified VID is set to egress VID.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn acl_rt_update_cl_vid_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -478,9 +436,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// If set, IFH.GEN_IDX is set to egress RLEG.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn acl_rt_update_gen_idx_erleg_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -492,9 +448,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// If set, IFH.GEN_IDX is set to egress VID.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn acl_rt_update_gen_idx_evid_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -506,9 +460,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// Enable VCAP_IS2 key field IGR_PORT_MASK_SEL=3 for CPU injected frames.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn cpu_igr_mask_ena(&self) -> u32 {
         self.0 & 0x1
@@ -519,9 +471,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// Enable VCAP_IS2 key field IGR_PORT_MASK_SEL=3 for frames received with VStaX header.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn fp_vs2_igr_mask_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -533,9 +483,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// Force VCAP_IS2 lookup to use IGR_PORT_MASK_SEL=3 for looped frames instead of IGR_PORT_MASK_SEL=1.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn lbk_igr_mask_sel3_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -547,9 +495,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// Enable VCAP_IS2 key field IGR_PORT_MASK_SEL=2 for masqueraded frames.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn masq_igr_mask_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -561,9 +507,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// Controls if PAG(7) forces VID for service frames (ISDX > 0). Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-
     ///
-
     /// 0: Disable 1: Force VID when isdx >0
     pub fn pag_force_vid_ena(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -575,9 +519,7 @@ impl VCAP_S2_MISC_CTRL {
         self.0 |= value;
     }
     /// Enable VCAP_IS2 key field IGR_PORT_MASK_SEL=3 for frames from VD0 or VD1.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn vd_igr_mask_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -604,9 +546,7 @@ impl VCAP_S2_MISC_CTRL {
 pub struct VCAP_S2_RNG_CTRL(u32);
 impl VCAP_S2_RNG_CTRL {
     /// Selected field matched against the range
-
     ///
-
     /// 0: Idle (No match) 1: TCP / UDP dport value is matched against range 2: TCP / UDP sport value is matched against range 3: TCP / UDP dport or sport values are matched against range 4: Classified VIDvalue is matched against range 5: Classified DSCP value is matched against range 6: Selected value from frame is matched against range, see ANA_ACL::VCAP_S2_RNG_OFFSET_CFG for details.
     pub fn rng_type_sel(&self) -> u32 {
         self.0 & 0x7
@@ -622,9 +562,7 @@ impl VCAP_S2_RNG_CTRL {
 pub struct VCAP_S2_RNG_OFFSET_CFG(u32);
 impl VCAP_S2_RNG_OFFSET_CFG {
     /// 16-bit offset position of selectable range matcher input counting from the EtherType (up to three VLAN tags skipped).
-
     ///
-
     /// 0: EtherType 1: frame byte 0 and 1 after EtherType ... n: frame byte 2n-2 and 2n-1 after EtherType
     pub fn rng_offset_pos(&self) -> u32 {
         self.0 & 0x3f

@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct TR_CFG0(u32);
 impl TR_CFG0 {
     /// Set local taps starting point
-
     ///
-
     /// 0: Set to INITIALIZE 1: Set to PRESET
     pub fn ld_pre_init(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -46,9 +44,7 @@ impl TR_CFG0 {
         self.0 |= value;
     }
     /// Send first LP request
-
     ///
-
     /// 0: Send   INITIALIZE 1: Send   PRESET
     pub fn lp_pre_init(&self) -> u32 {
         (self.0 & 0x8) >> 3

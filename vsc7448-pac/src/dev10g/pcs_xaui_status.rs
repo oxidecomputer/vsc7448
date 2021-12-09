@@ -66,9 +66,7 @@ impl PCS_XAUI_DESKEW_STATUS {
 pub struct PCS_XAUI_LPI_CFG(u32);
 impl PCS_XAUI_LPI_CFG {
     /// Max wake-up time before link_fail
-
     ///
-
     /// 00: 8 us 01: 11 us 10: 15 us 11: 18 us
     pub fn lpi_rx_wtim(&self) -> u32 {
         (self.0 & 0x30) >> 4
@@ -80,9 +78,7 @@ impl PCS_XAUI_LPI_CFG {
         self.0 |= value;
     }
     /// LPI-Timer test mode.
-
     ///
-
     /// 0: Normal timing constants are used 1: Shortened timing constants are used
     pub fn lpi_testmode(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -94,9 +90,7 @@ impl PCS_XAUI_LPI_CFG {
         self.0 |= value;
     }
     /// Disable output of Low-Power Idle in receive direction (to core)
-
     ///
-
     /// 0: Enable 1: Disable
     pub fn rx_lpi_out_dis(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -108,9 +102,7 @@ impl PCS_XAUI_LPI_CFG {
         self.0 |= value;
     }
     /// Assert Low-Power Idle (LPI) in transmit mode
-
     ///
-
     /// 0: Disable LPI transmission 1: Enable LPI transmission
     pub fn tx_assert_lpidle(&self) -> u32 {
         self.0 & 0x1
@@ -128,9 +120,7 @@ impl PCS_XAUI_LPI_CFG {
 pub struct PCS_XAUI_RX_ERROR_STATUS(u32);
 impl PCS_XAUI_RX_ERROR_STATUS {
     /// Alignment lost in deskew logic
-
     ///
-
     /// 0: No misalignment occured 1: A (temporary) misalignment has been detected Bit is cleared by writing a 1 to this position.
     pub fn alignment_lost_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -142,9 +132,7 @@ impl PCS_XAUI_RX_ERROR_STATUS {
         self.0 |= value;
     }
     /// Coding error detected in received 8B/10B encoded data
-
     ///
-
     /// 0: No error found 1: Coding error detected Bit is cleared by writing a 1 to this position.
     pub fn c8b10b_err_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -156,9 +144,7 @@ impl PCS_XAUI_RX_ERROR_STATUS {
         self.0 |= value;
     }
     /// Synchronization lost in lane i (i = 0...3, one bit per lane)
-
     ///
-
     /// 0: No sync lost occured 1: Synchronization lost in lane i (temporarily) Bit is cleared by writing a 1 to this position.
     pub fn sync_lost_sticky(&self) -> u32 {
         self.0 & 0xf
@@ -242,9 +228,7 @@ impl PCS_XAUI_RX_SEQ_REC_STATUS {
         self.0 |= value;
     }
     /// Received ||Q|| code changed
-
     ///
-
     /// 1: New ||Q|| has been received 0: No new ||Q|| since last read Bit is cleared by writing a 1 to this position.
     pub fn rx_q_changed_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -262,9 +246,7 @@ impl PCS_XAUI_RX_SEQ_REC_STATUS {
 pub struct PCS_XAUI_RX_STATUS(u32);
 impl PCS_XAUI_RX_STATUS {
     /// Status of lane alignment
-
     ///
-
     /// 1: All lanes are aligned 0: No alignment reached
     pub fn alignment_status(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -276,9 +258,7 @@ impl PCS_XAUI_RX_STATUS {
         self.0 |= value;
     }
     /// Local Fault status (one or more of sync/align/fifo_of/fifo_uf/8b10b error)
-
     ///
-
     /// 1: A fault occured 0: No fault detected Bit is cleared by writing a 1 to this position.
     pub fn local_fault_sticky(&self) -> u32 {
         (self.0 & 0xf00) >> 8
@@ -300,9 +280,7 @@ impl PCS_XAUI_RX_STATUS {
         self.0 |= value;
     }
     /// Status of code group alignment (lane independent)
-
     ///
-
     /// 1111: All lanes in sync 0001: Lane 0 is in sync ...
     pub fn sync_status(&self) -> u32 {
         self.0 & 0xf

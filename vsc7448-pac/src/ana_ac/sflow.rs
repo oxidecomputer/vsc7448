@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct SFLOW_CTRL(u32);
 impl SFLOW_CTRL {
     /// Configures the sampler as an ingress, egress or dual direction sampler.
-
     ///
-
     /// "00": Disable sampler. "01": RX sampler (samples trafficfrom port) "10": TX sampler (samples traffic to port) "11": RX or TX sampler (samples traffic to and from port)
     pub fn sflow_dir_sel(&self) -> u32 {
         (self.0 & 0x18000) >> 15
@@ -58,9 +56,7 @@ impl SFLOW_CTRL {
         self.0 |= value;
     }
     /// The probability with which the sampler copies frames to CPU. The probability can be calculated as: SFLOW_SAMPLE_RATE/32767
-
     ///
-
     /// '0x0': 0 probability, i.e. sFlow sampler is disabled. '0x1': 1/32767 '0x7FFF': 100%, i.e. all frames are sampled by the sFlow sampler.
     pub fn sflow_sample_rate(&self) -> u32 {
         self.0 & 0x7fff

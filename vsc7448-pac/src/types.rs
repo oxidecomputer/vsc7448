@@ -25,3 +25,34 @@ where
         }
     }
 }
+
+pub struct PhyRegisterAddress<T> {
+    pub page: u16,
+    pub addr: u8,
+    _phantom: core::marker::PhantomData<*const T>,
+}
+// We can't #[derive(Copy, Clone)] because of PhantomData
+impl<T> Copy for PhyRegisterAddress<T> {}
+impl<T> Clone for PhyRegisterAddress<T> {
+    fn clone(&self) -> Self {
+        Self {
+            page: self.page,
+            addr: self.addr,
+            _phantom: core::marker::PhantomData,
+        }
+    }
+}
+
+impl<T> PhyRegisterAddress<T>
+where
+    T: From<u16>,
+    u16: From<T>,
+{
+    pub(crate) fn new(page: u16, addr: u8) -> Self {
+        Self {
+            page,
+            addr,
+            _phantom: core::marker::PhantomData,
+        }
+    }
+}

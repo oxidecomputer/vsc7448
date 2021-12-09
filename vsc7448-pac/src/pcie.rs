@@ -62,7 +62,9 @@ impl PCIE_AER_CAP {
     pub fn HDR_LOG_REG_2(&self) -> RegisterAddress<pcie_aer_cap::HDR_LOG_REG_2> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    pub fn LINK_CONTROL2_LINK_STATUS2(&self) -> RegisterAddress<pcie_aer_cap::LINK_CONTROL2_LINK_STATUS2> {
+    pub fn LINK_CONTROL2_LINK_STATUS2(
+        &self,
+    ) -> RegisterAddress<pcie_aer_cap::LINK_CONTROL2_LINK_STATUS2> {
         RegisterAddress::new(self.0 + 0x30)
     }
     pub fn UNCORR_ERR_MASK(&self) -> RegisterAddress<pcie_aer_cap::UNCORR_ERR_MASK> {
@@ -85,10 +87,14 @@ impl PCIE_CAP {
     pub fn DEVICE_CAPABILITIES2(&self) -> RegisterAddress<pcie_cap::DEVICE_CAPABILITIES2> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    pub fn DEVICE_CONTROL2_DEVICE_STATUS2(&self) -> RegisterAddress<pcie_cap::DEVICE_CONTROL2_DEVICE_STATUS2> {
+    pub fn DEVICE_CONTROL2_DEVICE_STATUS2(
+        &self,
+    ) -> RegisterAddress<pcie_cap::DEVICE_CONTROL2_DEVICE_STATUS2> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    pub fn DEVICE_CONTROL_DEVICE_STATUS(&self) -> RegisterAddress<pcie_cap::DEVICE_CONTROL_DEVICE_STATUS> {
+    pub fn DEVICE_CONTROL_DEVICE_STATUS(
+        &self,
+    ) -> RegisterAddress<pcie_cap::DEVICE_CONTROL_DEVICE_STATUS> {
         RegisterAddress::new(self.0 + 0x8)
     }
     pub fn LINK_CAPABILITIES(&self) -> RegisterAddress<pcie_cap::LINK_CAPABILITIES> {
@@ -103,7 +109,9 @@ impl PCIE_CAP {
     pub fn MSI_PENDING_BIT(&self) -> RegisterAddress<pcie_cap::MSI_PENDING_BIT> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    pub fn PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP(&self) -> RegisterAddress<pcie_cap::PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP> {
+    pub fn PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP(
+        &self,
+    ) -> RegisterAddress<pcie_cap::PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -120,7 +128,9 @@ impl PCIE_MSI_CAP {
     pub fn MSI_UPPER_32(&self) -> RegisterAddress<pcie_msi_cap::MSI_UPPER_32> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn PCI_MSI_CAP_ID_NEXT_CTRL(&self) -> RegisterAddress<pcie_msi_cap::PCI_MSI_CAP_ID_NEXT_CTRL> {
+    pub fn PCI_MSI_CAP_ID_NEXT_CTRL(
+        &self,
+    ) -> RegisterAddress<pcie_msi_cap::PCI_MSI_CAP_ID_NEXT_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -131,7 +141,9 @@ impl PCIE_PM_CAP {
     pub fn CAP_ID_NXT_PTR(&self) -> RegisterAddress<pcie_pm_cap::CAP_ID_NXT_PTR> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE(&self) -> RegisterAddress<pcie_pm_cap::MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE> {
+    pub fn MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE(
+        &self,
+    ) -> RegisterAddress<pcie_pm_cap::MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE> {
         RegisterAddress::new(self.0 + 0x3c)
     }
 }
@@ -145,10 +157,14 @@ impl PCIE_PORT_LOGIC {
     pub fn ACK_LATENCY_TIMER(&self) -> RegisterAddress<pcie_port_logic::ACK_LATENCY_TIMER> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn AMBA_ERROR_RESPONSE_DEFAULT(&self) -> RegisterAddress<pcie_port_logic::AMBA_ERROR_RESPONSE_DEFAULT> {
+    pub fn AMBA_ERROR_RESPONSE_DEFAULT(
+        &self,
+    ) -> RegisterAddress<pcie_port_logic::AMBA_ERROR_RESPONSE_DEFAULT> {
         RegisterAddress::new(self.0 + 0x1d0)
     }
-    pub fn AMBA_MUL_OB_DECOMP_NP_SUB_REQ_CTRL(&self) -> RegisterAddress<pcie_port_logic::AMBA_MUL_OB_DECOMP_NP_SUB_REQ_CTRL> {
+    pub fn AMBA_MUL_OB_DECOMP_NP_SUB_REQ_CTRL(
+        &self,
+    ) -> RegisterAddress<pcie_port_logic::AMBA_MUL_OB_DECOMP_NP_SUB_REQ_CTRL> {
         RegisterAddress::new(self.0 + 0x24)
     }
     pub fn ATU_BASE_ADDR_HIGH(&self) -> RegisterAddress<pcie_port_logic::ATU_BASE_ADDR_HIGH> {
@@ -226,13 +242,19 @@ impl PCIE_PORT_LOGIC {
     pub fn SYMBOL_TIMER_FILTER_1(&self) -> RegisterAddress<pcie_port_logic::SYMBOL_TIMER_FILTER_1> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    pub fn TIMER_CTRL_MAX_FUNC_NUM(&self) -> RegisterAddress<pcie_port_logic::TIMER_CTRL_MAX_FUNC_NUM> {
+    pub fn TIMER_CTRL_MAX_FUNC_NUM(
+        &self,
+    ) -> RegisterAddress<pcie_port_logic::TIMER_CTRL_MAX_FUNC_NUM> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    pub fn TX_CPL_FC_CREDIT_STATUS(&self) -> RegisterAddress<pcie_port_logic::TX_CPL_FC_CREDIT_STATUS> {
+    pub fn TX_CPL_FC_CREDIT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcie_port_logic::TX_CPL_FC_CREDIT_STATUS> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    pub fn TX_NP_FC_CREDIT_STATUS(&self) -> RegisterAddress<pcie_port_logic::TX_NP_FC_CREDIT_STATUS> {
+    pub fn TX_NP_FC_CREDIT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcie_port_logic::TX_NP_FC_CREDIT_STATUS> {
         RegisterAddress::new(self.0 + 0x34)
     }
     pub fn TX_P_FC_CREDIT_STATUS(&self) -> RegisterAddress<pcie_port_logic::TX_P_FC_CREDIT_STATUS> {
@@ -279,13 +301,17 @@ impl PCIE_TYPE0_HDR {
     pub fn BAR5(&self) -> RegisterAddress<pcie_type0_hdr::BAR5> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    pub fn BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE(&self) -> RegisterAddress<pcie_type0_hdr::BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE> {
+    pub fn BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE(
+        &self,
+    ) -> RegisterAddress<pcie_type0_hdr::BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE> {
         RegisterAddress::new(self.0 + 0xc)
     }
     pub fn CARDBUS_CIS_PTR(&self) -> RegisterAddress<pcie_type0_hdr::CARDBUS_CIS_PTR> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    pub fn CLASS_CODE_REVISION_ID(&self) -> RegisterAddress<pcie_type0_hdr::CLASS_CODE_REVISION_ID> {
+    pub fn CLASS_CODE_REVISION_ID(
+        &self,
+    ) -> RegisterAddress<pcie_type0_hdr::CLASS_CODE_REVISION_ID> {
         RegisterAddress::new(self.0 + 0x8)
     }
     pub fn DEVICE_ID_VENDOR_ID(&self) -> RegisterAddress<pcie_type0_hdr::DEVICE_ID_VENDOR_ID> {
@@ -300,7 +326,9 @@ impl PCIE_TYPE0_HDR {
     pub fn STATUS_COMMAND(&self) -> RegisterAddress<pcie_type0_hdr::STATUS_COMMAND> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn SUBSYSTEM_ID_SUBSYSTEM_VENDOR_ID(&self) -> RegisterAddress<pcie_type0_hdr::SUBSYSTEM_ID_SUBSYSTEM_VENDOR_ID> {
+    pub fn SUBSYSTEM_ID_SUBSYSTEM_VENDOR_ID(
+        &self,
+    ) -> RegisterAddress<pcie_type0_hdr::SUBSYSTEM_ID_SUBSYSTEM_VENDOR_ID> {
         RegisterAddress::new(self.0 + 0x2c)
     }
 }

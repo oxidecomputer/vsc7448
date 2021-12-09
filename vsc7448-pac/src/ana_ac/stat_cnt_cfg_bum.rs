@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct STAT_GLOBAL_EVENT_MASK(u32);
 impl STAT_GLOBAL_EVENT_MASK {
     /// This value stores the event mask which controls the counter of all bundle stats to count certain events. If set to '1' the respective event is not filtered and can trigger the counter. If set to '0' the respective event is filtered and the counter will treat the frame as if no event has occurred. Which type of frame is counted is defined in: STAT_GLOBAL_CFG. The following events apply to Bundle DLB stat: Bit0: Count Broadcast traffic discarded by BUM policer Bit1: Count Multicast traffic discarded by BUM policer Bit2: Count Unicast traffic discarded by BUM policer Bit3: Count Broadcast traffic applicable for BUM policer but not discarded Bit4: Count Multicast traffic applicable for BUM policer but not discarded Bit5: Count Unicast traffic applicable for BUM policer but not discarded
-
     ///
-
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
     pub fn global_event_mask(&self) -> u32 {
         self.0 & 0x3f

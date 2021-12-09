@@ -254,9 +254,7 @@ impl BFD_RX_STICKY {
 pub struct BFD_SINK_INFO(u32);
 impl BFD_SINK_INFO {
     /// BFD diagnostic code of the Local BFD_SINK. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs DIAG field transmitted by the BFD_SINK. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
-
     ///
-
     /// See RFC6428
     pub fn bfd_local_diag_sink(&self) -> u32 {
         (self.0 & 0x3e00000) >> 21
@@ -278,9 +276,7 @@ impl BFD_SINK_INFO {
         self.0 |= value;
     }
     /// BFD State of the Local BFD_SINK. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs STATE field of all PDUs transmitted by the BFD_SINK. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
-
     ///
-
     /// 00 - AdminDown 01 - Down 10 - Init 11 - Up
     pub fn bfd_local_state_sink(&self) -> u32 {
         (self.0 & 0x30000000) >> 28
@@ -292,9 +288,7 @@ impl BFD_SINK_INFO {
         self.0 |= value;
     }
     /// BFD diagnostic code of the remote BFD entity communicating with the Local BFD_SINK. If configured to do so, the VOE HW will update this bit field with the DIAG CODE value of the last valid BFD CC PDU received by the BFD_SINK. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
-
     ///
-
     /// See RFC6428
     pub fn bfd_remote_diag_sink(&self) -> u32 {
         (self.0 & 0x1f0000) >> 16
@@ -315,9 +309,7 @@ impl BFD_SINK_INFO {
         self.0 |= value;
     }
     /// BFD State of the remote BFD entity communicating with the Local BFD_SINK If configured to do so, the VOE HW will update this bit field with the value of the last valid BFD CC PDU received by the BFD_SINK. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
-
     ///
-
     /// 00 - AdminDown 01 - Down 10 - Init 11 - Up
     pub fn bfd_remote_state_sink(&self) -> u32 {
         (self.0 & 0xc000000) >> 26
@@ -336,9 +328,7 @@ impl BFD_SINK_INFO {
 pub struct BFD_SRC_INFO(u32);
 impl BFD_SRC_INFO {
     /// BFD diagnostic code of the Local BFD_SRC. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs DIAG field transmitted by the BFD_SRC. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
-
     ///
-
     /// See RFC6428
     pub fn bfd_local_diag_src(&self) -> u32 {
         (self.0 & 0x3e00000) >> 21
@@ -360,9 +350,7 @@ impl BFD_SRC_INFO {
         self.0 |= value;
     }
     /// BFD State of the Local BFD_SRC. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs STATE field transmitted by the BFD_SRC. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
-
     ///
-
     /// 00 - AdminDown 01 - Down 10 - Init 11 - Up
     pub fn bfd_local_state_src(&self) -> u32 {
         (self.0 & 0x30000000) >> 28
@@ -374,9 +362,7 @@ impl BFD_SRC_INFO {
         self.0 |= value;
     }
     /// BFD diagnostic code of the remote BFD entity communicating with the Local BFD_SRC. If configured to do so, the VOE HW will update this bit field with the DIAG CODE value of the last valid BFD CC PDU received by the BFD_SRC. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
-
     ///
-
     /// See RFC6428
     pub fn bfd_remote_diag_src(&self) -> u32 {
         (self.0 & 0x1f0000) >> 16
@@ -397,9 +383,7 @@ impl BFD_SRC_INFO {
         self.0 |= value;
     }
     /// BFD State of the remote BFD entity communicating with the Local BFD_SRC. If configured to do so, the VOE HW will update this bit field with the value of the last valid BFD CC PDU received by the BFD_SRC. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
-
     ///
-
     /// 00 - AdminDown 01 - Down 10 - Init 11 - Up
     pub fn bfd_remote_state_src(&self) -> u32 {
         (self.0 & 0xc000000) >> 26
@@ -450,9 +434,7 @@ impl BFD_TX_STICKY {
 pub struct CPT_RX_STICKY_MPLS(u32);
 impl CPT_RX_STICKY_MPLS {
     /// Asserted when the VOE receives a valid BFD CC PDU.
-
     ///
-
     /// '0': No Valid BFD CC PDU received '1': Valid BFD CC received
     pub fn bfd_cc_rx_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -464,9 +446,7 @@ impl CPT_RX_STICKY_MPLS {
         self.0 |= value;
     }
     /// Asserted when the VOE receives a valid BFD CV PDU
-
     ///
-
     /// '0': No Valid BFD CV PDU received '1': Valid BFD CV received
     pub fn bfd_cv_rx_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -477,9 +457,7 @@ impl CPT_RX_STICKY_MPLS {
         self.0 |= value;
     }
     /// Asserted when VOE receives a valid OAM PDU with an G-ACH Channel Type which is configured as a Generic G-ACH Channel Type in the following register: * VOP::MPLS_GENERIC_CODEPOINT.GENERIC_CODEPOINT_VAL There is a separate bit to indicate the reception of each of the configured Generic G-ACH Channel Types.
-
     ///
-
     /// x0x: No CPU copy x1x: Copy to CPU
     pub fn generic_cpt_rx_sticky_mask(&self) -> u32 {
         (self.0 & 0x7f8) >> 3
@@ -491,9 +469,7 @@ impl CPT_RX_STICKY_MPLS {
         self.0 |= value;
     }
     /// Asserted when VOE receives a valid MPLS-TP OAM PDU with an G-ACH Channel Type which is detected as UNKNOWN. UNKNOWN G-ACH Channel Type is used for OAM PDU types which do not have dedicated HW support and which is not encoded as a Generic G-ACH Channel Type.
-
     ///
-
     /// '0': No UNKNOWN PDU received. '1': PDU with UNKNOWN Channel Type received.
     pub fn unk_cpt_rx_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2

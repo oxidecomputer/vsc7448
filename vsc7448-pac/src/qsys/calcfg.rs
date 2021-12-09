@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct CAL_AUTO(u32);
 impl CAL_AUTO {
     /// Per port setting for internal bandwidth for 16 ports. Replication M, Bits 2N+1 and 2N is a two bit value for port M*16+N, encoded as seen below.
-
     ///
-
     /// 00: Port not active 01: Port granted 1Gbps 10: Port granted 2.5Gbps 11: Port granted 10Gbps
     pub fn cal_auto(&self) -> u32 {
         self.0

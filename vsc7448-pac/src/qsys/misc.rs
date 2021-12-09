@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct DP_MAP(u32);
 impl DP_MAP {
     /// Drop precedence N uses mapping table given by bit N in this field.
-
     ///
-
     /// xxx0: Map DP value 0 to DE value 0 xxx1: Map DP value 0 to DE value 1 ... 0xxx: Map DP value 3 to DE value 0 1xxx: Map DP value 3 to DE value 1
     pub fn dp(&self) -> u32 {
         self.0 & 0xf

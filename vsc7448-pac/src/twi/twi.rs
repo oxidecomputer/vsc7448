@@ -46,9 +46,7 @@ impl ACK_GEN_CALL {
 pub struct CFG(u32);
 impl CFG {
     /// Controls whether transfers starts in 7- or 10-bit addressing mode when acting as a master.
-
     ///
-
     /// '0': 7-bit addressing '1': 10-bit addressing
     pub fn master_10bitaddr(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -60,9 +58,7 @@ impl CFG {
         self.0 |= value;
     }
     /// This bit controls whether the TWI master is enabled.
-
     ///
-
     /// '0': master disabled '1': master enabled
     pub fn master_ena(&self) -> u32 {
         self.0 & 0x1
@@ -73,9 +69,7 @@ impl CFG {
         self.0 |= value;
     }
     /// Determines whether RESTART conditions may be sent when acting as a master. Some older slaves do not support handling RESTART conditions; however, RESTART conditions are used in several operations. When RESTART is disabled, the master is prohibited from performing the following functions: * Change direction within a transfer (split) * Send a START BYTE * Combined format transfers in 7-bit addressing modes * Read operation with a 10-bit address * Send multiple bytes per transfer By replacing RESTART condition followed by a STOP and a subsequent START condition, split operations are  broken down into multiple transfers. If the above operations are performed, it will result in setting RAW_INTR_STAT.R_TX_ABRT.
-
     ///
-
     /// '0': disable '1': enable
     pub fn restart_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -87,9 +81,7 @@ impl CFG {
         self.0 |= value;
     }
     /// Controls whether the the TWI controller responds to 7- or 10-bit addresses in slave mode. In 7-bit mode; transactions that involve 10-bit addressing are ignored and only the lower 7 bits of the SAR register are compared.
-
     ///
-
     /// '0': 7-bit addressing. '1': 10-bit addressing.
     pub fn slave_10bitaddr(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -101,9 +93,7 @@ impl CFG {
         self.0 |= value;
     }
     /// This bit controls whether the TWI controller has its slave disabled. If this bit is set (slave is disabled), the controller functions only as a master and does not perform any action that requires a slave.
-
     ///
-
     /// '0': slave is enabled '1': slave is disabled
     pub fn slave_dis(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -115,9 +105,7 @@ impl CFG {
         self.0 |= value;
     }
     /// These bits control at which speed the TWI controller operates; its setting is relevant only in master mode. Hardware protects against illegal values being programmed by software.
-
     ///
-
     /// '1': standard mode (100 kbit/s) '2': fast mode (400 kbit/s)
     pub fn speed(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -288,9 +276,7 @@ impl CLR_TX_OVER {
 pub struct COMP_PARAM_1(u32);
 impl COMP_PARAM_1 {
     /// This value indicates if this register is valid or not.
-
     ///
-
     /// '0': Dones not have encoded parameters. '1': Has encoded parameters.
     pub fn add_encoded_params(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -302,9 +288,7 @@ impl COMP_PARAM_1 {
         self.0 |= value;
     }
     /// The value of this register is derived from the APB_DATA_WIDTH coreConsultant parameter.
-
     ///
-
     /// 0: 8 bits 1: 16 bits 2: 32 bits
     pub fn apb_data_width(&self) -> u32 {
         self.0 & 0x3
@@ -345,9 +329,7 @@ impl COMP_PARAM_1 {
         self.0 |= value;
     }
     /// The maximum TWI speed of the controller.
-
     ///
-
     /// 1: Standard 2: Fast 3: High
     pub fn max_speed_mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
@@ -408,9 +390,7 @@ impl COMP_VERSION {
 pub struct CTRL(u32);
 impl CTRL {
     /// Controls whether the TWI controller is enabled. Software can disable the controller while it is active. However, it is important that care be taken to ensure that the controller is disabled properly. When TWI controller is disabled, the following occurs: The TX FIFO and RX FIFO get flushed. The interrupt bits in the RAW_INTR_STAT register are cleared. Status bits in the INTR_STAT register are still active until the TWI controller goes into IDLE state. If the module is transmitting, it stops as well as deletes the contents of the transmit buffer after the current transfer is complete. If the module is receiving, the controller stops the current transfer at the end of the current byte and does not acknowledge the transfer.
-
     ///
-
     /// '0': Disables TWI controller '1': Enables TWI controller
     pub fn enable(&self) -> u32 {
         self.0 & 0x1
@@ -426,9 +406,7 @@ impl CTRL {
 pub struct DATA_CMD(u32);
 impl DATA_CMD {
     /// This bit controls whether a read or a write is performed. This bit does not control the direction when the TWI acts as a slave. It controls only the direction when it acts as a master. When a command is entered in the TX FIFO, this bit distinguishes the write and read commands. In slave-receiver mode, this bit is a "don't care" because writes to this register are not required. In slave-transmitter mode, a "0" indicates that CPU data is to be transmitted and as DATA. When programming this bit, remember the following: attempting to perform a read operation after a General Call command has been sent results in a TX_ABRT interrupt (RAW_INTR_STAT.R_TX_ABRT), unless TAR.GC_OR_START_ENA has been cleared. If a "1" is written to this bit after receiving a RD_REQ interrupt, then a TX_ABRT interrupt occurs. NOTE: It is possible that while attempting a master TWI read transfer, a RD_REQ interrupt may have occurred simultaneously due to a remote TWI master addressing this controller. In this type of scenario, the TWI controller ignores the DATA_CMD write, generates a TX_ABRT interrupt, and waits to service the RD_REQ interrupt.
-
     ///
-
     /// '1' = Read '0' = Write
     pub fn cmd(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -520,7 +498,8 @@ impl FS_SCL_LCNT {
 /// These fields mask the corresponding interrupt status fields (RAW_INTR_STAT). They are active high; a value of 0 prevents the corresponding field in RAW_INTR_STAT from generating an interrupt.
 #[derive(From, Into)]
 pub struct INTR_MASK(u32);
-impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
+impl INTR_MASK {
+    pub fn m_activity(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_m_activity(&mut self, value: u32) {
@@ -528,7 +507,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    pub fn m_gen_call(&self) -> u32 {
+    }
+    pub fn m_gen_call(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_m_gen_call(&mut self, value: u32) {
@@ -536,7 +516,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    pub fn m_rd_req(&self) -> u32 {
+    }
+    pub fn m_rd_req(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_m_rd_req(&mut self, value: u32) {
@@ -544,7 +525,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    pub fn m_rx_done(&self) -> u32 {
+    }
+    pub fn m_rx_done(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_m_rx_done(&mut self, value: u32) {
@@ -552,7 +534,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    pub fn m_rx_full(&self) -> u32 {
+    }
+    pub fn m_rx_full(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_m_rx_full(&mut self, value: u32) {
@@ -560,7 +543,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    pub fn m_rx_over(&self) -> u32 {
+    }
+    pub fn m_rx_over(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_m_rx_over(&mut self, value: u32) {
@@ -568,14 +552,16 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    pub fn m_rx_under(&self) -> u32 {
+    }
+    pub fn m_rx_under(&self) -> u32 {
         self.0 & 0x1
     }
     pub fn set_m_rx_under(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    pub fn m_start_det(&self) -> u32 {
+    }
+    pub fn m_start_det(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
     pub fn set_m_start_det(&mut self, value: u32) {
@@ -583,7 +569,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    pub fn m_stop_det(&self) -> u32 {
+    }
+    pub fn m_stop_det(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_m_stop_det(&mut self, value: u32) {
@@ -591,7 +578,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    pub fn m_tx_abrt(&self) -> u32 {
+    }
+    pub fn m_tx_abrt(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_m_tx_abrt(&mut self, value: u32) {
@@ -599,7 +587,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    pub fn m_tx_empty(&self) -> u32 {
+    }
+    pub fn m_tx_empty(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_m_tx_empty(&mut self, value: u32) {
@@ -607,7 +596,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    pub fn m_tx_over(&self) -> u32 {
+    }
+    pub fn m_tx_over(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_m_tx_over(&mut self, value: u32) {
@@ -622,7 +612,8 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
 /// Each field in this register has a corresponding mask field in the INTR_MASK register. These fields are cleared by reading the matching interrupt clear register. The unmasked raw versions of these fields are available in the RAW_INTR_STAT register. See RAW_INTR_STAT for a description of these fields
 #[derive(From, Into)]
 pub struct INTR_STAT(u32);
-impl INTR_STAT {    pub fn activity(&self) -> u32 {
+impl INTR_STAT {
+    pub fn activity(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_activity(&mut self, value: u32) {
@@ -630,7 +621,8 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    pub fn gen_call(&self) -> u32 {
+    }
+    pub fn gen_call(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_gen_call(&mut self, value: u32) {
@@ -638,7 +630,8 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
-    }    pub fn rd_req(&self) -> u32 {
+    }
+    pub fn rd_req(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_rd_req(&mut self, value: u32) {
@@ -646,7 +639,8 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    pub fn rx_done(&self) -> u32 {
+    }
+    pub fn rx_done(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_rx_done(&mut self, value: u32) {
@@ -654,7 +648,8 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    pub fn rx_full(&self) -> u32 {
+    }
+    pub fn rx_full(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rx_full(&mut self, value: u32) {
@@ -662,7 +657,8 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
-    }    pub fn rx_over(&self) -> u32 {
+    }
+    pub fn rx_over(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_rx_over(&mut self, value: u32) {
@@ -670,14 +666,16 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }    pub fn rx_under(&self) -> u32 {
+    }
+    pub fn rx_under(&self) -> u32 {
         self.0 & 0x1
     }
     pub fn set_rx_under(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }    pub fn start_det(&self) -> u32 {
+    }
+    pub fn start_det(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
     pub fn set_start_det(&mut self, value: u32) {
@@ -685,7 +683,8 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
-    }    pub fn stop_det(&self) -> u32 {
+    }
+    pub fn stop_det(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_stop_det(&mut self, value: u32) {
@@ -693,7 +692,8 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
-    }    pub fn tx_abrt(&self) -> u32 {
+    }
+    pub fn tx_abrt(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_tx_abrt(&mut self, value: u32) {
@@ -701,7 +701,8 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    pub fn tx_empty(&self) -> u32 {
+    }
+    pub fn tx_empty(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tx_empty(&mut self, value: u32) {
@@ -709,7 +710,8 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    pub fn tx_over(&self) -> u32 {
+    }
+    pub fn tx_over(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tx_over(&mut self, value: u32) {
@@ -848,7 +850,8 @@ impl RAW_INTR_STAT {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED1(u32);
-impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
+impl RESERVED1 {
+    pub fn reserved1(&self) -> u32 {
         self.0
     }
     pub fn set_reserved1(&mut self, value: u32) {
@@ -858,7 +861,8 @@ impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED2(u32);
-impl RESERVED2 {    pub fn reserved2(&self) -> u32 {
+impl RESERVED2 {
+    pub fn reserved2(&self) -> u32 {
         self.0
     }
     pub fn set_reserved2(&mut self, value: u32) {
@@ -868,7 +872,8 @@ impl RESERVED2 {    pub fn reserved2(&self) -> u32 {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED3(u32);
-impl RESERVED3 {    pub fn reserved3(&self) -> u32 {
+impl RESERVED3 {
+    pub fn reserved3(&self) -> u32 {
         self.0
     }
     pub fn set_reserved3(&mut self, value: u32) {
@@ -878,7 +883,8 @@ impl RESERVED3 {    pub fn reserved3(&self) -> u32 {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED4(u32);
-impl RESERVED4 {    pub fn reserved4(&self) -> u32 {
+impl RESERVED4 {
+    pub fn reserved4(&self) -> u32 {
         self.0
     }
     pub fn set_reserved4(&mut self, value: u32) {
@@ -888,7 +894,8 @@ impl RESERVED4 {    pub fn reserved4(&self) -> u32 {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED5(u32);
-impl RESERVED5 {    pub fn reserved5(&self) -> u32 {
+impl RESERVED5 {
+    pub fn reserved5(&self) -> u32 {
         self.0
     }
     pub fn set_reserved5(&mut self, value: u32) {
@@ -898,7 +905,8 @@ impl RESERVED5 {    pub fn reserved5(&self) -> u32 {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED6(u32);
-impl RESERVED6 {    pub fn reserved6(&self) -> u32 {
+impl RESERVED6 {
+    pub fn reserved6(&self) -> u32 {
         self.0
     }
     pub fn set_reserved6(&mut self, value: u32) {
@@ -908,7 +916,8 @@ impl RESERVED6 {    pub fn reserved6(&self) -> u32 {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED7(u32);
-impl RESERVED7 {    pub fn reserved7(&self) -> u32 {
+impl RESERVED7 {
+    pub fn reserved7(&self) -> u32 {
         self.0
     }
     pub fn set_reserved7(&mut self, value: u32) {
@@ -918,7 +927,8 @@ impl RESERVED7 {    pub fn reserved7(&self) -> u32 {
 /// Reserved
 #[derive(From, Into)]
 pub struct RESERVED8(u32);
-impl RESERVED8 {    pub fn reserved8(&self) -> u32 {
+impl RESERVED8 {
+    pub fn reserved8(&self) -> u32 {
         self.0
     }
     pub fn set_reserved8(&mut self, value: u32) {
@@ -1029,9 +1039,7 @@ impl STAT {
         self.0 |= value;
     }
     /// Master FSM Activity Status. When the Master Finite State Machine (FSM) is not in the IDLE state, this bit is set.
-
     ///
-
     /// '0': Master FSM is in IDLE state so the Master part of the controller is not Active '1': Master FSM is not in IDLE state so the Master part of the controller is Active
     pub fn mst_activity(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -1043,9 +1051,7 @@ impl STAT {
         self.0 |= value;
     }
     /// Receive FIFO Completely Full. When the receive FIFO is completely full, this bit is set. When the receive FIFO contains one or more empty location, this bit is cleared.
-
     ///
-
     /// '0': Receive FIFO is not full '1': Receive FIFO is full
     pub fn rff(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -1057,9 +1063,7 @@ impl STAT {
         self.0 |= value;
     }
     /// Receive FIFO Not Empty. Set when the receive FIFO contains one or more entries and is cleared when the receive FIFO is empty. This bit can be polled by software to completely empty the receive FIFO.
-
     ///
-
     /// '0': Receive FIFO is empty '1': Receive FIFO is not empty
     pub fn rfne(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -1071,9 +1075,7 @@ impl STAT {
         self.0 |= value;
     }
     /// Slave FSM Activity Status. When the Slave Finite State Machine (FSM) is not in the IDLE state, this bit is set.
-
     ///
-
     /// '0': Slave FSM is in IDLE state so the Slave part of the controller is not Active '1': Slave FSM is not in IDLE state so the Slave part of the controller is Active
     pub fn slv_activity(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -1085,9 +1087,7 @@ impl STAT {
         self.0 |= value;
     }
     /// Transmit FIFO Completely Empty. When the transmit FIFO is completely empty, this bit is set. When it contains one or more valid entries, this bit is cleared. This bit field does not request an interrupt.
-
     ///
-
     /// '0': Transmit FIFO is not empty '1': Transmit FIFO is empty
     pub fn tfe(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -1099,9 +1099,7 @@ impl STAT {
         self.0 |= value;
     }
     /// Transmit FIFO Not Full. Set when the transmit FIFO contains one or more empty locations, and is cleared when the FIFO is full.
-
     ///
-
     /// '0': Transmit FIFO is full '1': Transmit FIFO is not full
     pub fn tfnf(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -1118,9 +1116,7 @@ impl STAT {
 pub struct TAR(u32);
 impl TAR {
     /// If TAR.GC_OR_START_ENA is set to 1, then this bit indicates whether a General Call or START byte command is to be performed.
-
     ///
-
     /// '0': General Call Address - after issuing a General Call, only writes may be performed. Attempting to issue a read command results in setting RAW_INTR_STAT.R_TX_ABRT. The TWI controller remains in General Call mode until the TAR.GC_OR_START_ENA field is cleared. '1': START BYTE
     pub fn gc_or_start(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -1132,9 +1128,7 @@ impl TAR {
         self.0 |= value;
     }
     /// This bit indicates whether software performs a General Call or START BYTE command.
-
     ///
-
     /// '0': ignore bit 10 GC_OR_START and use TAR normally '1': perform special TWI command as specified in GC_OR_START bit
     pub fn gc_or_start_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -1273,9 +1267,7 @@ impl TX_ABRT_SOURCE {
         self.0 |= value;
     }
     /// To clear Bit 9, the source of the ABRT_SBYTE_NORSTRT must be fixed first; restart must be enabled (CFG[5]=1), the SPECIAL bit must be cleared (TAR[11]), or the GC_OR_START bit must be cleared (TAR[10]). Once the source of the ABRT_SBYTE_NORSTRT is fixed, then this bit can be cleared in the same manner as other bits in this register. If the source of the ABRT_SBYTE_NORSTRT is not fixed before attempting to clear this bit, bit 9 clears for one cycle and then gets re-asserted.
-
     ///
-
     /// '1': The restart is disabled (RESTART_ENA bit (CFG[5]) = 0) and the user is trying to send a START Byte.
     pub fn abrt_sbyte_norstrt(&self) -> u32 {
         (self.0 & 0x200) >> 9

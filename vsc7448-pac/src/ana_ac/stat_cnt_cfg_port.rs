@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct STAT_CFG(u32);
 impl STAT_CFG {
     /// Configure whether to count frames or bytes.
-
     ///
-
     /// '0': Count frames. '1': Count bytes.
     pub fn cfg_cnt_byte(&self) -> u32 {
         self.0 & 0x1
@@ -47,9 +45,7 @@ impl STAT_CFG {
         self.0 |= value;
     }
     /// Selects which frames to count.
-
     ///
-
     /// "000": The frames without any event signal or frame error signal asserted are counted. "001": The frames with unmasked (enabled) events asserted but with no error indications are counted. "010": The frames with both event signal and the error signal asserted are counted. "011": The frames with event signal asserted are counted in spite of the error indications. "100": The frames with the error signal asserted, but with no event signal are counted. "101": The frames with error signal asserted are counted in spite of the accompied event indications. | Error | Event -----+-------+------ 000 |   N	|   N -----+-------+------ 001 |   N	|   Y -----+-------+------ 010 |   Y	|   Y -----+-------+------ 011 |   -	|   Y -----+-------+------ 100 |   Y	|   N -----+-------+------ 101 |   Y	|   - -----+-------+------
     pub fn cfg_cnt_frm_type(&self) -> u32 {
         (self.0 & 0xe) >> 1
@@ -61,9 +57,7 @@ impl STAT_CFG {
         self.0 |= value;
     }
     /// This field is to configure the counters of a flow to count frames with certain priorities. The field contains one bit per priority. Note that with the default value of this field, counting is disabled for all priorities.
-
     ///
-
     /// 0: Do not count frames with this priority. 1: Count frames with this priority.
     pub fn cfg_prio_mask(&self) -> u32 {
         (self.0 & 0xff0) >> 4
@@ -82,9 +76,7 @@ impl STAT_CFG {
 pub struct STAT_EVENTS_STICKY(u32);
 impl STAT_EVENTS_STICKY {
     /// These are the sticky bits of events. There is a sticky bit for an event for each flow.
-
     ///
-
     /// '1': The corresponding event is triggered since it is cleared last time. '0': No such event is triggered since it is cleared last time.
     pub fn sticky_bits(&self) -> u32 {
         self.0 & 0xffff

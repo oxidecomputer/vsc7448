@@ -104,9 +104,7 @@ impl SE_CFG {
         self.0 |= value;
     }
     /// Number of inputs running with DWRR algorithm, otherwise strict. Strict inputs always have the highest input index.
-
     ///
-
     /// 0: No inputs uses DWRR 1: 2 lowest inputs used DWRR n: (n+1) lowest inputs uses DWRR
     pub fn se_dwrr_cnt(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
@@ -118,9 +116,7 @@ impl SE_CFG {
         self.0 |= value;
     }
     /// Accounting mode for the dwrr distribution.
-
     ///
-
     /// 0: Line rate. Cost is frame length including HSCH_MISC_CFG.FRM_ADJ. 1: Data rate. Cost is frame length excluding IPG. 2. Frame rate. Cost is 1. 3: Reserved.
     pub fn se_dwrr_frm_mode(&self) -> u32 {
         (self.0 & 0x6) >> 1
@@ -132,9 +128,7 @@ impl SE_CFG {
         self.0 |= value;
     }
     /// Accounting mode for this shaper.
-
     ///
-
     /// 0: Line rate. Shape bytes including HSCH_MISC_CFG.FRM_ADJ. 1: Data rate. Shape bytes excluding IPG. 2. Frame rate. Shape frames with rate unit = 100 fps and burst unit = 32.8 frames. 3: Frame rate. Shape framed with rate unit = 1 fps and burst unit = 0.3 frames.
     pub fn se_frm_mode(&self) -> u32 {
         (self.0 & 0x18) >> 3
@@ -146,9 +140,7 @@ impl SE_CFG {
         self.0 |= value;
     }
     /// Block traffic through this element. This can be used for transfering element to other locations in the scheduling hierarchy
-
     ///
-
     /// 0: Traffic can flow through this element 1: This element will block its output
     pub fn se_stop(&self) -> u32 {
         self.0 & 0x1

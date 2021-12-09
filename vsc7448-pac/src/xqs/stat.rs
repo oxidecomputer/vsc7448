@@ -44,7 +44,8 @@ impl CNT {
 /// Maximum use of the shared area
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_FILL_MAX_STAT(u32);
-impl QLIMIT_SHR_FILL_MAX_STAT {    pub fn qlimit_shr_fill_max(&self) -> u32 {
+impl QLIMIT_SHR_FILL_MAX_STAT {
+    pub fn qlimit_shr_fill_max(&self) -> u32 {
         self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_fill_max(&mut self, value: u32) {

@@ -68,7 +68,10 @@ impl CFG {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x1b8 + index * 0x4)
     }
-    pub fn MAC_ADDR_BASE_HIGH_CFG(&self, index: u32) -> RegisterAddress<cfg::MAC_ADDR_BASE_HIGH_CFG> {
+    pub fn MAC_ADDR_BASE_HIGH_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<cfg::MAC_ADDR_BASE_HIGH_CFG> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x8a0 + index * 0x4)
     }
@@ -111,8 +114,7 @@ impl COREMEM {
 
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
-impl RAM_CTRL {
-}
+impl RAM_CTRL {}
 
 /// Configuration registers for rate limit modes
 pub struct RATE_LIMIT_CFG(pub(super) u32);
@@ -120,15 +122,24 @@ impl RATE_LIMIT_CFG {
     pub fn PRE_CNT_OFLW_STICKY(&self) -> RegisterAddress<rate_limit_cfg::PRE_CNT_OFLW_STICKY> {
         RegisterAddress::new(self.0 + 0xf0)
     }
-    pub fn TX_FRAME_RATE_START_CFG(&self, index: u32) -> RegisterAddress<rate_limit_cfg::TX_FRAME_RATE_START_CFG> {
+    pub fn TX_FRAME_RATE_START_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<rate_limit_cfg::TX_FRAME_RATE_START_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x1b8 + index * 0x4)
     }
-    pub fn TX_IPG_STRETCH_RATIO_CFG(&self, index: u32) -> RegisterAddress<rate_limit_cfg::TX_IPG_STRETCH_RATIO_CFG> {
+    pub fn TX_IPG_STRETCH_RATIO_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<rate_limit_cfg::TX_IPG_STRETCH_RATIO_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0xdc + index * 0x4)
     }
-    pub fn TX_RATE_LIMIT_MODE(&self, index: u32) -> RegisterAddress<rate_limit_cfg::TX_RATE_LIMIT_MODE> {
+    pub fn TX_RATE_LIMIT_MODE(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<rate_limit_cfg::TX_RATE_LIMIT_MODE> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
@@ -137,10 +148,15 @@ impl RATE_LIMIT_CFG {
 /// Status registers for rate limit modes
 pub struct RATE_LIMIT_STATUS(pub(super) u32);
 impl RATE_LIMIT_STATUS {
-    pub fn TX_RATE_LIMIT_HDR_CFG(&self) -> RegisterAddress<rate_limit_status::TX_RATE_LIMIT_HDR_CFG> {
+    pub fn TX_RATE_LIMIT_HDR_CFG(
+        &self,
+    ) -> RegisterAddress<rate_limit_status::TX_RATE_LIMIT_HDR_CFG> {
         RegisterAddress::new(self.0 + 0x294)
     }
-    pub fn TX_RATE_LIMIT_STICKY(&self, index: u32) -> RegisterAddress<rate_limit_status::TX_RATE_LIMIT_STICKY> {
+    pub fn TX_RATE_LIMIT_STICKY(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<rate_limit_status::TX_RATE_LIMIT_STICKY> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }

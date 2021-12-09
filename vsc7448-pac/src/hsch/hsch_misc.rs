@@ -334,9 +334,7 @@ impl OUTB_SHARE_ENA {
 pub struct PFC_CFG(u32);
 impl PFC_CFG {
     /// Set the layer at which PFC status should be applied for this port. Only layers 1 and 2 supports PFC blocking of the hierarchy.
-
     ///
-
     /// 0: Dont block any branches through PFC status 1: Use pfc status for the port on layer 1 2: Use pfc status for the port on layer 2 3: Reserved
     pub fn pfc_layer(&self) -> u32 {
         (self.0 & 0xc0) >> 6
@@ -374,9 +372,7 @@ impl PORT_MODE {
         self.0 |= value;
     }
     /// Select the priority mode for CPU copies transmitted on the port.
-
     ///
-
     /// 0: IFH CPU mask shows all CPU queues the frame applies to. Priority of frame set to the CPU queue the frame copy is generated for 1: IFH CPU mask shows the CPU queue number the frame copy is generated for. Priority of frame set to the priority selected for the particular frame copy (see QFWD::FRAME_COPY_CFG)
     pub fn cpu_prio_mode(&self) -> u32 {
         self.0 & 0x1

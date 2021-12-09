@@ -124,7 +124,9 @@ impl PS_COMMON {
     pub fn CM_DATA(&self) -> RegisterAddress<ps_common::CM_DATA> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn COMMON_EQUAL_STACK_LINK_TTL_CFG(&self) -> RegisterAddress<ps_common::COMMON_EQUAL_STACK_LINK_TTL_CFG> {
+    pub fn COMMON_EQUAL_STACK_LINK_TTL_CFG(
+        &self,
+    ) -> RegisterAddress<ps_common::COMMON_EQUAL_STACK_LINK_TTL_CFG> {
         RegisterAddress::new(self.0 + 0x2c)
     }
     pub fn COMMON_VSTAX_CFG(&self) -> RegisterAddress<ps_common::COMMON_VSTAX_CFG> {
@@ -193,8 +195,7 @@ impl PS_STICKY_MASK {
 
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
-impl RAM_CTRL {
-}
+impl RAM_CTRL {}
 
 /// sFlow sampler configuration & status per port
 pub struct SFLOW(pub(super) u32);
@@ -221,7 +222,10 @@ impl SRC {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_ACL(pub(super) u32);
 impl STAT_CNT_CFG_ACL {
-    pub fn STAT_GLOBAL_EVENT_MASK(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_acl::STAT_GLOBAL_EVENT_MASK> {
+    pub fn STAT_GLOBAL_EVENT_MASK(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_cnt_cfg_acl::STAT_GLOBAL_EVENT_MASK> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
@@ -234,7 +238,10 @@ impl STAT_CNT_CFG_ACL {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_BDLB(pub(super) u32);
 impl STAT_CNT_CFG_BDLB {
-    pub fn STAT_GLOBAL_EVENT_MASK(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_bdlb::STAT_GLOBAL_EVENT_MASK> {
+    pub fn STAT_GLOBAL_EVENT_MASK(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_cnt_cfg_bdlb::STAT_GLOBAL_EVENT_MASK> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
@@ -247,7 +254,10 @@ impl STAT_CNT_CFG_BDLB {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_BUM(pub(super) u32);
 impl STAT_CNT_CFG_BUM {
-    pub fn STAT_GLOBAL_EVENT_MASK(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_bum::STAT_GLOBAL_EVENT_MASK> {
+    pub fn STAT_GLOBAL_EVENT_MASK(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_cnt_cfg_bum::STAT_GLOBAL_EVENT_MASK> {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x30 + index * 0x4)
     }
@@ -260,7 +270,10 @@ impl STAT_CNT_CFG_BUM {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_ERLEG(pub(super) u32);
 impl STAT_CNT_CFG_ERLEG {
-    pub fn STAT_GLOBAL_EVENT_MASK(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_erleg::STAT_GLOBAL_EVENT_MASK> {
+    pub fn STAT_GLOBAL_EVENT_MASK(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_cnt_cfg_erleg::STAT_GLOBAL_EVENT_MASK> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x40 + index * 0x4)
     }
@@ -277,7 +290,10 @@ impl STAT_CNT_CFG_ERLEG {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_IRLEG(pub(super) u32);
 impl STAT_CNT_CFG_IRLEG {
-    pub fn STAT_GLOBAL_EVENT_MASK(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_irleg::STAT_GLOBAL_EVENT_MASK> {
+    pub fn STAT_GLOBAL_EVENT_MASK(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_cnt_cfg_irleg::STAT_GLOBAL_EVENT_MASK> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x40 + index * 0x4)
     }
@@ -290,7 +306,10 @@ impl STAT_CNT_CFG_IRLEG {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_ISDX(pub(super) u32);
 impl STAT_CNT_CFG_ISDX {
-    pub fn STAT_GLOBAL_EVENT_MASK(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_isdx::STAT_GLOBAL_EVENT_MASK> {
+    pub fn STAT_GLOBAL_EVENT_MASK(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_cnt_cfg_isdx::STAT_GLOBAL_EVENT_MASK> {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x30 + index * 0x4)
     }
@@ -322,7 +341,10 @@ impl STAT_CNT_CFG_PORT {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_QUEUE(pub(super) u32);
 impl STAT_CNT_CFG_QUEUE {
-    pub fn STAT_GLOBAL_EVENT_MASK(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_queue::STAT_GLOBAL_EVENT_MASK> {
+    pub fn STAT_GLOBAL_EVENT_MASK(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_cnt_cfg_queue::STAT_GLOBAL_EVENT_MASK> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
@@ -335,11 +357,17 @@ impl STAT_CNT_CFG_QUEUE {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_ACL(pub(super) u32);
 impl STAT_GLOBAL_CFG_ACL {
-    pub fn GLOBAL_CNT_FRM_TYPE_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_acl::GLOBAL_CNT_FRM_TYPE_CFG> {
+    pub fn GLOBAL_CNT_FRM_TYPE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_acl::GLOBAL_CNT_FRM_TYPE_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn STAT_GLOBAL_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_acl::STAT_GLOBAL_CFG> {
+    pub fn STAT_GLOBAL_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_acl::STAT_GLOBAL_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
@@ -352,11 +380,17 @@ impl STAT_GLOBAL_CFG_ACL {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_BDLB(pub(super) u32);
 impl STAT_GLOBAL_CFG_BDLB {
-    pub fn GLOBAL_CNT_FRM_TYPE_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_bdlb::GLOBAL_CNT_FRM_TYPE_CFG> {
+    pub fn GLOBAL_CNT_FRM_TYPE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_bdlb::GLOBAL_CNT_FRM_TYPE_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn STAT_GLOBAL_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_bdlb::STAT_GLOBAL_CFG> {
+    pub fn STAT_GLOBAL_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_bdlb::STAT_GLOBAL_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
@@ -369,11 +403,17 @@ impl STAT_GLOBAL_CFG_BDLB {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_BUM(pub(super) u32);
 impl STAT_GLOBAL_CFG_BUM {
-    pub fn GLOBAL_CNT_FRM_TYPE_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_bum::GLOBAL_CNT_FRM_TYPE_CFG> {
+    pub fn GLOBAL_CNT_FRM_TYPE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_bum::GLOBAL_CNT_FRM_TYPE_CFG> {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn STAT_GLOBAL_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_bum::STAT_GLOBAL_CFG> {
+    pub fn STAT_GLOBAL_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_bum::STAT_GLOBAL_CFG> {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x18 + index * 0x4)
     }
@@ -386,11 +426,17 @@ impl STAT_GLOBAL_CFG_BUM {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_ERLEG(pub(super) u32);
 impl STAT_GLOBAL_CFG_ERLEG {
-    pub fn GLOBAL_CNT_FRM_TYPE_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_erleg::GLOBAL_CNT_FRM_TYPE_CFG> {
+    pub fn GLOBAL_CNT_FRM_TYPE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_erleg::GLOBAL_CNT_FRM_TYPE_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn STAT_GLOBAL_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_erleg::STAT_GLOBAL_CFG> {
+    pub fn STAT_GLOBAL_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_erleg::STAT_GLOBAL_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
@@ -403,11 +449,17 @@ impl STAT_GLOBAL_CFG_ERLEG {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_IRLEG(pub(super) u32);
 impl STAT_GLOBAL_CFG_IRLEG {
-    pub fn GLOBAL_CNT_FRM_TYPE_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_irleg::GLOBAL_CNT_FRM_TYPE_CFG> {
+    pub fn GLOBAL_CNT_FRM_TYPE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_irleg::GLOBAL_CNT_FRM_TYPE_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn STAT_GLOBAL_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_irleg::STAT_GLOBAL_CFG> {
+    pub fn STAT_GLOBAL_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_irleg::STAT_GLOBAL_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
@@ -420,11 +472,17 @@ impl STAT_GLOBAL_CFG_IRLEG {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_ISDX(pub(super) u32);
 impl STAT_GLOBAL_CFG_ISDX {
-    pub fn GLOBAL_CNT_FRM_TYPE_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_isdx::GLOBAL_CNT_FRM_TYPE_CFG> {
+    pub fn GLOBAL_CNT_FRM_TYPE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_isdx::GLOBAL_CNT_FRM_TYPE_CFG> {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn STAT_GLOBAL_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_isdx::STAT_GLOBAL_CFG> {
+    pub fn STAT_GLOBAL_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_isdx::STAT_GLOBAL_CFG> {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x18 + index * 0x4)
     }
@@ -437,7 +495,10 @@ impl STAT_GLOBAL_CFG_ISDX {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_PORT(pub(super) u32);
 impl STAT_GLOBAL_CFG_PORT {
-    pub fn STAT_GLOBAL_EVENT_MASK(&self, index: u32) -> RegisterAddress<stat_global_cfg_port::STAT_GLOBAL_EVENT_MASK> {
+    pub fn STAT_GLOBAL_EVENT_MASK(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_port::STAT_GLOBAL_EVENT_MASK> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
@@ -449,11 +510,17 @@ impl STAT_GLOBAL_CFG_PORT {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_QUEUE(pub(super) u32);
 impl STAT_GLOBAL_CFG_QUEUE {
-    pub fn GLOBAL_CNT_FRM_TYPE_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_queue::GLOBAL_CNT_FRM_TYPE_CFG> {
+    pub fn GLOBAL_CNT_FRM_TYPE_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_queue::GLOBAL_CNT_FRM_TYPE_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn STAT_GLOBAL_CFG(&self, index: u32) -> RegisterAddress<stat_global_cfg_queue::STAT_GLOBAL_CFG> {
+    pub fn STAT_GLOBAL_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<stat_global_cfg_queue::STAT_GLOBAL_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }

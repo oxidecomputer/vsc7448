@@ -30,7 +30,8 @@ use derive_more::{From, Into};
 /// Word offset 6
 #[derive(From, Into)]
 pub struct ADV_ERR_CAP_CTRL(u32);
-impl ADV_ERR_CAP_CTRL {    pub fn ecrc_check_cap(&self) -> u32 {
+impl ADV_ERR_CAP_CTRL {
+    pub fn ecrc_check_cap(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ecrc_check_cap(&mut self, value: u32) {
@@ -38,7 +39,8 @@ impl ADV_ERR_CAP_CTRL {    pub fn ecrc_check_cap(&self) -> u32 {
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    pub fn ecrc_check_en(&self) -> u32 {
+    }
+    pub fn ecrc_check_en(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ecrc_check_en(&mut self, value: u32) {
@@ -46,7 +48,8 @@ impl ADV_ERR_CAP_CTRL {    pub fn ecrc_check_cap(&self) -> u32 {
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    pub fn ecrc_gen_cap(&self) -> u32 {
+    }
+    pub fn ecrc_gen_cap(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_ecrc_gen_cap(&mut self, value: u32) {
@@ -54,7 +57,8 @@ impl ADV_ERR_CAP_CTRL {    pub fn ecrc_check_cap(&self) -> u32 {
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    pub fn ecrc_gen_en(&self) -> u32 {
+    }
+    pub fn ecrc_gen_en(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ecrc_gen_en(&mut self, value: u32) {
@@ -62,7 +66,8 @@ impl ADV_ERR_CAP_CTRL {    pub fn ecrc_check_cap(&self) -> u32 {
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    pub fn first_err_pointer(&self) -> u32 {
+    }
+    pub fn first_err_pointer(&self) -> u32 {
         self.0 & 0x1f
     }
     pub fn set_first_err_pointer(&mut self, value: u32) {
@@ -74,14 +79,16 @@ impl ADV_ERR_CAP_CTRL {    pub fn ecrc_check_cap(&self) -> u32 {
 /// Word offset 0
 #[derive(From, Into)]
 pub struct AER_EXT_CAP_HDR(u32);
-impl AER_EXT_CAP_HDR {    pub fn cap_id(&self) -> u32 {
+impl AER_EXT_CAP_HDR {
+    pub fn cap_id(&self) -> u32 {
         self.0 & 0xffff
     }
     pub fn set_cap_id(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
-    }    pub fn cap_version(&self) -> u32 {
+    }
+    pub fn cap_version(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_cap_version(&mut self, value: u32) {
@@ -89,7 +96,8 @@ impl AER_EXT_CAP_HDR {    pub fn cap_id(&self) -> u32 {
         assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
-    }    pub fn next_offset(&self) -> u32 {
+    }
+    pub fn next_offset(&self) -> u32 {
         (self.0 & 0xfff00000) >> 20
     }
     pub fn set_next_offset(&mut self, value: u32) {
@@ -102,7 +110,8 @@ impl AER_EXT_CAP_HDR {    pub fn cap_id(&self) -> u32 {
 /// Word offset 5
 #[derive(From, Into)]
 pub struct CORR_ERR_MASK(u32);
-impl CORR_ERR_MASK {    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
+impl CORR_ERR_MASK {
+    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_advisory_non_fatal_err_mask(&mut self, value: u32) {
@@ -110,7 +119,8 @@ impl CORR_ERR_MASK {    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    pub fn bad_dllp_mask(&self) -> u32 {
+    }
+    pub fn bad_dllp_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_bad_dllp_mask(&mut self, value: u32) {
@@ -118,7 +128,8 @@ impl CORR_ERR_MASK {    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    pub fn bad_tlp_mask(&self) -> u32 {
+    }
+    pub fn bad_tlp_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_bad_tlp_mask(&mut self, value: u32) {
@@ -126,7 +137,8 @@ impl CORR_ERR_MASK {    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    pub fn corrected_int_err_mask(&self) -> u32 {
+    }
+    pub fn corrected_int_err_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_corrected_int_err_mask(&mut self, value: u32) {
@@ -134,7 +146,8 @@ impl CORR_ERR_MASK {    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    pub fn replay_no_roleover_mask(&self) -> u32 {
+    }
+    pub fn replay_no_roleover_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_replay_no_roleover_mask(&mut self, value: u32) {
@@ -142,7 +155,8 @@ impl CORR_ERR_MASK {    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    pub fn rpl_timer_timeout_mask(&self) -> u32 {
+    }
+    pub fn rpl_timer_timeout_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rpl_timer_timeout_mask(&mut self, value: u32) {
@@ -150,7 +164,8 @@ impl CORR_ERR_MASK {    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    pub fn rx_err_mask(&self) -> u32 {
+    }
+    pub fn rx_err_mask(&self) -> u32 {
         self.0 & 0x1
     }
     pub fn set_rx_err_mask(&mut self, value: u32) {
@@ -162,7 +177,8 @@ impl CORR_ERR_MASK {    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
 /// Word offset 4
 #[derive(From, Into)]
 pub struct CORR_ERR_STATUS(u32);
-impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
+impl CORR_ERR_STATUS {
+    pub fn advisory_non_fatal_err_status(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_advisory_non_fatal_err_status(&mut self, value: u32) {
@@ -170,7 +186,8 @@ impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    pub fn bad_dllp_status(&self) -> u32 {
+    }
+    pub fn bad_dllp_status(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_bad_dllp_status(&mut self, value: u32) {
@@ -178,7 +195,8 @@ impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
         assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
-    }    pub fn bad_tlp_status(&self) -> u32 {
+    }
+    pub fn bad_tlp_status(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_bad_tlp_status(&mut self, value: u32) {
@@ -186,7 +204,8 @@ impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
         assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
-    }    pub fn corrected_int_err_status(&self) -> u32 {
+    }
+    pub fn corrected_int_err_status(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_corrected_int_err_status(&mut self, value: u32) {
@@ -194,7 +213,8 @@ impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    pub fn replay_no_roleover_status(&self) -> u32 {
+    }
+    pub fn replay_no_roleover_status(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_replay_no_roleover_status(&mut self, value: u32) {
@@ -202,7 +222,8 @@ impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
         assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
-    }    pub fn rpl_timer_timeout_status(&self) -> u32 {
+    }
+    pub fn rpl_timer_timeout_status(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rpl_timer_timeout_status(&mut self, value: u32) {
@@ -210,7 +231,8 @@ impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    pub fn rx_err_status(&self) -> u32 {
+    }
+    pub fn rx_err_status(&self) -> u32 {
         self.0 & 0x1
     }
     pub fn set_rx_err_status(&mut self, value: u32) {
@@ -222,7 +244,8 @@ impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
 /// Word offset 7
 #[derive(From, Into)]
 pub struct HDR_LOG_REG_0(u32);
-impl HDR_LOG_REG_0 {    pub fn first_dword(&self) -> u32 {
+impl HDR_LOG_REG_0 {
+    pub fn first_dword(&self) -> u32 {
         self.0
     }
     pub fn set_first_dword(&mut self, value: u32) {
@@ -232,7 +255,8 @@ impl HDR_LOG_REG_0 {    pub fn first_dword(&self) -> u32 {
 /// Word offset 8
 #[derive(From, Into)]
 pub struct HDR_LOG_REG_1(u32);
-impl HDR_LOG_REG_1 {    pub fn second_dword(&self) -> u32 {
+impl HDR_LOG_REG_1 {
+    pub fn second_dword(&self) -> u32 {
         self.0
     }
     pub fn set_second_dword(&mut self, value: u32) {
@@ -242,7 +266,8 @@ impl HDR_LOG_REG_1 {    pub fn second_dword(&self) -> u32 {
 /// Word offset 9
 #[derive(From, Into)]
 pub struct HDR_LOG_REG_2(u32);
-impl HDR_LOG_REG_2 {    pub fn third_dword(&self) -> u32 {
+impl HDR_LOG_REG_2 {
+    pub fn third_dword(&self) -> u32 {
         self.0
     }
     pub fn set_third_dword(&mut self, value: u32) {
@@ -252,7 +277,8 @@ impl HDR_LOG_REG_2 {    pub fn third_dword(&self) -> u32 {
 /// Word offset 12
 #[derive(From, Into)]
 pub struct LINK_CONTROL2_LINK_STATUS2(u32);
-impl LINK_CONTROL2_LINK_STATUS2 {    pub fn pcie_cap_curr_deemphasis(&self) -> u32 {
+impl LINK_CONTROL2_LINK_STATUS2 {
+    pub fn pcie_cap_curr_deemphasis(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_pcie_cap_curr_deemphasis(&mut self, value: u32) {
@@ -260,7 +286,8 @@ impl LINK_CONTROL2_LINK_STATUS2 {    pub fn pcie_cap_curr_deemphasis(&self) -> u
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    pub fn pcie_cap_eq_cpl(&self) -> u32 {
+    }
+    pub fn pcie_cap_eq_cpl(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_pcie_cap_eq_cpl(&mut self, value: u32) {
@@ -268,7 +295,8 @@ impl LINK_CONTROL2_LINK_STATUS2 {    pub fn pcie_cap_curr_deemphasis(&self) -> u
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    pub fn pcie_cap_eq_cpl_p1(&self) -> u32 {
+    }
+    pub fn pcie_cap_eq_cpl_p1(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_pcie_cap_eq_cpl_p1(&mut self, value: u32) {
@@ -276,7 +304,8 @@ impl LINK_CONTROL2_LINK_STATUS2 {    pub fn pcie_cap_curr_deemphasis(&self) -> u
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    pub fn pcie_cap_eq_cpl_p2(&self) -> u32 {
+    }
+    pub fn pcie_cap_eq_cpl_p2(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_pcie_cap_eq_cpl_p2(&mut self, value: u32) {
@@ -284,7 +313,8 @@ impl LINK_CONTROL2_LINK_STATUS2 {    pub fn pcie_cap_curr_deemphasis(&self) -> u
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    pub fn pcie_cap_eq_cpl_p3(&self) -> u32 {
+    }
+    pub fn pcie_cap_eq_cpl_p3(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_pcie_cap_eq_cpl_p3(&mut self, value: u32) {
@@ -292,7 +322,8 @@ impl LINK_CONTROL2_LINK_STATUS2 {    pub fn pcie_cap_curr_deemphasis(&self) -> u
         assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
-    }    pub fn pcie_cap_link_eq_req(&self) -> u32 {
+    }
+    pub fn pcie_cap_link_eq_req(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_pcie_cap_link_eq_req(&mut self, value: u32) {
@@ -305,7 +336,8 @@ impl LINK_CONTROL2_LINK_STATUS2 {    pub fn pcie_cap_curr_deemphasis(&self) -> u
 /// Word offset 2
 #[derive(From, Into)]
 pub struct UNCORR_ERR_MASK(u32);
-impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
+impl UNCORR_ERR_MASK {
+    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_atomic_egress_blocked_err_mask(&mut self, value: u32) {
@@ -313,7 +345,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
-    }    pub fn cmplt_abort_err_mask(&self) -> u32 {
+    }
+    pub fn cmplt_abort_err_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_cmplt_abort_err_mask(&mut self, value: u32) {
@@ -321,7 +354,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    pub fn cmplt_timeout_err_mask(&self) -> u32 {
+    }
+    pub fn cmplt_timeout_err_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_cmplt_timeout_err_mask(&mut self, value: u32) {
@@ -329,7 +363,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    pub fn dl_protocol_err_mask(&self) -> u32 {
+    }
+    pub fn dl_protocol_err_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dl_protocol_err_mask(&mut self, value: u32) {
@@ -337,7 +372,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    pub fn ecrc_err_mask(&self) -> u32 {
+    }
+    pub fn ecrc_err_mask(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_ecrc_err_mask(&mut self, value: u32) {
@@ -345,7 +381,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    pub fn fc_protocol_err_mask(&self) -> u32 {
+    }
+    pub fn fc_protocol_err_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_fc_protocol_err_mask(&mut self, value: u32) {
@@ -353,7 +390,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    pub fn internal_err_mask(&self) -> u32 {
+    }
+    pub fn internal_err_mask(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_internal_err_mask(&mut self, value: u32) {
@@ -361,7 +399,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    pub fn malf_tlp_err_mask(&self) -> u32 {
+    }
+    pub fn malf_tlp_err_mask(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_malf_tlp_err_mask(&mut self, value: u32) {
@@ -369,7 +408,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    pub fn pois_tlp_err_mask(&self) -> u32 {
+    }
+    pub fn pois_tlp_err_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pois_tlp_err_mask(&mut self, value: u32) {
@@ -377,7 +417,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    pub fn rec_overflow_err_mask(&self) -> u32 {
+    }
+    pub fn rec_overflow_err_mask(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rec_overflow_err_mask(&mut self, value: u32) {
@@ -385,7 +426,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    pub fn sur_dwn_err_mask(&self) -> u32 {
+    }
+    pub fn sur_dwn_err_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sur_dwn_err_mask(&mut self, value: u32) {
@@ -393,7 +435,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    pub fn unexp_cmplt_err_mask(&self) -> u32 {
+    }
+    pub fn unexp_cmplt_err_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_unexp_cmplt_err_mask(&mut self, value: u32) {
@@ -401,7 +444,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    pub fn unsupported_req_err_mask(&self) -> u32 {
+    }
+    pub fn unsupported_req_err_mask(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_unsupported_req_err_mask(&mut self, value: u32) {
@@ -414,7 +458,8 @@ impl UNCORR_ERR_MASK {    pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
 /// Word offset 3
 #[derive(From, Into)]
 pub struct UNCORR_ERR_SEV(u32);
-impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32 {
+impl UNCORR_ERR_SEV {
+    pub fn atomic_egress_blocked_err_severity(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_atomic_egress_blocked_err_severity(&mut self, value: u32) {
@@ -422,7 +467,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
-    }    pub fn cmplt_abort_err_severity(&self) -> u32 {
+    }
+    pub fn cmplt_abort_err_severity(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_cmplt_abort_err_severity(&mut self, value: u32) {
@@ -430,7 +476,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    pub fn cmplt_timeout_err_severity(&self) -> u32 {
+    }
+    pub fn cmplt_timeout_err_severity(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_cmplt_timeout_err_severity(&mut self, value: u32) {
@@ -438,7 +485,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    pub fn dl_protocol_err_severity(&self) -> u32 {
+    }
+    pub fn dl_protocol_err_severity(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dl_protocol_err_severity(&mut self, value: u32) {
@@ -446,7 +494,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    pub fn ecrc_err_severity(&self) -> u32 {
+    }
+    pub fn ecrc_err_severity(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_ecrc_err_severity(&mut self, value: u32) {
@@ -454,7 +503,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    pub fn fc_protocol_err_severity(&self) -> u32 {
+    }
+    pub fn fc_protocol_err_severity(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_fc_protocol_err_severity(&mut self, value: u32) {
@@ -462,7 +512,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    pub fn internal_err_severity(&self) -> u32 {
+    }
+    pub fn internal_err_severity(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_internal_err_severity(&mut self, value: u32) {
@@ -470,7 +521,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    pub fn malf_tlp_err_severity(&self) -> u32 {
+    }
+    pub fn malf_tlp_err_severity(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_malf_tlp_err_severity(&mut self, value: u32) {
@@ -478,7 +530,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    pub fn pois_tlp_err_severity(&self) -> u32 {
+    }
+    pub fn pois_tlp_err_severity(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pois_tlp_err_severity(&mut self, value: u32) {
@@ -486,7 +539,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    pub fn rec_overflow_err_severity(&self) -> u32 {
+    }
+    pub fn rec_overflow_err_severity(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rec_overflow_err_severity(&mut self, value: u32) {
@@ -494,7 +548,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    pub fn sur_dwn_err_severity(&self) -> u32 {
+    }
+    pub fn sur_dwn_err_severity(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sur_dwn_err_severity(&mut self, value: u32) {
@@ -502,7 +557,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    pub fn unexp_cmplt_err_severity(&self) -> u32 {
+    }
+    pub fn unexp_cmplt_err_severity(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_unexp_cmplt_err_severity(&mut self, value: u32) {
@@ -510,7 +566,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    pub fn unsupported_req_err_severity(&self) -> u32 {
+    }
+    pub fn unsupported_req_err_severity(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_unsupported_req_err_severity(&mut self, value: u32) {
@@ -523,7 +580,8 @@ impl UNCORR_ERR_SEV {    pub fn atomic_egress_blocked_err_severity(&self) -> u32
 /// Word offset 1
 #[derive(From, Into)]
 pub struct UNCORR_ERR_STATUS(u32);
-impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u32 {
+impl UNCORR_ERR_STATUS {
+    pub fn atomic_egress_blocked_err_status(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_atomic_egress_blocked_err_status(&mut self, value: u32) {
@@ -531,7 +589,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
-    }    pub fn cmplt_abort_err_status(&self) -> u32 {
+    }
+    pub fn cmplt_abort_err_status(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_cmplt_abort_err_status(&mut self, value: u32) {
@@ -539,7 +598,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
-    }    pub fn cmplt_timeout_err_status(&self) -> u32 {
+    }
+    pub fn cmplt_timeout_err_status(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_cmplt_timeout_err_status(&mut self, value: u32) {
@@ -547,7 +607,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
-    }    pub fn dl_protocol_err_status(&self) -> u32 {
+    }
+    pub fn dl_protocol_err_status(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dl_protocol_err_status(&mut self, value: u32) {
@@ -555,7 +616,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
-    }    pub fn ecrc_err_status(&self) -> u32 {
+    }
+    pub fn ecrc_err_status(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_ecrc_err_status(&mut self, value: u32) {
@@ -563,7 +625,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
-    }    pub fn fc_protocol_err_status(&self) -> u32 {
+    }
+    pub fn fc_protocol_err_status(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_fc_protocol_err_status(&mut self, value: u32) {
@@ -571,7 +634,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
-    }    pub fn internal_err_status(&self) -> u32 {
+    }
+    pub fn internal_err_status(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_internal_err_status(&mut self, value: u32) {
@@ -579,7 +643,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
-    }    pub fn malf_tlp_err_status(&self) -> u32 {
+    }
+    pub fn malf_tlp_err_status(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_malf_tlp_err_status(&mut self, value: u32) {
@@ -587,7 +652,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
-    }    pub fn pois_tlp_err_status(&self) -> u32 {
+    }
+    pub fn pois_tlp_err_status(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pois_tlp_err_status(&mut self, value: u32) {
@@ -595,7 +661,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
-    }    pub fn rec_overflow_err_status(&self) -> u32 {
+    }
+    pub fn rec_overflow_err_status(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rec_overflow_err_status(&mut self, value: u32) {
@@ -603,7 +670,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
-    }    pub fn sur_dwn_err_status(&self) -> u32 {
+    }
+    pub fn sur_dwn_err_status(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sur_dwn_err_status(&mut self, value: u32) {
@@ -611,7 +679,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
-    }    pub fn unexp_cmplt_err_status(&self) -> u32 {
+    }
+    pub fn unexp_cmplt_err_status(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_unexp_cmplt_err_status(&mut self, value: u32) {
@@ -619,7 +688,8 @@ impl UNCORR_ERR_STATUS {    pub fn atomic_egress_blocked_err_status(&self) -> u3
         assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
-    }    pub fn unsupported_req_err_status(&self) -> u32 {
+    }
+    pub fn unsupported_req_err_status(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_unsupported_req_err_status(&mut self, value: u32) {

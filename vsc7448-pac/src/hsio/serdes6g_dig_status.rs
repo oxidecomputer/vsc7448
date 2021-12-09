@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct SERDES6G_DFT_STATUS(u32);
 impl SERDES6G_DFT_STATUS {
     /// BIST activity
-
     ///
-
     /// 0: BIST inactive 1: BIST active
     pub fn bist_active(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -48,9 +46,7 @@ impl SERDES6G_DFT_STATUS {
         self.0 |= value;
     }
     /// BIST completion state (low-active)
-
     ///
-
     /// 0: BIST completed 1: not completed
     pub fn bist_complete_n(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -62,9 +58,7 @@ impl SERDES6G_DFT_STATUS {
         self.0 |= value;
     }
     /// BIST result
-
     ///
-
     /// 0: No error found 1: Errors during BIST found
     pub fn bist_error(&self) -> u32 {
         self.0 & 0x1
@@ -75,9 +69,7 @@ impl SERDES6G_DFT_STATUS {
         self.0 |= value;
     }
     /// BIST sync result
-
     ///
-
     /// 0: Synchronization successful 1: Synchronization on BIST data failed
     pub fn bist_nosync(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -89,9 +81,7 @@ impl SERDES6G_DFT_STATUS {
         self.0 |= value;
     }
     /// RC-PLL BIST result
-
     ///
-
     /// 0: No error found 1: Errors during BIST found
     pub fn pll_bist_failed(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -103,9 +93,7 @@ impl SERDES6G_DFT_STATUS {
         self.0 |= value;
     }
     /// RC-PLL BIST not done flag
-
     ///
-
     /// 0: BIST done 1: BIST not started or active
     pub fn pll_bist_not_done(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -117,9 +105,7 @@ impl SERDES6G_DFT_STATUS {
         self.0 |= value;
     }
     /// RC-PLL BIST timeout error flag
-
     ///
-
     /// 0: No timeout occured 1: Timeout occured
     pub fn pll_bist_timeout_err(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -131,9 +117,7 @@ impl SERDES6G_DFT_STATUS {
         self.0 |= value;
     }
     /// PRBS synchronization status
-
     ///
-
     /// 0: PRBS checker not synchronized 1: PRBS checker synchronized
     pub fn prbs_sync_stat(&self) -> u32 {
         (self.0 & 0x100) >> 8

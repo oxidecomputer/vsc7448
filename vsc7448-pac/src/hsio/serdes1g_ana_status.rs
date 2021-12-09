@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct SERDES1G_PLL_CFG(u32);
 impl SERDES1G_PLL_CFG {
     /// Enable feedback divider (divide by two)
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn pll_ena_fb_div2(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -48,9 +46,7 @@ impl SERDES1G_PLL_CFG {
         self.0 |= value;
     }
     /// Enable reference clock divider (divide by two)
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn pll_ena_rc_div2(&self) -> u32 {
         (self.0 & 0x200000) >> 21

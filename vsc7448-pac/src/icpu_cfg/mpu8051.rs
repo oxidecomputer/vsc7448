@@ -68,9 +68,7 @@ impl MEMACC_CTRL {
         self.0 |= value;
     }
     /// This field controls if the onchip 8051 memory is either loaded (written) or examined (read).
-
     ///
-
     /// 0: Load data from SBA to onchip memory. 1: Examine data from onchip memory to SBA.
     pub fn memacc_examine(&self) -> u32 {
         (self.0 & 0x2) >> 1

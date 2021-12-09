@@ -107,7 +107,9 @@ impl KR_FEC_HA_STATUS {
     pub fn KR_FEC_CORRECTED(&self) -> RegisterAddress<kr_fec_ha_status::KR_FEC_CORRECTED> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn UNFIXABLE_ERROR_COUNT_THRESHOLD(&self) -> RegisterAddress<kr_fec_ha_status::UNFIXABLE_ERROR_COUNT_THRESHOLD> {
+    pub fn UNFIXABLE_ERROR_COUNT_THRESHOLD(
+        &self,
+    ) -> RegisterAddress<kr_fec_ha_status::UNFIXABLE_ERROR_COUNT_THRESHOLD> {
         RegisterAddress::new(self.0 + 0x4)
     }
 }
@@ -129,7 +131,9 @@ impl KR_FEC_STATUS {
 /// KR FEC counters threshold configurations
 pub struct KR_FEC_THRESHOLD_CFG(pub(super) u32);
 impl KR_FEC_THRESHOLD_CFG {
-    pub fn FIXED_ERROR_COUNT_THRESHOLD(&self) -> RegisterAddress<kr_fec_threshold_cfg::FIXED_ERROR_COUNT_THRESHOLD> {
+    pub fn FIXED_ERROR_COUNT_THRESHOLD(
+        &self,
+    ) -> RegisterAddress<kr_fec_threshold_cfg::FIXED_ERROR_COUNT_THRESHOLD> {
         RegisterAddress::new(self.0 + 0x0)
     }
     pub fn KR_FEC_CFG(&self) -> RegisterAddress<kr_fec_threshold_cfg::KR_FEC_CFG> {

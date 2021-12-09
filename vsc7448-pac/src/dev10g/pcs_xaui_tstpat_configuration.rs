@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct PCS_XAUI_LPI_STATUS(u32);
 impl PCS_XAUI_LPI_STATUS {
     /// Receiver Low-Pwer idle occurrence
-
     ///
-
     /// 0: No LPI symbols received 1: Receiver has received LPI symbols Bit is cleared by writing a 1 to this position.
     pub fn rx_lpi_event_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -48,9 +46,7 @@ impl PCS_XAUI_LPI_STATUS {
         self.0 |= value;
     }
     /// Receiver Low-Power Idle mode
-
     ///
-
     /// 0: Receiver not in low power idle mode 1: Receiver is in low power idle mode
     pub fn rx_lpi_mode(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -62,9 +58,7 @@ impl PCS_XAUI_LPI_STATUS {
         self.0 |= value;
     }
     /// Receiver Low-Power Quiet mode
-
     ///
-
     /// 0: Receiver not in quiet mode 1: Receiver is in quiet mode
     pub fn rx_quiet(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -76,9 +70,7 @@ impl PCS_XAUI_LPI_STATUS {
         self.0 |= value;
     }
     /// Transmitter Low-Pwer idle occurrence
-
     ///
-
     /// 0: No LPI symbols transmitted 1: Transmitter has transmitted LPI symbols Bit is cleared by writing a 1 to this position.
     pub fn tx_lpi_event_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -90,9 +82,7 @@ impl PCS_XAUI_LPI_STATUS {
         self.0 |= value;
     }
     /// Transmitter Low-Power Idle mode
-
     ///
-
     /// 0: Transmitter not in low power idle mode 1: Transmitter is in low power idle mode
     pub fn tx_lpi_mode(&self) -> u32 {
         self.0 & 0x1
@@ -103,9 +93,7 @@ impl PCS_XAUI_LPI_STATUS {
         self.0 |= value;
     }
     /// Transmitter Low-Power Quiet mode
-
     ///
-
     /// 0: Transmitter not in quiet mode 1: Transmitter is in quiet mode
     pub fn tx_quiet(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -117,9 +105,7 @@ impl PCS_XAUI_LPI_STATUS {
         self.0 |= value;
     }
     /// Receiver has failed to recover from Low-Power Idle mode
-
     ///
-
     /// 0: No failure 1: Failed to recover from LPI mode
     pub fn wake_err_cnt(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16

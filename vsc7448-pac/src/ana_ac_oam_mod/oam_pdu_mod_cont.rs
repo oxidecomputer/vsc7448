@@ -106,7 +106,8 @@ impl PORT_BYTE_CNT_LSB {
 /// LM temp count
 #[derive(From, Into)]
 pub struct TEMP_CNT_REG(u32);
-impl TEMP_CNT_REG {    pub fn temp_cnt_val(&self) -> u32 {
+impl TEMP_CNT_REG {
+    pub fn temp_cnt_val(&self) -> u32 {
         self.0 & 0xffff
     }
     pub fn set_temp_cnt_val(&mut self, value: u32) {

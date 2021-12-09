@@ -80,8 +80,7 @@ impl APC_TMR {
 
 /// Not documented
 pub struct KR_1X0096(pub(super) u32);
-impl KR_1X0096 {
-}
+impl KR_1X0096 {}
 
 /// Not documented
 pub struct KR_1X0097(pub(super) u32);

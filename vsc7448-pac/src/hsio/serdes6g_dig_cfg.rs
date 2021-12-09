@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct MCB_SERDES1G_ADDR_CFG(u32);
 impl MCB_SERDES1G_ADDR_CFG {
     /// Activation vector for SERDES1G-Slaves, one-hot coded, each bit is related to one macro, e.g. bit 0 enables/disables access to macro no. 0.
-
     ///
-
     /// 0: Disable macro access via MCB 1: Enable macro access via MCB
     pub fn serdes1g_addr(&self) -> u32 {
         self.0 & 0x1ff
@@ -47,9 +45,7 @@ impl MCB_SERDES1G_ADDR_CFG {
         self.0 |= value;
     }
     /// Initiate a read access to marked SERDES1G slaves
-
     ///
-
     /// 0: No read operation pending (read op finished after bit has been set) 1: Initiate a read access (kept 1 until read operation has finished)
     pub fn serdes1g_rd_one_shot(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -61,9 +57,7 @@ impl MCB_SERDES1G_ADDR_CFG {
         self.0 |= value;
     }
     /// Initiate a write access to marked SERDES1G slaves
-
     ///
-
     /// 0: No write operation pending 1: Initiate write to slaves (kept 1 until write operation has finished)
     pub fn serdes1g_wr_one_shot(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -102,9 +96,7 @@ impl SERDES6G_DFT_CFG0 {
         self.0 |= value;
     }
     /// Select PRBS pattern for BIST
-
     ///
-
     /// 0: G(x) = x^7 + x^6 + 1 1: G(x) = x^15 + x^14 + 1 2: G(x) = x^23 + x^18 + 1 3: G(x) = x^31 + x^28 + 1
     pub fn prbs_sel(&self) -> u32 {
         (self.0 & 0x300000) >> 20
@@ -116,9 +108,7 @@ impl SERDES6G_DFT_CFG0 {
         self.0 |= value;
     }
     /// General enable for Jitter-Injection/Frequency-Offset-Generation Block (RX-Path)
-
     ///
-
     /// 0: Off 1: On
     pub fn rx_dft_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -130,9 +120,7 @@ impl SERDES6G_DFT_CFG0 {
         self.0 |= value;
     }
     /// Enable sensitivity for phasedetector CP/MD (RX-Path)
-
     ///
-
     /// 0: Off 1: On
     pub fn rx_pdsens_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -144,9 +132,7 @@ impl SERDES6G_DFT_CFG0 {
         self.0 |= value;
     }
     /// Disable influence of external phase correction on step controller
-
     ///
-
     /// 0: Enable 1: Disable
     pub fn rx_phs_corr_dis(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -158,9 +144,7 @@ impl SERDES6G_DFT_CFG0 {
         self.0 |= value;
     }
     /// Selection of test mode
-
     ///
-
     /// 0: Normal operation 1: BIST 2: Fixed pattern 3: Random pattern 4: Jitter injection 5-7: Reserved
     pub fn test_mode(&self) -> u32 {
         (self.0 & 0x70000) >> 16
@@ -172,9 +156,7 @@ impl SERDES6G_DFT_CFG0 {
         self.0 |= value;
     }
     /// General enable for Jitter-Injection/Frequency-Offset-Generation Block (TX-Path)
-
     ///
-
     /// 0: Off 1: On
     pub fn tx_dft_ena(&self) -> u32 {
         self.0 & 0x1
@@ -192,9 +174,7 @@ impl SERDES6G_DFT_CFG0 {
 pub struct SERDES6G_DFT_CFG1(u32);
 impl SERDES6G_DFT_CFG1 {
     /// Direction of Frequency-Offset (TX-Path)
-
     ///
-
     /// 0: Down 1: Up
     pub fn tx_freqoff_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -206,9 +186,7 @@ impl SERDES6G_DFT_CFG1 {
         self.0 |= value;
     }
     /// Enable Frequency-Offset-Generation (TX-Path)
-
     ///
-
     /// 0: Off 1: On
     pub fn tx_freqoff_ena(&self) -> u32 {
         self.0 & 0x1
@@ -229,9 +207,7 @@ impl SERDES6G_DFT_CFG1 {
         self.0 |= value;
     }
     /// Enable TX jitter intertion
-
     ///
-
     /// 0: Off 1:On
     pub fn tx_ji_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -253,9 +229,7 @@ impl SERDES6G_DFT_CFG1 {
         self.0 |= value;
     }
     /// Select waveform for Jitter-Injection (TX-Path)
-
     ///
-
     /// 0: Triangular 1: Flattened (sinusoidal)
     pub fn tx_waveform_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -274,9 +248,7 @@ impl SERDES6G_DFT_CFG1 {
 pub struct SERDES6G_DFT_CFG2(u32);
 impl SERDES6G_DFT_CFG2 {
     /// Direction of Frequency-Offset (RX-Path)
-
     ///
-
     /// 0: Down 1: Up
     pub fn rx_freqoff_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -288,9 +260,7 @@ impl SERDES6G_DFT_CFG2 {
         self.0 |= value;
     }
     /// Enable Frequency-Offset-Generation (RX-Path)
-
     ///
-
     /// 0: Off 1: On
     pub fn rx_freqoff_ena(&self) -> u32 {
         self.0 & 0x1
@@ -311,9 +281,7 @@ impl SERDES6G_DFT_CFG2 {
         self.0 |= value;
     }
     /// Enable RX jitter intertion
-
     ///
-
     /// 0: Off 1:On
     pub fn rx_ji_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -335,9 +303,7 @@ impl SERDES6G_DFT_CFG2 {
         self.0 |= value;
     }
     /// Select waveform for Jitter-Injection (RX-Path)
-
     ///
-
     /// 0: Triangular 1: Flattened
     pub fn rx_waveform_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -366,9 +332,7 @@ impl SERDES6G_DIG_CFG {
         self.0 |= value;
     }
     /// Signal detect assertion time
-
     ///
-
     /// 0: 0 us 1: 35 us 2: 70 us 3: 105 us 4: 140 us 5..7: reserved
     pub fn sigdet_ast(&self) -> u32 {
         (self.0 & 0x38) >> 3
@@ -380,9 +344,7 @@ impl SERDES6G_DIG_CFG {
         self.0 |= value;
     }
     /// Signal detect de-assertion time
-
     ///
-
     /// 0: 0 us 1: 250 us 2: 350 us 3: 450 us 4: 550 us 5..7: reserved
     pub fn sigdet_dst(&self) -> u32 {
         self.0 & 0x7
@@ -393,9 +355,7 @@ impl SERDES6G_DIG_CFG {
         self.0 |= value;
     }
     /// Reserved for test purposes. SigDet timer values are divided by 2^6
-
     ///
-
     /// 1: Enable division 0: Normal operation
     pub fn sigdet_testmode(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -407,9 +367,7 @@ impl SERDES6G_DIG_CFG {
         self.0 |= value;
     }
     /// Select bit doubling mode
-
     ///
-
     /// 0: (20 bit) Data word contains two byte constant for 2 UI 1: Every bit is streched to two UI.
     pub fn tx_bit_doubling_mode_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -428,9 +386,7 @@ impl SERDES6G_DIG_CFG {
 pub struct SERDES6G_MISC_CFG(u32);
 impl SERDES6G_MISC_CFG {
     /// Enable deserializer cp/md handling for 100fx mode
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn des_100fx_cpmd_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -442,9 +398,7 @@ impl SERDES6G_MISC_CFG {
         self.0 |= value;
     }
     /// Select simple 100fx mode
-
     ///
-
     /// 0: Normal mode 1: Simple mode
     pub fn des_100fx_cpmd_mode(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -456,9 +410,7 @@ impl SERDES6G_MISC_CFG {
         self.0 |= value;
     }
     /// Swap cp/md signals in 100fx mode
-
     ///
-
     /// 0: No swapping of cp and md 1: Swap cp and md
     pub fn des_100fx_cpmd_swap(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -480,9 +432,7 @@ impl SERDES6G_MISC_CFG {
         self.0 |= value;
     }
     /// Lane Reset
-
     ///
-
     /// 0: No reset 1: Reset (not self-clearing)
     pub fn lane_rst(&self) -> u32 {
         self.0 & 0x1
@@ -503,9 +453,7 @@ impl SERDES6G_MISC_CFG {
         self.0 |= value;
     }
     /// Enable data inversion received from Deserializer
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn rx_data_inv_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -517,9 +465,7 @@ impl SERDES6G_MISC_CFG {
         self.0 |= value;
     }
     /// Enable RX-Low-Power feature (Power control by LPI-FSM in connected PCS)
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn rx_lpi_mode_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -531,9 +477,7 @@ impl SERDES6G_MISC_CFG {
         self.0 |= value;
     }
     /// Select recovered clock divider
-
     ///
-
     /// 0: No clock dividing 1: Divide clock by 5 2: Divide clock by 4 3: Reserved
     pub fn sel_reco_clk(&self) -> u32 {
         (self.0 & 0x6000) >> 13
@@ -555,9 +499,7 @@ impl SERDES6G_MISC_CFG {
         self.0 |= value;
     }
     /// Enable data inversion sent to Serializer
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn tx_data_inv_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -569,9 +511,7 @@ impl SERDES6G_MISC_CFG {
         self.0 |= value;
     }
     /// Enable TX-Low-Power feature (Power control by LPI-FSM in connected PCS)
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn tx_lpi_mode_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4

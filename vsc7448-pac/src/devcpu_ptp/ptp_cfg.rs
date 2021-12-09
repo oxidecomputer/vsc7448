@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct CLK_ADJ_CFG(u32);
 impl CLK_ADJ_CFG {
     /// Clock frequency adjustment direction.
-
     ///
-
     /// 0: Positive adjustment. Every adjustment adds 1ns to the counter. => clock period is decreased, clock frequency is increased 1: Negative adjustment. Every adjustment subtracts 1ns from the counter. => clock period is increased, clock frequency is decreased
     pub fn clk_adj_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -48,9 +46,7 @@ impl CLK_ADJ_CFG {
         self.0 |= value;
     }
     /// Clock frequency adjust enable.
-
     ///
-
     /// 0: Adjustment Disabled 1: Adjustment Enabled
     pub fn clk_adj_ena(&self) -> u32 {
         self.0 & 0x1
@@ -68,9 +64,7 @@ impl CLK_ADJ_CFG {
 pub struct CLK_ADJ_FRQ(u32);
 impl CLK_ADJ_FRQ {
     /// Clock frequency adjust./
-
     ///
-
     /// N: Number of unadjusted CLK_ADJ_UNIT after which the counter for the clock must be adjusted.
     pub fn clk_adj(&self) -> u32 {
         self.0 & 0x3fffffff
@@ -81,9 +75,7 @@ impl CLK_ADJ_FRQ {
         self.0 |= value;
     }
     /// Clock frequency adjust unit./
-
     ///
-
     /// 0: Adjustment made every CLK_ADJ picoseconds. 1: Adjustment made every CLK_ADJ nanoseconds.
     pub fn clk_adj_unit(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
@@ -114,9 +106,7 @@ impl PTP_INTR_IDENT {
 pub struct PTP_MISC_CFG(u32);
 impl PTP_MISC_CFG {
     /// Enable master counter.
-
     ///
-
     /// 0: Master counter disabled and reset 1: Master counter enabled
     pub fn ptp_ena(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
@@ -128,9 +118,7 @@ impl PTP_MISC_CFG {
         self.0 |= value;
     }
     /// Hold master counter.
-
     ///
-
     /// 0: Master counter counts if enabled 1: Master counter will stay at the reached value
     pub fn ptp_hold(&self) -> u32 {
         (self.0 & 0x38) >> 3

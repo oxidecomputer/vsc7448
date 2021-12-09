@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct SERDES1G_DFT_STATUS(u32);
 impl SERDES1G_DFT_STATUS {
     /// BIST activity
-
     ///
-
     /// 0: BIST inactive 1: BIST active
     pub fn bist_active(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -48,9 +46,7 @@ impl SERDES1G_DFT_STATUS {
         self.0 |= value;
     }
     /// BIST completion state (low-active)
-
     ///
-
     /// 0: BIST completed 1: not completed
     pub fn bist_complete_n(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -62,9 +58,7 @@ impl SERDES1G_DFT_STATUS {
         self.0 |= value;
     }
     /// BIST result
-
     ///
-
     /// 0: No error found 1: Errors during BIST found
     pub fn bist_error(&self) -> u32 {
         self.0 & 0x1
@@ -75,9 +69,7 @@ impl SERDES1G_DFT_STATUS {
         self.0 |= value;
     }
     /// BIST sync result
-
     ///
-
     /// 0: Synchronization successful 1: Synchronization on BIST data failed
     pub fn bist_nosync(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -89,9 +81,7 @@ impl SERDES1G_DFT_STATUS {
         self.0 |= value;
     }
     /// RC-PLL BIST result
-
     ///
-
     /// 0: No error found 1: Errors during BIST found
     pub fn pll_bist_failed(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -103,9 +93,7 @@ impl SERDES1G_DFT_STATUS {
         self.0 |= value;
     }
     /// RC-PLL BIST not done flag
-
     ///
-
     /// 0: BIST done 1: BIST not started or active
     pub fn pll_bist_not_done(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -117,9 +105,7 @@ impl SERDES1G_DFT_STATUS {
         self.0 |= value;
     }
     /// RC-PLL BIST timeout error flag
-
     ///
-
     /// 0: No timeout occured 1: Timeout occured
     pub fn pll_bist_timeout_err(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -138,9 +124,7 @@ impl SERDES1G_DFT_STATUS {
 pub struct SERDES1G_MISC_CFG(u32);
 impl SERDES1G_MISC_CFG {
     /// Enable deserializer cp/md handling for 100fx mode
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn des_100fx_cpmd_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -152,9 +136,7 @@ impl SERDES1G_MISC_CFG {
         self.0 |= value;
     }
     /// Select simple 100fx mode
-
     ///
-
     /// 0: Normal mode 1: Simple mode
     pub fn des_100fx_cpmd_mode(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -166,9 +148,7 @@ impl SERDES1G_MISC_CFG {
         self.0 |= value;
     }
     /// Swap cp/md signals in 100fx mode
-
     ///
-
     /// 0: No swapping of cp and md 1: Swap cp and md
     pub fn des_100fx_cpmd_swap(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -190,9 +170,7 @@ impl SERDES1G_MISC_CFG {
         self.0 |= value;
     }
     /// Lane Reset
-
     ///
-
     /// 0: No reset 1: Reset (not self-clearing)
     pub fn lane_rst(&self) -> u32 {
         self.0 & 0x1
@@ -203,9 +181,7 @@ impl SERDES1G_MISC_CFG {
         self.0 |= value;
     }
     /// Enable data inversion received from Deserializer
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn rx_data_inv_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -217,9 +193,7 @@ impl SERDES1G_MISC_CFG {
         self.0 |= value;
     }
     /// Enable RX-Low-Power feature (Power control by LPI-FSM in connected PCS)
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn rx_lpi_mode_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -231,9 +205,7 @@ impl SERDES1G_MISC_CFG {
         self.0 |= value;
     }
     /// Enable data inversion sent to Serializer
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn tx_data_inv_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -245,9 +217,7 @@ impl SERDES1G_MISC_CFG {
         self.0 |= value;
     }
     /// Enable TX-Low-Power feature (Power control by LPI-FSM in connected PCS)
-
     ///
-
     /// 0: Disable 1: Enable
     pub fn tx_lpi_mode_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4

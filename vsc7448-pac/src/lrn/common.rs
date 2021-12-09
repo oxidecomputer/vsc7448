@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct AUTOAGE_CFG(u32);
 impl AUTOAGE_CFG {
     /// Time in units between automatic ageing of an entry. If otherwise subject to ageing, an inactive entry is removed after between 3*AGE_PERIOD_VAL and 4*AGE_PERIOD_VAL.
-
     ///
-
     /// 0: Disabled n: Age period = n * UNIT_SIZE
     pub fn period_val(&self) -> u32 {
         self.0 & 0xfffffff
@@ -47,9 +45,7 @@ impl AUTOAGE_CFG {
         self.0 |= value;
     }
     /// Sets the unit time. Setting UNIT_SIZE to zero effectively disables ageing.
-
     ///
-
     /// 0: Disable age scan 1: 100 us (fastest possible scan is bestcase 150 us so increase AUTOAGE_PERIOD_VAL to 2) 2: 10 ms 3: 1 s
     pub fn unit_size(&self) -> u32 {
         (self.0 & 0x30000000) >> 28
@@ -78,9 +74,7 @@ impl AUTOAGE_CFG_1 {
         self.0 |= value;
     }
     /// Specifies the clock period in NS x 10.
-
     ///
-
     /// 64: 6,4ns 192: 19,2 ns
     pub fn clk_period_01ns(&self) -> u32 {
         (self.0 & 0x7f80) >> 7
@@ -92,9 +86,7 @@ impl AUTOAGE_CFG_1 {
         self.0 |= value;
     }
     /// Triggers an instant hardware autoage scan (once current scan completes -which can be ensured using FORCE_HW_SCAN_STOP_ENA). The bit is cleared by HW when a new automated scan begins.
-
     ///
-
     /// 0: No force 1: Force start of autoage scan
     pub fn force_hw_scan_shot(&self) -> u32 {
         (self.0 & 0x3c) >> 2
@@ -106,9 +98,7 @@ impl AUTOAGE_CFG_1 {
         self.0 |= value;
     }
     /// Triggers forced stop of current autoage scan The bit is cleared by HW when scan stop is obtained
-
     ///
-
     /// 0: No force 1: Force autoage SCAN stop
     pub fn force_hw_scan_stop_shot(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -120,9 +110,7 @@ impl AUTOAGE_CFG_1 {
         self.0 |= value;
     }
     /// Configures automated age scan stop after current automated scan completes.
-
     ///
-
     /// 0: No force 1: SCAN stop after current scan completes and stays stopped.
     pub fn force_idle_ena(&self) -> u32 {
         self.0 & 0x1
@@ -143,9 +131,7 @@ impl AUTOAGE_CFG_1 {
         self.0 |= value;
     }
     /// Configures automated ageing of all port or only port not disabled in ANA_L2::FILTER_OTHER_CTRL and ANA_L2::FILTER_LOCAL_CTRL.
-
     ///
-
     /// 0: Disable use additional port filter 1: Enable use of additional port filter
     pub fn use_port_filter_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -164,9 +150,7 @@ impl AUTOAGE_CFG_1 {
 pub struct AUTOAGE_CFG_2(u32);
 impl AUTOAGE_CFG_2 {
     /// Current autoage row. Changed on every autoage command. Indicate the MAC table row to be autoaged aged next. Incremented by hardware during auto ageing.
-
     ///
-
     /// 0: Row 0 1: Row 1 ... n: Row n.
     pub fn next_row(&self) -> u32 {
         (self.0 & 0x3fff0) >> 4
@@ -178,9 +162,7 @@ impl AUTOAGE_CFG_2 {
         self.0 |= value;
     }
     /// High when AUTOAGE is ongoing for the given AGE interval.
-
     ///
-
     /// 0: No event has occured 1: AUTOAGE scan ongoing.
     pub fn scan_ongoing_status(&self) -> u32 {
         self.0 & 0xf
@@ -206,9 +188,7 @@ impl AUTO_LRN_CFG {
         self.0 |= value;
     }
     /// The CPU_COPY flag for auto-learned entries will be set to the value configured in this field.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn auto_lrn_cpu_copy(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -220,9 +200,7 @@ impl AUTO_LRN_CFG {
         self.0 |= value;
     }
     /// The CPU_QU for auto-learned entries will be set to the value configured in this field.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn auto_lrn_cpu_qu(&self) -> u32 {
         (self.0 & 0xe0) >> 5
@@ -234,9 +212,7 @@ impl AUTO_LRN_CFG {
         self.0 |= value;
     }
     /// Additional control for autonomous Learning.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn auto_lrn_ena(&self) -> u32 {
         self.0 & 0x1
@@ -247,9 +223,7 @@ impl AUTO_LRN_CFG {
         self.0 |= value;
     }
     /// The VLAN_IGNORE flag for auto-learned entries will be set to the value configured in this field.
-
     ///
-
     /// 0: VLAN mask is used 1: VLAN mask is ignored.
     pub fn auto_lrn_ignore_vlan(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -261,9 +235,7 @@ impl AUTO_LRN_CFG {
         self.0 |= value;
     }
     /// The MIRROR flag for auto-learned entries will be set to the value configured in this field.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn auto_lrn_mirror(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -275,9 +247,7 @@ impl AUTO_LRN_CFG {
         self.0 |= value;
     }
     /// The SRC_KILL_FWD flag for auto-learned entries will be set to the value configured in this field.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn auto_lrn_src_kill_fwd(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -296,9 +266,7 @@ impl AUTO_LRN_CFG {
 pub struct COMMON_ACCESS_CTRL(u32);
 impl COMMON_ACCESS_CTRL {
     /// Configures the MAC table access command: LEARN, UNLEARN, and LOOKUP Command accesses a MAC_ENTRY at the HASH(VID/FID,MAC) index. MAC and FID/VID must to be written to the respective bitgroups in registers MAC_ACCESS_CFG_[0|1|2]. READ and WRITE Command accesses a MAC_ENTRY at the index specified by means of CPU_ACCESS_DIRECT_ROW,  CPU_ACCESS_DIRECT_COL and CPU_ACCESS_DIRECT_TYPE fields. SCAN Command access traverses the entire MAC table and handle all found entries depending on configuration and filter settings. If any set of filters is enabled then only entries matching the enabled filters are affected / found. Refer to description of bitgroups found in LRN::SCAN_NEXT_CFG-	Note that it is possible to configure the scan to FIND ALL or FIND first using LRN::SCAN_NEXT_CFG.SCAN_NEXT_UNTIL_FOUND_ENA. FIND SMALLEST Command traverses the entire table and returns the MAC_ENTRY with the smallest FID/VID,MAC which is larger than a configured starting FID/VID,MAC value (configured in MAC_ACCESS_CFG_[0|1|2].). FID/VID take precedence over MAC. CLEAR ALL Command traverses the entire table and resets all entries.
-
     ///
-
     /// 0: LEARN 1: UNLEARN 2: LOOKUP 3: READ 4: WRITE 5: SCAN (AGE or FIND NEXT) 6: FIND SMALLEST 7: CLEAR ALL
     pub fn cpu_access_cmd(&self) -> u32 {
         (self.0 & 0x1e) >> 1
@@ -310,9 +278,7 @@ impl COMMON_ACCESS_CTRL {
         self.0 |= value;
     }
     /// Configures the MAC table bucket or column index that holds the MAC_ENTRY that is accessed when CPU_ACCESS_CMD command is READ or WRITE.
-
     ///
-
     /// 0: Column (bucket) 0 1: Column (bucket) 1 ... n: Column (bucket) n.
     pub fn cpu_access_direct_col(&self) -> u32 {
         (self.0 & 0x300000) >> 20
@@ -324,9 +290,7 @@ impl COMMON_ACCESS_CTRL {
         self.0 |= value;
     }
     /// Configures the MAC table row index that holds the MAC_ENTRY that is accessed when CPU_ACCESS_CMD command is READ or WRITE. Configures the MAC table starting row index when CPU_ACCESS_CMD command is FIND NEXT. If the Command succeeds in finding a matching entry this field is updated with the row index for the (last) matching entry.
-
     ///
-
     /// 0: Row 0 1: Row 1 ... n: Row n.
     pub fn cpu_access_direct_row(&self) -> u32 {
         (self.0 & 0x7ffe0) >> 5
@@ -338,9 +302,7 @@ impl COMMON_ACCESS_CTRL {
         self.0 |= value;
     }
     /// Configures the MAC table type that holds the MAC_ENTRY that is accessed when CPU_ACCESS_CMD command is READ or WRITE. Configures the MAC table starting type when CPU_ACCESS_CMD command is FIND NEXT. If the Command succeeds in finding a matching entry this field is updated with the type for the (last) matching entry.
-
     ///
-
     /// 0: MAC table 1: MAC CAM (CPU_ACCESS_DIRECT_ROW is not used)
     pub fn cpu_access_direct_type(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -352,9 +314,7 @@ impl COMMON_ACCESS_CTRL {
         self.0 |= value;
     }
     /// Perform the access command specified by CPU_ACCESS_CMD. Cleared when the access completes. Interrupt upon access completion can be configured using: ANA_L2::INTR_ENA.LRN_ACCESS_COMPLETE_INTR_ENA
-
     ///
-
     /// 0: Idle 1: Initiate CPU ACCESS The bit is cleared upon completion
     pub fn mac_table_access_shot(&self) -> u32 {
         self.0 & 0x1
@@ -370,9 +330,7 @@ impl COMMON_ACCESS_CTRL {
 pub struct EVENT_STICKY(u32);
 impl EVENT_STICKY {
     /// Set if a MAC address entry has been aged due to an autoage operation.
-
     ///
-
     /// 0: No entries have been aged due to autoage. 1: At least 1 entry has been aged due to autoage. Write '1' to clear this field.
     pub fn autoage_aged_sticky(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -384,9 +342,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a MAC address entry has been removed due to an autoage operation.
-
     ///
-
     /// 0: No entries have been removed due to autoage. 1: At least 1 entry has been removed due to autoage. Write '1' to clear this field.
     pub fn autoage_remove_sticky(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -398,9 +354,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set when AUTOAGE scan completes.
-
     ///
-
     /// 0: No event has occured 1: AUTOAGE scan completes Bit is cleared by writing a 1 to this position.
     pub fn autoage_scan_completed_sticky(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
@@ -412,9 +366,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set when Autoage scan starts.
-
     ///
-
     /// 0: No event has occured 1: AUTOAGE scan started Bit is cleared by writing a 1 to this position.
     pub fn autoage_scan_started_sticky(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
@@ -426,9 +378,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set when Autoage scan should be started before the last scan completed.
-
     ///
-
     /// 0: No event has occured 1: AUTOAGE could not start before the current scan completed Bit is cleared by writing a 1 to this position.
     pub fn autoage_start_delayed_sticky(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -440,9 +390,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if an autonomous learning operation has failed due to hash table depletion (i.e. all entries in a row were locked). Write '1' to clear this field.
-
     ///
-
     /// 0: No autonomous learning operations have failed. 1: An autonomous learning operation has failed. Write '1' to clear this field.
     pub fn auto_lrn_failed_sticky(&self) -> u32 {
         (self.0 & 0x20000) >> 17
@@ -454,9 +402,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if AUTO learn failed due to FID learn limit exceeded. Write '1' to clear this field.
-
     ///
-
     /// 0: No change. 1: Fid Learn limit has caused CPU based learning to fail.
     pub fn auto_lrn_fid_limit_exceeded_sticky(&self) -> u32 {
         (self.0 & 0x40000) >> 18
@@ -468,9 +414,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a MAC address entry has been inserted into the MAC CAM. Write '1' to clear this field.
-
     ///
-
     /// 0: No entries have been inserted into empty buckets 1: An entry has been inserted into an empty bucket.
     pub fn auto_lrn_insert_cam_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -482,9 +426,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a MAC address entry has been inserted into a MAC address table column (bucket). Write '1' to clear this field.
-
     ///
-
     /// 0: No entries have been inserted into empty buckets 1: An entry has been inserted into an empty bucket.
     pub fn auto_lrn_insert_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -496,9 +438,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if MAC entry has been updated. Write '1' to clear this field.
-
     ///
-
     /// 0: No entries have been refreshed. 1: An entry has been refreshed.
     pub fn auto_lrn_refresh_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -510,9 +450,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a randomly selected non-locked and valid MAC address entry can not be overwritten by a new (VID, SMAC). Write '1' to clear this field.
-
     ///
-
     /// 0: No entries have been replaced. 1: An entry has not been replaced due to configuration.
     pub fn auto_lrn_replace_failed_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -524,9 +462,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a randomly selected non-locked and valid MAC address entry has been overwritten by a new (VID, SMAC). Write '1' to clear this field.
-
     ///
-
     /// 0: No entries have been replaced. 1: An entry has been replaced.
     pub fn auto_lrn_replace_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -538,9 +474,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a CPU MAC LOOKUP operation has failed due to not found an entry. Write '1' to clear this field.
-
     ///
-
     /// 0:  No fail 1: CPU lookup operation failed.
     pub fn cpu_lookup_failed_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -552,9 +486,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a CPU MAC LOOKUP operation has succeeded. Write '1' to clear this field.
-
     ///
-
     /// 0:  No successful lookup 1: Successful lookup.
     pub fn cpu_lookup_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -566,9 +498,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if an CPU learning operation has failed due to hash table depletion (i.e. all entries in a row were locked). Write '1' to clear this field.
-
     ///
-
     /// 0: No CPU LEARN operations has failed. 1: A CPU LEARN operation has failed.
     pub fn cpu_lrn_failed_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -579,9 +509,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if CPU learn failed due to FID learn limit exceeded. Write '1' to clear this field.
-
     ///
-
     /// 0: No change. 1: Fid Learn limit has caused CPU based learning to fail.
     pub fn cpu_lrn_fid_limit_exceeded_sticky(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -593,9 +521,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a MAC entry has been inserted into an empty MAC table row,column (=bucket). Write '1' to clear this field.
-
     ///
-
     /// 0: No entries have been inserted into an empty bucket 1: An entry has been inserted into an empty bucket.
     pub fn cpu_lrn_insert_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -607,9 +533,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a valid MAC entry has been updated (refreshed), i.e. a write access to the same bucket with the same MAC and VID has occured. Write '1' to clear this field.
-
     ///
-
     /// 0: No entries have been refreshed. 1: An entry has been refreshed.
     pub fn cpu_lrn_refresh_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
@@ -621,9 +545,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if CPU learn replace can not be performed due to configuration. Write '1' to clear this field.
-
     ///
-
     /// 0: No learn based replacement failed. 1: The replacement of 1 or more entries failed.
     pub fn cpu_lrn_replace_failed_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
@@ -635,9 +557,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a valid MAC entry has been overwritten, i.e. a write access to the same bucket with a changed MAC and/or VID has occured. Write '1' to clear this field.
-
     ///
-
     /// 0: No entries have been replaced. 1: An entry has been replaced.
     pub fn cpu_lrn_replace_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -649,9 +569,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set when a direct CPU MAC READ operation has occured. Write '1' to clear this field.
-
     ///
-
     /// 0:  No update 1: CPU read direct operation has occured.
     pub fn cpu_read_direct_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -663,9 +581,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a CPU MAC UNLEARN operation has failed because the respective (valid) entry was not found. Write '1' to clear this field.
-
     ///
-
     /// 0:  No UNLEARN operation failed 1: CPU UNLEARN operation failed.
     pub fn cpu_unlearn_failed_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -677,9 +593,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a CPU MAC UNLEARN operation has succeeded. Write '1' to clear this field.
-
     ///
-
     /// 0:  No CPU MAC UNLEARN operation took place 1:  CPU UNLEARN operations has succeeded.
     pub fn cpu_unlearn_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
@@ -691,9 +605,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set when a direct CPU MAC WRITE operation has occured. Write '1' to clear this field.
-
     ///
-
     /// 0:  No update 1: CPU write direct operation has occured.
     pub fn cpu_write_direct_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -705,9 +617,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set when a learn move has occured (move from CAM row to MAC table). Write '1' to clear this field.
-
     ///
-
     /// 0:  No update 1: Learn move operation has occured.
     pub fn lrn_move_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -719,9 +629,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// A non empty learn queue must be signalled.
-
     ///
-
     /// 0:  Empty 1:  Non empty
     pub fn lrn_queue_data_avail_sticky(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -733,9 +641,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// A sticky bit must be set when a learn request arrives to an already full queue.
-
     ///
-
     /// 0: No overflow 1:  Overflow Write '1' to clear bit.
     pub fn lrn_queue_overflow_sticky(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -747,9 +653,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a row matching the scan condition has been found. (Check after MAC_TABLE_ACCESS_SHOT went to 0).
-
     ///
-
     /// 0: No entry has been found. 1: An entry has been found. Write '1' to clear this field.
     pub fn row_with_scan_entry_sticky(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -761,9 +665,7 @@ impl EVENT_STICKY {
         self.0 |= value;
     }
     /// Set if a MAC address entry has been removed due to a scan operation.
-
     ///
-
     /// 0: No entries have been removed due to scan. 1: At least 1 entry has been removed due to scan. Write '1' to clear this field.
     pub fn scan_removed_sticky(&self) -> u32 {
         (self.0 & 0x80000) >> 19
@@ -780,9 +682,7 @@ impl EVENT_STICKY {
 pub struct LATEST_POS_STATUS(u32);
 impl LATEST_POS_STATUS {
     /// This field holds the current (i.e. latest accessed) column number after a CPU_ACCESS_CMD has been finished.
-
     ///
-
     /// 0: Column (bucket) 0 1: Column (bucket) 1 ... n: Column (bucket) n
     pub fn latest_col(&self) -> u32 {
         self.0 & 0x3
@@ -793,9 +693,7 @@ impl LATEST_POS_STATUS {
         self.0 |= value;
     }
     /// This field holds the current (i.e. latest accessed) MAC table row number after a CPU_ACCESS_CMD has been finished.
-
     ///
-
     /// 0: Row 0 1: Row 1 ... n: Row n
     pub fn latest_row(&self) -> u32 {
         (self.0 & 0x3fff0) >> 4
@@ -807,9 +705,7 @@ impl LATEST_POS_STATUS {
         self.0 |= value;
     }
     /// This field holds the current (i.e. latest accessed) type after a CPU_ACCESS_CMD has been finished.
-
     ///
-
     /// 0: MAC table 1: CAM MAC table
     pub fn latest_type(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -821,9 +717,7 @@ impl LATEST_POS_STATUS {
         self.0 |= value;
     }
     /// Gives the scan result per bucket of the last row scanned (bitgroup contains 1 bit per bucket of an entire row).
-
     ///
-
     /// Per bucket: 0: Bucket does not match filter condition 1: Bucket does match filter condition Bit is cleared by writing a '1' to this position.
     pub fn scan_next_status(&self) -> u32 {
         (self.0 & 0x3c0000) >> 18
@@ -852,9 +746,7 @@ impl MAC_ACCESS_CFG_0 {
         self.0 |= value;
     }
     /// Configures 16 MSB bits of the MAC address for the MAC_ENTRY. Used as starting MAC value during FIND SMALLEST Command.
-
     ///
-
     /// Upper 16 bits of MAC address.
     pub fn mac_entry_mac_msb(&self) -> u32 {
         self.0 & 0xffff
@@ -872,9 +764,7 @@ impl MAC_ACCESS_CFG_0 {
 pub struct MAC_ACCESS_CFG_1(u32);
 impl MAC_ACCESS_CFG_1 {
     /// Configures 32 LSB bits of the MAC address for the MAC_ENTRY. Used as starting MAC value during FIND SMALLEST Command.
-
     ///
-
     /// 0xXXXXXXXX: Lower 32 bits of MAC address.
     pub fn mac_entry_mac_lsb(&self) -> u32 {
         self.0
@@ -890,9 +780,7 @@ impl MAC_ACCESS_CFG_1 {
 pub struct MAC_ACCESS_CFG_2(u32);
 impl MAC_ACCESS_CFG_2 {
     /// Configures the ADDRESS for the MAC_ENTRY. Encoding of this field is determined by MAC_ENTRY_ADDR_TYPE. Can be used as filter value during SCAN or FIND SMALLEST Command.
-
     ///
-
     /// MAC_ENTRY_ADDR_TYPE= UPSID_PN: MAC_ENTRY_ADDR(9:5) = UPSID MAC_ENTRY_ADDR(4:0) = UPSPN Specifies unicast forwarding to port: UPSPN in device: UPSID. MAC_ENTRY_ADDR_TYPE = UPSID_CPU_OR_INT: MAC_ENTRY_ADDR(9:5) = UPSID MAC_ENTRY_ADDR(3:0) = CPU queue number when MAC_ENTRY_ADDR(11) = 0 MAC_ENTRY_ADDR(3:0) = Internal port number when MAC_ENTRY_ADDR(11) = 1 0xe: Internal port number (intpn_router) 0xf: Local lookup at destination upsid (ntpn_dlookup) MAC_ENTRY_ADDR_TYPE = GLAG MAC_ENTRY_ADDR = GLAGID Specifies unicast forwarding to the global aggregated port group: GLAGID. MAC_ENTRY_ADDR_TYPE = MC_IDX: MAC_ENTRY_ADDR = MC_IDX Specifies forwarding according to ANA_AC:PGID[32 + MC_IDX)
     pub fn mac_entry_addr(&self) -> u32 {
         self.0 & 0xfff
@@ -903,9 +791,7 @@ impl MAC_ACCESS_CFG_2 {
         self.0 |= value;
     }
     /// Configures MAC_ENTRY address type. Can be used as filter value during SCAN or FIND SMALLEST Command.
-
     ///
-
     /// 0: UPSID_PN 1: UPSID_CPU_OR_INT 2: GLAG 3: MC_IDX
     pub fn mac_entry_addr_type(&self) -> u32 {
         (self.0 & 0x7000) >> 12
@@ -917,9 +803,7 @@ impl MAC_ACCESS_CFG_2 {
         self.0 |= value;
     }
     /// MAC_ENTRY AGE flag used to identify if a MAC_ENTRY is active of not. Cleared by HW when a entry is used as source entry. Used to ensure that entries associated with inactive stations can be located and discarded. The MAC table can be aged by HW either a CPU Scan command or through Automatic ageing (LRN::AUTOAGE_CFG).
-
     ///
-
     /// 0:  Not aged n:  Aged n times.
     pub fn mac_entry_age_flag(&self) -> u32 {
         (self.0 & 0x180000) >> 19
@@ -961,9 +845,7 @@ impl MAC_ACCESS_CFG_2 {
         self.0 |= value;
     }
     /// Configures the MAC_ENTRY locked flag. Used to install static MAC table entries that can not be removed by learning and ageing.
-
     ///
-
     /// 0: Not locked 1: Locked.
     pub fn mac_entry_locked(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -985,9 +867,7 @@ impl MAC_ACCESS_CFG_2 {
         self.0 |= value;
     }
     /// Configures MAC_ENTRY NXT_LRN_ALL flag. This is used to ensure MAC entries are learned consistend in a multi device configuration. Cleared by HW when a frame is received for a (IFID, SMAC) matching this entry.
-
     ///
-
     /// 0:  Disabled 1:  Next learn all.
     pub fn mac_entry_nxt_lrn_all(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
@@ -999,9 +879,7 @@ impl MAC_ACCESS_CFG_2 {
         self.0 |= value;
     }
     /// Configures MAC_ENTRY SRC_KILL_FWD flag. Used to discard forwarding of frames from this source.
-
     ///
-
     /// 0: Disable 1: Enable (Frames with this entry MAC address as SMAC are killed)
     pub fn mac_entry_src_kill_fwd(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
@@ -1013,9 +891,7 @@ impl MAC_ACCESS_CFG_2 {
         self.0 |= value;
     }
     /// Configures MAC_ENTRY VLAN ignore flag. Can be used to ignore VLAN mask or Source mask during forwarding based on ANA_L2::FWD_CFG.FILTER_MODE_SEL.
-
     ///
-
     /// 0: no effect 1: VLAN mask or source mask is ignored.
     pub fn mac_entry_vlan_ignore(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -1027,9 +903,7 @@ impl MAC_ACCESS_CFG_2 {
         self.0 |= value;
     }
     /// Configures the MAC_ENTRY valid flag. Used to indicate that this entry is active. This bit can be cleared for non locked entries by auto learning or through the CPU_ACCESS_CMD UNLEARN command.
-
     ///
-
     /// 0: Invalid 1: Valid.
     pub fn mac_entry_vld(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -1048,9 +922,7 @@ impl MAC_ACCESS_CFG_2 {
 pub struct SCAN_LAST_ROW_CFG(u32);
 impl SCAN_LAST_ROW_CFG {
     /// Configures the last row to be part of scan. ignored if set to all ones.
-
     ///
-
     /// 0: Scan completes at row 0 ... n: Scan completes at row n
     pub fn scan_last_row(&self) -> u32 {
         self.0 & 0x3fff
@@ -1068,9 +940,7 @@ impl SCAN_LAST_ROW_CFG {
 pub struct SCAN_NEXT_CFG(u32);
 impl SCAN_NEXT_CFG {
     /// Specifies whether ADDR values is dont care or will only affect entries with a specific ADDR value during FIND SMALLEST or SCAN commands (refer also to MAC_ENTRY_ADDR, MAC_ENTRY_ADDR_TYPE and FID_FILTER_ENA / MAC_ENTRY_ADDR).
-
     ///
-
     /// 0: Disable. SCAN and FIND_SMALLEST commands will treat MAC_ENTRY_ADDR and MAC_ENTRY_ADDR_TYPE values as don't care.. 1: Enable MAC_ENTRY_ADDR and MAC_ENTRY_ADDR_TYPE filter. SCAN and FIND_SMALLEST commands will only search for entries with Address value corresponding to MAC_ENTRY_ADDR and MAC_ENTRY_ADDR_TYPE taking LRN::SCAN_NEXT_CFG_1.SCAN_ENTRY_ADDR_MASK into account).
     pub fn addr_filter_ena(&self) -> u32 {
         self.0 & 0x1
@@ -1081,9 +951,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Configures if FIND SMALLEST command or SCAN command cares about FID values or not. It is possible to configure additional FID filters through: ANA_L2:COMMON:SCAN_FID_CTRL.SCAN_FID_ENA and ANA_L2:COMMON:SCAN_FID_CFG.SCAN_FID_VAL
-
     ///
-
     /// 0: Disable FID/VID filters (and ignore FID/VID) during SCAN and FIND_SMALLEST commands. 1: Enable FID/VID filter(s) during SCAN and FIND_SMALLEST. Only entries with FID/VID value equal to LRN::MAC_ACCESS_CFG_0.MAC_ENTRY_FID or optionally also values configured in ANA_L2:COMMON:SCAN_FID_CFG.SCAN_FID_VAL will be found.
     pub fn fid_filter_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -1095,9 +963,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Configures whether NXT_LRN_ALL values is don't care or entries with a specific NXT_LRN_ALL/CCM_CHG value are found during FIND SMALLEST or SCAN commands.
-
     ///
-
     /// 0: SCAN and FIND_SMALLEST commands don't care about MAC_ENTRY_NXT_LRN_ALL. 1: Enable filter. SCAN and FIND_SMALLEST commands will only search for entries with NXT_LRN_ALL set according to MAC_ENTRY_NXT_LRN_ALL.
     pub fn nxt_lrn_all_filter_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
@@ -1109,9 +975,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Specify how MAC_ENTRY_AGE is matched during scan commands.
-
     ///
-
     /// 0: Ignore 1: Find entries with MAC_ENTRY_AGE equal to MAC_ACCESS_CFG_2.MAC_ENTRY_AGE_FLAG or larger 2: Find entries with MAC_ENTRY_AGE equal to MAC_ACCESS_CFG_2.MAC_ENTRY_AGE_FLAG or smaller 3: Find entries with MAC_ENTRY_AGE equal to MAC_ACCESS_CFG_2.MAC_ENTRY_AGE_FLAG.
     pub fn scan_age_filter_sel(&self) -> u32 {
         (self.0 & 0xc000) >> 14
@@ -1123,9 +987,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Controls update of MAC_ENTRY_AGE_FLAG for found entries. Field is ignored if SCAN_NEXT_INC_AGE_BITS_ENA is set
-
     ///
-
     /// 0: No change to MAC_ENTRY_AGE_FLAG 1: Clear MAC_ENTRY_AGE_FLAG 2: Set MAC_ENTRY_AGE_FLAG 3: MAC_ENTRY_AGE_FLAG 4: MAC_ENTRY_AGE_FLAG
     pub fn scan_age_flag_update_sel(&self) -> u32 {
         (self.0 & 0x1c0000) >> 18
@@ -1137,9 +999,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Specifies age intervals are taken into account during FIND SMALLEST or SCAN commands .
-
     ///
-
     /// x0: Don't find entries in the corresponding age interval. 0x: Entries with the corresponding interval are taken into account.
     pub fn scan_age_interval_mask(&self) -> u32 {
         (self.0 & 0x3c) >> 2
@@ -1151,9 +1011,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Specify whether AGE flags are ignored during scan commands.
-
     ///
-
     /// 0: Ignore the MAC_ENTRY_AGE_FLAG duting scan. 1: Find only entries with MAC_ENTRY_AGE_FLAG set.
     pub fn scan_next_aged_only_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
@@ -1165,9 +1023,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Configures whether locked entries are ignored during a FIND SMALLEST or SCAN commands or not.
-
     ///
-
     /// 0: Consider only unlocked (entries with MAC_ENTRY_LOCKED cleared) entries during FIND SMALLEST or SCAN commands. 1: Ignore MAC_ENTRY_LOCKED flag during FIND SMALLEST or SCAN commands.
     pub fn scan_next_ignore_locked_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
@@ -1179,9 +1035,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Configures whether the MAC_ENTRY_AGE_FLAG will be incremented during scan commands or not.
-
     ///
-
     /// 0: Find next will keep entries intact. 1: Find next will increment MAC_ENTRY_AGE_FLAG for entries matching the filter conditions. Refer also to bitgroup SCAN_NEXT_REMOVE_FOUND_ENA
     pub fn scan_next_inc_age_bits_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -1193,9 +1047,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Controls update of MAC_ENTRY_ADDR_TYPE and MAC_ENTRY_ADDR for entries matched during a SCAN command. (Will only have effect if SCAN_NEXT_UNTIL_FOUND_ENA is disabled). Allows all MAC addresses learned on a specific port to be moved to another port. Refer also to PORT_MOVE_NEW_ADDR and SCAN_ENTRY_ADDR_MASK
-
     ///
-
     /// 0: MAC_ENTRY_ADDR and MAC_ENTRY_ADDR_TYPE will be kept unaffected. 1: Entries matching the condition will have MAC_ENTRY_ADDR and MAC_ENTRY_ADDR_TYPE updated.
     pub fn scan_next_move_found_ena(&self) -> u32 {
         (self.0 & 0x2000) >> 13
@@ -1207,9 +1059,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Controls whether scan removes entries matching the condition or not. CPU Age scan: if SCAN_NEXT_REMOVE_FOUND_ENA==1 and SCAN_NEXT_INC_AGE_BITS_ENA == 1 and SCAN_NEXT_AGED_ONLY_ENA==0 then non aged entries (MAC_ENTRY_AGE_FLAG less than max configured through ANA_L2::LRN_CFG.AGE_SIZE) will be aged (MAC_ENTRY_AGE_FLAG incremented) and aged entries  (MAC_ENTRY_AGE_FLAG set to MAX) will be removed. CPU cleanup scan: if SCAN_NEXT_REMOVE_FOUND_ENA==1 and SCAN_NEXT_INC_AGE_BITS_ENA ==0 then all entries matching the enabled filtering conditions will be removed. (Will only have effect if SCAN_NEXT_UNTIL_FOUND_ENA is disabled).
-
     ///
-
     /// 0: No entries will be removed. 1: Entries matching the condition will be removed (or MAC_ENTRY_AGE_FLAG will be incremented based on SCAN_NEXT_INC_AGE_BITS_ENA)
     pub fn scan_next_remove_found_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
@@ -1221,9 +1071,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Specify whether the scan stops at the next row which matches the condition during scan commands.
-
     ///
-
     /// 0: SCAN command scans through the complete table. 1: Scan stops at the first row with one or more entries matching the filter conditions.
     pub fn scan_next_until_found_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
@@ -1235,9 +1083,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Controls update of MAC_ENTRY_NXT_LRN_ALL for found entries.
-
     ///
-
     /// 0: No change to MAC_ENTRY_NXT_LRN_ALL 1: Clear MAC_ENTRY_NXT_LRN_ALL 2: Set MAC_ENTRY_NXT_LRN_ALL.
     pub fn scan_nxt_lrn_all_update_sel(&self) -> u32 {
         (self.0 & 0x30000) >> 16
@@ -1249,9 +1095,7 @@ impl SCAN_NEXT_CFG {
         self.0 |= value;
     }
     /// Configures scanning of all port or only port not disabled in ANA_L2::FILTER_OTHER_CTRL and ANA_L2::FILTER_LOCAL_CTRL.
-
     ///
-
     /// 0: Disable 1: Enable.
     pub fn scan_use_port_filter_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
@@ -1278,9 +1122,7 @@ impl SCAN_NEXT_CFG_1 {
         self.0 |= value;
     }
     /// ADDRESS mask when doing port scan. This correspond to specify MAC_ENTRY_ADDR with dont care positions (MSB-1 controls two additional type bits). To scan for all upsid_pn entries set MAC_ENTRY_ADDR_TYPE= UPSID_PN and SCAN_ENTRY_ADDR_MASK(14:12)="111" and remaining SCAN_ENTRY_ADDR_MASK bits to ALL_ZEROS
-
     ///
-
     /// 0: The corresponding bit is treated as dont care (ignore bit value) 1: The corresponding bit is treated as care
     pub fn scan_entry_addr_mask(&self) -> u32 {
         self.0 & 0x7fff

@@ -54,9 +54,7 @@ impl ANEG_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Technology Ability to be advertised (here: 10GBase-KR)
-
     ///
-
     /// 0: Do not advertise 10GB-KR capability 1: Advertise 10GB-KR capability
     pub fn cap_10gkr(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -68,9 +66,7 @@ impl ANEG_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Technology Ability to be advertised (here: 10GBase-KX4)
-
     ///
-
     /// 0: Do not advertise 10GB-KX4 capability 1: Advertise 10GB-KX4 capability
     pub fn cap_10gkx4(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -82,9 +78,7 @@ impl ANEG_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Technology Ability to be advertised (here: 1000Base-KX)
-
     ///
-
     /// 0: Do not advertise 1GB-KX capability 1: Advertise 1GB-KX capability
     pub fn cap_1gkx(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -106,9 +100,7 @@ impl ANEG_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Next page exchange desired
-
     ///
-
     /// 0: Disable NP exchange 1: Enable NP exchange
     pub fn np(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -192,9 +184,7 @@ impl ANEG_ADV_ABILITY_1 {
 pub struct ANEG_CFG(u32);
 impl ANEG_CFG {
     /// Auto-negotiation enable
-
     ///
-
     /// 1: Enable 0: Disable
     pub fn aneg_ena(&self) -> u32 {
         self.0 & 0x1
@@ -205,9 +195,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Disable automatic ANEG speed setting
-
     ///
-
     /// 0: Allow ANEG to select frequency 1: Frequency is programmed using mode2g5_ena and hr_mode_ena
     pub fn aneg_freqsel_dis(&self) -> u32 {
         (self.0 & 0x8000) >> 15
@@ -219,9 +207,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Disable automatic ANEG OB configuration
-
     ///
-
     /// 0: Allow ANEG block to control OB during auto-negotiation 1: OB settings are not touched by ANEG block
     pub fn aneg_ob_ctrl_dis(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -233,9 +219,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Disable automatic power down of lane controlled by ANEG
-
     ///
-
     /// 0: Allow ANEG to power down unused lane 1: Power down is not controlled by ANEG
     pub fn aneg_pwdn_dis(&self) -> u32 {
         (self.0 & 0x4000) >> 14
@@ -247,9 +231,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Asynchronous reset reseting all auto-negotiation logic
-
     ///
-
     /// 1: Reset
     pub fn aneg_reset_one_shot(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
@@ -261,9 +243,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Reserved for test purposes. ANEG wait timer values are divided by 2^15 and the parallel detect timers are divided by 2^10
-
     ///
-
     /// 1: Enable division 0: Normal operation
     pub fn arb_testmode(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -275,9 +255,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Reserved for test purposes. Disable nonce/link_status checks
-
     ///
-
     /// 1: Disable checks 0: Normal operation
     pub fn ate_testmode(&self) -> u32 {
         (self.0 & 0x400000) >> 22
@@ -299,9 +277,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Parallel detect wait time for 10G using four lanes
-
     ///
-
     /// 0: 0 ms 1: 10 ms 2: 20 ms 3: 40 ms
     pub fn pd_timer_10gkx4(&self) -> u32 {
         (self.0 & 0x3000) >> 12
@@ -313,9 +289,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Parallel detect wait time for 1G using single lane
-
     ///
-
     /// 0: 0 ms 1: 10 ms 2: 20 ms 3: 40 ms
     pub fn pd_timer_1gkx(&self) -> u32 {
         (self.0 & 0xc00) >> 10
@@ -327,9 +301,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Parallel detect wait time for 2.5G using single lane
-
     ///
-
     /// 0: 0 ms 1: 10 ms 2: 20 ms 3: 40 ms
     pub fn pd_timer_2g5(&self) -> u32 {
         (self.0 & 0x300) >> 8
@@ -341,9 +313,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Restart negotiation process
-
     ///
-
     /// 1: Restart
     pub fn restart_aneg_one_shot(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -355,9 +325,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Reserved for test purposes. Control of page_test_max_timer_done check
-
     ///
-
     /// 1: Disable check 0: Normal operation
     pub fn rx_testmode(&self) -> u32 {
         (self.0 & 0x200000) >> 21
@@ -369,9 +337,7 @@ impl ANEG_CFG {
         self.0 |= value;
     }
     /// Reserved for test purposes. Transmit data 0 on all bit positions if ANEG is active
-
     ///
-
     /// 1: Bypass ANEG data 0: Normal operation
     pub fn txbyp_testmode(&self) -> u32 {
         (self.0 & 0x800000) >> 23
@@ -404,9 +370,7 @@ impl ANEG_NEXT_PAGE_0 {
 pub struct VAUI_CHANNEL_CFG(u32);
 impl VAUI_CHANNEL_CFG {
     /// Enable alignment of lane to a common clock (e.g. XAUI mode) and dock lane with ANEG of lane 0 (Master-ANEG)
-
     ///
-
     /// 0: Off 1: On
     pub fn lane_sync_ena(&self) -> u32 {
         (self.0 & 0xf0) >> 4
@@ -418,9 +382,7 @@ impl VAUI_CHANNEL_CFG {
         self.0 |= value;
     }
     /// Combine signal_detect information for all 4 lanes.
-
     ///
-
     /// 0: Each lane provides own signal_detect 1: Signal_detect of all four lanes are ANDed
     pub fn sigdet_mode(&self) -> u32 {
         self.0 & 0x1
@@ -431,9 +393,7 @@ impl VAUI_CHANNEL_CFG {
         self.0 |= value;
     }
     /// Combine signal_detect information for lanes 0 and 2.
-
     ///
-
     /// 0: Lane 0 and 2 provides own signal_detect 1: Signal_detect of lanes 0 and 2 are ANDed
     pub fn sigdet_mode_r(&self) -> u32 {
         (self.0 & 0x2) >> 1

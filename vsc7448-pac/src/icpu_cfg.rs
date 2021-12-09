@@ -79,15 +79,24 @@ impl FDMA {
     pub fn FDMA_CH_FORCEDIS(&self) -> RegisterAddress<fdma::FDMA_CH_FORCEDIS> {
         RegisterAddress::new(self.0 + 0xd8)
     }
-    pub fn FDMA_CH_INJ_TOKEN_CNT(&self, index: u32) -> RegisterAddress<fdma::FDMA_CH_INJ_TOKEN_CNT> {
+    pub fn FDMA_CH_INJ_TOKEN_CNT(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<fdma::FDMA_CH_INJ_TOKEN_CNT> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x104 + index * 0x4)
     }
-    pub fn FDMA_CH_INJ_TOKEN_TICK_CNT(&self, index: u32) -> RegisterAddress<fdma::FDMA_CH_INJ_TOKEN_TICK_CNT> {
+    pub fn FDMA_CH_INJ_TOKEN_TICK_CNT(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<fdma::FDMA_CH_INJ_TOKEN_TICK_CNT> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x144 + index * 0x4)
     }
-    pub fn FDMA_CH_INJ_TOKEN_TICK_RLD(&self, index: u32) -> RegisterAddress<fdma::FDMA_CH_INJ_TOKEN_TICK_RLD> {
+    pub fn FDMA_CH_INJ_TOKEN_TICK_RLD(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<fdma::FDMA_CH_INJ_TOKEN_TICK_RLD> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x124 + index * 0x4)
     }

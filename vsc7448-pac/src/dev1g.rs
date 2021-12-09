@@ -153,7 +153,9 @@ impl PCS1G_CFG_STATUS {
     pub fn PCS1G_LPI_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LPI_CFG> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    pub fn PCS1G_LPI_WAKE_ERROR_CNT(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LPI_WAKE_ERROR_CNT> {
+    pub fn PCS1G_LPI_WAKE_ERROR_CNT(
+        &self,
+    ) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LPI_WAKE_ERROR_CNT> {
         RegisterAddress::new(self.0 + 0x3c)
     }
     pub fn PCS1G_MODE_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_MODE_CFG> {
@@ -173,7 +175,9 @@ impl PCS1G_TSTPAT_CFG_STATUS {
     pub fn PCS1G_LPI_STATUS(&self) -> RegisterAddress<pcs1g_tstpat_cfg_status::PCS1G_LPI_STATUS> {
         RegisterAddress::new(self.0 + 0x40)
     }
-    pub fn PCS1G_TSTPAT_MODE_CFG(&self) -> RegisterAddress<pcs1g_tstpat_cfg_status::PCS1G_TSTPAT_MODE_CFG> {
+    pub fn PCS1G_TSTPAT_MODE_CFG(
+        &self,
+    ) -> RegisterAddress<pcs1g_tstpat_cfg_status::PCS1G_TSTPAT_MODE_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -181,7 +185,9 @@ impl PCS1G_TSTPAT_CFG_STATUS {
 /// PCS FX100 Configuration Registers
 pub struct PCS_FX100_CONFIGURATION(pub(super) u32);
 impl PCS_FX100_CONFIGURATION {
-    pub fn PCS1G_TSTPAT_STATUS(&self) -> RegisterAddress<pcs_fx100_configuration::PCS1G_TSTPAT_STATUS> {
+    pub fn PCS1G_TSTPAT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs_fx100_configuration::PCS1G_TSTPAT_STATUS> {
         RegisterAddress::new(self.0 + 0x4)
     }
 }

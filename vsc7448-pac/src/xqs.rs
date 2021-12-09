@@ -45,13 +45,18 @@ pub mod system;
 /// Shared memory pool monitoring
 pub struct QLIMIT_MON(pub(super) u32);
 impl QLIMIT_MON {
-    pub fn QLIMIT_CONG_CNT_MAX_STAT(&self) -> RegisterAddress<qlimit_mon::QLIMIT_CONG_CNT_MAX_STAT> {
+    pub fn QLIMIT_CONG_CNT_MAX_STAT(
+        &self,
+    ) -> RegisterAddress<qlimit_mon::QLIMIT_CONG_CNT_MAX_STAT> {
         RegisterAddress::new(self.0 + 0x4)
     }
     pub fn QLIMIT_MON_CFG(&self) -> RegisterAddress<qlimit_mon::QLIMIT_MON_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn QLIMIT_SHR_WM_STAT(&self, index: u32) -> RegisterAddress<qlimit_mon::QLIMIT_SHR_WM_STAT> {
+    pub fn QLIMIT_SHR_WM_STAT(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<qlimit_mon::QLIMIT_SHR_WM_STAT> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x3c + index * 0x4)
     }
@@ -105,26 +110,41 @@ impl QLIMIT_SHR {
     pub fn QLIMIT_SE_CONG_CFG(&self) -> RegisterAddress<qlimit_shr::QLIMIT_SE_CONG_CFG> {
         RegisterAddress::new(self.0 + 0x30)
     }
-    pub fn QLIMIT_SHR_ATOP_CFG(&self, index: u32) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_ATOP_CFG> {
+    pub fn QLIMIT_SHR_ATOP_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_ATOP_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
-    pub fn QLIMIT_SHR_CTOP_CFG(&self, index: u32) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_CTOP_CFG> {
+    pub fn QLIMIT_SHR_CTOP_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_CTOP_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
     pub fn QLIMIT_SHR_FILL_STAT(&self) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_FILL_STAT> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    pub fn QLIMIT_SHR_QDIV_CFG(&self, index: u32) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_QDIV_CFG> {
+    pub fn QLIMIT_SHR_QDIV_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_QDIV_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
-    pub fn QLIMIT_SHR_QLIM_CFG(&self, index: u32) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_QLIM_CFG> {
+    pub fn QLIMIT_SHR_QLIM_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_QLIM_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x18 + index * 0x4)
     }
-    pub fn QLIMIT_SHR_TOP_CFG(&self, index: u32) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_TOP_CFG> {
+    pub fn QLIMIT_SHR_TOP_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_TOP_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }

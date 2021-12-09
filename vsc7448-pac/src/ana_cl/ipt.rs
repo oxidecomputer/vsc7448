@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct ISDX_CFG(u32);
 impl ISDX_CFG {
     /// The index selects which profile in the Layer-2 control protocol table to use (ANA_CL:L2CP_TBL).
-
     ///
-
     /// 0: Disable use of L2CP_IDX. Default port-based index used instead. >0: L2CP_IDX selects the L2CP profile to use.
     pub fn l2cp_idx(&self) -> u32 {
         self.0 & 0x3f
@@ -198,9 +196,7 @@ impl OAM_MEP_CFG {
 pub struct VSI_CFG(u32);
 impl VSI_CFG {
     /// Configures if learning and forwarding is based on VLAN or Virtual Switching Instance. If VSI_ENA=1, then the following entry is used for lookup in ANA_L3:VLAN: ANA_L3:VLAN[vsi_val + 4096] i.e. the upper 1K entries in ANA_L3:VLAN are "VSI entries".
-
     ///
-
     /// 0: Use classified VID for lookup in VLAN table 1: Use VSI for lookup in VLAN table
     pub fn vsi_ena(&self) -> u32 {
         self.0 & 0x1

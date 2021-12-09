@@ -79,9 +79,7 @@ impl PTP_MISC_CFG {
         self.0 |= value;
     }
     /// Mask used to configure which bits in flagField, byte 0, are overwriteen with value configured in PTP_MISC_CFG.FLAG_FIELD.
-
     ///
-
     /// Bit x=0: Do not overwrite bit x in flagField, byte 0. Bit x=1: Overwrite bit x in flagField, byte 0, with FLAG_FIELD, bit x.
     pub fn flag_field_mask(&self) -> u32 {
         (self.0 & 0xff00) >> 8

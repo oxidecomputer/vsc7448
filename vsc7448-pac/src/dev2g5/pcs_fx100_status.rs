@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct PCS_FX100_CFG(u32);
 impl PCS_FX100_CFG {
     /// Far-End Fault (FEF) detection enable
-
     ///
-
     /// 0: Disable FEF detection 1 Enable FEF detection
     pub fn fefchk_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -48,9 +46,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Far-End Fault (FEF) generation enable
-
     ///
-
     /// 0: Disable FEF generation 1 Enable FEF generation
     pub fn fefgen_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -72,9 +68,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Link hysteresis timer test mode. When enabled, [linkhysttimer] steps are reduced from 65536 ns to 2048 ns.
-
     ///
-
     /// 1: Enable test mode 0: Disable test mode
     pub fn linkhyst_tm_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
@@ -86,9 +80,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Testloop, if enabled 4B5B encoded data are looped from TX path to RX path just before the SERDES
-
     ///
-
     /// 1: Enable loop 0: Disable loop
     pub fn loopback_ena(&self) -> u32 {
         (self.0 & 0x100000) >> 20
@@ -100,9 +92,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// PCS enable
-
     ///
-
     /// 0: Disable PCS 1: Enable PCS
     pub fn pcs_ena(&self) -> u32 {
         self.0 & 0x1
@@ -123,9 +113,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Signal Detect Enable
-
     ///
-
     /// 0: The Signal Detect input pin is ignored. The PCS assumes an active Signal Detect at all times 1: The Signal Detect input pin is used to determine if a signal is detected
     pub fn sd_ena(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
@@ -137,9 +125,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Signal detect polarity: The signal level on signal_detect input pin must be equal to SD_POL to indicate signal detection (SD_ENA must be set). Use '1' when SD_SEL is set to hardmacro.
-
     ///
-
     /// 0: Signal Detect input pin must be '0' to indicate a signal detection 1: Signal Detect input pin must be '1' to indicate a signal detection
     pub fn sd_pol(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
@@ -151,9 +137,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Signal detect selection (select input for internal signal_detect line)
-
     ///
-
     /// 0: Select signal_detect line from hardmacro 1: Select external signal_detect line
     pub fn sd_sel(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
@@ -165,9 +149,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Influence of rx toggle-rate on signal_detect. Signal detect is forced to 0 after a programable number of missing edges on rx bit-stream
-
     ///
-
     /// 0: No influence 1: Force to 0 after 50 cycles without edge 2: Force to 0 after 10 cycles without edge 3: Force to 0 after 5 cycles without edge
     pub fn sigdet_cfg(&self) -> u32 {
         (self.0 & 0x600) >> 9
@@ -179,9 +161,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Swap transmission/receive order of MII nibbles
-
     ///
-
     /// 0: Lower nibble of GMII byte is transferred/received first 1: Upper nibble of GMII byte is transferred/received first
     pub fn swap_mii_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
@@ -193,9 +173,7 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Unidirectional mode enable. Implementation 0f 802.3 clause 66. When asserted, this enables MAC to transmit data independent of the state of the receive link.
-
     ///
-
     /// 0: Unidirectional mode disabled 1: Unidirectional mode enabled
     pub fn unidir_mode_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3

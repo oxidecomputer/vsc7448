@@ -34,9 +34,7 @@ use derive_more::{From, Into};
 pub struct AGED_FRMS(u32);
 impl AGED_FRMS {
     /// Count number of aged frames for each port.
-
     ///
-
     /// Counter can be written by SW.
     pub fn aged_frms_cnt(&self) -> u32 {
         self.0
@@ -52,9 +50,7 @@ impl AGED_FRMS {
 pub struct BUF_OFLW_STICKY(u32);
 impl BUF_OFLW_STICKY {
     /// Sticky bits for detecting buffer overflow in any of the cell buffers in the DSM.
-
     ///
-
     /// '0': No buffer overflow detected. '1': Buffer overflow detected. Bit is cleared by writing a '1' to this position.
     pub fn buf_oflw_sticky(&self) -> u32 {
         self.0
@@ -70,9 +66,7 @@ impl BUF_OFLW_STICKY {
 pub struct BUF_UFLW_STICKY(u32);
 impl BUF_UFLW_STICKY {
     /// Sticky bits for detecting buffer underflow in any of the cell buffers in the DSM.
-
     ///
-
     /// '0': No buffer underflow detected. '1': Buffer underflow detected. Bit is cleared by writing a '1' to this position.
     pub fn buf_uflw_sticky(&self) -> u32 {
         self.0
@@ -88,9 +82,7 @@ impl BUF_UFLW_STICKY {
 pub struct CELL_BUS_STICKY(u32);
 impl CELL_BUS_STICKY {
     /// This bit is set if data marked as SOF is received without the current frame has been terminated with EOF. The current frame will be terminated by setting the abort bit and the next frame will be discarded.
-
     ///
-
     /// '0': Missing EOF has not been detected. '1': Missing EOF has been detected. Bit is cleared by writing a '1' to this position.
     pub fn cell_bus_missing_eof_sticky(&self) -> u32 {
         self.0 & 0x1
@@ -101,9 +93,7 @@ impl CELL_BUS_STICKY {
         self.0 |= value;
     }
     /// This bit is set if cells are received after an EOF and before the following SOF.
-
     ///
-
     /// '0': Missing SOF has not been detected. '1': Missing SOF has been detected. Bit is cleared by writing a '1' to this position.
     pub fn cell_bus_missing_sof_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -122,9 +112,7 @@ impl CELL_BUS_STICKY {
 pub struct DBG_CTRL(u32);
 impl DBG_CTRL {
     /// Controls which event the AGE counter counts. This setting is common for all aging counters.
-
     ///
-
     /// 0: Number of aged frames 1: Number of SOF transmitted on taxi bus 2: Number of EOF transmitted on taxi bus 3: Number of ABORT transmitted on taxi bus 4: Reserved 5: Number of retransmits requests received from port status 6: Reserved 7: Reserved
     pub fn dbg_event_ctrl(&self) -> u32 {
         self.0 & 0x7

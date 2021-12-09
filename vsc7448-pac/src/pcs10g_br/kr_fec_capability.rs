@@ -32,9 +32,7 @@ use derive_more::{From, Into};
 pub struct KR_FEC_STATUS(u32);
 impl KR_FEC_STATUS {
     /// Result of comparing KR FEC's corrected block count (1x00AC/1x00AD) to the threshold setting in 3x8E0A/3x8E0B.
-
     ///
-
     /// 0: count did not exceed threshold setting 1: count exceeded threshold setting
     pub fn fec_fixed_error_count_error_status(&self) -> u32 {
         (self.0 & 0x2) >> 1
@@ -46,9 +44,7 @@ impl KR_FEC_STATUS {
         self.0 |= value;
     }
     /// Result of comparing KR FEC's uncorrectable block count (1x00AE/1x00AF) to the threshold setting in 3x8E0C/3x8E0D.
-
     ///
-
     /// 0: count did not exceed threshold setting 1: count exceeded threshold setting
     pub fn fec_unfixable_error_count_error_status(&self) -> u32 {
         self.0 & 0x1

@@ -62,9 +62,7 @@ impl AN_CFG0 {
         self.0 |= value;
     }
     /// Select source of 10G sync signal
-
     ///
-
     /// 0: KR internal 1: External
     pub fn sync10g_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
@@ -76,9 +74,7 @@ impl AN_CFG0 {
         self.0 |= value;
     }
     /// Select source of 3G and 1G sync signal
-
     ///
-
     /// 0: KR internal 1: External
     pub fn sync8b10b_sel(&self) -> u32 {
         (self.0 & 0x2) >> 1

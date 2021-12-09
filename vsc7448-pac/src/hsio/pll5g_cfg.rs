@@ -43,9 +43,7 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// Setting for CPU clock divider
-
     ///
-
     /// 2: 500 MHz 5: 250 MHz 6: 416.66 MHz 14: 312.5 MHz 15: 166.66 MHz Others: Reserved
     pub fn cpu_clk_div(&self) -> u32 {
         (self.0 & 0xfc0) >> 6

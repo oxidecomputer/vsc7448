@@ -75,5 +75,4 @@ impl ANEG_STATUS {
 
 /// VAUI channel Configuration Registers
 pub struct VAUI_CHANNEL_CFG(pub(super) u32);
-impl VAUI_CHANNEL_CFG {
-}
+impl VAUI_CHANNEL_CFG {}

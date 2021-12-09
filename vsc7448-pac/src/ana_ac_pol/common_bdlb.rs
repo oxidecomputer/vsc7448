@@ -42,9 +42,7 @@ impl DLB_CTRL {
         self.0 |= value;
     }
     /// Specifies the clock period in unit of 0.1ns.
-
     ///
-
     /// 40: 4ns (250MHz) 64: 6,4ns (156.25MHz) 192: 19,2 ns (52.08MHz)
     pub fn clk_period_01ns(&self) -> u32 {
         (self.0 & 0x7f80000) >> 19
@@ -56,9 +54,7 @@ impl DLB_CTRL {
         self.0 |= value;
     }
     /// Enables adding of frame bytes to the leaky buckets.
-
     ///
-
     /// 0: Disable bucket addition 1: Enable bucket addition
     pub fn dlb_add_ena(&self) -> u32 {
         self.0 & 0x1
@@ -69,9 +65,7 @@ impl DLB_CTRL {
         self.0 |= value;
     }
     /// Enables leaking from the leaky buckets.
-
     ///
-
     /// 0: Disable bucket leaking 1: Enable bucket leaking
     pub fn leak_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
