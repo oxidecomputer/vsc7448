@@ -56,10 +56,9 @@ impl PCS_STATUS {
 
     /// 0: Normal BER 1: High BER
     pub fn rx_hi_ber(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_hi_ber(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -90,10 +89,9 @@ pub struct RX_BER_CNT(u32);
 impl RX_BER_CNT {
     /// ber_count from the BER state machine
     pub fn rx_ber_cnt(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_rx_ber_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -110,13 +108,10 @@ pub struct RX_CHARERR_CNT(u32);
 impl RX_CHARERR_CNT {
     /// Count of the number of invalid control characters
     pub fn rx_charerr_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_charerr_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -130,13 +125,10 @@ pub struct RX_ERRBLK_CNT(u32);
 impl RX_ERRBLK_CNT {
     /// Count of the errored Rx blocks
     pub fn rx_errblk_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_errblk_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -168,10 +160,9 @@ impl RX_FSET_FIFO_STAT {
 
     /// Binary number
     pub fn rx_fset_fifo_num(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_rx_fset_fifo_num(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -226,10 +217,9 @@ impl RX_OSET_FIFO_STAT {
 
     /// Binary number
     pub fn rx_oset_fifo_num(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_rx_oset_fifo_num(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -246,13 +236,10 @@ pub struct TEST_ERR_CNT(u32);
 impl TEST_ERR_CNT {
     /// Count of detected test pattern errors in Rx test pattern checker. Write 0 to clear.
     pub fn test_err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_test_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -266,13 +253,10 @@ pub struct TX_CHARERR_CNT(u32);
 impl TX_CHARERR_CNT {
     /// Count of the number of invalid control characters
     pub fn tx_charerr_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_charerr_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -286,12 +270,9 @@ pub struct TX_ERRBLK_CNT(u32);
 impl TX_ERRBLK_CNT {
     /// Count of the errored Tx blocks
     pub fn tx_errblk_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_errblk_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

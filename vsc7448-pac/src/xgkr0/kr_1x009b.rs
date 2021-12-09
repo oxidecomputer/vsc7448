@@ -36,10 +36,9 @@ pub struct KR_1X009A(u32);
 impl KR_1X009A {
     /// Transmitted coefficient update field
     pub fn ldcoef(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ldcoef(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

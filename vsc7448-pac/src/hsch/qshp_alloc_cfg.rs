@@ -36,10 +36,9 @@ pub struct QSHP_ALLOC_CFG(u32);
 impl QSHP_ALLOC_CFG {
     /// First input using queue shapers are using this queue shaper index.
     pub fn qshp_base(&self) -> u32 {
-        (self.0 & 0x1fff) >> 0
+        self.0 & 0x1fff
     }
     pub fn set_qshp_base(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
@@ -78,10 +77,9 @@ impl QSHP_CFG {
 
     /// 0: Line rate. Shape bytes including HSCH_MISC_CFG.FRM_ADJ. 1: Data rate. Shape bytes excluding IPG. 2. Frame rate. Shape frames with rate unit = 100 fps and burst unit = 32.8 frames. 3: Frame rate. Shape framed with rate unit = 1 fps and burst unit = 0.3 frames.
     pub fn se_frm_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_se_frm_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;

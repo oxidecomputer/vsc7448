@@ -38,10 +38,9 @@ pub struct PCS2X6G_ERR_CNT_STAT(u32);
 impl PCS2X6G_ERR_CNT_STAT {
     /// Number of errors detected in 64B/66B decoder.
     pub fn err_64b66bdec(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_err_64b66bdec(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;

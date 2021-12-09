@@ -36,13 +36,10 @@ pub struct IF_CNT(u32);
 impl IF_CNT {
     /// The number of VCAP interfaces.
     pub fn if_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_if_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -54,10 +51,9 @@ pub struct TCAM_CFG(u32);
 impl TCAM_CFG {
     /// Bias setting for the TCAM keeper circuit, configure as described in datasheet.
     pub fn tcam_bias(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_tcam_bias(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -112,10 +108,9 @@ impl TCAM_CTRL {
     }
     /// Set this field to start manual initialization of the TCAM. This field is cleared once initialization is complete. The TCAM has random contents after reset and must be initialized prior to usage.
     pub fn tcam_init(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tcam_init(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -284,10 +279,9 @@ impl TCAM_STAT {
 
     /// '0': Busy with initialization. '1': Ready to be used.
     pub fn tcam_rdy(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tcam_rdy(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

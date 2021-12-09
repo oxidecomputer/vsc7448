@@ -84,10 +84,9 @@ impl RCOMP_CFG0 {
 
     /// 0: maximum resistance value 15: minimum resistance value
     pub fn rcomp_val(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_rcomp_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;

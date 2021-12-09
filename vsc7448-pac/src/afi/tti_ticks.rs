@@ -46,10 +46,9 @@ impl TTI_TICK_BASE {
     }
     /// Length of TTI Base Tick. Unit: One system clock cycle. In default configuration and a clock cycle of 6.4 ns, the tick length corresponds to 52us. If the device is uses a longer clock cycle, then the value of BASE_LEN must be reconfigured accordingly.
     pub fn base_len(&self) -> u32 {
-        (self.0 & 0x3fff) >> 0
+        self.0 & 0x3fff
     }
     pub fn set_base_len(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
         self.0 |= value;
@@ -64,10 +63,9 @@ pub struct TTI_TICK_LEN_0_3(u32);
 impl TTI_TICK_LEN_0_3 {
     /// Length of TTI Tick 0. Unit: Base Ticks, as configured in TTI_TICK_BASE.BASE_LEN. In default configuration the tick length corresponds to 52us.
     pub fn len0(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_len0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -112,10 +110,9 @@ pub struct TTI_TICK_LEN_4_7(u32);
 impl TTI_TICK_LEN_4_7 {
     /// Length of TTI Tick 4. Unit: TTI Tick 3, as configured in TTI_TICK_LEN_0_3.LEN3. In default configuration the tick length corresponds to 100ms.
     pub fn len4(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_len4(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -162,10 +159,9 @@ pub struct TTI_TUPE_CTRL(u32);
 impl TTI_TUPE_CTRL {
     /// Control value for Table UPdate Engine (TUPE). See AFI:TUPE.
     pub fn tupe_ctrl(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_tupe_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

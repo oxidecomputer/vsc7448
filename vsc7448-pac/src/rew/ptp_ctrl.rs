@@ -42,10 +42,9 @@ impl COS_CTRL {
 
     /// 0-7: Next COS value to use
     pub fn cos_nxt(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_cos_nxt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -62,10 +61,9 @@ pub struct PTP_CPUVD_MODE_CFG(u32);
 impl PTP_CPUVD_MODE_CFG {
     /// Sets the time domain this port belongs to.
     pub fn ptp_dom_val(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ptp_dom_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -94,13 +92,10 @@ pub struct PTP_RSRV_NOT_ZERO(u32);
 impl PTP_RSRV_NOT_ZERO {
     /// Register contains one bit per port being set when the port has received a frame with non-zero reserved bytes field This register covers ports 0-31
     pub fn ptp_rsrv_not_zero(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ptp_rsrv_not_zero(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -122,10 +117,9 @@ impl PTP_TWOSTEP_CTRL {
     }
     /// The stamp is overflown, and some stamps are lost.
     pub fn ptp_ovfl(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ptp_ovfl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -180,12 +174,9 @@ pub struct PTP_TWOSTEP_STAMP(u32);
 impl PTP_TWOSTEP_STAMP {
     /// Contains the 32 bit timestamp.
     pub fn stamp_nsec(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_stamp_nsec(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

@@ -46,10 +46,9 @@ impl MEMITGR_DBG {
     }
     /// Set this field to enable detection of parity detections and ecc corrections. The monitor must be initialized before first use (after reset), this is done by making the first transtion from IDLE to LISTEN mode without enabeling detections (this field is cleared) and then setting this field once the monitor reaches the LISTEN mode.
     pub fn detect_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_detect_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -174,10 +173,9 @@ impl VRAP_ACCESS_STAT {
     }
     /// This field is set if a VRAP reply frame has been aborted. This my happen if a protocol violation is detected during VRAP request frame processing.
     pub fn reply_abort_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_reply_abort_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

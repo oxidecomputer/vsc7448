@@ -46,10 +46,9 @@ impl CCM_LM_INFO_REG {
     }
     /// The number of the VOE for which the LM information was received.
     pub fn ccm_lm_voe_idx(&self) -> u32 {
-        (self.0 & 0x7ff) >> 0
+        self.0 & 0x7ff
     }
     pub fn set_ccm_lm_voe_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
@@ -66,13 +65,10 @@ pub struct CCM_LM_TX_B_REG(u32);
 impl CCM_LM_TX_B_REG {
     /// Contains the sampled value of CCM_LM.tx_fc_b from the last valid CCM_LM frame.
     pub fn ccm_lm_tx_b(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ccm_lm_tx_b(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -84,10 +80,9 @@ pub struct LM_CNT_FRAME(u32);
 impl LM_CNT_FRAME {
     /// Determines if the current frame should be counted by the Path LM counter, based on the color / mapping and possibly being killed in the ingress DLB.
     pub fn path_cnt_frm(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_path_cnt_frm(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -114,13 +109,10 @@ pub struct PORT_BYTE_CNT_LSB(u32);
 impl PORT_BYTE_CNT_LSB {
     /// See Register Description.
     pub fn port_byte_cnt_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_byte_cnt_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -130,10 +122,9 @@ impl PORT_BYTE_CNT_LSB {
 #[derive(From, Into)]
 pub struct TEMP_CNT_REG(u32);
 impl TEMP_CNT_REG {    pub fn temp_cnt_val(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_temp_cnt_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

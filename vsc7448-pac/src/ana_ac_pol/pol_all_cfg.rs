@@ -84,10 +84,9 @@ impl POL_ACL_CTRL {
 
     /// 0: Rates measured in bits per second 1: Rates measured in frames per second
     pub fn frame_rate_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_frame_rate_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -120,10 +119,9 @@ impl POL_ACL_RATE_CFG {
 
     /// When POL_ACL_CTRL.FRAME_RATE_ENA is disabled, policing is performed in bits per second (bps). 0: Open until burst capacity is used, then closed. 1: Rate = 1 x <unit> bps n: Rate = n x <unit> bps When POL_ACL_CTRL.FRAME_RATE_ENA is enabled, policing is performed in frames per second (fps). 0: Open until burst capacity is used, then closed. 1: Rate = <unit> fps n: Rate = n x <unit> fps
     pub fn acl_rate(&self) -> u32 {
-        (self.0 & 0x7ffff) >> 0
+        self.0 & 0x7ffff
     }
     pub fn set_acl_rate(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;
@@ -142,10 +140,9 @@ impl POL_ACL_THRES_CFG {
 
     /// When POL_ACL_CTRL.FRAME_RATE_ENA is disabled burst capacity is configured in steps of 8192 bytes. 0: Always closed 1: Burst capacity = 8192 bytes n: Burst capacity = n x 8192 bytes 63: Burst capacity = 516096 bytes When POL_ACL_CTRL.FRAME_RATE_ENA is enabled burst capacity is configured in steps of 8192/2504 frames. 0: Always closed 1: Burst capacity = 1 x 8192/2504 frames n: Burst capacity = n x 8192/2504 frames 63: Burst capacity = 206 frames
     pub fn acl_thres(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_acl_thres(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -244,10 +241,9 @@ impl POL_ALL_CFG {
 
     /// 0: Normal operation 1: Initialization
     pub fn force_init(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_force_init(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -430,10 +426,9 @@ impl POL_PORT_FC_CFG {
 
     /// 0: Discard mode 1: Flow control mode
     pub fn fc_ena(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_fc_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -564,10 +559,9 @@ impl POL_STICKY {
 
     /// 0: No event has occurred 1: Port policer has been bypassed
     pub fn pol_port_bypass_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pol_port_bypass_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -810,10 +804,9 @@ impl POL_STORM_CTRL {
 
     /// 'xxxxxxx1' : Known multicast frames are policed. 'xxxxxx1x' : Known broadcast frames are policed. 'xxxxx1xx' : Known unicast frames are policed. 'xxxx1xxx' : Unknown multicast frames are policed. 'xxx1xxxx' : Unknown broadcast frames are policed. 'xx1xxxxx' : Unknown unicast frames are policed. 'x0xxxxxx' : Frames to a CPU queue selected by CPU_QU_MASK bypass the policer, regardless of other criterias in TRAFFIC_TYPE_MASK. 'x1xxxxxx' : Frames to a CPU queue selected by CPU_QU_MASK are policed. '1xxxxxxx' : Learn frames are policed. '00000000': Disable policer.
     pub fn storm_traffic_type_mask(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_storm_traffic_type_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -834,10 +827,9 @@ impl POL_STORM_RATE_CFG {
 
     /// When POL_STORM_CTRL.STORM_FRAME_RATE_ENA is disabled, policing is performed in bits per second (bps). 0: Open until burst capacity is used, then closed. 1: Rate = 1 x <unit> bps n: Rate = n x <unit> bps When POL_STORM_CTRL.STORM_FRAME_RATE_ENA is enabled, policing is performed in frames per second (fps). 0: Open until burst capacity is used, then closed. 1: Rate = <unit> fps n: Rate = n x <unit> fps
     pub fn storm_rate(&self) -> u32 {
-        (self.0 & 0x7ffff) >> 0
+        self.0 & 0x7ffff
     }
     pub fn set_storm_rate(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;
@@ -858,10 +850,9 @@ impl POL_STORM_THRES_CFG {
 
     /// When POL_STORM_CTRL.STORM_FRAME_RATE_ENA is disabled burst capacity is configured in steps of 8192 bytes. 0: Always closed 1: Burst capacity = 8192 bytes n: Burst capacity = n x 8192 bytes 63: Burst capacity = 516096 bytes When POL_STORM_CTRL.STORM_FRAME_RATE_ENA is enabled burst capacity is configured in steps of 8192/2504 frames. 0: Always closed 1: Burst capacity = 1 x 8192/2504 frames n: Burst capacity = n x 8192/2504 frames 63: Burst capacity = 206 frames
     pub fn storm_thres(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_storm_thres(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -882,10 +873,9 @@ impl POL_UPD_INT_CFG {
 
     /// 0-31: Not allowed N: Update interval
     pub fn pol_upd_int(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_pol_upd_int(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;

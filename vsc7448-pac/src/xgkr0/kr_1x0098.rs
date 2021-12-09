@@ -54,10 +54,9 @@ impl KR_1X0097 {
 
     /// 1: Receiver trained and ready to receive data 0: Receiver training
     pub fn rcvr_rdy(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rcvr_rdy(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -64,10 +64,9 @@ impl DLB_CTRL {
 
     /// 0: Disable bucket addition 1: Enable bucket addition
     pub fn dlb_add_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dlb_add_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -106,10 +105,9 @@ impl LB_BUCKET_VAL {
     }
     /// Number of subbytes in leaky bucket.
     pub fn rem_val(&self) -> u32 {
-        (self.0 & 0x1ff) >> 0
+        self.0 & 0x1ff
     }
     pub fn set_rem_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;

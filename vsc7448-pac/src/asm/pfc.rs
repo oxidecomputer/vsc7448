@@ -40,10 +40,9 @@ impl PFC_CFG {
 
     /// 0: 12000 Mbps 1: 10000 Mbps 2: 2500 Mbps 3: 1000 Mbps 4: 100 Mbps 5: 10 Mbps
     pub fn fc_link_speed(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_fc_link_speed(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -74,10 +73,9 @@ impl PORT_STICKY {
 
     /// '0': No Ethernet frames have been discarded due to aging. '1': One or more Ethernet frames have been discarded due to aging. Bit is cleared by writing a '1' to this position.
     pub fn frm_aging_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_frm_aging_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

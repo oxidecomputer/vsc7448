@@ -38,10 +38,9 @@ pub struct PLL5G_BIST_CFG0A(u32);
 impl PLL5G_BIST_CFG0A {
     /// BIST compare pre divider M
     pub fn pllb_div_factor_pre(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pllb_div_factor_pre(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -68,10 +67,9 @@ impl PLL5G_BIST_CFG0B {
     }
     /// BIST compare divider phase uncertainty
     pub fn pllb_lock_uncert(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_pllb_lock_uncert(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -108,10 +106,9 @@ pub struct PLL5G_BIST_CFG1(u32);
 impl PLL5G_BIST_CFG1 {
     /// BIST compare divider M
     pub fn pllb_div_factor_m(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pllb_div_factor_m(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -138,10 +135,9 @@ impl PLL5G_STATUS1 {
     }
     /// startup FSM lock status
     pub fn fsm_lock(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fsm_lock(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

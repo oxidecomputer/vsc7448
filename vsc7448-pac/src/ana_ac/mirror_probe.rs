@@ -64,10 +64,9 @@ impl PROBE_CFG {
 
     /// "00" : Mirroring is disabled. "01" : TX - Only traffic to destination ports in the probe port set "10" : RX - Only traffic from source ports in the probe port set "11" : RX+TX - Traffic to and from ports in the probe port set (always mirrored as RX)
     pub fn probe_direction(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_probe_direction(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -152,13 +151,10 @@ impl PROBE_PORT_CFG {
 
     /// 0: Port is not mirrored 1: Port is mirrored
     pub fn probe_port_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_probe_port_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -184,10 +180,9 @@ impl PS_DBG_CTRL {
     }
     /// See ANA_AC::PS_DBG_CTRL.CPU_QU_ZERO_DST.
     pub fn zero_dst_redir_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_zero_dst_redir_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

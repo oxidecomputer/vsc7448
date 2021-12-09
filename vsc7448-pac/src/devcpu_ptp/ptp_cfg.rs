@@ -56,10 +56,9 @@ impl CLK_ADJ_CFG {
 
     /// 0: Adjustment Disabled 1: Adjustment Enabled
     pub fn clk_adj_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clk_adj_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -80,10 +79,9 @@ impl CLK_ADJ_FRQ {
 
     /// N: Number of unadjusted CLK_ADJ_UNIT after which the counter for the clock must be adjusted.
     pub fn clk_adj(&self) -> u32 {
-        (self.0 & 0x3fffffff) >> 0
+        self.0 & 0x3fffffff
     }
     pub fn set_clk_adj(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
@@ -112,10 +110,9 @@ pub struct PTP_INTR_IDENT(u32);
 impl PTP_INTR_IDENT {
     /// Bit n will be high if an interrupt is currently pending for pin <n>.
     pub fn intr_ptp_ident(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_intr_ptp_ident(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -158,10 +155,9 @@ impl PTP_MISC_CFG {
     }
     /// The PTP_CUR timers will be frozen when this field is set for a domain, in order to return concurrent values.
     pub fn ptp_tod_freeze(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ptp_tod_freeze(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -176,10 +172,9 @@ pub struct PTP_PIN_INTR(u32);
 impl PTP_PIN_INTR {
     /// One bit per pin set when an active edge is seen.
     pub fn intr_ptp(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_intr_ptp(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -194,10 +189,9 @@ pub struct PTP_PIN_INTR_ENA(u32);
 impl PTP_PIN_INTR_ENA {
     /// Enable interrupt per ptp pin.
     pub fn intr_ptp_ena(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_intr_ptp_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;

@@ -40,13 +40,10 @@ impl MII_SCAN_RSLTS_STICKY {
 
     /// 0 : Mismatch 1 : Match.
     pub fn miim_scan_rslts_sticky(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_miim_scan_rslts_sticky(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -76,10 +73,9 @@ impl TEMP_SENSOR_CFG {
 
     /// 0: Reserved n: n * 1024 * clock-period between samples
     pub fn sample_per(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_sample_per(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -144,10 +140,9 @@ impl TEMP_SENSOR_CTRL {
     }
     /// Set this field to enable sampling of temperature. Approximately 500us after setting this field DEVCPU_GCB::TEMP_SENSOR_STAT.TEMP_VALID will be set together with a valid temperature value. After this the temperature will be updated every 500us for as long as this field remains set. Clear ths field to disable temperature sensor.
     pub fn sample_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sample_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

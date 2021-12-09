@@ -38,10 +38,9 @@ pub struct AGGR_CFG1(u32);
 impl AGGR_CFG1 {
     /// Refer to AGGR_CFG.PORT_MASK description.
     pub fn port_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_port_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -58,12 +57,9 @@ pub struct SRC_CFG(u32);
 impl SRC_CFG {
     /// Refer to description for ANA_AC:SRC.
     pub fn port_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

@@ -66,10 +66,9 @@ impl APC_COMMON_CFG0 {
 
     /// 0: Off 1: Manual mode 2: Perform calibrarion and run FSM1 3: Perform calibration and run FSM2 4: Perform calibration and run FSM1 and FSM2 in ping-pong operation 5: Perform calibration and then enter manual mode
     pub fn apc_mode(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_apc_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -336,10 +335,9 @@ impl APC_DFE1_CTRL {
 
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn dfe1_op_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_dfe1_op_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -436,10 +434,9 @@ impl APC_DFE1_PAR_CFG {
     }
     /// Parameter initial value
     pub fn dfe1_ini(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_dfe1_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -486,10 +483,9 @@ pub struct APC_DFE1_TIMER_CFG(u32);
 impl APC_DFE1_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
     pub fn dfe1_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_dfe1_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -586,10 +582,9 @@ impl APC_DFE2_CTRL {
 
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn dfe2_op_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_dfe2_op_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -686,10 +681,9 @@ impl APC_DFE2_PAR_CFG {
     }
     /// Parameter initial value
     pub fn dfe2_ini(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_dfe2_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -736,10 +730,9 @@ pub struct APC_DFE2_TIMER_CFG(u32);
 impl APC_DFE2_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
     pub fn dfe2_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_dfe2_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -836,10 +829,9 @@ impl APC_DFE3_CTRL {
 
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn dfe3_op_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_dfe3_op_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -936,10 +928,9 @@ impl APC_DFE3_PAR_CFG {
     }
     /// Parameter initial value
     pub fn dfe3_ini(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_dfe3_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -986,10 +977,9 @@ pub struct APC_DFE3_TIMER_CFG(u32);
 impl APC_DFE3_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
     pub fn dfe3_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_dfe3_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1086,10 +1076,9 @@ impl APC_DFE4_CTRL {
 
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn dfe4_op_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_dfe4_op_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -1186,10 +1175,9 @@ impl APC_DFE4_PAR_CFG {
     }
     /// Parameter initial value
     pub fn dfe4_ini(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_dfe4_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1236,10 +1224,9 @@ pub struct APC_DFE4_TIMER_CFG(u32);
 impl APC_DFE4_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
     pub fn dfe4_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_dfe4_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1336,10 +1323,9 @@ impl APC_EQZ_AGC_CTRL {
 
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn eqz_agc_op_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_eqz_agc_op_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -1436,10 +1422,9 @@ impl APC_EQZ_AGC_PAR_CFG {
     }
     /// Parameter initial value
     pub fn eqz_agc_ini(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_eqz_agc_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1486,10 +1471,9 @@ pub struct APC_EQZ_AGC_TIMER_CFG(u32);
 impl APC_EQZ_AGC_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
     pub fn eqz_agc_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_eqz_agc_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1568,10 +1552,9 @@ impl APC_EQZ_COMMON_CFG {
 
     /// 0: Automatic update 1: Preset (use PAR_INI as fix value internal processing continues) 2: Freeze (internal processing stops parameter stays at current value) 3: No update (internal processing continues but parameter is not updated)
     pub fn eqz_gain_chg_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_eqz_gain_chg_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -1686,10 +1669,9 @@ impl APC_EQZ_CTRL_STATUS {
     }
     /// Parameter value (controlled/computed level for level-detect logic)
     pub fn ld_lev_actval(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ld_lev_actval(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -1772,10 +1754,9 @@ impl APC_EQZ_C_CTRL {
 
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn eqz_c_op_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_eqz_c_op_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -1872,10 +1853,9 @@ impl APC_EQZ_C_PAR_CFG {
     }
     /// Parameter initial value
     pub fn eqz_c_ini(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_eqz_c_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1922,10 +1902,9 @@ pub struct APC_EQZ_C_TIMER_CFG(u32);
 impl APC_EQZ_C_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
     pub fn eqz_c_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_eqz_c_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1956,10 +1935,9 @@ pub struct APC_EQZ_GAIN_ADJ_CTRL_CFG(u32);
 impl APC_EQZ_GAIN_ADJ_CTRL_CFG {
     /// Gain_adj initial value (used if EQZ_GAIN_CHG_MODE = 1)
     pub fn eqz_gain_adj_ini(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_eqz_gain_adj_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -1996,10 +1974,9 @@ pub struct APC_EQZ_GAIN_CTRL_CFG(u32);
 impl APC_EQZ_GAIN_CTRL_CFG {
     /// Gain initial value (used if EQZ_GAIN_CHG_MODE = 1)
     pub fn eqz_gain_ini(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_eqz_gain_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -2086,10 +2063,9 @@ impl APC_EQZ_LD_CTRL {
     }
     /// LD_lev initial value (used as preset value if EQZ_GAIN_CHG_MODE = 1)
     pub fn ld_lev_ini(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ld_lev_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -2156,10 +2132,9 @@ impl APC_EQZ_LD_CTRL_CFG0 {
     }
     /// Activity timeout threshold for LD in work mode (value is multiplied by 8)
     pub fn ld_t_timeout_wrk(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ld_t_timeout_wrk(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -2186,10 +2161,9 @@ impl APC_EQZ_LD_CTRL_CFG1 {
     }
     /// Activity timeout threshold for LD in calibration mode (value is multiplied by 8)
     pub fn ld_t_timeout_cal(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ld_t_timeout_cal(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -2272,10 +2246,9 @@ impl APC_EQZ_L_CTRL {
 
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn eqz_l_op_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_eqz_l_op_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -2372,10 +2345,9 @@ impl APC_EQZ_L_PAR_CFG {
     }
     /// Parameter initial value
     pub fn eqz_l_ini(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_eqz_l_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -2422,10 +2394,9 @@ pub struct APC_EQZ_L_TIMER_CFG(u32);
 impl APC_EQZ_L_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
     pub fn eqz_l_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_eqz_l_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -2522,10 +2493,9 @@ impl APC_EQZ_OFFS_CTRL {
 
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn eqz_offs_op_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_eqz_offs_op_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -2622,10 +2592,9 @@ impl APC_EQZ_OFFS_PAR_CFG {
     }
     /// Parameter initial value
     pub fn eqz_offs_ini(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_eqz_offs_ini(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -2672,10 +2641,9 @@ pub struct APC_EQZ_OFFS_TIMER_CFG(u32);
 impl APC_EQZ_OFFS_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
     pub fn eqz_offs_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_eqz_offs_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -2736,10 +2704,9 @@ impl APC_EQZ_PAT_MATCH_CFG0 {
     }
     /// EQZ-L-control pattern used for pattern matching (corresponding mask bits must be set)
     pub fn eqz_l_pat_match(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_eqz_l_pat_match(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -2766,10 +2733,9 @@ impl APC_EQZ_PAT_MATCH_CFG1 {
     }
     /// EQZ-AGC-control pattern used for pattern matching (corresponding mask bits must be set)
     pub fn eqz_agc_pat_match(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_eqz_agc_pat_match(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -2806,13 +2772,10 @@ pub struct APC_FLEXCTRL_CNT_STATUS(u32);
 impl APC_FLEXCTRL_CNT_STATUS {
     /// Current counter value
     pub fn apc_ctrl_cntval(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_apc_ctrl_cntval(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -2846,10 +2809,9 @@ impl APC_IS_CAL_CFG0 {
     }
     /// Skip DFE buffer 0db calibration
     pub fn skip_dfe_buffer_cal(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_skip_dfe_buffer_cal(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -3050,10 +3012,9 @@ impl APC_IS_CAL_CFG1 {
     }
     /// Start offset calibration process (sampling stage; only in manual mode, see apc_mode)
     pub fn start_offscal(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_start_offscal(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -3174,10 +3135,9 @@ impl APC_LC_SOFTCTRL_CFG {
 
     /// 0: Disabled 1: Mode 1 2: Mode 2 3: Reserved
     pub fn lc_sc_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_lc_sc_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -3284,10 +3244,9 @@ impl APC_LD_CAL_CFG {
     }
     /// Start signal and level detect calibration process (sampling stage; only in manual mode, see apc_mode)
     pub fn start_detlvl_cal(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_start_detlvl_cal(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -3304,10 +3263,9 @@ pub struct APC_PARCTRL_FSM1_TIMER_CFG(u32);
 impl APC_PARCTRL_FSM1_TIMER_CFG {
     /// FSM1 Operation time (in number of rx_clk cycles)
     pub fn fsm1_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_fsm1_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -3338,10 +3296,9 @@ pub struct APC_PARCTRL_FSM2_TIMER_CFG(u32);
 impl APC_PARCTRL_FSM2_TIMER_CFG {
     /// FSM2 Operation time (in number of rx_clk cycles)
     pub fn fsm2_op_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_fsm2_op_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -3414,10 +3371,9 @@ impl APC_PARCTRL_SYNC_CFG {
 
     /// 0: Off 1: One-time 2: Non-stop 3: Paused
     pub fn fsm1_op_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_fsm1_op_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -3544,10 +3500,9 @@ impl APC_TOP_CTRL_CFG {
     }
     /// APC top-control sleep-time (power-down). Given in number of clock cycles (typically 2.5 ... 5 ns)
     pub fn sleep_time(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_sleep_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

@@ -40,13 +40,10 @@ impl GPIO_ALT {
 
     /// 00: GPIO mode 01: Alternate mode 1 10: Alternate mode 2 11: Alternate mode 3
     pub fn g_alt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_alt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -62,13 +59,10 @@ impl GPIO_ALT1 {
 
     /// 00: GPIO mode 01: Alternate mode 1 10: Alternate mode 2 11: Alternate mode 3
     pub fn g_alt1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_alt1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -80,13 +74,10 @@ pub struct GPIO_IN(u32);
 impl GPIO_IN {
     /// GPIO input register. Reflects the current state of the corresponding GPIO pins.
     pub fn g_in(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_in(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -98,13 +89,10 @@ pub struct GPIO_IN1(u32);
 impl GPIO_IN1 {
     /// Bit 32-63 of field G_IN.
     pub fn g_in1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_in1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -120,13 +108,10 @@ impl GPIO_INTR {
 
     /// '0': No change '1': GPIO has changed
     pub fn g_intr(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_intr(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -142,13 +127,10 @@ impl GPIO_INTR1 {
 
     /// '0': No change '1': GPIO has changed
     pub fn g_intr1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_intr1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -160,13 +142,10 @@ pub struct GPIO_INTR_ENA(u32);
 impl GPIO_INTR_ENA {
     /// Enables individual GPIO pins for interrupt.
     pub fn g_intr_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_intr_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -178,13 +157,10 @@ pub struct GPIO_INTR_ENA1(u32);
 impl GPIO_INTR_ENA1 {
     /// Bit 32-63 of field G_INTR_ENA.
     pub fn g_intr_ena1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_intr_ena1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -196,13 +172,10 @@ pub struct GPIO_INTR_IDENT(u32);
 impl GPIO_INTR_IDENT {
     /// Shows which GPIO sources that are currently interrupting. This field is the result of an AND-operation between the GPIO_INTR and the GPIO_INTR_ENA registers.
     pub fn g_intr_ident(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_intr_ident(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -214,13 +187,10 @@ pub struct GPIO_INTR_IDENT1(u32);
 impl GPIO_INTR_IDENT1 {
     /// Bit 32-63 of field G_INTR_IDENT.
     pub fn g_intr_ident1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_intr_ident1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -236,13 +206,10 @@ impl GPIO_OE {
 
     /// '0': Input '1': Output
     pub fn g_oe(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_oe(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -258,13 +225,10 @@ impl GPIO_OE1 {
 
     /// '0': Input '1': Output
     pub fn g_oe1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_oe1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -278,13 +242,10 @@ pub struct GPIO_OUT(u32);
 impl GPIO_OUT {
     /// Controls the value on the GPIO pins enabled for output (via the GPIO_OE register). This field can be modified directly or by using the GPIO_O_SET and GPIO_O_CLR registers.
     pub fn g_out(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_out(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -298,13 +259,10 @@ pub struct GPIO_OUT1(u32);
 impl GPIO_OUT1 {
     /// Bit 32-63 of field G_OUT.
     pub fn g_out1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_out1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -320,13 +278,10 @@ impl GPIO_OUT_CLR {
 
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is cleared.
     pub fn g_out_clr(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_out_clr(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -342,13 +297,10 @@ impl GPIO_OUT_CLR1 {
 
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is cleared.
     pub fn g_out_clr1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_out_clr1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -364,13 +316,10 @@ impl GPIO_OUT_SET {
 
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is set.
     pub fn g_out_set(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_out_set(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -386,13 +335,10 @@ impl GPIO_OUT_SET1 {
 
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is set.
     pub fn g_out_set1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_out_set1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -404,12 +350,9 @@ pub struct VA_DATA_INERT(u32);
 impl VA_DATA_INERT {
     /// This field behaves in the same way as VA_DATA.VA_DATA. Except accesses (read or write) does not initiate VCore accesses. Writing to this register just overwrites the value currently held by all of the data registers (VA_DATA, VA_DATA_INCR, and VA_DATA_INERT).
     pub fn va_data_inert(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_va_data_inert(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

@@ -36,10 +36,9 @@ pub struct QSHP_CIR_STATE(u32);
 impl QSHP_CIR_STATE {
     /// Current fill level. Unit is 1 bit.
     pub fn cir_lvl(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_cir_lvl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;

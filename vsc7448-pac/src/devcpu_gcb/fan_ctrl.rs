@@ -64,10 +64,9 @@ impl FAN_CFG {
     }
     /// Configure behavior of TACH input tick counter, see DEVCPU_GCB::FAN_CNT for more infromation.
     pub fn fan_stat_cfg(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fan_stat_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -138,12 +137,9 @@ impl SIO_INTR_IDENT {
 
     /// 0: No active interrupt for given gpio 1: Active interrupt for given gpio
     pub fn sio_intr_ident(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sio_intr_ident(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

@@ -38,10 +38,9 @@ pub struct PLL5G_CFG0(u32);
 impl PLL5G_CFG0 {
     /// setting for core clock divider 0:625MHz, 1:312.5MHz, 2:500MHz, 3:277.77MHz, 4:500MHz, 5:250MHz, 6:416.66MHz, 7:227.27MHz, 8:416.66MHz, 9:208.33MHz, 10:357.14MHz, 11:192.3MHz, 12:357.14MHz, 13:178.57MHz, 14:312.5MHz, 15:166.66,MHz, 17:156.25MHz, 33:625MHz
     pub fn core_clk_div(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_core_clk_div(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -202,10 +201,9 @@ impl PLL5G_CFG1 {
     }
     /// RCPLL When set to '1' the value at sx_pll_fsm_ctrl_data_I is not taken as reference value for the FSM, but is directly apllied to the PLL as frequency range setting.
     pub fn force_set_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_force_set_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -412,10 +410,9 @@ impl PLL5G_CFG2 {
     }
     /// enable static VCO frequency stepping
     pub fn ena_gain_test(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ena_gain_test(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -562,10 +559,9 @@ impl PLL5G_CFG3 {
     }
     /// setting for feedback divider, divide by 12..255 12..255
     pub fn fbdivsel(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_fbdivsel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -692,10 +688,9 @@ impl PLL5G_CFG4 {
     }
     /// settings for reference clock input buffer
     pub fn ib_ctrl(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ib_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -722,10 +717,9 @@ impl PLL5G_CFG5 {
     }
     /// settings for test output buffer
     pub fn ob_ctrl(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ob_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

@@ -94,10 +94,9 @@ impl TR_MTHD {
     }
     /// remote tap to optimize third
     pub fn ord3(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ord3(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;

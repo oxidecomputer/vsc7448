@@ -36,10 +36,9 @@ pub struct CIR_CFG(u32);
 impl CIR_CFG {
     /// Burst capacity of this shaper. Unit is 4096 bytes. The shaper is disabled when CIR_BURST=0.
     pub fn cir_burst(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_cir_burst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -64,10 +63,9 @@ pub struct EIR_CFG(u32);
 impl EIR_CFG {
     /// Burst capacity of this shaper. Unit is 4096 bytes. The dual leaky bucket shaper operates as a single leaky bucket shaper when EIR_BURST=0.
     pub fn eir_burst(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_eir_burst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -92,10 +90,9 @@ pub struct HSCH_L1W(u32);
 impl HSCH_L1W {
     /// Contains the layer 0 scheduling history descriptor for a frames passing through layer-1 element A, input B. Group replication index is A and register replication is B.
     pub fn win_shist(&self) -> u32 {
-        (self.0 & 0x7fffff) >> 0
+        self.0 & 0x7fffff
     }
     pub fn set_win_shist(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fffff);
         self.0 &= !0x7fffff;
         self.0 |= value;
@@ -166,10 +163,9 @@ impl SE_CFG {
 
     /// 0: Traffic can flow through this element 1: This element will block its output
     pub fn se_stop(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_se_stop(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -184,10 +180,9 @@ pub struct SE_CONNECT(u32);
 impl SE_CONNECT {
     /// Forms the leak chains.
     pub fn se_leak_link(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_se_leak_link(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;

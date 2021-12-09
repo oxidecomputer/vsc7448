@@ -36,10 +36,9 @@ pub struct LP_MSW(u32);
 impl LP_MSW {
     /// link_pass_inhibit_timer setting
     pub fn lp_tmr_msw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lp_tmr_msw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct TR_LSW(u32);
 impl TR_LSW {
     /// training_state_timer setting
     pub fn tr_tmr_lsw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_tr_tmr_lsw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

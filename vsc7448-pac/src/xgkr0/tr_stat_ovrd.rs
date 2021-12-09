@@ -36,10 +36,9 @@ pub struct TR_COEF_OVRD(u32);
 impl TR_COEF_OVRD {
     /// Override Coef_update field to transmit
     pub fn coef_ovrd(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_coef_ovrd(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

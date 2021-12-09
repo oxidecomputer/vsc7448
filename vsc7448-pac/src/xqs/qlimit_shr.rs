@@ -36,10 +36,9 @@ pub struct QLIMIT_CONG_CNT_STAT(u32);
 impl QLIMIT_CONG_CNT_STAT {
     /// Return the current number of active queues in the share.
     pub fn qlimit_act_cnt(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_act_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -64,10 +63,9 @@ pub struct QLIMIT_DIS_CFG(u32);
 impl QLIMIT_DIS_CFG {
     /// Disable queue limitation for the port. If either queue limitation is disabled for the source port, or for the destination port, the queue limitation algorithm is bypassed.
     pub fn qlimit_egr_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_qlimit_egr_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -90,10 +88,9 @@ impl QLIMIT_DIS_CFG {
 #[derive(From, Into)]
 pub struct QLIMIT_QUE_ACT_CFG(u32);
 impl QLIMIT_QUE_ACT_CFG {    pub fn qlimit_que_act(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_qlimit_que_act(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -106,10 +103,9 @@ impl QLIMIT_QUE_ACT_CFG {    pub fn qlimit_que_act(&self) -> u32 {
 #[derive(From, Into)]
 pub struct QLIMIT_QUE_CONG_CFG(u32);
 impl QLIMIT_QUE_CONG_CFG {    pub fn qlimit_que_cong(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_qlimit_que_cong(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -124,10 +120,9 @@ pub struct QLIMIT_SE_CONG_CFG(u32);
 impl QLIMIT_SE_CONG_CFG {
     /// An SE is regarded congested when its total queue size exceeds this.
     pub fn qlimit_se_cong(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_qlimit_se_cong(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
@@ -142,10 +137,9 @@ pub struct QLIMIT_SHR_ATOP_CFG(u32);
 impl QLIMIT_SHR_ATOP_CFG {
     /// When filling exceeds this level, all active queues start tail dropping.
     pub fn qlimit_shr_atop(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_atop(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -160,10 +154,9 @@ pub struct QLIMIT_SHR_CTOP_CFG(u32);
 impl QLIMIT_SHR_CTOP_CFG {
     /// When filling exceeds this level, all congested queues start tail dropping.
     pub fn qlimit_shr_ctop(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_ctop(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -176,10 +169,9 @@ impl QLIMIT_SHR_CTOP_CFG {
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_FILL_STAT(u32);
 impl QLIMIT_SHR_FILL_STAT {    pub fn qlimit_shr_fill(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_fill(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -194,10 +186,9 @@ pub struct QLIMIT_SHR_QDIV_CFG(u32);
 impl QLIMIT_SHR_QDIV_CFG {
     /// This amount can be shared between large SEs
     pub fn qlimit_shr_qdiv(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_qdiv(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -212,10 +203,9 @@ pub struct QLIMIT_SHR_QLIM_CFG(u32);
 impl QLIMIT_SHR_QLIM_CFG {
     /// When filling exceeds this level, all queues are limited in size depending on number of congested queues.
     pub fn qlimit_shr_qlim(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_qlim(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -230,10 +220,9 @@ pub struct QLIMIT_SHR_TOP_CFG(u32);
 impl QLIMIT_SHR_TOP_CFG {
     /// When total consumption of a shared area exceeds this level, all queues belonging to the area start tail dropping
     pub fn qlimit_shr_top(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_top(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;

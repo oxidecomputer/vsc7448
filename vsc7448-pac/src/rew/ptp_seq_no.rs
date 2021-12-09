@@ -40,10 +40,9 @@ impl RLEG_CTRL {
 
     /// n: VID
     pub fn rleg_evid(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_rleg_evid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;

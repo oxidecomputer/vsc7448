@@ -82,10 +82,9 @@ impl CNT_CTRL {
 
     /// 0: Use ESDX from ES0 if hit, otherwise ISDX 1: Use ESDX from ES0 if hit, otherwise no counting 2: Use ISDX (ifh.vstax.misc.isdx as index) 3: Use classified VID (ifh.vstax.tag.vid)
     pub fn stat_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_stat_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -118,10 +117,9 @@ impl COMMON_CTRL {
 
     /// 0: Disable 1: Enable
     pub fn frm_clr_pad_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_frm_clr_pad_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -184,10 +182,9 @@ impl DP_MAP {
 
     /// xxx0: Map DP value 0 to DE value 0 xxx1: Map DP value 0 to DE value 1 ... 0xxx: Map DP value 3 to DE value 0 1xxx: Map DP value 3 to DE value 1
     pub fn dp(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_dp(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -202,10 +199,9 @@ pub struct DSCP_REMAP(u32);
 impl DSCP_REMAP {
     /// Full one to one DSCP remapping table common for all ports.
     pub fn dscp_remap(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_dscp_remap(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -266,10 +262,9 @@ impl ES0_CTRL {
 
     /// 0: VCAP_ES0 do not control frame modifications 1: VCAP_ES0 controls all frame rewrites
     pub fn es0_lu_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_es0_lu_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -346,10 +341,9 @@ impl GCPU_CFG {
 
     /// 0: DST_UPSID 0 1: DST_UPSID 1 ... n: DST_UPSID n
     pub fn gcpu_upsid(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_gcpu_upsid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -412,10 +406,9 @@ impl GCPU_TAG_CFG {
 
     /// n: PCP n
     pub fn tag_pcp_val(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_tag_pcp_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -458,10 +451,9 @@ pub struct HIH_DEF_CFG(u32);
 impl HIH_DEF_CFG {
     /// Default value for the CKSM field in transmitted HIH's.
     pub fn hih_def_cksm(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_hih_def_cksm(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -512,10 +504,9 @@ impl HIH_DEV10G_CFG {
 
     /// 0: Place the HiH after frame SFD 1: DEV10G::MAC_MODE_CFG.MAC_PREAMBLE_CFG controls the placement.
     pub fn hih_location(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_hih_location(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -548,10 +539,9 @@ impl MIP_CTRL {
 
     /// x0x: Interval is ignored x1x: REW:MIP_TBL:CCM_HMO_CTRL.CCM_COPY_ONCE_ENA  is set where MIP_CCM_INTERVAL_MASK[CCM_HMO_CTRL.CCM_INTERVAL] is set.
     pub fn mip_ccm_interval_mask(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_mip_ccm_interval_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -600,10 +590,9 @@ impl MIRROR_PROBE_CFG {
 
     /// 0: Local mirror port. No encapsulation 1: Add one VLAN tag. Configured by MIRROR_TAG_A_CFG 2: Add two VLAN tags. Configured by MIRROR_TAG_A_CFG and MIRROR_TAG_B_CFG 3: Use ENCAP table selected by REMOTE_ENCAP_ID
     pub fn remote_mirror_cfg(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_remote_mirror_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -652,10 +641,9 @@ impl MIRROR_TAG_A_CFG {
 
     /// n: PCP n
     pub fn tag_a_pcp_val(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_tag_a_pcp_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -732,10 +720,9 @@ impl MIRROR_TAG_B_CFG {
 
     /// n: PCP n
     pub fn tag_b_pcp_val(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_tag_b_pcp_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -924,10 +911,9 @@ impl PORT_CTRL {
 
     /// 0: Stack A 1: Stack B
     pub fn vstax_stack_grp_sel(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vstax_stack_grp_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -960,10 +946,9 @@ impl RLEG_CFG_0 {
 
     /// Bit 0: MAC address, bit 0 ... Bit 23: MAC address, bit 23
     pub fn rleg_mac_lsb(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_rleg_mac_lsb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -982,10 +967,9 @@ impl RLEG_CFG_1 {
 
     /// Bit 0: MAC address, bit 24 ... Bit 23: MAC address, bit 47
     pub fn rleg_mac_msb(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_rleg_mac_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -1186,10 +1170,9 @@ impl STICKY_EVENT {
 
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn vlan_pop_cnt_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vlan_pop_cnt_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1432,10 +1415,9 @@ impl STICKY_EVENT_CNT_MASK_CFG {
 
     /// 0: Sticky event will not be counted 1: Sticky event will be counted
     pub fn vlan_pop_cnt_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vlan_pop_cnt_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1510,13 +1492,10 @@ impl STICKY_EVENT_COUNT {
 
     /// Counter can be written by SW.
     pub fn sticky_event_counter(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sticky_event_counter(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1532,10 +1511,9 @@ impl TPID_CFG {
 
     /// n: TPID value
     pub fn tpid_val(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_tpid_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1568,10 +1546,9 @@ impl VSTAX_PORT_GRP_CFG {
 
     /// 0: Perform fwd_mode translation. 1: Do not perform fwd_mode translation.
     pub fn vstax_mode(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vstax_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

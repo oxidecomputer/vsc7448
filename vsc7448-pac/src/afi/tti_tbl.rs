@@ -50,10 +50,9 @@ impl DTI_CTRL {
     }
     /// Enable DTI. If MODE=0 or MODE=2, then ENA is cleared by AFI when configured number of sequences have been injected. Before (re)starting a DTI the following initialization should be done: DURATION must be set to 0. NEXT_FRM_PTR should be set to FIRST_FRM_PTR. DTI_CNT_DOWN.CNT_DOWN should be set to 0. FRM_INJ_CNT should be set to 0 AFI::MISC_CTRL.AFI_ENA must be set to 1. If MODE=2, then the AFI will set ENA=1 for the DTI pointed to by DTI_NEXT once the DTI with MODE=2 completes.
     pub fn ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -68,10 +67,9 @@ pub struct TTI_FRM(u32);
 impl TTI_FRM {
     /// Pointer to the frame in Frame Table, which TTI shall inject.
     pub fn frm_ptr(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_frm_ptr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -86,10 +84,9 @@ pub struct TTI_MISC_CFG(u32);
 impl TTI_MISC_CFG {
     /// Enable counting of injected frames in AFI:TTI_MISC:TTI_INJ_CNT.TTI_INJ_CNT.
     pub fn inj_cnt_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_inj_cnt_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -104,10 +101,9 @@ pub struct TTI_PORT_QU(u32);
 impl TTI_PORT_QU {
     /// Port number which injection queue transmits on. Injection queue is selected by QU_NUM. PORT_NUM must not be changed when timer is enabled.
     pub fn port_num(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_port_num(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -142,10 +138,9 @@ impl TTI_TICKS {
     }
     /// Number of ticks until next injection. Frame is injected when TICK_CNT=0. Upon injection TICK_CNT gets set to TIMER_LEN. Should be set to a random value in range 1-TIMER_LEN before starting TTI.
     pub fn tick_cnt(&self) -> u32 {
-        (self.0 & 0x1ff) >> 0
+        self.0 & 0x1ff
     }
     pub fn set_tick_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;
@@ -174,10 +169,9 @@ impl TTI_TIMER {
     }
     /// Timer Tick, which TTI shall use.
     pub fn tick_idx(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_tick_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

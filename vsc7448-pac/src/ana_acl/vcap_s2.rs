@@ -42,10 +42,9 @@ impl PTP_CFG {
 
     /// 0: Use time domain 0 1: Use time domain 1 2: Use time domain 2 3: Reserved.
     pub fn ptp_domain(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ptp_domain(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -70,10 +69,9 @@ pub struct PTP_MISC_CTRL(u32);
 impl PTP_MISC_CTRL {
     /// If set, and VCAP_IS2 action REW_CMD[5] is set, ANA_ACL rewrites Delay_Req frames. The following PTP fields can be modified in ANA_ACL depending on configuration in PTP_MISC_CTRL and ANA_ACL:PTP_DOM: - messageType (set to Delay_Resp) - messageLength - flagField - sourcePortIdentity - controlField - logMessageInterval - receiveTimestamp - requestingPortIdentity
     pub fn ptp_allow_acl_rew_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ptp_allow_acl_rew_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -162,10 +160,9 @@ impl SWAP_IP_CTRL {
     }
     /// Replace TTL with value configured in IP_SWAP_IP4_TTL_VAL when swapping IPv4 addresses.
     pub fn ip_swap_ip4_ttl_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ip_swap_ip4_ttl_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -210,13 +207,10 @@ pub struct SWAP_SIP(u32);
 impl SWAP_SIP {
     /// New source IP address used when frame's IP addresses are swapped and the original destination IP address was a multicast address. IP address swapping is enabled in VCAP_IS2 action ACL_RT_MODE. IPv4: Each entry configures one IPv4 address. IPv6: Four consecutive entries configures one IPv6 address. Entries must start at 4 x n, n=0, 1, ..., 7. First entry encodes bits 31:0 of IPv6 address, second entry encoded bits 63:32, and so on.
     pub fn sip(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sip(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -234,10 +228,9 @@ impl VCAP_S2_CFG {
 
     /// 0: Disable 1: Enable.
     pub fn sec_ena(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_sec_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -536,10 +529,9 @@ impl VCAP_S2_MISC_CTRL {
 
     /// 0: Disable 1: Enable.
     pub fn cpu_igr_mask_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cpu_igr_mask_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -638,10 +630,9 @@ impl VCAP_S2_RNG_CTRL {
 
     /// 0: Idle (No match) 1: TCP / UDP dport value is matched against range 2: TCP / UDP sport value is matched against range 3: TCP / UDP dport or sport values are matched against range 4: Classified VIDvalue is matched against range 5: Classified DSCP value is matched against range 6: Selected value from frame is matched against range, see ANA_ACL::VCAP_S2_RNG_OFFSET_CFG for details.
     pub fn rng_type_sel(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_rng_type_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -660,10 +651,9 @@ impl VCAP_S2_RNG_OFFSET_CFG {
 
     /// 0: EtherType 1: frame byte 0 and 1 after EtherType ... n: frame byte 2n-2 and 2n-1 after EtherType
     pub fn rng_offset_pos(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_rng_offset_pos(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -688,10 +678,9 @@ impl VCAP_S2_RNG_VALUE_CFG {
     }
     /// Lower range value
     pub fn rng_min_value(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_rng_min_value(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

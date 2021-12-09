@@ -46,10 +46,9 @@ impl TR_GAIN {
     }
     /// Target value of GAIN setting during LP C(0) optimization.
     pub fn gain_targ(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_gain_targ(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;

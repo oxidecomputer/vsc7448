@@ -42,13 +42,10 @@ impl MSTP_FWD_CFG {
 
     /// '0': forwarding is disabled from/to respective port '1': forwarding is enabled from/to respective port
     pub fn mstp_fwd_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mstp_fwd_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -62,10 +59,9 @@ pub struct MSTP_FWD_CFG1(u32);
 impl MSTP_FWD_CFG1 {
     /// Refer to MSTP_FWD_CFG.MSTP_FWD_MASK description.
     pub fn mstp_fwd_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_mstp_fwd_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -86,13 +82,10 @@ impl MSTP_LRN_CFG {
 
     /// '0': Learning is disabled for frames from respective port '1': Learning is enabled for frames from respective port
     pub fn mstp_lrn_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mstp_lrn_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -106,10 +99,9 @@ pub struct VLAN_MASK_CFG1(u32);
 impl VLAN_MASK_CFG1 {
     /// Refer to VLAN_MASK_CFG.VLAN_PORT_MASK description.
     pub fn vlan_port_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_vlan_port_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;

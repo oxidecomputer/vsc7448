@@ -42,10 +42,9 @@ impl DFT_BIST_CFG0 {
 
     /// N: time = (N+1) * (frame_len_cfg+1) 40-bit clock cycles
     pub fn max_bist_frames_cfg(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_max_bist_frames_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -94,10 +93,9 @@ impl DFT_BIST_CFG1 {
 
     /// N: time = (N+1) 40-bit clock cycles
     pub fn stable_thres_cfg(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_stable_thres_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -118,13 +116,10 @@ impl DFT_BIST_CFG2 {
 
     /// N: multiplier = (N+1)
     pub fn frame_len_cfg(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_frame_len_cfg(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -142,13 +137,10 @@ impl DFT_BIST_CFG3 {
 
     /// N: attempts = (N+1)
     pub fn max_stable_attempts_cfg(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_max_stable_attempts_cfg(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -190,10 +182,9 @@ impl DFT_CLK_CMP_CFG {
     }
     /// Enable clock comparison (enabling automatically clears comparison counter)
     pub fn clk_cmp_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clk_cmp_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -262,13 +253,10 @@ pub struct DFT_CLK_CMP_MAXVAL(u32);
 impl DFT_CLK_CMP_MAXVAL {
     /// Clock comparison max value (maximum measured difference between clk0 and clk1)
     pub fn clk_cmp_maxval(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_clk_cmp_maxval(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -282,13 +270,10 @@ pub struct DFT_CLK_CMP_TIMER(u32);
 impl DFT_CLK_CMP_TIMER {
     /// Clock comparison timer. Counter interval is N + 1 core clock cycles.
     pub fn clk_cmp_timer(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_clk_cmp_timer(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -302,13 +287,10 @@ pub struct DFT_CLK_CMP_VALUE(u32);
 impl DFT_CLK_CMP_VALUE {
     /// Clock comparison value (difference between clk0 and clk1)
     pub fn clk_cmp_value(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_clk_cmp_value(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -322,13 +304,10 @@ pub struct DFT_ERR_STAT(u32);
 impl DFT_ERR_STAT {
     /// Counter output depending on cnt_cfg
     pub fn err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -342,10 +321,9 @@ pub struct DFT_MAIN_STAT(u32);
 impl DFT_MAIN_STAT {
     /// BIST is active (i.e. left DOZE but did not enter a final state)
     pub fn active(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_active(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -422,13 +400,10 @@ pub struct DFT_PRBS_STAT(u32);
 impl DFT_PRBS_STAT {
     /// PRBS data after first sync lost
     pub fn prbs_data_stat(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_prbs_data_stat(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -526,10 +501,9 @@ impl DFT_RX_CFG {
 
     /// 0: Disable DFT 1: Enable DFT
     pub fn dft_rx_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dft_rx_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -680,13 +654,10 @@ pub struct DFT_RX_MASK_CFG(u32);
 impl DFT_RX_MASK_CFG {
     /// Mask out (active high) errors in 32 LSB data bits
     pub fn lsb_mask_cfg(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lsb_mask_cfg(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -730,10 +701,9 @@ impl DFT_RX_PAT_CFG {
     }
     /// Address to read patterns from used by SW
     pub fn read_addr_cfg(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_read_addr_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -754,10 +724,9 @@ impl DFT_TX_CFG {
 
     /// 0: Disable DFT 1: Enable DFT
     pub fn dft_tx_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dft_tx_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -864,10 +833,9 @@ pub struct DFT_TX_CMP_DAT_STAT(u32);
 impl DFT_TX_CMP_DAT_STAT {
     /// 10 bits data word at address 'store_addr_cfg' used for further observation by SW
     pub fn pat_stat(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_pat_stat(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -964,10 +932,9 @@ impl DFT_TX_ERR_INSERT_CFG {
 
     /// 0: burst mode is disabled 1-15: number of errors per burst = 2^(num_err_cfg + 5)
     pub fn num_err_cfg(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_num_err_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -994,10 +961,9 @@ impl DFT_TX_PAT_CFG {
     }
     /// 10 bits word of constant patterns for transmission
     pub fn pattern_cfg(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_pattern_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -1034,12 +1000,9 @@ pub struct VSCOPE_DBG_LSB(u32);
 impl VSCOPE_DBG_LSB {
     /// 32 LSBs of general purpose register
     pub fn gp_reg_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_gp_reg_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

@@ -38,13 +38,10 @@ pub struct CCM_RX_FCB_CFG(u32);
 impl CCM_RX_FCB_CFG {
     /// See register description.
     pub fn ccm_rx_fcb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ccm_rx_fcb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -54,10 +51,9 @@ impl CCM_RX_FCB_CFG {
 #[derive(From, Into)]
 pub struct CT_CCM_TLV_INFO_REW(u32);
 impl CT_CCM_TLV_INFO_REW {    pub fn ct_if_status_value_rew(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ct_if_status_value_rew(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -96,13 +92,10 @@ pub struct CT_OAM_DATA_REW(u32);
 impl CT_OAM_DATA_REW {
     /// Context register containing Sequence Number or Transaction ID
     pub fn ct_oam_seq_rew(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ct_oam_seq_rew(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -208,10 +201,9 @@ impl CT_OAM_INFO_REW {    pub fn ct_block_data_rew(&self) -> u32 {
     }
     /// [MCC_DEBUG] OAM type currently being processed
     pub fn ct_oam_type_rew(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ct_oam_type_rew(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -350,10 +342,9 @@ impl CT_OAM_STICKY_REW {    pub fn ct_ccm_nonzero_endtlv_rew(&self) -> u32 {
         self.0 &= !0x200;
         self.0 |= value;
     }    pub fn ct_synlm_peer_idx_rew(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ct_synlm_peer_idx_rew(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

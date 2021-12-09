@@ -40,10 +40,9 @@ impl ATOP_TOT_CFG {
 
     /// See RES_CFG
     pub fn atop_tot(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_atop_tot(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -58,10 +57,9 @@ pub struct MMGT(u32);
 impl MMGT {
     /// Number of 6 free memory words.
     pub fn freecnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_freecnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

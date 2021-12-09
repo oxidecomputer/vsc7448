@@ -42,13 +42,10 @@ impl AUTO_LRN_CFG {
 
     /// x0x: Disable automatic learning for the port x1x: Enable automatic learning of incoming learn frames received on this port
     pub fn auto_lrn_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_auto_lrn_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -66,10 +63,9 @@ impl AUTO_LRN_CFG1 {
 
     /// x0x: Disable automatic learning for the port x1x: Enable automatic learning of incoming learn frames received on this port
     pub fn auto_lrn_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_auto_lrn_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -88,13 +84,10 @@ impl FILTER_LOCAL_CTRL {
 
     /// x0x: Handle entries associated with the front port during automatic ageing and CPU scan x1x: Ignore entries associated with the front port during automatic ageing and CPU scan
     pub fn filter_frontport_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_filter_frontport_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -110,10 +103,9 @@ impl FILTER_LOCAL_CTRL1 {
 
     /// x0x: Handle entries associated with the front port during automatic ageing and CPU scan x1x: Ignore entries associated with the front port during automatic ageing and CPU scan
     pub fn filter_frontport_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_filter_frontport_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -132,10 +124,9 @@ impl FILTER_OTHER_CTRL {
 
     /// 0: handle remote entries during automatic ageing and CPU scan 1: ignore remote entries during Automatic ageing and CPU scan
     pub fn filter_remote_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_filter_remote_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -224,10 +215,9 @@ impl FWD_CFG {
 
     /// 0: Disable all MAC fwd related lookups. All frames are flooded. 1: Enable all MAC fwd related lookups
     pub fn fwd_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fwd_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -310,10 +300,9 @@ impl INTR {
 
     /// 0: No event has occured 1: FID_LIMIT triggered inq occured Bit is cleared by writing a 1 to this position.
     pub fn fid_limit_intr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fid_limit_intr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -390,10 +379,9 @@ impl INTR_ENA {
 
     /// 0: Disable interrupt 1: Enable interrupt
     pub fn fid_limit_intr_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fid_limit_intr_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -578,10 +566,9 @@ impl LRN_CFG {
     }
     /// Configures CPU copy of frames from known stations with the CPU_COPY bit set in the SOURCE entry. Copies are sent to the CPU queue specified in MAC table by means of LRN::MAC_ACCESS_CFG_2.MAC_ENTRY_CPU_QU.
     pub fn cpu_smac_copy_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cpu_smac_copy_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -670,13 +657,10 @@ impl LRN_COPY_CFG {
 
     /// x0x: Disable x1x: incoming learn frames received on this port are copied to the CPU.
     pub fn cpu_lrn_copy_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cpu_lrn_copy_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -694,10 +678,9 @@ impl LRN_COPY_CFG1 {
 
     /// x0x: Disable x1x: incoming learn frames received on this port are copied to the CPU.
     pub fn cpu_lrn_copy_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_cpu_lrn_copy_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -718,13 +701,10 @@ impl LRN_SECUR_CFG {
 
     /// x0x: Disable drop of incoming learn frames for the port x1x: Enable drop of incoming learn frames received on this port
     pub fn drop_unknown_src_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_drop_unknown_src_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -742,10 +722,9 @@ impl LRN_SECUR_CFG1 {
 
     /// x0x: Disable drop of incoming learn frames for the port x1x: Enable drop of incoming learn frames received on this port
     pub fn drop_unknown_src_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_drop_unknown_src_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -766,13 +745,10 @@ impl LRN_SECUR_LOCKED_CFG {
 
     /// x0x: Disable x1x: Enable drop of incoming frames triggering a port move for a locked entry in the MAC table received on this port
     pub fn drop_moved_locked_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_drop_moved_locked_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -790,10 +766,9 @@ impl LRN_SECUR_LOCKED_CFG1 {
 
     /// x0x: Disable x1x: Enable drop of incoming frames triggering a port move for a locked entry in the MAC table received on this port
     pub fn drop_moved_locked_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_drop_moved_locked_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -814,13 +789,10 @@ impl MOVELOG_STICKY {
 
     /// 'XX...XXX': If port X is set, at least one station has moved to logical port X.
     pub fn portmove_log_sticky(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_portmove_log_sticky(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -838,10 +810,9 @@ impl MOVELOG_STICKY1 {
 
     /// 'XX...XXX': If port X is set, at least one station has moved to logical port X.
     pub fn portmove_log_sticky1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_portmove_log_sticky1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -858,10 +829,9 @@ pub struct PORT_DLB_CFG(u32);
 impl PORT_DLB_CFG {
     /// Specifies the default port Dual leaky bucket index to be used for frames with ISDX=0 if ANA_L2::FWD_CFG.PORT_DEFAULT_BDLB_ENA is enabled.
     pub fn port_dlb_idx(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_port_dlb_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -892,10 +862,9 @@ impl SCAN_FID_CFG {
 
     /// 0x1fff: Disable FID/VID filter
     pub fn scan_fid_val(&self) -> u32 {
-        (self.0 & 0x1fff) >> 0
+        self.0 & 0x1fff
     }
     pub fn set_scan_fid_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
@@ -916,10 +885,9 @@ impl SCAN_FID_CTRL {
 
     /// 0: FID/VID filters only depend on LRN:COMMON:SCAN_NEXT_CFG.FID_FILTER_ENA. 1: Additional FID filter values are specified in ANA_L2:COMMON:SCAN_FID_CFG.SCAN_FID_VAL if LRN:COMMON:SCAN_NEXT_CFG.FID_FILTER_ENA is set.
     pub fn scan_fid_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_scan_fid_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1060,10 +1028,9 @@ impl VSTAX_CTRL {
     }
     /// Enable lrn-all generation triggered by learn of new MAC address. Note: No copy will be generated if learning is disabled due to VLAN learn state etc.
     pub fn vstax2_lrn_all_new_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vstax2_lrn_all_new_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

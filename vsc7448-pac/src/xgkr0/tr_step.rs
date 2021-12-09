@@ -76,10 +76,9 @@ impl TR_OVRD {
     }
     /// Generate Stat_report_valid pulse (SC)
     pub fn stat_ovrd_vld(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_stat_ovrd_vld(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -70,10 +70,9 @@ impl STAT_CFG {
     }
     /// Counters are by default wrapping when exceeding their maximum value, and software must thus do a subtraction with the previous readen value to see how much the total count has changed. If wrapping is disabled, the counters will clear on read, and saturate at their maximum value. Software can thus detect that a counter overflow has happened, and do not need storing the previous read values. The configuration exists replicated per statistics group as the STAT_CLEAR_SHOT describes.
     pub fn stat_wrap_dis(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_stat_wrap_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;

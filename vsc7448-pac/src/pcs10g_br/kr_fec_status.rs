@@ -54,10 +54,9 @@ impl KR_FEC_STICKY {
 
     /// 0: FEC decoder has not achieved lock 1: FEC decoder has achieved lock
     pub fn fec_frame_lock_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fec_frame_lock_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -104,10 +103,9 @@ impl KR_FEC_STICKY_MASK {
 
     /// 0: Disable interrupt generation 1: Enable interrupt generation
     pub fn fec_frame_lock_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fec_frame_lock_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -136,12 +134,9 @@ pub struct KR_FEC_UNCORRECTED(u32);
 impl KR_FEC_UNCORRECTED {
     /// FEC uncorrectable block count.
     pub fn fec_uncorrected_blocks(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_fec_uncorrected_blocks(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

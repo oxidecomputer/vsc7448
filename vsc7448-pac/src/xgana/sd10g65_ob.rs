@@ -78,10 +78,9 @@ impl SD10G65_MOEBDIV_CFG0 {
     }
     /// Divider disable
     pub fn moebdiv_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_moebdiv_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -178,10 +177,9 @@ impl SD10G65_OB_CFG0 {
     }
     /// Amplitude control value. Step size is 25 mVpp, decreasing amplitude with increasing control value. Range depends on incr_levn. Coding for incr_levn=0: 31: 500mVpp, 30: 525mVpp, 29: 550mVpp, ..., 0: 1275mVpp. Coding for incr_levn=1: 31: 300mVpp, 30: 325mVpp, 29: 350mVpp, .., 0: 1075mVpp. (Note: maximum achievable amplitude depends on the supply voltage)
     pub fn levn(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_levn(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -318,10 +316,9 @@ impl SD10G65_OB_CFG1 {
 
     /// 1000: -8 1111: -1 0000: 0 0111: 7
     pub fn r_i(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_r_i(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -370,10 +367,9 @@ impl SD10G65_OB_CFG2 {
 
     /// 0x820820: for I/F width 8/10 bits 0x7DF820: for I/F width 16/20/32/40 bits
     pub fn d_filter(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_d_filter(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -434,10 +430,9 @@ impl SD10G65_OB_CFG3 {
     }
     /// Holds the time between the start and the flag of the receiver detect measuremnet. Time [ns +/- 4 ns] = 8 * value - 12
     pub fn rec_det_value(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_rec_det_value(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -482,10 +477,9 @@ impl SD10G65_SBUS_TX_CFG {
 
     /// 1: Enable 0: Disable
     pub fn sbus_bias_en(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sbus_bias_en(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -550,12 +544,9 @@ pub struct SD10G65_TX_SVN_ID(u32);
 impl SD10G65_TX_SVN_ID {
     /// SVN revision number of RTL sources
     pub fn tx_svn_id(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_svn_id(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

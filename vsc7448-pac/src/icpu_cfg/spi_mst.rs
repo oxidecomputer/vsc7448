@@ -50,10 +50,9 @@ impl PI_SLV_CFG {
 
     /// n: Wait n clocks after detecting CS before sampling control/data.
     pub fn cswait(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_cswait(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -134,10 +133,9 @@ impl SPI_MST_CFG {
 
     /// The SPI interface frequency is: 250MHz/CLK_DIV.
     pub fn clk_div(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_clk_div(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -178,10 +176,9 @@ pub struct SPI_MST_STATUS(u32);
 impl SPI_MST_STATUS {
     /// Upsupported operation has been performed on the SPI master from AHB slave.
     pub fn unsup_err(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_unsup_err(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -36,10 +36,9 @@ pub struct DTI_DURATION_TICK_LEN(u32);
 impl DTI_DURATION_TICK_LEN {
     /// Lenght of DTI Duration Tick in clock cycles. Default value corresponds to 0.1ms.
     pub fn dti_duration_tick_len(&self) -> u32 {
-        (self.0 & 0x3ffff) >> 0
+        self.0 & 0x3ffff
     }
     pub fn set_dti_duration_tick_len(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ffff);
         self.0 &= !0x3ffff;
         self.0 |= value;
@@ -70,10 +69,9 @@ impl FRM_NEXT_AND_TYPE {
     }
     /// Pointer to next Frame Table entry. Only applicable for frames used for DTI.
     pub fn next_ptr(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_next_ptr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;

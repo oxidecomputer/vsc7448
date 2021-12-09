@@ -38,10 +38,9 @@ pub struct SD10G65_DES_CFG0(u32);
 impl SD10G65_DES_CFG0 {
     /// Deserializer disable.
     pub fn des_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_des_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

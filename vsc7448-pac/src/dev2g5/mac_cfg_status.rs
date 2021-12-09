@@ -40,10 +40,9 @@ impl MAC_ADV_CHK_CFG {
 
     /// '0': Length Drop Disabled '1': Length Drop Enabled.
     pub fn len_drop_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_len_drop_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -76,10 +75,9 @@ impl MAC_ENA_CFG {
 
     /// '0': Transmitter Module Disabled '1': Transmitter Module Enabled
     pub fn tx_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -108,10 +106,9 @@ impl MAC_HDX_CFG {
     }
     /// Adjustment of early/late collision boundary:\nThis bitgroup is used to adjust the MAC so that a collision on a shared transmission medium before bit 512 is handled as an early collision, whereas a collision after bit 512 is handled as a late collision, i.e. no retransmission is performed.
     pub fn late_col_pos(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_late_col_pos(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -186,10 +183,9 @@ impl MAC_IFG_CFG {
 
     /// TBA: Add correct values found by validation. 10/100 Mbps: 0xXX 1000 Mbps: 0xXX.
     pub fn rx_ifg1(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_rx_ifg1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -232,10 +228,9 @@ pub struct MAC_MAXLEN_CFG(u32);
 impl MAC_MAXLEN_CFG {
     /// The maximum frame length accepted by the Receive Module of the MAC. If the length is exceeded, this is indicated in the Statistics Engine (RX_OVERSIZE). The maximum length is automatically adjusted to accommodate maximum sized frames containing single/double VLAN tag(s) - given that the MAC is configured to be single/double VLAN aware.
     pub fn max_len(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_max_len(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -268,10 +263,9 @@ impl MAC_MODE_CFG {
 
     /// '0': Half Duplex '1': Full duplex. \nNote: Full duplex MUST be selected if GIGA_MODE is enabled.
     pub fn fdx_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fdx_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -330,10 +324,9 @@ impl MAC_TAGS_CFG {
 
     /// '0': VLAN awareness disabled. '1': VLAN awareness enabled.
     pub fn vlan_awr_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vlan_awr_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -364,10 +357,9 @@ impl MAC_TAGS_CFG2 {
 
     /// tbd
     pub fn tag_id2(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_tag_id2(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -396,10 +388,9 @@ pub struct PTP_EVENTS(u32);
 impl PTP_EVENTS {
     /// The correction field update went out of range. Valid range is -2^47 to 2^48-1. The frame CF will be changed to the maximum value. This range check is bypassed if ADDS48 mode is in use on the ingress or egress port.
     pub fn cf_too_big_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cf_too_big_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

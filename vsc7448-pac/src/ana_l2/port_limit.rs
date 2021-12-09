@@ -70,10 +70,9 @@ impl FID_LIMIT_CTRL {
 
     /// 0: Disable i.e. no learn limit for the FID 1: Only learning of one MAC address allowed for this FID ... n: Learning of n MAC address allowed for this FID
     pub fn fid_lrn_cnt_limit(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_fid_lrn_cnt_limit(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -94,10 +93,9 @@ impl PORT_LIMIT_STATUS {
 
     /// 0 : no entries
     pub fn port_lrn_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_port_lrn_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

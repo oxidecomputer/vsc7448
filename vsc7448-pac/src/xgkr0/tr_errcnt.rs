@@ -36,10 +36,9 @@ pub struct LUT_MSW(u32);
 impl LUT_MSW {
     /// Measured value of selected LUT.
     pub fn lut_msw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lut_msw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

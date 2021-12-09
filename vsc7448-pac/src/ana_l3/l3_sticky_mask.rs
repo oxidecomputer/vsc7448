@@ -178,10 +178,9 @@ impl L3_ARP_IPMC_STICKY {
     }
     /// Set if ingress router leg match has been found for a non-IP frame. Such frames are redirected to ANA_L3:COMMON:CPU_QU_CFG.CPU_RLEG_QU
     pub fn rleg_nonip_uc_redir_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rleg_nonip_uc_redir_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -388,10 +387,9 @@ impl RLEG_STICKY_MASK {
     }
     /// Enable counting of sticky event per concurrent counter.
     pub fn rleg_nonip_uc_redir_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rleg_nonip_uc_redir_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -498,10 +496,9 @@ impl ROUT_STICKY_MASK {
     }
     /// Enable counting of sticky event per concurrent counter.
     pub fn lpm_ip4mc_found_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_lpm_ip4mc_found_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -628,10 +625,9 @@ pub struct SECUR_STICKY_MASK(u32);
 impl SECUR_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
     pub fn secur_dip_fail_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_secur_dip_fail_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -778,10 +774,9 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     /// Enable counting of sticky event per concurrent counter.
     pub fn vlan_igr_filter_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vlan_igr_filter_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

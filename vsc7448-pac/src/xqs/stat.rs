@@ -38,13 +38,10 @@ pub struct CNT(u32);
 impl CNT {
     /// Counter value, ref. QSYS:STAT.
     pub fn cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -54,10 +51,9 @@ impl CNT {
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_FILL_MAX_STAT(u32);
 impl QLIMIT_SHR_FILL_MAX_STAT {    pub fn qlimit_shr_fill_max(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_fill_max(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;

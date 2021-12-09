@@ -36,10 +36,9 @@ pub struct OBCFG_ADDR(u32);
 impl OBCFG_ADDR {
     /// Address of OB tap configuration settings
     pub fn obcfg_addr(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_obcfg_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;

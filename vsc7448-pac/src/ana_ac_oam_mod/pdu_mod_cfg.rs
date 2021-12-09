@@ -38,13 +38,10 @@ pub struct CCM_LM_RX_B_REG(u32);
 impl CCM_LM_RX_B_REG {
     /// Contains the sampled value of CCM_LM.rx_fc_b from the last valid CCM_LM frame.
     pub fn ccm_lm_rx_b(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ccm_lm_rx_b(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -56,10 +53,9 @@ impl CCM_LM_RX_B_REG {
 #[derive(From, Into)]
 pub struct DM_PTP_DOMAIN_CFG(u32);
 impl DM_PTP_DOMAIN_CFG {    pub fn ptp_domain(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ptp_domain(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -76,13 +72,10 @@ pub struct RD_LAST_PORT_BYTE_CNT_LSB(u32);
 impl RD_LAST_PORT_BYTE_CNT_LSB {
     /// See register description.
     pub fn rd_last_port_byte_cnt_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rd_last_port_byte_cnt_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -96,10 +89,9 @@ pub struct RD_LAST_PORT_BYTE_CNT_MSB(u32);
 impl RD_LAST_PORT_BYTE_CNT_MSB {
     /// See register description.
     pub fn rd_last_port_byte_cnt_msb(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_rd_last_port_byte_cnt_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -116,13 +108,10 @@ pub struct RD_LAST_PORT_FRM_CNT_LSB(u32);
 impl RD_LAST_PORT_FRM_CNT_LSB {
     /// See register description.
     pub fn rd_last_port_frm_cnt_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rd_last_port_frm_cnt_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -136,12 +125,9 @@ pub struct RD_LAST_PORT_LM_CNT_LSB(u32);
 impl RD_LAST_PORT_LM_CNT_LSB {
     /// See register description.
     pub fn rd_last_port_lm_cnt_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rd_last_port_lm_cnt_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

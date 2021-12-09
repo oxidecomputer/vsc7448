@@ -54,10 +54,9 @@ impl PORT_CFG {
 
     /// 0: Injection disabled for port (both TTI and DTI injections, regardless of TTI_FRM_OUT_MAX value) 1: Maximum 1 outstanding injection. 2: Maximum 2 outstanding injections. ... 1022: Maximum 1022 outstanding injections. 1023: Illegal.
     pub fn frm_out_max(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_frm_out_max(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -96,10 +95,9 @@ impl TUPE_ADDR {
     }
     /// First address in TTI Table for TUPE to process. Must be <= TUPE_START_ADDR.
     pub fn tupe_start_addr(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_tupe_start_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -114,10 +112,9 @@ pub struct TUPE_CMD1(u32);
 impl TUPE_CMD1 {
     /// New value for PORT_NUM for any TTIs matching TUPE criterias. Must be enabled by AFI:TUPE:TUPE_MISC.CMD_PORT_NUM_ENA.
     pub fn cmd_port_num_val(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_cmd_port_num_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -142,10 +139,9 @@ pub struct TUPE_CRIT1(u32);
 impl TUPE_CRIT1 {
     /// If enabled by AFI:TUPE:TUPE_MISC.CRIT_PORT_NUM_ENA, then PORT_NUM in TTIs must match this value in order to be processed by TUPE.
     pub fn crit_port_num_val(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_crit_port_num_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -170,10 +166,9 @@ pub struct TUPE_CRIT2(u32);
 impl TUPE_CRIT2 {
     /// Refer to AFI:TUPE:TUPE_CRIT3.CRIT_TUPE_CTRL_VAL.
     pub fn crit_tupe_ctrl_mask(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_crit_tupe_ctrl_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -188,10 +183,9 @@ pub struct TUPE_CRIT3(u32);
 impl TUPE_CRIT3 {
     /// For one or more of the configured CRIT_TUPE_CTRL_VALs, TUPE_CTRL in TTIs must match the following criterias in order to be processed by TUPE: (TTI.TUPE_CTRL & CRIT_TUPE_CTRL_MASK) == CRIT_TUPE_CTRL_VAL[i]
     pub fn crit_tupe_ctrl_val(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_crit_tupe_ctrl_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -266,10 +260,9 @@ impl TUPE_MISC {
     }
     /// Start TUPE. Write 1 to start TUPE. Set to 0 by TUPE when done. Before running TUPE, AFI::MISC_CTRL.AFI_ENA must be set to 1. Note: While TUPE is running (i.e. TUPE_START=1) CPU must not write to TTI Table.
     pub fn tupe_start(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tupe_start(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -38,13 +38,10 @@ pub struct PORT_TX_COSID_MAP1(u32);
 impl PORT_TX_COSID_MAP1 {
     /// See register description.
     pub fn port_tx_cosid_map1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_tx_cosid_map1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -58,13 +55,10 @@ pub struct SAM_LBM_TX_TRANSID(u32);
 impl SAM_LBM_TX_TRANSID {
     /// See register description
     pub fn sam_lbm_tx_transid(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sam_lbm_tx_transid(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -78,13 +72,10 @@ pub struct SAM_LBR_RX_FRM_CNT(u32);
 impl SAM_LBR_RX_FRM_CNT {
     /// See register description.
     pub fn sam_lbr_rx_frm_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sam_lbr_rx_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -98,13 +89,10 @@ pub struct SAM_LBR_RX_TRANSID(u32);
 impl SAM_LBR_RX_TRANSID {
     /// See register description.
     pub fn sam_lbr_rx_transid(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sam_lbr_rx_transid(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -118,12 +106,9 @@ pub struct SAM_LBR_TX_FRM_CNT(u32);
 impl SAM_LBR_TX_FRM_CNT {
     /// See register description.
     pub fn sam_lbr_tx_frm_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sam_lbr_tx_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

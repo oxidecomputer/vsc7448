@@ -40,10 +40,9 @@ impl STAT_GLOBAL_EVENT_MASK {
 
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
     pub fn global_event_mask(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_global_event_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -58,12 +57,9 @@ pub struct STAT_LSB_CNT(u32);
 impl STAT_LSB_CNT {
     /// This register contains the least significant 32 bits of a counter.
     pub fn lsb_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lsb_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

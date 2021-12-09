@@ -132,10 +132,9 @@ impl SERDES1G_DFT_CFG0 {
 
     /// 0: Off 1: On
     pub fn tx_dft_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_dft_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -170,10 +169,9 @@ impl SERDES1G_DFT_CFG1 {
 
     /// 0: Off 1: On
     pub fn tx_freqoff_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_freqoff_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -256,10 +254,9 @@ impl SERDES1G_DFT_CFG2 {
 
     /// 0: Off 1: On
     pub fn rx_freqoff_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_freqoff_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -366,10 +363,9 @@ impl SERDES1G_PLL_STATUS {
     }
     /// PLL read-back data, depending on "pll_rb_data_sel" either the calibrated setting or the measured period
     pub fn pll_rb_data(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_pll_rb_data(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -416,10 +412,9 @@ impl SERDES1G_RC_PLL_BIST_CFG {
     }
     /// Lower frequnecy for the RC-PLL BIST
     pub fn pll_bist_low(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_pll_bist_low(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -436,10 +431,9 @@ pub struct SERDES1G_TP_CFG(u32);
 impl SERDES1G_TP_CFG {
     /// Static pattern tranferred in fixed pattern test mode, LSB is transferred first
     pub fn static_pattern(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_static_pattern(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;

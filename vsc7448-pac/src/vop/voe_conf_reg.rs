@@ -38,10 +38,9 @@ pub struct COMMON_MEP_MC_MAC_MSB(u32);
 impl COMMON_MEP_MC_MAC_MSB {
     /// See register description.
     pub fn mep_mc_mac_msb(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mep_mc_mac_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

@@ -36,10 +36,9 @@ pub struct CCM_HMO_CTRL(u32);
 impl CCM_HMO_CTRL {
     /// Send the next received CCM frame to CPU. Cleared by HW when a CPU copy has been send to CPU
     pub fn ccm_copy_once_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ccm_copy_once_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -68,10 +67,9 @@ impl HIH_CTRL {
 
     /// 0: Set HIH.CKSM to fixed default value (HIH_DEF_CKSM) 1: Calculate HIH.CKSM according to HIH contents.
     pub fn hih_auto_cksm(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_hih_auto_cksm(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -156,10 +154,9 @@ pub struct LBM_MAC_HIGH(u32);
 impl LBM_MAC_HIGH {
     /// Destination MAC address bits 47:32 used for LBM. If LBM_MAC_HIGH = 0 and LBM_MAC_LOW = 0, the MAC address check for LBM frames is disabled.
     pub fn lbm_mac_high(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lbm_mac_high(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -252,10 +249,9 @@ impl MIP_CFG {
 
     /// 0: REW_IN_MIP 1: REW_OU_MIP
     pub fn pipeline_pt(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pipeline_pt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -288,10 +284,9 @@ impl MIP_VID_CTRL {
 
     /// 0: VID check is disabled. Frame is always accepted. 1: Accept untagged frames. Tagged frames are not accepted. 2: Accept single tagged frames with VID = VID_VAL. Untagged frames or frames with multiple VLAN tags are not accepted. 3: Accept untagged frames and single tagged frames with VID = VID_VAL. Frames with multiple VLAN tags are not accepted.
     pub fn vid_sel(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_vid_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;

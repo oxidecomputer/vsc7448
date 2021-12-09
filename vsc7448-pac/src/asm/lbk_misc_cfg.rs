@@ -40,13 +40,10 @@ impl LBK_AGING_DIS {
 
     /// bitmask per port.
     pub fn lbk_aging_dis(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lbk_aging_dis(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -58,10 +55,9 @@ pub struct VD_FC_WM(u32);
 impl VD_FC_WM {
     /// Flowcontrol to QS is set when the FIFO fill level reaches this watermark.
     pub fn vd_fc_wm(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_vd_fc_wm(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;

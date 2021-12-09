@@ -56,10 +56,9 @@ impl ERR_CNTS {
     }
     /// The "Unknown Target Module" indication is triggered when a non-existing target is requested. In other words there was no target with the requested target-id.
     pub fn err_utm(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_err_utm(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -96,13 +95,10 @@ pub struct GPR(u32);
 impl GPR {
     /// General purpose 32-bit registers for debug and software development. The contents of this register can always (safely) be read. However write operations from different masters (to this register), which occur at (exactly) the same time, will fail.
     pub fn gpr(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_gpr(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -114,10 +110,9 @@ pub struct IF_CFGSTAT(u32);
 impl IF_CFGSTAT {
     /// SI interface: This is the number of padding bytes to insert before read-data is shifted out of the device.This is needed when using high serial interface frequencies.
     pub fn if_cfg(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_if_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -156,10 +151,9 @@ pub struct IF_CTRL(u32);
 impl IF_CTRL {
     /// This register configures critical interface parameters, it is constructed so that it can always be written correctly no matter the current state of the interface. When initializing a physical interface, then this is the first register that must be written, the state of the interface at that point may be unknown and therefore the following scheme is required to bring the interface to a known state: When writing a 4-bit value to this field construct a 32-bit data-word as follows: a) copy the 4-bit value into bits 3:0, 11:8, 19:16, and 27:24. b) reverse the 4-bit value and copy into bits 7:4, 15:12, 23:20, and 31:28. Example: To write the value 2 to this field; the 32-bit data-word to write is "0x42424242". Bit 0 configures endianness (when applicable), 0:Little-Endian, 1:Big-Endian. Bit 1 configures bit-order (when applicable), 0:MSB-first, 1:LSB-first. Bit 2,3 are reserved and should be kept 0. For the SI interface the default value of this field is 0x1. For all other interfaces the default value  is 0x0.
     pub fn if_ctrl(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_if_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -176,13 +170,10 @@ pub struct MAILBOX(u32);
 impl MAILBOX {
     /// Mailbox register which is shared between all interfaces on the Origin. Atomic (safe) modifications to the contents of this register can be performed by using the DEVCPU_ORG::MAILBOX_CLR and DEVCPU_ORG::MAILBOX_SET registers.
     pub fn mailbox(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mailbox(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -194,13 +185,10 @@ pub struct MAILBOX_CLR(u32);
 impl MAILBOX_CLR {
     /// Set bits in this register to atomically clear corresponding bits in the DEVCPU_ORG::MAILBOX register. This register return 0 on read.
     pub fn mailbox_clr(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mailbox_clr(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -212,13 +200,10 @@ pub struct MAILBOX_SET(u32);
 impl MAILBOX_SET {
     /// Set bits in this register to atomically set corresponding bits in the DEVCPU_ORG::MAILBOX register. This register return 0 on read.
     pub fn mailbox_set(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mailbox_set(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -250,10 +235,9 @@ impl ORG_CFG {
     }
     /// Clear this field to make write accesses return status. By default write operations return status OK because they are finished before status of the access is known. All non-OK responses will be logged in DEVCPU_ORG::ERR_CNTS no matter the value of this field.
     pub fn fast_wr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fast_wr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -272,10 +256,9 @@ impl SEMA0 {
 
     /// 0: Semaphore ownership denied. 1: Semaphore has been granted.
     pub fn sema0(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sema0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -294,13 +277,10 @@ impl SEMA0_OWNER {
 
     /// 0: Semaphore is free. 1: VCore System owns semaphore 2: VRAP owns semaphore 4: SI owns smaphore 8: MIIM owns semaphore
     pub fn sema0_owner(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sema0_owner(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -316,10 +296,9 @@ impl SEMA1 {
 
     /// 0: Semaphore ownership denied. 1: Semaphore has been granted.
     pub fn sema1(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sema1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -338,13 +317,10 @@ impl SEMA1_OWNER {
 
     /// 0: Semaphore is free. 1: VCore System owns semaphore 2: VRAP owns semaphore 4: SI owns smaphore 8: MIIM owns semaphore
     pub fn sema1_owner(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sema1_owner(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -362,10 +338,9 @@ impl SEMA_CFG {
 
     /// 0: Interrupt on taken semaphore 1: Interrupt on free semaphore
     pub fn sema_intr_pol(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_sema_intr_pol(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -382,10 +357,9 @@ pub struct TIMEOUT_CFG(u32);
 impl TIMEOUT_CFG {
     /// The contents of this field controls the timeout delay for the CSR system. Setting this field to 0 disables timeout. Timeout is handled as follows: A counter that decrements continually, when reaching 0 it will wrap to the value specified by this field. When a target has been processing a request for three "wraps" the target time-out and generate a WD_DROP indication. In the origin an Interface that has been processing a request for four "wraps" will time out and generate a WD_DROP_ORG indication.
     pub fn timeout_cfg(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_timeout_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;

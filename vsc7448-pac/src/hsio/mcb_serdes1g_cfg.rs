@@ -42,10 +42,9 @@ impl SERDES1G_MISC_STATUS {
 
     /// 0: CDR locked at bit 9 1: CDR locked at bit 4
     pub fn des_100fx_phase_sel(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_des_100fx_phase_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -36,10 +36,9 @@ pub struct PTP_SEQ_NO(u32);
 impl PTP_SEQ_NO {
     /// Sequence number for the flow given by the timestamp field in IFH. Sequence number will automatically increase at each transmission referring to the sequence entry.
     pub fn ptp_seq_no(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ptp_seq_no(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

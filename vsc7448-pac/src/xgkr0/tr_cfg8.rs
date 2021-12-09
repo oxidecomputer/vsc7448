@@ -46,10 +46,9 @@ impl TR_CFG7 {
     }
     /// Signed value to adjust final LP C(+1) tap position from calculated optimal setting.
     pub fn dfe_ofs(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_dfe_ofs(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;

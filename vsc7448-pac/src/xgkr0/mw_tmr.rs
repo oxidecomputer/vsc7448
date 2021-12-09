@@ -36,10 +36,9 @@ pub struct MW_TMR_LSW(u32);
 impl MW_TMR_LSW {
     /// maxwait_timer, when training expires and failure declared. 500ms
     pub fn mw_tmr_lsw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mw_tmr_lsw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct WT_TMR(u32);
 impl WT_TMR {
     /// wait_timer for training state machine to allow extra training frames to be exchanged
     pub fn wt_tmr(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_wt_tmr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

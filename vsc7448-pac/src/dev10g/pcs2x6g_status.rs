@@ -70,10 +70,9 @@ impl PCS2X6G_CFG {
 
     /// 0: Disable PCS 1: Enable PCS
     pub fn pcs_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pcs_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -244,10 +243,9 @@ impl PCS2X6G_ERR_STATUS {
 
     /// 0: No sync lost occured 1: Synchronization lost in lane i (temporarily) Bit is cleared by writing a 1 to this position.
     pub fn sync_lost_sticky(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_sync_lost_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -296,10 +294,9 @@ impl PCS2X6G_STATUS {
 
     /// 0: Lane i out of sync 1: Lane i is in sync
     pub fn rx_sync_status(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_rx_sync_status(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;

@@ -40,10 +40,9 @@ impl VOE_LOOPBACK_CFG {
 
     /// 0: Loop to req.port_num 1: Loop to logical port found in ANA_AC:PGID[req.port_num+VOE_LOOP_PGID_OFFSET]
     pub fn voe_loop_pgid_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_voe_loop_pgid_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

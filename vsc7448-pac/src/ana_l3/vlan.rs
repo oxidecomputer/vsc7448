@@ -38,10 +38,9 @@ pub struct BUM_CFG(u32);
 impl BUM_CFG {
     /// Broadcast, Unknown and Multicast traffic leaky bucket index This index can be overruled by index from ISDX table if ANA_L2:ISDX:MISC_CFG.BUM_SLB_ENA is set. Related parameters: ANA_AC_POL:BUM_SLB
     pub fn bum_slb_idx(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_bum_slb_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -58,10 +57,9 @@ pub struct TUPE_CTRL(u32);
 impl TUPE_CTRL {
     /// Control value for Table UPdate Engine (TUPE). Note that unused bits in VLAN_PORT_MASK may also be used to control which VLAN table entries TUPE shall update. See ANA_L3:TUPE.
     pub fn tupe_ctrl(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_tupe_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -76,10 +74,9 @@ pub struct TUPE_PORT_MASK_B1(u32);
 impl TUPE_PORT_MASK_B1 {
     /// See TUPE_PORT_MASK_B.
     pub fn tupe_port_mask_b1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_tupe_port_mask_b1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -136,10 +133,9 @@ impl VLAN_CFG {
     }
     /// VLAN mirror enable flag. If this field is set, frames classified to this ingress VLAN are mirrored.
     pub fn vlan_mirror_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vlan_mirror_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -204,13 +200,10 @@ impl VLAN_MASK_CFG {
 
     /// 0: Port does not belong to the VLAN 1: Port belongs to the VLAN
     pub fn vlan_port_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_vlan_port_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -222,10 +215,9 @@ pub struct VMID_CFG(u32);
 impl VMID_CFG {
     /// Routing: VMID, identifying VLAN's router leg. Security check: "Mapped VLAN ID".
     pub fn vmid(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_vmid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;

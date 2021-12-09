@@ -58,10 +58,9 @@ impl SERDES6G_ACJTAG_STATUS {
     }
     /// JTAG direct input (directly driven)
     pub fn ib_direct(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ib_direct(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -78,10 +77,9 @@ pub struct SERDES6G_GP_CFG(u32);
 impl SERDES6G_GP_CFG {
     /// Bit 9: SNFBC Select negative feedback center - enable for hysteresis suppression in main sampler FFs Bit 8: SNFBV Select negative feedback Vscope - enable for hysteresis suppression in vscope sampler FFs Bit 1: ERLS (used for debug only, allows for manual stepping through calibration procedure) Bit 0: CRLS (used for debug only, allows for manual stepping through calibration procedure)
     pub fn gp_lsb(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_gp_lsb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -188,10 +186,9 @@ impl SERDES6G_IB_STATUS0 {
     }
     /// Detection of toggling signal at PADP and PADN
     pub fn ib_sig_det(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ib_sig_det(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -238,10 +235,9 @@ impl SERDES6G_IB_STATUS1 {
     }
     /// Current offset regulation value
     pub fn ib_offset_stat(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ib_offset_stat(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -300,10 +296,9 @@ impl SERDES6G_PLL_STATUS {
     }
     /// PLL read-back data, depending on "pll_rb_data_sel" either the calibrated setting or the measured period
     pub fn pll_rb_data(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_pll_rb_data(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

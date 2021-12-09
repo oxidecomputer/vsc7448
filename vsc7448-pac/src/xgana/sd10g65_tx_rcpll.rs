@@ -78,10 +78,9 @@ impl SD10G65_SSC_CFG1 {
     }
     /// SSC modulation period multiplier encoded 2**n: 0 => 1; 1 => 2; 2 => 4, 3 => 8 ...
     pub fn ssc_mod_mul(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ssc_mod_mul(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -158,10 +157,9 @@ pub struct SD10G65_TX_RCPLL_CFG0(u32);
 impl SD10G65_TX_RCPLL_CFG0 {
     /// Enable RCPLL FSM
     pub fn pllf_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pllf_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -392,10 +390,9 @@ impl SD10G65_TX_RCPLL_CFG1 {
 
     /// 0: max. freq 3: min. freq.
     pub fn pllf_vco_slow(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_pllf_vco_slow(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -422,10 +419,9 @@ impl SD10G65_TX_RCPLL_CFG2 {
     }
     /// Enable analog RCPLL part
     pub fn pll_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pll_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -602,10 +598,9 @@ impl SD10G65_TX_RCPLL_STAT0 {
     }
     /// Actual value of VCO slow portion, set by FSM
     pub fn pllf_vco_slow_stat(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_pllf_vco_slow_stat(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -664,10 +659,9 @@ impl SD10G65_TX_RCPLL_STAT1 {
 
     /// 0: reset state 1: init state after reset 3: ramp up state checks for the counters and ramps up the frequency 6: additional wait state for internal BIAS settling 8: additional wait state 1 9: additional wait state 2 10; additional wait state 3 11: additional wait state 4 12: 1st locking state enables dynamic locking 13: final locking state checks for out of lock and overrun condition 14: error state low frequency 15: error state high frequency
     pub fn pllf_fsm_stat(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_pllf_fsm_stat(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;

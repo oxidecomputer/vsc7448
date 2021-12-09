@@ -42,10 +42,9 @@ impl AUTOAGE_CFG {
 
     /// 0: Disabled n: Age period = n * UNIT_SIZE
     pub fn period_val(&self) -> u32 {
-        (self.0 & 0xfffffff) >> 0
+        self.0 & 0xfffffff
     }
     pub fn set_period_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffffff);
         self.0 &= !0xfffffff;
         self.0 |= value;
@@ -132,10 +131,9 @@ impl AUTOAGE_CFG_1 {
 
     /// 0: No force 1: SCAN stop after current scan completes and stays stopped.
     pub fn force_idle_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_force_idle_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -194,10 +192,9 @@ impl AUTOAGE_CFG_2 {
 
     /// 0: No event has occured 1: AUTOAGE scan ongoing.
     pub fn scan_ongoing_status(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_scan_ongoing_status(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -254,10 +251,9 @@ impl AUTO_LRN_CFG {
 
     /// 0: Disable 1: Enable.
     pub fn auto_lrn_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_auto_lrn_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -376,10 +372,9 @@ impl COMMON_ACCESS_CTRL {
 
     /// 0: Idle 1: Initiate CPU ACCESS The bit is cleared upon completion
     pub fn mac_table_access_shot(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mac_table_access_shot(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -594,10 +589,9 @@ impl EVENT_STICKY {
 
     /// 0: No CPU LEARN operations has failed. 1: A CPU LEARN operation has failed.
     pub fn cpu_lrn_failed_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cpu_lrn_failed_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -812,10 +806,9 @@ impl LATEST_POS_STATUS {
 
     /// 0: Column (bucket) 0 1: Column (bucket) 1 ... n: Column (bucket) n
     pub fn latest_col(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_latest_col(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -888,10 +881,9 @@ impl MAC_ACCESS_CFG_0 {
 
     /// Upper 16 bits of MAC address.
     pub fn mac_entry_mac_msb(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mac_entry_mac_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -912,13 +904,10 @@ impl MAC_ACCESS_CFG_1 {
 
     /// 0xXXXXXXXX: Lower 32 bits of MAC address.
     pub fn mac_entry_mac_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mac_entry_mac_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -936,10 +925,9 @@ impl MAC_ACCESS_CFG_2 {
 
     /// MAC_ENTRY_ADDR_TYPE= UPSID_PN: MAC_ENTRY_ADDR(9:5) = UPSID MAC_ENTRY_ADDR(4:0) = UPSPN Specifies unicast forwarding to port: UPSPN in device: UPSID. MAC_ENTRY_ADDR_TYPE = UPSID_CPU_OR_INT: MAC_ENTRY_ADDR(9:5) = UPSID MAC_ENTRY_ADDR(3:0) = CPU queue number when MAC_ENTRY_ADDR(11) = 0 MAC_ENTRY_ADDR(3:0) = Internal port number when MAC_ENTRY_ADDR(11) = 1 0xe: Internal port number (intpn_router) 0xf: Local lookup at destination upsid (ntpn_dlookup) MAC_ENTRY_ADDR_TYPE = GLAG MAC_ENTRY_ADDR = GLAGID Specifies unicast forwarding to the global aggregated port group: GLAGID. MAC_ENTRY_ADDR_TYPE = MC_IDX: MAC_ENTRY_ADDR = MC_IDX Specifies forwarding according to ANA_AC:PGID[32 + MC_IDX)
     pub fn mac_entry_addr(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_mac_entry_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -1098,10 +1086,9 @@ impl SCAN_LAST_ROW_CFG {
 
     /// 0: Scan completes at row 0 ... n: Scan completes at row n
     pub fn scan_last_row(&self) -> u32 {
-        (self.0 & 0x3fff) >> 0
+        self.0 & 0x3fff
     }
     pub fn set_scan_last_row(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
         self.0 |= value;
@@ -1122,10 +1109,9 @@ impl SCAN_NEXT_CFG {
 
     /// 0: Disable. SCAN and FIND_SMALLEST commands will treat MAC_ENTRY_ADDR and MAC_ENTRY_ADDR_TYPE values as don't care.. 1: Enable MAC_ENTRY_ADDR and MAC_ENTRY_ADDR_TYPE filter. SCAN and FIND_SMALLEST commands will only search for entries with Address value corresponding to MAC_ENTRY_ADDR and MAC_ENTRY_ADDR_TYPE taking LRN::SCAN_NEXT_CFG_1.SCAN_ENTRY_ADDR_MASK into account).
     pub fn addr_filter_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_addr_filter_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1336,10 +1322,9 @@ impl SCAN_NEXT_CFG_1 {
 
     /// 0: The corresponding bit is treated as dont care (ignore bit value) 1: The corresponding bit is treated as care
     pub fn scan_entry_addr_mask(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_scan_entry_addr_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -1354,10 +1339,9 @@ pub struct SCAN_NEXT_CNT(u32);
 impl SCAN_NEXT_CNT {
     /// Counter with number of found scan entries.
     pub fn scan_next_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_scan_next_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

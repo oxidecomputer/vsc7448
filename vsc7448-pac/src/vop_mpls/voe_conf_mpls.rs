@@ -82,10 +82,9 @@ impl BFD_CONFIG {
     }
     /// As part of the Rx verification of BFD PDUs, the BFD lengh field is compared to the value configured in this bitfield as part of the MAX_LEN test. If the MAX_LEN test fails, the frame is discarded at the following sticky bit is asserted. * VOP_MPLS:VOE_STAT_MPLS:BFD_RX_STICKY.MAX_LEN_ERR_STICKY
     pub fn bfd_max_len(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_bfd_max_len(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -196,13 +195,10 @@ pub struct BFD_LOCAL_DISCR_SINK(u32);
 impl BFD_LOCAL_DISCR_SINK {
     /// See register description.
     pub fn bfd_local_discr_sink(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_local_discr_sink(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -216,13 +212,10 @@ pub struct BFD_LOCAL_DISCR_SRC(u32);
 impl BFD_LOCAL_DISCR_SRC {
     /// See the register description.
     pub fn bfd_local_discr_src(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_local_discr_src(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -236,13 +229,10 @@ pub struct BFD_REMOTE_DISCR_SRC(u32);
 impl BFD_REMOTE_DISCR_SRC {
     /// See register description.
     pub fn bfd_remote_discr_src(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_remote_discr_src(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -274,10 +264,9 @@ impl CPU_COPY_CTRL_MPLS {
 
     /// '0': No extraction to CPU '1': Extract valid BFD CV frames to CPU
     pub fn bfd_cv_cpu_copy_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bfd_cv_cpu_copy_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -340,10 +329,9 @@ impl OAM_CNT_DATA_MPLS {
 
     /// '0': Do not count as data '1': Count as data
     pub fn bfd_cv_cnt_data_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bfd_cv_cnt_data_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -406,10 +394,9 @@ impl OAM_CNT_SEL_MPLS {
 
     /// '0': Count as other OAM '1': Count as selected OAM
     pub fn bfd_cv_cnt_sel_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bfd_cv_cnt_sel_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -464,10 +451,9 @@ impl OAM_HW_CTRL_MPLS {
     }
     /// Enable HW processing of valid BFD CV PDUs received by the VOE in both the Tx and the Rx direction. If this is disabled, no verification of the YourDiscriminator is done of the incoming BFD CV PDUs. All Rx PDUs will be processed as belonging to the Coordinated Mode. I.e. a BFD CV PDUs will never be processed as belonging to the FEIS Session.
     pub fn bfd_cv_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bfd_cv_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -484,10 +470,9 @@ pub struct PATH_VOE_MPLS(u32);
 impl PATH_VOE_MPLS {
     /// Assigns a Path VOE to the VOE. Must be enabled by: PATH_VOE_ENA = 1
     pub fn path_voeid(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_path_voeid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -534,10 +519,9 @@ impl VOE_CTRL_MPLS {
     }
     /// If another VOE is pointing to this VOE as a Path VOE using the following configuration: * VOP_MPLS:VOE_CONF_MPLS:PATH_VOE_MPLS.PATH_VOEID * VOP_MPLS:VOE_CONF_MPLS:PATH_VOE_MPLS.PATH_VOE_ENA this register MUST be set to '1'. If not this register must be set to '0'.
     pub fn voe_is_path(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_voe_is_path(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

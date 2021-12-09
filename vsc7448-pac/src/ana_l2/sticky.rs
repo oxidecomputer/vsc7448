@@ -36,10 +36,9 @@ pub struct ISDX_COS_CFG(u32);
 impl ISDX_COS_CFG {
     /// Ingress service counter set offset per COS ID.
     pub fn isdx_cos_offset(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_isdx_cos_offset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

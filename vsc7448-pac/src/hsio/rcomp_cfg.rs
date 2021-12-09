@@ -38,10 +38,9 @@ pub struct PLL5G_BIST_STAT1B(u32);
 impl PLL5G_BIST_STAT1B {
     /// BIST compare divider phase difference
     pub fn pllb_cnt_out(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pllb_cnt_out(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

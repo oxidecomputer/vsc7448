@@ -36,10 +36,9 @@ pub struct TR_CFG9(u32);
 impl TR_CFG9 {
     /// Number of training frames used for BER calculation.
     pub fn frcnt_ber(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_frcnt_ber(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

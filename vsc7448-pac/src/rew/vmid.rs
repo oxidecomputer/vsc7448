@@ -68,10 +68,9 @@ impl LL_TAG_REMARK_CFG {
 
     /// 0: Encapsulation LL_TAG_VAL[N].TAG_TPID 1: Classified.  ANA controls via IFH: If ifh.encap.tag_tipd = STD_TPID: If ifh.vstax.tag_type = 0 then 0x8100 else LL_TAG_VAL[N].TAG_TPID if ifh.encap.tag_tipd > 0: Custom TPID 1 to 3 configured by  REW::TPID_CFG[N].TPID_VAL
     pub fn tag_tpid_sel(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tag_tpid_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

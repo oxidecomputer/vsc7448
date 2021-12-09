@@ -66,10 +66,9 @@ impl SFLOW_CTRL {
 
     /// '0x0': 0 probability, i.e. sFlow sampler is disabled. '0x1': 1/32767 '0x7FFF': 100%, i.e. all frames are sampled by the sFlow sampler.
     pub fn sflow_sample_rate(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_sflow_sample_rate(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -86,10 +85,9 @@ pub struct SRC_CFG1(u32);
 impl SRC_CFG1 {
     /// Refer to description for ANA_AC:SRC.
     pub fn port_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_port_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;

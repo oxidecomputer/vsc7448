@@ -40,10 +40,9 @@ impl CPUQ_DISCARD {
 
     /// xxxxxxx1: Discard frames to CPU queue 0 xxxxxx1x: Discard frames to CPU queue 1 ... 1xxxxxxx: Discard frames to CPU queue 7
     pub fn cpuq_discard(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_cpuq_discard(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -94,10 +93,9 @@ impl FRAME_COPY_CFG {
 
     /// 0: Use normal queues 1: Use super priority queue bypassing all shapers 2: Use super priority queue obeying/updating port shaper 3: reserved
     pub fn frmc_sp_ena(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_frmc_sp_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -114,10 +112,9 @@ pub struct FRAME_COPY_LRNA_CFG(u32);
 impl FRAME_COPY_LRNA_CFG {
     /// Physical port to send Learn All frame to.
     pub fn frmc_port_lrna_val(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_frmc_port_lrna_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -132,10 +129,9 @@ pub struct FWD_CTRL(u32);
 impl FWD_CTRL {
     /// Process only one discard per cycle, required for egress drop statistics mode. Side effect is a slower processing of multiple drops on the same frame, causing potential head-of-line blocking.
     pub fn drop_single(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_drop_single(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -160,13 +156,10 @@ pub struct FWD_PRESS_DROP_CNT(u32);
 impl FWD_PRESS_DROP_CNT {
     /// Counts number of frames discarded due to forward pressure, since queue system reset.
     pub fn fwd_press_drop_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_fwd_press_drop_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -178,10 +171,9 @@ pub struct MIRROR_CFG(u32);
 impl MIRROR_CFG {
     /// One bit per mirror probe enabling generation of mirror copies also for frames discarded due to buffer discards.
     pub fn mirror_discards(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_mirror_discards(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -206,10 +198,9 @@ impl SWITCH_PORT_MODE {
     }
     /// Set this to clear (port) and (port,qos) reservations for the destination port. This is required to be able to move queues between ports.
     pub fn egress_rsrv_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_egress_rsrv_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

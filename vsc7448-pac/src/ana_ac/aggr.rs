@@ -38,13 +38,10 @@ pub struct AGGR_CFG(u32);
 impl AGGR_CFG {
     /// Aggregation port mask.
     pub fn port_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -56,10 +53,9 @@ pub struct PROBE_PORT_CFG1(u32);
 impl PROBE_PORT_CFG1 {
     /// Refer to PROBE_PORT_CFG.PROBE_PORT_MASK description.
     pub fn probe_port_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_probe_port_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;

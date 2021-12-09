@@ -36,10 +36,9 @@ pub struct PGID_MISC_CFG(u32);
 impl PGID_MISC_CFG {
     /// Copy frame to CPU. Related parameters: ANA_AC:PGID:PGID_MISC_CFG.PGID_CPU_QU
     pub fn pgid_cpu_copy_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pgid_cpu_copy_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

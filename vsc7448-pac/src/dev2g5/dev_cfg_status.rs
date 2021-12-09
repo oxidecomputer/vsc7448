@@ -42,10 +42,9 @@ impl DEV_DBG_CFG {
 
     /// 0: Count TX_SIZE events 1: Count TX_BACKOFF events
     pub fn backoff_cnt_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_backoff_cnt_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -150,10 +149,9 @@ impl DEV_PORT_PROTECT {
 
     /// 0: Port protection is disabled 1: Port protection is enabled
     pub fn port_protect_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_port_protect_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -188,10 +186,9 @@ impl DEV_RST_CTRL {
 
     /// 0: No reset 1: Reset. Note: MAC_RX_RST is NOT a one-shot operation. The clock domain remains reset until a '0' is written to MAC_RX_RST.
     pub fn mac_rx_rst(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mac_rx_rst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -366,10 +363,9 @@ impl DEV_STICKY {
 
     /// 0: No buffer underflow detected 1: Buffer underflow detected Bit is cleared by writing a 1 to this position.
     pub fn tx_uflw_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_uflw_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -436,10 +432,9 @@ impl EEE_CFG {
     }
     /// Status bit indicating whether port is in low-power-idle due to the LPI algorithm (EEE_CFG). If set, transmissions are held back.
     pub fn port_lpi(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_port_lpi(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -498,10 +493,9 @@ impl PTP_CFG {
     }
     /// Time in ns to add to timestamper in the egress direction to compensate for static delay through the physical encoding layers.
     pub fn ptp_tx_io_dly(&self) -> u32 {
-        (self.0 & 0x1ff) >> 0
+        self.0 & 0x1ff
     }
     pub fn set_ptp_tx_io_dly(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;

@@ -144,10 +144,9 @@ impl ANEG_LP_ADV_ABILITY_0 {
     }
     /// Selector field
     pub fn sel_field(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_sel_field(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -184,10 +183,9 @@ impl ANEG_LP_ADV_ABILITY_1 {
     }
     /// Bits 45 down to 32 of link code word received from link partner.
     pub fn lp_adv_abil_msb(&self) -> u32 {
-        (self.0 & 0x3fff) >> 0
+        self.0 & 0x3fff
     }
     pub fn set_lp_adv_abil_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
         self.0 |= value;
@@ -214,10 +212,9 @@ impl ANEG_NEXT_PAGE_1 {
     }
     /// Upper 16 bits of next page link code word
     pub fn np_tx_msb(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_np_tx_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -248,10 +245,9 @@ impl ANEG_STATUS {
     }
     /// Status indicating whether auto-negotiation has completed.
     pub fn aneg_complete(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_aneg_complete(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

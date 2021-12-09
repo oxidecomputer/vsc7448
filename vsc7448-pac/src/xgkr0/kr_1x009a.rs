@@ -36,10 +36,9 @@ pub struct KR_1X0099(u32);
 impl KR_1X0099 {
     /// Received status report field
     pub fn lpstat(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lpstat(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

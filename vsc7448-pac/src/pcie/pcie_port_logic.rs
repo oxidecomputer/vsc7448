@@ -34,10 +34,9 @@ use derive_more::{From, Into};
 #[derive(From, Into)]
 pub struct ACK_F_ASPM_CTRL(u32);
 impl ACK_F_ASPM_CTRL {    pub fn ack_freq(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_ack_freq(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -98,10 +97,9 @@ impl ACK_LATENCY_TIMER {    pub fn replay_time_limit(&self) -> u32 {
         self.0 &= !0xffff0000;
         self.0 |= value;
     }    pub fn round_trip_latency_time_limit(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_round_trip_latency_time_limit(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -114,10 +112,9 @@ impl ACK_LATENCY_TIMER {    pub fn replay_time_limit(&self) -> u32 {
 #[derive(From, Into)]
 pub struct AMBA_ERROR_RESPONSE_DEFAULT(u32);
 impl AMBA_ERROR_RESPONSE_DEFAULT {    pub fn amba_error_response_default(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_amba_error_response_default(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -130,10 +127,9 @@ impl AMBA_ERROR_RESPONSE_DEFAULT {    pub fn amba_error_response_default(&self) 
 #[derive(From, Into)]
 pub struct AMBA_MUL_OB_DECOMP_NP_SUB_REQ_CTRL(u32);
 impl AMBA_MUL_OB_DECOMP_NP_SUB_REQ_CTRL {    pub fn ib_ob_rd_split_burst_en(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ib_ob_rd_split_burst_en(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -148,13 +144,10 @@ pub struct ATU_BASE_ADDR_HIGH(u32);
 impl ATU_BASE_ADDR_HIGH {
     /// Outbound: Not used. Inbound: Bits 63:32 of the starting address of the address region to be translated.
     pub fn atu_base_addr_high(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_atu_base_addr_high(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -236,10 +229,9 @@ impl ATU_CFG1 {    pub fn atu_at(&self) -> u32 {
 
     /// 0: MRd/MWr 1: MRdLk 2: IORd/IOWr 4: CfgRd0/CfgWr0 5: CfgRd1/CfgWr1 16-23: Msg/MsgD
     pub fn atu_type(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_atu_type(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -280,10 +272,9 @@ impl ATU_CFG2 {    pub fn atu_cfg_shift_ena(&self) -> u32 {
     }
     /// When the address of an outbound TLP is matched to this region, and the translated TLP TYPE field is Msg or MsgD; then the Message field of the TLP is changed to the value in this register.
     pub fn atu_msg_code(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_atu_msg_code(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -314,10 +305,9 @@ impl ATU_CFG3 {    pub fn vf_active(&self) -> u32 {
         self.0 &= !0x80000000;
         self.0 |= value;
     }    pub fn vf_number(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vf_number(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -340,10 +330,9 @@ impl ATU_LIMIT_ADDR {
         self.0 &= !0xffff0000;
         self.0 |= value;
     }    pub fn reserved_3(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_reserved_3(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -374,10 +363,9 @@ impl ATU_REGION {
     }
     /// Selects region index, set to 0 or 1.
     pub fn atu_idx(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_atu_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -392,13 +380,10 @@ pub struct ATU_TGT_ADDR_HIGH(u32);
 impl ATU_TGT_ADDR_HIGH {
     /// Bits 63:32 of the new address of the translated region. Set to 0 to force new address into 32bit PCIe memory space.
     pub fn atu_tgt_addr_high(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_atu_tgt_addr_high(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -426,10 +411,9 @@ impl ATU_TGT_ADDR_LOW {
 #[derive(From, Into)]
 pub struct AUX_CLK_FREQ(u32);
 impl AUX_CLK_FREQ {    pub fn aux_clk_freq(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_aux_clk_freq(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -450,10 +434,9 @@ impl AXI_MASTER_CTRL_REG_0 {    pub fn remote_max_bridge_tag(&self) -> u32 {
         self.0 &= !0xff00;
         self.0 |= value;
     }    pub fn remote_read_req_size(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_remote_read_req_size(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -466,10 +449,9 @@ impl AXI_MASTER_CTRL_REG_0 {    pub fn remote_max_bridge_tag(&self) -> u32 {
 #[derive(From, Into)]
 pub struct AXI_MASTER_CTRL_REG_1(u32);
 impl AXI_MASTER_CTRL_REG_1 {    pub fn resize_master_response(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_resize_master_response(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -482,13 +464,10 @@ impl AXI_MASTER_CTRL_REG_1 {    pub fn resize_master_response(&self) -> u32 {
 #[derive(From, Into)]
 pub struct DEBUG_REG_0(u32);
 impl DEBUG_REG_0 {    pub fn deb_reg_0(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_deb_reg_0(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -498,13 +477,10 @@ impl DEBUG_REG_0 {    pub fn deb_reg_0(&self) -> u32 {
 #[derive(From, Into)]
 pub struct DEBUG_REG_1(u32);
 impl DEBUG_REG_1 {    pub fn deb_reg_1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_deb_reg_1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -514,13 +490,10 @@ impl DEBUG_REG_1 {    pub fn deb_reg_1(&self) -> u32 {
 #[derive(From, Into)]
 pub struct FILTER_MASK_REG_2(u32);
 impl FILTER_MASK_REG_2 {    pub fn mask_radm_2(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mask_radm_2(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -554,13 +527,10 @@ impl GEN2_CTRL {    pub fn gen1_ei_inference(&self) -> u32 {
 #[derive(From, Into)]
 pub struct HDR_LOG_REG_3(u32);
 impl HDR_LOG_REG_3 {    pub fn fourth_dword(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_fourth_dword(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -594,10 +564,9 @@ impl LANE_SKEW {    pub fn ack_nak_disable(&self) -> u32 {
         self.0 &= !0x1000000;
         self.0 |= value;
     }    pub fn insert_lane_skew(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_insert_lane_skew(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -610,10 +579,9 @@ impl LANE_SKEW {    pub fn ack_nak_disable(&self) -> u32 {
 #[derive(From, Into)]
 pub struct MISC_CONTROL_1(u32);
 impl MISC_CONTROL_1 {    pub fn dbi_ro_wr_en(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dbi_ro_wr_en(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -626,13 +594,10 @@ impl MISC_CONTROL_1 {    pub fn dbi_ro_wr_en(&self) -> u32 {
 #[derive(From, Into)]
 pub struct PHY_CONTROL(u32);
 impl PHY_CONTROL {    pub fn phy_control(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_phy_control(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -642,13 +607,10 @@ impl PHY_CONTROL {    pub fn phy_control(&self) -> u32 {
 #[derive(From, Into)]
 pub struct PHY_STATUS(u32);
 impl PHY_STATUS {    pub fn phy_status(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_phy_status(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -674,10 +636,9 @@ impl PORT_FORCE {    pub fn cpl_sent_count(&self) -> u32 {
         self.0 &= !0xf00;
         self.0 |= value;
     }    pub fn link_num(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_link_num(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -826,10 +787,9 @@ impl PORT_LINK_CTRL {    pub fn beacon_enable(&self) -> u32 {
         self.0 &= !0x8000000;
         self.0 |= value;
     }    pub fn vendor_specific_dllp_req(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vendor_specific_dllp_req(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -850,10 +810,9 @@ impl Q_STATUS {    pub fn rx_queue_non_empty(&self) -> u32 {
         self.0 &= !0x4;
         self.0 |= value;
     }    pub fn rx_tlp_fc_credit_non_return(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_tlp_fc_credit_non_return(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -914,10 +873,9 @@ impl SYMBOL_TIMER_FILTER_1 {    pub fn disable_fc_wd_timer(&self) -> u32 {
         self.0 &= !0xffff0000;
         self.0 |= value;
     }    pub fn skp_int_val(&self) -> u32 {
-        (self.0 & 0x7ff) >> 0
+        self.0 & 0x7ff
     }
     pub fn set_skp_int_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
@@ -930,10 +888,9 @@ impl SYMBOL_TIMER_FILTER_1 {    pub fn disable_fc_wd_timer(&self) -> u32 {
 #[derive(From, Into)]
 pub struct TIMER_CTRL_MAX_FUNC_NUM(u32);
 impl TIMER_CTRL_MAX_FUNC_NUM {    pub fn max_func_num(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_max_func_num(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -970,10 +927,9 @@ impl TIMER_CTRL_MAX_FUNC_NUM {    pub fn max_func_num(&self) -> u32 {
 #[derive(From, Into)]
 pub struct TX_CPL_FC_CREDIT_STATUS(u32);
 impl TX_CPL_FC_CREDIT_STATUS {    pub fn tx_cpl_data_fc_credit(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_tx_cpl_data_fc_credit(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -994,10 +950,9 @@ impl TX_CPL_FC_CREDIT_STATUS {    pub fn tx_cpl_data_fc_credit(&self) -> u32 {
 #[derive(From, Into)]
 pub struct TX_NP_FC_CREDIT_STATUS(u32);
 impl TX_NP_FC_CREDIT_STATUS {    pub fn tx_np_data_fc_credit(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_tx_np_data_fc_credit(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -1018,10 +973,9 @@ impl TX_NP_FC_CREDIT_STATUS {    pub fn tx_np_data_fc_credit(&self) -> u32 {
 #[derive(From, Into)]
 pub struct TX_P_FC_CREDIT_STATUS(u32);
 impl TX_P_FC_CREDIT_STATUS {    pub fn tx_p_data_fc_credit(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_tx_p_data_fc_credit(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -1058,10 +1012,9 @@ impl VC0_CPL_RX_Q_CTRL {    pub fn reserved8(&self) -> u32 {
         self.0 &= !0xff000000;
         self.0 |= value;
     }    pub fn vc0_cpl_data_credit(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_vc0_cpl_data_credit(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -1106,10 +1059,9 @@ impl VC0_NP_RX_Q_CTRL {    pub fn reserved6(&self) -> u32 {
         self.0 &= !0xff000000;
         self.0 |= value;
     }    pub fn vc0_np_data_credit(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_vc0_np_data_credit(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -1162,10 +1114,9 @@ impl VC0_P_RX_Q_CTRL {    pub fn reserved4(&self) -> u32 {
         self.0 &= !0x40000000;
         self.0 |= value;
     }    pub fn vc0_p_data_credit(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_vc0_p_data_credit(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -1202,10 +1153,9 @@ impl VC0_P_RX_Q_CTRL {    pub fn reserved4(&self) -> u32 {
 #[derive(From, Into)]
 pub struct VC_TX_ARBI_REG_1(u32);
 impl VC_TX_ARBI_REG_1 {    pub fn wrr_weight_vc_0(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_wrr_weight_vc_0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1242,10 +1192,9 @@ impl VC_TX_ARBI_REG_1 {    pub fn wrr_weight_vc_0(&self) -> u32 {
 #[derive(From, Into)]
 pub struct VC_TX_ARBI_REG_2(u32);
 impl VC_TX_ARBI_REG_2 {    pub fn wrr_weight_vc_4(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_wrr_weight_vc_4(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1282,12 +1231,9 @@ impl VC_TX_ARBI_REG_2 {    pub fn wrr_weight_vc_4(&self) -> u32 {
 #[derive(From, Into)]
 pub struct VENDOR_SPEC_DLLP(u32);
 impl VENDOR_SPEC_DLLP {    pub fn vendor_spec_dllp(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_vendor_spec_dllp(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

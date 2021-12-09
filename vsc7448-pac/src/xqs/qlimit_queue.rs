@@ -50,10 +50,9 @@ impl DROP_STAT_CTRL {
 
     /// 0: 4 counters included. Qos x and x+4 shares counter 1: 8 counters included, and two counter sets will be used
     pub fn drop_stat_cos8_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_drop_stat_cos8_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

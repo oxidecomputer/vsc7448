@@ -42,13 +42,10 @@ impl ARP_CFG_1 {
 
     /// Bit 0: MAC bit 0 ... Bit 31: MAC bit 31
     pub fn mac_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mac_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -60,12 +57,9 @@ pub struct EVMID_MASK_CFG(u32);
 impl EVMID_MASK_CFG {
     /// Bit mask with one bit for each router leg. If bit at position N is set, then a copy has to be sent to router leg N. If the frame has been received on router leg N, then the frame is L2 forwarded to other ports in the ingress VLAN. Else the frame is L3 fowarded to the VLAN that router leg N is attached to (ANA_L3:VMID:RLEG_CTRL.RLEG_EVID).
     pub fn evmid_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_evmid_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

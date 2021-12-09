@@ -40,10 +40,9 @@ impl ATOP {
 
     /// See RES_CFG
     pub fn atop(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_atop(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -60,10 +59,9 @@ pub struct EVENTS_CORE(u32);
 impl EVENTS_CORE {
     /// Look in the RTL!
     pub fn ev_fdc(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ev_fdc(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -102,10 +100,9 @@ impl FWD_PRESSURE {
     }
     /// Maximum frame copy count when fwd pressure is activated.
     pub fn fwd_pressure_copycnt(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_fwd_pressure_copycnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -120,10 +117,9 @@ pub struct PAUSE_CFG(u32);
 impl PAUSE_CFG {
     /// Enable pause feedback to the MAC, allowing transmission of pause frames or HDX collisions to limit ingress data rate.
     pub fn pause_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pause_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -184,10 +180,9 @@ impl PAUSE_TOT_CFG {
 
     /// See RES_CFG
     pub fn pause_tot_stop(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_pause_tot_stop(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;

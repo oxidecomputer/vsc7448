@@ -38,10 +38,9 @@ pub struct DEBUG_CTRL(u32);
 impl DEBUG_CTRL {
     /// Force port to be frame pending. To be used when a port for some unknown reason gets stuck. The port configured in FLUSH_PORT will be marked pending.
     pub fn port_kick(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_port_kick(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -56,10 +55,9 @@ pub struct DWRR_ENTRY(u32);
 impl DWRR_ENTRY {
     /// Current balance of the input
     pub fn dwrr_balance(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_dwrr_balance(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
@@ -84,10 +82,9 @@ pub struct EQ_STAT(u32);
 impl EQ_STAT {
     /// Number of free frame references.
     pub fn fp_free_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_fp_free_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -104,10 +101,9 @@ pub struct EVENTS_CORE(u32);
 impl EVENTS_CORE {
     /// If an frame is added to an invalid queue in the scheduling hierarchy, this sticky bit will be set, and the violating request is see the EVENT_ENQ_ERR register.
     pub fn ev_enq_err(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ev_enq_err(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -152,10 +148,9 @@ impl EVENT_ENQ_ERR {
     }
     /// Scheduling element being violated.
     pub fn enq_err_qno(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_enq_err_qno(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -190,10 +185,9 @@ impl FLUSH_CTRL {
     }
     /// Flushing will only affect frames from this queue or SE.
     pub fn flush_hier(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_flush_hier(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -258,10 +252,9 @@ impl HSCH_CFG_CFG {
     }
     /// Skip a hierarchy update every time this number of updates has been done. If zero, the feature is disabled. Setting to 4095 will disable hierachy updates.
     pub fn csr_grant(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_csr_grant(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -286,13 +279,10 @@ pub struct HSCH_LARGE_ENA(u32);
 impl HSCH_LARGE_ENA {
     /// Bit n in replication k enables extended width on scheduling element (32k+n)*2. Scheduling element (32k+n)*2+1 must not be used if enabled. Fx. if scheduling element 180 should handle 16 inputs, HSCH_LARGE_ENA[2] bit 26 should be set to 1, and element 181 must not be used.
     pub fn hsch_large_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_hsch_large_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -304,10 +294,9 @@ pub struct HSCH_MISC_CFG(u32);
 impl HSCH_MISC_CFG {
     /// Values to add each frame when frame length adjustment is in use.
     pub fn frm_adj(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_frm_adj(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -332,10 +321,9 @@ pub struct HSCH_UPDATE_STAT(u32);
 impl HSCH_UPDATE_STAT {
     /// Return the maximum period of constant update need. Clear by writing one to the lsb of the register.
     pub fn hsch_update_cnt(&self) -> u32 {
-        (self.0 & 0x1fff) >> 0
+        self.0 & 0x1fff
     }
     pub fn set_hsch_update_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
@@ -350,10 +338,9 @@ pub struct OUTB_CPU_SHARE_ENA(u32);
 impl OUTB_CPU_SHARE_ENA {
     /// When enabled, unused bandwidth sharing will be granted to the an internal CPUport, only when the calendar designated port is another internal CPU port. The OUTB_SHARE_ENA must be configured for the CPU ports when this is enabled
     pub fn outb_cpu_share_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_outb_cpu_share_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -368,10 +355,9 @@ pub struct OUTB_SHARE_ENA(u32);
 impl OUTB_SHARE_ENA {
     /// Sets the minimum distance between grants to an internal port. Extra grants are disabled when configured value is 0, otherwise the port seeks extra bandwidth, and the minimim distance in clock cycles is given by this value. The four replications are for internal CPU 0, internal CPU 1, VD0 and VD1. Setting a value of 14 grants extra bandwidth every 14 cycles, which for minimum sized frames corresponds to 84 bytes per 14 x 6,4 ns, or 7.5Gbps. Setting a value of 10 grants every 10 cycles, corresponding to 84 bytes per 64 ns, or 10.5Gbps. Minimum value for VD0 is 14, and 8 for the other internal ports.
     pub fn outb_share_ena(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_outb_share_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -402,10 +388,9 @@ impl PFC_CFG {
     }
     /// Set to the scheduling element number which should be affected by pfc status for this port.
     pub fn pfc_se(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_pfc_se(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -436,10 +421,9 @@ impl PORT_MODE {
 
     /// 0: IFH CPU mask shows all CPU queues the frame applies to. Priority of frame set to the CPU queue the frame copy is generated for 1: IFH CPU mask shows the CPU queue number the frame copy is generated for. Priority of frame set to the priority selected for the particular frame copy (see QFWD::FRAME_COPY_CFG)
     pub fn cpu_prio_mode(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cpu_prio_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -484,10 +468,9 @@ pub struct SYS_CLK_PER(u32);
 impl SYS_CLK_PER {
     /// Must be set to the system clock period with unit 100 picoseconds.
     pub fn sys_clk_per_100ps(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_sys_clk_per_100ps(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

@@ -40,10 +40,9 @@ impl DP_MAP {
 
     /// xxx0: Map DP value 0 to DE value 0 xxx1: Map DP value 0 to DE value 1 ... 0xxx: Map DP value 3 to DE value 0 1xxx: Map DP value 3 to DE value 1
     pub fn dp(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_dp(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;

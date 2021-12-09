@@ -66,10 +66,9 @@ impl CCM_CFG {
     }
     /// If this bit is asserted, the value of the MEP ID in incoming CCM frames will be verified against the value programmed in: * VOP:VOE_CONF:PEER_MEPID_CFG.PEER_MEPID If the MEPID verification fails the following sticky bit is asserted: * VOP:VOE_STAT:CCM_RX_LAST.CCM_MEPID_ERR An interrupt can optionally be generated when the state of the CCM MEPID verification changes: * VOP:VOE_STAT:INTR_STICKY.CCM_MEPID_RX_ERR_STICKY If the MEPID verification fails, the frame is marked as invalid.
     pub fn ccm_mepid_chk_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ccm_mepid_chk_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -130,13 +129,10 @@ pub struct CCM_MEGID_CFG(u32);
 impl CCM_MEGID_CFG {
     /// See register description.
     pub fn ccm_megid(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ccm_megid(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -168,10 +164,9 @@ impl G_8113_1_CFG {
 
     /// 0: Don't verify incoming LBM / LBR TLV MEP / MIP / MEG ID values (G.8113.1) 0: Verify incoming LBM / LBR TLV MEP / MIP / MEG ID values (G.8113.1)
     pub fn g_8113_1_lbx_mexid_chk_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_g_8113_1_lbx_mexid_chk_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -188,13 +183,10 @@ pub struct G_8113_1_REMOTE_MIPID(u32);
 impl G_8113_1_REMOTE_MIPID {
     /// See register description.
     pub fn g_8113_1_remote_mipid(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_8113_1_remote_mipid(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -208,13 +200,10 @@ pub struct G_8113_1_REMOTE_MIPID1(u32);
 impl G_8113_1_REMOTE_MIPID1 {
     /// See register description.
     pub fn g_8113_1_remote_mipid1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_8113_1_remote_mipid1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -228,13 +217,10 @@ pub struct G_8113_1_REMOTE_MIPID2(u32);
 impl G_8113_1_REMOTE_MIPID2 {
     /// See register description.
     pub fn g_8113_1_remote_mipid2(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_g_8113_1_remote_mipid2(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -252,10 +238,9 @@ impl LOOPBACK_CFG {
 
     /// 0: DP bits to be looped with the frame. 1: DP bits are cleared when frame is looped.
     pub fn clear_dp_on_loop(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clear_dp_on_loop(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -300,10 +285,9 @@ impl LOOPBACK_ENA {
 
     /// '0': OAM DMM PDU is not looped as DMR frames. '1': OAM DMM PDU is looped as a DMR frame.
     pub fn lb_dmm_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_lb_dmm_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -348,13 +332,10 @@ pub struct MEP_UC_MAC_LSB(u32);
 impl MEP_UC_MAC_LSB {
     /// See register description.
     pub fn mep_uc_mac_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mep_uc_mac_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -368,10 +349,9 @@ pub struct MEP_UC_MAC_MSB(u32);
 impl MEP_UC_MAC_MSB {
     /// See register description.
     pub fn mep_uc_mac_msb(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mep_uc_mac_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -392,10 +372,9 @@ impl OAM_CNT_DATA_CTRL {
 
     /// '0': Do not count as data '1': Count as data
     pub fn ccm_data_cnt_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ccm_data_cnt_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -580,10 +559,9 @@ pub struct OAM_CNT_OAM_CTRL(u32);
 impl OAM_CNT_OAM_CTRL {
     /// Enable / disable count of OAM PDU CCM with LM content as selected OAM. For this register to take effect, the HW processing of CCM-LM frames must be enabled: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_LM_ENA
     pub fn ccm_lm_oam_cnt_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ccm_lm_oam_cnt_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -940,10 +918,9 @@ impl OAM_CPU_COPY_CTRL {
 
     /// 0: Assert sticky bit and extract PDU for all PDU types. 1: Assert sticky bit and extract PDU only for CCM(-LM) frames.
     pub fn pdu_err_extract_ccm_only(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pdu_err_extract_ccm_only(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1012,10 +989,9 @@ impl OAM_HW_CTRL {
     }
     /// Enable HW processing of valid CCM-LM PDUs received by the VOE in both the Tx and the Rx direction. CC-LM is only supported on the priority configured in the following priority: * VOP:VOE_CONF:CCM_CFG.CCM_PRIO If an Rx CCM PDU is received on another priority than this, statistics are updated as if it was a CCM-LM PDU, but no values are sampled for use in the Tx direction: * CCM-LM.TX_FC_F * FC LM Rx counter when the CCM-LM frame was received These values are sampled for valid CCM-LM PDUs received on the correct priority. The result of the priority test for the latest valid Rx CCM-LM PDU is stored: * VOP:VOE_STAT:CCM_RX_LAST.CCM_PRIO_ERR Note: CCM_ENA must be asserted when asserting CCM_LM_ENA
     pub fn ccm_lm_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ccm_lm_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1136,10 +1112,9 @@ impl PATH_VOE_CFG {
 
     /// Index of the Path VOE. Must point to a VOE in the pool of Service VOEs (0-255)
     pub fn path_voeid(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_path_voeid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -1166,10 +1141,9 @@ pub struct PDU_VOE_PASS(u32);
 impl PDU_VOE_PASS {
     /// Each of the bits in the register represents a Generic OpCode. See: VOP::OAM_GENERIC_CFG.* When asserting a bit in the register, the corresponding Generic OpCode will be allowed to pass though VOE, rather than be terminated, when received at the same MEL as is configured for the VOE. This can be used to allow e.g. Ring PDUs to be copied and to pass transparently through the VOE.
     pub fn generic_voe_pass_ena(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_generic_voe_pass_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1186,10 +1160,9 @@ pub struct PEER_MEPID_CFG(u32);
 impl PEER_MEPID_CFG {
     /// See register description.
     pub fn peer_mepid(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_peer_mepid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1216,10 +1189,9 @@ impl SAM_COSID_SEQ_CFG {
     }
     /// When per COSID sequence numbering is enabled by asserting one of the following bitfields, this register selectes which of the per COSID counter sets will be used for per COSID statistics. Per COSID sequence numbering is enabled by asserting one of the following bit fields: * PER_COSID_LBM * PER_COSID_CCM Counters are located in CSR register group: * VOP:SAM_COSID_SEQ_CNT:*
     pub fn per_cosid_cnt_set(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_per_cosid_cnt_set(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -1284,10 +1256,9 @@ impl SAM_NON_OAM_SEQ_CFG {
 
     /// 0: Count only Rx SAM_SEQ frames with FORWARD-SEQ-NUMBER-ERROR = 1 1: Count Rx SAM_SEQ frames with FORWARD-SEQ-NUMBER-ERROR = 1 or with unexpected sequence number.
     pub fn sam_seq_rx_err_cnt_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sam_seq_rx_err_cnt_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1318,10 +1289,9 @@ pub struct SLM_CONFIG(u32);
 impl SLM_CONFIG {
     /// The VOE supports only a single priority (COSID) when configured for SynLM. If the frame priority of Tx / Rx SynLM PDUs processed by the VOE does not match the configured value, the frame is considered to be invalid.
     pub fn slm_prio(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_slm_prio(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -1338,10 +1308,9 @@ pub struct SLM_PEER_LIST(u32);
 impl SLM_PEER_LIST {
     /// If enabled, SLM_PEER_MEPID contains a valid MEPID
     pub fn slm_peer_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_slm_peer_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1368,13 +1337,10 @@ pub struct SLM_TEST_ID(u32);
 impl SLM_TEST_ID {
     /// See register description.
     pub fn slm_test_id(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_slm_test_id(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1398,10 +1364,9 @@ impl TX_TRANSID_UPDATE {
     }
     /// If asserted, the transaction ID will be updated for valid TST frames transmitted by this VOE. This can be used to avoid overwriting the Tx ID for externally generated TST frames.
     pub fn tst_update_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tst_update_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1504,10 +1469,9 @@ impl VOE_CTRL {
 
     /// 0: Configure as standard VOE 1: Configure as SAT test VOE
     pub fn sat_test_voe(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sat_test_voe(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1576,10 +1540,9 @@ pub struct VOE_MEPID_CFG(u32);
 impl VOE_MEPID_CFG {
     /// See register description.
     pub fn voe_mepid(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_voe_mepid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1620,10 +1583,9 @@ impl VOE_MISC_CONFIG {
     }
     /// Enable the VOE for Synthetic Loss Measurements. If enabled, the normal LM counters are used differently than when running standard frame loss measurements. The Rx counters are used to count SLR/SL1 frames received from different Peer MEPs. The Tx counters are used to count SLR/SL1 frames transmitted to different Peer MEPs. Note that there is no counting of data frames or other NON SL OAM PDUs. Asserting this register will avoid any other VOEs from updating the LM counters of this VOE as part of a hierarchical LM counter update.
     pub fn sl_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sl_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

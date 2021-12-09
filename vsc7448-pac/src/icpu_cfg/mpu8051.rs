@@ -66,10 +66,9 @@ pub struct MEMACC_CTRL(u32);
 impl MEMACC_CTRL {
     /// Set this field to start an access with the parameters specified by MEMACC_CTRL.MEMACC_EXAMINE, MEMACC.MEMACC_START, MEMACC.MEMACC_STOP, and MEMACC_SBA.MEMACC_SBA_START. This field is cleared when the requested number of 32-bit words has been transfered.
     pub fn memacc_do(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_memacc_do(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -118,10 +117,9 @@ pub struct MPU8051_CFG(u32);
 impl MPU8051_CFG {
     /// This field controls if the VCore UART or the 8051's internal UART is conencted to the chip IOs. The default, when the UART is always used. By clearing this field the 8051's internal UART will be connected to the chip IOs, this field only applies to an 8051 enabled system - clearing this field has no effect in a MIPS based VCore System.
     pub fn uart_sys_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_uart_sys_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -168,10 +166,9 @@ impl MPU8051_MMAP {
     }
     /// Set to map 8051 data-accesses in the low 32KByte memory range to on-chip memory instead of FLASH.
     pub fn map_data_low(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_map_data_low(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -228,10 +225,9 @@ pub struct MPU8051_STAT(u32);
 impl MPU8051_STAT {
     /// A read-only copy of the 8051 GPR register at SFR address 0xF0.
     pub fn mpu8051_gpr(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_mpu8051_gpr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -318,10 +314,9 @@ impl SW_MODE {
     }
     /// Current value of the SI_DI input.
     pub fn sw_spi_sdi(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sw_spi_sdi(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

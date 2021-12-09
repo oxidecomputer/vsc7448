@@ -36,13 +36,10 @@ pub struct FIXED_ERROR_COUNT_THRESHOLD(u32);
 impl FIXED_ERROR_COUNT_THRESHOLD {
     /// When fixed error count exceeds or equal to this value, then FEC_FIXED_ERROR_COUNT_STICKY sticky bit is set and interrupt is generated if enabled through FEC_FIXED_ERROR_COUNT_STICKY_MASK
     pub fn fixed_error_count_threshold(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_fixed_error_count_threshold(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -86,10 +83,9 @@ impl KR_FEC_CFG {
 
     /// 0 = Disable FEC 1 = Enable FEC
     pub fn fec_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fec_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

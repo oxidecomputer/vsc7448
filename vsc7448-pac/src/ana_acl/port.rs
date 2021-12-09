@@ -42,10 +42,9 @@ impl VCAP_S2_KEY_SEL {
 
     /// 0: Match against MAC_ETYPE entries. 1: Match against ARP entries.
     pub fn arp_key_sel(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_arp_key_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

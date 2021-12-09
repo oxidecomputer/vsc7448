@@ -34,12 +34,9 @@ use derive_more::{From, Into};
 #[derive(From, Into)]
 pub struct CT_OAM_DATA1_ANA(u32);
 impl CT_OAM_DATA1_ANA {    pub fn ct_oam_misc_ana(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ct_oam_misc_ana(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

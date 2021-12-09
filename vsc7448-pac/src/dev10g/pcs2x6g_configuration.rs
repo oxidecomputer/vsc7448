@@ -38,12 +38,9 @@ pub struct PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS(u32);
 impl PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS {
     /// Jitter pattern transmit counter
     pub fn jp_tx_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_jp_tx_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

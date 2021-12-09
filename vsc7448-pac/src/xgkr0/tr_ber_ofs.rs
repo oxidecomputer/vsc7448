@@ -46,10 +46,9 @@ impl TR_BER_THR {
     }
     /// Only consider errored range > ber_wid_th
     pub fn ber_wid_th(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_ber_wid_th(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

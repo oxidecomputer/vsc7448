@@ -286,10 +286,9 @@ impl CLASS_STICKY_MASK {
 
     /// 0: Disable event count 1: Enable event count
     pub fn qos_stack_tag_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_qos_stack_tag_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -350,10 +349,9 @@ impl FILTER_STICKY_MASK {
 
     /// 0: Disable event count 1: Enable event count
     pub fn bad_macs_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bad_macs_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -386,10 +384,9 @@ impl IP_HDR_CHK_STICKY {
 
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn ip4_chksum_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ip4_chksum_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -450,10 +447,9 @@ impl IP_HDR_CHK_STICKY_MASK {
 
     /// 0: Disable event count 1: Enable event count
     pub fn ip4_chksum_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ip4_chksum_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -514,10 +510,9 @@ impl MIP_STICKY_MASK {
 
     /// 0: Disable event count 1: Enable event count
     pub fn mip_ccm_copy_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mip_ccm_copy_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -676,10 +671,9 @@ impl VLAN_FILTER_STICKY_MASK {
 
     /// 0: Disable event count 1: Enabale event count
     pub fn filter_stag_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_filter_stag_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

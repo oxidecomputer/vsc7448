@@ -70,10 +70,9 @@ impl RCOMP_STATUS {
 
     /// 0: maximum resistance value 15: minimum resistance value
     pub fn rcomp(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_rcomp(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -94,10 +93,9 @@ impl SYNC_ETH_CFG {
 
     /// 0: Disable (high-impedance) 1: Enable (output recovered clock)
     pub fn reco_clk_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_reco_clk_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -150,10 +148,9 @@ impl SYNC_ETH_PLL2_CFG {
     }
     /// Enable auto-squelching for sync. ethernet clock output: when set the clock output will stop toggling (keep its last value constantly) when PLL is out of lock.
     pub fn pll2_auto_squelch_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pll2_auto_squelch_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

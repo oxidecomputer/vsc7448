@@ -108,10 +108,9 @@ impl INJ_ERR {
     }
     /// Set in case of overflow as a result of not obeying FIFO-ready
     pub fn wr_err_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_wr_err_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -130,10 +129,9 @@ impl INJ_GRP_CFG {
 
     /// 0: Same endianess as CPU 1: Swap endianness
     pub fn byte_swap(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_byte_swap(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -180,10 +178,9 @@ impl INJ_STATUS {
 
     /// 0: A frame injection is not in progress 1: A frame injection is in progress
     pub fn inj_in_progress(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_inj_in_progress(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -212,13 +209,10 @@ pub struct INJ_WR(u32);
 impl INJ_WR {
     /// Frame Write. Write to this register inject  the next 32 bits of the frame data currently injected into the chip. Reading from this register returns 0.
     pub fn data(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_data(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -234,10 +228,9 @@ impl VTSS_DBG {
 
     /// 0: No frames has been injected 1: 1 frame has been injected ... 15: 15 frames have been injected
     pub fn frm_cnt(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -266,10 +259,9 @@ impl XTR_CFG {
 
     /// 0: No buffer overruns detected 1: Buffer has overrruned at least once
     pub fn oflw_err_sticky(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_oflw_err_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;

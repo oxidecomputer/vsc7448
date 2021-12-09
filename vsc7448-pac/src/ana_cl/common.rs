@@ -84,10 +84,9 @@ impl ADV_CL_CFG {
 
     /// 1: Enable 0: Disable
     pub fn lookup_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_lookup_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -178,10 +177,9 @@ impl ADV_RNG_CTRL {
 
     /// 0: Idle (no matching) 1: TCP/UDP destination port is matched against range 2: TCP/UDP source port is matched against range 3: TCP/UDP destination and source ports are matched against range. There is a match if either of them matches. 4: Basic classified VID is matched against range 5: Basic classified DSCP value is matched against range 6: EtherType is matched against range.
     pub fn rng_type_sel(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_rng_type_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -206,10 +204,9 @@ impl ADV_RNG_VALUE_CFG {
     }
     /// Lower range value. Value is included in range.
     pub fn rng_min_value(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_rng_min_value(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -356,10 +353,9 @@ impl AGGR_CFG {
 
     /// 0: Disable 1: Enable.
     pub fn aggr_smac_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_aggr_smac_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -422,10 +418,9 @@ impl CLM_KEY_CFG {
 
     /// 0: Use TRI_VID 1: Use TRI_VID_IDX
     pub fn clm_tri_vid_sel(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clm_tri_vid_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -458,10 +453,9 @@ impl CLM_MISC_CTRL {
 
     /// 0: Disable 1: Enable.
     pub fn cpu_igr_mask_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cpu_igr_mask_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -592,10 +586,9 @@ impl COMMON_VSTAX_CFG {
 
     /// 0: Disable 1: Enable (VSTAX MISC contains DSCP)
     pub fn vstax2_misc_dscp_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vstax2_misc_dscp_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -612,10 +605,9 @@ pub struct CPU_8021_QOS_CFG(u32);
 impl CPU_8021_QOS_CFG {
     /// Configures QoS class for frames with DMAC in BPDU range that are redirected to the CPU.
     pub fn bpdu_qos(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_bpdu_qos(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -652,10 +644,9 @@ pub struct CPU_8021_QU_CFG(u32);
 impl CPU_8021_QU_CFG {
     /// CPU extraction queue for BPDU frames.
     pub fn cpu_bpdu_qu(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_cpu_bpdu_qu(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -700,10 +691,9 @@ impl CPU_PROTO_QU_CFG {
     }
     /// CPU extraction queue used for IGMP frames.
     pub fn cpu_igmp_qu(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_cpu_igmp_qu(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -798,10 +788,9 @@ impl DSCP_CFG {
     }
     /// If set, the DSCP value is trusted and can be used for QoS and DP classification.
     pub fn dscp_trust_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dscp_trust_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -830,10 +819,9 @@ impl HM_CFG {
 
     /// 0: Disable 1: Enable
     pub fn hmd_port_vld(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_hmd_port_vld(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -952,10 +940,9 @@ impl MPLS_CFG {
     }
     /// CPU copy of frames when termination PW (fwd_type = PW).
     pub fn cpu_mpls_pw_err_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cpu_mpls_pw_err_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1040,10 +1027,9 @@ impl MPLS_LM_CFG {
     }
     /// Controls if profile should be part of OAM LM count.
     pub fn mpls_g8113_1_non_oam_lm_cnt_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mpls_g8113_1_non_oam_lm_cnt_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1104,10 +1090,9 @@ impl MPLS_MISC_CFG {
 
     /// Bit 0: Skip reserved label when generating MPLS label keys for VCAP_CLM lookup #0. Bit 1: Skip reserved label when generating MPLS label keys for VCAP_CLM lookup #1. ...
     pub fn clm_rsvd_lbl_skip_ena(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_clm_rsvd_lbl_skip_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -1138,10 +1123,9 @@ impl MPLS_RSV_LBL_CFG {
 
     /// 0: Allow reserved label to be part of MPLS label keys 1: Reserved label will be skipped when generating MPLS label keys
     pub fn rsvd_lbl_skip_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rsvd_lbl_skip_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1160,10 +1144,9 @@ impl OAM_CFG {
 
     /// 0: Disable VCCV2 signalling 1: Enable VCCV2 signalling
     pub fn vccv2_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vccv2_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1206,10 +1189,9 @@ pub struct UPSID_CFG(u32);
 impl UPSID_CFG {
     /// Configures own unit port set ID (UPSID) to be used for stacking. The configured value must be even. Port numbers below 32 will use the configured (even) UPSID, whereas port numbers >=32 will use the configured UPSID plus 1. This must be configured consistently across the following registers: ANA_CL::UPSID_CFG.UPSID_NUM ANA_AC::COMMON_VSTAX_CFG.OWN_UPSID ANA_L2::VSTAX_CTRL.OWN_UPSID REW::COMMON_CTRL.OWN_UPSID
     pub fn upsid_num(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_upsid_num(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -1226,10 +1208,9 @@ pub struct VLAN_STAG_CFG(u32);
 impl VLAN_STAG_CFG {
     /// Configurable S-tag TPID EtherType. This value must be configured identically in REW::TPID_CFG.TPID_VAL.
     pub fn stag_etype_val(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_stag_etype_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1244,10 +1225,9 @@ pub struct VRAP_CFG(u32);
 impl VRAP_CFG {
     /// VID value for VRAP frames.
     pub fn vrap_vid(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_vrap_vid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -1272,13 +1252,10 @@ pub struct VRAP_HDR_DATA(u32);
 impl VRAP_HDR_DATA {
     /// A VRAP frame's VRAP header is matched against VRAP_HDR_DATA, except for bits don't cared by VRAP_HDR_MASK. The VRAP header is four bytes located in the frame after EtherType = 0x8808 and EPID = 0x0004.
     pub fn vrap_hdr_data(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_vrap_hdr_data(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1290,12 +1267,9 @@ pub struct VRAP_HDR_MASK(u32);
 impl VRAP_HDR_MASK {
     /// Bits set in VRAP_HDR_MASK don't care the equivalent bits in VRAP_HDR_DATA.
     pub fn vrap_hdr_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_vrap_hdr_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

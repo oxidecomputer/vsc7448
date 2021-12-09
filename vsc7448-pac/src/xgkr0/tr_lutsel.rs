@@ -46,10 +46,9 @@ impl TR_BER_OFS {
     }
     /// Signed value to adjust final cm tap position from calculated optimal setting.
     pub fn cm_ber_ofs(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_cm_ber_ofs(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;

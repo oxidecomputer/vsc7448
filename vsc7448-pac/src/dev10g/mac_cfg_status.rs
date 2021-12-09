@@ -68,10 +68,9 @@ impl MAC_ADV_CHK_CFG {
 
     /// '0': Frames which have a frame length field inconsistent with the actual frame length are not error-marked '1': Frames with inconsistent frame length fields are error marked and will be discarded by the Rx Queue System.
     pub fn inr_err_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_inr_err_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -160,10 +159,9 @@ impl MAC_ENA_CFG {
 
     /// '0': Disabled '1': Enabled.
     pub fn tx_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -196,10 +194,9 @@ impl MAC_LB_CFG {
 
     /// '0': PHY Loopback Disabled at XGMII interface. '1': PHY Loopback Enabled at XGMII interface.
     pub fn xgmii_phy_lb_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_xgmii_phy_lb_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -218,10 +215,9 @@ impl MAC_LFS_CFG {
 
     /// '0': Ignore Link Faults detected by the MAC receiver module '1': React on detected Link Faults and transmit the appropriate Sequence Ordered Set.
     pub fn lfs_mode_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_lfs_mode_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -282,10 +278,9 @@ impl MAC_MAXLEN_CFG {
 
     /// The maximum allowable size is 10056 Bytes.
     pub fn max_len(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_max_len(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -318,10 +313,9 @@ impl MAC_MODE_CFG {
 
     /// = 0 ; MAC10G should disregard the HIH CKSM. = 1 ; MAC10G should discard any frame with invalid CKSM
     pub fn hih_crc_check(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_hih_crc_check(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -396,10 +390,9 @@ impl MAC_NUM_TAGS_CFG {
 
     /// '0': No tags are detected by MAC. 'n': Maximum of n consecutive VLAN Tags are detected by the MAC and accordingly MAX LEN is modified for frame length calculations.
     pub fn num_tags(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_num_tags(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -418,10 +411,9 @@ impl MAC_RX_LANE_STICKY_0 {
 
     /// Bit 0: Sticky bit indicating that a Data character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 1: Sticky bit indicating that a Control character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 2: Sticky bit indicating that an Idle character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 3: Sticky bit indicating that a Sequence character (0x9C) has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 4: Sticky bit indicating that a SOP character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 5: Sticky bit indicating that an EOP character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 6: Sticky bit indicating that an Error character has been received on Lane 0. Writing a '1' clears the sticky bit.
     pub fn lane0_sticky(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_lane0_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -482,10 +474,9 @@ impl MAC_RX_LANE_STICKY_1 {
 
     /// See format of LANE0 sticky bit register.
     pub fn lane4_sticky(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_lane4_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -584,10 +575,9 @@ impl MAC_TX_MONITOR_STICKY {
 
     /// '0': The DISABLE state has never been reached. '1': The DISABLE state has been reached. Bit is cleared by writing a '1' to this position.
     pub fn dis_state_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dis_state_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -40,13 +40,10 @@ impl RX_ALIGNMENT_LOST_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_alignment_lost_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_alignment_lost_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -62,13 +59,10 @@ impl RX_BAD_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_bad_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_bad_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -86,10 +80,9 @@ impl RX_BAD_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_bad_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_rx_bad_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -108,13 +101,10 @@ impl RX_BC_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_bc_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_bc_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -130,13 +120,10 @@ impl RX_CRC_ERR_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_crc_err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_crc_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -152,13 +139,10 @@ impl RX_FRAGMENTS_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_fragments_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_fragments_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -174,13 +158,10 @@ impl RX_IN_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_in_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_in_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -198,10 +179,9 @@ impl RX_IN_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_in_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_rx_in_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -220,13 +200,10 @@ impl RX_IN_RANGE_LEN_ERR_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_in_range_len_err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_in_range_len_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -242,13 +219,10 @@ impl RX_IPG_SHRINK_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_ipg_shrink_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_ipg_shrink_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -264,13 +238,10 @@ impl RX_JABBERS_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_jabbers_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_jabbers_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -286,13 +257,10 @@ impl RX_MC_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_mc_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_mc_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -308,13 +276,10 @@ impl RX_OK_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_ok_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_ok_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -332,10 +297,9 @@ impl RX_OK_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_ok_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_rx_ok_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -354,13 +318,10 @@ impl RX_OUT_OF_RANGE_LEN_ERR_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_out_of_range_len_err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_out_of_range_len_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -376,13 +337,10 @@ impl RX_OVERSIZE_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_oversize_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_oversize_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -398,13 +356,10 @@ impl RX_PAUSE_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_pause_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_pause_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -420,13 +375,10 @@ impl RX_SIZE1024TO1518_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_size1024to1518_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_size1024to1518_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -442,13 +394,10 @@ impl RX_SIZE128TO255_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_size128to255_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_size128to255_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -464,13 +413,10 @@ impl RX_SIZE1519TOMAX_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_size1519tomax_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_size1519tomax_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -486,13 +432,10 @@ impl RX_SIZE256TO511_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_size256to511_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_size256to511_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -508,13 +451,10 @@ impl RX_SIZE512TO1023_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_size512to1023_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_size512to1023_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -530,13 +470,10 @@ impl RX_SIZE64_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_size64_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_size64_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -552,13 +489,10 @@ impl RX_SIZE65TO127_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_size65to127_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_size65to127_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -574,13 +508,10 @@ impl RX_SYMBOL_ERR_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_symbol_err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_symbol_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -596,13 +527,10 @@ impl RX_TAGGED_FRMS_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_tagged_frms_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_tagged_frms_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -618,13 +546,10 @@ impl RX_UC_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_uc_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_uc_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -640,13 +565,10 @@ impl RX_UNDERSIZE_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_undersize_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_undersize_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -662,13 +584,10 @@ impl RX_UNSUP_OPCODE_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_unsup_opcode_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_unsup_opcode_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -684,13 +603,10 @@ impl RX_UNTAGGED_FRMS_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_untagged_frms_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_untagged_frms_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -708,13 +624,10 @@ impl TX_BACKOFF1_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_backoff1_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_backoff1_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -730,13 +643,10 @@ impl TX_BC_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_bc_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_bc_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -754,13 +664,10 @@ impl TX_CSENSE_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_csense_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_csense_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -778,13 +685,10 @@ impl TX_DEFER_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_defer_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_defer_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -802,13 +706,10 @@ impl TX_LATE_COLL_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_late_coll_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_late_coll_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -824,13 +725,10 @@ impl TX_MC_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_mc_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_mc_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -848,13 +746,10 @@ impl TX_MULTI_COLL_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_multi_coll_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_multi_coll_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -870,13 +765,10 @@ impl TX_OK_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_ok_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_ok_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -894,10 +786,9 @@ impl TX_OK_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_ok_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_tx_ok_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -916,13 +807,10 @@ impl TX_OUT_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_out_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_out_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -940,10 +828,9 @@ impl TX_OUT_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_out_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_tx_out_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -962,13 +849,10 @@ impl TX_PAUSE_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_pause_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_pause_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -984,13 +868,10 @@ impl TX_SIZE1024TO1518_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_size1024to1518_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_size1024to1518_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1006,13 +887,10 @@ impl TX_SIZE128TO255_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_size128to255_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_size128to255_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1028,13 +906,10 @@ impl TX_SIZE1519TOMAX_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_size1519tomax_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_size1519tomax_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1050,13 +925,10 @@ impl TX_SIZE256TO511_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_size256to511_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_size256to511_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1072,13 +944,10 @@ impl TX_SIZE512TO1023_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_size512to1023_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_size512to1023_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1094,13 +963,10 @@ impl TX_SIZE64_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_size64_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_size64_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1116,13 +982,10 @@ impl TX_SIZE65TO127_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_size65to127_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_size65to127_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1134,13 +997,10 @@ pub struct TX_TAGGED_FRMS_CNT(u32);
 impl TX_TAGGED_FRMS_CNT {
     /// The number of frames transmitted with C-Tag or S-Tag information
     pub fn tx_tagged_frms_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_tagged_frms_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1156,13 +1016,10 @@ impl TX_UC_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_uc_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_uc_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1174,13 +1031,10 @@ pub struct TX_UNTAGGED_FRMS_CNT(u32);
 impl TX_UNTAGGED_FRMS_CNT {
     /// The number of frames transmitted without C-Tag and S-Tag information.
     pub fn tx_untagged_frms_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_untagged_frms_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1198,13 +1052,10 @@ impl TX_XCOLL_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_xcoll_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_xcoll_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1222,12 +1073,9 @@ impl TX_XDEFER_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_xdefer_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_xdefer_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

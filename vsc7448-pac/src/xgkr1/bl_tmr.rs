@@ -112,10 +112,9 @@ pub struct BL_LSW(u32);
 impl BL_LSW {
     /// break_link_timer setting
     pub fn bl_tmr_lsw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_bl_tmr_lsw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

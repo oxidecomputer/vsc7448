@@ -98,10 +98,9 @@ impl CON_STATUS {    pub fn b2_b3_support(&self) -> u32 {
         self.0 &= !0x8000;
         self.0 |= value;
     }    pub fn power_state(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_power_state(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -130,13 +129,10 @@ impl MSI_LOWER_32 {    pub fn pci_msi_lower_32(&self) -> u32 {
 #[derive(From, Into)]
 pub struct MSI_UPPER_32(u32);
 impl MSI_UPPER_32 {    pub fn pci_msi_upper_32(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_pci_msi_upper_32(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -154,10 +150,9 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {    pub fn pci_msi_64_bit_addr_cap(&self) -> u32 
         self.0 &= !0x800000;
         self.0 |= value;
     }    pub fn pci_msi_cap_id(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_pci_msi_cap_id(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

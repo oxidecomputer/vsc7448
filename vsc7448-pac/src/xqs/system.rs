@@ -36,13 +36,10 @@ pub struct FWD_CPU_DROP_CNT(u32);
 impl FWD_CPU_DROP_CNT {
     /// Counts number of frames discarded towards the cpu, since queue system reset.
     pub fn fwd_cpu_drop_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_fwd_cpu_drop_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -54,10 +51,9 @@ pub struct FWD_CTRL(u32);
 impl FWD_CTRL {
     /// The maximum number of clock cycles between guaranteed CSR access to res_stat counters.
     pub fn fwd_idle_cnt(&self) -> u32 {
-        (self.0 & 0x1fff) >> 0
+        self.0 & 0x1fff
     }
     pub fn set_fwd_idle_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
@@ -112,10 +108,9 @@ impl FWD_DROP_EVENTS {
     }
     /// A frame copy was discarded due to a queuemapping violation.
     pub fn fwd_drop_qmap_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fwd_drop_qmap_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -132,13 +127,10 @@ pub struct FWD_STAT_CNT(u32);
 impl FWD_STAT_CNT {
     /// Counts number of forwarding events since chip reset.
     pub fn fwd_stat_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_fwd_stat_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -150,13 +142,10 @@ pub struct MAP_CFG_CFG(u32);
 impl MAP_CFG_CFG {
     /// This value is used for indexing into the QMAP_QOS_TBL, QMAP_SE_TBL, and QLIMIT_QUEUE tables.
     pub fn map_cfg_cfg(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_map_cfg_cfg(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -170,10 +159,9 @@ pub struct QMAP_PORT_MODE(u32);
 impl QMAP_PORT_MODE {
     /// Same function as for QMAP_MODE_SERVICE, except this mode is for qgrp=0 frames.
     pub fn qmap_mode_nonservice(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_qmap_mode_nonservice(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -202,10 +190,9 @@ pub struct STAT_CNT_CFG(u32);
 impl STAT_CNT_CFG {
     /// When set, a frame discarded due to lack of resources is counted on the egress port instead of the ingress. Side effect is a slower processing of multiple drops on the same frame, causing potential head-of-line blocking.
     pub fn drop_count_egress(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_drop_count_egress(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

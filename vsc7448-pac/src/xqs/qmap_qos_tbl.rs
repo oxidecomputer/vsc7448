@@ -40,10 +40,9 @@ impl QMAP_QOS_TBL {
 
     /// 0: Use IPRIO as input selector (SRCP for normal queue mode) 1: Use COSID as input selector 2: Use TC as input selector 3: Use PCP as input selector
     pub fn qmap_qos_sel(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_qmap_qos_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -58,10 +57,9 @@ pub struct QMAP_SE_TBL(u32);
 impl QMAP_SE_TBL {
     /// Scheduling element to use for frames going to the specific port with the specific lookup index
     pub fn qmap_se_val(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_qmap_se_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;

@@ -46,10 +46,9 @@ impl MIIM_SLAVE_CFG {
     }
     /// Set this field to enable the spike filter on the MDC and MDIO inputs. When enabled the MIIM_SLAVE_CFG.SPIKE_FILTER_CFG field determines the width of the spike filter.
     pub fn spike_filter_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_spike_filter_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -172,10 +171,9 @@ impl SIO_CFG {
 
     /// 0: Interrupt is disabled for all bits for all ports 1: Interrupt is enabled for all bits for all ports
     pub fn sio_master_intr_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sio_master_intr_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -256,10 +254,9 @@ impl SIO_CLOCK {
     }
     /// The system clock period given in the clock period in PS divided by 100.
     pub fn sys_clk_period(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_sys_clk_period(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -274,13 +271,10 @@ pub struct SIO_INPUT_DATA(u32);
 impl SIO_INPUT_DATA {
     /// Serial input data. Each replication, N, holds bit N from all ports - bit N from port M is mapped to replication N bit M. Values of disabled gpios are undefined.
     pub fn sio_input_data(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sio_input_data(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -296,13 +290,10 @@ impl SIO_INTR {
 
     /// 0: No interrupt for given gpio 1: Interrupt for given gpio
     pub fn sio_intr(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sio_intr(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -318,13 +309,10 @@ impl SIO_INTR_ENA {
 
     /// 0: Interrupt is disabled for the port 1: Interrupt is enabled for the port
     pub fn sio_intr_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sio_intr_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -340,13 +328,10 @@ impl SIO_INTR_POL {
 
     /// 0: interrupt and "loss of signal" is active high 1: interrupt and "loss of signal" is active low
     pub fn sio_intr_pol(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sio_intr_pol(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -358,13 +343,10 @@ pub struct SIO_INTR_RAW(u32);
 impl SIO_INTR_RAW {
     /// Shows the current value of individual interrupts. All interrupts are active high (but has been corrected for polarity as configured in SIO_INTR_POL).
     pub fn sio_intr_raw(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sio_intr_raw(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -380,13 +362,10 @@ impl SIO_INTR_TRIGGER0 {
 
     /// 00: Interrupt is level-activated 01: Interrupt is edge-triggered 10: Interrupt is falling-edge-triggered 11: Interrupt is rising-edge-triggered
     pub fn sio_intr_trigger0(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sio_intr_trigger0(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -398,13 +377,10 @@ pub struct SIO_INTR_TRIGGER1(u32);
 impl SIO_INTR_TRIGGER1 {
     /// See description of SIO_INTR_TRIGGER0.
     pub fn sio_intr_trigger1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sio_intr_trigger1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -420,10 +396,9 @@ impl SIO_PORT_CFG {
 
     /// 0: Normal polarity 1: Inversed polarity
     pub fn bit_polarity(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_bit_polarity(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -470,13 +445,10 @@ impl SIO_PORT_ENA {
 
     /// 0: Port is disabled 1: Port is enabled
     pub fn sio_port_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sio_port_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -492,10 +464,9 @@ impl SIO_PWM_CFG {
 
     /// 0x00: Always "off" 0xFF: Always "on"
     pub fn pwm_duty_cycle(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_pwm_duty_cycle(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

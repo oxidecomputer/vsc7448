@@ -36,10 +36,9 @@ pub struct KR10G_LSW(u32);
 impl KR10G_LSW {
     /// rate_detect_10g_timer setting
     pub fn kr10g_tmr_lsw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_kr10g_tmr_lsw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct PD_MSW(u32);
 impl PD_MSW {
     /// page_detect_timer setting
     pub fn pd_tmr_msw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pd_tmr_msw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

@@ -36,10 +36,9 @@ pub struct ACK_GEN_CALL(u32);
 impl ACK_GEN_CALL {
     /// ACK General Call. When set to 1, the TWI controller responds with a ACK when it receives a General Call. Otherwise, the controller responds with a NACK.
     pub fn ack_gen_call(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ack_gen_call(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -72,10 +71,9 @@ impl CFG {
 
     /// '0': master disabled '1': master enabled
     pub fn master_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_master_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -146,10 +144,9 @@ pub struct CLR_ACTIVITY(u32);
 impl CLR_ACTIVITY {
     /// Reading this register clears the ACTIVITY interrupt if the TWI controller is not active anymore. If the TWI  controller is still active on the bus, the ACTIVITY interrupt bit continues to be set. It is automatically cleared by hardware if the module is disabled and if there is no further activity on the bus. The value read from this register to get status of the R_ACTIVITY interrupt (bit 8) of the RAW_INTR_STAT register.
     pub fn clr_activity(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_activity(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -164,10 +161,9 @@ pub struct CLR_GEN_CALL(u32);
 impl CLR_GEN_CALL {
     /// Read this register to clear the R_GEN_CALL interrupt (bit 11) of RAW_INTR_STAT register.
     pub fn clr_gen_call(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_gen_call(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -182,10 +178,9 @@ pub struct CLR_INTR(u32);
 impl CLR_INTR {
     /// Read this register to clear the combined interrupt, all individual interrupts, and the TX_ABRT_SOURCE register. This bit does not clear hardware clearable interrupts but software clearable interrupts. Refer to Bit 9 of the TX_ABRT_SOURCE register for an exception to clearing TX_ABRT_SOURCE.
     pub fn clr_intr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_intr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -200,10 +195,9 @@ pub struct CLR_RD_REQ(u32);
 impl CLR_RD_REQ {
     /// Read this register to clear the R_RD_REQ interrupt (bit 5) of the RAW_INTR_STAT register.
     pub fn clr_rd_req(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_rd_req(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -218,10 +212,9 @@ pub struct CLR_RX_DONE(u32);
 impl CLR_RX_DONE {
     /// Read this register to clear the R_RX_DONE interrupt (bit 7) of the RAW_INTR_STAT register.
     pub fn clr_rx_done(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_rx_done(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -236,10 +229,9 @@ pub struct CLR_RX_OVER(u32);
 impl CLR_RX_OVER {
     /// Read this register to clear the R_RX_OVER interrupt (bit 1) of the RAW_INTR_STAT register.
     pub fn clr_rx_over(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_rx_over(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -254,10 +246,9 @@ pub struct CLR_RX_UNDER(u32);
 impl CLR_RX_UNDER {
     /// Read this register to clear the R_RX_UNDER interrupt (bit 0) of the RAW_INTR_STAT register.
     pub fn clr_rx_under(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_rx_under(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -272,10 +263,9 @@ pub struct CLR_START_DET(u32);
 impl CLR_START_DET {
     /// Read this register to clear the R_START_DET interrupt (bit 10) of the RAW_INTR_STAT register.
     pub fn clr_start_det(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_start_det(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -290,10 +280,9 @@ pub struct CLR_STOP_DET(u32);
 impl CLR_STOP_DET {
     /// Read this register to clear the R_STOP_DET interrupt (bit 9) of the RAW_INTR_STAT register.
     pub fn clr_stop_det(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_stop_det(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -308,10 +297,9 @@ pub struct CLR_TX_ABRT(u32);
 impl CLR_TX_ABRT {
     /// Read this register to clear the R_TX_ABRT interrupt (bit 6) of the RAW_INTR_STAT register, and the TX_ABRT_SOURCE register. Refer to Bit 9 of the TX_ABRT_SOURCE register for an exception to clearing TX_ABRT_SOURCE.
     pub fn clr_tx_abrt(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_tx_abrt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -326,10 +314,9 @@ pub struct CLR_TX_OVER(u32);
 impl CLR_TX_OVER {
     /// Read this register to clear the R_TX_OVER interrupt (bit 3) of the RAW_INTR_STAT register.
     pub fn clr_tx_over(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_clr_tx_over(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -362,10 +349,9 @@ impl COMP_PARAM_1 {
 
     /// 0: 8 bits 1: 16 bits 2: 32 bits
     pub fn apb_data_width(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_apb_data_width(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -444,13 +430,10 @@ pub struct COMP_TYPE(u32);
 impl COMP_TYPE {
     /// Component Type number = 0x44_57_01_40, this assigned unique hex value is constant.
     pub fn comp_type(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_comp_type(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -462,13 +445,10 @@ pub struct COMP_VERSION(u32);
 impl COMP_VERSION {
     /// Specific values for this register are described in the Releases Table in the Release Notes.
     pub fn comp_version(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_comp_version(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -484,10 +464,9 @@ impl CTRL {
 
     /// '0': Disables TWI controller '1': Enables TWI controller
     pub fn enable(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_enable(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -516,10 +495,9 @@ impl DATA_CMD {
     }
     /// This register contains the data to be transmitted or received on the TWI bus. If you are writing to this register and want to perform a read, this field is ignored by the controller. However, when you read this register, these bits return the value of data received on the TWI interface.
     pub fn data(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_data(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -534,10 +512,9 @@ pub struct ENABLE_STATUS(u32);
 impl ENABLE_STATUS {
     /// When read as 1, the TWI controller is deemed to be actively involved in an TWI transfer, irrespective of whether being in an address or data phase for all master or slave modes. When read as 0, the TWI controller is deemed completely inactive.
     pub fn busy(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_busy(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -574,10 +551,9 @@ pub struct FS_SCL_HCNT(u32);
 impl FS_SCL_HCNT {
     /// This register sets the SCL clock divider for the high-period in fast speed. This value must result in a value no less than 0.6us.
     pub fn fs_scl_hcnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_fs_scl_hcnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -594,10 +570,9 @@ pub struct FS_SCL_LCNT(u32);
 impl FS_SCL_LCNT {
     /// This register sets the SCL clock divider for the low-period in fast speed. This value must result in a value no less than 1.3us.
     pub fn fs_scl_lcnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_fs_scl_lcnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -660,10 +635,9 @@ impl INTR_MASK {    pub fn m_activity(&self) -> u32 {
         self.0 &= !0x2;
         self.0 |= value;
     }    pub fn m_rx_under(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_m_rx_under(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -766,10 +740,9 @@ impl INTR_STAT {    pub fn activity(&self) -> u32 {
         self.0 &= !0x2;
         self.0 |= value;
     }    pub fn rx_under(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_under(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -886,10 +859,9 @@ impl RAW_INTR_STAT {
     }
     /// Set if the processor attempts to read the receive buffer when it is empty by reading from the DATA_CMD register. If the module is disabled (ENABLE=0), this bit keeps its level until the master or slave state machines go into idle, and when ENABLE_STATUS.BUSY goes to 0, this interrupt is cleared.
     pub fn r_rx_under(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_r_rx_under(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -952,13 +924,10 @@ impl RAW_INTR_STAT {
 #[derive(From, Into)]
 pub struct RESERVED1(u32);
 impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -968,13 +937,10 @@ impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED2(u32);
 impl RESERVED2 {    pub fn reserved2(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved2(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -984,13 +950,10 @@ impl RESERVED2 {    pub fn reserved2(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED3(u32);
 impl RESERVED3 {    pub fn reserved3(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved3(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1000,13 +963,10 @@ impl RESERVED3 {    pub fn reserved3(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED4(u32);
 impl RESERVED4 {    pub fn reserved4(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved4(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1016,13 +976,10 @@ impl RESERVED4 {    pub fn reserved4(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED5(u32);
 impl RESERVED5 {    pub fn reserved5(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved5(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1032,13 +989,10 @@ impl RESERVED5 {    pub fn reserved5(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED6(u32);
 impl RESERVED6 {    pub fn reserved6(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved6(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1048,13 +1002,10 @@ impl RESERVED6 {    pub fn reserved6(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED7(u32);
 impl RESERVED7 {    pub fn reserved7(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved7(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1064,13 +1015,10 @@ impl RESERVED7 {    pub fn reserved7(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED8(u32);
 impl RESERVED8 {    pub fn reserved8(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved8(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1082,10 +1030,9 @@ pub struct RXFLR(u32);
 impl RXFLR {
     /// Receive FIFO Level. Contains the number of valid data entries in the receive FIFO.
     pub fn rxflr(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_rxflr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -1100,10 +1047,9 @@ pub struct RX_TL(u32);
 impl RX_TL {
     /// Controls the level of entries (or above) that triggers the RX_FULL interrupt (bit 2 in RAW_INTR_STAT register). The valid range is 0-7. A value of 0 sets the threshold for 1 entry, and a value of 7 sets the threshold for 8 entries.
     pub fn rx_tl(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_rx_tl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -1118,10 +1064,9 @@ pub struct SAR(u32);
 impl SAR {
     /// The SAR holds the slave address when the TWI is operating as a slave. For 7-bit addressing, only SAR[6:0] is used. This register can be written only when the TWI interface is disabled (ENABLE = 0).
     pub fn sar(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_sar(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -1138,10 +1083,9 @@ pub struct SDA_SETUP(u32);
 impl SDA_SETUP {
     /// This register controls the amount of time delay (in terms of number of VCore clock periods) introduced in the rising edge of SCL, relative to SDA changing, when the TWI controller services a read request in a slave-receiver operation. The minimum for fast mode is 100ns, for nomal mode the minimum is 250ns.
     pub fn sda_setup(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_sda_setup(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1158,10 +1102,9 @@ pub struct SS_SCL_HCNT(u32);
 impl SS_SCL_HCNT {
     /// This register sets the SCL clock divider for the high-period in standard speed. This value must result in a high period of no less than 4us.
     pub fn ss_scl_hcnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ss_scl_hcnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1178,10 +1121,9 @@ pub struct SS_SCL_LCNT(u32);
 impl SS_SCL_LCNT {
     /// This register sets the SCL clock divider for the low-period in standard speed. This value must result in a value no less than 4.7us.
     pub fn ss_scl_lcnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ss_scl_lcnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1196,10 +1138,9 @@ pub struct STAT(u32);
 impl STAT {
     /// TWI Activity Status.
     pub fn bus_activity(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bus_activity(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1326,10 +1267,9 @@ impl TAR {
     }
     /// This is the target address for any master transaction. When transmitting a General Call, these bits are ignored. To generate a START BYTE, the CPU needs to write only once into these bits. If the TAR and SAR are the same, loopback exists but the FIFOs are shared between master and slave, so full loopback is not feasible. Only one direction loopback mode is supported (simplex), not duplex. A master cannot transmit to itself; it can transmit to only a slave.
     pub fn tar(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_tar(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -1344,10 +1284,9 @@ pub struct TXFLR(u32);
 impl TXFLR {
     /// Transmit FIFO Level. Contains the number of valid data entries in the transmit FIFO.
     pub fn txflr(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_txflr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -1392,10 +1331,9 @@ impl TX_ABRT_SOURCE {
     }
     /// Master is in 7-bit addressing mode and the address sent was not acknowledged by any slave.
     pub fn abrt_7b_addr_noack(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_abrt_7b_addr_noack(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1534,10 +1472,9 @@ pub struct TX_TL(u32);
 impl TX_TL {
     /// Controls the level of entries (or below) that trigger the TX_EMPTY interrupt (bit 4 in RAW_INTR_STAT register). The valid range is 0-7. A value of 0 sets the threshold for 0 entries, and a value of 7 sets the threshold for 7 entries.
     pub fn tx_tl(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_tx_tl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

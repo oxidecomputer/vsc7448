@@ -70,10 +70,9 @@ impl SERDES6G_DFT_STATUS {
 
     /// 0: No error found 1: Errors during BIST found
     pub fn bist_error(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bist_error(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -160,10 +159,9 @@ pub struct SERDES6G_ERR_CNT(u32);
 impl SERDES6G_ERR_CNT {
     /// PRBS error counter
     pub fn prbs_err_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_prbs_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -190,10 +188,9 @@ impl SERDES6G_OB_ANEG_CFG {
     }
     /// ANEG overwrite value for SERDES6G_OB_CFG1.ob_lev
     pub fn an_ob_lev(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_an_ob_lev(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;

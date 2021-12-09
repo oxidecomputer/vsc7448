@@ -42,10 +42,9 @@ impl POL_PORT_THRES_CFG_0 {
 
     /// When POL_PORT_CFG.FRAME_RATE_ENA is disabled burst capacity is configured in steps of 8192 bytes. 0: Always closed 1: Burst capacity = 8192 bytes n: Burst capacity = n x 8192 bytes 63: Burst capacity = 516096 bytes When POL_PORT_CFG.FRAME_RATE_ENA is enabled burst capacity is configured in steps of 8192/2504 frames. 0: Always closed 1: Burst capacity = 1 x 8192/2504 frames n: Burst capacity = n x 8192/2504 frames 63: Burst capacity = 206 frames
     pub fn port_thres0(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_port_thres0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -66,10 +65,9 @@ impl POL_PORT_THRES_CFG_1 {
 
     /// 0 : No hysteresis 1: Deassert flow control when bucket has leaked 8192 bytes ... n: Deassert flow control when bucket has leaked n * 8192 bytes
     pub fn port_thres1(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_port_thres1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -88,10 +86,9 @@ impl POL_STICKY1 {
 
     /// 0: No event has occurred 1: BDLB policer drop event has occurred
     pub fn pol_bdlb_drop_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pol_bdlb_drop_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

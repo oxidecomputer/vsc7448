@@ -96,10 +96,9 @@ impl TR_STS1 {
     }
     /// Indicates that local and remote training has completed
     pub fn tr_done(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tr_done(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

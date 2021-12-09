@@ -52,10 +52,9 @@ impl DFT_CLK_GEN_CFG {
 
     /// 0: normal operation; cg_per_cfg controls period 0->1 transition: after current period has finished (only) the next period is controlled by cg_per_jump_cfg afterwards normal operation 2: every N'th period the high value is replaced by a low value N is defined by cg_timer_cfg 3: every N'th period the low value is replaced by a high value N is defined by cg_timer_cfg
     pub fn cg_mode_cfg(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_cg_mode_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -124,10 +123,9 @@ impl RX_SYNC_CTRL_CFG {
 
     /// 0: Do not use external sync_ctrl info 1: Select sync_ctrl info from external DES
     pub fn rx_lane_sync_src(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_lane_sync_src(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -148,10 +146,9 @@ impl SYNC_CTRL_CFG {
 
     /// 0: Select external DES 1: Select F2DF 2: Select local DES 3: Disable sync_ctrl
     pub fn lane_sync_src(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_lane_sync_src(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -168,10 +165,9 @@ pub struct SYNC_CTRL_STAT(u32);
 impl SYNC_CTRL_STAT {
     /// Lane synchronization fifo overflow
     pub fn lane_sync_fifo_of_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_lane_sync_fifo_of_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

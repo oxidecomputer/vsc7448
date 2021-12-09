@@ -152,10 +152,9 @@ impl STICKY {
 
     /// 0: No unknown sources (IFID, SMAC) has been found 1: At least one unknown source IFID, SMAC) has been found. Write 1 to clear this field.
     pub fn learn_unknown_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_learn_unknown_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -384,10 +383,9 @@ impl STICKY_MASK {
 
     /// 0: Disable event count 1: Enable event count
     pub fn learn_unknown_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_learn_unknown_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

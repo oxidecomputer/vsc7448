@@ -46,10 +46,9 @@ impl CHIP_ID {
     }
     /// Always 1.
     pub fn one(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_one(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -84,13 +83,10 @@ pub struct FEA_STAT(u32);
 impl FEA_STAT {
     /// Efuse values. Some of these bits controls the hardware of the chip, others are free for SW to use.
     pub fn fea_stat(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_fea_stat(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -102,13 +98,10 @@ pub struct GPR(u32);
 impl GPR {
     /// General purpose register for software development.
     pub fn gpr(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_gpr(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -120,10 +113,9 @@ pub struct HW_CFG(u32);
 impl HW_CFG {
     /// Set to enable the DFT clock monitor feature on the GPIOs.
     pub fn dft_clk_mon_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dft_clk_mon_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -148,10 +140,9 @@ pub struct HW_SGPIO_SD_CFG(u32);
 impl HW_SGPIO_SD_CFG {
     /// Set bits in this field to use 2G5 and 10G signal detects from 3'rd SIO controller instead of default positions inside 1'st and 2'nd controllers. Bit 0 in this field corresponds to dev2g5_0, bit 1 corresponds ot dev2g5_1 and so on. Bit 24 corrsponds to NPI port. Bit 25 corresponds to dev10g_0, bit 26 corresponds to dev10g_1 and so on. For the dev10g devices; signal detect is provided to both the 10g device and the corresponding dev2g5 (see HSIO::HW_CFG.DEV10G_0_MODE for more information.)
     pub fn sd_high_ena(&self) -> u32 {
-        (self.0 & 0x1fffffff) >> 0
+        self.0 & 0x1fffffff
     }
     pub fn set_sd_high_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
@@ -166,10 +157,9 @@ pub struct HW_STAT(u32);
 impl HW_STAT {
     /// This field is set if a hardware fail has been detected in any of the memories during startup-initialization of the chip. This field is valid after release of reset.
     pub fn mem_fail(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mem_fail(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -184,10 +174,9 @@ pub struct SOFT_RST(u32);
 impl SOFT_RST {
     /// Set this field to reset the whole chip. This field is automatically cleared by the reset. Note: It is possible for the VCore to protect itself from this soft-reset, for more info see ICPU_CFG::RESET.CORE_RST_PROTECT.
     pub fn soft_chip_rst(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_soft_chip_rst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

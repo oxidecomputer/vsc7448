@@ -42,10 +42,9 @@ impl MCB_SERDES1G_ADDR_CFG {
 
     /// 0: Disable macro access via MCB 1: Enable macro access via MCB
     pub fn serdes1g_addr(&self) -> u32 {
-        (self.0 & 0x1ff) >> 0
+        self.0 & 0x1ff
     }
     pub fn set_serdes1g_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;
@@ -184,10 +183,9 @@ impl SERDES6G_DFT_CFG0 {
 
     /// 0: Off 1: On
     pub fn tx_dft_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_dft_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -222,10 +220,9 @@ impl SERDES6G_DFT_CFG1 {
 
     /// 0: Off 1: On
     pub fn tx_freqoff_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_freqoff_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -308,10 +305,9 @@ impl SERDES6G_DFT_CFG2 {
 
     /// 0: Off 1: On
     pub fn rx_freqoff_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_freqoff_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -404,10 +400,9 @@ impl SERDES6G_DIG_CFG {
 
     /// 0: 0 us 1: 250 us 2: 350 us 3: 450 us 4: 550 us 5..7: reserved
     pub fn sigdet_dst(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_sigdet_dst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -508,10 +503,9 @@ impl SERDES6G_MISC_CFG {
 
     /// 0: No reset 1: Reset (not self-clearing)
     pub fn lane_rst(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_lane_rst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -648,10 +642,9 @@ impl SERDES6G_RC_PLL_BIST_CFG {
     }
     /// Lower frequnecy for the RC-PLL BIST
     pub fn pll_bist_low(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_pll_bist_low(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -668,10 +661,9 @@ pub struct SERDES6G_TP_CFG0(u32);
 impl SERDES6G_TP_CFG0 {
     /// Static pattern tranferred in fixed pattern test mode, LSB is transferred first
     pub fn static_pattern0(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_static_pattern0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
@@ -688,10 +680,9 @@ pub struct SERDES6G_TP_CFG1(u32);
 impl SERDES6G_TP_CFG1 {
     /// Static pattern 2nd part only used in 20 bit mode, LSB is transferred first
     pub fn static_pattern1(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_static_pattern1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;

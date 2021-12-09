@@ -40,10 +40,9 @@ impl TEMP_SENSOR_STAT {
 
     /// Temperature(C)=177.4 - 0.8777*DATA
     pub fn temp(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_temp(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

@@ -36,10 +36,9 @@ pub struct FRSENT_MSW(u32);
 impl FRSENT_MSW {
     /// Number of training frames sent to complete training.
     pub fn frsent_msw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_frsent_msw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct LUT_LSW(u32);
 impl LUT_LSW {
     /// Measured value of selected LUT.
     pub fn lut_lsw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lut_lsw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

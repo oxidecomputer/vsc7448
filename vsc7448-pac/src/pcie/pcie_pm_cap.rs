@@ -82,10 +82,9 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
         self.0 &= !0xf8000000;
         self.0 |= value;
     }    pub fn pm_cap_id(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_pm_cap_id(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -114,10 +113,9 @@ impl CAP_ID_NXT_PTR {    pub fn aux_curr(&self) -> u32 {
 #[derive(From, Into)]
 pub struct MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE(u32);
 impl MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE {    pub fn int_line(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_int_line(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

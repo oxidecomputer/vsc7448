@@ -66,10 +66,9 @@ impl ADV_ERR_CAP_CTRL {    pub fn ecrc_check_cap(&self) -> u32 {
         self.0 &= !0x40;
         self.0 |= value;
     }    pub fn first_err_pointer(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_first_err_pointer(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -82,10 +81,9 @@ impl ADV_ERR_CAP_CTRL {    pub fn ecrc_check_cap(&self) -> u32 {
 #[derive(From, Into)]
 pub struct AER_EXT_CAP_HDR(u32);
 impl AER_EXT_CAP_HDR {    pub fn cap_id(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_cap_id(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -162,10 +160,9 @@ impl CORR_ERR_MASK {    pub fn advisory_non_fatal_err_mask(&self) -> u32 {
         self.0 &= !0x1000;
         self.0 |= value;
     }    pub fn rx_err_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_err_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -226,10 +223,9 @@ impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
         self.0 &= !0x1000;
         self.0 |= value;
     }    pub fn rx_err_status(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_err_status(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -242,13 +238,10 @@ impl CORR_ERR_STATUS {    pub fn advisory_non_fatal_err_status(&self) -> u32 {
 #[derive(From, Into)]
 pub struct HDR_LOG_REG_0(u32);
 impl HDR_LOG_REG_0 {    pub fn first_dword(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_first_dword(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -258,13 +251,10 @@ impl HDR_LOG_REG_0 {    pub fn first_dword(&self) -> u32 {
 #[derive(From, Into)]
 pub struct HDR_LOG_REG_1(u32);
 impl HDR_LOG_REG_1 {    pub fn second_dword(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_second_dword(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -274,13 +264,10 @@ impl HDR_LOG_REG_1 {    pub fn second_dword(&self) -> u32 {
 #[derive(From, Into)]
 pub struct HDR_LOG_REG_2(u32);
 impl HDR_LOG_REG_2 {    pub fn third_dword(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_third_dword(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 

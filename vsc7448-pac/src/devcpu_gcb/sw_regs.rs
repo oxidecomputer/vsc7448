@@ -36,12 +36,9 @@ pub struct FEA_DIS(u32);
 impl FEA_DIS {
     /// Efuse force values. These bits are or'ed together with the corresponding efuse fields - setting bits here corresponds to burning efuses and can be used for validation purposes.
     pub fn fea_dis(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_fea_dis(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

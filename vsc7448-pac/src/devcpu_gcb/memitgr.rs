@@ -36,10 +36,9 @@ pub struct FAN_CNT(u32);
 impl FAN_CNT {
     /// Counts the number of TACH input ticks. If DEVCPU_GCB::FAN_CFG.FAN_STAT_CFG is set then this is a wrapping counter that shows the total number of registered TACH ticks. If DEVCPU_GCB::FAN_CFG.FAN_STAT_CFG is cleared then this counter is updated once every second with the number of TACH ticks registered during the last second.
     pub fn fan_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_fan_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct MEMITGR_CTRL(u32);
 impl MEMITGR_CTRL {
     /// Setting this field transitions the integrity monitor between operating modes. Transitioning between modes takes time, this field remains set until the new mode is reached. During this time the monitor also reports busy DEVCPU_GCB::MEMITGR_STAT.MODE_BUSY is set). From IDLE (DEVCPU_GCB::MEMITGR_STAT.MODE_IDLE is set) the monitor can transition into either DETECT or LISTEN mode, the DETECT mode is entered if a memory reports an indication - the LISTEN mode is entered if no indications are reported. The first time after reset the monitor will not detect indications, that is; it will transition directly from IDLE to LISTEN mode. From DETECT (DEVCPU_GCB::MEMITGR_STAT.MODE_DETECT is set) the monitor can transition into either DETECT or LISTEN mode, the DETECT mode is entered if more indications are reported - the LISTEN mode is entered if no more indications are reported. From LISTEN (DEVCPU_GCB::MEMITGR_STAT.MODE_LISTEN is set) the monitor can transition into IDLE mode. Software shall not set this field when the monitor is BUSY (when DEVCPU_GCB::MEMITGR_STAT.MODE_BUSY is set.)
     pub fn activate(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_activate(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -76,10 +74,9 @@ impl MEMITGR_DIV {
 
     /// See datasheet for appropriate value.
     pub fn mem_div(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mem_div(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -96,10 +93,9 @@ pub struct MEMITGR_IDX(u32);
 impl MEMITGR_IDX {
     /// This field contains a unique index for the memory for which info is currently provided in DEVCPU_GCB::MEMITGR_INFO. Indexes are counted from 1 (not 0).
     pub fn mem_idx(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mem_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -116,10 +112,9 @@ pub struct MEMITGR_INFO(u32);
 impl MEMITGR_INFO {
     /// This field is valid only when DEVCPU_GCB::MEMITGR_INFO.MEM_ERR or DEVCPU_GCB::MEMITGR_INFO.MEM_COR is set.
     pub fn mem_addr(&self) -> u32 {
-        (self.0 & 0xfffffff) >> 0
+        self.0 & 0xfffffff
     }
     pub fn set_mem_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffffff);
         self.0 &= !0xfffffff;
         self.0 |= value;
@@ -194,10 +189,9 @@ impl MEMITGR_STAT {
     }
     /// The busy signal is a copy of the DEVCPU_GCB::MEMITGR_CTRL.ACTIVATE field, see description of that field for more information about the different states/modes of the monitor.
     pub fn mode_busy(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mode_busy(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

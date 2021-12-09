@@ -38,13 +38,10 @@ pub struct BFD_CC_RX_INVLD_CNT_REG(u32);
 impl BFD_CC_RX_INVLD_CNT_REG {
     /// See register description.
     pub fn bfd_cc_rx_invld_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_cc_rx_invld_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -58,13 +55,10 @@ pub struct BFD_CC_RX_VLD_CNT_REG(u32);
 impl BFD_CC_RX_VLD_CNT_REG {
     /// See register description.
     pub fn bfd_cc_rx_vld_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_cc_rx_vld_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -78,13 +72,10 @@ pub struct BFD_CC_TX_CNT_REG(u32);
 impl BFD_CC_TX_CNT_REG {
     /// See register description.
     pub fn bfd_cc_tx_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_cc_tx_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -98,13 +89,10 @@ pub struct BFD_CV_RX_INVLD_CNT_REG(u32);
 impl BFD_CV_RX_INVLD_CNT_REG {
     /// See register description.
     pub fn bfd_cv_rx_invld_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_cv_rx_invld_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -118,13 +106,10 @@ pub struct BFD_CV_RX_VLD_CNT_REG(u32);
 impl BFD_CV_RX_VLD_CNT_REG {
     /// See register description.
     pub fn bfd_cv_rx_vld_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_cv_rx_vld_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -138,13 +123,10 @@ pub struct BFD_CV_TX_CNT_REG(u32);
 impl BFD_CV_TX_CNT_REG {
     /// See register description.
     pub fn bfd_cv_tx_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_cv_tx_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -158,13 +140,10 @@ pub struct BFD_REMOTE_DISCR_SINK(u32);
 impl BFD_REMOTE_DISCR_SINK {
     /// See register description.
     pub fn bfd_remote_discr_sink(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_bfd_remote_discr_sink(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -178,10 +157,9 @@ pub struct BFD_RX_LAST(u32);
 impl BFD_RX_LAST {
     /// Contains the current LOC state. When this value is changed (by LOC timer or Rx of valid BFD CC/CV) a sticky bit is asserted: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_LOC_CHANGE_STICKY An interrupt may optionally be generated: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_LOC_CHANGE_INT_ENA
     pub fn bfd_loc_defect(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bfd_loc_defect(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -268,10 +246,9 @@ impl BFD_RX_STICKY {
     }
     /// Sticky bit is asserted if an Rx BFD PDU fails the P_AND_F_BIT_SET test. Frames failing this test are discarded. The P_AND_F_BIT_SET fails if a BFD PDU is received with both the Poll Flag = 1 and the Final flag = 1
     pub fn p_and_f_bit_set_err_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_p_and_f_bit_set_err_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -360,10 +337,9 @@ impl BFD_SINK_INFO {
     }
     /// BFD Detect Mult of the remote BFD entity communicating with the Local BFD_SINK. If configured to do so, the VOE HW will update this bit field with the Detect Mult value of the last valid BFD CC PDU received by the BFD_SINK. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
     pub fn bfd_remote_dm_sink(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_bfd_remote_dm_sink(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -446,10 +422,9 @@ impl BFD_SRC_INFO {
     }
     /// BFD Detect Mult of the remote BFD entity communicating with the Local BFD_SRC. If configured to do so, the VOE HW will update this bit field with the Detect Mult value of the last valid BFD CC PDU received by the BFD_SRC. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
     pub fn bfd_remote_dm_src(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_bfd_remote_dm_src(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -480,10 +455,9 @@ pub struct BFD_STAT(u32);
 impl BFD_STAT {
     /// BFD Loss of Continuity (LOC) Counter. This counter is incremented by the LOC SCAN timer programmed in the following bit field: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_SCAN_PERIOD The LOC counter is cleared every time a valid BFD CC/CV PDU is received. The VOE will generate a LOC event when the BFD_MISS_CNT is equal to the value in the relevant Detect Multiplier. Which Detect Multiplier is used depends on whether the BFD session is configured for "Coordinated Mode" or "Independent Mode".
     pub fn bfd_miss_cnt(&self) -> u32 {
-        (self.0 & 0x1ff) >> 0
+        self.0 & 0x1ff
     }
     pub fn set_bfd_miss_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;
@@ -500,10 +474,9 @@ pub struct BFD_TX_STICKY(u32);
 impl BFD_TX_STICKY {
     /// Sticky bit asserted if a BFD PDU is transmitted by a VOE and the VOE is configured to update the BFD PDU: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA and the Tx BFD PDU My Discriminator value does not match any of the configured BFD Discriminator Values: Coordinated or NEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SRC.BFD_LOCAL_DISCR_SRC FEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SINK.BFD_LOCAL_DISCR_SINK The type of sesssion must be configured using the following bit field: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_COORDINATED_MODE_ENA
     pub fn tx_my_discr_mismatch(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_my_discr_mismatch(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -538,10 +511,9 @@ impl CPT_RX_STICKY_MPLS {
 
     /// '0': No Valid BFD CV PDU received '1': Valid BFD CV received
     pub fn bfd_cv_rx_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bfd_cv_rx_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -636,10 +608,9 @@ impl INTR_ENA_MPLS {
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_F_SET_SINK_STICKY
     pub fn bfd_rx_f_set_sink_int_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bfd_rx_f_set_sink_int_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -756,10 +727,9 @@ impl INTR_STICKY_MPLS {
     }
     /// When the BFD Sink receives a valid BFD CC PDU, this sticky bit is asserted if the Final Flag is asserted in the Rx BFD CC PDU. This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_F_SET_SINK_INT_ENA
     pub fn bfd_rx_f_set_sink_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bfd_rx_f_set_sink_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -886,10 +856,9 @@ impl PDU_EXTRACT_MPLS {
     }
     /// Asserting this bit will extract BFD PDUs which fail the Tx verification test. Extraction will be done Hit Me Once or all frames depending on the following bit field: * EXTRACT_HIT_ME_ONCE
     pub fn bfd_tx_err_extr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bfd_tx_err_extr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -916,13 +885,10 @@ pub struct RX_CNT_NON_SEL_OAM_MPLS(u32);
 impl RX_CNT_NON_SEL_OAM_MPLS {
     /// See register description
     pub fn rx_cnt_non_sel_oam_mpls(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_cnt_non_sel_oam_mpls(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -936,13 +902,10 @@ pub struct RX_CNT_SEL_OAM_MPLS(u32);
 impl RX_CNT_SEL_OAM_MPLS {
     /// See register description.
     pub fn rx_cnt_sel_oam_mpls(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_cnt_sel_oam_mpls(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -956,13 +919,10 @@ pub struct TX_CNT_NON_SEL_OAM_MPLS(u32);
 impl TX_CNT_NON_SEL_OAM_MPLS {
     /// See register description.
     pub fn tx_cnt_non_sel_oam_mpls(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_cnt_non_sel_oam_mpls(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -976,12 +936,9 @@ pub struct TX_CNT_SEL_OAM_MPLS(u32);
 impl TX_CNT_SEL_OAM_MPLS {
     /// See register description.
     pub fn tx_cnt_sel_oam_mpls(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_cnt_sel_oam_mpls(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

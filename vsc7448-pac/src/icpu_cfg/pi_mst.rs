@@ -36,10 +36,9 @@ pub struct GENERAL_STAT(u32);
 impl GENERAL_STAT {
     /// This field is set if the VCore CPU has entered sleep mode.
     pub fn cpu_sleep(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cpu_sleep(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -112,10 +111,9 @@ impl PI_MST_CFG {
 
     /// The PI interface frequency is: 250MHz/CLK_DIV.
     pub fn clk_div(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_clk_div(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -236,10 +234,9 @@ impl PI_MST_CTRL {
     }
     /// Number of PI_Clk cycles to insert at the end of a transfer.
     pub fn hldcc(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_hldcc(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -290,10 +287,9 @@ pub struct PI_MST_STATUS(u32);
 impl PI_MST_STATUS {
     /// If a timeout is enabled and timeout occurs during a device-paced transfer, this bit is set.
     pub fn timeout_err_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_timeout_err_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

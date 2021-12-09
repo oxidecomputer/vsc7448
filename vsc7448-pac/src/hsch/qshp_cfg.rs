@@ -36,10 +36,9 @@ pub struct QSHP_CIR_CFG(u32);
 impl QSHP_CIR_CFG {
     /// Burst capacity of this shaper. Unit is 4096 kilobytes. The shaper is disabled when CIR_BURST=0.
     pub fn cir_burst(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_cir_burst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -64,10 +63,9 @@ pub struct SE_STATE(u32);
 impl SE_STATE {
     /// The queue selector must be updated about the state of this element
     pub fn force_upd(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_force_upd(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

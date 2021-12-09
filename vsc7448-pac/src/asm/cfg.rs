@@ -40,10 +40,9 @@ impl CPU_FC_CFG {
 
     /// '0': Flow control is disabled. '1': Flow control is enabled.
     pub fn cpu_fc_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cpu_fc_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -76,10 +75,9 @@ impl MAC_ADDR_HIGH_CFG {
 
     /// The resulting MAC address of a device is determined as: MAC_ADDR_HIGH  & MAC_ADDR_LOW.
     pub fn mac_addr_high(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_mac_addr_high(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -98,10 +96,9 @@ impl MAC_ADDR_LOW_CFG {
 
     /// The resulting MAC address of a device is determined as: MAC_ADDR_HIGH  & MAC_ADDR_LOW.
     pub fn mac_addr_low(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_mac_addr_low(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -136,10 +133,9 @@ impl PAUSE_CFG {
 
     /// '0': The ASM must not discard valid Pause frames. '1': The ASM must discard valid Pause frames to the IQS by asserting the abort signal, but the Pause value must still be used to stall the egress data flow.
     pub fn abort_pause_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_abort_pause_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -266,10 +262,9 @@ impl PORT_CFG {
 
     /// 0: Vstax2 awareness is disabled. 1: Vstax2 awareness is enabled.
     pub fn vstax2_awr_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vstax2_awr_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -288,13 +283,10 @@ impl RX_SYNC_LOST_ERR_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_sync_lost_err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_sync_lost_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -312,10 +304,9 @@ impl STAT_CFG {
 
     /// '0': No action '1': Stat cnt clr (Bit is automatically cleared)
     pub fn stat_cnt_clr_shot(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_stat_cnt_clr_shot(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

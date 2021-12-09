@@ -70,10 +70,9 @@ impl DATA_VALID_DETECT_CTRL {
 
     /// 0: Inhibit PCS lock to control signal detect. 1: Enable PCS lock to control signal detect.
     pub fn pcs_detect_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pcs_detect_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -874,10 +873,9 @@ impl INT_CTRL {
 
     /// 0: Disable XFI_INT output, regardless of the STICKY and corresponding MASK states 1: Enable XFI_INT, using STICKY and corresponding MASK states
     pub fn xfi_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_xfi_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -982,10 +980,9 @@ impl KR_CONTROL {
 
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
     pub fn kr_aneg_rx1g_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_kr_aneg_rx1g_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1160,10 +1157,9 @@ impl SSF_HYST_ENA_CTRL {
 
     /// 0: SSF is immediately asserted to the core. 1: SSF signal to core is timed as defined by SSF_HYST_TIMING_CTRL.
     pub fn ssf_hyst_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ssf_hyst_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1184,10 +1180,9 @@ impl SSF_HYST_TIMING_CTRL {
 
     /// Number of ticks SSF must be constantly active before it is reported to the core. E.g. a value of 23 would result in a wait time of 2.3552 us.
     pub fn ssf_assert_timing(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_ssf_assert_timing(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -1404,10 +1399,9 @@ impl XFI_MODE {
 
     /// 0: SW_RST deasserted 1: SW_RST asserted (default)
     pub fn sw_rst(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sw_rst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1554,10 +1548,9 @@ impl XFI_STATUS {
 
     /// 0: XFI_INT deasserted 1: XFI_INT asserted
     pub fn xfiint_status(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_xfiint_status(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

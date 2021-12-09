@@ -38,10 +38,9 @@ pub struct PCS_XAUI_CGALIGN_STATUS(u32);
 impl PCS_XAUI_CGALIGN_STATUS {
     /// Delay through the lane barrelshifter. Lane N delay is stored in bits 5N+4 to 5N. Unit is line bit times
     pub fn lane_cgalign_delay(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_lane_cgalign_delay(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
@@ -58,10 +57,9 @@ pub struct PCS_XAUI_DESKEW_STATUS(u32);
 impl PCS_XAUI_DESKEW_STATUS {
     /// Delay through deskew fifo for each lane. Lane N delay is stored in bits 4N+3 to 4N. Unit is PCS clock cycles
     pub fn lane_deskew_delay(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lane_deskew_delay(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -124,10 +122,9 @@ impl PCS_XAUI_LPI_CFG {
 
     /// 0: Disable LPI transmission 1: Enable LPI transmission
     pub fn tx_assert_lpidle(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_assert_lpidle(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -176,10 +173,9 @@ impl PCS_XAUI_RX_ERROR_STATUS {
 
     /// 0: No sync lost occured 1: Synchronization lost in lane i (temporarily) Bit is cleared by writing a 1 to this position.
     pub fn sync_lost_sticky(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_sync_lost_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -196,13 +192,10 @@ pub struct PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS(u32);
 impl PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS {
     /// Number of detected codegroup errors/Number of errors in lane 3
     pub fn err_cnt_10b8b_cg_l3(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_err_cnt_10b8b_cg_l3(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -216,13 +209,10 @@ pub struct PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS(u32);
 impl PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS {
     /// Number of detected disparity errors/Number of errors in lane 2
     pub fn err_cnt_10b8b_d_l2(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_err_cnt_10b8b_d_l2(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -236,13 +226,10 @@ pub struct PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS(u32);
 impl PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS {
     /// Number of detected fifo overflow errors/Number of errors in lane 0
     pub fn err_cnt_fifo_of_l0(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_err_cnt_fifo_of_l0(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -256,13 +243,10 @@ pub struct PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS(u32);
 impl PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS {
     /// Number of detected fifo underflow errors/Number of errors in lane 1
     pub fn err_cnt_fifo_uf_l1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_err_cnt_fifo_uf_l1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -290,10 +274,9 @@ impl PCS_XAUI_RX_SEQ_REC_STATUS {
 
     /// 1: New ||Q|| has been received 0: No new ||Q|| since last read Bit is cleared by writing a 1 to this position.
     pub fn rx_q_changed_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_q_changed_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -352,10 +335,9 @@ impl PCS_XAUI_RX_STATUS {
 
     /// 1111: All lanes in sync 0001: Lane 0 is in sync ...
     pub fn sync_status(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_sync_status(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;

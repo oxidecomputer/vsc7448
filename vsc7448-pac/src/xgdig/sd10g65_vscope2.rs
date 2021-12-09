@@ -38,10 +38,9 @@ pub struct APC_LC_SOFTCTRL_CFG1(u32);
 impl APC_LC_SOFTCTRL_CFG1 {
     /// Target value for DFE1 during L/C-control operation
     pub fn lc_sc_dfe1_target(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_lc_sc_dfe1_target(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -68,13 +67,10 @@ pub struct VSCOPE_CNT(u32);
 impl VSCOPE_CNT {
     /// Counter value
     pub fn counter(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_counter(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -116,10 +112,9 @@ impl VSCOPE_HW_SCAN_CFG1 {
 
     /// 0: off 1: N-point scan 2: fast-scan (sq) 3: fast-scan (diag)
     pub fn hw_scan_ena(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_hw_scan_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -252,10 +247,9 @@ impl VSCOPE_HW_SCAN_CFG2 {
     }
     /// Start value for VScope phase in N-point-scan mode and fast-scan mode
     pub fn phase_start_val(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_phase_start_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -454,10 +448,9 @@ impl VSCOPE_MAIN_CFG {
     }
     /// Enable Vscope
     pub fn vscope_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vscope_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -488,10 +481,9 @@ impl VSCOPE_PAT_LOCK_CFG {
     }
     /// History mask: Respective sequence is expected in reference input (comp_sel); if enabled (dc_mask) before hit and error counting is enabled
     pub fn hist_mask(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_hist_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -522,10 +514,9 @@ pub struct VSCOPE_STAT(u32);
 impl VSCOPE_STAT {
     /// Done sticky
     pub fn done_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_done_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -42,10 +42,9 @@ impl COSID_MAP_CFG_REW {
 
     /// '0': do not include yellow frames in the LM count. '1': include yellow frames in the LM count.
     pub fn cnt_yellow_rew(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cnt_yellow_rew(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -90,13 +89,10 @@ pub struct PORT_RX_COSID_MAP(u32);
 impl PORT_RX_COSID_MAP {
     /// See register description.
     pub fn port_rx_cosid_map(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_rx_cosid_map(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -110,13 +106,10 @@ pub struct PORT_RX_COSID_MAP1(u32);
 impl PORT_RX_COSID_MAP1 {
     /// See register description.
     pub fn port_rx_cosid_map1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_rx_cosid_map1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -130,12 +123,9 @@ pub struct PORT_TX_COSID_MAP(u32);
 impl PORT_TX_COSID_MAP {
     /// See register description.
     pub fn port_tx_cosid_map(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_tx_cosid_map(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

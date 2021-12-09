@@ -36,10 +36,9 @@ pub struct QMAP_VPORT_TBL(u32);
 impl QMAP_VPORT_TBL {
     /// Maps the indexed (QGRP,DPORT) set into a virtual port number. This number is used by the queue mapping system when determining target queue through QMAP_SE_TBL and QMAP_QOS_TBL.
     pub fn qmap_vport_val(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_qmap_vport_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;

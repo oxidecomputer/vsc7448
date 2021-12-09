@@ -36,10 +36,9 @@ pub struct HIST_LSW(u32);
 impl HIST_LSW {
     /// lptrain state machine history
     pub fn lptsm_hist_lsw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lptsm_hist_lsw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct TR_ERRCNT(u32);
 impl TR_ERRCNT {
     /// bit error count of prbs11 checker
     pub fn errcnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_errcnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

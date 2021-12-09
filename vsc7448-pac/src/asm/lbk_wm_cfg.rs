@@ -40,10 +40,9 @@ impl PFC_TIMER {
 
     /// Unit is 1024 bit times.
     pub fn pfc_timer_val(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pfc_timer_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

@@ -70,10 +70,9 @@ impl SERDES1G_DFT_STATUS {
 
     /// 0: No error found 1: Errors during BIST found
     pub fn bist_error(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bist_error(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -202,10 +201,9 @@ impl SERDES1G_MISC_CFG {
 
     /// 0: No reset 1: Reset (not self-clearing)
     pub fn lane_rst(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_lane_rst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

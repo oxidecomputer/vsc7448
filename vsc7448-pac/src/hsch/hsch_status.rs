@@ -36,10 +36,9 @@ pub struct CIR_STATE(u32);
 impl CIR_STATE {
     /// Current fill level. Unit is 1 bit.
     pub fn cir_lvl(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_cir_lvl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct EIR_STATE(u32);
 impl EIR_STATE {
     /// Current fill level. Unit is 1 bit.
     pub fn eir_lvl(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_eir_lvl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -82,10 +80,9 @@ impl SE_DLB_SENSE {
     }
     /// Enable destination port awareness by the DLB shaper. If set, the DLB shaper allows excess information rate when the egress buffer use for destination port SE_DLB_SPORT has reached threshold BUF_P_RSRV_E[SE_DLB_DPORT] minus 3000 bytes. If multiple awareness functions (SE_DLB_PRIO_ENA, SE_DLB_SPORT_ENA, SE_DLB_DPORT_ENA) are enabled, all relevant thresholds must be exceeded before excess information rate is allowed.
     pub fn se_dlb_dport_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_se_dlb_dport_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -36,10 +36,9 @@ pub struct CM_ADDR(u32);
 impl CM_ADDR {
     /// Address selection within selected core memory (CMID register). Address is automatically advanced at every data access.
     pub fn cm_addr(&self) -> u32 {
-        (self.0 & 0x3fffff) >> 0
+        self.0 & 0x3fffff
     }
     pub fn set_cm_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fffff);
         self.0 &= !0x3fffff;
         self.0 |= value;
@@ -66,10 +65,9 @@ pub struct RAM_INIT(u32);
 impl RAM_INIT {
     /// Core memory controllers are enabled when this field is set.
     pub fn ram_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ram_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

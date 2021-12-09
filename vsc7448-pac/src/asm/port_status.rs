@@ -42,10 +42,9 @@ impl PRE_CNT_OFLW_STICKY {
 
     /// '0': An overflow in	pre-counter has not occured '1': An overflow in	pre-counter has occured Bit is cleared by writing a '1' to this position.
     pub fn pause_frm_pre_cnt_oflw_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pause_frm_pre_cnt_oflw_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

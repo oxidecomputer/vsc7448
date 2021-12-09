@@ -40,13 +40,10 @@ impl RX_BAD_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_bad_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_bad_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -64,10 +61,9 @@ impl RX_BAD_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_bad_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_rx_bad_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -86,13 +82,10 @@ impl RX_IN_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_in_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_in_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -110,10 +103,9 @@ impl RX_IN_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_in_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_rx_in_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -132,13 +124,10 @@ impl RX_OK_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_ok_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_ok_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -156,10 +145,9 @@ impl RX_OK_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_ok_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_rx_ok_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -178,13 +166,10 @@ impl RX_XGMII_PROT_ERR_CNT {
 
     /// Counter can be written by SW.
     pub fn rx_xgmii_prot_err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_xgmii_prot_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -200,13 +185,10 @@ impl TX_OK_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_ok_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_ok_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -222,13 +204,10 @@ impl TX_OUT_BYTES_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_out_bytes_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_out_bytes_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -246,10 +225,9 @@ impl TX_OUT_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_out_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_tx_out_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

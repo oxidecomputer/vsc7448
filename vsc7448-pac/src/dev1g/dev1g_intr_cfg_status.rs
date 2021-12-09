@@ -98,10 +98,9 @@ impl DEV1G_INTR {
 
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
     pub fn link_down_intr_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_link_down_intr_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -220,10 +219,9 @@ impl DEV1G_INTR_CFG {
 
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn link_down_intr_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_link_down_intr_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -342,10 +340,9 @@ impl DEV1G_INTR_IDENT {
 
     /// 0: No interrupt 1: Interrupt pending
     pub fn link_down_intr_ident(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_link_down_intr_ident(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -502,10 +499,9 @@ impl PCS_FX100_STATUS {
 
     /// 1: Link established 0: No link found
     pub fn sync_status(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sync_status(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -40,10 +40,9 @@ impl XTR_DATA_PRESENT {
 
     /// 0: No frames available for this CPU queue group 1: At least one frame is available for this CPU queue group
     pub fn data_present(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_data_present(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -62,10 +61,9 @@ impl XTR_FLUSH {
 
     /// 0: No action 1: Do CPU queue flushing
     pub fn flush(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_flush(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -84,10 +82,9 @@ impl XTR_FRM_PRUNING {
 
     /// 0 : No pruning 1:  Frames extracted are pruned to 8 bytes 2:  Frames extracted are pruned to 12 bytes ... 255:  Frames extracted are pruned to 1024 bytes
     pub fn prune_size(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_prune_size(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -106,10 +103,9 @@ impl XTR_GRP_CFG {
 
     /// 0: Same endianess 1: Swap endianness
     pub fn byte_swap(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_byte_swap(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -156,12 +152,9 @@ impl XTR_RD {
 
     /// n=0-3: EOF. Unused bytes in end-of-frame word is 'n' n=4	 : EOF, but truncated n=5	 : EOF Aborted. Frame invalid n=6	 : Escape. Next read is packet data n=7	 : Data not ready for reading out
     pub fn data(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_data(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

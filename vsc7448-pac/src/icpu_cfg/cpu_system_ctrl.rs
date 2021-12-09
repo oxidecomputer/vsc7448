@@ -40,10 +40,9 @@ impl GENERAL_CTRL {
 
     /// 0: The VCore memory map is in Normal mode. 1: The VCore memory map is in Boot mode.
     pub fn boot_mode_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_boot_mode_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -200,13 +199,10 @@ pub struct GPR(u32);
 impl GPR {
     /// General purpose 8 times 32-bit registers for software development and debug. Note: This register is only reset by the device's reset input, i.e. it is not affected by soft reset!
     pub fn gpr(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_gpr(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -264,10 +260,9 @@ impl RESET {
 
     /// 0: Memory controller is not reset 1: Memory controller is forced in reset
     pub fn mem_rst_force(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mem_rst_force(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

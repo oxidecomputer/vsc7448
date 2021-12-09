@@ -36,10 +36,9 @@ pub struct PIN_WF_HIGH_PERIOD(u32);
 impl PIN_WF_HIGH_PERIOD {
     /// Configure waveform. Unit is nanoseconds. EX. 25MHz 60/40 clock: PIN_ACTION=CLOCK, PIN_SYNC=0, PIN_WFH=24, PIN_WFL=16 EX. 1 us pulse after 150 ns PIN_ACTION=CLOCK, PIN_SYNC=1, PIN_WFH=1000, PIN_WFL=150
     pub fn pin_wfh(&self) -> u32 {
-        (self.0 & 0x3fffffff) >> 0
+        self.0 & 0x3fffffff
     }
     pub fn set_pin_wfh(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct PIN_WF_LOW_PERIOD(u32);
 impl PIN_WF_LOW_PERIOD {
     /// Configure waveform
     pub fn pin_wfl(&self) -> u32 {
-        (self.0 & 0x3fffffff) >> 0
+        self.0 & 0x3fffffff
     }
     pub fn set_pin_wfl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
@@ -72,10 +70,9 @@ pub struct PTP_CUR_SEC_MSB(u32);
 impl PTP_CUR_SEC_MSB {
     /// Current time of day, seconds part, latched when NSF was read
     pub fn ptp_cur_sec_msb(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ptp_cur_sec_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -90,13 +87,10 @@ pub struct PTP_NSF(u32);
 impl PTP_NSF {
     /// Value of NSF counter when load/save action was executed. This value will not be loaded into the timers upon a LOAD operation.
     pub fn ptp_nsf(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ptp_nsf(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -124,10 +118,9 @@ impl PTP_PIN_CFG {
     }
     /// Configures the time domain the pin is connected to.
     pub fn ptp_pin_dom(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ptp_pin_dom(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -166,10 +159,9 @@ pub struct PTP_TOD_NSEC(u32);
 impl PTP_TOD_NSEC {
     /// Time Of Day nanoseconds loaded or stored into TimeOfDay. A synced store operation may return a value between -2 and 999.999.999 in this field. To normalize the complete TOD, in case field is read 0x3ffffffe/f, software must subtract one from the SEC part, and add 1.000.000.000 to the NSEC part.
     pub fn ptp_tod_nsec(&self) -> u32 {
-        (self.0 & 0x3fffffff) >> 0
+        self.0 & 0x3fffffff
     }
     pub fn set_ptp_tod_nsec(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
@@ -184,13 +176,10 @@ pub struct PTP_TOD_SEC_LSB(u32);
 impl PTP_TOD_SEC_LSB {
     /// Bits 31:0 of the time-of-day seconds
     pub fn ptp_tod_sec_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ptp_tod_sec_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -202,10 +191,9 @@ pub struct PTP_TOD_SEC_MSB(u32);
 impl PTP_TOD_SEC_MSB {
     /// Bits 47:32 of the time-of-day seconds
     pub fn ptp_tod_sec_msb(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ptp_tod_sec_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

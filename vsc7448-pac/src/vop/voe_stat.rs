@@ -68,10 +68,9 @@ impl AUTO_HIT_ME_ONCE {
     }
     /// This value will be written to the following register every time the VOE matches the current HMO scan: * VOP:VOE_STAT:SYNLM_EXTRACT.EXTRACT_PEER_RX
     pub fn hmo_extract_peer_rx(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_hmo_extract_peer_rx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -108,10 +107,9 @@ pub struct CCM_ERR(u32);
 impl CCM_ERR {
     /// Number of CCM(-LM) PDUs received with MEL lower than the MEL configured for the VOE. This counter is updated regardless of the value of: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA
     pub fn ccm_rx_mel_err_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ccm_rx_mel_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -138,10 +136,9 @@ impl CCM_RX_ERR_1 {
     }
     /// Number of CCM(-LM) PDUs received at the correct MEL, but failing the MEPID verification.
     pub fn ccm_rx_mepid_err_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ccm_rx_mepid_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -158,10 +155,9 @@ pub struct CCM_RX_FRM_CNT(u32);
 impl CCM_RX_FRM_CNT {
     /// Counts number of Rx invalid CCM(-LM) PDUs received by the VOE. Invalid CCM(-LM) PDUs will not clear the CCM_MISS_CNT. Invalid CCM(-LM) PDUs are defined as the CCM(-LM) PDUs which do not pass VOE Rx validation.
     pub fn ccm_rx_invld_fc_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ccm_rx_invld_fc_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -262,10 +258,9 @@ impl CCM_RX_LAST {
 
     /// 0: No Rx MEL LOW error detected in the last valid CCM(-LM) frame received. 1: Detected Rx MEL LOW error in the last valid CCM(-LM) frame received.
     pub fn ccm_rx_mel_low_err(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ccm_rx_mel_low_err(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -344,13 +339,10 @@ pub struct CCM_RX_SEQ_CFG(u32);
 impl CCM_RX_SEQ_CFG {
     /// See register description.
     pub fn ccm_rx_seq(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ccm_rx_seq(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -364,10 +356,9 @@ pub struct CCM_RX_WARNING(u32);
 impl CCM_RX_WARNING {
     /// Number of valid CCM(-LM) received with Period error. The Period of the incoming CCM(-LM) PDUs is checked against the following value: * VOP:VOE_CONF:CCM_CFG.CCM_PERIOD
     pub fn ccm_rx_period_err_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ccm_rx_period_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -418,10 +409,9 @@ impl CCM_STAT {
     }
     /// The VOE will count the number of consecutive CCM(-LM) PDUs received on a front port. This can be used for implementing E-Line services over networks using Ethernet Ring protection. The number of consecutive frames recieved on the same port (not counting the first one) are counted by this counter (CCM_RX_SRC_PORT_CNT). The front port on which the last valid CCM(-LM) PDU was received is stored in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_RX_SRC_PORT When the CPU flushes the MAC table, it can instruct the VOE to detect when CCM(-LM) PDUs are received a number of times on the same front port. When a number of consecutive CCM(-LM) PDUs have been received on the same front port, the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_RX_SRC_PORT_DETECT_STICKY This can optionally generate an interrupt. The number of consecutive CCM(-LM) PDUs which must be received on the same front port before asserting the sticky bit is configured in the following bitfield: * VOP::VOP_CTRL.CCM_RX_SRC_PORT_DETECT_CNT This field is updated by the VOE and should never be altered by the CPU.
     pub fn ccm_rx_src_port_cnt(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ccm_rx_src_port_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -448,13 +438,10 @@ pub struct CCM_TX_SEQ_CFG(u32);
 impl CCM_TX_SEQ_CFG {
     /// See Register Description
     pub fn ccm_tx_seq(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ccm_tx_seq(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -488,10 +475,9 @@ impl DM_PDU_CNT {
     }
     /// Counts the number of valid Rx DMR/1DM PDUs received by the VOE.
     pub fn dmr_rx_pdu_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_dmr_rx_pdu_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -518,10 +504,9 @@ pub struct G_8113_1_REMOTE_MIPID3(u32);
 impl G_8113_1_REMOTE_MIPID3 {
     /// See register description.
     pub fn g_8113_1_remote_mipid3(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_g_8113_1_remote_mipid3(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -612,10 +597,9 @@ impl INTR_ENA {
 
     /// 0: Disable interrupt 1: Enable interrupt
     pub fn ccm_rx_mel_low_intr_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ccm_rx_mel_low_intr_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -778,10 +762,9 @@ impl INTR_STICKY {
 
     /// 0: No change in the Rx RDI value. 1: The value of the Rx RDI value changed.
     pub fn ccm_rx_rdi_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ccm_rx_rdi_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -846,13 +829,10 @@ pub struct LBM_TX_TRANSID_CFG(u32);
 impl LBM_TX_TRANSID_CFG {
     /// See register description.
     pub fn lbm_tx_transid(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lbm_tx_transid(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -866,13 +846,10 @@ pub struct LBR_RX_FRM_CNT(u32);
 impl LBR_RX_FRM_CNT {
     /// See register description.
     pub fn lbr_rx_frm_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lbr_rx_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -886,13 +863,10 @@ pub struct LBR_RX_TRANSID_CFG(u32);
 impl LBR_RX_TRANSID_CFG {
     /// See bit group description.
     pub fn lbr_rx_transid(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lbr_rx_transid(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -906,13 +880,10 @@ pub struct LBR_RX_TRANSID_ERR_CNT(u32);
 impl LBR_RX_TRANSID_ERR_CNT {
     /// See register description
     pub fn lbr_rx_transid_err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lbr_rx_transid_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -926,13 +897,10 @@ pub struct LBR_TX_FRM_CNT(u32);
 impl LBR_TX_FRM_CNT {
     /// See register description.
     pub fn lbr_tx_frm_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lbr_tx_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -966,10 +934,9 @@ impl LM_PDU_CNT {
     }
     /// Counts the number of valid Rx LMR / CCM-LM PDUs received by the VOE.
     pub fn lmr_rx_pdu_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_lmr_rx_pdu_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1230,10 +1197,9 @@ impl OAM_RX_STICKY {
     }
     /// This sticky bit is asserted when a frame is discarded because the following option is enabled: * VOP:VOE_CONF:VOE_CTRL.BLOCK_MEL_HIGH_RX
     pub fn rx_mel_high_block_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_mel_high_block_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1344,10 +1310,9 @@ pub struct OAM_RX_STICKY2(u32);
 impl OAM_RX_STICKY2 {
     /// Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA The 'Initiator VOE' will verify the value of the incoming 'Loopback Indicator' in the 'Requesting MEP ID TLV' (if present). If the value is != 1 this sticky bit is asserted and the PDU is marked invalid. The frame can optionally be extracted to the CPU error queue: LBR: ----------- * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBR_RX_ERR_EXTR
     pub fn g_8113_1_lbr_rx_ill_lbk_ind_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_g_8113_1_lbr_rx_ill_lbk_ind_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1444,10 +1409,9 @@ impl OAM_TX_STICKY {
     }
     /// If a SynLM PDU is transmitted with a priority (COSID) which is different from the SynLM PRIO configured for the VOE, * VOP:VOE_CONF:SLM_CONFIG.SLM_PRIO the frame will be marked as invalid and this sticky bit is asserted. Frames which fail the tx prio test can optionally be extracted to the CPU error queue: * VOP:VOE_STAT:PDU_EXTRACT.SL_ERR_EXTR
     pub fn tx_slm_prio_err_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_slm_prio_err_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1600,10 +1564,9 @@ impl PDU_EXTRACT {
     }
     /// Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA If this bit is asserted any LBR Rx PDU which asserts either of the following sticky bits will be extracted to the CPU error queue. * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_MISSING_TLV_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_ILLEGAL_SUBTYPE_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_ILLEGAL_MEXID_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBR_RX_ILL_LBK_IND_STICKY
     pub fn g_8113_1_lbr_rx_err_extr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_g_8113_1_lbr_rx_err_extr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1718,13 +1681,10 @@ pub struct RX_OAM_DISCARD(u32);
 impl RX_OAM_DISCARD {
     /// See register description.
     pub fn rx_frm_discard_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_frm_discard_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1738,13 +1698,10 @@ pub struct RX_OAM_FRM_CNT(u32);
 impl RX_OAM_FRM_CNT {
     /// See register description
     pub fn rx_oam_frm_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_oam_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1758,13 +1715,10 @@ pub struct RX_SEL_OAM_CNT(u32);
 impl RX_SEL_OAM_CNT {
     /// See register description.
     pub fn rx_sel_oam_frm_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_sel_oam_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1788,10 +1742,9 @@ impl SYNLM_EXTRACT {
     }
     /// When the Initiator MEP enabled for SynLM processes Rx SLR / 1SL PDUs, they are extracted if so configured in this register. Configuring this register allows for extracting only Rx frames from selected SynLM peer MEPs. The register width is 8. Each bit represents a SynLM peer MEP. The SynLM peer MEP associated with an Rx PDU is determined from matching the MEPID of the Rx SynLM PDU against the configured list of SynLM peer MEPIDs: * VOP:VOE_CONF:SLM_PEER_LIST.SLM_PEER_MEPID If the bit (in the current register) representing the SynLM peer index of the Rx frame, the frame is extracted to the CPU. The extraction will be done either extract ALL or extract "Hit Me Once" depending on the value of the the following bit field: * VOP:VOE_STAT:SYNLM_EXTRACT.EXTRACT_HMO
     pub fn extract_peer_rx(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_extract_peer_rx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1808,13 +1761,10 @@ pub struct TX_OAM_DISCARD(u32);
 impl TX_OAM_DISCARD {
     /// See register description.
     pub fn tx_frm_discard_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_frm_discard_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1828,13 +1778,10 @@ pub struct TX_OAM_FRM_CNT(u32);
 impl TX_OAM_FRM_CNT {
     /// See register description.
     pub fn tx_oam_frm_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_oam_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1848,12 +1795,9 @@ pub struct TX_SEL_OAM_CNT(u32);
 impl TX_SEL_OAM_CNT {
     /// See register description.
     pub fn tx_sel_oam_frm_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_sel_oam_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

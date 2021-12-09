@@ -36,10 +36,9 @@ pub struct EEE_CFG(u32);
 impl EEE_CFG {
     /// Queues set in this mask activate the egress port immediately when any of the queues have data available.
     pub fn eee_fast_queues(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_eee_fast_queues(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -64,10 +63,9 @@ impl EEE_THRES {
     }
     /// Maximum number of frames in a queue before the egress port is activated. Unit is 1 frame.
     pub fn eee_high_frames(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_eee_high_frames(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -86,10 +84,9 @@ impl FRM_AGING {
 
     /// 0: Disable frame aging. >=1: Era length in unit of 4us.
     pub fn max_age(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_max_age(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
@@ -104,10 +101,9 @@ pub struct PMEM_SIZE(u32);
 impl PMEM_SIZE {
     /// Must be set before core reset is released. Unit is  bytes.
     pub fn pmem_size(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pmem_size(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -124,10 +120,9 @@ pub struct RESET_CFG(u32);
 impl RESET_CFG {
     /// Switch core is enabled when this field is set.
     pub fn core_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_core_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -142,10 +137,9 @@ pub struct STAT_CFG(u32);
 impl STAT_CFG {
     /// Set to disable counting buffer drops (tail) in the designated tail drop counter. When disabled, the per priority buffer drop counter is used instead.
     pub fn stat_rx_taildrop_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_stat_rx_taildrop_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

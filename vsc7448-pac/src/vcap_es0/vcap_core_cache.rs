@@ -36,13 +36,10 @@ pub struct VCAP_ACTION_DAT(u32);
 impl VCAP_ACTION_DAT {
     /// The cache register that holds action. The register is replicated; index 0 is the 32 LSBs of the action.
     pub fn action_dat(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_action_dat(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -54,13 +51,10 @@ pub struct VCAP_CNT_DAT(u32);
 impl VCAP_CNT_DAT {
     /// The cache register that holds counter. The register is replicated; index 0 is the 32 LSBs of the counter. When the counter is 1 bit wide the counter operates as a 1 bit saturating counter; it is set by VCAP when a rule is matched by a key.
     pub fn cnt_dat(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cnt_dat(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -76,13 +70,10 @@ impl VCAP_ENTRY_DAT {
 
     /// Match-0: Entry=0, Mask=0 Match-1: Entry=1, Mask=0 Match-any (don't care): Entry=0, Mask=1 Match-off (never-match): Entry=1, Mask=1
     pub fn entry_dat(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_entry_dat(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -94,13 +85,10 @@ pub struct VCAP_MASK_DAT(u32);
 impl VCAP_MASK_DAT {
     /// The cache register that holds entry mask. The register is replicated; index 0 is the 32 LSBs of the entry-mask. See VCAP_MASK_DAT.MASK_DAT for encoding information.
     pub fn mask_dat(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_mask_dat(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -130,10 +118,9 @@ impl VCAP_MV_CFG {
 
     /// 0: Address VCAP_UPDATE_CTRL.UPDATE_ADDR is moved/initialized n: Addresses VCAP_UPDATE_CTRL.UPDATE_ADDR through VCAP_UPDATE_CTRL.UPDATE_ADDR+n are moved/initialized
     pub fn mv_size(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mv_size(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

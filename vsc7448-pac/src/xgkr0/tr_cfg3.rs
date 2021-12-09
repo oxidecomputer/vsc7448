@@ -36,10 +36,9 @@ pub struct TR_CFG2(u32);
 impl TR_CFG2 {
     /// min	settings for v2 sum.
     pub fn v2_min(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_v2_min(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;

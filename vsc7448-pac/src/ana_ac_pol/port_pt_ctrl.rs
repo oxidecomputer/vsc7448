@@ -124,10 +124,9 @@ impl POL_PORT_CFG {
 
     /// 'xxxxxxx1' : Known multicast frames are policed. 'xxxxxx1x' : Known broadcast frames are policed. 'xxxxx1xx' : Known unicast frames are policed. 'xxxx1xxx' : Unknown multicast frames are policed. 'xxx1xxxx' : Unknown broadcast frames are policed. 'xx1xxxxx' : Unknown unicast frames are policed. 'x0xxxxxx' : Frames to a CPU queue selected by CPU_QU_MASK bypass the policer, regardless of other criterias in TRAFFIC_TYPE_MASK. 'x1xxxxxx' : Frames to a CPU queue selected by CPU_QU_MASK are policed. '1xxxxxxx' : Learn frames are policed. '00000000': Disable policer.
     pub fn traffic_type_mask(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_traffic_type_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

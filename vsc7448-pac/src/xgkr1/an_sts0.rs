@@ -46,10 +46,9 @@ impl AN_SM {
     }
     /// AN state machine
     pub fn an_sm(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_an_sm(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -78,10 +77,9 @@ impl AN_STS0 {
 
     /// 0: 10G 1: 1G 2: 3G
     pub fn line_rate(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_line_rate(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;

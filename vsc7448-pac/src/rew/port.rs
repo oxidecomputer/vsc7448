@@ -36,10 +36,9 @@ pub struct DEI_MAP_DE0(u32);
 impl DEI_MAP_DE0 {
     /// Map internal priority to CFI/DEI value in tags. This table used for DP values mapped to 0 in PORT_DP_MAP.
     pub fn dei_de0(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dei_de0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct DEI_MAP_DE1(u32);
 impl DEI_MAP_DE1 {
     /// Map internal priority to CFI/DEI value in tags. This table used for DP values mapped to 1 in PORT_DP_MAP.
     pub fn dei_de1(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dei_de1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -76,10 +74,9 @@ impl DSCP_MAP {
 
     /// 0 : No remapping. 1 : Remap DSCP using DSCP remap table (DSCP_REMAP)
     pub fn dscp_remap_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dscp_remap_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -114,10 +111,9 @@ impl MAP_LBL_B {
 
     /// n: Label value
     pub fn label_val(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_label_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
@@ -132,10 +128,9 @@ pub struct PCP_MAP_DE0(u32);
 impl PCP_MAP_DE0 {
     /// Map internal priority to UPRIO/PCP value in tags. This table used for DP values mapped to 0 in PORT_DP_MAP.
     pub fn pcp_de0(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_pcp_de0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -150,10 +145,9 @@ pub struct PCP_MAP_DE1(u32);
 impl PCP_MAP_DE1 {
     /// Map internal priority to UPRIO/PCP value in tags. This table used for DP values mapped to 1 in PORT_DP_MAP.
     pub fn pcp_de1(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_pcp_de1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -200,10 +194,9 @@ impl PORT_VLAN_CFG {
 
     /// n: Port VID
     pub fn port_vid(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_port_vid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -218,13 +211,10 @@ pub struct PTP_EDLY_CFG(u32);
 impl PTP_EDLY_CFG {
     /// Signed value to add to CF when frame is transmitted on this port. Field is used if requested through the analyzer match rule. This value can be used as the egress asymmetry delay for the particular PTP flow.
     pub fn ptp_edly_val(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ptp_edly_val(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -236,13 +226,10 @@ pub struct PTP_IDLY1_CFG(u32);
 impl PTP_IDLY1_CFG {
     /// Signed value to add to CF when frame is received on this port. Field is used if requested through the analyzer match rule. This value can be used as the ingress asymmetry or ingress asymmetry+path delay for the particular PTP flow.
     pub fn ptp_idly1_val(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ptp_idly1_val(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -254,13 +241,10 @@ pub struct PTP_IDLY2_CFG(u32);
 impl PTP_IDLY2_CFG {
     /// Signed value to add to CF when frame is received on this port. Field is used if requested through the analyzer match rule. This value can be used as the ingress asymmetry or ingress asymmetry+path delay for the particular PTP flow.
     pub fn ptp_idly2_val(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ptp_idly2_val(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -272,10 +256,9 @@ pub struct PTP_MISC_CFG(u32);
 impl PTP_MISC_CFG {
     /// Set to disable clearing of checksum field in IPv4 frames
     pub fn ptp_udp4_csum_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ptp_udp4_csum_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -302,10 +285,9 @@ pub struct PTP_MODE_CFG(u32);
 impl PTP_MODE_CFG {
     /// Sets the time domain this port belongs to.
     pub fn ptp_dom_val(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ptp_dom_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -334,10 +316,9 @@ pub struct PTP_SMAC_HIGH(u32);
 impl PTP_SMAC_HIGH {
     /// If requested by the PTP action out of the analyzer, this MAC address can be pasted into the SMAC.
     pub fn ptp_smac_high(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ptp_smac_high(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -352,13 +333,10 @@ pub struct PTP_SMAC_LOW(u32);
 impl PTP_SMAC_LOW {
     /// If requested by the PTP action out of the analyzer, this MAC address can be pasted into the SMAC.
     pub fn ptp_smac_low(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ptp_smac_low(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -402,10 +380,9 @@ impl TAG_CTRL {
 
     /// Select DEI in port tag. 0: Classified DEI 1: PORT_DEI 2: DE and QoS mapped to DEI (DEI_MAP_DEx) 3: DE level (Color) 4: DE and COSID mapped to DEI (DEI_MAP_DEx) 5: DE and classified PCP mapped to DEI (DEI_MAP_DEx) 6-7: Reserved
     pub fn tag_dei_cfg(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_tag_dei_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

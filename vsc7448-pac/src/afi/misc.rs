@@ -38,10 +38,9 @@ pub struct ERR(u32);
 impl ERR {
     /// FRM_OUT_CNT for a port was zero while an ack from FRD was received. If enabled in STICKY_INFO_ENA.FRM_OUT_NEG_INFO_ENA, the corresponding port number is stored in STICKY_INFO.PORT_NUM.
     pub fn err_frm_out_neg_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_err_frm_out_neg_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -56,10 +55,9 @@ pub struct MISC_CTRL(u32);
 impl MISC_CTRL {
     /// Enable AFI. Must be set to 1 before any use of AFI.
     pub fn afi_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_afi_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -74,10 +72,9 @@ pub struct NEW_FRM_CTRL(u32);
 impl NEW_FRM_CTRL {
     /// Valid bit for NEW_FRM_INFO.FRM_INFO.
     pub fn vld(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vld(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -92,10 +89,9 @@ pub struct NEW_FRM_INFO(u32);
 impl NEW_FRM_INFO {
     /// Frame information for new frame received by AFI. The inforrmation must be copied to FRM_INFO bits in AFI:FRM_TBL:FRM_ENTRY_PART0.PART0. Once FRM_INFO has been copied to FRM_TBL, then NEW_FRM_CTRL.VLD must be cleared.
     pub fn frm_info(&self) -> u32 {
-        (self.0 & 0x7ffff) >> 0
+        self.0 & 0x7ffff
     }
     pub fn set_frm_info(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;
@@ -112,10 +108,9 @@ pub struct STICKY_INFO(u32);
 impl STICKY_INFO {
     /// Port number corresponding to sticky bit event.
     pub fn port_num(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_port_num(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -174,10 +169,9 @@ impl STICKY_INFO_ENA {
     }
     /// Enable updating of STICKY_INFO.PORT_NUM for ERR_FRM_OUT_NEG_STICKY.
     pub fn frm_out_neg_info_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_frm_out_neg_info_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -234,10 +228,9 @@ impl WARN {
     }
     /// A new frame for injection was received by AFI, but NEW_FRM_CTRL.VLD was still 1. Check that NEW_FRM_CTRL.VLD is cleared upon copying NEW_FRM_INFO.FRM_INFO to FRM_TBL.
     pub fn warn_new_frm_vld_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_warn_new_frm_vld_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

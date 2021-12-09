@@ -48,10 +48,9 @@ impl VCAP_UPDATE_CTRL {
     }
     /// For version 1 VCAPs: Set to ignore interrupting traffic during move operations, this will increase speed of the move operations but counter-events may be lost for the VCAP addresses that are moved. When this field is cleared, then interrupting traffic will cause a restart of the move operation (to ensure consistent counter values) and becasue of this, move operations on a heavily loaded device may take a long time to finish. This field is not used for version 2 VCAPs, moving of counters are safe.
     pub fn mv_traffic_ign(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mv_traffic_ign(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

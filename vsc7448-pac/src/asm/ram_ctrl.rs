@@ -38,12 +38,9 @@ impl LBK_AGING_STICKY {
 
     /// bitmask per port.
     pub fn lbk_aging_sticky(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lbk_aging_sticky(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

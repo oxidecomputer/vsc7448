@@ -66,10 +66,9 @@ impl TX_FRAME_RATE_START_CFG {
 
     /// Timer start value in bytes. To take effect, value must be above 84. (64byte min frame size, 8 byte preamble, 12 byte minimum IFG).
     pub fn tx_frame_rate_start(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_tx_frame_rate_start(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -90,10 +89,9 @@ impl TX_IPG_STRETCH_RATIO_CFG {
 
     /// IPG increase = frame length in bits * 32 / value. values below 2048 and above 518143 are reserved for arithmetic processing  reasons.
     pub fn tx_fine_ipg_stretch_ratio(&self) -> u32 {
-        (self.0 & 0x7ffff) >> 0
+        self.0 & 0x7ffff
     }
     pub fn set_tx_fine_ipg_stretch_ratio(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;
@@ -184,10 +182,9 @@ impl TX_RATE_LIMIT_MODE {
 
     /// '0': txRateLimitFrameOverhead disabled '1': txRateLimitFrameOverhead enabled
     pub fn tx_rate_limit_frame_overhead_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_rate_limit_frame_overhead_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -36,10 +36,9 @@ pub struct APC_TMR(u32);
 impl APC_TMR {
     /// Delay between LP tap update, and capture of direct-connect apc values
     pub fn apc_tmr(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_apc_tmr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

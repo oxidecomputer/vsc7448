@@ -296,10 +296,9 @@ impl ADV_CL_MPLS_STICKY {
     }
     /// This sticky bit signals TC value extracted from Label stack.
     pub fn adv_cl_mpls_use_tc_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_adv_cl_mpls_use_tc_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -464,10 +463,9 @@ impl ADV_CL_STICKY {
     }
     /// This sticky bit signals NXT_OFFSET_FROM_TYPE > 63 from the VCAP was attempted.
     pub fn adv_cl_nxt_offset_too_big_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_adv_cl_nxt_offset_too_big_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -812,10 +810,9 @@ impl CLASS_STICKY {
 
     /// 0: No event 1: Stacking header QoS class has been used for QoS classification Bit is cleared by writing a 1 to this position.
     pub fn qos_stack_tag_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_qos_stack_tag_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -876,10 +873,9 @@ impl FILTER_STICKY {
 
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn bad_macs_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bad_macs_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -908,10 +904,9 @@ pub struct MIP_STICKY(u32);
 impl MIP_STICKY {
     /// This sticky bit signals CCM copy MIP operation.
     pub fn mip_ccm_copy_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mip_ccm_copy_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -990,13 +985,10 @@ impl PP_CFG {
 
     /// 0: Protection group uses working entity. 1: Protection group uses protection entity.
     pub fn state(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_state(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1070,10 +1062,9 @@ impl VLAN_FILTER_STICKY {
 
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn filter_stag_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_filter_stag_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

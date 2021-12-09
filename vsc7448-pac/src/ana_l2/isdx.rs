@@ -38,10 +38,9 @@ pub struct DLB_CFG(u32);
 impl DLB_CFG {
     /// Dual leaky bucket base address.
     pub fn dlb_idx(&self) -> u32 {
-        (self.0 & 0x1fff) >> 0
+        self.0 & 0x1fff
     }
     pub fn set_dlb_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
@@ -56,10 +55,9 @@ pub struct DLB_COS_CFG(u32);
 impl DLB_COS_CFG {
     /// Dual leaky bucket offset per COS ID.
     pub fn dlb_cos_offset(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_dlb_cos_offset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -76,10 +74,9 @@ pub struct ISDX_BASE_CFG(u32);
 impl ISDX_BASE_CFG {
     /// Ingress service counter set base address.
     pub fn isdx_base_addr(&self) -> u32 {
-        (self.0 & 0x1fff) >> 0
+        self.0 & 0x1fff
     }
     pub fn set_isdx_base_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
@@ -96,10 +93,9 @@ pub struct MISC_CFG(u32);
 impl MISC_CFG {
     /// Bundle Policer Dual leaky bucket index. If ANA_L2::FWD_CFG.PORT_DEFAULT_BDLB_ENA is set some of the indeces are used for port default DLB (see ANA_L2::PORT_DLB_CFG.PORT_DLB_IDX). Related parameters: ANA_AC_POL:BDLB
     pub fn bdlb_idx(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_bdlb_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -182,10 +178,9 @@ impl PORT_LIMIT_CTRL {
 
     /// 0: Disable i.e. no learn limit for the PORT 1: Only learning of one MAC address allowed for this logical port ... n: Learning of n MAC address allowed for this port
     pub fn port_lrn_cnt_limit(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_port_lrn_cnt_limit(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -206,13 +201,10 @@ impl PORT_MASK_CFG {
 
     /// 'XX...XXX': Where X is '0' or '1', representing a port mask.
     pub fn port_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -230,10 +222,9 @@ impl PORT_MASK_CFG1 {
 
     /// 'XX...XXX': Where X is '0' or '1', representing a port mask.
     pub fn port_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_port_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -264,10 +255,9 @@ impl QGRP_CFG {
 
     /// 0: Not OAM - Frames dropped by QSYS	are always counted in QSYS drop stat. 1: EVC OAM - Frames dropped by QSYS which are classified as OAM will selectively be counted  in QSYS drop stat as EVC OAM. 2: OVC / PW OAM - Frames dropped by QSYS which are classified as OAM will selectively be counted	in QSYS drop stat as OVC / PW OAM. 3: DOWN MEP OAM - Frames dropped by QSYS which are classified as OAM will never be counted  in QSYS drop stat.
     pub fn qgrp_oam_type(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_qgrp_oam_type(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -340,10 +330,9 @@ impl SERVICE_CTRL {
 
     /// FWD_TYPE= UPSID_PN: FWD_ADDR(9:5) = UPSID FWD_ADDR(4:0) = UPSPN Specifies static unicast forwarding to lport FWD_TYPE = MC_IDX: Specifies static multicast forwarding to the ports indexed by MC_IDX into ANA_AC:PGID
     pub fn fwd_addr(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_fwd_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;

@@ -38,10 +38,9 @@ pub struct ACTION_CTRL(u32);
 impl ACTION_CTRL {
     /// Disable port statistics.
     pub fn pstat_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pstat_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -94,10 +93,9 @@ impl DLB_CTRL {
 
     /// 0: Disable bucket addition 1: Enable bucket addition
     pub fn dlb_add_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dlb_add_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -56,10 +56,9 @@ impl CPU_QU_CFG {
 
     /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
     pub fn cpu_ip_ttl_fail_qu(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_cpu_ip_ttl_fail_qu(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -164,13 +163,10 @@ impl DIP_SECURE_ENA {
 
     /// 0: Disable 1: Enable
     pub fn dip_cmp_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_dip_cmp_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -184,10 +180,9 @@ pub struct DIP_SECURE_ENA1(u32);
 impl DIP_SECURE_ENA1 {
     /// Refer to DIP_SECURE_ENA.DIP_CMP_ENA description.
     pub fn dip_cmp_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_dip_cmp_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -204,13 +199,10 @@ pub struct L3_MC_ENA(u32);
 impl L3_MC_ENA {
     /// Enable multicast routing per port. If disabled, IP multicast frames received on the port will not be routed. If disabled and L3_ENA_MODE=1, then routed IP multicast frames will not be transmitted on the port. Related parameters: ANA_L3:COMMON:ROUTING_CFG.L3_ENA_MODE.
     pub fn l3_mc_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_l3_mc_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -224,10 +216,9 @@ pub struct L3_MC_ENA1(u32);
 impl L3_MC_ENA1 {
     /// Refer to L3_MC_ENA.L3_MC_ENA description.
     pub fn l3_mc_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_l3_mc_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -244,13 +235,10 @@ pub struct L3_UC_ENA(u32);
 impl L3_UC_ENA {
     /// Enable unicast routing per port. If disabled, IP unicast frames received on the port will not be routed. If disabled and L3_ENA_MODE=1, then routed IP unicast frames will not be transmitted on the port. Related parameters: ANA_L3:COMMON:ROUTING_CFG.L3_ENA_MODE.
     pub fn l3_uc_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_l3_uc_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -264,10 +252,9 @@ pub struct L3_UC_ENA1(u32);
 impl L3_UC_ENA1 {
     /// Refer to L3_UC_ENA.L3_UC_ENA description.
     pub fn l3_uc_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_l3_uc_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -282,10 +269,9 @@ pub struct MISC_CTRL(u32);
 impl MISC_CTRL {
     /// Enable update of AC for routed frames.
     pub fn ac_update_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ac_update_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -302,13 +288,10 @@ pub struct PORT_FWD_CTRL(u32);
 impl PORT_FWD_CTRL {
     /// Enable forwarding per physical port. If disabled, frames received on port are discarded and frames are not forwarded to the port. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.PORT_FWD_DENY_STICKY
     pub fn port_fwd_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_fwd_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -322,10 +305,9 @@ pub struct PORT_FWD_CTRL1(u32);
 impl PORT_FWD_CTRL1 {
     /// Refer to PORT_FWD_CTRL.PORT_FWD_ENA description.
     pub fn port_fwd_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_port_fwd_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -342,13 +324,10 @@ pub struct PORT_LRN_CTRL(u32);
 impl PORT_LRN_CTRL {
     /// Enable/disable learning per physical port. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.PORT_LRN_DENY_STICKY
     pub fn port_lrn_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_lrn_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -362,10 +341,9 @@ pub struct PORT_LRN_CTRL1(u32);
 impl PORT_LRN_CTRL1 {
     /// Refer to PORT_LRN_CTRL.PORT_LRN_ENA description.
     pub fn port_lrn_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_port_lrn_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -410,10 +388,9 @@ impl RLEG_CFG_1 {
 
     /// Bit 0: MAC address, bit 24 ... Bit 23: MAC address, bit 47
     pub fn rleg_mac_msb(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_rleg_mac_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -544,10 +521,9 @@ impl ROUTING_CFG {
 
     /// 0: Disable redirection (errored frames are discarded) 1: Enable redirection to CPU queue
     pub fn ip4_ttl_redir_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ip4_ttl_redir_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -698,13 +674,10 @@ pub struct SIP_RPF_ENA(u32);
 impl SIP_RPF_ENA {
     /// Enable SIP RPF check per ingress port. For more information, refer to ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_SIP_RPF_MODE ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_SIP_RPF_MODE
     pub fn sip_rpf_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sip_rpf_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -718,10 +691,9 @@ pub struct SIP_RPF_ENA1(u32);
 impl SIP_RPF_ENA1 {
     /// Enable SIP RPF check per ingress port. For more information, refer to ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_SIP_RPF_MODE ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_SIP_RPF_MODE
     pub fn sip_rpf_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_sip_rpf_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -742,13 +714,10 @@ impl SIP_SECURE_ENA {
 
     /// 0: Disable 1: Enable
     pub fn sip_cmp_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_sip_cmp_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -762,10 +731,9 @@ pub struct SIP_SECURE_ENA1(u32);
 impl SIP_SECURE_ENA1 {
     /// Refer to SIP_SECURE_ENA.SIP_CMP_ENA description.
     pub fn sip_cmp_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_sip_cmp_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -786,13 +754,10 @@ impl VLAN_COMMUNITY_CFG {
 
     /// 0: Not a Community port (i.e. Promiscuous port or Isolated port) 1: Community port.
     pub fn vlan_community_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_vlan_community_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -806,10 +771,9 @@ pub struct VLAN_COMMUNITY_CFG1(u32);
 impl VLAN_COMMUNITY_CFG1 {
     /// Refer to VLAN_COMMUNITY_CFG.VLAN_COMMUNITY_MASK description.
     pub fn vlan_community_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_vlan_community_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -826,10 +790,9 @@ pub struct VLAN_CTRL(u32);
 impl VLAN_CTRL {
     /// Enable/disable VLAN lookup. This field must be enabled to allow VLAN and MSTP filtering. For VLAN unaware operation, this field can be disabled.
     pub fn vlan_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vlan_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -846,13 +809,10 @@ pub struct VLAN_FILTER_CTRL(u32);
 impl VLAN_FILTER_CTRL {
     /// Enable VLAN ingress filtering per port. If a port is enabled in this mask, frames received on the port are discarded if the port is not a member of the classified VLAN. VLAN ingress filtering can also be enabled per VLAN. VLAN ingress filtering is performed if either enabled for ingress port or for VLAN. Related parameters: ANA_L3:VLAN:VLAN_CFG.VLAN_IGR_FILTER_ENA ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.VLAN_IGR_FILTER_STICKY
     pub fn vlan_igr_filter_ena(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_vlan_igr_filter_ena(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -866,10 +826,9 @@ pub struct VLAN_FILTER_CTRL1(u32);
 impl VLAN_FILTER_CTRL1 {
     /// Refer to VLAN_FILTER_CTRL.VLAN_IGR_FILTER_ENA description.
     pub fn vlan_igr_filter_ena1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_vlan_igr_filter_ena1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -890,13 +849,10 @@ impl VLAN_ISOLATED_CFG {
 
     /// 0: Not an Isolated port (i.e. Promiscuous port or Community port) 1: Isolated port.
     pub fn vlan_isolated_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_vlan_isolated_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -910,10 +866,9 @@ pub struct VLAN_ISOLATED_CFG1(u32);
 impl VLAN_ISOLATED_CFG1 {
     /// Refer to VLAN_ISOLATED_CFG.VLAN_ISOLATED_MASK description.
     pub fn vlan_isolated_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_vlan_isolated_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -958,10 +913,9 @@ impl VRRP_IP4_CFG_1 {
 
     /// IPv4 VRRP MAC address Bit 47 downto 32.
     pub fn vrrp_ip4_base_mac_high(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_vrrp_ip4_base_mac_high(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -982,10 +936,9 @@ impl VRRP_IP6_CFG_0 {
 
     /// IPv6 VRRP MAC address Bit 31 downto 8.
     pub fn vrrp_ip6_base_mac_mid(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_vrrp_ip6_base_mac_mid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -1006,10 +959,9 @@ impl VRRP_IP6_CFG_1 {
 
     /// IPv6 VRRP MAC address Bit 47 downto 32.
     pub fn vrrp_ip6_base_mac_high(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_vrrp_ip6_base_mac_high(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

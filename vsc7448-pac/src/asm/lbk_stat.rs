@@ -34,10 +34,9 @@ pub struct LBK_FIFO_CFG(u32);
 impl LBK_FIFO_CFG {
     /// Flush all data in the FIFO
     pub fn fifo_flush(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fifo_flush(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -56,12 +55,9 @@ impl LBK_OVFLW_STICKY {
 
     /// bitmask per port.
     pub fn lbk_ovflw_sticky(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lbk_ovflw_sticky(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

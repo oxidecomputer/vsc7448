@@ -42,13 +42,10 @@ impl CAL_AUTO {
 
     /// 00: Port not active 01: Port granted 1Gbps 10: Port granted 2.5Gbps 11: Port granted 10Gbps
     pub fn cal_auto(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cal_auto(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -80,10 +77,9 @@ impl CAL_SEQ {
     }
     /// Enable update of the CAL_SEQ.
     pub fn cal_seq_pgm_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cal_seq_pgm_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -106,10 +102,9 @@ pub struct MMGT_TAILDROP_CNT(u32);
 impl MMGT_TAILDROP_CNT {
     /// Returns the number of buffer drops due to ATOP reached, or lack of free memory. Values returned for the port mapped in MMGT_PORT_VIEW. Counter wraps when maximum is reached reached.
     pub fn mmgt_taildrop_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mmgt_taildrop_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

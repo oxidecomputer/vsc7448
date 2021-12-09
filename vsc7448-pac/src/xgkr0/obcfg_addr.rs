@@ -36,10 +36,9 @@ pub struct BRKMASK_MSW(u32);
 impl BRKMASK_MSW {
     /// Select lptrain state machine breakpoints. Each bit correpsonds to a state (see design doc)
     pub fn brkmask_msw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_brkmask_msw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

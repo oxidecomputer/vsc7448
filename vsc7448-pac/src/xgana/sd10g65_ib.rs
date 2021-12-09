@@ -372,10 +372,9 @@ impl SD10G65_IB_CFG1 {
 
     /// 0: no peaking 7: max. peaking corner frequency adjustment with ib_eqz_c_adj_es2
     pub fn ib_eqz_c2(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ib_eqz_c2(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -580,10 +579,9 @@ impl SD10G65_IB_CFG10 {
     }
     /// JTAG debug enable
     pub fn ib_jtag_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ib_jtag_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -770,10 +768,9 @@ impl SD10G65_IB_CFG2 {
 
     /// 512: neutral > 512: positive < 512: negative range +/- 600mV (low gain) to +/-30mV (high gain) gain dependent offset sensitivity requiered for Base line wander compensation not supported in test chip
     pub fn ib_eqz_offset(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_ib_eqz_offset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -836,10 +833,9 @@ impl SD10G65_IB_CFG3 {
 
     /// 0: 0mV ... 8: 80mV ... 31: 310mV
     pub fn ib_ia_sdet_level(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_ib_ia_sdet_level(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -1014,10 +1010,9 @@ impl SD10G65_IB_CFG4 {
 
     /// 0: -max 31: -0 32: +0 63: +max (depending on calibration)
     pub fn ib_main_thres(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ib_main_thres(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -1200,10 +1195,9 @@ impl SD10G65_IB_CFG5 {
 
     /// For offset calibration 0: -max_offset * 32/32 31: -max_offset * 1/32 32: +max_offset * 1/32 63: +max_offset * 32/32 For threshold calibration 0: min_threshold 63: max_threshold
     pub fn ib_offs_value(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ib_offs_value(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -1332,10 +1326,9 @@ impl SD10G65_IB_CFG6 {
 
     /// 0: 0mV 32: 80mV
     pub fn ib_sam_offs_adj(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_ib_sam_offs_adj(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -1412,10 +1405,9 @@ impl SD10G65_IB_CFG7 {
 
     /// 0: 0mv 63: 200mV
     pub fn ib_dfe_offset_l(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ib_dfe_offset_l(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -1526,10 +1518,9 @@ impl SD10G65_IB_CFG8 {
 
     /// 0: 150% 5: 100% 15: 50%
     pub fn ib_cml_curr(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_ib_cml_curr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -1634,10 +1625,9 @@ pub struct SD10G65_IB_CFG9(u32);
 impl SD10G65_IB_CFG9 {
     /// Weighting for first DFE coefficient
     pub fn ib_dfe_coef1(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_ib_dfe_coef1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -1684,13 +1674,10 @@ pub struct SD10G65_RX_SVN_ID(u32);
 impl SD10G65_RX_SVN_ID {
     /// SVN revision number of RTL sources
     pub fn rx_svn_id(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_svn_id(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1732,10 +1719,9 @@ impl SD10G65_SBUS_RX_CFG {
 
     /// 1: Enable 0: Disable
     pub fn sbus_bias_en(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sbus_bias_en(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1830,10 +1816,9 @@ impl SD10G65_TX_REV_ID {
     }
     /// Feature set number of Toplevel (sd10g65_N)
     pub fn top_rev_id(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_top_rev_id(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

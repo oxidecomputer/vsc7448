@@ -66,10 +66,9 @@ impl TR_CFG8 {
     }
     /// Weighted average calculation of DFE tap 4
     pub fn wt4(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_wt4(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;

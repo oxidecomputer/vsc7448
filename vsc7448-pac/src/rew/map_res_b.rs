@@ -42,10 +42,9 @@ impl MAP_LBL_A {
 
     /// n: Label value
     pub fn label_val(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_label_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
@@ -122,10 +121,9 @@ impl MAP_VAL_B {
 
     /// n: New PCP value
     pub fn pcp_val(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_pcp_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

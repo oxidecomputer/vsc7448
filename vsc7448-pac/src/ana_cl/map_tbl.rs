@@ -70,10 +70,9 @@ impl L2CP_ENTRY_CFG {
     }
     /// CPU extraction queue for L2CP frame copied or redirected to CPU by CPU_FWD_CFG.
     pub fn cpu_l2cp_qu(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_cpu_l2cp_qu(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -118,10 +117,9 @@ impl SET_CTRL {
     }
     /// If set, DSCP_VAL replaces the classified DSCP value if the entry is matched.
     pub fn dscp_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dscp_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

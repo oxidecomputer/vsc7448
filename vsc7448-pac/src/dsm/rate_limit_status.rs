@@ -42,10 +42,9 @@ impl TX_RATE_LIMIT_HDR_CFG {
 
     /// 0: 32 bytes are counted as header 1-31: 1-31 bytes are counted as header
     pub fn tx_rate_limit_hdr_size(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_tx_rate_limit_hdr_size(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -66,12 +65,9 @@ impl TX_RATE_LIMIT_STICKY {
 
     /// '0': Tx Rate Limitation has not occurred. '1': Tx Rate Limitation has occurred. Bit is cleared by writing a '1' to this position.
     pub fn tx_rate_limit_sticky(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_rate_limit_sticky(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

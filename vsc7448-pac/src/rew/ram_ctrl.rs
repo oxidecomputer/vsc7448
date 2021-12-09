@@ -38,12 +38,9 @@ pub struct RD_LAST_PORT_BYTE_CNT_LSB(u32);
 impl RD_LAST_PORT_BYTE_CNT_LSB {
     /// See register description.
     pub fn rd_last_port_byte_cnt_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rd_last_port_byte_cnt_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

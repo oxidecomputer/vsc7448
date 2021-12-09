@@ -222,10 +222,9 @@ impl STICKY {
     }
     /// Set if the unicast flood mask has been used. Write 1 to clear this field.
     pub fn uc_flood_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_uc_flood_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

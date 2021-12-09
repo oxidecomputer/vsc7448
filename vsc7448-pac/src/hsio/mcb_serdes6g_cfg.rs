@@ -48,10 +48,9 @@ impl SERDES6G_REVID {
     }
     /// IB revision
     pub fn ib_rev(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_ib_rev(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;

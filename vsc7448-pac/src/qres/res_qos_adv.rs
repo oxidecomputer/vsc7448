@@ -46,10 +46,9 @@ impl PFC_CFG {
     }
     /// When set, a congested priority request pause of all lower priorities as well.
     pub fn tx_pfc_mode(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_pfc_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -64,10 +63,9 @@ pub struct RES_QOS_MODE(u32);
 impl RES_QOS_MODE {
     /// When a qos class is enabled in this mask, the class will have guaranteed shared space. The watermarks found in RES_CFG are used for setting the amount of space set aside.
     pub fn res_qos_rsrvd(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_res_qos_rsrvd(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -84,10 +82,9 @@ pub struct WRED_GROUP(u32);
 impl WRED_GROUP {
     /// Frames towards a port is WRED discarded by the profiles for the group configured.
     pub fn wred_group(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_wred_group(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -104,10 +101,9 @@ pub struct WRED_PROFILE(u32);
 impl WRED_PROFILE {
     /// See WM_RED_LOW. Unit is 2816 bytes.
     pub fn wm_red_high(&self) -> u32 {
-        (self.0 & 0x7ff) >> 0
+        self.0 & 0x7ff
     }
     pub fn set_wm_red_high(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;

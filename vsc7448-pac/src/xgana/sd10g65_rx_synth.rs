@@ -52,10 +52,9 @@ impl SD10G65_RX_RCPLL_STAT1 {
 
     /// 0: reset state 1: init state after reset 3: ramp up state checks for the counters and ramps up the frequency 6: additional wait state for internal BIAS settling 8: additional wait state 1 9: additional wait state 2 10; additional wait state 3 11: additional wait state 4 12: 1st locking state enables dynamic locking 13: final locking state checks for out of lock and overrun condition 14: error state low frequency 15: error state high frequency
     pub fn pllf_fsm_stat(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_pllf_fsm_stat(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -122,10 +121,9 @@ impl SD10G65_RX_SYNTH_CDRLF {
     }
     /// frequency select of integrator 2
     pub fn synth_integ2_fsel(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_synth_integ2_fsel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -152,10 +150,9 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     /// synthesizer enable
     pub fn synth_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_synth_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -338,10 +335,9 @@ impl SD10G65_RX_SYNTH_CFG1 {
     }
     /// frequency n setting bits 35:32
     pub fn synth_freqn_1(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_synth_freqn_1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -468,10 +464,9 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     /// relationship phase center/aux
     pub fn synth_phase_aux(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_synth_phase_aux(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -498,13 +493,10 @@ pub struct SD10G65_RX_SYNTH_CFG3(u32);
 impl SD10G65_RX_SYNTH_CFG3 {
     /// frequency m setting bits 31:0
     pub fn synth_freqm_0(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_synth_freqm_0(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -518,13 +510,10 @@ pub struct SD10G65_RX_SYNTH_CFG4(u32);
 impl SD10G65_RX_SYNTH_CFG4 {
     /// frequency n setting bits 31:0
     pub fn synth_freqn_0(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_synth_freqn_0(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -598,10 +587,9 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
     }
     /// Captured integrator 1 value
     pub fn synth_qual_i1(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_synth_qual_i1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -628,13 +616,10 @@ pub struct SD10G65_RX_SYNTH_QUALIFIER1(u32);
 impl SD10G65_RX_SYNTH_QUALIFIER1 {
     /// LS Bits of captured integrator 2
     pub fn synth_qual_i2_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_synth_qual_i2_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -668,10 +653,9 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {
     }
     /// Selects the synchronization period for the I2 value via sync control bus. Must be disabled (0) when sync control test generator is used. Coding in 312.5MHz clock cycles: 0: disabled, 1: 2^6, 2: 2^7, .., 15: 2^20.
     pub fn synth_sc_sync_timer_sel(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_synth_sc_sync_timer_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;

@@ -40,10 +40,9 @@ impl STAT_GLOBAL_EVENT_MASK {
 
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
     pub fn global_event_mask(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_global_event_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -212,10 +211,9 @@ impl STICKY_MASK {
     }
     /// Mask to enable counting of sticky event.
     pub fn uc_flood_sticky_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_uc_flood_sticky_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

@@ -38,10 +38,9 @@ pub struct SAM_LBR_RX_TRANSID_ERR_CNT(u32);
 impl SAM_LBR_RX_TRANSID_ERR_CNT {
     /// See register description.
     pub fn sam_lbr_rx_transid_err_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_sam_lbr_rx_transid_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

@@ -144,10 +144,9 @@ impl ANEG_ADV_ABILITY_0 {
     }
     /// Selector field (must be 0x1)
     pub fn sel_field(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_sel_field(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -174,10 +173,9 @@ pub struct ANEG_ADV_ABILITY_1(u32);
 impl ANEG_ADV_ABILITY_1 {
     /// Reserved for future technology as defined in IEEE 802.3ap clause 73.
     pub fn adv_abil_msb(&self) -> u32 {
-        (self.0 & 0x3fff) >> 0
+        self.0 & 0x3fff
     }
     pub fn set_adv_abil_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
         self.0 |= value;
@@ -208,10 +206,9 @@ impl ANEG_CFG {
 
     /// 1: Enable 0: Disable
     pub fn aneg_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_aneg_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -406,13 +403,10 @@ pub struct ANEG_NEXT_PAGE_0(u32);
 impl ANEG_NEXT_PAGE_0 {
     /// Lower 32 bits of next page link code word
     pub fn np_tx_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_np_tx_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -444,10 +438,9 @@ impl VAUI_CHANNEL_CFG {
 
     /// 0: Each lane provides own signal_detect 1: Signal_detect of all four lanes are ANDed
     pub fn sigdet_mode(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sigdet_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

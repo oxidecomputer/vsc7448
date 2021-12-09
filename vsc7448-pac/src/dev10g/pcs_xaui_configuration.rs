@@ -98,10 +98,9 @@ impl PCS_XAUI_CFG {
 
     /// 0: Disable PCS 1: Enable PCS
     pub fn pcs_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pcs_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -192,10 +191,9 @@ impl PCS_XAUI_EXT_CFG {
 
     /// 0: Normal lane order 1: Flipped lane order
     pub fn tx_flip_hmbus(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_flip_hmbus(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -282,10 +280,9 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
 
     /// 0: Normal XAUI mode 1: Interleave mode
     pub fn ilv_mode_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ilv_mode_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -432,10 +429,9 @@ impl PCS_XAUI_RX_ERR_CNT_CFG {
 
     /// 0000: Count errors of all lanes 1110: Count error of lane 0 only ...
     pub fn oferr_mask(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_oferr_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -470,10 +466,9 @@ impl PCS_XAUI_SD_CFG {
 
     /// 0: The Signal Detect input pin is ignored. The PCS assumes an active Signal Detect at all times 1: The Signal Detect input pin is used to determine if a signal is detected
     pub fn sd_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sd_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -556,10 +551,9 @@ impl TX_OK_BYTES_MSB_CNT {
 
     /// Counter can be written by SW.
     pub fn tx_ok_bytes_msb_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_tx_ok_bytes_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

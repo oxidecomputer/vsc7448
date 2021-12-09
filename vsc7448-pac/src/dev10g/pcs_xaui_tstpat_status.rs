@@ -98,10 +98,9 @@ impl PCS_XAUI_TSTPAT_CFG {
 
     /// 000: Idle 001: HFPAT 010: LFPAT 011: MFPAT 100: CRPAT 101: CJPAT All others: Idle
     pub fn vt_gen_sel(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_vt_gen_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -118,12 +117,9 @@ pub struct PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS(u32);
 impl PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS {
     /// Random sequence master counter
     pub fn rnd_seq_timer(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rnd_seq_timer(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

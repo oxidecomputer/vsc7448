@@ -38,10 +38,9 @@ pub struct PLL5G_BIST_CFG2(u32);
 impl PLL5G_BIST_CFG2 {
     /// BIST compare divider N
     pub fn pllb_div_factor_n(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pllb_div_factor_n(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -78,10 +77,9 @@ impl PLL5G_BIST_STAT0 {
     }
     /// BIST pass/fail, 0: passed, 1: failed
     pub fn pllb_fail(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pllb_fail(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -108,10 +106,9 @@ pub struct PLL5G_BIST_STAT1A(u32);
 impl PLL5G_BIST_STAT1A {
     /// BIST compare divider phase difference
     pub fn pllb_cnt_ref_diff(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pllb_cnt_ref_diff(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

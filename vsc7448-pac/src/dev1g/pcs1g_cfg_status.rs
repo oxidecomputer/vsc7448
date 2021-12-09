@@ -74,10 +74,9 @@ impl MAC_STICKY {
     }
     /// Sticky bit indicating that the transmit host initiated abort was executed.
     pub fn tx_abort_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_abort_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -146,10 +145,9 @@ impl PCS1G_ANEG_CFG {
 
     /// 0: Auto Negotiation Disabled 1: Auto Negotiation Enabled
     pub fn aneg_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_aneg_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -198,10 +196,9 @@ impl PCS1G_ANEG_NP_CFG {
 
     /// 0: next page is free and can be loaded 1: next page register has been filled (to be set after np_tx has been filled)
     pub fn np_loaded_one_shot(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_np_loaded_one_shot(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -252,10 +249,9 @@ impl PCS1G_ANEG_STATUS {
 
     /// 0: No Auto Negotiation has been completed 1: Indicates that an Auto Negotiation has completed successfully
     pub fn aneg_complete(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_aneg_complete(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -314,10 +310,9 @@ impl PCS1G_CDET_CFG {
 
     /// 0: Comma detection disabled 1: Comma detection enabled
     pub fn cdet_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cdet_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -366,10 +361,9 @@ impl PCS1G_CFG {
 
     /// 0: Disable PCS 1: Enable PCS
     pub fn pcs_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pcs_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -390,10 +384,9 @@ impl PCS1G_DBG_CFG {
 
     /// 0: Normal 10 ms (1.6 ms in sgmii mode) timer is selected 1: Reduced 9.77 us (1.56 us in sgmii mode) timer is selected
     pub fn udlt(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_udlt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -466,10 +459,9 @@ impl PCS1G_LB_CFG {
 
     /// 0: TBI Loopback Disabled 1:TBI Loopback Enabled
     pub fn tbi_host_lb_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tbi_host_lb_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -486,10 +478,9 @@ pub struct PCS1G_LINK_DOWN_CNT(u32);
 impl PCS1G_LINK_DOWN_CNT {
     /// Link Down Counter. A counter that counts the number of times a link has been down. The counter does not saturate at 255 and is only cleared when writing 0 to the register
     pub fn link_down_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_link_down_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -548,10 +539,9 @@ impl PCS1G_LINK_STATUS {
 
     /// 0: PCS is out of sync 1: PCS has synchronized
     pub fn sync_status(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sync_status(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -614,10 +604,9 @@ impl PCS1G_LPI_CFG {
 
     /// 0: Disable LPI transmission 1: Enable LPI transmission
     pub fn tx_assert_lpidle(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_assert_lpidle(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -634,10 +623,9 @@ pub struct PCS1G_LPI_WAKE_ERROR_CNT(u32);
 impl PCS1G_LPI_WAKE_ERROR_CNT {
     /// Wake Error Counter. A counter that is incremented when the link partner does not send wake-up burst in due time. The counter saturates at 65535 and is cleared when writing 0 to the register
     pub fn wake_error_cnt(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_wake_error_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -658,10 +646,9 @@ impl PCS1G_MODE_CFG {
 
     /// 0: PCS is used in SERDES mode 1: PCS is used in SGMII mode
     pub fn sgmii_mode_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sgmii_mode_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -696,10 +683,9 @@ impl PCS1G_SD_CFG {
 
     /// 0: The Signal Detect input pin is ignored. The PCS assumes an active Signal Detect at all times 1: The Signal Detect input pin is used to determine if a signal is detected
     pub fn sd_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sd_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -762,10 +748,9 @@ impl PCS1G_STICKY {
 
     /// 0: Synchronization has not been lost at any time 1: Synchronization has been lost for one or more clock cycles Bit is cleared by writing a 1 to this position.
     pub fn out_of_sync_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_out_of_sync_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

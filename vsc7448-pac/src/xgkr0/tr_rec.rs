@@ -36,10 +36,9 @@ pub struct HIST_MSW(u32);
 impl HIST_MSW {
     /// lptrain state machine history
     pub fn lptsm_hist_msw(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_lptsm_hist_msw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -64,10 +63,9 @@ pub struct TR_C0_DME_REC(u32);
 impl TR_C0_DME_REC {
     /// Recorded position of DME_viol event for C0
     pub fn c0_dme_rec(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_c0_dme_rec(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -92,10 +90,9 @@ impl TR_C0_LIM_REC {
     }
     /// Recorded position of MIN event for C0
     pub fn c0_min_rec(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_c0_min_rec(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -110,10 +107,9 @@ pub struct TR_CM_DME_REC(u32);
 impl TR_CM_DME_REC {
     /// Recorded position of DME_viol event for CM
     pub fn cm_dme_rec(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_cm_dme_rec(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -138,10 +134,9 @@ impl TR_CM_LIM_REC {
     }
     /// Recorded position of MIN event for CM
     pub fn cm_min_rec(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_cm_min_rec(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -156,10 +151,9 @@ pub struct TR_CP_DME_REC(u32);
 impl TR_CP_DME_REC {
     /// Recorded position of DME_viol event for CP
     pub fn cp_dme_rec(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_cp_dme_rec(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -184,10 +178,9 @@ impl TR_CP_LIM_REC {
     }
     /// Recorded position of MIN event for CP
     pub fn cp_min_rec(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_cp_min_rec(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;

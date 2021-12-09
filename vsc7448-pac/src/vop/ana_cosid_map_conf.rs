@@ -38,10 +38,9 @@ pub struct COSID_MAP_TABLE_ANA(u32);
 impl COSID_MAP_TABLE_ANA {
     /// The table is used to map the choosen COSID in the ANA. bit(2:0) will be used to map COSID = 0 bit(5:3) will be used to map COSID = 1 ... bit(23:21) will be used to map COSID = 7 When mapping a COSID, the following procedure is followed: 1) Use COSID_SRC_SEL_ANA to select the source of the COSID mapping. I.e. if COSID_SRC_SEL_ANA = 1 (TC) the input to the mapping table is set to the IFH.TC. 2) Map the selected value. If IFH.TC = 3, the mapped COSID will be set to COSID_MAP_TABLE_ANA[11:9]
     pub fn cosid_map_table_ana(&self) -> u32 {
-        (self.0 & 0xffffff) >> 0
+        self.0 & 0xffffff
     }
     pub fn set_cosid_map_table_ana(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
@@ -58,12 +57,9 @@ pub struct LBR_CRC_ERR_CNT(u32);
 impl LBR_CRC_ERR_CNT {
     /// See Register Description.
     pub fn lbr_crc_err_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lbr_crc_err_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

@@ -46,10 +46,9 @@ impl MMGT_FAST {
     }
     /// Number of frames awaiting release in the fast pool
     pub fn relvld(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_relvld(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -64,10 +63,9 @@ pub struct MMGT_IQ_STAT(u32);
 impl MMGT_IQ_STAT {
     /// Number of frame copies pending in the ingress queue
     pub fn mmgt_iq_size(&self) -> u32 {
-        (self.0 & 0xfffff) >> 0
+        self.0 & 0xfffff
     }
     pub fn set_mmgt_iq_size(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
@@ -82,10 +80,9 @@ pub struct MMGT_PORT_USE(u32);
 impl MMGT_PORT_USE {
     /// Total consumption per port in the memory manager. Unit is one cell (176 bytes).
     pub fn mmgt_port_use(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mmgt_port_use(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -100,10 +97,9 @@ pub struct MMGT_PORT_VIEW(u32);
 impl MMGT_PORT_VIEW {
     /// Select port to see consumption values for
     pub fn mmgt_port_view(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_mmgt_port_view(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;

@@ -102,10 +102,9 @@ impl HW_CFG {
     }
     /// Set bit 0 to enable QSGMII mode for devices DEV1G_0, DEV1G_1, DEV1G_2, and DEV1G_3 via SerDes6G_4. Set bit 1 to enable QSGMII mode for devices DEV1G_4, DEV1G_5, DEV1G_6, and DEV1G_7 via SerDes6G_5. Set bit 2 to enable QSGMII mode for devices DEV2G5_0, DEV2G5_1, DEV2G5_2, and DEV2G5_3 via SerDes6G_6. Set bit 3 to enable QSGMII mode for devices DEV2G5_4, DEV2G5_5, DEV2G5_6, and DEV2G5_7 via SerDes6G_7. Set bit 4 to enable QSGMII mode for devices DEV2G5_8, DEV2G5_9, DEV2G5_10, and DEV2G5_11 via SerDes6G_8. Set bit 5 to enable QSGMII mode for devices DEV2G5_12, DEV2G5_13, DEV2G5_14, and DEV2G5_15 via SerDes6G_9. Set bit 6 to enable QSGMII mode for devices DEV2G5_16, DEV2G5_17, DEV2G5_18, and DEV2G5_19 via SerDes6G_10. Set bit 7 to enable QSGMII mode for devices DEV2G5_20, DEV2G5_21, DEV2G5_22, and DEV2G5_23 via SerDes6G_11. Set bit 8 to enable QSGMII mode for devices DEV1G_8, DEV1G_9, DEV1G_10, and DEV1G_11 via SerDes6G_12. Set bit 9 to enable QSGMII mode for devices DEV1G_12, DEV1G_13, DEV1G_14, and DEV1G_15 via SerDes6G_13. Set bit 10 to enable QSGMII mode for devices DEV1G_16, DEV1G_17, DEV1G_18, and DEV1G_19 via SerDes6G_14. Set bit 11 to enable QSGMII mode for devices DEV1G_20, DEV1G_21, DEV1G_22, and DEV1G_23 via SerDes6G_15.
     pub fn qsgmii_ena(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_qsgmii_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -130,10 +129,9 @@ impl HW_QSGMII_CFG {
     }
     /// Set to flip QSGMII lanes: Lane 0 is interchanged with 3, and 1 is interchanged with 2 for both receie and transmit directions. Each bit in this field correspond to a QSGMII channel, bit 0 configures QSGMII#0, bit 1 configures QSGMII#1, etc.
     pub fn flip_lanes(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_flip_lanes(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -178,10 +176,9 @@ impl HW_QSGMII_STAT {
     }
     /// Set when QSGMII channel has successfully synchronized on K28.1 code-group, this field is only valid when DEVCPU_GCB::HW_QSGMII_CFG.SHYST_DIS is 0.
     pub fn sync(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sync(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -202,10 +199,9 @@ impl MCB_SERDES6G_ADDR_CFG {
 
     /// 0: Disable macro access via MCB 1: Enable macro access via MCB
     pub fn serdes6g_addr(&self) -> u32 {
-        (self.0 & 0x1ffffff) >> 0
+        self.0 & 0x1ffffff
     }
     pub fn set_serdes6g_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1ffffff);
         self.0 &= !0x1ffffff;
         self.0 |= value;

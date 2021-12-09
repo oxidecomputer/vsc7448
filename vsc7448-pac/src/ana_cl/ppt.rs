@@ -50,10 +50,9 @@ impl IPT {
     }
     /// Pointer to protection state in ANA_CL:PPT for the protection group, which this ISDX is a member of.
     pub fn ppt_idx(&self) -> u32 {
-        (self.0 & 0x1ff) >> 0
+        self.0 & 0x1ff
     }
     pub fn set_ppt_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;

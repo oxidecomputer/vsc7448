@@ -40,13 +40,10 @@ impl CW_VAL {
 
     /// x: Control Word
     pub fn cw_val(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cw_val(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -106,10 +103,9 @@ impl LABEL_VAL {
 
     /// x: TTL field value
     pub fn ttl_val(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_ttl_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -128,13 +124,10 @@ impl LL_DMAC_LSB {
 
     /// n: DMAC LSB
     pub fn dmac_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_dmac_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -150,10 +143,9 @@ impl LL_DMAC_MSB {
 
     /// n: DMAC MSB
     pub fn dmac_msb(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_dmac_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -172,10 +164,9 @@ impl LL_ETYPE {
 
     /// n: Ethertype
     pub fn etype(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_etype(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -194,13 +185,10 @@ impl LL_SMAC_LSB {
 
     /// n: SMAC LSB
     pub fn smac_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_smac_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -216,10 +204,9 @@ impl LL_SMAC_MSB {
 
     /// n: SMAC MSB
     pub fn smac_msb(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_smac_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -252,10 +239,9 @@ impl LL_TAG_CFG {
 
     /// 0: No tags in link layer 1: One tag after SMAC 2: Two tags after SMAC 3: Reserved
     pub fn tag_cfg(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_tag_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -276,10 +262,9 @@ impl LL_TAG_VAL {
 
     /// x: DEI value
     pub fn tag_dei_val(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tag_dei_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -354,10 +339,9 @@ impl MPLS_LABEL_CFG {
 
     /// 0: Use label from encapsulation table 1: Use label from ES0
     pub fn inner_lbl_sel(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_inner_lbl_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -434,10 +418,9 @@ impl MPLS_REMARK_CFG {
 
     /// 0: Classified TTL (ITTL) 1: Fixed: LABEL_VAL[N].TTL_VAL 2: Mixed: Use Classified TTL if IFH.DST.ENCAP.PDU_TYPE = OAM_MPLS_TP else LABEL_VAL[N].TTL_VAL 3: Reserved
     pub fn ttl_sel(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ttl_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -452,10 +435,9 @@ pub struct PTP_RSRV_NOT_ZERO_1(u32);
 impl PTP_RSRV_NOT_ZERO_1 {
     /// This register covers ports 32-56. See PTP_RSRV_NOT_ZERO for description.
     pub fn ptp_rsrv_not_zero_1(&self) -> u32 {
-        (self.0 & 0x1ffffff) >> 0
+        self.0 & 0x1ffffff
     }
     pub fn set_ptp_rsrv_not_zero_1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1ffffff);
         self.0 &= !0x1ffffff;
         self.0 |= value;
@@ -474,10 +456,9 @@ impl RSV_LABEL_CFG {
 
     /// 0: Disabled 1: Add reserved label if allowed
     pub fn rsv_lbl_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rsv_lbl_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -568,10 +549,9 @@ impl RSV_LABEL_VAL {
 
     /// x: TTL field value
     pub fn rsv_ttl_val(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_rsv_ttl_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

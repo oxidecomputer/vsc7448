@@ -46,10 +46,9 @@ impl FDMA_CONST {
     }
     /// The number of extraction channels.
     pub fn ch_xtr_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_ch_xtr_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -140,10 +139,9 @@ impl PCIEMST_REPLY_INFO {
 
     /// [0] SBA Response with bad EOT. Cause drop of inbound response. [1] EP-field. [2] TD-field. [4:3] Reserved, must be "01".
     pub fn mst_reply_info(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_mst_reply_info(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -168,10 +166,9 @@ impl PCIEPCS_BEACON {
     }
     /// Set this field to the maximum number of PCIe (transmit) clock cycles for which beacon may be asserted. The standard says beacon must not be asserted for longer than 32 us.
     pub fn beacon_max_dly(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_beacon_max_dly(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -196,10 +193,9 @@ pub struct PCIEPCS_CFG(u32);
 impl PCIEPCS_CFG {
     /// Set this field to disable outband PCIe beacon signalling when attempting to wake from D3. When beacon is disabled the WAKE# signal (available as alternate GPIO function) must be used instead.
     pub fn beacon_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_beacon_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -452,10 +448,9 @@ impl PCIESLV_FDMA {
 
     /// Set this field to 1.
     pub fn fdma_offset(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_fdma_offset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -524,10 +519,9 @@ impl PCIESLV_SBA {
 
     /// Set this field to 0.
     pub fn sba_offset(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_sba_offset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -596,10 +590,9 @@ pub struct PCIE_AUX_CFG(u32);
 impl PCIE_AUX_CFG {
     /// Set to force "detection" of PCIe auxiliary power.
     pub fn aux_power_val(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_aux_power_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -654,10 +647,9 @@ impl PCIE_CFG {
     }
     /// Set to add the PCIe core memories to the RAM integrity ring.
     pub fn mem_ring_core_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mem_ring_core_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -682,10 +674,9 @@ pub struct PCIE_CTRL(u32);
 impl PCIE_CTRL {
     /// Set this field to send out PME from the controller, this is only possible if PME is enabled in the PCIe EP core. This field is cleared automatically after controller has received the request. In the D3 state the controller will transmit beacon and/or assert #WAKE (see ICPU_CFG::PCIEPCS_CFG.BEACON_DIS for more information). In other states the link will be transitioned to L0 (when applicable) and PME event will then be transmitted upsteam.
     pub fn powerup(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_powerup(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -700,10 +691,9 @@ pub struct PCIE_DBG_STAT(u32);
 impl PCIE_DBG_STAT {
     /// Set when the PCIe Data Link Layer is up and ready to receive/transmit packages. This value is read directly from other clock domain, keep reading until same value was read twice in a row - then read was sucessful.
     pub fn data_link_layer_up(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_data_link_layer_up(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -808,10 +798,9 @@ impl PCIE_INTR {
     }
     /// This event is set whenever the ICPU_CFG::PCIE_STAT.PM_STATE field is changed.
     pub fn intr_pm_state(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_intr_pm_state(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -858,10 +847,9 @@ impl PCIE_INTR_CFG {
     }
     /// Set to enable MSI interrupt on rising edge of corresponding EXT_DST interrupt.
     pub fn intr_rising_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_intr_rising_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -910,10 +898,9 @@ impl PCIE_INTR_COMMON_CFG {
     }
     /// Set to enable PCIe interrupts. The PCIe endpoint's MSI Capability Register Set must have been configured before enabling interrupts.
     pub fn pcie_intr_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pcie_intr_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -978,10 +965,9 @@ impl PCIE_INTR_ENA {
     }
     /// Set to enable propagation of the PM_STATE interrupt.
     pub fn intr_pm_state_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_intr_pm_state_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1036,10 +1022,9 @@ impl PCIE_INTR_IDENT {
     }
     /// Set if the PM_STATE interrupt is currently active.
     pub fn intr_pm_state_ident(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_intr_pm_state_ident(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1086,10 +1071,9 @@ impl PCIE_STAT {
 
     /// 0: D0 1: D1 2: D2 3: D3 4: D0-Uninitialized
     pub fn pm_state(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_pm_state(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

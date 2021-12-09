@@ -38,13 +38,10 @@ pub struct CCM_TX_FCB_CFG(u32);
 impl CCM_TX_FCB_CFG {
     /// See register description.
     pub fn ccm_tx_fcb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ccm_tx_fcb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -58,12 +55,9 @@ pub struct SLM_TX_FRM_CNT(u32);
 impl SLM_TX_FRM_CNT {
     /// See register description.
     pub fn slm_tx_frm_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_slm_tx_frm_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

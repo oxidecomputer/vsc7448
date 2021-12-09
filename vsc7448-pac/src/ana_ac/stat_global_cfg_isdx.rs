@@ -40,10 +40,9 @@ impl GLOBAL_CNT_FRM_TYPE_CFG {
 
     /// "000": Frames without any event signal or FCS errored frames are counted. "001": Frames with unmasked (enabled) events without FCS error are counted. "010": Frames with unmasked (enabled) events with FCS error are counted. "011": Frames with unmasked (enabled) events independent of FCS error are counted. "100": Frames with FCS error but with no event signal are counted. "101": Frames with FCS error are unconditionally counted.
     pub fn global_cfg_cnt_frm_type(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_global_cfg_cnt_frm_type(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -64,10 +63,9 @@ impl STAT_GLOBAL_CFG {
 
     /// '0': Count frames. '1': Count bytes.
     pub fn global_cfg_cnt_byte(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_global_cfg_cnt_byte(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -82,10 +80,9 @@ pub struct STAT_MSB_CNT(u32);
 impl STAT_MSB_CNT {
     /// The counter's most significant 8 bits. The field stores the value in the counters of a flow from bit 32 to the most significant bit. Reading: The MSB part of the counter is latched to a shadow register, when the LSB part is read. As a result, the LSB part must always be read first, and the MSB part must be read immediately after the LSB part is read. Writing: The procedure for writing differs depending on counter group: ANA_AC:STAT_CNT_CFG_PORT: LSB part must be written first, followed by MSB part. All other counter groups: MSB part must be written first, followed by LSB part.
     pub fn msb_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_msb_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

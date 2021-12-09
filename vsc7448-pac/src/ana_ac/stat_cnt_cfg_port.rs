@@ -42,10 +42,9 @@ impl STAT_CFG {
 
     /// '0': Count frames. '1': Count bytes.
     pub fn cfg_cnt_byte(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cfg_cnt_byte(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -94,10 +93,9 @@ impl STAT_EVENTS_STICKY {
 
     /// '1': The corresponding event is triggered since it is cleared last time. '0': No such event is triggered since it is cleared last time.
     pub fn sticky_bits(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_sticky_bits(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -112,13 +110,10 @@ pub struct STAT_LSB_CNT(u32);
 impl STAT_LSB_CNT {
     /// This register contains the least significant 32 bits of a counter.
     pub fn lsb_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_lsb_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -130,10 +125,9 @@ pub struct STAT_RESET(u32);
 impl STAT_RESET {
     /// Write '1' to this field to reset all counters and configuration for this stat group. The device will set the bit back to '0' when reset has completed.
     pub fn reset(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_reset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

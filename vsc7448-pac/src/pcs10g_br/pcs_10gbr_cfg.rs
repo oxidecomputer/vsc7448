@@ -276,10 +276,9 @@ impl PCS_INTR_MASK {
 
     /// 0: Interrupt disabled 1: Interrupt enabled
     pub fn rx_hi_ber_mask(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_hi_ber_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -342,10 +341,9 @@ impl PCS_SD_CFG {
 
     /// 0: The Signal Detect input pin is ignored. The PCS assumes an active Signal Detect at all times 1: The Signal Detect input pin is used to determine if a signal is detected
     pub fn sd_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sd_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -390,13 +388,10 @@ pub struct RX_DATAPAT_LSB(u32);
 impl RX_DATAPAT_LSB {
     /// Least significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
     pub fn rx_datapat_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_datapat_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -410,13 +405,10 @@ pub struct RX_DATAPAT_MSB(u32);
 impl RX_DATAPAT_MSB {
     /// Most significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
     pub fn rx_datapat_msb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_rx_datapat_msb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -430,10 +422,9 @@ pub struct RX_PRBS31_INIT(u32);
 impl RX_PRBS31_INIT {
     /// PRBS31 initial value.
     pub fn rx_prbs31_init(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 0
+        self.0 & 0x7fffffff
     }
     pub fn set_rx_prbs31_init(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fffffff);
         self.0 &= !0x7fffffff;
         self.0 |= value;
@@ -510,10 +501,9 @@ impl TEST_CFG {
 
     /// 0: Square wave 1: Pseudo random 2: PRBS31 3: User defined
     pub fn tx_testpat_sel(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_tx_testpat_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -530,13 +520,10 @@ pub struct TX_DATAPAT_LSB(u32);
 impl TX_DATAPAT_LSB {
     /// Least significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
     pub fn tx_datapat_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_datapat_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -550,13 +537,10 @@ pub struct TX_DATAPAT_MSB(u32);
 impl TX_DATAPAT_MSB {
     /// Most significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
     pub fn tx_datapat_msb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_datapat_msb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -570,13 +554,10 @@ pub struct TX_SEEDA_LSB(u32);
 impl TX_SEEDA_LSB {
     /// Least significant bits of scrambler used to initialize it during test mode
     pub fn tx_seeda_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_seeda_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -590,10 +571,9 @@ pub struct TX_SEEDA_MSB(u32);
 impl TX_SEEDA_MSB {
     /// Most significant bits of scrambler used to initialize it during test mode
     pub fn tx_seeda_msb(&self) -> u32 {
-        (self.0 & 0x3ffffff) >> 0
+        self.0 & 0x3ffffff
     }
     pub fn set_tx_seeda_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ffffff);
         self.0 &= !0x3ffffff;
         self.0 |= value;
@@ -610,13 +590,10 @@ pub struct TX_SEEDB_LSB(u32);
 impl TX_SEEDB_LSB {
     /// Least significant bits of scrambler used to initialize it during test mode
     pub fn tx_seedb_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_tx_seedb_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -630,10 +607,9 @@ pub struct TX_SEEDB_MSB(u32);
 impl TX_SEEDB_MSB {
     /// Most significant bits of scrambler used to initialize it during test mode
     pub fn tx_seedb_msb(&self) -> u32 {
-        (self.0 & 0x3ffffff) >> 0
+        self.0 & 0x3ffffff
     }
     pub fn set_tx_seedb_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ffffff);
         self.0 &= !0x3ffffff;
         self.0 |= value;

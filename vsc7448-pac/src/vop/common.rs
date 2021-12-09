@@ -104,10 +104,9 @@ impl CPU_EXTR_CFG {
 
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
     pub fn dmr_cpu_qu(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_dmr_cpu_qu(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -212,10 +211,9 @@ impl CPU_EXTR_CFG_1 {
 
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
     pub fn lt_cpu_qu(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_lt_cpu_qu(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -264,10 +262,9 @@ impl CPU_EXTR_MPLS {
 
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
     pub fn bfd_cv_cpu_qu(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_bfd_cv_cpu_qu(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -284,10 +281,9 @@ pub struct HMO_FORCE_SLOT_CFG(u32);
 impl HMO_FORCE_SLOT_CFG {
     /// See register description.
     pub fn hmo_force_slot(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_hmo_force_slot(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -308,13 +304,10 @@ impl HMO_PERIOD_CFG {
 
     /// For the default value of the LOC_BASE_TICK_CNTthe HMO scan timer will expire with the following intervals. A value of 0 disables the timeout for this counter. 50: 10us 500: 100us 5000: 1 ms 16500: 3.3ms 50000: 10ms 500000: 100ms 5000000: 1s
     pub fn hmo_period_val(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_hmo_period_val(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -348,10 +341,9 @@ impl HMO_TIMER_CFG {
     }
     /// Assign which HMO timer will trigger the following VOE Auto HMO bits: VOP:VOE_STAT:SYNLM_EXTRACT.EXTRACT_PEER_RX To trigger the Auto HMO bits, this must be enabled by the VOE: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.HMO_EXTRACT_PEER_RX
     pub fn hmo_extract_peer_rx_timer(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_hmo_extract_peer_rx_timer(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -392,13 +384,10 @@ impl INTR {
 
     /// Each bit in the field indicates the interrupt from a single VOE. 0: No interrupt from VOE 1: VOE has asserted the interrupt.
     pub fn voe_intr(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_voe_intr(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -430,10 +419,9 @@ impl LOC_CTRL {
 
     /// 0: No force bit 0 = 1: Force a scan of LOC scan timer 0 bit 1 = 1: Force a scan of LOC scan timer 1 bit 2 = 1: Force a scan of LOC scan timer 2 bit 3 = 1: Force a scan of LOC scan timer 3 bit 4 = 1: Force a scan of LOC scan timer 4 bit 5 = 1: Force a scan of LOC scan timer 5 bit 6 = 1: Force a scan of LOC scan timer 6 bit 7 = 1: Force a scan of HMO scan timer 0; (using HMO slot configured in VOP::HMO_FORCE_SLOT_CFG(0).HMO_FORCE_SLOT) bit 8 = 1: Force a scan of HMO scan timer 1; (using HMO slot configured in VOP::HMO_FORCE_SLOT_CFG(1).HMO_FORCE_SLOT)
     pub fn loc_force_hw_scan_ena(&self) -> u32 {
-        (self.0 & 0x1ff) >> 0
+        self.0 & 0x1ff
     }
     pub fn set_loc_force_hw_scan_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;
@@ -468,13 +456,10 @@ impl LOC_PERIOD_CFG {
 
     /// A value of 0 disables the timeout for this counter. 50: 10us 500: 100us 5000: 1 ms 16500: 3.3ms 50000: 10ms 500000: 100ms 5000000: 1s
     pub fn loc_period_val(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_loc_period_val(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -534,10 +519,9 @@ impl LOC_SCAN_STICKY {
 
     /// 0: No event has occured 1: Scan could not start in time Bit is cleared by writing a 1 to this position.
     pub fn loc_scan_start_delayed_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_loc_scan_start_delayed_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -650,10 +634,9 @@ impl OAM_GENERIC_CFG {
     }
     /// This value configures the Y.1731 OpCode to be processed as a Generic OpCode corresponding to this generic Index.
     pub fn generic_opcode_val(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_generic_opcode_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -716,10 +699,9 @@ impl VERSION_CTRL {
 
     /// SDM_VERSION(x) = '0'; Version X of the 1DM PDU is invalid. SDM_VERSION(x) = '1'; Version X of the 1DM PDU is valid.
     pub fn sdm_version(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_sdm_version(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -754,10 +736,9 @@ impl VERSION_CTRL_2 {
 
     /// SL1_VERSION(x) = '0'; Version X of the LBM/LBR PDU is invalid. SL1_VERSION(x) = '1'; Version X of the LBM/LBR PDU is valid.
     pub fn sl1_version(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_sl1_version(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -800,10 +781,9 @@ pub struct VERSION_CTRL_MPLS(u32);
 impl VERSION_CTRL_MPLS {
     /// The VOE will optionally validate the version of the incoming BFD frames against the value configured in this register. If the version in the incoming frame is not as configured, the frame will be discarded. The Rx validation is configured in the following bitfields: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_VERIFY_*
     pub fn bfd_version(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_bfd_version(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -820,13 +800,10 @@ pub struct VOE32_INTR(u32);
 impl VOE32_INTR {
     /// See register description.
     pub fn voe32_intr(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_voe32_intr(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -948,10 +925,9 @@ impl VOP_CTRL {
     }
     /// Enables or disables the Vitesse OAM Processor (VOP). When the the VOP is disabled, both VOP and the single VOEs can be configured, but no frame processing is done. Further each individual VOE must be enabled to enable its functionality.
     pub fn vop_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vop_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

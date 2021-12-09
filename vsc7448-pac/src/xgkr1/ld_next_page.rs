@@ -36,10 +36,9 @@ pub struct KR_7X0015(u32);
 impl KR_7X0015 {
     /// LP advertised abilities D[47:32]
     pub fn lp_bp_adv2(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lp_bp_adv2(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct KR_7X0016(u32);
 impl KR_7X0016 {
     /// Next page to transmit D[15:0]
     pub fn np_tx0(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_np_tx0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -72,10 +70,9 @@ pub struct KR_7X0017(u32);
 impl KR_7X0017 {
     /// Next page to transmit D[31:16]
     pub fn np_tx1(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_np_tx1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

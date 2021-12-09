@@ -36,10 +36,9 @@ pub struct MAX_LEN(u32);
 impl MAX_LEN {
     /// Max "Total Length" (ref. RFC791) of IPv4 frames using this egress router leg. Related parameters: ANA_L3:COMMON:ROUTING_CFG.IP4_LEN_REDIR ANA_L3:COMMON:CPU_QU_CFG.CPU_IP_LEN_QU
     pub fn ip4_max_len(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ip4_max_len(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

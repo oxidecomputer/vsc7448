@@ -36,10 +36,9 @@ pub struct HSCH_FORCE_CTRL(u32);
 impl HSCH_FORCE_CTRL {
     /// Update the requested scheduling element
     pub fn hforce_1shot(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_hforce_1shot(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -78,10 +77,9 @@ pub struct HSCH_LEAK_CFG(u32);
 impl HSCH_LEAK_CFG {
     /// The leak group didnt succeed traversing all shapers. Rates will be wrong.
     pub fn leak_err(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_leak_err(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -110,10 +108,9 @@ impl HSCH_TIMER_CFG {
 
     /// 0: Leaking disabled 62500: 16kbps unit 10000: 100kbps unit 1000:  1Mbps unit (any other)
     pub fn leak_time(&self) -> u32 {
-        (self.0 & 0x3ffff) >> 0
+        self.0 & 0x3ffff
     }
     pub fn set_leak_time(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ffff);
         self.0 &= !0x3ffff;
         self.0 |= value;

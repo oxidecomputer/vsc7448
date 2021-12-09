@@ -373,9 +373,39 @@ impl {0} {{",
                             details.replace("\n", "\n    /// ")
                         )?;
                     }
-                    write!(
-                        &mut gfile,
-                        "    pub fn {field}(&self) -> u32 {{
+                    // Write out bitfield access, tuned to avoid no-op shifts
+                    // and mask operations (which would otherwise produce
+                    // compiler warnings).
+                    let shift = field.lo;
+                    let mask = (((1u64 << field.hi) - 1) ^ ((1u64 << field.lo) - 1)) as u32;
+                    match (shift, mask) {
+                        (0, 0xFFFFFFFF) => write!(
+                            &mut gfile,
+                            "    pub fn {field}(&self) -> u32 {{
+        self.0
+    }}
+    pub fn set_{field}(&mut self, value: u32) {{
+        self.0 = value;
+    }}",
+                            field = fname.to_lowercase(),
+                        )?,
+                        (0, _) => write!(
+                            &mut gfile,
+                            "    pub fn {field}(&self) -> u32 {{
+        self.0 & 0x{mask:x}
+    }}
+    pub fn set_{field}(&mut self, value: u32) {{
+        assert!(value <= 0x{mask:x});
+        self.0 &= !0x{mask:x};
+        self.0 |= value;
+    }}",
+                            field = fname.to_lowercase(),
+                            mask = mask,
+                        )?,
+                        (_, 0xFFFFFFFF) => panic!("Cannot have a full mask and non-zero shift"),
+                        _ => write!(
+                            &mut gfile,
+                            "    pub fn {field}(&self) -> u32 {{
         (self.0 & 0x{mask:x}) >> {shift}
     }}
     pub fn set_{field}(&mut self, value: u32) {{
@@ -384,10 +414,11 @@ impl {0} {{",
         self.0 &= !0x{mask:x};
         self.0 |= value;
     }}",
-                        field = fname.to_lowercase(),
-                        shift = field.lo,
-                        mask = (((1u64 << field.hi) - 1) ^ ((1u64 << field.lo) - 1)) as u32
-                    )?;
+                            field = fname.to_lowercase(),
+                            shift = shift,
+                            mask = mask
+                        )?,
+                    }
                 }
                 writeln!(&mut gfile, "\n}}")?;
             }

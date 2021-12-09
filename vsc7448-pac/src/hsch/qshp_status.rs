@@ -36,10 +36,9 @@ pub struct QSHP_CONNECT(u32);
 impl QSHP_CONNECT {
     /// Forms the leak chains.
     pub fn se_leak_link(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_se_leak_link(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;

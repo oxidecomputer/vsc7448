@@ -36,10 +36,9 @@ pub struct DTI_CNT(u32);
 impl DTI_CNT {
     /// DTI_MODE.MODE=0, 2: Number of remaining frame sequences to inject. Configured by SW, decremented by AFI. DTI_MODE.MODE=1: Number of frames injected.
     pub fn cnt(&self) -> u32 {
-        (self.0 & 0x7fffffff) >> 0
+        self.0 & 0x7fffffff
     }
     pub fn set_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fffffff);
         self.0 &= !0x7fffffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct DTI_FRM(u32);
 impl DTI_FRM {
     /// Pointer to first frame in frame sequence.
     pub fn first_frm_ptr(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_first_frm_ptr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -130,10 +128,9 @@ impl DTI_MODE {
 
     /// 0: Frame sequence shall be injected DTI_CNT.CNT times. 1: Frame sequence shall be injected until stopped (DTI_CTRL.ENA=0). Number of frames injected is counted in DTI_CNT.CNT. 2: Frame sequence shall be injected DTI_CNT.CNT times. Once this is done, the DTI pointed to by AFI:DTI_TBL:DTI_MODE.DTI_NEXT will be enabled. This can be used to concatenate DTIs. 3: Reserved.
     pub fn mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -162,10 +159,9 @@ pub struct DTI_PORT_QU(u32);
 impl DTI_PORT_QU {
     /// Port number which injection queue transmits on. Injection queue is selected by QU_NUM.
     pub fn port_num(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_port_num(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -196,10 +192,9 @@ impl FRM_ENTRY_PART0 {
 
     /// Delay entry type: Bit 0-29: DELAY Frame entry type: Bit 0-7: INJ_CNT Bit 8-10: Reserved, must be set to 0 Bit 11: FRM_RM Bit 12: FRM_GONE Bit 13-29: FRM_INFO
     pub fn part0(&self) -> u32 {
-        (self.0 & 0x3fffffff) >> 0
+        self.0 & 0x3fffffff
     }
     pub fn set_part0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;

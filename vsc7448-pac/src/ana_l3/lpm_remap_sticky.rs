@@ -62,10 +62,9 @@ impl L3MC_CTRL {
     }
     /// Enable CPU copy of frames, which are otherwise candidates for routing, but have TTL/HL<2. Such frames are not L3 forwarded, but may still be subject to L2 forwarding. CPU queue used is configured in ANA_L3:COMMON:CPU_QU_CFG.CPU_IP_TTL_FAIL_QU.
     pub fn ipmc_ttl_copy_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ipmc_ttl_copy_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

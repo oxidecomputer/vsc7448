@@ -36,10 +36,9 @@ pub struct MW_TMR_MSW(u32);
 impl MW_TMR_MSW {
     /// maxwait_timer, when training expires and failure declared. 500ms
     pub fn mw_tmr_msw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mw_tmr_msw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

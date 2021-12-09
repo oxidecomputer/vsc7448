@@ -38,10 +38,9 @@ pub struct PTP_CUR_NSEC(u32);
 impl PTP_CUR_NSEC {
     /// Time of day naoseconds, latched when NSF was read.
     pub fn ptp_cur_nsec(&self) -> u32 {
-        (self.0 & 0x3fffffff) >> 0
+        self.0 & 0x3fffffff
     }
     pub fn set_ptp_cur_nsec(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
@@ -56,13 +55,10 @@ pub struct PTP_CUR_NSF(u32);
 impl PTP_CUR_NSF {
     /// Returns the current value of the timestamping clock. The time of day registers will be latched when this register is read.
     pub fn ptp_cur_nsf(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ptp_cur_nsf(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -74,13 +70,10 @@ pub struct PTP_CUR_SEC_LSB(u32);
 impl PTP_CUR_SEC_LSB {
     /// Value of current tod secs, latched when NSF was read.
     pub fn ptp_cur_sec_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ptp_cur_sec_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -102,10 +95,9 @@ impl PTP_SYS_CLK_CFG {
     }
     /// Must be configured to number of 100ps to add on top of the PTP_SYS_CLK_PER_NS value to get to the correct clock period.
     pub fn ptp_sys_clk_per_ps100(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_ptp_sys_clk_per_ps100(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;

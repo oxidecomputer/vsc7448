@@ -36,13 +36,10 @@ pub struct CM_DATA(u32);
 impl CM_DATA {
     /// Data register for core memory access. Wider memories are big endian mapped into the 32 BIT inspection space.
     pub fn cm_data(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cm_data(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -68,10 +65,9 @@ impl COMMON_EQUAL_STACK_LINK_TTL_CFG {
     }
     /// TTL value used for equal cost path. Only applicable for ring topology stacks with an even number of units. Must be set to number of units in the stack divided by two. Use of equal cost paths is enabled by ANA_AC:UPSID:STACK_LINK_EQUAL_COST_CFG.STACK_LINK_EQUAL_ENA
     pub fn vstax2_equal_stack_link_ttl_val(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_vstax2_equal_stack_link_ttl_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -86,10 +82,9 @@ pub struct COMMON_VSTAX_CFG(u32);
 impl COMMON_VSTAX_CFG {
     /// Specifies own UPSID This must be configured consistently across the following registers: ANA_CL::UPSID_CFG.UPSID_NUM ANA_AC::COMMON_VSTAX_CFG.OWN_UPSID ANA_L2::VSTAX_CTRL.OWN_UPSID REW::COMMON_CTRL.OWN_UPSID
     pub fn own_upsid(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_own_upsid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -338,10 +333,9 @@ impl CPU_CFG {
 
     /// '00000000' : A frame copy will be generated for all CPU queues applicable for reception ... 'xxxxxx11' : Only one CPU copy will be generated for CPU queue 1 and 0 ... '11111111' : At most one frame copy will be generated for all CPU queues applicable for reception
     pub fn one_cpu_copy_only_mask(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_one_cpu_copy_only_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -402,13 +396,10 @@ impl PHYS_SRC_AGGR_CFG {
 
     /// 'xxx0xx': Use normal aggregation code when finding aggregation mask for this port 'xxx1xx': Use only physical source port number in aggregation code when finding aggregation mask for this port.
     pub fn phys_src_aggr_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_phys_src_aggr_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -420,10 +411,9 @@ pub struct PHYS_SRC_AGGR_CFG1(u32);
 impl PHYS_SRC_AGGR_CFG1 {
     /// Refer to PHYS_SRC_AGGR_CFG.PHYS_SRC_AGGR_MASK description.
     pub fn phys_src_aggr_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_phys_src_aggr_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -458,10 +448,9 @@ impl PS_COMMON_CFG {
     }
     /// Enable lookup of logical source port. If disabled, the source mask does not affect the egress port mask.
     pub fn src_lookup_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_src_lookup_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -502,10 +491,9 @@ impl SFLOW_RESET_CTRL {
 
     /// 0: No action 1: Reset counters.
     pub fn sflow_frame_reset_shot(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sflow_frame_reset_shot(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -524,13 +512,10 @@ impl STACK_A_CFG {
 
     /// 'XX...XXX': Where X is '0' or '1', representing a stacking link A destination port.
     pub fn stack_a_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_stack_a_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -542,10 +527,9 @@ pub struct STACK_A_CFG1(u32);
 impl STACK_A_CFG1 {
     /// Refer to STACK_A_CFG.STACK_A_MASK description.
     pub fn stack_a_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_stack_a_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -564,13 +548,10 @@ impl STACK_CFG {
 
     /// 'XX...XXX': Where X is '0' or '1', representing a destination port.
     pub fn stack_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_stack_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -582,10 +563,9 @@ pub struct STACK_CFG1(u32);
 impl STACK_CFG1 {
     /// Refer to STACK_CFG.STACK_MASK description.
     pub fn stack_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_stack_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -604,10 +584,9 @@ impl VSTAX_CTRL {
 
     /// 0: VStaX2/BF mode (Basic Forwarding mode) 1: VStaX2/AF mode (Advanced Forwarding mode)
     pub fn vstax2_stack_port_mode(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vstax2_stack_port_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -622,13 +601,10 @@ pub struct VSTAX_GMIRROR_CFG(u32);
 impl VSTAX_GMIRROR_CFG {
     /// The set of port(s) to which frames received on a stack port and with fwd_mode=fwd_gmirror traffic are forwarded. This is only used in VStaX context.
     pub fn gmirror_port_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_gmirror_port_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -640,10 +616,9 @@ pub struct VSTAX_GMIRROR_CFG1(u32);
 impl VSTAX_GMIRROR_CFG1 {
     /// Refer to VSTAX_GMIRROR_CFG.GMIRROR_PORT_MASK description.
     pub fn gmirror_port_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_gmirror_port_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;

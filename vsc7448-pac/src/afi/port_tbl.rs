@@ -54,10 +54,9 @@ pub struct TTI_PORT_FRM_OUT(u32);
 impl TTI_PORT_FRM_OUT {
     /// See AFI:PORT_TBL:PORT_CFG.FRM_OUT_MAX.
     pub fn tti_frm_out_max(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_tti_frm_out_max(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;

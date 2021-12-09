@@ -36,10 +36,9 @@ pub struct VCAP_CORE_IDX(u32);
 impl VCAP_CORE_IDX {
     /// Set to index of specific core to access the mapping of that core via VCAP_SUPER::VCAP_CORE_MAP.
     pub fn core_idx(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_core_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct VCAP_RULE_ENA(u32);
 impl VCAP_RULE_ENA {
     /// Cache register. Set to enable ES0 rule. Applies only to the ES0 VCAP.
     pub fn rule_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rule_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

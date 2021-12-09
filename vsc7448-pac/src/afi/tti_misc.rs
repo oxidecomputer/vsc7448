@@ -40,10 +40,9 @@ impl TTI_CAL_SLOT_CNT {
 
     /// 0: 1 1: 1 2: 2 ...
     pub fn slot_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_slot_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -68,10 +67,9 @@ impl TTI_CAL_SLOT_PTRS {
     }
     /// Calendar Slot's Frame Table start pointer.
     pub fn slot_start_ptr(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_slot_start_ptr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -86,10 +84,9 @@ pub struct TTI_CAL_STATE(u32);
 impl TTI_CAL_STATE {
     /// Current value of Calendar Slot's TTI Table Pointer.
     pub fn slot_tti_tbl_ptr(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_slot_tti_tbl_ptr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -152,10 +149,9 @@ impl TTI_CTRL {
     }
     /// Enable TTIs. Before enabling TTIs, TTI_INIT should be used to initialize Calendar state.
     pub fn tti_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tti_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -190,10 +186,9 @@ pub struct TTI_CTRL2(u32);
 impl TTI_CTRL2 {
     /// Minium number of clock cycles between TUPE accessing TTI Table. TUPE access to TTI Table takes precedence over both CSR accesses and normal TTI processing. TUPE will at least consume 4 clock cycles per processed TTI, so setting TTI_TUPE_RSV<4 results in same behaviour as setting it to 4.
     pub fn tti_tupe_rsv(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_tti_tupe_rsv(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -208,10 +203,9 @@ pub struct TTI_INJ_CNT(u32);
 impl TTI_INJ_CNT {
     /// Number of TTI frame injections. Enabled per TTI using AFI:TTI_TBL:TTI_MISC_CFG.INJ_CNT_ENA. Frames injected for removal are also counted.
     pub fn tti_inj_cnt(&self) -> u32 {
-        (self.0 & 0x3fffffff) >> 0
+        self.0 & 0x3fffffff
     }
     pub fn set_tti_inj_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
@@ -226,10 +220,9 @@ pub struct TTI_RAND_STATE(u32);
 impl TTI_RAND_STATE {
     /// State of random algorithm used for TTI jitter calculation. Updated by AFI for each jitter calculation. Should be initialized by SW to a random, non-zero value.
     pub fn tti_rand_state(&self) -> u32 {
-        (self.0 & 0x3ffff) >> 0
+        self.0 & 0x3ffff
     }
     pub fn set_tti_rand_state(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ffff);
         self.0 &= !0x3ffff;
         self.0 |= value;
@@ -246,10 +239,9 @@ pub struct TTI_TICK_STATE(u32);
 impl TTI_TICK_STATE {
     /// Tick's current counter value.
     pub fn tick_cnt(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_tick_cnt(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

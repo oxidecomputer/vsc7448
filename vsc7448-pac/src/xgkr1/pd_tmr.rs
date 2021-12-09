@@ -36,10 +36,9 @@ pub struct PD_LSW(u32);
 impl PD_LSW {
     /// page_detect_timer setting
     pub fn pd_tmr_lsw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pd_tmr_lsw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct TR_MSW(u32);
 impl TR_MSW {
     /// training_state_timer setting
     pub fn tr_tmr_msw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_tr_tmr_msw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

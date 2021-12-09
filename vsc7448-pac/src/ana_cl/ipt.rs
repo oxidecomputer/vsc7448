@@ -40,10 +40,9 @@ impl ISDX_CFG {
 
     /// 0: Disable use of L2CP_IDX. Default port-based index used instead. >0: L2CP_IDX selects the L2CP profile to use.
     pub fn l2cp_idx(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_l2cp_idx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -98,10 +97,9 @@ impl MAP_ENTRY {
     }
     /// DSCP value. The classified DSCP is set to DSCP_VAL if SET_CTRL.DSCP_ENA is set.
     pub fn dscp_val(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_dscp_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -176,10 +174,9 @@ pub struct OAM_MEP_CFG(u32);
 impl OAM_MEP_CFG {
     /// Force selected VOE to handle all frames as data.
     pub fn independent_mel_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_independent_mel_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -218,10 +215,9 @@ impl VSI_CFG {
 
     /// 0: Use classified VID for lookup in VLAN table 1: Use VSI for lookup in VLAN table
     pub fn vsi_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vsi_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

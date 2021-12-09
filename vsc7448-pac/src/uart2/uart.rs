@@ -40,10 +40,9 @@ impl HTX {
 
     /// 0: Halt tx disabled 1: Halt tx enabled
     pub fn htx(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_htx(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -92,10 +91,9 @@ impl IER {
 
     /// 0: Disabled 1: Enabled
     pub fn erbfi(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_erbfi(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -140,10 +138,9 @@ pub struct IIR_FCR(u32);
 impl IIR_FCR {
     /// This description is valid for writes only. Reading this field has special meaning; for more information, see the general register description. FIFO Enable. This enables or disables the transmit (XMIT) and receive (RCVR) FIFOs. Whenever the value of this bit is changed, both the XMIT and RCVR controller portion of FIFOs are reset.
     pub fn fifoe(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_fifoe(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -232,10 +229,9 @@ impl LCR {
 
     /// 00: 5 bits 01: 6 bits 10: 7 bits 11: 8 bits
     pub fn dls(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_dls(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -302,10 +298,9 @@ impl LSR {
 
     /// 0: No data ready 1: Data ready
     pub fn dr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -460,10 +455,9 @@ impl MSR {
 
     /// 0: No change on CTS since the last read of the MSR 1: Change on CTS since the last read of the MSR
     pub fn dcts(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dcts(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -480,10 +474,9 @@ pub struct RBR_THR(u32);
 impl RBR_THR {
     /// Use this register to access the Rx and Tx FIFOs. When reading: The data in this register is valid only if LSR.DR is set. If FIFOs are disabled (IIR_FCR.FIFOE), the data in this register must be read before the next data arrives, otherwise it is overwritten, resulting in an overrun error. When FIFOs are enabled (IIR_FCR.FIFOE), this register accesses the head of the receive FIFO. If the receive FIFO is full and this register is not read before the next data character arrives, then the data already in the FIFO is preserved, but any incoming data is lost and an overrun error occurs. When writing: Data should only be written to this register when the LSR.THRE indicates that there is room in the FIFO. If FIFOs are disabled (IIR_FCR.FIFOE), writes to this register while LSR.THRE is zero, causes the register to be overwritten. When FIFOs are enabled (IIR_FCR.FIFOE) and LSR.THRE is set, 16 characters may be written to this register before the FIFO is full. Any attempt to write data when the FIFO is full results in the write data being lost.
     pub fn rbr_thr(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_rbr_thr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -496,13 +489,10 @@ impl RBR_THR {
 #[derive(From, Into)]
 pub struct RESERVED1(u32);
 impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved1(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -512,13 +502,10 @@ impl RESERVED1 {    pub fn reserved1(&self) -> u32 {
 #[derive(From, Into)]
 pub struct RESERVED2(u32);
 impl RESERVED2 {    pub fn reserved2(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reserved2(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -530,10 +517,9 @@ pub struct SCR(u32);
 impl SCR {
     /// This register is for programmers to use as a temporary storage space. It has no functional purpose for the UART.
     pub fn scr(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_scr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -552,10 +538,9 @@ impl USR {
 
     /// 0: UART is idle or inactive 1: UART is busy (actively transferring data)
     pub fn busy(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_busy(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

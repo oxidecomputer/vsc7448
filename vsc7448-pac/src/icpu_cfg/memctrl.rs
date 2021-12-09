@@ -146,10 +146,9 @@ impl MEMCTRL_CFG {
     }
     /// Set to 1 less than the number of column address bits for the SDRAM configuration in use. For example; for a memory that is using column addresses {A11, A9-A0} this field must be set to 10.
     pub fn msb_col_addr(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_msb_col_addr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -174,10 +173,9 @@ pub struct MEMCTRL_CTRL(u32);
 impl MEMCTRL_CTRL {
     /// Set this field to force the memory controller to initialize the SDRAM. This field is automatically cleared after the controller has started initialization of the SDRAM. Wait for ICPU_CFG::MEMCTRL_STAT.INIT_DONE before performing read/write operations on the controller. Note: The ICPU_CFG::MEMCTRL_CFG, ICPU_CFG::MEMCTRL_REF_PERIOD, ICPU_CFG::MEMCTRL_TIMING*, and ICPU_CFG::MEMCTRL_MR* registers must be configured appropriately before setting this field.
     pub fn initialize(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_initialize(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -234,10 +232,9 @@ impl MEMCTRL_DFT {    pub fn ddrdft_a10(&self) -> u32 {
 
     /// 0: Disabled 1: Enabled
     pub fn ddrdft_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ddrdft_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -322,10 +319,9 @@ impl MEMCTRL_DQS_AUTO {
     }
     /// Set this field to enable automatic detection of drifting read-data-window. Drifting of the DQS read window occurs as the chip is heating/cooling. When this field is set MEMCTRL_DQS_DLY.DQS_DLY field will automatically be ajusted when a drift is detected by the hardware.
     pub fn dqs_auto_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_dqs_auto_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -396,10 +392,9 @@ pub struct MEMCTRL_DQS_DLY(u32);
 impl MEMCTRL_DQS_DLY {
     /// This field configures read-window delay as an offset in 1/4 clock cycles from the fixed read-delay configured in MEMCTRL_TIMING0.RD_DATA_XFR_DLY.
     pub fn dqs_dly(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_dqs_dly(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -448,10 +443,9 @@ pub struct MEMCTRL_MR0_VAL(u32);
 impl MEMCTRL_MR0_VAL {
     /// Value to be programmed into the mode register (0) during SDRAM initialization. During initialization bit 8 (DLL Reset) of this register must be set to 0, the memory controller automatically sets this bit when required during the initialization procedure. After initialization this field is used for sending custom MDSET commands. If ICPU_CFG::MEMCTRL_CTRL.MDSET is set then the value of this field is writtten to the register defined by bit [15:14].
     pub fn mr0_val(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mr0_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -466,10 +460,9 @@ pub struct MEMCTRL_MR1_VAL(u32);
 impl MEMCTRL_MR1_VAL {
     /// Value to be programmed into mode register 1 / extended mode register during SDRAM initialization. Bits 7 thorugh 9 (OCD Calibration Program) of this register must be set to 0x7, the memory controller sets this field when required during the initialization procedure.
     pub fn mr1_val(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mr1_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -484,10 +477,9 @@ pub struct MEMCTRL_MR2_VAL(u32);
 impl MEMCTRL_MR2_VAL {
     /// Value to be programmed into mode register 2 / extended mode register 2 during SDRAM initialization.
     pub fn mr2_val(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mr2_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -502,10 +494,9 @@ pub struct MEMCTRL_MR3_VAL(u32);
 impl MEMCTRL_MR3_VAL {
     /// Value to be programmed into mode register 3 / extended mode register 3 during SDRAM initialization.
     pub fn mr3_val(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_mr3_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -530,10 +521,9 @@ impl MEMCTRL_REF_PERIOD {
     }
     /// Refresh interval of the SDRAM expressed in number of clock cycles. This value is calculated by dividing the average periodic refresh interval (tREFI) by the clock period.
     pub fn ref_period(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ref_period(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -548,10 +538,9 @@ pub struct MEMCTRL_STAT(u32);
 impl MEMCTRL_STAT {
     /// This field is set after initialization of the SDRAM is done. When this field is set then read/write operations can be performed.
     pub fn init_done(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_init_done(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -616,10 +605,9 @@ pub struct MEMCTRL_TERMRES_CTRL(u32);
 impl MEMCTRL_TERMRES_CTRL {
     /// Set to enable local termination during a read operation.
     pub fn local_odt_rd_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_local_odt_rd_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -726,10 +714,9 @@ impl MEMCTRL_TIMING0 {
 
     /// RL-3
     pub fn rd_data_xfr_dly(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_rd_data_xfr_dly(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -890,10 +877,9 @@ impl MEMCTRL_TIMING1 {
 
     /// WL+BL+tWTR-1
     pub fn wr_to_rd_dly(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_wr_to_rd_dly(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -914,10 +900,9 @@ impl MEMCTRL_TIMING2 {
 
     /// Before initialization: ID-1 After initialization: SD-1
     pub fn init_dly(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_init_dly(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -1032,10 +1017,9 @@ impl MEMCTRL_TIMING3 {
 
     /// WL+tWTR-1
     pub fn wr_to_rd_cs_change_dly(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_wr_to_rd_cs_change_dly(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -1084,10 +1068,9 @@ impl MEMCTRL_TIMING4 {
 
     /// tZQCS-3
     pub fn zqcal_short_dly(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_zqcal_short_dly(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -1112,10 +1095,9 @@ impl MEMCTRL_ZQCAL {
     }
     /// Set this field to issue short ZQ calibration command. This field is cleared when calibration has been performed.
     pub fn zqcal_short(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_zqcal_short(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1236,10 +1218,9 @@ impl MEMPHY_CFG {
 
     /// 0: PHY is in working mode. 1: PHY is forced in reset.
     pub fn phy_rst(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_phy_rst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1284,10 +1265,9 @@ impl MEMPHY_DFT {
     }
     /// Set to enable SSTL drivers/receivers in the DTO (Digital Test Outputs) drivers.
     pub fn phy_dt_sstl_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_phy_dt_sstl_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1388,10 +1368,9 @@ impl MEMPHY_DLLCFG0 {
     }
     /// Reserved.
     pub fn dllcfg_res0(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_dllcfg_res0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -1538,10 +1517,9 @@ impl MEMPHY_DLLCFG1 {
     }
     /// Reserved.
     pub fn dllcfg_res7(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_dllcfg_res7(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -1596,13 +1574,10 @@ impl MEMPHY_DQ_DLY_TRM {
 
     /// 0: nominal delay. 1: nominal delay + 1 step. 2: nominal delay + 2 steps. 3: nominal delay + 3 steps.
     pub fn phy_dq_dly_trm(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_phy_dq_dly_trm(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -1628,10 +1603,9 @@ impl MEMPHY_ZCAL {
     }
     /// Set this field to start automatic SSTL output and ODT drive-strength calibration. This field is cleared when the automatic calibration has completed.
     pub fn zcal_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_zcal_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1694,10 +1668,9 @@ impl MEMPHY_ZCAL_OVR {
     }
     /// Set to force override value MEMCTRl_ZCAL_OVR.ZCAL_OVR_DATA instead of automatic calibration result.
     pub fn zcal_ovr_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_zcal_ovr_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1722,10 +1695,9 @@ pub struct MEMPHY_ZCAL_STAT(u32);
 impl MEMPHY_ZCAL_STAT {
     /// Set when the automatic impedance calibration indicates done.
     pub fn zcal_done(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_zcal_done(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1816,10 +1788,9 @@ pub struct TIMER_CTRL(u32);
 impl TIMER_CTRL {
     /// Set this field to force the reload of the timer, this will set the TIMER_VALUE to TIMER_RELOAD_VALUE for the corresponding timer. This field can be set at the same time as enabeling the counter, in that case the counter will be reloaded and then enabled for counting.
     pub fn force_reload(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_force_reload(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

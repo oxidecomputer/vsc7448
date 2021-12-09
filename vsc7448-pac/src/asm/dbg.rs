@@ -42,10 +42,9 @@ impl DBG_CFG {
 
     /// '0': Frames are silently discarded by the ASM if it is aborted within the first cell of the frame. '1': No frames are silently discarded by the ASM
     pub fn abort_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_abort_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -230,10 +229,9 @@ impl ERR_STICKY {
 
     /// '0': No overflow has been detected in the main statemachine. '1': An overflow has been detected in the main statemachine. Bit is cleared by writing a '1' to this position.
     pub fn main_sm_oflw_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_main_sm_oflw_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -290,10 +288,9 @@ pub struct INJ_VLAN_CFG(u32);
 impl INJ_VLAN_CFG {
     /// The TPID used for VLAN tag matching when injection with long IFH prefix is selected in INJ_FORMAT_CFG.
     pub fn inj_tpid_cfg(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_inj_tpid_cfg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

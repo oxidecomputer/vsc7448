@@ -40,10 +40,9 @@ impl POL_PORT_GAP {
 
     /// 0x40: -64 0x41: -63 ... 0x7F: -1 0x00: 0 0x01: 1 ... 0x3F: 63
     pub fn gap_value(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_gap_value(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -78,10 +77,9 @@ impl POL_PORT_RATE_CFG {
 
     /// When POL_PORT_CFG.FRAME_RATE_ENA is disabled, policing is performed in bits per second (bps). 0: Open until burst capacity is used, then closed. 1: Rate = 1 x <unit> bps n: Rate = n x <unit> bps When POL_PORT_CFG.FRAME_RATE_ENA is enabled, policing is performed in frames per second (fps). 0: Open until burst capacity is used, then closed. 1: Rate = <unit> fps n: Rate = n x <unit> fps
     pub fn port_rate(&self) -> u32 {
-        (self.0 & 0x7ffff) >> 0
+        self.0 & 0x7ffff
     }
     pub fn set_port_rate(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;

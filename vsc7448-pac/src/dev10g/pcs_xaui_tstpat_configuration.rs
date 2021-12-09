@@ -98,10 +98,9 @@ impl PCS_XAUI_LPI_STATUS {
 
     /// 0: Transmitter not in low power idle mode 1: Transmitter is in low power idle mode
     pub fn tx_lpi_mode(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_tx_lpi_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

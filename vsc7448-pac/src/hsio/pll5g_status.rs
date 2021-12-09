@@ -42,10 +42,9 @@ impl PLL5G_CFG6 {
 
     /// 2: 500 MHz 5: 250 MHz 6: 416.66 MHz 14: 312.5 MHz 15: 166.66 MHz Others: Reserved
     pub fn ddr_clk_div(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ddr_clk_div(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -102,10 +101,9 @@ impl PLL5G_STATUS0 {
     }
     /// PLL lock status 0: not locked, 1: locked
     pub fn lock_status(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_lock_status(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

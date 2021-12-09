@@ -40,10 +40,9 @@ impl VCAP_CORE_MAP {
 
     /// Applies only to the Super VCAP.
     pub fn core_map(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_core_map(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

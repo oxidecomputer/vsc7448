@@ -140,10 +140,9 @@ impl SERDES1G_COMMON_CFG {
 
     /// 0: 8-bit mode 1: 10-bit mode
     pub fn if_mode(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_if_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -314,10 +313,9 @@ impl SERDES1G_DES_CFG {
 
     /// 0: No swapping 1: Swapping
     pub fn des_swap_hyst(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_des_swap_hyst(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -470,10 +468,9 @@ impl SERDES1G_IB_CFG {
     }
     /// Resistor control. Value must be taken from RCOMP_STATUS.RCOMP. (default: -3)
     pub fn ib_resistor_ctrl(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_ib_resistor_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -548,10 +545,9 @@ impl SERDES1G_OB_CFG {
     }
     /// Resistor control. Value must be taken from RCOMP_STATUS.RCOMP. (default: +1)
     pub fn ob_resistor_ctrl(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_ob_resistor_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -656,10 +652,9 @@ impl SERDES1G_SER_CFG {
 
     /// 0: Disable phase alignment 1: Enable phase alignment
     pub fn ser_enali(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ser_enali(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -728,10 +723,9 @@ pub struct SYNC_ETH_SD10G_CFG(u32);
 impl SYNC_ETH_SD10G_CFG {
     /// Set to enable auto-squelching for sync. ethernet clock output: when set the clock output will stop toggling (keep its last value constantly) when PCS looses link synchrony.
     pub fn sd10g_auto_squelch_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sd10g_auto_squelch_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

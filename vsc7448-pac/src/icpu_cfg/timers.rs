@@ -36,10 +36,9 @@ pub struct DEV_INTR_IDENT1(u32);
 impl DEV_INTR_IDENT1 {
     /// See ICPU_CFG::DEV_INTR_IDENT for description, this register holds bits above 32.
     pub fn dev_intr_ident1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_dev_intr_ident1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -54,13 +53,10 @@ pub struct TIMER_RELOAD_VALUE(u32);
 impl TIMER_RELOAD_VALUE {
     /// The contents of this field are loaded into the corresponding timer (TIMER_VALUE) when it wraps (decrements a zero).
     pub fn reload_val(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_reload_val(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -76,10 +72,9 @@ impl TIMER_TICK_DIV {
 
     /// The timer tick frequency is: 250MHz/(TIMER_TICK_DIV+1).
     pub fn timer_tick_div(&self) -> u32 {
-        (self.0 & 0x3ffff) >> 0
+        self.0 & 0x3ffff
     }
     pub fn set_timer_tick_div(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ffff);
         self.0 &= !0x3ffff;
         self.0 |= value;
@@ -94,13 +89,10 @@ pub struct TIMER_VALUE(u32);
 impl TIMER_VALUE {
     /// The current value of the timer. When enabled via TIMER_CTRL.TIMER_ENA the timer decrements at every timer tick (see TIMER_TICK_DIV for more info on timer tick frequency). When the timer has reached 0, and a timer-tick is received, then an interrupt is generated. For example; If a periodic interrupt is needed every 1ms, and the timer tick is generated every 100us then the TIMER_VALUE (and TIMER_RELOAD_VALUE) must be configured to 9. By default the timer will reload from the TIMER_RELOAD_VALUE when interrupt is generated, and then continue decrementing from the reloaded value. It is possible to make the timer stop after generating interrupt by setting TIMER_CTRL.ONE_SHOT_ENA.
     pub fn timer_val(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_timer_val(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -126,10 +118,9 @@ impl WDT {
     }
     /// Use this field to configure and reset the WDT. When writing 0xBE to this field immediately followed by writing 0xEF, the WDT resets and configurations are read from this register (as provided when the 0xEF is written). When the WDT is enabled, writing any value other than 0xBE or 0xEF after 0xBE is written, causes a WDT reset as if the timer had run out.
     pub fn wdt_lock(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_wdt_lock(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

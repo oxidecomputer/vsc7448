@@ -38,10 +38,9 @@ pub struct UPSID_CFG1(u32);
 impl UPSID_CFG1 {
     /// Refer to UPSID_CFG.UPSID_PORT_MASK.
     pub fn upsid_port_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_upsid_port_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;

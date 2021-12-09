@@ -38,10 +38,9 @@ pub struct ARP_CFG_0(u32);
 impl ARP_CFG_0 {
     /// Enable entry for address resolution usage.
     pub fn arp_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_arp_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -122,10 +121,9 @@ pub struct ARP_PTR_REMAP_CFG(u32);
 impl ARP_PTR_REMAP_CFG {
     /// Address of ARP entry in ARP Table (ANA_L3:ARP).
     pub fn arp_ptr(&self) -> u32 {
-        (self.0 & 0x7ff) >> 0
+        self.0 & 0x7ff
     }
     pub fn set_arp_ptr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;

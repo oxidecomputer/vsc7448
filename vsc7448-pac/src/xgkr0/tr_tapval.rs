@@ -36,10 +36,9 @@ pub struct TR_C0VAL(u32);
 impl TR_C0VAL {
     /// C0 value
     pub fn c0_val(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_c0_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct TR_CMVAL(u32);
 impl TR_CMVAL {
     /// CM value
     pub fn cm_val(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_cm_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
@@ -82,10 +80,9 @@ impl TR_STS2 {
     }
     /// CM range error (LH)
     pub fn cm_range_err(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cm_range_err(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

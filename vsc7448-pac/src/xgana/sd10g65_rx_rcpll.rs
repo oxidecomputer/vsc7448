@@ -38,10 +38,9 @@ pub struct SD10G65_RX_RCPLL_CFG0(u32);
 impl SD10G65_RX_RCPLL_CFG0 {
     /// Enable RCPLL FSM
     pub fn pllf_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pllf_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -272,10 +271,9 @@ impl SD10G65_RX_RCPLL_CFG1 {
 
     /// 0: max. freq 3: min. freq.
     pub fn pllf_vco_slow(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_pllf_vco_slow(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -302,10 +300,9 @@ impl SD10G65_RX_RCPLL_CFG2 {
     }
     /// Enable analog RCPLL part
     pub fn pll_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pll_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -482,10 +479,9 @@ impl SD10G65_RX_RCPLL_STAT0 {
     }
     /// Actual value of VCO slow portion, set by FSM
     pub fn pllf_vco_slow_stat(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_pllf_vco_slow_stat(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -570,10 +566,9 @@ impl SD10G65_RX_REV_ID {
     }
     /// Feature set number of Toplevel (sd10g65_N)
     pub fn top_rev_id(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_top_rev_id(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

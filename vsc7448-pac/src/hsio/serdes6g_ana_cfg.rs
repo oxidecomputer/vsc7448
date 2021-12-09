@@ -82,10 +82,9 @@ impl SERDES6G_ACJTAG_CFG {
 
     /// 0: External controlled 1: CSR controlled
     pub fn jtag_ctrl_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_jtag_ctrl_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -214,10 +213,9 @@ impl SERDES6G_COMMON_CFG {
 
     /// 0: 8-bit mode 1: 10-bit mode 2: 16-bit mode 3: 20-bit mode
     pub fn if_mode(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_if_mode(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -388,10 +386,9 @@ impl SERDES6G_DES_CFG {
 
     /// 0: No swapping 1: Swapping
     pub fn des_swap_ana(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_des_swap_ana(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -496,10 +493,9 @@ impl SERDES6G_IB_CFG {
 
     /// 0: Disable 1: Enable (mission mode)
     pub fn ib_reg_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ib_reg_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -736,10 +732,9 @@ impl SERDES6G_IB_CFG1 {
     }
     /// Selects manual control for offset regulation if enabled
     pub fn ib_frc_offset(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ib_frc_offset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -884,10 +879,9 @@ impl SERDES6G_IB_CFG2 {
 
     /// 0: 160mV 1: 180mV 2: 200mV 3: 220mV 4: 240mV (recommended for mission mode) 5: 260mV 6: 280mV 7: 300mV
     pub fn ib_ureg(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ib_ureg(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -934,10 +928,9 @@ impl SERDES6G_IB_CFG3 {
     }
     /// Init force value for offset gain regulation
     pub fn ib_ini_offset(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ib_ini_offset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -984,10 +977,9 @@ impl SERDES6G_IB_CFG4 {
     }
     /// Max value for offset gain regulation
     pub fn ib_max_offset(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ib_max_offset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -1034,10 +1026,9 @@ impl SERDES6G_IB_CFG5 {
     }
     /// Min value for offset gain regulation
     pub fn ib_min_offset(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ib_min_offset(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -1058,10 +1049,9 @@ impl SERDES6G_MISC_STATUS {
 
     /// 0: CDR locked at bit 9 1: CDR locked at bit 4
     pub fn des_100fx_phase_sel(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_des_100fx_phase_sel(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1154,10 +1144,9 @@ impl SERDES6G_OB_CFG {
 
     /// 7: RCOMP+7 1: RCOMP+1 0: RCOMP 15: RCOMP-1 8: RCOMP -8
     pub fn ob_resistor_ctrl(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_ob_resistor_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -1276,10 +1265,9 @@ impl SERDES6G_OB_CFG1 {
 
     /// 0: lowest level 63: highest level
     pub fn ob_lev(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_ob_lev(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -1390,10 +1378,9 @@ impl SERDES6G_PLL_CFG {
     }
     /// Select rotation frequency Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
     pub fn pll_rot_frq(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pll_rot_frq(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -1470,10 +1457,9 @@ impl SERDES6G_SER_CFG {
 
     /// 0: Disable phase alignment 1: Enable phase alignment (required for MLD-modes - XAUI/RXAUI - and facility loop mode)
     pub fn ser_enali(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_ser_enali(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

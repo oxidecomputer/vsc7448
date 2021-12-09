@@ -36,10 +36,9 @@ pub struct AN_HIST(u32);
 impl AN_HIST {
     /// AN state machine history
     pub fn an_sm_hist(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_an_sm_hist(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;

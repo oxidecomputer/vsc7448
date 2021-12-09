@@ -42,13 +42,10 @@ impl CAPTURE_BPDU_CFG {
 
     /// 0: Normal forward 1: Enable redirection to CPU queue 2: Enable copy to CPU queue 3: Discard the frame
     pub fn cpu_bpdu_redir_sel(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cpu_bpdu_redir_sel(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -80,10 +77,9 @@ impl CAPTURE_CFG {
 
     /// 0: Disable redirection 1: Enable redirection to CPU queue
     pub fn cpu_igmp_redir_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cpu_igmp_redir_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -188,13 +184,10 @@ impl CAPTURE_GXRP_CFG {
 
     /// 0: Normal forward 1: Enable redirection to CPU queue 2: Enable copy to CPU queue 3: Discard the frame
     pub fn cpu_gxrp_redir_sel(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cpu_gxrp_redir_sel(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -212,13 +205,10 @@ impl CAPTURE_Y1731_AG_CFG {
 
     /// 0: Normal forward 1: Enable redirection to CPU queue 2: Enable copy to CPU queue 3: Discard the frame
     pub fn cpu_y1731_ag_redir_sel(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cpu_y1731_ag_redir_sel(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -260,10 +250,9 @@ impl FILTER_CTRL {
     }
     /// Enable FCS update of all frames received on the port.
     pub fn force_fcs_update_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_force_fcs_update_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -290,10 +279,9 @@ impl PCP_DEI_MAP_CFG {
     }
     /// Map VLAN PCP and DEI to a QoS class: QOS class = PCP_DEI_MAP_CFG[8*DEI + PCP].PCP_DEI_QOS_VAL.
     pub fn pcp_dei_qos_val(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_pcp_dei_qos_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -320,10 +308,9 @@ impl PCP_DEI_TRANS_CFG {
     }
     /// Translate VLAN PCP and DEI to a classified PCP: PCP = PCP_DEI_TRANS_CFG[8*DEI + PCP].PCP_TRANS_VAL.
     pub fn pcp_trans_val(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_pcp_trans_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -358,10 +345,9 @@ impl PORT_ID_CFG {
 
     /// 0: Logical port 0 1: Logical port 1 ... n: Logical port n.
     pub fn lport_num(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_lport_num(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -430,10 +416,9 @@ impl QOS_CFG {
     }
     /// Default port QoS class.
     pub fn default_qos_val(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_default_qos_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -590,10 +575,9 @@ impl STACKING_CTRL {
 
     /// 0: Disable 1: Enable
     pub fn stacking_header_discard_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_stacking_header_discard_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -670,10 +654,9 @@ impl VLAN_CTRL {
     }
     /// Default VID value for the port for untagged frames. Also used if port is VLAN unaware.
     pub fn port_vid(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_port_vid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -806,10 +789,9 @@ impl VLAN_FILTER_CTRL {
     }
     /// Discard frame if the investigated VLAN TPID equals VLAN_STAG_CFG[2].STAG_ETYPE_VAL and VID>0.
     pub fn cust3_stag_dis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cust3_stag_dis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -914,10 +896,9 @@ impl VLAN_TPID_CTRL {
 
     /// Bit0: Route untagged frames. Bit1: Route frames with one accepted tag (TPID is accepted by BASIC_TPID_AWARE_DIS) Bit2: Route frames with two accepted tags (TPID is accepted by BASIC_TPID_AWARE_DIS) Bit3: Route frames with three accepted tags (TPID is accepted by BASIC_TPID_AWARE_DIS)
     pub fn rt_tag_ctrl(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_rt_tag_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;

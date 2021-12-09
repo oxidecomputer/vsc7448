@@ -36,10 +36,9 @@ pub struct FRSENT_LSW(u32);
 impl FRSENT_LSW {
     /// Number of training frames sent to complete training.
     pub fn frsent_lsw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_frsent_lsw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct TR_CPVAL(u32);
 impl TR_CPVAL {
     /// CP value
     pub fn cp_val(&self) -> u32 {
-        (self.0 & 0x7f) >> 0
+        self.0 & 0x7f
     }
     pub fn set_cp_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;

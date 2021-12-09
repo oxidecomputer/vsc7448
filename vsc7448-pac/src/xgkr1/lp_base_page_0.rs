@@ -36,10 +36,9 @@ pub struct KR_7X0012(u32);
 impl KR_7X0012 {
     /// Local advertised abilities D[47:32]
     pub fn adv2(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_adv2(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

@@ -98,10 +98,9 @@ impl MAP_VAL_A {
 
     /// n: New PCP value
     pub fn pcp_val(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_pcp_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -206,10 +205,9 @@ impl MIP_STICKY_EVENT {
 
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
     pub fn mip_mel_chk_fail_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mip_mel_chk_fail_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

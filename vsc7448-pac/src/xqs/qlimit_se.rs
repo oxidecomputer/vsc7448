@@ -36,10 +36,9 @@ pub struct QLIMIT_SE_USE(u32);
 impl QLIMIT_SE_USE {
     /// Total use for all queues on the schedulling element
     pub fn qlimit_se_use(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_se_use(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct QUEUE_SIZE(u32);
 impl QUEUE_SIZE {
     /// This queue was have had one or more discards due to the queue limitation algorithm
     pub fn queue_killed(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_queue_killed(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

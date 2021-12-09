@@ -62,13 +62,10 @@ impl PGID_CFG {
 
     /// PGID_MISC_CFG.STACK_TYPE_ENA=0: Destination port mask. PGID_MISC_CFG.STACK_TYPE_ENA=1: Bit 4:0 VStaX destination UPSPN. Bit 5 VStaX destination port type. 0=Normal UPSPN, 1=Internal port (advanced use). Bit 10:6 VStaX destination UPSID Bit 13:11 VStaX forwarding mode. Only used if PGID origins from multicast index in MAC table. In all other cases bit 13:11 must be 0. Encoding: '001': fwd_logical. Forward to logical front port at specific UPS, using (UPSID, UPSPN). '010': fwd_physical. Forward to physical front port at specific UPS, using (UPSID, UPSPN). '101': fwd_gcpu_ups. Forward to GCPU of specific UPS (identified by UPSID). Other: Reserved. If bit 10:6 is a remote UPSID, then 20:16 must be set to 0. If bit 10:6 is the a UPSID, then 20:16 must be set to same value as bit 4:0.
     pub fn port_mask(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_mask(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -80,10 +77,9 @@ pub struct PGID_CFG1(u32);
 impl PGID_CFG1 {
     /// Refer to PGID_CFG.PORT_MASK description.
     pub fn port_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_port_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;

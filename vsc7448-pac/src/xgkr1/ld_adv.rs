@@ -56,10 +56,9 @@ impl KR_7X0001 {
     }
     /// LP AN ability
     pub fn an_lp_able(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_an_lp_able(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -124,10 +123,9 @@ pub struct KR_7X0010(u32);
 impl KR_7X0010 {
     /// Local advertised abilities D[15:0]
     pub fn adv0(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_adv0(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -142,10 +140,9 @@ pub struct KR_7X0011(u32);
 impl KR_7X0011 {
     /// Local advertised abilities D[31:16]
     pub fn adv1(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_adv1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

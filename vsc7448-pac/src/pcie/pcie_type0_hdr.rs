@@ -34,10 +34,9 @@ use derive_more::{From, Into};
 #[derive(From, Into)]
 pub struct BAR0(u32);
 impl BAR0 {    pub fn bar0_mem_io(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bar0_mem_io(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -74,10 +73,9 @@ impl BAR0 {    pub fn bar0_mem_io(&self) -> u32 {
 #[derive(From, Into)]
 pub struct BAR1(u32);
 impl BAR1 {    pub fn bar1_mem_io(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bar1_mem_io(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -114,10 +112,9 @@ impl BAR1 {    pub fn bar1_mem_io(&self) -> u32 {
 #[derive(From, Into)]
 pub struct BAR2(u32);
 impl BAR2 {    pub fn bar2_mem_io(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bar2_mem_io(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -154,10 +151,9 @@ impl BAR2 {    pub fn bar2_mem_io(&self) -> u32 {
 #[derive(From, Into)]
 pub struct BAR3(u32);
 impl BAR3 {    pub fn bar3_mem_io(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bar3_mem_io(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -194,10 +190,9 @@ impl BAR3 {    pub fn bar3_mem_io(&self) -> u32 {
 #[derive(From, Into)]
 pub struct BAR4(u32);
 impl BAR4 {    pub fn bar4_mem_io(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bar4_mem_io(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -234,10 +229,9 @@ impl BAR4 {    pub fn bar4_mem_io(&self) -> u32 {
 #[derive(From, Into)]
 pub struct BAR5(u32);
 impl BAR5 {    pub fn bar5_mem_io(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_bar5_mem_io(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -282,10 +276,9 @@ impl BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE {    pub fn bist(&self) -> u32 {
         self.0 &= !0xff000000;
         self.0 |= value;
     }    pub fn cache_line_size(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_cache_line_size(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -322,13 +315,10 @@ impl BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE {    pub fn bist(&self) -> u32 {
 #[derive(From, Into)]
 pub struct CARDBUS_CIS_PTR(u32);
 impl CARDBUS_CIS_PTR {    pub fn cardbus_cis_pointer(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_cardbus_cis_pointer(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -354,10 +344,9 @@ impl CLASS_CODE_REVISION_ID {    pub fn base_class_code(&self) -> u32 {
         self.0 &= !0xff00;
         self.0 |= value;
     }    pub fn revision_id(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_revision_id(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -386,10 +375,9 @@ impl DEVICE_ID_VENDOR_ID {    pub fn pci_type0_device_id(&self) -> u32 {
         self.0 &= !0xffff0000;
         self.0 |= value;
     }    pub fn pci_type0_vendor_id(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_pci_type0_vendor_id(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -410,10 +398,9 @@ impl EXP_ROM_BASE_ADDR {    pub fn exp_rom_base_address(&self) -> u32 {
         self.0 &= !0xfffff800;
         self.0 |= value;
     }    pub fn rom_bar_enable(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rom_bar_enable(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -426,10 +413,9 @@ impl EXP_ROM_BASE_ADDR {    pub fn exp_rom_base_address(&self) -> u32 {
 #[derive(From, Into)]
 pub struct PCI_CAP_PTR(u32);
 impl PCI_CAP_PTR {    pub fn cap_pointer(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_cap_pointer(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -514,10 +500,9 @@ impl STATUS_COMMAND {    pub fn cap_list(&self) -> u32 {
         self.0 &= !0x400;
         self.0 |= value;
     }    pub fn pci_type0_io_en(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_pci_type0_io_en(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -634,10 +619,9 @@ impl SUBSYSTEM_ID_SUBSYSTEM_VENDOR_ID {    pub fn subsys_dev_id(&self) -> u32 {
         self.0 &= !0xffff0000;
         self.0 |= value;
     }    pub fn subsys_vendor_id(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_subsys_vendor_id(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

@@ -36,10 +36,9 @@ pub struct KR_7X0014(u32);
 impl KR_7X0014 {
     /// LP advertised abilities D[31:16]
     pub fn lp_bp_adv1(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lp_bp_adv1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

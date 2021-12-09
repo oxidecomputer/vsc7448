@@ -98,10 +98,9 @@ impl PCS_INTR_STAT {
 
     /// 0: High BER status unchanged 1: High BER status changed
     pub fn rx_hi_ber_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rx_hi_ber_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -164,10 +163,9 @@ impl TIMER_125 {
 
     /// 16-bit binary number
     pub fn timer_125(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_timer_125(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

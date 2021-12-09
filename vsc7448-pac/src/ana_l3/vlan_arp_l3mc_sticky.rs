@@ -38,10 +38,9 @@ pub struct L3_LPM_REMAP_STICKY(u32);
 impl L3_LPM_REMAP_STICKY {
     /// Set if an IPv4 multicast longest prefix match has been found and the returned L3MC_IDX is less than the number of L3MC table entries.
     pub fn lpm_ip4mc_found_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_lpm_ip4mc_found_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -166,10 +165,9 @@ impl VLAN_STICKY {
     }
     /// Set if a frame has been filtered due to VLAN ingress filtering. Related parameters: ANA_L3:COMMON:VLAN_FILTER_CTRL.VLAN_IGR_FILTER_ENA
     pub fn vlan_igr_filter_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_vlan_igr_filter_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

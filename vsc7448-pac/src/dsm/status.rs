@@ -42,13 +42,10 @@ impl AGED_FRMS {
 
     /// Counter can be written by SW.
     pub fn aged_frms_cnt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_aged_frms_cnt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -66,13 +63,10 @@ impl BUF_OFLW_STICKY {
 
     /// '0': No buffer overflow detected. '1': Buffer overflow detected. Bit is cleared by writing a '1' to this position.
     pub fn buf_oflw_sticky(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_buf_oflw_sticky(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -90,13 +84,10 @@ impl BUF_UFLW_STICKY {
 
     /// '0': No buffer underflow detected. '1': Buffer underflow detected. Bit is cleared by writing a '1' to this position.
     pub fn buf_uflw_sticky(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_buf_uflw_sticky(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -114,10 +105,9 @@ impl CELL_BUS_STICKY {
 
     /// '0': Missing EOF has not been detected. '1': Missing EOF has been detected. Bit is cleared by writing a '1' to this position.
     pub fn cell_bus_missing_eof_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cell_bus_missing_eof_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -152,10 +142,9 @@ impl DBG_CTRL {
 
     /// 0: Number of aged frames 1: Number of SOF transmitted on taxi bus 2: Number of EOF transmitted on taxi bus 3: Number of ABORT transmitted on taxi bus 4: Reserved 5: Number of retransmits requests received from port status 6: Reserved 7: Reserved
     pub fn dbg_event_ctrl(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_dbg_event_ctrl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

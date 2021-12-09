@@ -38,10 +38,9 @@ pub struct PORT_BYTE_CNT_MSB(u32);
 impl PORT_BYTE_CNT_MSB {
     /// See Register Description.
     pub fn port_byte_cnt_msb(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_port_byte_cnt_msb(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -58,13 +57,10 @@ pub struct PORT_FRM_CNT_LSB(u32);
 impl PORT_FRM_CNT_LSB {
     /// See Register Description.
     pub fn port_frm_cnt_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_frm_cnt_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -78,13 +74,10 @@ pub struct PORT_LM_CNT_LSB(u32);
 impl PORT_LM_CNT_LSB {
     /// See Register Description.
     pub fn port_lm_cnt_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_port_lm_cnt_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -96,12 +89,9 @@ impl PORT_LM_CNT_LSB {
 #[derive(From, Into)]
 pub struct SRV_LM_CNT_LSB(u32);
 impl SRV_LM_CNT_LSB {    pub fn srv_lm_cnt_lsb(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_srv_lm_cnt_lsb(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }

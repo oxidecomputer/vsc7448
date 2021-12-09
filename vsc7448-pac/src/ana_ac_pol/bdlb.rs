@@ -110,10 +110,9 @@ impl DLB_CFG {
 
     /// Assuming BASE_TICK_CNT= 9765, RATE_VAL width = 11 bits: 0: Granularity: 8,192,524bps. Range: 8193kbps - 16.7Gbps 1: Granularity: 1,024,066bps. Range 1024kbps - 2Gbps 2: Granularity: 128,008bps. Range: 128kbps - 262Mbps 3: Granularity: 16,001bps. Range: 16kbps - 32Mbps
     pub fn timescale_val(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_timescale_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -170,10 +169,9 @@ impl DLB_STICKY {
 
     /// 0: No event has occured 1: Traffic received without triggering CIR and PIR policing
     pub fn cir_pir_open_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_cir_pir_open_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -248,10 +246,9 @@ impl LB_CFG {
 
     /// 0: Disable leak. For THRES_VAL = 0 bucket is always closed. For THRES_VAL > 0, the configured burst size is available. 1: 1 * granularity 2: 2 * granularity ... max_value-1: (max_value-1)*granularity max_value: Disable leaky bucket (always open)
     pub fn rate_val(&self) -> u32 {
-        (self.0 & 0x7ff) >> 0
+        self.0 & 0x7ff
     }
     pub fn set_rate_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
@@ -298,10 +295,9 @@ impl MISC_CFG {
 
     /// 0: Rates measured in bits per second 1: Rates measured in frames per second
     pub fn frame_rate_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_frame_rate_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

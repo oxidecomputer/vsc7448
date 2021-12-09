@@ -36,10 +36,9 @@ pub struct MSTP_LRN_CFG1(u32);
 impl MSTP_LRN_CFG1 {
     /// Refer to MSTP_LRN_CFG.MSTP_LRN_MASK description.
     pub fn mstp_lrn_mask1(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_mstp_lrn_mask1(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -108,10 +107,9 @@ impl RLEG_CTRL {
     }
     /// Enable IPv4 virtual router leg. If enabled, the router leg can also be addressed using a MAC address constructed using the following fields: Bits 47-32: ANA_L3:COMMON:VRRP_IP4_CFG_1.VRRP_IP4_BASE_MAC_HIGH Bits 31-8: ANA_L3:COMMON:VRRP_IP4_CFG_0.VRRP_IP4_BASE_MAC_MID Bits 7-0: ANA_L3:VMID.VRRP_CFG.RLEG_IP4_VRID
     pub fn rleg_ip4_vrid_ena(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rleg_ip4_vrid_ena(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -184,10 +182,9 @@ impl SIP_RPF {
 
     /// Bit 0: Accept routes with RGID=0 Bit 1: Accept routes with RGID=1 ...
     pub fn rleg_rgid_mask(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_rleg_rgid_mask(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -216,10 +213,9 @@ impl VMID_MC {
 
     /// 0: Router leg based MC TTL check disabled. 1-2: N/A - such packets are not routed anyway. 3: If packet's TTL is < 3 then packet is not routed. 4: If packet's TTL is < 4 then packet is not routed. ...
     pub fn rleg_ip4_mc_ttl(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_rleg_ip4_mc_ttl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -260,10 +256,9 @@ pub struct VRRP_CFG(u32);
 impl VRRP_CFG {
     /// Router leg's VRID for IPv4. The configured VRID is used as part of the VRRP router MAC address. Only applicable if VRRP is enabled for router leg. See RLEG_CTRL.RLEG_IP4_VRID_ENA for further details. If only one of the two VRIDs is used, then the unused VRID must be set to the same value as the VRID in use.
     pub fn rleg_ip4_vrid(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_rleg_ip4_vrid(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;

@@ -42,10 +42,9 @@ impl RES_CFG {
 
     /// Bit 10:   Unit; 0:1, 1:16 Bits 9-0: Value to be multiplied with unit
     pub fn wm_high(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_wm_high(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -60,10 +59,9 @@ pub struct RES_DLB_OFFSET(u32);
 impl RES_DLB_OFFSET {
     /// The watermarks for enabling DLB rate will be offset this value compared to the sensed resource. Ie. if shared priority 0 watermark is set to 40000 cells, the default value will allow higher rate shaping when 39950 cells has been used.
     pub fn res_dlb_offs_val(&self) -> u32 {
-        (self.0 & 0x3ff) >> 0
+        self.0 & 0x3ff
     }
     pub fn set_res_dlb_offs_val(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
@@ -78,10 +76,9 @@ pub struct RES_STAT(u32);
 impl RES_STAT {
     /// Maximum consumption since last read for corresponding watermark in RES_CFG.
     pub fn maxuse(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_maxuse(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
@@ -96,10 +93,9 @@ pub struct RES_STAT_CUR(u32);
 impl RES_STAT_CUR {
     /// Current consumption for corresponding watermark in RES_CFG.
     pub fn inuse(&self) -> u32 {
-        (self.0 & 0x1fffff) >> 0
+        self.0 & 0x1fffff
     }
     pub fn set_inuse(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;

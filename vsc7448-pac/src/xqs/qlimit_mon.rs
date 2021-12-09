@@ -34,10 +34,9 @@ use derive_more::{From, Into};
 #[derive(From, Into)]
 pub struct QLIMIT_CONG_CNT_MAX_STAT(u32);
 impl QLIMIT_CONG_CNT_MAX_STAT {    pub fn qlimit_cong_cnt_max(&self) -> u32 {
-        (self.0 & 0xfff) >> 0
+        self.0 & 0xfff
     }
     pub fn set_qlimit_cong_cnt_max(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct QLIMIT_MON_CFG(u32);
 impl QLIMIT_MON_CFG {
     /// Clear shared memory pool monitoring statistics.
     pub fn qlimit_shr_mon_clr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_qlimit_shr_mon_clr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -70,10 +68,9 @@ impl QLIMIT_MON_CFG {
 #[derive(From, Into)]
 pub struct QLIMIT_SHR_WM_STAT(u32);
 impl QLIMIT_SHR_WM_STAT {    pub fn qlimit_shr_wm(&self) -> u32 {
-        (self.0 & 0x7fff) >> 0
+        self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_wm(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;

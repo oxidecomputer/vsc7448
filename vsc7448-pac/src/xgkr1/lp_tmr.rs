@@ -36,10 +36,9 @@ pub struct LFSHORT_MSW(u32);
 impl LFSHORT_MSW {
     /// 1g link_fail_inhibit_timer setting
     pub fn lfshort_tmr_msw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lfshort_tmr_msw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -54,10 +53,9 @@ pub struct LP_LSW(u32);
 impl LP_LSW {
     /// link_pass_inhibit_timer setting
     pub fn lp_tmr_lsw(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_lp_tmr_lsw(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

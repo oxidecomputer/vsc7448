@@ -136,10 +136,9 @@ impl SEC_LOOKUP_STICKY {
     }
     /// This sticky bit signals a MAC_ETYPE lookup was performed.
     pub fn sec_type_mac_etype_sticky(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_sec_type_mac_etype_sticky(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

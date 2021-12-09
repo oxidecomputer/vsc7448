@@ -36,10 +36,9 @@ pub struct GPIO_SD_MAP(u32);
 impl GPIO_SD_MAP {
     /// Set to map a specific GPIO mapped signal detect input to specific front-port index. There is one replication for each GPIO mapped signal detect input. If multiple signal detects are enabled and map to same front-port index, then the higher replication index will take priority. For example to map 3'rd signal detect input asif it was provided by 2'nd SERDES; set DEVCPU_GCB::GPIO_SD_MAP[2].G_SD_MAP = 1 and enable SD2 via DEVCPU_GCB::GPIO_ALT registers.
     pub fn g_sd_map(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_g_sd_map(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -74,10 +73,9 @@ impl MII_CFG {
     }
     /// Configures the MIIM clock frequency. This is computed as system_clk/(2*(1+X)), where X is the value written to this register. Note : Setting X to 0 is invalid and will result in the same frequency as setting X to 1.
     pub fn miim_cfg_prescale(&self) -> u32 {
-        (self.0 & 0xff) >> 0
+        self.0 & 0xff
     }
     pub fn set_miim_cfg_prescale(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
@@ -166,10 +164,9 @@ impl MII_CMD {
 
     /// 0 : Disabled 1 : Enabled.
     pub fn miim_cmd_scan(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_miim_cmd_scan(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -222,10 +219,9 @@ pub struct MII_DATA(u32);
 impl MII_DATA {
     /// Data read from PHY register.
     pub fn miim_data_rddata(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_miim_data_rddata(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -264,10 +260,9 @@ impl MII_SCAN_0 {
     }
     /// Indicates the low PHY number to scan during automatic scanning.
     pub fn miim_scan_phyadlo(&self) -> u32 {
-        (self.0 & 0x1f) >> 0
+        self.0 & 0x1f
     }
     pub fn set_miim_scan_phyadlo(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
@@ -282,10 +277,9 @@ pub struct MII_SCAN_1(u32);
 impl MII_SCAN_1 {
     /// Indicates the expected value for comparing the PHY registers during automatic scan.
     pub fn miim_scan_expect(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_miim_scan_expect(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -314,13 +308,10 @@ impl MII_SCAN_LAST_RSLTS {
 
     /// 0 : Mismatch. 1 : Match.
     pub fn miim_last_rslt(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_miim_last_rslt(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -392,10 +383,9 @@ impl MII_STATUS {
 
     /// 0 : Write not in progress 1 : Write in progress.
     pub fn miim_stat_pending_wr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_miim_stat_pending_wr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;

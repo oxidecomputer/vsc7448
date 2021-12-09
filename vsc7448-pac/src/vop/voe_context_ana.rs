@@ -34,10 +34,9 @@ use derive_more::{From, Into};
 #[derive(From, Into)]
 pub struct CT_CCM_TLV_INFO_ANA(u32);
 impl CT_CCM_TLV_INFO_ANA {    pub fn ct_if_status_value_ana(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ct_if_status_value_ana(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -74,13 +73,10 @@ impl CT_CCM_TLV_INFO_ANA {    pub fn ct_if_status_value_ana(&self) -> u32 {
 #[derive(From, Into)]
 pub struct CT_OAM_DATA1_REW(u32);
 impl CT_OAM_DATA1_REW {    pub fn ct_oam_misc_rew(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ct_oam_misc_rew(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -92,13 +88,10 @@ pub struct CT_OAM_DATA_ANA(u32);
 impl CT_OAM_DATA_ANA {
     /// Context register containing Sequence Number or Transaction ID
     pub fn ct_oam_seq_ana(&self) -> u32 {
-        (self.0 & 0xffffffff) >> 0
+        self.0
     }
     pub fn set_ct_oam_seq_ana(&mut self, value: u32) {
-        let value = value << 0;
-        assert!(value <= 0xffffffff);
-        self.0 &= !0xffffffff;
-        self.0 |= value;
+        self.0 = value;
     }
 }
 
@@ -202,10 +195,9 @@ impl CT_OAM_INFO_ANA {    pub fn ct_block_data_ana(&self) -> u32 {
     }
     /// [MCC_DEBUG] OAM type currently being processed
     pub fn ct_oam_type_ana(&self) -> u32 {
-        (self.0 & 0x3) >> 0
+        self.0 & 0x3
     }
     pub fn set_ct_oam_type_ana(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
@@ -344,10 +336,9 @@ impl CT_OAM_STICKY_ANA {    pub fn ct_ccm_nonzero_endtlv_ana(&self) -> u32 {
         self.0 &= !0x200;
         self.0 |= value;
     }    pub fn ct_synlm_peer_idx_ana(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_ct_synlm_peer_idx_ana(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;

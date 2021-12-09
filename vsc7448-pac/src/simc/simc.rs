@@ -38,10 +38,9 @@ pub struct BAUDR(u32);
 impl BAUDR {
     /// The LSB for this field is always set to 0 and is unaffected by a write operation, which ensures an even value is held in this register. If the value is 0, the serial output clock (si_clk) is disabled. The frequency of the si_clk is derived from the following equation: Fsclk_out = Fsystem_clk/SCKDV where SCKDV is any even value between 2 and 65534 and Fsystem_clk is 250MHz.
     pub fn sckdv(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_sckdv(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -76,10 +75,9 @@ impl CTRLR0 {
 
     /// 0-2: Reserved. n: n+1 bit serial data transfer.
     pub fn dfs(&self) -> u32 {
-        (self.0 & 0xf) >> 0
+        self.0 & 0xf
     }
     pub fn set_dfs(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
@@ -166,10 +164,9 @@ pub struct CTRLR1(u32);
 impl CTRLR1 {
     /// When SIMC::CTRLR0.TMOD = 2, this register field sets the number of data frames to be continuously received by the master. The master continues to receive serial data until the number of data frames received is equal to this register value plus 1, which enables receiveing up to 64 KB of data in a continuous transfer.
     pub fn ndf(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ndf(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -186,10 +183,9 @@ pub struct DR(u32);
 impl DR {
     /// Data is aligned to bit 0 (right-justified) when accessing less than 16 bit data-words. Read = Receive FIFO buffer. Write = Transmit FIFO buffer.
     pub fn dr(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_dr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -204,10 +200,9 @@ pub struct ICR(u32);
 impl ICR {
     /// This field is set when any of the master's TXO, RXO, RXU, or MST interrupts are active. Reading from this register clears all interrupts, as reading from SIMC::TXOICR, SIMC::RXOICR, SIMC::RXUICR, and SIMC::MSTICR registers.
     pub fn icr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_icr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -262,10 +257,9 @@ impl IMR {
     }
     /// Set to enable Transmit FIFO Empty Interrupt
     pub fn txeim(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_txeim(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -332,10 +326,9 @@ impl ISR {
     }
     /// Transmit FIFO Empty Interrupt Status, this field is masked by SIMC::IMR.TXEIM. This interrupt is based on programmable fill level, see SIMC::TXFTLR for more information.
     pub fn txeis(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_txeis(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -360,10 +353,9 @@ pub struct MSTICR(u32);
 impl MSTICR {
     /// This field is set when Multi-Master Contention Interrupt is active, interrupt is cleared by reading this register.
     pub fn msticr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_msticr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -408,10 +400,9 @@ impl MWCR {
 
     /// 0: non-sequential transfer 1: sequential transfer
     pub fn mwmod(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_mwmod(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -466,10 +457,9 @@ impl RISR {
     }
     /// Current status of Transmit FIFO Empty Interrupt before masking
     pub fn txeir(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_txeir(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -494,10 +484,9 @@ pub struct RXFLR(u32);
 impl RXFLR {
     /// Contains the number of valid data entries in the receive FIFO.
     pub fn rxtfl(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_rxtfl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -512,10 +501,9 @@ pub struct RXFTLR(u32);
 impl RXFTLR {
     /// When the number of receive FIFO entries is greater than or equal to this value + 1, the receive FIFO full interrupt is triggered. The receive FIFO depth is 40, do not program value exceeding 39.
     pub fn rft(&self) -> u32 {
-        (self.0 & 0x3f) >> 0
+        self.0 & 0x3f
     }
     pub fn set_rft(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
@@ -530,10 +518,9 @@ pub struct RXOICR(u32);
 impl RXOICR {
     /// This field is set when Receive FIFO Overflow Interrupt is active, interrupt is cleared by reading this register.
     pub fn rxoicr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rxoicr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -548,10 +535,9 @@ pub struct RXUICR(u32);
 impl RXUICR {
     /// This field is set when Receive FIFO Underflow Interrupt is active, interrupt is cleared by reading this register.
     pub fn rxuicr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_rxuicr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -572,10 +558,9 @@ impl SER {
 
     /// 1: Selected 0: Not Selected
     pub fn ser(&self) -> u32 {
-        (self.0 & 0xffff) >> 0
+        self.0 & 0xffff
     }
     pub fn set_ser(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
@@ -590,10 +575,9 @@ pub struct SIMCEN(u32);
 impl SIMCEN {
     /// Set to enable master operations. When disabled, all serial transfers are halted immediately. Transmit and receive FIFO buffers are cleared when disabled. It is impossible to program some of the master control registers when enabled. Note: The SI Master Controller must own the SI interface before it is enabled, see ICPU_CFG::GENERAL_CTRL.IF_SI_OWNER for more information.
     pub fn simcen(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_simcen(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -608,10 +592,9 @@ pub struct SR(u32);
 impl SR {
     /// Set when serial transfer is in progress. Cleared when master is idle or disabled.
     pub fn busy(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_busy(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
@@ -666,10 +649,9 @@ pub struct TXFLR(u32);
 impl TXFLR {
     /// Contains the number of valid data entries in the transmit FIFO.
     pub fn txtfl(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_txtfl(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -684,10 +666,9 @@ pub struct TXFTLR(u32);
 impl TXFTLR {
     /// When the number of transmit FIFO entries is less than or equal to this value, the transmit FIFO empty interrupt is triggered. The transmit FIFO depth is 8, do not program value exceeding 7.
     pub fn tft(&self) -> u32 {
-        (self.0 & 0x7) >> 0
+        self.0 & 0x7
     }
     pub fn set_tft(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
@@ -702,10 +683,9 @@ pub struct TXOICR(u32);
 impl TXOICR {
     /// This field is set when Transmit FIFO Overflow Interrupt is active, interrupt is cleared by reading this register.
     pub fn txoicr(&self) -> u32 {
-        (self.0 & 0x1) >> 0
+        self.0 & 0x1
     }
     pub fn set_txoicr(&mut self, value: u32) {
-        let value = value << 0;
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
