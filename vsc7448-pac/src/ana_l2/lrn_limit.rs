@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Controls automatic learn limits
 ///
 /// Per VSI configuration of autolearn limits
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct FID_LIMIT_STATUS(u32);
 impl FID_LIMIT_STATUS {
     /// Contains the number of MAC table entries currently learned associated with a given FID.
@@ -58,7 +58,7 @@ impl FID_LIMIT_STATUS {
     }
 }
 /// ANA_L2 interrupt status
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct INTR_IDENT(u32);
 impl INTR_IDENT {
     /// Status of FID_LIMIT_INTR interrupts

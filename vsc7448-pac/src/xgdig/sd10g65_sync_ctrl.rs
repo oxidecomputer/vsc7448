@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// DFT clock generator configuration register
 ///
 /// Configuration register for clock generator to build a low speed clock signal of variable length and variable duty cycle provided on all data bits simultaniously
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DFT_CLK_GEN_CFG(u32);
 impl DFT_CLK_GEN_CFG {
     /// Duty cycle distortion: Refer to configuration fields 'cg_per_cfg' and 'cg_per_jump_cfg' for encoding description
@@ -82,7 +82,7 @@ impl DFT_CLK_GEN_CFG {
 /// RX_SYNC_CTRL config register
 ///
 /// RX Sync control configuration register, synchronize I2 of one RX to the I2 of another RX
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SYNC_CTRL_CFG(u32);
 impl RX_SYNC_CTRL_CFG {
     /// Clear RX I2 value
@@ -120,7 +120,7 @@ impl RX_SYNC_CTRL_CFG {
 /// SYNC_CTRL config register
 ///
 /// Sync control configuration register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SYNC_CTRL_CFG(u32);
 impl SYNC_CTRL_CFG {
     /// Source selection for lane synchronization
@@ -138,7 +138,7 @@ impl SYNC_CTRL_CFG {
 /// SYNC_CTRL status register
 ///
 /// Sync control status register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SYNC_CTRL_STAT(u32);
 impl SYNC_CTRL_STAT {
     /// Lane synchronization fifo overflow

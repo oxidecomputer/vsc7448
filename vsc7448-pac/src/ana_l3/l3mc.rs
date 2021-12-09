@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// ARP table data 1
 ///
 /// Configuration registers for ARP table
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ARP_CFG_1(u32);
 impl ARP_CFG_1 {
     /// 32 least significant bits of MAC address. Used for ARP entry and/or (SMAC,SIP)/(DMAC,DIP) check. Most significant bits are configured in ARP_CFG_0.MAC_MSB. If MAC address for ARP entry is all-zeros, then the frame is redirected to CPU. CPU queue used for such frames is configured in ZERO_DMAC_CPU_QU.
@@ -44,7 +44,7 @@ impl ARP_CFG_1 {
     }
 }
 /// Multicast router leg mask
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EVMID_MASK_CFG(u32);
 impl EVMID_MASK_CFG {
     /// Bit mask with one bit for each router leg. If bit at position N is set, then a copy has to be sent to router leg N. If the frame has been received on router leg N, then the frame is L2 forwarded to other ports in the ingress VLAN. Else the frame is L3 fowarded to the VLAN that router leg N is attached to (ANA_L3:VMID:RLEG_CTRL.RLEG_EVID).

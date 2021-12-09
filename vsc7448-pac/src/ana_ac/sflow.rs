@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// sFlow sampler control
 ///
 /// This register configures the sFlow sampler.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SFLOW_CTRL(u32);
 impl SFLOW_CTRL {
     /// Configures the sampler as an ingress, egress or dual direction sampler.
@@ -70,7 +70,7 @@ impl SFLOW_CTRL {
 /// Source port mask
 ///
 /// Refer to description for ANA_AC:SRC.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SRC_CFG1(u32);
 impl SRC_CFG1 {
     /// Refer to description for ANA_AC:SRC.

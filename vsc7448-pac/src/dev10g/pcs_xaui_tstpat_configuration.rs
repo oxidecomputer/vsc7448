@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS Low Power Idle Status
 ///
 /// Status register for Low Power Idle (Energy Efficient Ethernet)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_LPI_STATUS(u32);
 impl PCS_XAUI_LPI_STATUS {
     /// Receiver Low-Pwer idle occurrence

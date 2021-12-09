@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// sFlow status counts
 ///
 /// This register configures the sFlow sampler.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SFLOW_CNT(u32);
 impl SFLOW_CNT {
     /// The number of forwarded frames. The counter is free running (wraps around when reaching max value). This counter can be reset using ANA_AC::SFLOW_RESET_CTRL.SFLOW_FRAME_RESET_SHOT.
@@ -58,7 +58,7 @@ impl SFLOW_CNT {
 /// Equal cost UPSID destination configuration
 ///
 /// Used for configuring equal distance to UPSID
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct STACK_LINK_EQUAL_COST_CFG(u32);
 impl STACK_LINK_EQUAL_COST_CFG {
     /// Enable equal cost forwarding to UPSID. I.e. both stack ports (A and B) are used for forwarding to UPSID. If STACK_LINK_EQUAL_ENA is set, then the stack forwarding mask is calculated as one of the following two, depending on AC: Even AC: UPSID_PORT_MASK &  STACK_A_MASK Odd AC: UPSID_PORT_MASK & ~STACK_A_MASK Furthermore when STACK_LINK_EQUAL_ENA is set, the TTL value is set to VSTAX2_EQUAL_STACK_LINK_TTL_VAL (instead of REW::VSTAX_PORT_GRP_CFG.VSTAX_TTL). Related parameters: ANA_AC:UPSID:UPSID_CFG.UPSID_PORT_MASK ANA_AC:PS_COMMON:STACK_A_CFG.STACK_A_MASK ANA_AC:PS_COMMON:COMMON_EQUAL_STACK_LINK_TTL_CFG.VSTAX2_EQUAL_STACK_LINK _TTL_VAL REW:COMMON:VSTAX_PORT_GRP_CFG.VSTAX_TTL
@@ -74,7 +74,7 @@ impl STACK_LINK_EQUAL_COST_CFG {
 /// UPSID destination configuration
 ///
 /// Configures which physical ports to be used for reaching a given UPSID.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct UPSID_CFG(u32);
 impl UPSID_CFG {
     /// UPSID port mask.

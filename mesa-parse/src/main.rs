@@ -446,7 +446,7 @@ fn write_reg<W: std::io::Write>(
     // interact with it through getter/setter functions.
     write!(
         gfile,
-        "#[derive(From, Into)]
+        "#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct {}({}{});",
         rname,
         if reg.fields.is_empty() { "pub " } else { "" },

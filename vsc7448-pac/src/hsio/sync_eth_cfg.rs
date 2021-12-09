@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// RCOMP Status
 ///
 /// Status register bits for the RCOMP
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RCOMP_STATUS(u32);
 impl RCOMP_STATUS {
     /// Resistor comparison activity
@@ -72,7 +72,7 @@ impl RCOMP_STATUS {
 /// SYNC ETH Configuration
 ///
 /// This register is replicated once per recovered clock output.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SYNC_ETH_CFG(u32);
 impl SYNC_ETH_CFG {
     /// Set to enable recovered clock pad
@@ -112,7 +112,7 @@ impl SYNC_ETH_CFG {
     }
 }
 /// Configuration of recovered clock from 2'nd PLL
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SYNC_ETH_PLL2_CFG(u32);
 impl SYNC_ETH_PLL2_CFG {
     /// This field is used instead of HSIO::PLL5G_CFG0.CPU_CLK_DIV for the PLL number 2.

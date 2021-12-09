@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS2X6G Configuration
 ///
 /// Configuration register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS2X6G_CFG(u32);
 impl PCS2X6G_CFG {
     /// Enable Link control via Backplane Ethernet ANEG
@@ -178,7 +178,7 @@ impl PCS2X6G_CFG {
 /// PCS2X6G Error Status
 ///
 /// Error indication of 64B/66B PCS2X6G logic
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS2X6G_ERR_STATUS(u32);
 impl PCS2X6G_ERR_STATUS {
     /// Alignment lost in deskew logic
@@ -232,7 +232,7 @@ impl PCS2X6G_ERR_STATUS {
 /// PCS2X6G Status
 ///
 /// Status of PCS2X6G logic
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS2X6G_STATUS(u32);
 impl PCS2X6G_STATUS {
     /// Status of deskew logic

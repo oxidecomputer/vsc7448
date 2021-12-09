@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// MSTP Forwarding Control
 ///
 /// Configuration of forwarding state per MSTP
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MSTP_FWD_CFG(u32);
 impl MSTP_FWD_CFG {
     /// Enable/disable forwarding per port. Ports in MSTP Forwarding state must be enabled in this port mask. If a port is disabled in this mask, frames received on the port are not forwarded, and frames are not forwarded to the port. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_DISCARD_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_FWD_ALLOWED_STICKY
@@ -46,7 +46,7 @@ impl MSTP_FWD_CFG {
 /// MSTP Forwarding Control
 ///
 /// Configuration of forwarding state per MSTP
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MSTP_FWD_CFG1(u32);
 impl MSTP_FWD_CFG1 {
     /// Refer to MSTP_FWD_CFG.MSTP_FWD_MASK description.
@@ -62,7 +62,7 @@ impl MSTP_FWD_CFG1 {
 /// MSTP Learning Control
 ///
 /// Configuration of learning state per MSTP.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MSTP_LRN_CFG(u32);
 impl MSTP_LRN_CFG {
     /// Enable/disable learning per port. If a port is disabled in the mask, L2 learning of the (FID, SMAC) pair is not done. Ports in MSTP Learning and Forwarding state must be enabled in this mask. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_LRN_DENY_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_LRN_ALLOWED_STICKY
@@ -78,7 +78,7 @@ impl MSTP_LRN_CFG {
 /// VLAN Port Mask Configuration
 ///
 /// Configuration of VLAN port mask.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VLAN_MASK_CFG1(u32);
 impl VLAN_MASK_CFG1 {
     /// Refer to VLAN_MASK_CFG.VLAN_PORT_MASK description.

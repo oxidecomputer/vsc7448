@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// ANEG Link Partner Advertised Ability 0
 ///
 /// 48 bits that contain the link partner's advertised abilities / next page information (received link code word, lower 32 bits, received during auto-negotiation). The bit groups are only valid for base pages; for next page data exchange a different bit group coding has to be applied.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ANEG_LP_ADV_ABILITY_0(u32);
 impl ANEG_LP_ADV_ABILITY_0 {
     /// Acknowledge bit (this bit is automatically overwritten by ANEG)
@@ -154,7 +154,7 @@ impl ANEG_LP_ADV_ABILITY_0 {
 /// ANEG Link Partner Advertised Ability 1
 ///
 /// 48 bits that contain the link partner's advertised abilities or next page information (received link code word, upper 16 bits, received during auto-negotiation). The bit groups are only valid for base pages; for next page data exchange a different bit group coding has to be applied.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ANEG_LP_ADV_ABILITY_1(u32);
 impl ANEG_LP_ADV_ABILITY_1 {
     /// FEC capability (bit 14: FEC ability, bit 15: FEC requested) - Only used with 10GBase-KR
@@ -180,7 +180,7 @@ impl ANEG_LP_ADV_ABILITY_1 {
 /// ANEG Next Page 1
 ///
 /// 48 bits that contain the new next page to transmit during auto-negotiation (here: upper 16 bits).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ANEG_NEXT_PAGE_1(u32);
 impl ANEG_NEXT_PAGE_1 {
     /// Must be set when a new next page is programmed (self-clearing)
@@ -206,7 +206,7 @@ impl ANEG_NEXT_PAGE_1 {
 /// ANEG Status
 ///
 /// Auto negotiation status register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ANEG_STATUS(u32);
 impl ANEG_STATUS {
     /// Error condition indicating an Arbitration state machine error.

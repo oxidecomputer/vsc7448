@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Configuration of ACL policer parameters
 ///
 /// Only frames with an VCAP IS2 action with POLICE_ENA=1 are subject to ACL policing. The policer index is then controlled by the VCAP IS2 action field POLICE_IDX.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_ACL_CTRL(u32);
 impl POL_ACL_CTRL {
     /// Configures the pipeline point per ACL policer. When injecting or looping at a pipeline point after ACL_PIPELINE_PT will not cause ACL policing. When extracting at a pipeline point before ACL_PIPELINE_PT will not cause ACL policing.
@@ -94,7 +94,7 @@ impl POL_ACL_CTRL {
     }
 }
 /// Configuration of ACL policer rates
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_ACL_RATE_CFG(u32);
 impl POL_ACL_RATE_CFG {
     /// ACL policer leaky bucket rate. Regarding unit, refer to POL_UPD_INT. Related parameters: ANA_AC_POL:POL_ALL_CFG:POL_UPD_INT_CFG.POL_UPD_INT ANA_AC_POL:POL_ALL_CFG:POL_ACL_CTRL.FRAME_RATE_ENA
@@ -110,7 +110,7 @@ impl POL_ACL_RATE_CFG {
     }
 }
 /// Configuration of ACL policer thresholds
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_ACL_THRES_CFG(u32);
 impl POL_ACL_THRES_CFG {
     /// Policer threshold size (a.ka. burst capacity). Unit is 8192 bytes. Related parameters: ANA_AC_POL:POL_ALL_CFG:POL_ACL_CTRL.FRAME_RATE_ENA
@@ -126,7 +126,7 @@ impl POL_ACL_THRES_CFG {
     }
 }
 /// Miscellaneous policer parameters
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_ALL_CFG(u32);
 impl POL_ALL_CFG {
     /// If set, all ACL policer buckets are forced closed (all frames are policed and no buckets are updated). The bit must be cleared for normal operation.
@@ -354,7 +354,7 @@ impl POL_ALL_CFG {
     }
 }
 /// Configuration of port policer flow control
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_PORT_FC_CFG(u32);
 impl POL_PORT_FC_CFG {
     /// Enables flow control mode for the port policer. If set, pause frames are transmitted when the configured policer threshold is exceeded. If cleared, frames exceeding the configured policer threshold are discarded. PORT_FC_ENA must also be set to enable pause frames. Furthermore DSM must be configured for flow control. Related parameters: ANA_AC_POL:POL_ALL_CFG:POL_ALL_CFG.PORT_FC_ENA DSM:CFG:ETH_FC_CFG.FC_ANA_ENA
@@ -382,7 +382,7 @@ impl POL_PORT_FC_CFG {
     }
 }
 /// Policer diagnostic information
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_STICKY(u32);
 impl POL_STICKY {
     /// Set if an ACL policer is active. Bit is cleared by writing a 1 to this position.
@@ -626,7 +626,7 @@ impl POL_STICKY {
     }
 }
 /// Configuration of storm policer parameters
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_STORM_CTRL(u32);
 impl POL_STORM_CTRL {
     /// Controls policing of frames to the individual CPU queues for the storm policers. If a bit is set in this mask, frames to the corresponding CPU queue are allowed to be policed (frames may get discarded).
@@ -692,7 +692,7 @@ impl POL_STORM_CTRL {
 /// Configuration of storm policer rates
 ///
 /// These registers configure the rates of the storm policers.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_STORM_RATE_CFG(u32);
 impl POL_STORM_RATE_CFG {
     /// Storm policer leaky bucket rate. Regarding unit, refer to POL_UPD_INT. Related parameters: ANA_AC_POL:POL_ALL_CFG:POL_UPD_INT_CFG.POL_UPD_INT ANA_AC_POL:POL_ALL_CFG:POL_STORM_CTRL.STORM_FRAME_RATE_ENA
@@ -710,7 +710,7 @@ impl POL_STORM_RATE_CFG {
 /// Configuration of storm policer thresholds
 ///
 /// These registers configure the thresholds of the storm policers
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_STORM_THRES_CFG(u32);
 impl POL_STORM_THRES_CFG {
     /// Policer threshold size (a.ka. burst capacity). Unit is 8192 bytes. Related parameters: ANA_AC_POL:POL_ALL_CFG:POL_STORM_CTRL.STORM_FRAME_RATE_ENA
@@ -728,7 +728,7 @@ impl POL_STORM_THRES_CFG {
 /// Policer update interval
 ///
 /// Configure the leaky bucket update interval for the ACL, storm- and port policers. This configuration affects the policing rate unit for these 3 policers. By setting this parameter to a clock frequency dependent value, the rate unit can be kept identical/similar across different system clock frequencies.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_UPD_INT_CFG(u32);
 impl POL_UPD_INT_CFG {
     /// This configuration will affect the policing rate unit for the storm, ACL and Port policers. The rate unit is calculated as follows: Rate unit = SYS_CLK / (POL_UPD_INT * 16) bps Recommended value and corresponding rate unit: 52.08Mhz: 130 => 25040bps 78.125Mhz: 195 => 25040bps 156.25Mhz: 390 => 25040bps 250MHz: 624 => 25040bps Frame rate mode is also affected be this setting. The default frame rate unit is 10fps (frames per second). This is scaled according to this formula: Frame rate = 10fps * (Rate unit / 25040bps)

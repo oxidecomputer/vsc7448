@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PLL5G BIST Configuration register 2
 ///
 /// Configuration register 2 for PLL5G BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_BIST_CFG2(u32);
 impl PLL5G_BIST_CFG2 {
     /// BIST compare divider N
@@ -46,7 +46,7 @@ impl PLL5G_BIST_CFG2 {
 /// PLL5G BIST Status register 0
 ///
 /// Status register 0 for PLL5G BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_BIST_STAT0(u32);
 impl PLL5G_BIST_STAT0 {
     /// BIST busy, 0: not busy, 1: busy
@@ -92,7 +92,7 @@ impl PLL5G_BIST_STAT0 {
 /// PLL5G BIST Status register 1A
 ///
 /// Status register 1A for PLL5G BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_BIST_STAT1A(u32);
 impl PLL5G_BIST_STAT1A {
     /// BIST compare divider phase difference

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// L3 multicast control register
 ///
 /// L3 multicast control register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct L3MC_CTRL(u32);
 impl L3MC_CTRL {
     /// CPU queue used for frames redirected due to CPU_REDIR_MODE.

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Manually assert software interrupt
 ///
 /// This register provides a simple interface for interrupting on either sofware interrupt 0 or 1, without implementing semaphore support. Note: setting this field causes a short pulse on the corresponding interrupt connection, this kind of interrupt cannot be used in combination with the SW1_INTR_CONFIG.SW1_INTR_BYPASS feature.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SW_INTR(u32);
 impl SW_INTR {
     /// Set this field to assert software interrupt 0. This field is automatically cleared after interrupt has been generated.
@@ -54,7 +54,7 @@ impl SW_INTR {
     }
 }
 /// Address register for VCore accesses
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VA_ADDR(u32);
 impl VA_ADDR {
     /// The address to access in the VCore domain, all addresses must be 32-bit alligned (i.e. the two least significant bit must always be 0). When accesses are initiated using the VA_DATA_INCR register, then this field is autoincremented by 4 at the end of the transfer. The memory region of the VCore that maps to switch-core registers may not be accessed by using these registers.
@@ -66,7 +66,7 @@ impl VA_ADDR {
     }
 }
 /// Control register for VCore accesses
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VA_CTRL(u32);
 impl VA_CTRL {
     /// This field is set by hardware when an access into VCore domain is started, and cleared when the access is done.
@@ -116,7 +116,7 @@ impl VA_CTRL {
 /// Data register for VCore accesses
 ///
 /// The VA_DATA, VA_DATA_INCR, and VA_DATA_INERT registers are used for indirect access into the VCore domain. The functionality of the VA_DATA_INCR and VA_DATA_INERT registers are similar to this register - but with minor exceptions. These exceptions are fleshed out in the description of the respective registers.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VA_DATA(u32);
 impl VA_DATA {
     /// Reading or writing from/to this field initiates accesses into the VCore domain. While an access is ongoing (VA_CTRL.VA_BUSY is set) this field may not be written. It is possible to read this field while an access is ongoing, but the data returned will be 0x80000000. When writing to this field; a write into the VCore domain is initiated to the address specified in the VA_ADDR register, with the data that was written to this field. Only 32-bit writes are supported. This field may not be written to untill the VA_CTRL.VA_BUSY indicates that no accesses is ongoing. When reading from this field; a read from the VCore domain is initiated from the address specified in the VA_ADDR register. Important: The data that is returned from reading this field (and stating an access) is not the result of the newly initiated read, instead the data from the last access is returned. The result of the newly initiated read access will be ready once the VA_CTRL.VA_BUSY field shows that the access is done. Note: When the result of a read-access is read from this field (the second read), a new access will automatically be intiated. This is desirable when reading a series of addresses from VCore domain. If a new access is not desirable, then the result should be read from the VA_DATA_INERT register instead of this field!
@@ -128,7 +128,7 @@ impl VA_DATA {
     }
 }
 /// Data register for VCore accesses (w. auto increment of address)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VA_DATA_INCR(u32);
 impl VA_DATA_INCR {
     /// This field behaves in the same way as VA_DATA.VA_DATA. Except when an access is initiated by using this field (either read or write); the address register (VA_ADDR) is automatically incremented by 4 at the end of the access, i.e. when VA_CTRL.VA_BUSY is deasserted.

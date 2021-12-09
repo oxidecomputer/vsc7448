@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// VCAP_IS2 counter
 ///
 /// The CNT_TBL counters count number of hits in VCAP_IS2. For each of the two VCAP_IS2 lookups, a VCAP match results in the associated counter being incremented using the VCAP_IS2 action CNT_ID as index.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CNT(u32);
 impl CNT {
     /// VCAP_IS2 counter value.
@@ -42,7 +42,7 @@ impl CNT {
     }
 }
 /// PTP clock identifier LSB
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_CLOCK_ID_LSB(u32);
 impl PTP_CLOCK_ID_LSB {
     /// Bits 31:0 of clockIdentifier used in portIdentity.
@@ -54,7 +54,7 @@ impl PTP_CLOCK_ID_LSB {
     }
 }
 /// PTP clock identifier MSB
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_CLOCK_ID_MSB(u32);
 impl PTP_CLOCK_ID_MSB {
     /// Bits 63:32 of clockIdentifier used in portIdentity.
@@ -66,7 +66,7 @@ impl PTP_CLOCK_ID_MSB {
     }
 }
 /// Miscellaneous PTP domain configuration
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_MISC_CFG(u32);
 impl PTP_MISC_CFG {
     /// New values for byte 0 in flagField. Only bits with the corresponding bits set in FLAG_FIELD_MASK, are used.
@@ -92,7 +92,7 @@ impl PTP_MISC_CFG {
     }
 }
 /// PTP domain configuration used in sourcePortIdentity
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_SRC_PORT_CFG(u32);
 impl PTP_SRC_PORT_CFG {
     /// Port number used in portIdentity.

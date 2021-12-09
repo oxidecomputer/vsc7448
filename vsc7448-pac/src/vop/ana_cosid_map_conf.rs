@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// COSID mapping table
 ///
 /// COSID mapping table used for mapping the selected COSID values. A single mapping table is available for each of the Service/Path VOEs.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct COSID_MAP_TABLE_ANA(u32);
 impl COSID_MAP_TABLE_ANA {
     /// The table is used to map the choosen COSID in the ANA. bit(2:0) will be used to map COSID = 0 bit(5:3) will be used to map COSID = 1 ... bit(23:21) will be used to map COSID = 7 When mapping a COSID, the following procedure is followed: 1) Use COSID_SRC_SEL_ANA to select the source of the COSID mapping. I.e. if COSID_SRC_SEL_ANA = 1 (TC) the input to the mapping table is set to the IFH.TC. 2) Map the selected value. If IFH.TC = 3, the mapped COSID will be set to COSID_MAP_TABLE_ANA[11:9]
@@ -46,7 +46,7 @@ impl COSID_MAP_TABLE_ANA {
 /// Count the number of LBR and TST CRC errors received.
 ///
 /// The VOE can verify the CRC-32 of Test TLVs in incoming LBR and TST PDUs. This functionality is enabled using one of the following bit fields: * VOP:VOE_CONF:OAM_HW_CTRL.LBR_TLV_CRC_VERIFY_ENA * VOP:VOE_CONF:OAM_HW_CTRL.TST_TLV_CRC_VERIFY_ENA When enabled the VOE examines the TLV field of valid LBR and TST PDUs in the Rx direction. If the first TLV following the LBR or TST PDU is a Test TLV including a CRC-32 across the Data Pattern, the VOE will calculate the CRC across the Data Pattern and verify the CRC-32. This register will count the number of CRC errors received by the VOE. The CRC counters are indexed as follows: * Service (/Path) VOEs are indexed: 0 - 255 * Port VOEs are indexed: 256 (Port 0) - 266 (Port 10)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LBR_CRC_ERR_CNT(u32);
 impl LBR_CRC_ERR_CNT {
     /// See Register Description.

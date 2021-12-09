@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// ANEG Advertised Ability 0
 ///
 /// 48 bits that contain the advertised abilities link code word for auto-negotiation (here: lower 32 bit).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ANEG_ADV_ABILITY_0(u32);
 impl ANEG_ADV_ABILITY_0 {
     /// Acknowledge bit (this bit is automatically overwritten by ANEG)
@@ -154,7 +154,7 @@ impl ANEG_ADV_ABILITY_0 {
 /// ANEG Advertised Ability 1
 ///
 /// 48 bits that contain the advertised abilities link code word for auto-negotiation (here: upper 16 bit).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ANEG_ADV_ABILITY_1(u32);
 impl ANEG_ADV_ABILITY_1 {
     /// Reserved for future technology as defined in IEEE 802.3ap clause 73.
@@ -180,7 +180,7 @@ impl ANEG_ADV_ABILITY_1 {
 /// ANEG Configuration
 ///
 /// Auto-negotiation configuration register. Note: Setting one of the parallel detect wait times to 0 disables parallel detect function for that specific mode.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ANEG_CFG(u32);
 impl ANEG_CFG {
     /// Auto-negotiation enable
@@ -352,7 +352,7 @@ impl ANEG_CFG {
 /// ANEG Next Page 0
 ///
 /// 48 bits that contain the new next page to transmit during auto-negotiation (here: lower 32 bits).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ANEG_NEXT_PAGE_0(u32);
 impl ANEG_NEXT_PAGE_0 {
     /// Lower 32 bits of next page link code word
@@ -366,7 +366,7 @@ impl ANEG_NEXT_PAGE_0 {
 /// Configuration for VAUI channel
 ///
 /// Configuration register for specific vaui channel settings
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VAUI_CHANNEL_CFG(u32);
 impl VAUI_CHANNEL_CFG {
     /// Enable alignment of lane to a common clock (e.g. XAUI mode) and dock lane with ANEG of lane 0 (Master-ANEG)

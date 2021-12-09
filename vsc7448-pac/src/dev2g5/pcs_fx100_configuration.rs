@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS1G TSTPAT STATUS
 ///
 /// PCS1G testpattern status register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS1G_TSTPAT_STATUS(u32);
 impl PCS1G_TSTPAT_STATUS {
     /// Jitter Test Pattern Error

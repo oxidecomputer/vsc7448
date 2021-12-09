@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PLL5G Configuration 0
 ///
 /// Configuration register 0 for PLL5G
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_CFG0(u32);
 impl PLL5G_CFG0 {
     /// setting for core clock divider 0:625MHz, 1:312.5MHz, 2:500MHz, 3:277.77MHz, 4:500MHz, 5:250MHz, 6:416.66MHz, 7:227.27MHz, 8:416.66MHz, 9:208.33MHz, 10:357.14MHz, 11:192.3MHz, 12:357.14MHz, 13:178.57MHz, 14:312.5MHz, 15:166.66,MHz, 17:156.25MHz, 33:625MHz
@@ -178,7 +178,7 @@ impl PLL5G_CFG0 {
 /// PLL5G Configuration 1
 ///
 /// Configuration register 1 for PLL5G
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_CFG1(u32);
 impl PLL5G_CFG1 {
     /// enable for direct data mode (ATPG/JTAG) reference clock input buffer and test output buffer
@@ -304,7 +304,7 @@ impl PLL5G_CFG1 {
 /// PLL5G Configuration 2
 ///
 /// Configuration register 2 for PLL5G
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_CFG2(u32);
 impl PLL5G_CFG2 {
     /// static VCO amplitude control, active w/ ena_amp_ctrl_force 0: lowest current, 255: highest current
@@ -510,7 +510,7 @@ impl PLL5G_CFG2 {
 /// PLL5G Configuration 3
 ///
 /// Configuration register 3 for PLL5G
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_CFG3(u32);
 impl PLL5G_CFG3 {
     /// Set to 3 to enable CLKOUT2 synchronous Ethernet reference clock output. Applies only to PLL2.
@@ -656,7 +656,7 @@ impl PLL5G_CFG3 {
 /// PLL5G Configuration 4
 ///
 /// Configuration register 4 for PLL5G
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_CFG4(u32);
 impl PLL5G_CFG4 {
     /// settings for reference clock input buffer BIAS
@@ -682,7 +682,7 @@ impl PLL5G_CFG4 {
 /// PLL5G Configuration 5
 ///
 /// Configuration register 5 for PLL5G
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_CFG5(u32);
 impl PLL5G_CFG5 {
     /// settings for test output buffer BIAS

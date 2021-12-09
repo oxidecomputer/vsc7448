@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// MSB of Tx Port VOE mapping table (REW).
 ///
 /// This register contains the upper 32 bits of the Port VOE Tx (REW) COSID mapping table. This mapping in this register is used when Port DEI = 1
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PORT_TX_COSID_MAP1(u32);
 impl PORT_TX_COSID_MAP1 {
     /// See register description.
@@ -44,7 +44,7 @@ impl PORT_TX_COSID_MAP1 {
 /// LBM/TST/CCM Tx PDUs per priority.
 ///
 /// When a VOE is assigned a SAM per COSID counter set, this register counts the number of Tx CCM/LBM/TST PDUs for priorities 0-6. Depending on the PDU being counted, priority 7 is counted by the following counter. CCM: * VOP:VOE_STAT:CCM_TX_SEQ_CFG.CCM_TX_SEQ LBM/LBR: * VOP:VOE_STAT:LBM_TX_TRANSID_CFG.LBM_TX_TRANSID TST: * VOP:VOE_STAT:LBM_TX_TRANSID_CFG.LBM_TX_TRANSID
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SAM_LBM_TX_TRANSID(u32);
 impl SAM_LBM_TX_TRANSID {
     /// See register description
@@ -58,7 +58,7 @@ impl SAM_LBM_TX_TRANSID {
 /// LBR/TST/CCM Rx PDUs per priority
 ///
 /// When a VOE is assigned a SAM per COSID counter set, this register counts the number of Rx LBR/TST/CCM PDU for priorities 0-6. Depending on the PDU being counted, priority 7 is counted by the following counter. CCM: * VOP:VOE_STAT:CCM_RX_FRM_CNT.CCM_RX_VLD_FC_CNT LBM/LBR: * VOP:VOE_STAT: LBR_RX_FRM_CNT.LBR_RX_FRM_CNT TST: * VOP:VOE_STAT: LBR_RX_FRM_CNT.LBR_RX_FRM_CNT
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SAM_LBR_RX_FRM_CNT(u32);
 impl SAM_LBR_RX_FRM_CNT {
     /// See register description.
@@ -72,7 +72,7 @@ impl SAM_LBR_RX_FRM_CNT {
 /// LBR/TST/CCM Rx Transaction ID per priority
 ///
 /// When a VOE is assigned a SAM per COSID counter set, this register counts the latest Sequence Number / Transaction ID received in a valid LBR/TST/CCM PDU for priorities 0-6. Depending on the PDU being counted, priority 7 is stored in the following register. CCM: * VOP:VOE_STAT:CCM_RX_SEQ_CFG.CCM_RX_SEQ LBM/LBR: * VOP:VOE_STAT:LBR_RX_TRANSID_CFG.LBR_RX_TRANSID TST: * VOP:VOE_STAT:LBR_RX_TRANSID_CFG.LBR_RX_TRANSID
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SAM_LBR_RX_TRANSID(u32);
 impl SAM_LBR_RX_TRANSID {
     /// See register description.
@@ -86,7 +86,7 @@ impl SAM_LBR_RX_TRANSID {
 /// LBR Tx PDUs per priority
 ///
 /// When a VOE is assigned a SAM per COSID counter set, this register counts the number of Tx LBR PDU for priorities 0-6. Depending on the PDU being counted, priority 7 is counted by the following counter. CCM: (Not used) LBR: * VOP:VOE_STAT:LBR_TX_FRM_CNT.LBR_TX_FRM_CNT TST: (Not used)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SAM_LBR_TX_FRM_CNT(u32);
 impl SAM_LBR_TX_FRM_CNT {
     /// See register description.

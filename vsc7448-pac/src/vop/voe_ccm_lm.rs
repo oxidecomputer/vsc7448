@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// CCM-LM Tx sample value.
 ///
 /// Value of the CCM-LM.TX_FC_F field in the lastest received valid CCM-LM frame by this VOE. This value must be transmitted as CCM-LM.TX_FCB in the next CCM-LM frame transmitted by this VOE.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_TX_FCB_CFG(u32);
 impl CCM_TX_FCB_CFG {
     /// See register description.
@@ -44,7 +44,7 @@ impl CCM_TX_FCB_CFG {
 /// SynLM Tx frame counter.
 ///
 /// TX counter for counting Initiator MEP Tx SynLM PDUs (SLM / SL1). The counter value is written into the the following fields of Tx SynLM PDUs: * SLM.TxFCf * 1SL.TxFCf The counter is increased (+1) after being written to the Tx PDU. Note: To send TxFCf = 1 in the first Tx SynLM PDU, this register must be initialized to 1.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SLM_TX_FRM_CNT(u32);
 impl SLM_TX_FRM_CNT {
     /// See register description.

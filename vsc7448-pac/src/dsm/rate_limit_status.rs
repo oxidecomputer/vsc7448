@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Header size configuration register for txRateLimitPayloadRate mode
 ///
 /// Header size configuration register for txRateLimitPayloadRate mode
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_RATE_LIMIT_HDR_CFG(u32);
 impl TX_RATE_LIMIT_HDR_CFG {
     /// Defines how much of the frame is seen as header and not counted as payload in txRateLimitPayloadRate and txRateLimitFrameRate mode when TX_RATE_LIMIT_MODE::PAYLOAD_CFG is set to 1.
@@ -48,7 +48,7 @@ impl TX_RATE_LIMIT_HDR_CFG {
 /// Sticky bit register for rate limit modes
 ///
 /// Sticky bit register for rate limit modes
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_RATE_LIMIT_STICKY(u32);
 impl TX_RATE_LIMIT_STICKY {
     /// Sticky bit set when one of the three tx rate limitation modes has increased the IPG. I.e. when a tx rate limit mode was enabled an DSM has requested the device to use a IPG different from 12 byte.

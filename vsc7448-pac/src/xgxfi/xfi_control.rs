@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Data valid detect control register.
 ///
 /// Data valid detect control register. Selects the sources for valid data detection. Controls various functions in the deserializer macro which are swiched when the digital logic has detected a valid signal. Note: The three possible sources are first masked and than ORed together.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DATA_VALID_DETECT_CTRL(u32);
 impl DATA_VALID_DETECT_CTRL {
     /// Enable eWIS LOF to control signal detect.
@@ -70,7 +70,7 @@ impl DATA_VALID_DETECT_CTRL {
     }
 }
 /// XFI HSS macro sticky interrupt masks (enables)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HSS_MASK(u32);
 impl HSS_MASK {
     /// Mask (enable) a XFI_INT if DFT_ACTIVE is asserted
@@ -303,7 +303,7 @@ impl HSS_MASK {
     }
 }
 /// XFI HSS macro current status
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HSS_STATUS(u32);
 impl HSS_STATUS {
     /// Signal detect indicator
@@ -368,7 +368,7 @@ impl HSS_STATUS {
     }
 }
 /// XFI HSS macro status sticky bits
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HSS_STICKY(u32);
 impl HSS_STICKY {
     /// The DFT_ACTIVE signal was detected asserted (since this bit was last cleared)
@@ -603,7 +603,7 @@ impl HSS_STICKY {
 /// SSF INT control/masks and global XFI INT mask
 ///
 /// Control and mask of the asynchronous XFI_SFF output. The global XFI_INT mask located here supersede the individual masks. Note: SSF status is also captured in the HSS_STICKY and HSS_STATUS registers.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct INT_CTRL(u32);
 impl INT_CTRL {
     /// Global mask (enable) the ANEG_ACTIVE status as a source of the XFI_INT.
@@ -753,7 +753,7 @@ impl INT_CTRL {
 /// KR mode control
 ///
 /// Control operating modes initiated by KR
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct KR_CONTROL(u32);
 impl KR_CONTROL {
     /// ANEG requires SD10G65-macro (RX+TX) be setup to 10.3125G mode
@@ -975,7 +975,7 @@ impl KR_CONTROL {
 /// SSF set / reset hysteresis enable register.
 ///
 /// SSF set / reset hysteresis enable register. Enables the timing of asserting or deasserting SSF
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SSF_HYST_ENA_CTRL(u32);
 impl SSF_HYST_ENA_CTRL {
     /// Enable timing and hysteresis as defined in SSF_HYST_TIMING_CTRL.
@@ -993,7 +993,7 @@ impl SSF_HYST_ENA_CTRL {
 /// SSF set / reset hysteresis control register.
 ///
 /// SSF set / reset hysteresis control register. Controls the timing of asserting or deasserting SSF
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SSF_HYST_TIMING_CTRL(u32);
 impl SSF_HYST_TIMING_CTRL {
     /// Time a SSF must be active before it is forwarded to the core. Resolution: One tick is 102.4 ns.
@@ -1023,7 +1023,7 @@ impl SSF_HYST_TIMING_CTRL {
 /// XFI modes
 ///
 /// Control and operating modes of the XFI.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct XFI_MODE(u32);
 impl XFI_MODE {
     /// Phase selection of DES in 100fx mode
@@ -1257,7 +1257,7 @@ impl XFI_MODE {
 /// XFI interrupt status
 ///
 /// The XFI_INT, its sources, and the XFI_SSF are visible from this register.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct XFI_STATUS(u32);
 impl XFI_STATUS {
     /// Unmasked status of the ANEG_ACTIVE status output When the ANEG_ACTIVE_MASK is set, this status is a source of the XFI_INT.

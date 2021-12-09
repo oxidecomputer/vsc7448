@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Counter values
 ///
 /// See description for QSYS:STAT.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CNT(u32);
 impl CNT {
     /// Counter value, ref. QSYS:STAT.
@@ -42,7 +42,7 @@ impl CNT {
     }
 }
 /// Maximum use of the shared area
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct QLIMIT_SHR_FILL_MAX_STAT(u32);
 impl QLIMIT_SHR_FILL_MAX_STAT {
     pub fn qlimit_shr_fill_max(&self) -> u32 {

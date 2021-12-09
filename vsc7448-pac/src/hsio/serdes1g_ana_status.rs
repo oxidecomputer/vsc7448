@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES1G Pll Cfg
 ///
 /// Configuration register for SERDES1G RCPLL
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_PLL_CFG(u32);
 impl SERDES1G_PLL_CFG {
     /// Enable feedback divider (divide by two)

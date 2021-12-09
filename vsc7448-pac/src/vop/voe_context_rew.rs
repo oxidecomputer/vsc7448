@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// CCM-LM Rx LM sample value.
 ///
 /// This is the value of the Rx LM counter sampled when the latest CCM-LM frame was received. This value must be transmitted as CCM-LM.RX_FCB in the next CCM-LM frame transmitted by this VOE.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_RX_FCB_CFG(u32);
 impl CCM_RX_FCB_CFG {
     /// See register description.
@@ -42,7 +42,7 @@ impl CCM_RX_FCB_CFG {
     }
 }
 /// Contains info om G.8113.1 LBM/LBR TLVs
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CT_CCM_TLV_INFO_REW(u32);
 impl CT_CCM_TLV_INFO_REW {
     pub fn ct_if_status_value_rew(&self) -> u32 {
@@ -82,7 +82,7 @@ impl CT_CCM_TLV_INFO_REW {
     }
 }
 /// Context data
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CT_OAM_DATA_REW(u32);
 impl CT_OAM_DATA_REW {
     /// Context register containing Sequence Number or Transaction ID
@@ -96,7 +96,7 @@ impl CT_OAM_DATA_REW {
 /// [MCC_DEBUG] Context for ports on the REW interface
 ///
 /// [MCC_DEBUG] Tx LM frame counters  by VOE.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CT_OAM_INFO_REW(u32);
 impl CT_OAM_INFO_REW {
     pub fn ct_block_data_rew(&self) -> u32 {
@@ -240,7 +240,7 @@ impl CT_OAM_INFO_REW {
 /// [MCC_DEBUG]
 ///
 /// [MCC_DEBUG]
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CT_OAM_STICKY_REW(u32);
 impl CT_OAM_STICKY_REW {
     pub fn ct_ccm_nonzero_endtlv_rew(&self) -> u32 {

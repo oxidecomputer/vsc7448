@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// UPSID destination configuration
 ///
 /// Refer to UPSID_CFG.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct UPSID_CFG1(u32);
 impl UPSID_CFG1 {
     /// Refer to UPSID_CFG.UPSID_PORT_MASK.

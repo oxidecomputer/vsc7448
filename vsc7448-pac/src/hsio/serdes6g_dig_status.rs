@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES6G DFT Status
 ///
 /// Status register of SERDES6G DFT functions
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_DFT_STATUS(u32);
 impl SERDES6G_DFT_STATUS {
     /// BIST activity
@@ -132,7 +132,7 @@ impl SERDES6G_DFT_STATUS {
 /// SERDES6G Error Counter
 ///
 /// Error counter for SERDES6G PRBS
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_ERR_CNT(u32);
 impl SERDES6G_ERR_CNT {
     /// PRBS error counter
@@ -148,7 +148,7 @@ impl SERDES6G_ERR_CNT {
 /// SERDES6G OB ANEG Configuration
 ///
 /// Configuration register for ANEG Output Buffer overwrite parameter. The values are used during Backplane Ethernet Auto-Negotiation when the output level of transmitter (OB output) have to be reduced.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_OB_ANEG_CFG(u32);
 impl SERDES6G_OB_ANEG_CFG {
     /// ANEG overwrite value for SERDES6G_OB_CFG1.ob_ena_cas

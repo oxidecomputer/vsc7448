@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// RX_SYNC_CTRL status register
 ///
 /// RX Sync control status register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SYNC_CTRL_STAT(u32);
 impl RX_SYNC_CTRL_STAT {
     /// RX Lane synchronization fifo overflow
@@ -46,7 +46,7 @@ impl RX_SYNC_CTRL_STAT {
 /// SD10G65 RX RCPLL BIST Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 RX RCPLL BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RCPLL_BIST_CFG0(u32);
 impl SD10G65_RCPLL_BIST_CFG0 {
     /// BIST compare uncertainty
@@ -92,7 +92,7 @@ impl SD10G65_RCPLL_BIST_CFG0 {
 /// SD10G65 RX RCPLL BIST Configuration register 1
 ///
 /// Configuration register 1 for SD10G65 RX RCPLL BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RCPLL_BIST_CFG1(u32);
 impl SD10G65_RCPLL_BIST_CFG1 {
     /// BIST compare pre divider M
@@ -128,7 +128,7 @@ impl SD10G65_RCPLL_BIST_CFG1 {
 /// SD10G65 RX RCPLL BIST Configuration register 2
 ///
 /// Configuration register 2 for SD10G65 RX RCPLL BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RCPLL_BIST_CFG2(u32);
 impl SD10G65_RCPLL_BIST_CFG2 {
     /// BIST compare divider M
@@ -144,7 +144,7 @@ impl SD10G65_RCPLL_BIST_CFG2 {
 /// SD10G65 RX RCPLL BIST Configuration register 3
 ///
 /// Configuration register 3 for SD10G65 RX RCPLL BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RCPLL_BIST_CFG3(u32);
 impl SD10G65_RCPLL_BIST_CFG3 {
     /// BIST compare divider N
@@ -160,7 +160,7 @@ impl SD10G65_RCPLL_BIST_CFG3 {
 /// SD10G65 RX RCPLL BIST Status register 0
 ///
 /// Status register 0 for SD10G65 RX RCPLL BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RCPLL_BIST_STAT0(u32);
 impl SD10G65_RCPLL_BIST_STAT0 {
     /// BIST busy, 0: not busy, 1: busy
@@ -226,7 +226,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {
 /// SD10G65 RX RCPLL BIST Status register 1
 ///
 /// Status register 1 for SD10G65 RX RCPLL BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RCPLL_BIST_STAT1(u32);
 impl SD10G65_RCPLL_BIST_STAT1 {
     /// BIST compare divider phase difference
@@ -242,7 +242,7 @@ impl SD10G65_RCPLL_BIST_STAT1 {
 /// SD10G65 RX RCPLL BIST Configuration register 4
 ///
 /// Configuration register 4 for SD10G65 RX RCPLL BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_RCPLL_BIST_CFG4(u32);
 impl SD10G65_RX_RCPLL_BIST_CFG4 {
     /// BIST macro clock (parallel) clock selection, 0: RX, 1: TX

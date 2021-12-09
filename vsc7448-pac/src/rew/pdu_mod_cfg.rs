@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// CCM-LM sample
 ///
 /// Contains the sampled value of CCM_LM.rx_fc_b from the last valid CCM_LM frame.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_LM_RX_B_REG(u32);
 impl CCM_LM_RX_B_REG {
     /// Contains the sampled value of CCM_LM.rx_fc_b from the last valid CCM_LM frame.
@@ -44,7 +44,7 @@ impl CCM_LM_RX_B_REG {
 /// Port PTP domain select
 ///
 /// Jaguar2-R supports three PTP time domains. The Delay Measurements (Y.1731) uses the PTP timing for updating the DM PDUs. For this to work, each port on the switch must be configured for which PTP timedomain to use. This is done by configuring this register. The settings must be the same in the REW and the ANA_AC instatiation of the OAM_PDU_MOD block.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DM_PTP_DOMAIN_CFG(u32);
 impl DM_PTP_DOMAIN_CFG {
     pub fn ptp_domain(&self) -> u32 {
@@ -59,7 +59,7 @@ impl DM_PTP_DOMAIN_CFG {
 /// PORT_BYTE_CNT_MSB sample register.
 ///
 /// Whenever either of the bit fields the following RAM are read: * ANA_AC_OAM_MOD:VOE_SRV_LM_CNT (ANA) * REW:VOE_SRV_LM_CNT (REW) this register will sample the value of the following bit field: * ANA_AC_OAM_MOD:VOE_PORT_LM_CNT:PORT_BYTE_CNT_MSB.PORT_BYTE_CNT_MSB (ANA) * REW:VOE_PORT_LM_CNT:PORT_BYTE_CNT_MSB.PORT_BYTE_CNT_MSB (REW)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RD_LAST_PORT_BYTE_CNT_MSB(u32);
 impl RD_LAST_PORT_BYTE_CNT_MSB {
     /// See register description.
@@ -75,7 +75,7 @@ impl RD_LAST_PORT_BYTE_CNT_MSB {
 /// PORT_NON_LM_CNT_LSB sample register.
 ///
 /// Whenever either of the bit fields the following RAM are read: * ANA_AC_OAM_MOD:VOE_SRV_LM_CNT (ANA) * REW:VOE_SRV_LM_CNT (REW) this register will sample the value of the following bit field: * ANA_AC_OAM_MOD:VOE_PORT_LM_CNT:PORT_FRM_CNT_LSB.PORT_FRM_CNT_LSB (ANA) * REW:VOE_PORT_LM_CNT:PORT_FRM_CNT_LSB.PORT_FRM_CNT_LSB (REW)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RD_LAST_PORT_FRM_CNT_LSB(u32);
 impl RD_LAST_PORT_FRM_CNT_LSB {
     /// See register description.
@@ -89,7 +89,7 @@ impl RD_LAST_PORT_FRM_CNT_LSB {
 /// PORT_LM_CNT_LSB sample register.
 ///
 /// Whenever either of the bit fields the following RAM are read: * ANA_AC_OAM_MOD:VOE_SRV_LM_CNT (ANA) * REW:VOE_SRV_LM_CNT (REW) this register will sample the value of the following bit field: * ANA_AC_OAM_MOD:VOE_PORT_LM_CNT:PORT_LM_CNT_LSB.PORT_LM_CNT_LSB (ANA) * REW:VOE_PORT_LM_CNT:PORT_LM_CNT_LSB.PORT_LM_CNT_LSB (REW)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RD_LAST_PORT_LM_CNT_LSB(u32);
 impl RD_LAST_PORT_LM_CNT_LSB {
     /// See register description.

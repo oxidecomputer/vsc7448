@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Dev1g Interrupt Reg
 ///
 /// Interrupt register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEV1G_INTR(u32);
 impl DEV1G_INTR {
     /// ANEG Link down interrupt (only PCS1g)
@@ -132,7 +132,7 @@ impl DEV1G_INTR {
 /// Dev1g Intr Configuration
 ///
 /// Interrupt Mask (Enable) register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEV1G_INTR_CFG(u32);
 impl DEV1G_INTR_CFG {
     /// ANEG Link down interrupt enable (only PCS1g)
@@ -234,7 +234,7 @@ impl DEV1G_INTR_CFG {
 /// Dev1g Interrupt Ident
 ///
 /// Pending Interrupts (only enabled interrupts are visible)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEV1G_INTR_IDENT(u32);
 impl DEV1G_INTR_IDENT {
     /// ANEG Link down interrupt (only PCS1g)
@@ -336,7 +336,7 @@ impl DEV1G_INTR_IDENT {
 /// PCS 100Base FX Status
 ///
 /// Status bit groups for 100Base-FX PCS. Note: If sigdet_cfg != "00" is selected status signal "signal_detect" shows the internal signal_detect value is gated with the status of rx toggle-rate control circuitry.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS_FX100_STATUS(u32);
 impl PCS_FX100_STATUS {
     /// Data change position in the 10bit words received. Must be used for adjusting PTP ingress delays.

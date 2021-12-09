@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SD10G65 RX RCPLL Status register 1
 ///
 /// Status register 1 for SD10G65 RX RCPLL.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_RCPLL_STAT1(u32);
 impl SD10G65_RX_RCPLL_STAT1 {
     /// Actual value of step up counter
@@ -68,7 +68,7 @@ impl SD10G65_RX_RCPLL_STAT1 {
 /// SD10G65 RX Synthesizer Register CDR loopfilter control
 ///
 /// Register for CDR loopfilter control for SD10G65 RX SYNTH.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SYNTH_CDRLF(u32);
 impl SD10G65_RX_SYNTH_CDRLF {
     /// frequency select of integrator 1
@@ -124,7 +124,7 @@ impl SD10G65_RX_SYNTH_CDRLF {
 /// SD10G65 RX Synthesizer Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 RX SYNTH.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG0(u32);
 impl SD10G65_RX_SYNTH_CFG0 {
     /// enables CML2CMOS converter (low speed part of synthesizer)
@@ -298,7 +298,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
 /// SD10G65 RX Synthesizer Configuration register 1
 ///
 /// Configuration register 1 for SD10G65 RX SYNTH.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG1(u32);
 impl SD10G65_RX_SYNTH_CFG1 {
     /// frequency m setting bits 35:32
@@ -354,7 +354,7 @@ impl SD10G65_RX_SYNTH_CFG1 {
 /// SD10G65 RX Synthesizer Configuration register 2
 ///
 /// Configuration register 2 for SD10G65 RX SYNTH.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG2(u32);
 impl SD10G65_RX_SYNTH_CFG2 {
     /// enables clock for VScope / APC auxillary data chanels
@@ -460,7 +460,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
 /// SD10G65 RX Synthesizer Configuration register 3
 ///
 /// Configuration register 3 for SD10G65 RX SYNTH.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG3(u32);
 impl SD10G65_RX_SYNTH_CFG3 {
     /// frequency m setting bits 31:0
@@ -474,7 +474,7 @@ impl SD10G65_RX_SYNTH_CFG3 {
 /// SD10G65 RX Synthesizer Configuration register 4
 ///
 /// Configuration register 4 for SD10G65 RX SYNTH.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SYNTH_CFG4(u32);
 impl SD10G65_RX_SYNTH_CFG4 {
     /// frequency n setting bits 31:0
@@ -488,7 +488,7 @@ impl SD10G65_RX_SYNTH_CFG4 {
 /// SD10G65 RX Synthesizer Register 0 for qualifier access
 ///
 /// Register 0 for qualifier access for SD10G65 RX SYNTH.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SYNTH_QUALIFIER0(u32);
 impl SD10G65_RX_SYNTH_QUALIFIER0 {
     /// Rising edge captures qualifier for readback
@@ -574,7 +574,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
 /// SD10G65 RX Synthesizer Register 1 for qualifier access
 ///
 /// Register 1 for qualifier access for SD10G65 RX SYNTH.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SYNTH_QUALIFIER1(u32);
 impl SD10G65_RX_SYNTH_QUALIFIER1 {
     /// LS Bits of captured integrator 2
@@ -588,7 +588,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER1 {
 /// SD10G65 RX Synthesizer Register for sync control data
 ///
 /// Register 0 for sync control data for SD10G65 RX SYNTH.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SYNTH_SYNC_CTRL(u32);
 impl SD10G65_RX_SYNTH_SYNC_CTRL {
     /// Sticky bit that indicates a sync control protocol error.

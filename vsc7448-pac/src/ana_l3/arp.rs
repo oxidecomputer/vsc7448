@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// ARP table data
 ///
 /// Configuration registers for ARP table
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ARP_CFG_0(u32);
 impl ARP_CFG_0 {
     /// Enable entry for address resolution usage.
@@ -108,7 +108,7 @@ impl ARP_CFG_0 {
 /// ARP Pointer Remap Configuration
 ///
 /// This information is used for LPM VCAP actions of type ARP_PTR and with ARP_PTR_REMAP_ENA=1.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ARP_PTR_REMAP_CFG(u32);
 impl ARP_PTR_REMAP_CFG {
     /// Address of ARP entry in ARP Table (ANA_L3:ARP).

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// ARP and L3MC table related diagnostic registers
 ///
 /// ARP and L3MC table related diagnostic registers.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct L3_ARP_IPMC_STICKY(u32);
 impl L3_ARP_IPMC_STICKY {
     /// Set if the IPv4/IPv6 DIP or (DIP,SIP) lookup failed due to - No match in LPM table - Unsupported action type in LPM table - ARP table lookup returns an invalid entry.
@@ -336,7 +336,7 @@ impl L3_ARP_IPMC_STICKY {
 /// Enable per concurrent counter for each sticky bit
 ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RLEG_STICKY_MASK(u32);
 impl RLEG_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
@@ -422,7 +422,7 @@ impl RLEG_STICKY_MASK {
 /// Enable per concurrent counter for each sticky bit
 ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ROUT_STICKY_MASK(u32);
 impl ROUT_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
@@ -608,7 +608,7 @@ impl ROUT_STICKY_MASK {
 /// Enable per concurrent counter for each sticky bit
 ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SECUR_STICKY_MASK(u32);
 impl SECUR_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
@@ -694,7 +694,7 @@ impl SECUR_STICKY_MASK {
 /// Enable per concurrent counter for each sticky bit
 ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VLAN_MSTP_STICKY_MASK(u32);
 impl VLAN_MSTP_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.

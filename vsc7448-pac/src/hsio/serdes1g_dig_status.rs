@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES1G DFT Status
 ///
 /// Status register of SERDES1G DFT functions
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_DFT_STATUS(u32);
 impl SERDES1G_DFT_STATUS {
     /// BIST activity
@@ -120,7 +120,7 @@ impl SERDES1G_DFT_STATUS {
 /// SERDES1G Misc Configuration
 ///
 /// Configuration register for miscellaneous functions
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_MISC_CFG(u32);
 impl SERDES1G_MISC_CFG {
     /// Enable deserializer cp/md handling for 100fx mode

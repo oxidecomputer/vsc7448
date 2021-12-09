@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Rx ordered set FIFO data
 ///
 /// The register interface to the ordered set data
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_FSET_FIFO_DATA(u32);
 impl RX_FSET_FIFO_DATA {
     /// Register interface to the FIFO containing captured ordered sets. Each read of this register pops a 24-bit ordered set off the FIFO and increments the FIFO pointer.

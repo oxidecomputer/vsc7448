@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Internal control for debugging only
 ///
 /// Core events.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEBUG_CTRL(u32);
 impl DEBUG_CTRL {
     /// Force port to be frame pending. To be used when a port for some unknown reason gets stuck. The port configured in FLUSH_PORT will be marked pending.
@@ -44,7 +44,7 @@ impl DEBUG_CTRL {
     }
 }
 /// Configuration and status of a dwrr entry
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DWRR_ENTRY(u32);
 impl DWRR_ENTRY {
     /// Current balance of the input
@@ -68,7 +68,7 @@ impl DWRR_ENTRY {
     }
 }
 /// Egress queue status
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EQ_STAT(u32);
 impl EQ_STAT {
     /// Number of free frame references.
@@ -84,7 +84,7 @@ impl EQ_STAT {
 /// Internal events for debugging only
 ///
 /// Core events.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EVENTS_CORE(u32);
 impl EVENTS_CORE {
     /// If an frame is added to an invalid queue in the scheduling hierarchy, this sticky bit will be set, and the violating request is see the EVENT_ENQ_ERR register.
@@ -118,7 +118,7 @@ impl EVENTS_CORE {
     }
 }
 /// Information about enqueueing error
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EVENT_ENQ_ERR(u32);
 impl EVENT_ENQ_ERR {
     /// Contains last enqueuing error egress port number
@@ -142,7 +142,7 @@ impl EVENT_ENQ_ERR {
     }
 }
 /// Enable flushing of selected framesy
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct FLUSH_CTRL(u32);
 impl FLUSH_CTRL {
     /// Frame transmitted on the configured port will be flushed if set.
@@ -216,7 +216,7 @@ impl FLUSH_CTRL {
     }
 }
 /// Configuration selection register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HSCH_CFG_CFG(u32);
 impl HSCH_CFG_CFG {
     /// The DWRR balances and queue shapers will be accessed for the scheduling element indexed by this field.
@@ -250,7 +250,7 @@ impl HSCH_CFG_CFG {
     }
 }
 /// Enable large scheduling elements
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HSCH_LARGE_ENA(u32);
 impl HSCH_LARGE_ENA {
     /// Bit n in replication k enables extended width on scheduling element (32k+n)*2. Scheduling element (32k+n)*2+1 must not be used if enabled. Fx. if scheduling element 180 should handle 16 inputs, HSCH_LARGE_ENA[2] bit 26 should be set to 1, and element 181 must not be used.
@@ -262,7 +262,7 @@ impl HSCH_LARGE_ENA {
     }
 }
 /// Common config for HSCH and policer module
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HSCH_MISC_CFG(u32);
 impl HSCH_MISC_CFG {
     /// Values to add each frame when frame length adjustment is in use.
@@ -286,7 +286,7 @@ impl HSCH_MISC_CFG {
     }
 }
 /// Return information about scheduler busyness
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HSCH_UPDATE_STAT(u32);
 impl HSCH_UPDATE_STAT {
     /// Return the maximum period of constant update need. Clear by writing one to the lsb of the register.
@@ -300,7 +300,7 @@ impl HSCH_UPDATE_STAT {
     }
 }
 /// Cellbus configuration
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct OUTB_CPU_SHARE_ENA(u32);
 impl OUTB_CPU_SHARE_ENA {
     /// When enabled, unused bandwidth sharing will be granted to the an internal CPUport, only when the calendar designated port is another internal CPU port. The OUTB_SHARE_ENA must be configured for the CPU ports when this is enabled
@@ -314,7 +314,7 @@ impl OUTB_CPU_SHARE_ENA {
     }
 }
 /// Cellbus configuration
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct OUTB_SHARE_ENA(u32);
 impl OUTB_SHARE_ENA {
     /// Sets the minimum distance between grants to an internal port. Extra grants are disabled when configured value is 0, otherwise the port seeks extra bandwidth, and the minimim distance in clock cycles is given by this value. The four replications are for internal CPU 0, internal CPU 1, VD0 and VD1. Setting a value of 14 grants extra bandwidth every 14 cycles, which for minimum sized frames corresponds to 84 bytes per 14 x 6,4 ns, or 7.5Gbps. Setting a value of 10 grants every 10 cycles, corresponding to 84 bytes per 64 ns, or 10.5Gbps. Minimum value for VD0 is 14, and 8 for the other internal ports.
@@ -330,7 +330,7 @@ impl OUTB_SHARE_ENA {
 /// Per port PFC configuration
 ///
 /// These configurations exists per front port.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PFC_CFG(u32);
 impl PFC_CFG {
     /// Set the layer at which PFC status should be applied for this port. Only layers 1 and 2 supports PFC blocking of the hierarchy.
@@ -358,7 +358,7 @@ impl PFC_CFG {
 /// Per device port configuration
 ///
 /// These configurations exists per front port and for each of the two CPU ports (11+12).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PORT_MODE(u32);
 impl PORT_MODE {
     /// Disable aging of all frames transmitted to the port. Frame aging related parameters: QSYS:SYSTEM:FRM_AGING.MAX_AGE HSCH:HSCH_MISC:PORT_MODE.AGE_DIS DSM:CFG:BUF_CFG.AGING_ENA
@@ -414,7 +414,7 @@ impl PORT_MODE {
     }
 }
 /// System clock period configuration
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SYS_CLK_PER(u32);
 impl SYS_CLK_PER {
     /// Must be set to the system clock period with unit 100 picoseconds.

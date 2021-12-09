@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SD10G65 IB Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 IB. Note: Configuration bit-grp IB_CLKDIV_ENA was named IB_VSCOPE_CLK_ENA in an early revision of the input buffer.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG0(u32);
 impl SD10G65_IB_CFG0 {
     /// Enable for 1V mode
@@ -257,7 +257,7 @@ impl SD10G65_IB_CFG0 {
 /// SD10G65 IB Configuration register 1
 ///
 /// Configuration register 1 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG1(u32);
 impl SD10G65_IB_CFG1 {
     /// Inductor peaking of EQ-Buffer3 (over all 5. stage)
@@ -371,7 +371,7 @@ impl SD10G65_IB_CFG1 {
 /// SD10G65 IB Configuration register 10 JTAG related setting
 ///
 /// Configuration register 10 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG10(u32);
 impl SD10G65_IB_CFG10 {
     /// Result of Level-Detect0 (after IB-stage of EQZ) circuitry
@@ -597,7 +597,7 @@ impl SD10G65_IB_CFG10 {
 /// SD10G65 IB Configuration register 11 JTAG related setting
 ///
 /// Configuration register 11 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG11(u32);
 impl SD10G65_IB_CFG11 {
     /// DFE Bias current settings (bit-group is gated with IB_DFE_ENA)
@@ -656,7 +656,7 @@ impl SD10G65_IB_CFG11 {
 /// SD10G65 IB Configuration register 2
 ///
 /// Configuration register 2 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG2(u32);
 impl SD10G65_IB_CFG2 {
     /// Amplification (gain) of AGC in Input Buffer (normal operation)
@@ -698,7 +698,7 @@ impl SD10G65_IB_CFG2 {
 /// SD10G65 IB Configuration register 3
 ///
 /// Configuration register 1 for SD10G65 IB. Note: the behavior of IB_EQ_LD1_OFFSET changes when APC is disabled. In this case IB_EQ_LD1_OFFSET directly controls the level for Level-Detect circuitry 1. Coding: 0: 20mV, 1: 25mV, ... 63: 340mV.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG3(u32);
 impl SD10G65_IB_CFG3 {
     /// Selects source of direct data path to core
@@ -812,7 +812,7 @@ impl SD10G65_IB_CFG3 {
 /// SD10G65 IB Configuration register 4
 ///
 /// Configuration register 4 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG4(u32);
 impl SD10G65_IB_CFG4 {
     /// corner frequency selection for c-gain peaking 4.stage
@@ -926,7 +926,7 @@ impl SD10G65_IB_CFG4 {
 /// SD10G65 IB Configuration register 5
 ///
 /// Configuration register 5 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG5(u32);
 impl SD10G65_IB_CFG5 {
     /// AGC output disable required to calibrate DFE-gain
@@ -1124,7 +1124,7 @@ impl SD10G65_IB_CFG5 {
 /// SD10G65 IB Configuration register 6
 ///
 /// Configuration register 6 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG6(u32);
 impl SD10G65_IB_CFG6 {
     /// Enable automatic AGC adjustment
@@ -1178,7 +1178,7 @@ impl SD10G65_IB_CFG6 {
 /// SD10G65 IB Configuration register 7
 ///
 /// Configuration register 7 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG7(u32);
 impl SD10G65_IB_CFG7 {
     /// Gain adjustment of DFEamplifier
@@ -1254,7 +1254,7 @@ impl SD10G65_IB_CFG7 {
 /// SD10G65 IB Configuration register 8
 ///
 /// Configuration register 8 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG8(u32);
 impl SD10G65_IB_CFG8 {
     /// Enable analog output decoder in IE
@@ -1426,7 +1426,7 @@ impl SD10G65_IB_CFG8 {
 /// SD10G65 IB Configuration register 9  automatically adapted DFE coefficients
 ///
 /// Configuration register 9 for SD10G65 IB.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_IB_CFG9(u32);
 impl SD10G65_IB_CFG9 {
     /// Weighting for first DFE coefficient
@@ -1472,7 +1472,7 @@ impl SD10G65_IB_CFG9 {
 /// SD10G65_RX subversion revision number
 ///
 /// Subversion revision number for the RTL used in SD10G65_RX
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_SVN_ID(u32);
 impl SD10G65_RX_SVN_ID {
     /// SVN revision number of RTL sources
@@ -1486,7 +1486,7 @@ impl SD10G65_RX_SVN_ID {
 /// SD10G65 SBUS RX CFG Service-Bus related setting
 ///
 /// Configuration register for Service-Bus related setting. Note: SBUS configuration applies for RX/TX aggregates only, any configuration applied to SBUS_TX_CFG (output buffer cfg space) will be ignored.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_SBUS_RX_CFG(u32);
 impl SD10G65_SBUS_RX_CFG {
     /// Enable analog test output multiplexer
@@ -1570,7 +1570,7 @@ impl SD10G65_SBUS_RX_CFG {
 /// SD10G65_TX Revision ID
 ///
 /// Revision numbers of the analog sub IPs used in the SD10G65_TX
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_REV_ID(u32);
 impl SD10G65_TX_REV_ID {
     /// Feature set number of output buffer (ob10g_N)

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Configuration of leaky bucket value
 ///
 /// Configures each Single LB
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LB_BUCKET_VAL(u32);
 impl LB_BUCKET_VAL {
     /// Number of bytes in leaky bucket.
@@ -56,7 +56,7 @@ impl LB_BUCKET_VAL {
 /// Threshold and rate configuration
 ///
 /// Configures each Single LB
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LB_CFG(u32);
 impl LB_CFG {
     /// Specify rate in steps of configured granularity. The rate granularity is configured in TIMESCALE_VAL.
@@ -84,7 +84,7 @@ impl LB_CFG {
     }
 }
 /// Configuration of various LB policer handles
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MISC_CFG(u32);
 impl MISC_CFG {
     /// Enables frame rate mode for the policer, where policer rates are measured in frames per second instead of bits per second.
@@ -100,7 +100,7 @@ impl MISC_CFG {
     }
 }
 /// Configuration of BUM SLB policer
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SLB_CFG(u32);
 impl SLB_CFG {
     /// Configures if stripped encapsulation data (normalized data) is policed by the policer.
@@ -150,7 +150,7 @@ impl SLB_CFG {
     }
 }
 /// SLB policer diagnostic
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SLB_STICKY(u32);
 impl SLB_STICKY {
     /// Set when a LB scan completes. Bit is cleared by writing a 1 to this position.

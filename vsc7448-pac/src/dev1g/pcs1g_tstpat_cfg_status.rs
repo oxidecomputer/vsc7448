@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS1G Low Power Idle Status
 ///
 /// Status register for Low Power Idle (Energy Efficient Ethernet)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS1G_LPI_STATUS(u32);
 impl PCS1G_LPI_STATUS {
     /// Receiver Low-Power idle occurrence
@@ -108,7 +108,7 @@ impl PCS1G_LPI_STATUS {
 /// PCS1G TSTPAT MODE CFG
 ///
 /// PCS1G testpattern mode configuration register (Frame based pattern 4 and 5 might be not available depending on chip type)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS1G_TSTPAT_MODE_CFG(u32);
 impl PCS1G_TSTPAT_MODE_CFG {
     /// Jitter Test Pattern Select: Enables and selects the jitter test pattern to be transmitted. The jitter test patterns are according to the IEEE 802.3, Annex 36A

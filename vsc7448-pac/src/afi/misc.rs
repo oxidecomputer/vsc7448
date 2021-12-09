@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Errors from AFI block
 ///
 /// These bits shall never get set.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ERR(u32);
 impl ERR {
     /// FRM_OUT_CNT for a port was zero while an ack from FRD was received. If enabled in STICKY_INFO_ENA.FRM_OUT_NEG_INFO_ENA, the corresponding port number is stored in STICKY_INFO.PORT_NUM.
@@ -44,7 +44,7 @@ impl ERR {
     }
 }
 /// Miscellanous AFI control parameters
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MISC_CTRL(u32);
 impl MISC_CTRL {
     /// Enable AFI. Must be set to 1 before any use of AFI.
@@ -58,7 +58,7 @@ impl MISC_CTRL {
     }
 }
 /// Control information about new frame received by AFI for injection.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct NEW_FRM_CTRL(u32);
 impl NEW_FRM_CTRL {
     /// Valid bit for NEW_FRM_INFO.FRM_INFO.
@@ -72,7 +72,7 @@ impl NEW_FRM_CTRL {
     }
 }
 /// Frame information about new frame received by AFI for injection.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct NEW_FRM_INFO(u32);
 impl NEW_FRM_INFO {
     /// Frame information for new frame received by AFI. The inforrmation must be copied to FRM_INFO bits in AFI:FRM_TBL:FRM_ENTRY_PART0.PART0. Once FRM_INFO has been copied to FRM_TBL, then NEW_FRM_CTRL.VLD must be cleared.
@@ -88,7 +88,7 @@ impl NEW_FRM_INFO {
 /// Additional information about sticky bit events.
 ///
 /// The information is updated if a) Enabled in STICKY_INFO_ENA and b) STICKY_INFO_WR_CNT is > 0
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct STICKY_INFO(u32);
 impl STICKY_INFO {
     /// Port number corresponding to sticky bit event.
@@ -124,7 +124,7 @@ impl STICKY_INFO {
     }
 }
 /// Enabling of additional information about sticky bit events.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct STICKY_INFO_ENA(u32);
 impl STICKY_INFO_ENA {
     /// Enable updating of STICKY_INFO.PORT_NUM for WARN_ENQ_STOP_STICKY.
@@ -170,7 +170,7 @@ impl STICKY_INFO_ENA {
 /// Warnings from AFI block
 ///
 /// These bits shall normally not get set.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct WARN(u32);
 impl WARN {
     /// DTI_CNT_DOWN has reached its maximum negative value.

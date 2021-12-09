@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SD10G65 DES Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 DES.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_DES_CFG0(u32);
 impl SD10G65_DES_CFG0 {
     /// Deserializer disable.

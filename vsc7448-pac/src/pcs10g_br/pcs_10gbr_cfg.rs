@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS configuration
 ///
 /// Configuration register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS_CFG(u32);
 impl PCS_CFG {
     /// Enable link control using backplane Ethernet ANEG (Auto-Negotiation)
@@ -181,7 +181,7 @@ impl PCS_CFG {
 /// PCS interrupt mask register
 ///
 /// Masks for PCS interrupt sources and sticky bits in PCS_INTR_STAT
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS_INTR_MASK(u32);
 impl PCS_INTR_MASK {
     /// Mask for the C64B66B_ERR_STICKY bit
@@ -283,7 +283,7 @@ impl PCS_INTR_MASK {
 /// PCS SignalDetect Configuration
 ///
 /// PCS signal_detect configuration
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS_SD_CFG(u32);
 impl PCS_SD_CFG {
     /// Signal Detect Enable
@@ -325,7 +325,7 @@ impl PCS_SD_CFG {
 /// LSB of test pattern
 ///
 /// Least significant Rx bits of test pattern
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_DATAPAT_LSB(u32);
 impl RX_DATAPAT_LSB {
     /// Least significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
@@ -339,7 +339,7 @@ impl RX_DATAPAT_LSB {
 /// MSB of test pattern
 ///
 /// Most significant Rx bits of test pattern
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_DATAPAT_MSB(u32);
 impl RX_DATAPAT_MSB {
     /// Most significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
@@ -353,7 +353,7 @@ impl RX_DATAPAT_MSB {
 /// PRBS31 initialization
 ///
 /// Initial value to load into the PRBS31 linear-feedback shift register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_PRBS31_INIT(u32);
 impl RX_PRBS31_INIT {
     /// PRBS31 initial value.
@@ -369,7 +369,7 @@ impl RX_PRBS31_INIT {
 /// Test pattern mode configuration
 ///
 /// Select test patterns when test mode is enabled
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TEST_CFG(u32);
 impl TEST_CFG {
     /// Disables inversion of seeds and data in the pseudo-random test pattern
@@ -435,7 +435,7 @@ impl TEST_CFG {
 /// LSB of test pattern
 ///
 /// Least significant Tx bits of test pattern
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_DATAPAT_LSB(u32);
 impl TX_DATAPAT_LSB {
     /// Least significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
@@ -449,7 +449,7 @@ impl TX_DATAPAT_LSB {
 /// MSB of test pattern
 ///
 /// Most significant Tx bits of test pattern
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_DATAPAT_MSB(u32);
 impl TX_DATAPAT_MSB {
     /// Most significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
@@ -463,7 +463,7 @@ impl TX_DATAPAT_MSB {
 /// Scrambler initialization
 ///
 /// Least significant bits of the scrambler. Used in pseudo-random and PRBS31 modes.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SEEDA_LSB(u32);
 impl TX_SEEDA_LSB {
     /// Least significant bits of scrambler used to initialize it during test mode
@@ -477,7 +477,7 @@ impl TX_SEEDA_LSB {
 /// Scrambler initialization
 ///
 /// Most significant bits of the scrambler
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SEEDA_MSB(u32);
 impl TX_SEEDA_MSB {
     /// Most significant bits of scrambler used to initialize it during test mode
@@ -493,7 +493,7 @@ impl TX_SEEDA_MSB {
 /// Scrambler initialization
 ///
 /// Least significant bits of the scrambler
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SEEDB_LSB(u32);
 impl TX_SEEDB_LSB {
     /// Least significant bits of scrambler used to initialize it during test mode
@@ -507,7 +507,7 @@ impl TX_SEEDB_LSB {
 /// Scrambler initialization
 ///
 /// Most significant bits of the scrambler
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SEEDB_MSB(u32);
 impl TX_SEEDB_MSB {
     /// Most significant bits of scrambler used to initialize it during test mode

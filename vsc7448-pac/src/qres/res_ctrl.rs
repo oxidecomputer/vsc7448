@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Watermark configuration
 ///
 /// The queue system tracks four resource consumptions: Resource 0: Memory tracked per source Resource 1: Frame references tracked per source Resource 2: Memory tracked per destination Resource 3: Frame references tracked per destination Before a frame is added to the queue system, some conditions must be met: - Reserved memory for the specific (SRC, PRIO) or for the specific SRC is available OR - Reserved memory for the specific (DST,PRIO) or for the specific DST is available OR - Shared memory is available The frame reference resources are checked for availability like the memory resources. Enqueuing of a frame is allowed if both the memory resource check and the frame reference resource check succeed. The extra resources consumed when enqueuing a frame are first taken from the reserved (SRC,PRIO), next from the reserved SRC, and last from the shared memory area. The same is done for DST. Both memory consumptions and frame reference consumptions are updated. The register is layed out the following way for source memory (resource 0): Index 0-xxx: Reserved amount for (SRC,PRIO) at index 8*SRC+PRIO Index 496-503: Maximum allowed use of the shared buffer for PRIO at index PRIO+496 Index 512-568: Reserved amount for SRC at index SRC+512. Index 510: Maximum allowed use of the shared buffer for frames with DP=1. Index 511: Maximum allowed use of the shared buffer for source. The layout is similar for resources 1, 2, and 3. Resource 1 uses indices 1024-2047, resource 2 uses indices 2048-3071, and resource 3 uses indices 3072-4095. The allocation size for memory tracking is 176 bytes. All frames are prepended with a 16-byte header.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RES_CFG(u32);
 impl RES_CFG {
     /// Watermark for resource. Note, the default value depends on the index. Refer to the congestion scheme documentation for details.
@@ -46,7 +46,7 @@ impl RES_CFG {
     }
 }
 /// DLB shaping offset
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RES_DLB_OFFSET(u32);
 impl RES_DLB_OFFSET {
     /// The watermarks for enabling DLB rate will be offset this value compared to the sensed resource. Ie. if shared priority 0 watermark is set to 40000 cells, the default value will allow higher rate shaping when 39950 cells has been used.
@@ -60,7 +60,7 @@ impl RES_DLB_OFFSET {
     }
 }
 /// Resource status
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RES_STAT(u32);
 impl RES_STAT {
     /// Maximum consumption since last read for corresponding watermark in RES_CFG.
@@ -74,7 +74,7 @@ impl RES_STAT {
     }
 }
 /// Resource status
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RES_STAT_CUR(u32);
 impl RES_STAT_CUR {
     /// Current consumption for corresponding watermark in RES_CFG.

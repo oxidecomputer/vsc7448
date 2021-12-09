@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Generated clock adjustment configuration
 ///
 /// One replication exsists per time domain
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CLK_ADJ_CFG(u32);
 impl CLK_ADJ_CFG {
     /// Clock frequency adjustment direction.
@@ -60,7 +60,7 @@ impl CLK_ADJ_CFG {
 /// Generated clock frequency adjustment
 ///
 /// Adjust master timer acording to detected PPB error. Ex: 1PBB: Adjust every 1ns. 50.006PBB: Adjust every 19.997.600ps
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CLK_ADJ_FRQ(u32);
 impl CLK_ADJ_FRQ {
     /// Clock frequency adjust./
@@ -88,7 +88,7 @@ impl CLK_ADJ_FRQ {
     }
 }
 /// Current interrupt status
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_INTR_IDENT(u32);
 impl PTP_INTR_IDENT {
     /// Bit n will be high if an interrupt is currently pending for pin <n>.
@@ -102,7 +102,7 @@ impl PTP_INTR_IDENT {
     }
 }
 /// Misc PTP configurations
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_MISC_CFG(u32);
 impl PTP_MISC_CFG {
     /// Enable master counter.
@@ -140,7 +140,7 @@ impl PTP_MISC_CFG {
     }
 }
 /// Pending interrupt mask
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_PIN_INTR(u32);
 impl PTP_PIN_INTR {
     /// One bit per pin set when an active edge is seen.
@@ -154,7 +154,7 @@ impl PTP_PIN_INTR {
     }
 }
 /// Enable interrupts per pin
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_PIN_INTR_ENA(u32);
 impl PTP_PIN_INTR_ENA {
     /// Enable interrupt per ptp pin.

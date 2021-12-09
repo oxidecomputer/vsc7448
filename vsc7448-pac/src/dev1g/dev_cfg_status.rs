@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Device Debug Config
 ///
 /// Device1G Debug Configuration Register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEV_DBG_CFG(u32);
 impl DEV_DBG_CFG {
     /// The TX_Size and the TX_Backoff events share the same counters. Per default the counters count TX_SIZE events. BACKOFF_CNT_ENA switches the counter to count backup events instead.
@@ -120,7 +120,7 @@ impl DEV_DBG_CFG {
 /// Configuration for the port protectio feature
 ///
 /// This register is used to configure the port protection feature of the device.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEV_PORT_PROTECT(u32);
 impl DEV_PORT_PROTECT {
     /// Enables snooping of egress data from another port. The port from which egress data is copied and transmitted at the Ethernet port is determined by the PORT_PROTECT_ID configuration.
@@ -150,7 +150,7 @@ impl DEV_PORT_PROTECT {
 /// DEV_RST_CTRL register
 ///
 /// Clock/Reset Control Register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEV_RST_CTRL(u32);
 impl DEV_RST_CTRL {
     /// Reset the MAC rx clock domain in the DEV1G. The setup registers in the DEV1G is not affected by this reset.
@@ -216,7 +216,7 @@ impl DEV_RST_CTRL {
 /// Sticky bit Register
 ///
 /// Clear the sticky bits by writing a '1' in the relevant bitgroups.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEV_STICKY(u32);
 impl DEV_STICKY {
     /// Will be set if one of the statistics pre counter have an overflow.
@@ -316,7 +316,7 @@ impl DEV_STICKY {
     }
 }
 /// Control Energy Efficient Ethernet operation.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EEE_CFG(u32);
 impl EEE_CFG {
     /// Enable EEE operation on the port. A port enters the low power mode when no egress queues have data ready. The port is activated when one of the following conditions is true: - A queue has been non-empty for EEE_TIMER_AGE. - A queue has more than EEE_HIGH_FRAMES frames pending. - A queue has more than EEE_HIGH_BYTES bytes pending. - A queue is marked as a fast queue, and has data pending.
@@ -376,7 +376,7 @@ impl EEE_CFG {
     }
 }
 /// PTP Configuration per port
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_CFG(u32);
 impl PTP_CFG {
     /// Configures the time domain this port is assigned to. This domain assignment must be made before the central counters in DEVCPU block is enabled.

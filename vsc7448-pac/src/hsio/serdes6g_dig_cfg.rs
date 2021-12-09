@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// MCB SERDES1G Address Cfg
 ///
 /// Configuration of SERDES1G MCB slaves to be accessed
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MCB_SERDES1G_ADDR_CFG(u32);
 impl MCB_SERDES1G_ADDR_CFG {
     /// Activation vector for SERDES1G-Slaves, one-hot coded, each bit is related to one macro, e.g. bit 0 enables/disables access to macro no. 0.
@@ -72,7 +72,7 @@ impl MCB_SERDES1G_ADDR_CFG {
 /// SERDES6G DFT Configuration register 0
 ///
 /// Configuration register 0 for SERDES6G DFT functions
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_DFT_CFG0(u32);
 impl SERDES6G_DFT_CFG0 {
     /// Disable output inverter of BIST PRBS generator
@@ -170,7 +170,7 @@ impl SERDES6G_DFT_CFG0 {
 /// SERDES6G DFT Configuration register 1
 ///
 /// Configuration register 1 for SERDES6G DFT functions (TX direction)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_DFT_CFG1(u32);
 impl SERDES6G_DFT_CFG1 {
     /// Direction of Frequency-Offset (TX-Path)
@@ -244,7 +244,7 @@ impl SERDES6G_DFT_CFG1 {
 /// SERDES6G DFT Configuration register 2
 ///
 /// Configuration register 2 for SERDES6G DFT functions (RX direction)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_DFT_CFG2(u32);
 impl SERDES6G_DFT_CFG2 {
     /// Direction of Frequency-Offset (RX-Path)
@@ -318,7 +318,7 @@ impl SERDES6G_DFT_CFG2 {
 /// SERDES6G Digital Configuration register
 ///
 /// Configuration register for SERDES6G digital functions
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_DIG_CFG(u32);
 impl SERDES6G_DIG_CFG {
     /// General purpose bits, reserved for future use.
@@ -382,7 +382,7 @@ impl SERDES6G_DIG_CFG {
 /// SERDES6G Misc Configuration
 ///
 /// Configuration register for miscellaneous functions
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_MISC_CFG(u32);
 impl SERDES6G_MISC_CFG {
     /// Enable deserializer cp/md handling for 100fx mode
@@ -526,7 +526,7 @@ impl SERDES6G_MISC_CFG {
 /// SERDES6G RCPLL BIST Configuration
 ///
 /// Configuration register for the 6G RC-PLL BIST
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_RC_PLL_BIST_CFG(u32);
 impl SERDES6G_RC_PLL_BIST_CFG {
     /// Enables the BIST for the RC-PLL
@@ -572,7 +572,7 @@ impl SERDES6G_RC_PLL_BIST_CFG {
 /// SERDES6G Test Pattern Configuration
 ///
 /// Test bits (pattern) for SERDES6G lane. These bits are used when Lane_Test_cfg.Test_mode is set to 2 (fixed pattern)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_TP_CFG0(u32);
 impl SERDES6G_TP_CFG0 {
     /// Static pattern tranferred in fixed pattern test mode, LSB is transferred first
@@ -588,7 +588,7 @@ impl SERDES6G_TP_CFG0 {
 /// SERDES6G Test Pattern Configuration
 ///
 /// Test bits (pattern) for SERDES6G lane. These bits are used when Lane_Test_cfg.Test_mode is set to 2 (fixed pattern) and Lane_cfg.hr_mode_ena = '0'. In 20 bit modes bits from static_pattern and static_pattern2 are transmitted alternating.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_TP_CFG1(u32);
 impl SERDES6G_TP_CFG1 {
     /// Static pattern 2nd part only used in 20 bit mode, LSB is transferred first

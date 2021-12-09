@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Register containing sticky bits for pre counter overflow
 ///
 /// Register containing sticky bits for pre counter overflow
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PRE_CNT_OFLW_STICKY(u32);
 impl PRE_CNT_OFLW_STICKY {
     /// Will be set if one of the statistics pause frame pre counters has an overflow.

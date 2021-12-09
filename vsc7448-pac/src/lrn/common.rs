@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Automated age scan configuration
 ///
 /// Configures automated age scan of MAC table. This register is replicated for the four age intervals supported. Age interval are configured for auto leared entries through: LRN:COMMON:AUTO_LRN_CFG.AUTO_AGE_INTERVAL Age intervals are configured for CPU learned entries through: LRN:COMMON:MAC_ACCESS_CFG_2.MAC_ENTRY_AGE_INTERVAL
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct AUTOAGE_CFG(u32);
 impl AUTOAGE_CFG {
     /// Time in units between automatic ageing of an entry. If otherwise subject to ageing, an inactive entry is removed after between 3*AGE_PERIOD_VAL and 4*AGE_PERIOD_VAL.
@@ -60,7 +60,7 @@ impl AUTOAGE_CFG {
 /// Automated age scan configuration and status
 ///
 /// Configures automated age scan of MAC table
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct AUTOAGE_CFG_1(u32);
 impl AUTOAGE_CFG_1 {
     /// Specifies the number of clk cycle before another autoage access can be attempted.
@@ -146,7 +146,7 @@ impl AUTOAGE_CFG_1 {
 /// Automated age scan configuration and status
 ///
 /// Configures automated age scan of MAC table
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct AUTOAGE_CFG_2(u32);
 impl AUTOAGE_CFG_2 {
     /// Current autoage row. Changed on every autoage command. Indicate the MAC table row to be autoaged aged next. Incremented by hardware during auto ageing.
@@ -174,7 +174,7 @@ impl AUTOAGE_CFG_2 {
     }
 }
 /// Auto Learn Options
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct AUTO_LRN_CFG(u32);
 impl AUTO_LRN_CFG {
     /// The AGE interval for auto-learned entries will be set to the value configured in this field.
@@ -262,7 +262,7 @@ impl AUTO_LRN_CFG {
 /// MAC Table Control
 ///
 /// Configures command and access parameters when accessing the MAC table.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct COMMON_ACCESS_CTRL(u32);
 impl COMMON_ACCESS_CTRL {
     /// Configures the MAC table access command: LEARN, UNLEARN, and LOOKUP Command accesses a MAC_ENTRY at the HASH(VID/FID,MAC) index. MAC and FID/VID must to be written to the respective bitgroups in registers MAC_ACCESS_CFG_[0|1|2]. READ and WRITE Command accesses a MAC_ENTRY at the index specified by means of CPU_ACCESS_DIRECT_ROW,  CPU_ACCESS_DIRECT_COL and CPU_ACCESS_DIRECT_TYPE fields. SCAN Command access traverses the entire MAC table and handle all found entries depending on configuration and filter settings. If any set of filters is enabled then only entries matching the enabled filters are affected / found. Refer to description of bitgroups found in LRN::SCAN_NEXT_CFG-	Note that it is possible to configure the scan to FIND ALL or FIND first using LRN::SCAN_NEXT_CFG.SCAN_NEXT_UNTIL_FOUND_ENA. FIND SMALLEST Command traverses the entire table and returns the MAC_ENTRY with the smallest FID/VID,MAC which is larger than a configured starting FID/VID,MAC value (configured in MAC_ACCESS_CFG_[0|1|2].). FID/VID take precedence over MAC. CLEAR ALL Command traverses the entire table and resets all entries.
@@ -326,7 +326,7 @@ impl COMMON_ACCESS_CTRL {
     }
 }
 /// Sticky diagnostic status
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EVENT_STICKY(u32);
 impl EVENT_STICKY {
     /// Set if a MAC address entry has been aged due to an autoage operation.
@@ -678,7 +678,7 @@ impl EVENT_STICKY {
     }
 }
 /// Learn Diagnostic
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LATEST_POS_STATUS(u32);
 impl LATEST_POS_STATUS {
     /// This field holds the current (i.e. latest accessed) column number after a CPU_ACCESS_CMD has been finished.
@@ -732,7 +732,7 @@ impl LATEST_POS_STATUS {
 /// MAC entry Data 0
 ///
 /// Configures MAC address and FID/VID when accessing the MAC table.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MAC_ACCESS_CFG_0(u32);
 impl MAC_ACCESS_CFG_0 {
     /// Configures FID/VID for the MAC_ENTRY. This values is a FID for unicast entries and CL-VID for multicast entries. Can also be used as FID/VID filter value during SCAN or FIND SMALLEST Command.
@@ -760,7 +760,7 @@ impl MAC_ACCESS_CFG_0 {
 /// MAC entry Data 1
 ///
 /// Configures MAC address when accessing the MAC table.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MAC_ACCESS_CFG_1(u32);
 impl MAC_ACCESS_CFG_1 {
     /// Configures 32 LSB bits of the MAC address for the MAC_ENTRY. Used as starting MAC value during FIND SMALLEST Command.
@@ -776,7 +776,7 @@ impl MAC_ACCESS_CFG_1 {
 /// MAC entry Data 2
 ///
 /// Configures warious MAC_ENTRY parameters when accessing the MAC table
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MAC_ACCESS_CFG_2(u32);
 impl MAC_ACCESS_CFG_2 {
     /// Configures the ADDRESS for the MAC_ENTRY. Encoding of this field is determined by MAC_ENTRY_ADDR_TYPE. Can be used as filter value during SCAN or FIND SMALLEST Command.
@@ -918,7 +918,7 @@ impl MAC_ACCESS_CFG_2 {
 /// Configures last scan row
 ///
 /// Configures an ending row for scan access.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SCAN_LAST_ROW_CFG(u32);
 impl SCAN_LAST_ROW_CFG {
     /// Configures the last row to be part of scan. ignored if set to all ones.
@@ -936,7 +936,7 @@ impl SCAN_LAST_ROW_CFG {
 /// Scan parameters
 ///
 /// Configures various filters and associated actions when scanning the MAC table through CPU Scan Command.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SCAN_NEXT_CFG(u32);
 impl SCAN_NEXT_CFG {
     /// Specifies whether ADDR values is dont care or will only affect entries with a specific ADDR value during FIND SMALLEST or SCAN commands (refer also to MAC_ENTRY_ADDR, MAC_ENTRY_ADDR_TYPE and FID_FILTER_ENA / MAC_ENTRY_ADDR).
@@ -1108,7 +1108,7 @@ impl SCAN_NEXT_CFG {
     }
 }
 /// Age Filter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SCAN_NEXT_CFG_1(u32);
 impl SCAN_NEXT_CFG_1 {
     /// NEW ADDRESS when doing port move scan. This specifies the MAC_ENTRY_ADDR with don't care positions (i.e. only care positions are replaced).
@@ -1134,7 +1134,7 @@ impl SCAN_NEXT_CFG_1 {
     }
 }
 /// Age Filter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SCAN_NEXT_CNT(u32);
 impl SCAN_NEXT_CNT {
     /// Counter with number of found scan entries.

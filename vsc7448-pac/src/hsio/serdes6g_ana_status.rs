@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES6G ACJTAG Status
 ///
 /// Status register of (AC)JTAG debug capability
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_ACJTAG_STATUS(u32);
 impl SERDES6G_ACJTAG_STATUS {
     /// ACJTAG captured data for n leg
@@ -66,7 +66,7 @@ impl SERDES6G_ACJTAG_STATUS {
 /// SERDES6G GP CFG
 ///
 /// General purpose register A
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_GP_CFG(u32);
 impl SERDES6G_GP_CFG {
     /// Bit 9: SNFBC Select negative feedback center - enable for hysteresis suppression in main sampler FFs Bit 8: SNFBV Select negative feedback Vscope - enable for hysteresis suppression in vscope sampler FFs Bit 1: ERLS (used for debug only, allows for manual stepping through calibration procedure) Bit 0: CRLS (used for debug only, allows for manual stepping through calibration procedure)
@@ -92,7 +92,7 @@ impl SERDES6G_GP_CFG {
 /// SERDES6G IB Status register 0
 ///
 /// Status register for Signal Detect
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_STATUS0(u32);
 impl SERDES6G_IB_STATUS0 {
     /// Signals mission mode after calibration was done.
@@ -188,7 +188,7 @@ impl SERDES6G_IB_STATUS0 {
 /// SERDES6G IB Status register 1
 ///
 /// Regulation stage status register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_STATUS1(u32);
 impl SERDES6G_IB_STATUS1 {
     /// Current high-pass-gain regulation value
@@ -234,7 +234,7 @@ impl SERDES6G_IB_STATUS1 {
 /// SERDES6G Pll Status
 ///
 /// Status register of SERDES6G RCPLL
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_PLL_STATUS(u32);
 impl SERDES6G_PLL_STATUS {
     /// Calibration error

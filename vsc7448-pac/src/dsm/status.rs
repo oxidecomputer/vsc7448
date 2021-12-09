@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Counts number of aged frames.
 ///
 /// This counter holds the number of aged frames from this port.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct AGED_FRMS(u32);
 impl AGED_FRMS {
     /// Count number of aged frames for each port.
@@ -46,7 +46,7 @@ impl AGED_FRMS {
 /// Buffer Overflow
 ///
 /// Buffer Overflow
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct BUF_OFLW_STICKY(u32);
 impl BUF_OFLW_STICKY {
     /// Sticky bits for detecting buffer overflow in any of the cell buffers in the DSM.
@@ -62,7 +62,7 @@ impl BUF_OFLW_STICKY {
 /// Buffer Underrun
 ///
 /// Buffer Underrun
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct BUF_UFLW_STICKY(u32);
 impl BUF_UFLW_STICKY {
     /// Sticky bits for detecting buffer underflow in any of the cell buffers in the DSM.
@@ -78,7 +78,7 @@ impl BUF_UFLW_STICKY {
 /// Sticky bits for the DSM cell bus interface.
 ///
 /// This register holds sticky bit information for the cell bus interface of the DSM.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CELL_BUS_STICKY(u32);
 impl CELL_BUS_STICKY {
     /// This bit is set if data marked as SOF is received without the current frame has been terminated with EOF. The current frame will be terminated by setting the abort bit and the next frame will be discarded.
@@ -108,7 +108,7 @@ impl CELL_BUS_STICKY {
 /// Debug control
 ///
 /// Configures which events are counterd in the ageing counter.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DBG_CTRL(u32);
 impl DBG_CTRL {
     /// Controls which event the AGE counter counts. This setting is common for all aging counters.

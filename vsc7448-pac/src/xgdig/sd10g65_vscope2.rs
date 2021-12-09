@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// APC LC softcontrol configuration register 1
 ///
 /// Configuration register 1 for the LC-Softcontrol logic block.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct APC_LC_SOFTCTRL_CFG1(u32);
 impl APC_LC_SOFTCTRL_CFG1 {
     /// Target value for DFE1 during L/C-control operation
@@ -56,7 +56,7 @@ impl APC_LC_SOFTCTRL_CFG1 {
 /// Vscope counter register
 ///
 /// Vscope counter register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VSCOPE_CNT(u32);
 impl VSCOPE_CNT {
     /// Counter value
@@ -70,7 +70,7 @@ impl VSCOPE_CNT {
 /// Vscope hw scan config register 1
 ///
 /// Vscope HW scan configuration register 1
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VSCOPE_HW_SCAN_CFG1(u32);
 impl VSCOPE_HW_SCAN_CFG1 {
     /// Amplitude increment per scan step
@@ -164,7 +164,7 @@ impl VSCOPE_HW_SCAN_CFG1 {
 /// Vscope hw config register 2
 ///
 /// Vscope HW scan configuration register 2
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VSCOPE_HW_SCAN_CFG2(u32);
 impl VSCOPE_HW_SCAN_CFG2 {
     /// Start value for VScope amplitude in N-point-scan mode and fast-scan mode (before IB amplitude symmetry compensation)
@@ -234,7 +234,7 @@ impl VSCOPE_HW_SCAN_CFG2 {
 /// Vscope main config register
 ///
 /// Vscope main configuration register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VSCOPE_MAIN_CFG(u32);
 impl VSCOPE_MAIN_CFG {
     /// Enable Counting
@@ -416,7 +416,7 @@ impl VSCOPE_MAIN_CFG {
 /// Vscope pattern lock config register
 ///
 /// Vscope pattern lock configuration register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VSCOPE_PAT_LOCK_CFG(u32);
 impl VSCOPE_PAT_LOCK_CFG {
     /// Don't Care mask: Enable history mask usage.
@@ -456,7 +456,7 @@ impl VSCOPE_PAT_LOCK_CFG {
 /// Vscope status register
 ///
 /// Vscope status register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VSCOPE_STAT(u32);
 impl VSCOPE_STAT {
     /// Done sticky

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// VOP Multicast MAC address configuration (MSB)
 ///
 /// Each VOE can be addressed using either a common Multicast MAC address or a VOE specific Unicast MAC address. This register configures the Multicast Address common to all the VOEs. The full MAC address is a concatenation of the folliowing registers: 1) VOP::COMMON_MEP_MC_MAC_LSB 2) VOP::COMMON_MEP_MC_MAC_MSB The default value of this register is determined by 802.1ag. The DMAC check to be performed for each VOE is configured in the following bit field: VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL Note that only the upper 44 bits are matched, since the lower 4 bits of the DMAC address contain the MEG level.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct COMMON_MEP_MC_MAC_MSB(u32);
 impl COMMON_MEP_MC_MAC_MSB {
     /// See register description.

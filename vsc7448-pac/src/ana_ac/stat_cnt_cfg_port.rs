@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Event handling configuration.
 ///
 /// This register group defines how to handle the incoming events.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct STAT_CFG(u32);
 impl STAT_CFG {
     /// Configure whether to count frames or bytes.
@@ -72,7 +72,7 @@ impl STAT_CFG {
 /// Sticky bits for events.
 ///
 /// It is the sticky bits of events. If one event is triggered, the corresponding bit is set to '1' before it is cleared. To write '1' into this bit will clear the sticky bit.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct STAT_EVENTS_STICKY(u32);
 impl STAT_EVENTS_STICKY {
     /// These are the sticky bits of events. There is a sticky bit for an event for each flow.
@@ -88,7 +88,7 @@ impl STAT_EVENTS_STICKY {
     }
 }
 /// The counter's least significant 32 bits.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct STAT_LSB_CNT(u32);
 impl STAT_LSB_CNT {
     /// This register contains the least significant 32 bits of a counter.
@@ -100,7 +100,7 @@ impl STAT_LSB_CNT {
     }
 }
 /// Reset all counters.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct STAT_RESET(u32);
 impl STAT_RESET {
     /// Write '1' to this field to reset all counters and configuration for this stat group. The device will set the bit back to '0' when reset has completed.

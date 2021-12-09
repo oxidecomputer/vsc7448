@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Aggregation port mask
 ///
 /// See ANA_AC:AGGR.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct AGGR_CFG(u32);
 impl AGGR_CFG {
     /// Aggregation port mask.
@@ -42,7 +42,7 @@ impl AGGR_CFG {
     }
 }
 /// Mirror probe port mask configuration
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PROBE_PORT_CFG1(u32);
 impl PROBE_PORT_CFG1 {
     /// Refer to PROBE_PORT_CFG.PROBE_PORT_MASK description.

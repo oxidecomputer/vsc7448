@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Auto assertion of Hit Me Once bits.
 ///
 /// This register configures the VOE for auto Hit-Me-Once (HMO), which allows certain frames to be extracted with regular intervals without CPU interventions. The VOE can be configured to extract certain frames with regular intervals using the 2 HMO scan timers. When a HMO scan is active, the VOE will update the HMO extraction bits which are configured for the active HMO scan, provided that the currenly active HMO SLOT matches the HMO SLOT configured for the VOE. HMO scan timer configuration: * VOP::HMO_TIMER_CFG.* Further the currenly active HMO slot must match: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.HMO_SLOT If the current HMO scan matches the HMO_SLOT of an active HMO scan, the VOE will assert the HMO extract bits configured for the active HMO scan. See the detailed description in the bit fields descriptions.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct AUTO_HIT_ME_ONCE(u32);
 impl AUTO_HIT_ME_ONCE {
     /// If asserted the following 6 bitfields will be asserted every time the VOE matches the current HMO scan: * VOP:VOE_STAT:PDU_EXTRACT.CCM_ZERO_PERIOD_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.RX_MEL_LOW_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEGID_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEPID_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_PERIOD_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_PRIO_RX_ERR_EXTR
@@ -96,7 +96,7 @@ impl AUTO_HIT_ME_ONCE {
 /// CCM MEL error counter
 ///
 /// Counts CCM(-LM) PDUs received with specific CCM errors.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_ERR(u32);
 impl CCM_ERR {
     /// Number of CCM(-LM) PDUs received with MEL lower than the MEL configured for the VOE. This counter is updated regardless of the value of: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA
@@ -112,7 +112,7 @@ impl CCM_ERR {
 /// CCM error counter
 ///
 /// Counts CCM(-LM) PDUs received with specific CCM errors. These counters are only updated when: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA = 1
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_RX_ERR_1(u32);
 impl CCM_RX_ERR_1 {
     /// Number of CCM(-LM) PDUs received at the correct MEL, but failing the MEGID verification.
@@ -138,7 +138,7 @@ impl CCM_RX_ERR_1 {
 /// Number of valid / invalid CCM(-LM) PDUs received by the VOE.
 ///
 /// Counts the number of valid / invalid Rx OAM CCM PDUs received by the VOE. Valid CCM(-LM) PDUs will clear the CCM_MISS counter. Counters are updated regardless of the value of: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA * VOP:VOE_CONF:OAM_HW_CTRL.CCM_LM_ENA
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_RX_FRM_CNT(u32);
 impl CCM_RX_FRM_CNT {
     /// Counts number of Rx invalid CCM(-LM) PDUs received by the VOE. Invalid CCM(-LM) PDUs will not clear the CCM_MISS_CNT. Invalid CCM(-LM) PDUs are defined as the CCM(-LM) PDUs which do not pass VOE Rx validation.
@@ -164,7 +164,7 @@ impl CCM_RX_FRM_CNT {
 /// Misc. CCM(-LM) statistics for the latest Rx frame.
 ///
 /// This register contains a number of status bits. Each status bit indicates the latest result of a specific check performed on Rx CCM PDUs. Each of the status bits in this register corresponds to a sticky bit in the following register: * VOP:VOE_STAT:INTR_STICKY.* When a status bit this in this register (CCM_RX_LAST) changes its value, the corresponding sticky bit is asserted. The bits in this register are status bits updated by the VOE, and the values should never be altered by the CPU, because they must represent the state of the latest valid CCM PDU. Bit field "CCM_LOC_DEFECT" differs from the other bit fields because it is updated not only when a CCM(-LM) PDU is received, but also by the LOC Controller, when a LOC condition is detected.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_RX_LAST(u32);
 impl CCM_RX_LAST {
     /// Status of current Loss Of Continuity interrupt. This bitfield is asserted by the LOC Controller and deasserted upon reception of a valid CCM(-LM) frame. When the value of this bit field changes, the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_LOC_STICKY Optionally the interrupt is asserted.
@@ -298,7 +298,7 @@ impl CCM_RX_LAST {
 /// Latest Rx CCM Sequence number
 ///
 /// This register contains the CCM sequence number of the latest valid CCM(-LM) PDU received  by the VOE. The register is automatically updated upon reception of a valid CCM(-LM) PDU. If Rx CCM sequence number checking is enabled, the expected value of the next CCM(-LM) sequence number is the value contained in this register + 1. Rx CCM sequence number checking is enabled using the following bit field: * VOP:VOE_CONF:CCM_CFG.CCM_SEQ_UPD_ENA
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_RX_SEQ_CFG(u32);
 impl CCM_RX_SEQ_CFG {
     /// See register description.
@@ -312,7 +312,7 @@ impl CCM_RX_SEQ_CFG {
 /// Number of valid CCM(-LM) received with sequence error
 ///
 /// This register contains counters for the following CCM(-LM) PDU warnings: * Sequence Errors * Period Errors These counters are only updated when: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA = 1 Frames included in these frame counts are valid CCM(-LM) PDUs.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_RX_WARNING(u32);
 impl CCM_RX_WARNING {
     /// Number of valid CCM(-LM) received with Period error. The Period of the incoming CCM(-LM) PDUs is checked against the following value: * VOP:VOE_CONF:CCM_CFG.CCM_PERIOD
@@ -338,7 +338,7 @@ impl CCM_RX_WARNING {
 /// Misc. CCM statistics
 ///
 /// This bit fields in this register contain misc. CCM(-LM) statistics.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_STAT(u32);
 impl CCM_STAT {
     /// If this bitfield is asserted, CCM-LM info will be inserted into next CCM frame transmitted by the VOE. (Note: VOP:VOE_CONF:OAM_HW_CTRL.CCM_LM_ENA must be asserted prior to asserting this register.) Upon transmission of CCM-LM information, the bit is cleared by the VOE. If the VOE is configured for automatic LM insertion, this bitfield is automatically asserted by the VOE every time CCM_LM_PERIOD has occured. Automatic LM insertion is configured: * VOP:VOE_CONF:CCM_CFG.CCM_LM_PERIOD LM Insertion can also be forced by SW writing a '1' to this register. This function can be used to implement Dual Ended LM flow, by inserting LM information into the CCM frames with a given period.
@@ -386,7 +386,7 @@ impl CCM_STAT {
 /// Configuration of CCM Sequence number
 ///
 /// Configures CCM Sequence number to be inserted into the next CCM or CCM-LM PDU. The sequence number of valid CCM(-LM) PDUs is overwritten in the Tx direction depending on the configuration of the following bit field: * VOP:VOE_CONF:CCM_CFG.CCM_SEQ_UPD_ENA Counters are updated regardless of the value of: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA * VOP:VOE_CONF:OAM_HW_CTRL.CCM_LM_ENA
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_TX_SEQ_CFG(u32);
 impl CCM_TX_SEQ_CFG {
     /// See Register Description
@@ -400,7 +400,7 @@ impl CCM_TX_SEQ_CFG {
 /// DM stat counters.
 ///
 /// This register contains counters for the number of valid DM PDUs. The counters are shared between the following PDU types: * DMM/DMR * 1DM
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DM_PDU_CNT(u32);
 impl DM_PDU_CNT {
     /// Counts the number of valid Rx DMM PDUs received by the VOE.
@@ -446,7 +446,7 @@ impl DM_PDU_CNT {
 /// G.8113.1 MIP ID verification configuration
 ///
 /// When the G.8113.1 'Initator MEP' is configured for : Connection Verification - MIP: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_INITIATOR_FUNCTION There are 14 bytes in the 'Replying MIP ID' TLV which must be verified. These are configured in this register. I practice the register is split into 4 separate registers: * G_8113_1_REMOTE_MIPID (32 bits) * G_8113_1_REMOTE_MIPID1 (32 bits) * G_8113_1_REMOTE_MIPID2 (32 bits) * G_8113_1_REMOTE_MIPID3 (16 bits) The below description will assume that these 4 registers are concatenated into one 14 byte long register. The bytes to be verified in the 'Replying MIP ID' TLV are configured as follows: * LBR.CarrierCode == G_8113_1_REMOTE_MIPID[13:8] * LBR.NodeID == G_8113_1_REMOTE_MIPID[7:4] * LBR.IfNum == G_8113_1_REMOTE_MIPID[3:0]
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct G_8113_1_REMOTE_MIPID3(u32);
 impl G_8113_1_REMOTE_MIPID3 {
     /// See register description.
@@ -462,7 +462,7 @@ impl G_8113_1_REMOTE_MIPID3 {
 /// Enable VOE interrupt sources
 ///
 /// This register contains a bitfield for each of the interrupt sources defined for the VOE. This allows enabling the interrupts independently. Status of interrupt sources can be found in VOP:VOE_STAT:INTR_STICKY Current status of the VOE interrupt can be found in VOP::INTR
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct INTR_ENA(u32);
 impl INTR_ENA {
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_LOC_STICKY
@@ -594,7 +594,7 @@ impl INTR_ENA {
 /// CCM(-LM) sticky status indications
 ///
 /// Each of the sticky bits in this register is closely related to a specific status bit in the following register: * VOP:VOE_STAT:CCM_RX_LAST.* The above register contains a number of status bits. Each status bit indicates the latest result of a specific check performed on incoming CCM(-LM) PDUs. If the value of one of these status bits change, the corresponding sticky bit in this register is asserted. Hence if the RDI bit of the incoming CCM frames change from '1' --> '0', this will cause the following changes: * VOP:VOE_STAT:CCM_RX_LAST.CCM_RX_RDI is modified: '1' --> '0' * VOP:VOE_STAT:INTR_STICKY.CCM_RX_RDI_STICKY is asserted. Each of the sticky bits in this register can optionally be configured to generate an interrupt, using the following register: * VOP:VOE_STAT:INTR_ENA.* Sticky bits are only asserted when: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA = 1
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct INTR_STICKY(u32);
 impl INTR_STICKY {
     /// Indicates when the Loss Of Continuity (LOC) status of this VOE changes. The current LOC status is contained in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_LOC_DEFECT The sticky bit can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.CCM_LOC_INTR_ENA
@@ -728,7 +728,7 @@ impl INTR_STICKY {
 /// Configuration of LBM transaction ID.
 ///
 /// This register holds the transaction ID to be inserted into the next valid LBM PDU transmitted by the VOE. LBM Tx frames will be updated with this value if updating is enabled: * VOP:VOE_CONF:TX_TRANSID_UPDATE.LBM_UPDATE_ENA When updating a Tx LBM frame, the VOE will automatically increment the value of this register by 1.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LBM_TX_TRANSID_CFG(u32);
 impl LBM_TX_TRANSID_CFG {
     /// See register description.
@@ -742,7 +742,7 @@ impl LBM_TX_TRANSID_CFG {
 /// Count number of received LBR frames
 ///
 /// Counts number of valid LBR PDUs received by the VOE.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LBR_RX_FRM_CNT(u32);
 impl LBR_RX_FRM_CNT {
     /// See register description.
@@ -756,7 +756,7 @@ impl LBR_RX_FRM_CNT {
 /// The latest LBR Transaction ID
 ///
 /// Holds the value of the transaction ID of the last valid expected LBR PDU received by the VOE. When a valid LBR PDU is received by the VOE, it is validated against the value of this register + 1. In case the received Transaction ID does not match the expected, it will result in the assertion of the following sticky bit: * VOP:VOE_STAT:OAM_RX_STICKY.LBR_TRANSID_ERR_STICKY Further the following error counter is increased: * VOP:VOE_STAT:LBR_RX_TRANSID_ERR_CNT.LBR_RX_TRANSID_ERR_CNT The register is only updated when: * VOP:VOE_CONF:OAM_HW_CTRL.LBR_ENA = 1 or * VOP:VOE_CONF:OAM_HW_CTRL.TST_ENA = 1
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LBR_RX_TRANSID_CFG(u32);
 impl LBR_RX_TRANSID_CFG {
     /// See bit group description.
@@ -770,7 +770,7 @@ impl LBR_RX_TRANSID_CFG {
 /// Number of valid LBR frames with transaction ID error.
 ///
 /// Counts number of valid OAM LBR PDUs received by the VOE for which the transaction ID differs from the expected value: * VOP:VOE_STAT:LBR_RX_TRANSID_CFG.LBR_RX_TRANSID + 1 When the above counter is increased, the following sticky bit is asserted: * VOP:VOE_STAT:OAM_RX_STICKY.LBR_TRANSID_ERR_STICKY
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LBR_RX_TRANSID_ERR_CNT(u32);
 impl LBR_RX_TRANSID_ERR_CNT {
     /// See register description
@@ -784,7 +784,7 @@ impl LBR_RX_TRANSID_ERR_CNT {
 /// LBR PDU TX counter.
 ///
 /// Number of LBR PDUs transmitted by the VOE. This number will be equal to the number of LBM PDUs received by the VOE, assuming that no PDUs were lost during the loop.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LBR_TX_FRM_CNT(u32);
 impl LBR_TX_FRM_CNT {
     /// See register description.
@@ -798,7 +798,7 @@ impl LBR_TX_FRM_CNT {
 /// LM stat counters.
 ///
 /// This register contains counters for the number of valid LM PDUs. The counters are shared between the following PDU types: * LMM/LMR * CCM_LM (only counted if CCM_LM_ENA = 1) Counters are updated regardless of the value of the PDU enable signals: * VOP:VOE_CONF:OAM_HW_CTRL.*
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LM_PDU_CNT(u32);
 impl LM_PDU_CNT {
     /// Counts the number of valid Rx LMM PDUs received by the VOE.
@@ -844,7 +844,7 @@ impl LM_PDU_CNT {
 /// Rx Sticky bits
 ///
 /// The sticky bits included in this register can be subdivided into two groups: ------------------------------------------------------------------------ -------------------------------------------- * Valid OAM PDUs: Sticky bits which indicate that a valid OAM PDU is received by the VOE. * Error conditions: The VOE detected a given error condition. Valid OAM PDU sticky bits: --------------------------------------------------- The PDU specific Rx sticky bits: * "xxx"_RX_STICKY will be asserted even when the PDU is not enabled (VOE_CONF.OAM_HW_CTRL), to allow detecting PDU types which are not expected. Error conditions: ----------------------------------------------------- For the remaining sticky bits the VOE will require the PDU type to be enabled, before asserting the sticky bits. The OAM PDU is considered valid when: * PDU MEL is equal to the VOE MEL. * DMAC is verified according to VOE configuration (VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL) * PDU version matches configuration. For CCM(-LM) frames the following checks are performed to validate the PDU: * Verify MEGID * Verify MEPID * Verify Period is NON Zero
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct OAM_RX_STICKY(u32);
 impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid CCM-LM PDU
@@ -1144,7 +1144,7 @@ impl OAM_RX_STICKY {
 /// Rx Sticky bits - continued
 ///
 /// Rx sticky bits related to SymLM frame verification.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct OAM_RX_STICKY2(u32);
 impl OAM_RX_STICKY2 {
     /// Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA The 'Initiator VOE' will verify the value of the incoming 'Loopback Indicator' in the 'Requesting MEP ID TLV' (if present). If the value is != 1 this sticky bit is asserted and the PDU is marked invalid. The frame can optionally be extracted to the CPU error queue: LBR: ----------- * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBR_RX_ERR_EXTR
@@ -1230,7 +1230,7 @@ impl OAM_RX_STICKY2 {
 /// Tx sticky bits
 ///
 /// VOE Tx sticky bits.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct OAM_TX_STICKY(u32);
 impl OAM_TX_STICKY {
     /// This register is asserted if a frame is blocked in the Tx direction due to a MEL value which is too low. A low MEL value will result as one of two conditions: ------------------------------------------------------------------------ ------------ 1) Injection Tx PDU If an OAM PDU is injected by the CPU in the Tx direction with a MEL different from the MEL configured for the VOE. 2) Forwarding Tx PDU If a frame from a front port (non CPU inject) is forwarded in the Tx direction with a MEL which is equal to or lower that the MEL configured for the VOE. The MEL for the VOE is configured in the following bit field: * VOP:VOE_CONF:VOE_CTRL.MEL_VAL The assertion of this sticky bit depends on the setting of the following bit field: * VOP:VOE_CONF:OAM_CPU_COPY_CTRL.PDU_ERR_EXTRACT_CCM_ONLY
@@ -1256,7 +1256,7 @@ impl OAM_TX_STICKY {
 /// Extraction of PDU errors to the CPU_ERR_QU
 ///
 /// Each of the bit fields in this register represent a specific PDU condition, which will cause the next PDU meeting the condition to be copied to the CPU if the matching bit is asserted. All the bits - with the exception of "CCM_RX_CCM_NXT_EXTR" and "RX_TEST_FRM_NXT_EXTR" - are encoded as either "Extract All" or "Hit Me Once" (This is different if auto HMO is enabled for the VOE, see description of HMO below) This depends on the value of bit field: * EXTRACT_HIT_ME_ONCE If configured for "Hit Me Once" then the VOE will clear the bit, when a PDU which meets the condition has been copied to the CPU. To extract another frame meeting the same condition, the CPU must re-assert the bit. If not configured for "Hit Me Once" the VOE will not clear the extraction bit and all frames matching the condition will be extracted, until the extraction bit is cleared by SW. "CCM_RX_CCM_NXT_EXTR" will always be implemented as "Hit Me Once". If all the CCM(-LM) frames are to be extracted, use the PDU specific extract bits: * VOP:VOE_CONF:OAM_CPU_COPY_CTRL.* If the VOE is enabled for auto HMO, the registers which are enabled for auto HMO will always be extracted Hit-Me-Once, regardless of the value of : * EXTRACT_HIT_ME_ONCE Auto HMO is configured in the following register: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PDU_EXTRACT(u32);
 impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following status bit will be extracted to the CPU: * VOP:VOE_STAT:CCM_RX_LAST.CCM_MEGID_ERR PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
@@ -1474,7 +1474,7 @@ impl PDU_EXTRACT {
 /// OAM Rx discard counter
 ///
 /// Number of Rx frames discarded by the VOE, due to: * MEL filtering * DMAC check * Version check * MEL block high * CCM verification * SLM/SLR/SL1 verification * If SAM_SEQ frames are received on a VOE not enabled for SAM_SEQ processing (See VOP:VOE_CONF:SAM_NON_OAM_SEQ_CFG.*)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_OAM_DISCARD(u32);
 impl RX_OAM_DISCARD {
     /// See register description.
@@ -1488,7 +1488,7 @@ impl RX_OAM_DISCARD {
 /// Count non-selected OAM PDU received by VOE.
 ///
 /// All PDU types can be configured as either selected or non-selected PDUs. This register counts the number of valid Rx OAM PDUs configured as non-selected PDU type. Selected OAM PDUs are configured in: VOP:VOE_CONF:OAM_CNT_OAM_CTRL.*
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_OAM_FRM_CNT(u32);
 impl RX_OAM_FRM_CNT {
     /// See register description
@@ -1502,7 +1502,7 @@ impl RX_OAM_FRM_CNT {
 /// Count selected OAM PDU received by VOE.
 ///
 /// All PDU types can be configured as either selected or non-selected PDUs. This register counts the number of valid Rx OAM PDUs configured as selected PDU type, received by the VOE. Selected OAM PDUs are configured in: VOP:VOE_CONF:OAM_CNT_OAM_CTRL.*
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SEL_OAM_CNT(u32);
 impl RX_SEL_OAM_CNT {
     /// See register description.
@@ -1516,7 +1516,7 @@ impl RX_SEL_OAM_CNT {
 /// Extraction of SynLM Rx PDUs
 ///
 /// This register allows extraction of SLR/1SL PDUs received from selected Peer MEPs.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SYNLM_EXTRACT(u32);
 impl SYNLM_EXTRACT {
     /// If asserted, the frame extraction due to a match in the following register: * VOP:VOE_STAT:SYNLM_EXTRACT.EXTRACT_PEER_RX will be done "Hit Me Once" If not asserted all frames matching the above will be extracted to CPU.
@@ -1542,7 +1542,7 @@ impl SYNLM_EXTRACT {
 /// OAM Tx discard counter
 ///
 /// The number of Tx frames discarded by the VOE due to: MEL filtering (Blocking in the Tx direction)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_OAM_DISCARD(u32);
 impl TX_OAM_DISCARD {
     /// See register description.
@@ -1556,7 +1556,7 @@ impl TX_OAM_DISCARD {
 /// Count non-selected OAM PDUs transmitted by VOE.
 ///
 /// All PDU types can be configured as either selected or non-selected PDUs. This register counts the number of valid Tx OAM PDUs configured as non-selected PDU type. Selected OAM PDUs are configured in: VOP:VOE_CONF:OAM_CNT_OAM_CTRL.*
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_OAM_FRM_CNT(u32);
 impl TX_OAM_FRM_CNT {
     /// See register description.
@@ -1570,7 +1570,7 @@ impl TX_OAM_FRM_CNT {
 /// Count selected OAM PDUs transmitted by VOE.
 ///
 /// All PDU types can be configured as either selected or non-selected PDUs. This register counts the number of valid Tx OAM PDUs configured as selected PDU type. Selected OAM PDUs are configured in: VOP:VOE_CONF:OAM_CNT_OAM_CTRL.*
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SEL_OAM_CNT(u32);
 impl TX_SEL_OAM_CNT {
     /// See register description.

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PORT_BYTE_CNT_LSB sample register.
 ///
 /// Whenever either of the bit fields the following RAM are read: * ANA_AC_OAM_MOD:VOE_SRV_LM_CNT (ANA) * REW:VOE_SRV_LM_CNT (REW) this register will sample the value of the following bit field: * ANA_AC_OAM_MOD:VOE_PORT_LM_CNT:PORT_BYTE_CNT_LSB.PORT_BYTE_CNT_LSB (ANA) * REW:VOE_PORT_LM_CNT:PORT_BYTE_CNT_LSB.PORT_BYTE_CNT_LSB (REW)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RD_LAST_PORT_BYTE_CNT_LSB(u32);
 impl RD_LAST_PORT_BYTE_CNT_LSB {
     /// See register description.

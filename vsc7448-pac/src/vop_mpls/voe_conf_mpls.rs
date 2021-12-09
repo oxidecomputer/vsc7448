@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// MPLS-TP BFD configuration.
 ///
 /// This register contains misc. bit fields used to figure the BFD session monitored by the VOE.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct BFD_CONFIG(u32);
 impl BFD_CONFIG {
     /// The configuration of this bit field indicates if the incoming BFD CC PDUs are expected to have the AUTH bit set. The value of the AUTH bit in the incoming BFD PDUs is verified as part of the Rx verification  AUTH_MISMATCH test. If this test fails, the following sticky bit is asserted: * VOP_MPLS:VOE_STAT_MPLS:BFD_RX_STICKY.AUTH_MISMATCH_ERR_STICKY
@@ -180,7 +180,7 @@ impl BFD_CONFIG {
 /// BFD Local Discriminator (BFD_SINK)
 ///
 /// The Discriminator of the Local BFD Sink. Only used if the BFD session is configured for Independent Mode: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_COORDINATED_MODE_ENA = 0
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct BFD_LOCAL_DISCR_SINK(u32);
 impl BFD_LOCAL_DISCR_SINK {
     /// See register description.
@@ -194,7 +194,7 @@ impl BFD_LOCAL_DISCR_SINK {
 /// BFD Local Discriminator (BFD_SRC)
 ///
 /// The Discriminator of the Local BFD Source.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct BFD_LOCAL_DISCR_SRC(u32);
 impl BFD_LOCAL_DISCR_SRC {
     /// See the register description.
@@ -208,7 +208,7 @@ impl BFD_LOCAL_DISCR_SRC {
 /// BFD Remote Discriminator (BFD_SRC)
 ///
 /// The Discriminator of the remote BFD entity communicating with the Local BFD Source
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct BFD_REMOTE_DISCR_SRC(u32);
 impl BFD_REMOTE_DISCR_SRC {
     /// See register description.
@@ -222,7 +222,7 @@ impl BFD_REMOTE_DISCR_SRC {
 /// CPU extraction for the supported MPLS-TP OAM G-ACH Channel Types.
 ///
 /// Configures CPU copy for the supported MPLS-TP PDU G-ACH Channel Types. Configuring a PDU type for CPU extraction, will result in all valid OAM PDUs of this type to extracted to the CPU. The PDU will be extsracted to the extraction queue configured for the G-ACH Channel Type in the following registers: * VOP::CPU_EXTR_MPLS.* Invalid OAM PDUs are not extracted based on the configuration in this register group. OAM PDUs are considered invalid if they fail either of the following checks: * Protocol Specific verification (E.g. BFD Rx / Tx verification)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CPU_COPY_CTRL_MPLS(u32);
 impl CPU_COPY_CTRL_MPLS {
     /// If asserted all valid BFD CC PDUs received by the VOE are extracted to the CPU. Extraction queue is determined by: * VOP::CPU_EXTR_MPLS.BFD_CC_CPU_QU
@@ -276,7 +276,7 @@ impl CPU_COPY_CTRL_MPLS {
 /// Configuration of which OAM PDUs should be counted by LM counters.
 ///
 /// Default behavior is that all MPLS-TP OAM PDUs processed by a VOE will not be counted as part of the LM count. Using this register (OAM_CNT_DATA_MPLS) it is possible to configure the OAM PDUs separately to be counted as part of the LM count. Frames are counted separately in the Rx and Tx direction. The data counters are located: Service VOE: --------------------- Egress: REW:VOE_SRV_LM_CNT.SRV_LM_CNT_LSB.SRV_LM_CNT_LSB Ingress: ANA_AC_OAM_MOD:VOE_SRV_LM_CNT.SRV_LM_CNT_LSB.SRV_LM_CNT_LSB Port VOE: ------------------- Egress: REW:VOE_PORT_LM_CNT:PORT_LM_CNT_LSB.PORT_LM_CNT_LSB Ingress: ANA_AC_OAM_MOD:VOE_PORT_LM_CNT:PORT_LM_CNT_LSB.PORT_LM_CNT_LSB
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct OAM_CNT_DATA_MPLS(u32);
 impl OAM_CNT_DATA_MPLS {
     /// Enable / disable count of valid BFD CC OAM PDUs as part of the LM counters.
@@ -330,7 +330,7 @@ impl OAM_CNT_DATA_MPLS {
 /// Configuration which MPLS-TP Channel Types are counted in selected PDU counter.
 ///
 /// The OAM frames processed by the VOE can be counted separately in Rx and Tx direction. In each direction there are two counters: 1) Selected OAM counter: -------------------------------------------------------- This counter counts all the PDU types selected for counting using the OAM_CNT_SEL_MPLS register: * VOP_MPLS:VOE_STAT_MPLS:RX_CNT_SEL_OAM_MPLS * VOP_MPLS:VOE_STAT_MPLS:TX_CNT_SEL_OAM_MPLS 2) NON Selected OAM counter: -------------------------------------------------------- * VOP_MPLS:VOE_STAT_MPLS:RX_CNT_NON_SEL_OAM_MPLS * VOP_MPLS:VOE_STAT_MPLS:TX_CNT_NON_SEL_OAM_MPLS Any valid OAM PDU is counted in exactly one of the above registers. I.e. as default all OAM PDUs are not selected, and they are all counted in the default OAM counters: RX / TX_CNT_NON_SEL_OAM_MPLS. Using this register (OAM_CNT_SEL_MPLS), PDUs can be moved to the selected counters: RX / TX_CNT_SEL_OAM_MPLS. The selection of OAM PDUs for the selected counter is done commonly for the Tx and Rx direction.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct OAM_CNT_SEL_MPLS(u32);
 impl OAM_CNT_SEL_MPLS {
     /// This register configures whether valid BFD CC PDUs are counted Selected OAM or NON Selected OAM.
@@ -384,7 +384,7 @@ impl OAM_CNT_SEL_MPLS {
 /// OAM HW processing control
 ///
 /// Configures per MPLS-TP G-ACH Channel Type if it is processed by VOE hardware. If an MPLS-TP OAM type is not enabled in this register, the OAM PDU will not be modified by the VOE. This implies that the OAM PDU is not updated. However, note the following: * The Rx sticky bits will be set for a PDU, even when the HW processing is not enabled. * OAM PDU can be extracted to the CPU, even when HW processing is not enabled. * LM counters will be updated. * SEL / non SEL counters are updated.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct OAM_HW_CTRL_MPLS(u32);
 impl OAM_HW_CTRL_MPLS {
     /// Enable HW processing of valid BFD CC PDUs received by the VOE in both the Tx and the Rx direction. If this is disabled, no verification of the YourDiscriminator is done of the incoming BFD CC PDUs. All Rx PDUs will be processed as belonging to the Coordinated Mode. I.e. a BFD CC PDUs will never be processed as belonging to the FEIS Session.
@@ -410,7 +410,7 @@ impl OAM_HW_CTRL_MPLS {
 /// Path MEP configuration
 ///
 /// This register is used to assign a Path VOE to the current service VOE. Assigning a Path VOE to a Service VOE implies that all frames received by this VOE, will also be counted by the Path VOE. The VOE index of the Path VOE is configured by the following bit field: * PATH_VOEID The path VOE must be enabled by asserting the following field: * PATH_VOE_ENA
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PATH_VOE_MPLS(u32);
 impl PATH_VOE_MPLS {
     /// Assigns a Path VOE to the VOE. Must be enabled by: PATH_VOE_ENA = 1
@@ -436,7 +436,7 @@ impl PATH_VOE_MPLS {
 /// Misc. VOE control configuration
 ///
 /// This register includes configuration of misc. VOE control properties.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VOE_CTRL_MPLS(u32);
 impl VOE_CTRL_MPLS {
     /// Configures VOE for Down-MEP or Up-MEP functionality. Note: Port VOE may NOT be configured for Up-MEP functionality, they only support Down-MEP implementation.

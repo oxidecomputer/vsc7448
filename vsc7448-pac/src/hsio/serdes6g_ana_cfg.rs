@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES6G ACJTAG Cfg
 ///
 /// Configuration register for (AC)JTAG debug capability
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_ACJTAG_CFG(u32);
 impl SERDES6G_ACJTAG_CFG {
     /// ACJTAG enable (ac_mode)
@@ -98,7 +98,7 @@ impl SERDES6G_ACJTAG_CFG {
 /// SERDES6G Common Cfg
 ///
 /// Configuration register for common SERDES6G functions
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_COMMON_CFG(u32);
 impl SERDES6G_COMMON_CFG {
     /// Enable direct line
@@ -270,7 +270,7 @@ impl SERDES6G_COMMON_CFG {
 /// SERDES6G Deserializer Cfg
 ///
 /// Configuration register for SERDES6G deserializer
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_DES_CFG(u32);
 impl SERDES6G_DES_CFG {
     /// Bandwidth selection. Selects dividing factor for non-hysteresis CP/MD outputs.
@@ -360,7 +360,7 @@ impl SERDES6G_DES_CFG {
 /// SERDES6G IB Configuration register 0
 ///
 /// Configuration settings 0
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_CFG(u32);
 impl SERDES6G_IB_CFG {
     /// Enable analog test output.
@@ -568,7 +568,7 @@ impl SERDES6G_IB_CFG {
 /// SERDES6G IB Configuration register 1
 ///
 /// Configuration settings 1
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_CFG1(u32);
 impl SERDES6G_IB_CFG1 {
     /// Selects doubled filtering of high-pass-gain regulation or set it to hold if ib_frc_hp = 1
@@ -684,7 +684,7 @@ impl SERDES6G_IB_CFG1 {
 /// SERDES6G IB Configuration register 2
 ///
 /// Configuration settings 2
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_CFG2(u32);
 impl SERDES6G_IB_CFG2 {
     /// Selects offset voltage for main sampler calibration.
@@ -784,7 +784,7 @@ impl SERDES6G_IB_CFG2 {
 /// SERDES6G IB Configuration register 3
 ///
 /// Configuration settings 3
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_CFG3(u32);
 impl SERDES6G_IB_CFG3 {
     /// Init force value for high-pass gain regulation
@@ -830,7 +830,7 @@ impl SERDES6G_IB_CFG3 {
 /// SERDES6G IB Configuration register 4
 ///
 /// Configuration settings 4
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_CFG4(u32);
 impl SERDES6G_IB_CFG4 {
     /// Max value for high-pass gain regulation
@@ -876,7 +876,7 @@ impl SERDES6G_IB_CFG4 {
 /// SERDES6G IB Configuration register 5
 ///
 /// Configuration settings 5
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_CFG5(u32);
 impl SERDES6G_IB_CFG5 {
     /// Min value for high-pass gain regulation
@@ -922,7 +922,7 @@ impl SERDES6G_IB_CFG5 {
 /// SERDES6G Misc Status
 ///
 /// Status register for miscellaneous functions
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_MISC_STATUS(u32);
 impl SERDES6G_MISC_STATUS {
     /// Phase selection of DES in 100fx mode
@@ -940,7 +940,7 @@ impl SERDES6G_MISC_STATUS {
 /// SERDES6G Output Buffer Cfg 0
 ///
 /// Configuration register 0 for SERDES6G output buffer
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_OB_CFG(u32);
 impl SERDES6G_OB_CFG {
     /// Output buffer supply voltage
@@ -1096,7 +1096,7 @@ impl SERDES6G_OB_CFG {
 /// SERDES6G Output Buffer Cfg1
 ///
 /// Configuration register 1 for SERDES6G output buffer
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_OB_CFG1(u32);
 impl SERDES6G_OB_CFG1 {
     /// Output skew, used for skew adjustment in SGMII mode - 1bit-hot-coded
@@ -1126,7 +1126,7 @@ impl SERDES6G_OB_CFG1 {
 /// SERDES6G Pll Cfg
 ///
 /// Configuration register for SERDES6G RCPLL
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_PLL_CFG(u32);
 impl SERDES6G_PLL_CFG {
     /// Enable div4 mode Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
@@ -1234,7 +1234,7 @@ impl SERDES6G_PLL_CFG {
 /// SERDES6G Serializer Cfg
 ///
 /// Configuration register for SERDES6G serializer
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_SER_CFG(u32);
 impl SERDES6G_SER_CFG {
     /// Enable the fourth cml output Q3 for POST1 input of OB8G

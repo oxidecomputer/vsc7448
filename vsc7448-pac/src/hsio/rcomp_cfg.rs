@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PLL5G BIST Status register 1B
 ///
 /// Status register 1B for PLL5G BIST.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_BIST_STAT1B(u32);
 impl PLL5G_BIST_STAT1B {
     /// BIST compare divider phase difference

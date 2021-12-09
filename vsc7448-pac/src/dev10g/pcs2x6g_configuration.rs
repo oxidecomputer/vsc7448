@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Test Pattern Transmit Sequence Counter
 ///
 /// Jitter Pattern Transmit Counter. The counter counts the number of transmitted frames (only frame based pattern, i.e. CRPAT and CJPAT).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS(u32);
 impl PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS {
     /// Jitter pattern transmit counter

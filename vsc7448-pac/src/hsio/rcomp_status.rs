@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// RCOMP Configuration 0
 ///
 /// Configuration register 0 for RCOMP
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RCOMP_CFG0(u32);
 impl RCOMP_CFG0 {
     /// Overwrite measured resistor value with value programmed in rcomp_val

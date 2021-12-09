@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Current time of day
 ///
 /// Current time of day, nanoseconds part.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_CUR_NSEC(u32);
 impl PTP_CUR_NSEC {
     /// Time of day naoseconds, latched when NSF was read.
@@ -44,7 +44,7 @@ impl PTP_CUR_NSEC {
     }
 }
 /// Current timestamping value
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_CUR_NSF(u32);
 impl PTP_CUR_NSF {
     /// Returns the current value of the timestamping clock. The time of day registers will be latched when this register is read.
@@ -56,7 +56,7 @@ impl PTP_CUR_NSF {
     }
 }
 /// Current time of day
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_CUR_SEC_LSB(u32);
 impl PTP_CUR_SEC_LSB {
     /// Value of current tod secs, latched when NSF was read.
@@ -68,7 +68,7 @@ impl PTP_CUR_SEC_LSB {
     }
 }
 /// System clock configuration
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_SYS_CLK_CFG(u32);
 impl PTP_SYS_CLK_CFG {
     /// Must be configured to running system clock period, rounded down to closest interger nanoseconds value.

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PLL5G Configuration 6
 ///
 /// Configuration register 6 for PLL5G
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_CFG6(u32);
 impl PLL5G_CFG6 {
     /// Setting for DDR clock divider
@@ -68,7 +68,7 @@ impl PLL5G_CFG6 {
 /// PLL5G Status 0
 ///
 /// Status register 0 for the PLL5G
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PLL5G_STATUS0(u32);
 impl PLL5G_STATUS0 {
     /// RCPLL Flag that indicates that the calibration procedure has finished.

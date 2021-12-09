@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Pause Frame pre-counter overflow sticky register
 ///
 /// Pause Frame pre-counter overflow sticky register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PRE_CNT_OFLW_STICKY(u32);
 impl PRE_CNT_OFLW_STICKY {
     /// Will be set if one of the statistics pre counter have an overflow.
@@ -49,7 +49,7 @@ impl PRE_CNT_OFLW_STICKY {
 /// Configuration register for txFrameRateStart
 ///
 /// Configuration register for txFrameRateStart
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_FRAME_RATE_START_CFG(u32);
 impl TX_FRAME_RATE_START_CFG {
     /// Value loaded into the txFrameRateTimer at the start of each packet, when TX_RATE_LIMIT_FRAME_RATE mode is enabled. Timer is decremented with each byte transmitted. IPG is set to timer value at EOF. Note: If resulting IPG is smaller than the minimum IPG of 12 bytes, it will be set to 12 bytes.
@@ -67,7 +67,7 @@ impl TX_FRAME_RATE_START_CFG {
 /// Configuration register for txFineIpgStretchRatio
 ///
 /// Configuration register for txFineIpgStretchRatio
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_IPG_STRETCH_RATIO_CFG(u32);
 impl TX_IPG_STRETCH_RATIO_CFG {
     /// Determines the extent of the interPacketGap extension, when txRateLimitPayloadRate mode is enabled. It may be considered as the number of bits in a packet that would require 32 octets of interPacketGap extension. Note that each interPacketGap is increased by an integer number of octets, the average increase is ( (frame length in bits) * 32) / txFineIpgStretchRatio. Note: fractions left at frame border will be carried on to the next frame. Example: Packet length = 64 bytes + 8 bytes preamble value = 2048 IPG increase = 9 bytes Maximum IPG increase is 255 bytes.
@@ -85,7 +85,7 @@ impl TX_IPG_STRETCH_RATIO_CFG {
 /// Configuration register for rate limit modes
 ///
 /// Configuration register for rate limit modes
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_RATE_LIMIT_MODE(u32);
 impl TX_RATE_LIMIT_MODE {
     /// Scale the IPG calculated by txRateLimitFrameOverhead and/or txRateLimitPayloadRate by a power of 2 to enable shaping down to lower BW. Note: For txRateLimitPayloadRate only the additional overhead excluding the standard 12 byte IPG is scaled whereas for txRateLimitFrameOverhead the complete value is scaled.

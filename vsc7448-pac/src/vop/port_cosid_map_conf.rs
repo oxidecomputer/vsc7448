@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// COSID / Color control signals
 ///
 /// The bit fields in this register determines the source of the COSID mapping / COLOR of frames not processed by the VOE.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct COSID_MAP_CFG_REW(u32);
 impl COSID_MAP_CFG_REW {
     /// Determines if the VOE LM counters counts all frames or only GREEN frames.
@@ -72,7 +72,7 @@ impl COSID_MAP_CFG_REW {
 /// LSB of Rx Port VOE mapping table (ANA).
 ///
 /// This register contains the lower 32 bits of the Port VOE Rx (ANA) COSID mapping table. The mapping in this register is used when Port DEI = 0.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PORT_RX_COSID_MAP(u32);
 impl PORT_RX_COSID_MAP {
     /// See register description.
@@ -86,7 +86,7 @@ impl PORT_RX_COSID_MAP {
 /// MSB of Rx Port VOE mapping table (ANA).
 ///
 /// This register contains the upper 32 bits of the Port VOE Rx (ANA) COSID mapping table. This mapping in this register is used when Port DEI = 1
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PORT_RX_COSID_MAP1(u32);
 impl PORT_RX_COSID_MAP1 {
     /// See register description.
@@ -100,7 +100,7 @@ impl PORT_RX_COSID_MAP1 {
 /// LSB of Tx Port VOE mapping table (REW).
 ///
 /// This register contains the lower 32 bits of the Port VOE Tx (REW) COSID mapping table. This mapping in this register is used when Port DEI = 0
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PORT_TX_COSID_MAP(u32);
 impl PORT_TX_COSID_MAP {
     /// See register description.

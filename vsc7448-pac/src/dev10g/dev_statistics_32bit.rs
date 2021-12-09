@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Sticky Bit Register
 ///
 /// Clear the sticky bits by writing a '0' in the relevant bitgroups (writing a '1' sets the bit)!.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MAC_STICKY(u32);
 impl MAC_STICKY {
     /// Indicates that an inter packet gap shrink was detected (IPG < 12 bytes).
@@ -154,7 +154,7 @@ impl MAC_STICKY {
     }
 }
 /// Counter to track the dribble-nibble (extra nibble) errors in frames.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_ALIGNMENT_LOST_CNT(u32);
 impl RX_ALIGNMENT_LOST_CNT {
     /// The number of frames received with Alignment (dribble-nibble) error.
@@ -168,7 +168,7 @@ impl RX_ALIGNMENT_LOST_CNT {
     }
 }
 /// Rx Broadcast Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_BC_CNT(u32);
 impl RX_BC_CNT {
     /// The number of good broadcast frames received.
@@ -182,7 +182,7 @@ impl RX_BC_CNT {
     }
 }
 /// Rx CRC Error Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_CRC_ERR_CNT(u32);
 impl RX_CRC_ERR_CNT {
     /// The number of frames received with CRC error only.
@@ -196,7 +196,7 @@ impl RX_CRC_ERR_CNT {
     }
 }
 /// Rx Undersize Counter (CRC error)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_FRAGMENTS_CNT(u32);
 impl RX_FRAGMENTS_CNT {
     /// The number of undersize frames with CRC error received.
@@ -212,7 +212,7 @@ impl RX_FRAGMENTS_CNT {
 /// Rx HiH Checksum Error Counter
 ///
 /// If HIH CRC checking is enabled, this counter will count the number of frames discarded due to HIH CRC errors.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_HIH_CKSM_ERR_CNT(u32);
 impl RX_HIH_CKSM_ERR_CNT {
     /// Number of frames discarded due to errors in HIH checksum.
@@ -226,7 +226,7 @@ impl RX_HIH_CKSM_ERR_CNT {
     }
 }
 /// Rx In-range Length Error Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_IN_RANGE_LEN_ERR_CNT(u32);
 impl RX_IN_RANGE_LEN_ERR_CNT {
     /// The number of frames with legal length field that doesn't match length of MAC client data.
@@ -240,7 +240,7 @@ impl RX_IN_RANGE_LEN_ERR_CNT {
     }
 }
 /// Rx Inter Packet Gap Shrink Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_IPG_SHRINK_CNT(u32);
 impl RX_IPG_SHRINK_CNT {
     /// Number of inter packet gap shrinks detected (IPG < 12 bytes).
@@ -254,7 +254,7 @@ impl RX_IPG_SHRINK_CNT {
     }
 }
 /// Rx Jabbers Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_JABBERS_CNT(u32);
 impl RX_JABBERS_CNT {
     /// The number of oversize frames with CRC error received.
@@ -268,7 +268,7 @@ impl RX_JABBERS_CNT {
     }
 }
 /// Rx Multicast Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_MC_CNT(u32);
 impl RX_MC_CNT {
     /// The number of good multicast frames received.
@@ -282,7 +282,7 @@ impl RX_MC_CNT {
     }
 }
 /// Rx Out-Of-Range Length Error Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_OUT_OF_RANGE_LEN_ERR_CNT(u32);
 impl RX_OUT_OF_RANGE_LEN_ERR_CNT {
     /// The number of frames with illegal length field (frames using type field are not counted here).
@@ -296,7 +296,7 @@ impl RX_OUT_OF_RANGE_LEN_ERR_CNT {
     }
 }
 /// Rx Oversize Counter (valid frame format)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_OVERSIZE_CNT(u32);
 impl RX_OVERSIZE_CNT {
     /// The number of oversize well-formed frames received.
@@ -310,7 +310,7 @@ impl RX_OVERSIZE_CNT {
     }
 }
 /// Rx Pause Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_PAUSE_CNT(u32);
 impl RX_PAUSE_CNT {
     /// Number of pause control frames received.
@@ -324,7 +324,7 @@ impl RX_PAUSE_CNT {
     }
 }
 /// Rx 1024-1518 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SIZE1024TO1518_CNT(u32);
 impl RX_SIZE1024TO1518_CNT {
     /// The number of 1024 to 1518 bytes frames received.
@@ -338,7 +338,7 @@ impl RX_SIZE1024TO1518_CNT {
     }
 }
 /// Rx 128-255 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SIZE128TO255_CNT(u32);
 impl RX_SIZE128TO255_CNT {
     /// The number of 128 to 255 bytes frames received.
@@ -352,7 +352,7 @@ impl RX_SIZE128TO255_CNT {
     }
 }
 /// Rx 1519 To Max. Length Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SIZE1519TOMAX_CNT(u32);
 impl RX_SIZE1519TOMAX_CNT {
     /// The number of frames received longer than 1518 bytes and not longer than Maximum Length Register (Maximum Length Register + 4 if the frame is VLAN tagged).
@@ -366,7 +366,7 @@ impl RX_SIZE1519TOMAX_CNT {
     }
 }
 /// Rx 256-511 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SIZE256TO511_CNT(u32);
 impl RX_SIZE256TO511_CNT {
     /// The number of 256 to 511 bytes frames received.
@@ -380,7 +380,7 @@ impl RX_SIZE256TO511_CNT {
     }
 }
 /// Rx 512-1023 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SIZE512TO1023_CNT(u32);
 impl RX_SIZE512TO1023_CNT {
     /// The number of 512 to 1023 bytes frames received.
@@ -394,7 +394,7 @@ impl RX_SIZE512TO1023_CNT {
     }
 }
 /// Rx 64 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SIZE64_CNT(u32);
 impl RX_SIZE64_CNT {
     /// The number of 64 bytes frames received.
@@ -408,7 +408,7 @@ impl RX_SIZE64_CNT {
     }
 }
 /// Rx 65-127 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SIZE65TO127_CNT(u32);
 impl RX_SIZE65TO127_CNT {
     /// The number of 65 to 127 bytes frames received.
@@ -422,7 +422,7 @@ impl RX_SIZE65TO127_CNT {
     }
 }
 /// Rx Symbol Carrier Error Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_SYMBOL_ERR_CNT(u32);
 impl RX_SYMBOL_ERR_CNT {
     /// The number of frames received with one or more symbol errors.
@@ -436,7 +436,7 @@ impl RX_SYMBOL_ERR_CNT {
     }
 }
 /// Counts frames that are tagged (C-Tagged or S-Tagged).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_TAGGED_FRMS_CNT(u32);
 impl RX_TAGGED_FRMS_CNT {
     /// The number of frames received with C-Tag or S-Tag information
@@ -450,7 +450,7 @@ impl RX_TAGGED_FRMS_CNT {
     }
 }
 /// Rx Unicast Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_UC_CNT(u32);
 impl RX_UC_CNT {
     /// The number of good unicast frames received.
@@ -464,7 +464,7 @@ impl RX_UC_CNT {
     }
 }
 /// Rx Undersize Counter (valid frame format)
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_UNDERSIZE_CNT(u32);
 impl RX_UNDERSIZE_CNT {
     /// The number of undersize well-formed frames received.
@@ -478,7 +478,7 @@ impl RX_UNDERSIZE_CNT {
     }
 }
 /// Rx Control Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_UNSUP_OPCODE_CNT(u32);
 impl RX_UNSUP_OPCODE_CNT {
     /// Number of control frames with unsupported opcode received.
@@ -492,7 +492,7 @@ impl RX_UNSUP_OPCODE_CNT {
     }
 }
 /// Counts frames that are Not tagged  (neither C-Tagged nor S-Tagged).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_UNTAGGED_FRMS_CNT(u32);
 impl RX_UNTAGGED_FRMS_CNT {
     /// The number of frames received without C-Tag and S-Tag information.
@@ -506,7 +506,7 @@ impl RX_UNTAGGED_FRMS_CNT {
     }
 }
 /// Tx Broadcast Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_BC_CNT(u32);
 impl TX_BC_CNT {
     /// The number of broadcast frames transmitted.
@@ -520,7 +520,7 @@ impl TX_BC_CNT {
     }
 }
 /// Tx Multicast Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_MC_CNT(u32);
 impl TX_MC_CNT {
     /// The number of multicast frames transmitted.
@@ -534,7 +534,7 @@ impl TX_MC_CNT {
     }
 }
 /// Tx Pause Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_PAUSE_CNT(u32);
 impl TX_PAUSE_CNT {
     /// The number of pause control frames transmitted.
@@ -548,7 +548,7 @@ impl TX_PAUSE_CNT {
     }
 }
 /// Tx 1024-1518 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SIZE1024TO1518_CNT(u32);
 impl TX_SIZE1024TO1518_CNT {
     /// The number of 1024 to 1518 bytes frames transmitted.
@@ -562,7 +562,7 @@ impl TX_SIZE1024TO1518_CNT {
     }
 }
 /// Tx 128-255 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SIZE128TO255_CNT(u32);
 impl TX_SIZE128TO255_CNT {
     /// The number of 128 to 255 bytes frames transmitted.
@@ -576,7 +576,7 @@ impl TX_SIZE128TO255_CNT {
     }
 }
 /// Tx 1519 To Max. Length Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SIZE1519TOMAX_CNT(u32);
 impl TX_SIZE1519TOMAX_CNT {
     /// The number of frames transmitted longer than 1518 bytes and not longer than Maximum Length Register (Maximum Length Register + 4 if the frame is VLAN tagged).
@@ -590,7 +590,7 @@ impl TX_SIZE1519TOMAX_CNT {
     }
 }
 /// Tx 256-511 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SIZE256TO511_CNT(u32);
 impl TX_SIZE256TO511_CNT {
     /// The number of 256 to 511 bytes frames transmitted.
@@ -604,7 +604,7 @@ impl TX_SIZE256TO511_CNT {
     }
 }
 /// Tx 512-1023 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SIZE512TO1023_CNT(u32);
 impl TX_SIZE512TO1023_CNT {
     /// The number of 512 to 1023 bytes frames transmitted.
@@ -618,7 +618,7 @@ impl TX_SIZE512TO1023_CNT {
     }
 }
 /// Tx 64 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SIZE64_CNT(u32);
 impl TX_SIZE64_CNT {
     /// The number of 64 bytes frames transmitted.
@@ -632,7 +632,7 @@ impl TX_SIZE64_CNT {
     }
 }
 /// Tx 65-127 Byte Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_SIZE65TO127_CNT(u32);
 impl TX_SIZE65TO127_CNT {
     /// The number of 65 to 127 bytes frames transmitted.
@@ -646,7 +646,7 @@ impl TX_SIZE65TO127_CNT {
     }
 }
 /// Counts frames that are tagged (C-Tagged or S-Tagged).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_TAGGED_FRMS_CNT(u32);
 impl TX_TAGGED_FRMS_CNT {
     /// The number of frames transmitted with C-Tag or S-Tag information
@@ -658,7 +658,7 @@ impl TX_TAGGED_FRMS_CNT {
     }
 }
 /// Tx Unicast Frame Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_UC_CNT(u32);
 impl TX_UC_CNT {
     /// The number of unicast frames transmitted.
@@ -672,7 +672,7 @@ impl TX_UC_CNT {
     }
 }
 /// Counts frames that are Not tagged  (neither C-Tagged nor S-Tagged).
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_UNTAGGED_FRMS_CNT(u32);
 impl TX_UNTAGGED_FRMS_CNT {
     /// The number of frames transmitted without C-Tag and S-Tag information.

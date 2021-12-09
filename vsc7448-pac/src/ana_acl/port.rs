@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// VCAP_IS2 key selection
 ///
 /// Key selection for VCAP_IS2 lookups. Replicated per lookup.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VCAP_S2_KEY_SEL(u32);
 impl VCAP_S2_KEY_SEL {
     /// Applies to ARP/RARP frames.

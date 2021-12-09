@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// 10G Base-R PCS EEE interrupt mask register
 ///
 /// Masks for 10G Base-R PCS EEE interrupt sources and sticky bits in EEE_STATUS
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EEE_INTR_MASK(u32);
 impl EEE_INTR_MASK {
     /// Mask for the RX_LPI_RECEIVED bit
@@ -58,7 +58,7 @@ impl EEE_INTR_MASK {
     }
 }
 /// EEE Status register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EEE_STATUS(u32);
 impl EEE_STATUS {
     /// 1 = The MAC may stop the clock during LPI 0 = Clock not stoppable
@@ -119,7 +119,7 @@ impl EEE_STATUS {
 /// EEE RX Sleep timer configuration register
 ///
 /// This register value is used to elaps time in RX_WTF state of EEE RX-FSM as specified in IEEE802.3az-2010 clause 49.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_WF_TIMER_REG(u32);
 impl RX_WF_TIMER_REG {
     /// This holds no.of 64-bit PMA clocks required to achieve specified wake time fault time interval. As per IEEE 803.3az-2010, this value is: MAX: 10 ms = 1611328
@@ -133,7 +133,7 @@ impl RX_WF_TIMER_REG {
     }
 }
 /// Wake Error Counter
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct WAKE_ERR_CNT(u32);
 impl WAKE_ERR_CNT {
     /// This reflects wake_error_counter specifed in IEEE 802.3az-2010, 49.2.13.2.4 Value of this counter indicates how many times LPI RX FSM entered RX_WTF state. Note: 1. This counter is cleared when ever it is read. 2. Upon overflow its value remains at 0xFFFF.

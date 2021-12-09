@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Service Control
 ///
 /// Miscellaneous service configuration.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERVICE_CFG(u32);
 impl SERVICE_CFG {
     /// Force Egress FID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when ANA_CL:IPT:VSI_CFG.VSI_ENA==1 and frame has multicast DMAC. See also SERVICE_CFG.VSI_FORCE_MC_EFID_ENA.
@@ -58,7 +58,7 @@ impl SERVICE_CFG {
     }
 }
 /// Address range for TUPE to process
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_ADDR(u32);
 impl TUPE_ADDR {
     /// Last address in VLAN table for TUPE to process.
@@ -82,7 +82,7 @@ impl TUPE_ADDR {
     }
 }
 /// TUPE command: Port mask bits to clear
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_CMD_PORT_MASK_CLR(u32);
 impl TUPE_CMD_PORT_MASK_CLR {
     /// Mask with ports, which shall be cleared in VLAN_PORT_MASK in VLAN table if VLAN table entry meets the critierias enabled in TUPE_MISC. If a port has its bit set in both TUPE_CMD_PORT_MASK_CLR and TUPE_CMD_PORT_MASK_SET then the value in VLAN_PORT_MASK is toggled.
@@ -96,7 +96,7 @@ impl TUPE_CMD_PORT_MASK_CLR {
     }
 }
 /// TUPE command: Port mask bits to clear
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_CMD_PORT_MASK_CLR1(u32);
 impl TUPE_CMD_PORT_MASK_CLR1 {
     /// See TUPE_CMD_PORT_MASK_CLR.
@@ -110,7 +110,7 @@ impl TUPE_CMD_PORT_MASK_CLR1 {
     }
 }
 /// TUPE command: Port mask bits to set
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_CMD_PORT_MASK_SET(u32);
 impl TUPE_CMD_PORT_MASK_SET {
     /// Mask with ports, which shall be set in VLAN_PORT_MASK in VLAN table if VLAN table entry meets the critierias enabled in TUPE_MISC. If a port has its bit set in both TUPE_CMD_PORT_MASK_CLR and TUPE_CMD_PORT_MASK_SET then the value in VLAN_PORT_MASK is toggled.
@@ -124,7 +124,7 @@ impl TUPE_CMD_PORT_MASK_SET {
     }
 }
 /// TUPE command: Port mask bits to set
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_CMD_PORT_MASK_SET1(u32);
 impl TUPE_CMD_PORT_MASK_SET1 {
     /// See TUPE_CMD_PORT_MASK_SET.
@@ -138,7 +138,7 @@ impl TUPE_CMD_PORT_MASK_SET1 {
     }
 }
 /// TUPE parameter controlling which VLAN table entries to update
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_CTRL_BIT_MASK(u32);
 impl TUPE_CTRL_BIT_MASK {
     /// If enabled by TUPE_CTRL_BIT_ENA, then the following condition must be met for TUPE to update VLAN table entry: (ANA_L3:VLAN:TUPE_CTRL & TUPE_CTRL_BIT_MASK) != 0 If enabled by TUPE_COMB_MASK_ENA, then the following condition must be met for TUPE to update VLAN table entry: ((ANA_L3:VLAN:TUPE_CTRL & TUPE_CTRL_BIT_MASK) != 0) || (ANA_L3:VLAN:VLAN_MASK_CFG.VLAN_PORT_MASK & TUPE_PORT_MASK_A) != 0
@@ -152,7 +152,7 @@ impl TUPE_CTRL_BIT_MASK {
     }
 }
 /// TUPE parameter controlling which VLAN table entries to update
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_CTRL_VAL(u32);
 impl TUPE_CTRL_VAL {
     /// If enabled by TUPE_CTRL_VAL_ENA, then the following condition must be met for TUPE to update VLAN table entry: (ANA_L3:VLAN:TUPE_CTRL & TUPE_CTRL_VAL_MASK) == TUPE_CTRL_VAL
@@ -166,7 +166,7 @@ impl TUPE_CTRL_VAL {
     }
 }
 /// TUPE parameter controlling which VLAN table entries to update
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_CTRL_VAL_MASK(u32);
 impl TUPE_CTRL_VAL_MASK {
     /// See TUPE_CTRL_VAL.
@@ -180,7 +180,7 @@ impl TUPE_CTRL_VAL_MASK {
     }
 }
 /// Miscellaneous TUPE parameters
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_MISC(u32);
 impl TUPE_MISC {
     /// Enable combined use of TUPE_CTRL_BIT_MASK and TUPE_PORT_MASK_A. For further information refer to TUPE_CTRL_BIT_MASK.TUPE_CTRL_BIT_MASK
@@ -244,7 +244,7 @@ impl TUPE_MISC {
     }
 }
 /// TUPE parameter controlling which VLAN table entries to update
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_PORT_MASK_A(u32);
 impl TUPE_PORT_MASK_A {
     /// If enabled by TUPE_PORT_MASK_A_ENA, then the following condition must be met for TUPE to update VLAN table entry: (ANA_L3:VLAN:VLAN_MASK_CFG.VLAN_PORT_MASK & TUPE_PORT_MASK_A) != 0 If enabled by TUPE_COMB_MASK_ENA, then the following condition must be met for TUPE to update VLAN table entry: ((ANA_L3:VLAN:TUPE_CTRL & TUPE_CTRL_BIT_MASK) != 0) || (ANA_L3:VLAN:VLAN_MASK_CFG.VLAN_PORT_MASK & TUPE_PORT_MASK_A) != 0
@@ -256,7 +256,7 @@ impl TUPE_PORT_MASK_A {
     }
 }
 /// TUPE parameter controlling which VLAN table entries to update
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_PORT_MASK_A1(u32);
 impl TUPE_PORT_MASK_A1 {
     /// See TUPE_PORT_MASK_A.
@@ -270,7 +270,7 @@ impl TUPE_PORT_MASK_A1 {
     }
 }
 /// TUPE parameter controlling which VLAN table entries to update
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_PORT_MASK_B(u32);
 impl TUPE_PORT_MASK_B {
     /// If enabled by TUPE_PORT_MASK_B_ENA, then the following condition must be met for TUPE to update VLAN table entry: (ANA_L3:VLAN:VLAN_MASK_CFG.VLAN_PORT_MASK & TUPE_PORT_MASK_B) != 0

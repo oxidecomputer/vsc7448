@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// LBR/TST/CCM out of sequence errors per priority
 ///
 /// When a VOE is assigned a SAM per COSID counter set, this register counts the number of out-of-sequence erorrs for LBR/TST/CCM PDUs for priorities 0-6. Depending on the PDU being counted, priority 7 is counted in the following counter. CCM: *  VOP:VOE_STAT:CCM_RX_WARNING.CCM_RX_SEQNO_ERR_CNT LBM/LBR: * VOP:VOE_STAT:LBR_RX_TRANSID_ERR_CNT.LBR_RX_TRANSID_ERR_CNT TST: * VOP:VOE_STAT:LBR_RX_TRANSID_ERR_CNT.LBR_RX_TRANSID_ERR_CNT
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SAM_LBR_RX_TRANSID_ERR_CNT(u32);
 impl SAM_LBR_RX_TRANSID_ERR_CNT {
     /// See register description.

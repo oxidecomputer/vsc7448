@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PTP port configuration
 ///
 /// Clock domain selection and mapping of ingress port number.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_CFG(u32);
 impl PTP_CFG {
     /// Selects the PTP time domain to use when updating receiveTimestamp in Delay_Resp frames.
@@ -56,7 +56,7 @@ impl PTP_CFG {
     }
 }
 /// Configuration of various ACL PTP features
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_MISC_CTRL(u32);
 impl PTP_MISC_CTRL {
     /// If set, and VCAP_IS2 action REW_CMD[5] is set, ANA_ACL rewrites Delay_Req frames. The following PTP fields can be modified in ANA_ACL depending on configuration in PTP_MISC_CTRL and ANA_ACL:PTP_DOM: - messageType (set to Delay_Resp) - messageLength - flagField - sourcePortIdentity - controlField - logMessageInterval - receiveTimestamp - requestingPortIdentity
@@ -132,7 +132,7 @@ impl PTP_MISC_CTRL {
     }
 }
 /// Configuration of various swap features
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SWAP_IP_CTRL(u32);
 impl SWAP_IP_CTRL {
     /// Number of bits in frame's DMAC counting from LSB which are not replaced if replacing the DMAC (IS2 action ACL_RT_MODE) and reduced DMAC is enabled (IS2 action SAM_SEQ_ENA). New DMAC is provided by IS2 action ACL_MAC. For example, if set to 16, the 16 LSB bits in the frame's DMAC are not replaced while the 32 MSB bits are replaced with corresponding 32 bits from ACL_MAC.
@@ -186,7 +186,7 @@ impl SWAP_IP_CTRL {
     }
 }
 /// Source IP table used for multicast IP address swapping
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SWAP_SIP(u32);
 impl SWAP_SIP {
     /// New source IP address used when frame's IP addresses are swapped and the original destination IP address was a multicast address. IP address swapping is enabled in VCAP_IS2 action ACL_RT_MODE. IPv4: Each entry configures one IPv4 address. IPv6: Four consecutive entries configures one IPv6 address. Entries must start at 4 x n, n=0, 1, ..., 7. First entry encodes bits 31:0 of IPv6 address, second entry encoded bits 63:32, and so on.
@@ -200,7 +200,7 @@ impl SWAP_SIP {
 /// VCAP S2 configuration
 ///
 /// Configuration of advanced classification per port. For the 2-bit fields of this register the following applies: Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VCAP_S2_CFG(u32);
 impl VCAP_S2_CFG {
     /// Enable/disable VCAP_IS2 lookups. Bit[0]: Relates to first lookup in VCAP_IS2 Bit[1]: Relates to second lookup in VCAP_IS2
@@ -372,7 +372,7 @@ impl VCAP_S2_CFG {
     }
 }
 /// Configuration of various features
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VCAP_S2_MISC_CTRL(u32);
 impl VCAP_S2_MISC_CTRL {
     /// Controls how to update routing statistics events for egress ACL actions.
@@ -542,7 +542,7 @@ impl VCAP_S2_MISC_CTRL {
     }
 }
 /// Configuration of TCP range generation
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VCAP_S2_RNG_CTRL(u32);
 impl VCAP_S2_RNG_CTRL {
     /// Selected field matched against the range
@@ -558,7 +558,7 @@ impl VCAP_S2_RNG_CTRL {
     }
 }
 /// Configuration of selected range generation
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VCAP_S2_RNG_OFFSET_CFG(u32);
 impl VCAP_S2_RNG_OFFSET_CFG {
     /// 16-bit offset position of selectable range matcher input counting from the EtherType (up to three VLAN tags skipped).
@@ -574,7 +574,7 @@ impl VCAP_S2_RNG_OFFSET_CFG {
     }
 }
 /// Configuration of  matcher range generation
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VCAP_S2_RNG_VALUE_CFG(u32);
 impl VCAP_S2_RNG_VALUE_CFG {
     /// Upper range value

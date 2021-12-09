@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Router Leg Diagnostic
 ///
 /// Diagnostic bits related to longest prefix matching.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct L3_LPM_REMAP_STICKY(u32);
 impl L3_LPM_REMAP_STICKY {
     /// Set if an IPv4 multicast longest prefix match has been found and the returned L3MC_IDX is less than the number of L3MC table entries.
@@ -94,7 +94,7 @@ impl L3_LPM_REMAP_STICKY {
     }
 }
 /// VLAN Diagnostic
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VLAN_STICKY(u32);
 impl VLAN_STICKY {
     /// Set if a frame has been filtered due to MSTP_FWD_MASK. Related parameters: ANA_L3:MSTP:MSTP_FWD_CFG.MSTP_FWD_MASK

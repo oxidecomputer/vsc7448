@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Controls automatic learn limits per FID
 ///
 /// Per FID configuration of MAC table learn limits
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct FID_LIMIT_CTRL(u32);
 impl FID_LIMIT_CTRL {
     /// Allow setting FID_LIMIT_INTR when exceeding limit on learning (happens when MAC address are supposed to be installed in the MAC table.
@@ -72,7 +72,7 @@ impl FID_LIMIT_CTRL {
 /// Controls automatic learn limits
 ///
 /// Per port configuration of autolearn limits
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PORT_LIMIT_STATUS(u32);
 impl PORT_LIMIT_STATUS {
     /// Contains the number of MAC table entries currently learned associated with a given logical PORT or GLAG.

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Configuration of mapping tables 0 and 1
 ///
 /// Lookup 0 and 1 values
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MAP_VAL_A(u32);
 impl MAP_VAL_A {
     /// Mapped DEI value
@@ -108,7 +108,7 @@ impl MAP_VAL_A {
 /// MIP sticky bit register
 ///
 /// Event register common for all MIPs
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MIP_STICKY_EVENT(u32);
 impl MIP_STICKY_EVENT {
     /// This bit is set if a CCM CPU is copied to CPU

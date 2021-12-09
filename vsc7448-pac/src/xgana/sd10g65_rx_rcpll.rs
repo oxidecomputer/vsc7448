@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SD10G65 RX RCPLL Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 RX RCPLL.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_RCPLL_CFG0(u32);
 impl SD10G65_RX_RCPLL_CFG0 {
     /// Enable RCPLL FSM
@@ -192,7 +192,7 @@ impl SD10G65_RX_RCPLL_CFG0 {
 /// SD10G65 RX RCPLL Configuration register 1
 ///
 /// Configuration register 1 for SD10G65 RX RCPLL.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_RCPLL_CFG1(u32);
 impl SD10G65_RX_RCPLL_CFG1 {
     /// enable special BIST settings
@@ -254,7 +254,7 @@ impl SD10G65_RX_RCPLL_CFG1 {
 /// SD10G65 RX RCPLL Configuration register 2
 ///
 /// Configuration register 2 for SD10G65 RX RCPLL.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_RCPLL_CFG2(u32);
 impl SD10G65_RX_RCPLL_CFG2 {
     /// Not used
@@ -388,7 +388,7 @@ impl SD10G65_RX_RCPLL_CFG2 {
 /// SD10G65 RX RCPLL Status register 0
 ///
 /// Status register 0 for SD10G65 RX RCPLL.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_RCPLL_STAT0(u32);
 impl SD10G65_RX_RCPLL_STAT0 {
     /// PLL lock status,
@@ -460,7 +460,7 @@ impl SD10G65_RX_RCPLL_STAT0 {
 /// SD10G65_RX Revision ID
 ///
 /// Revision numbers of the analog sub IPs used in the SD10G65_RX
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SD10G65_RX_REV_ID(u32);
 impl SD10G65_RX_REV_ID {
     /// Feature set number of deserializer (des10g_N)

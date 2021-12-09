@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES1G Misc Status
 ///
 /// Status register for miscellaneous functions
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_MISC_STATUS(u32);
 impl SERDES1G_MISC_STATUS {
     /// Phase selection of DES in 100fx mode

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Automatic calendar setup
 ///
 /// These four registers configures the automaric calendar for the next 16 ports from 'repl'*16.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CAL_AUTO(u32);
 impl CAL_AUTO {
     /// Per port setting for internal bandwidth for 16 ports. Replication M, Bits 2N+1 and 2N is a two bit value for port M*16+N, encoded as seen below.
@@ -44,7 +44,7 @@ impl CAL_AUTO {
     }
 }
 /// Manual calendar setup
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CAL_SEQ(u32);
 impl CAL_SEQ {
     /// Port to service in the cycle given by the CAL_SEQ_LEN value.
@@ -87,7 +87,7 @@ impl CAL_SEQ {
         self.0 |= value;
     }
 }
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MMGT_TAILDROP_CNT(u32);
 impl MMGT_TAILDROP_CNT {
     /// Returns the number of buffer drops due to ATOP reached, or lack of free memory. Values returned for the port mapped in MMGT_PORT_VIEW. Counter wraps when maximum is reached reached.

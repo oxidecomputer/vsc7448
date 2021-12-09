@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS interrupt status register
 ///
 /// Contains the sticky bits representing interrupts from the PCS. Set by logic. Write 1 to clear.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCS_INTR_STAT(u32);
 impl PCS_INTR_STAT {
     /// Interrupt when an invalid Rx block is detected
@@ -132,7 +132,7 @@ impl PCS_INTR_STAT {
 /// Counter for 125 microsecond period
 ///
 /// This register sets the number of WIS/PMA divide-by-2 clocks in one 125 microsecond interval. The counter increments and wraps. It should be set to (125 * freq_Mhz/2) where freq_Mhz is the WIS/PMA frequency in Megahertz. 0 disables the counter.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TIMER_125(u32);
 impl TIMER_125 {
     /// Sets the maximum count for the 125 microsecond counter. Counts input clocks.

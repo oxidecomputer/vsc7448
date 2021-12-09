@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES6G REVID
 ///
 /// Revision ID register
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_REVID(u32);
 impl SERDES6G_REVID {
     /// DES revision

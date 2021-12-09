@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Bundle dual leaky bucket policer index
 ///
 /// Specifies BUM policer index.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct BUM_CFG(u32);
 impl BUM_CFG {
     /// Broadcast, Unknown and Multicast traffic leaky bucket index This index can be overruled by index from ISDX table if ANA_L2:ISDX:MISC_CFG.BUM_SLB_ENA is set. Related parameters: ANA_AC_POL:BUM_SLB
@@ -46,7 +46,7 @@ impl BUM_CFG {
 /// TUPE Control
 ///
 /// Control value for Table UPdate Engine (TUPE). See ANA_L3:TUPE.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_CTRL(u32);
 impl TUPE_CTRL {
     /// Control value for Table UPdate Engine (TUPE). Note that unused bits in VLAN_PORT_MASK may also be used to control which VLAN table entries TUPE shall update. See ANA_L3:TUPE.
@@ -60,7 +60,7 @@ impl TUPE_CTRL {
     }
 }
 /// TUPE parameter controlling which VLAN table entries to update
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TUPE_PORT_MASK_B1(u32);
 impl TUPE_PORT_MASK_B1 {
     /// See TUPE_PORT_MASK_B.
@@ -76,7 +76,7 @@ impl TUPE_PORT_MASK_B1 {
 /// VLAN Configuration
 ///
 /// Various configuration of VLAN handles
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VLAN_CFG(u32);
 impl VLAN_CFG {
     /// FID to be used for learning and forwarding.
@@ -174,7 +174,7 @@ impl VLAN_CFG {
 /// VLAN Port Mask Configuration
 ///
 /// Configuration of VLAN port mask.
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VLAN_MASK_CFG(u32);
 impl VLAN_MASK_CFG {
     /// Specify mask of ports belonging to VLAN. Note: Initialization value for addresses 0,1 and 4095 is '1...1' Initialization value for all other addresses is 0 Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.VLAN_LOOKUP_INVLD_STICKY
@@ -188,7 +188,7 @@ impl VLAN_MASK_CFG {
     }
 }
 /// Router Leg Identification / Mapped VLAN ID
-#[derive(From, Into)]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VMID_CFG(u32);
 impl VMID_CFG {
     /// Routing: VMID, identifying VLAN's router leg. Security check: "Mapped VLAN ID".
