@@ -9,7 +9,7 @@ use std::io::{Read, Write};
 use std::path::PathBuf;
 
 use clap::{App, Arg};
-use vsc7448_types::{OwnedTarget, Page};
+use vsc7448_types::{OwnedTarget, Page, Register};
 
 mod doxygen;
 mod phy;
@@ -340,58 +340,68 @@ impl {0} {{",
                         reg.addr.base * 4
                     )?;
                 }
-                writeln!(&mut gfile, "\n/// Register `{0}`", rname)?;
-                if let Some(brief) = &reg.brief {
-                    writeln!(&mut gfile, "///\n/// {}", brief.replace("\n", "\n/// "))?;
-                }
-                if let Some(details) = &reg.details {
-                    writeln!(&mut gfile, "///\n/// {}", details.replace("\n", "\n/// "))?;
-                }
-                write!(
-                    &mut gfile,
-                    "#[derive(From, Into)]
+                write_reg(&mut gfile, rname, reg)?;
+            }
+            writeln!(&mut tfile, "\n}}")?;
+        }
+        writeln!(&mut file, "\n}}")?;
+    }
+    writeln!(&mut file)?;
+
+    Ok(())
+}
+
+fn write_reg<W: std::io::Write>(
+    gfile: &mut W,
+    rname: &str,
+    reg: &Register<String>,
+) -> Result<(), std::io::Error> {
+    if let Some(brief) = &reg.brief {
+        writeln!(gfile, "/// {}", brief.replace("\n", "\n/// "))?;
+    }
+    if let Some(details) = &reg.details {
+        if reg.brief.is_some() {
+            writeln!(gfile, "///")?;
+        }
+        writeln!(gfile, "/// {}", details.replace("\n", "\n/// "))?;
+    }
+    write!(
+        gfile,
+        "#[derive(From, Into)]
 pub struct {0}(u32);
 impl {0} {{",
-                    rname
-                )?;
-                assert!(!reg.fields.is_empty());
-                for (fname, field) in reg.fields.iter() {
-                    if let Some(brief) = &field.brief {
-                        writeln!(
-                            &mut gfile,
-                            "\n    /// {}",
-                            brief.replace("\n", "\n    /// ")
-                        )?;
-                    }
-                    if let Some(details) = &field.details {
-                        if field.brief.is_some() {
-                            writeln!(&mut gfile, "\n    ///")?;
-                        }
-                        writeln!(
-                            &mut gfile,
-                            "\n    /// {}",
-                            details.replace("\n", "\n    /// ")
-                        )?;
-                    }
-                    // Write out bitfield access, tuned to avoid no-op shifts
-                    // and mask operations (which would otherwise produce
-                    // compiler warnings).
-                    let shift = field.lo;
-                    let mask = (((1u64 << field.hi) - 1) ^ ((1u64 << field.lo) - 1)) as u32;
-                    match (shift, mask) {
-                        (0, 0xFFFFFFFF) => write!(
-                            &mut gfile,
-                            "    pub fn {field}(&self) -> u32 {{
+        rname
+    )?;
+    assert!(!reg.fields.is_empty());
+    for (fname, field) in reg.fields.iter() {
+        if let Some(brief) = &field.brief {
+            writeln!(gfile, "\n    /// {}", brief.replace("\n", "\n    /// "))?;
+        }
+        if let Some(details) = &field.details {
+            if field.brief.is_some() {
+                writeln!(gfile, "\n    ///")?;
+            }
+            writeln!(gfile, "\n    /// {}", details.replace("\n", "\n    /// "))?;
+        }
+        // Write out bitfield access, tuned to avoid no-op shifts
+        // and mask operations (which would otherwise produce
+        // compiler warnings).
+        let shift = field.lo;
+        let mask = (((1u64 << field.hi) - 1) ^ ((1u64 << field.lo) - 1)) as u32;
+        match (shift, mask) {
+            (0, 0xFFFFFFFF) => write!(
+                gfile,
+                "    pub fn {field}(&self) -> u32 {{
         self.0
     }}
     pub fn set_{field}(&mut self, value: u32) {{
         self.0 = value;
     }}",
-                            field = fname.to_lowercase(),
-                        )?,
-                        (0, _) => write!(
-                            &mut gfile,
-                            "    pub fn {field}(&self) -> u32 {{
+                field = fname.to_lowercase(),
+            )?,
+            (0, _) => write!(
+                gfile,
+                "    pub fn {field}(&self) -> u32 {{
         self.0 & 0x{mask:x}
     }}
     pub fn set_{field}(&mut self, value: u32) {{
@@ -399,13 +409,13 @@ impl {0} {{",
         self.0 &= !0x{mask:x};
         self.0 |= value;
     }}",
-                            field = fname.to_lowercase(),
-                            mask = mask,
-                        )?,
-                        (_, 0xFFFFFFFF) => panic!("Cannot have a full mask and non-zero shift"),
-                        _ => write!(
-                            &mut gfile,
-                            "    pub fn {field}(&self) -> u32 {{
+                field = fname.to_lowercase(),
+                mask = mask,
+            )?,
+            (_, 0xFFFFFFFF) => panic!("Cannot have a full mask and non-zero shift"),
+            _ => write!(
+                gfile,
+                "    pub fn {field}(&self) -> u32 {{
         (self.0 & 0x{mask:x}) >> {shift}
     }}
     pub fn set_{field}(&mut self, value: u32) {{
@@ -414,24 +424,13 @@ impl {0} {{",
         self.0 &= !0x{mask:x};
         self.0 |= value;
     }}",
-                            field = fname.to_lowercase(),
-                            shift = shift,
-                            mask = mask
-                        )?,
-                    }
-                }
-                writeln!(&mut gfile, "\n}}")?;
-            }
-            writeln!(&mut tfile, "\n}}")?;
+                field = fname.to_lowercase(),
+                shift = shift,
+                mask = mask
+            )?,
         }
-        write!(
-            &mut file,
-            "    }}
-}}"
-        )?;
     }
-    writeln!(&mut file)?;
-
+    writeln!(gfile, "\n}}")?;
     Ok(())
 }
 
