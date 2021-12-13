@@ -46,7 +46,7 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
 
     // Map from target name to target memory map
     let mut known_targets = BTreeMap::new();
-    let mut target_list: TargetList = BTreeMap::new();
+    let mut target_list = BTreeMap::new();
 
     for s in s.lines() {
         // When a block ends, finalize it
@@ -114,7 +114,7 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
             let repl: i32 = caps[2].parse().unwrap();
             let addr = parse_int::parse::<u32>(&caps[5]).unwrap();
             let entry = target_list
-                .entry(name.clone())
+                .entry(name)
                 .or_insert((caps[6].to_owned(), Vec::new()));
             assert!(entry.0 == caps[6]);
             let repl = if repl == -1 { None } else { Some(repl as u32) };
