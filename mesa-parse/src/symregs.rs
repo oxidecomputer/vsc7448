@@ -4,18 +4,18 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
 use regex::Regex;
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 use vsc7448_types::Address;
 
 // Represents a memory map for a particular Target
 // This map is indexed as target_map[register_group].1[register_name]
-pub type TargetMap = HashMap<String, (Address, HashMap<String, Address>)>;
+pub type TargetMap = BTreeMap<String, (Address, BTreeMap<String, Address>)>;
 
 // Represents the layout of Targets in memory.
-pub type TargetList = HashMap<String, (String, Vec<(Option<usize>, usize)>)>;
+pub type TargetList = BTreeMap<String, (String, Vec<(Option<u32>, u32)>)>;
 
-type MemoryMap = (HashMap<String, TargetMap>, TargetList);
+type MemoryMap = (BTreeMap<String, TargetMap>, TargetList);
 
 pub fn parse_symregs(s: &str) -> MemoryMap {
     let regs_within_re =
@@ -35,18 +35,18 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
 
     let offset_re = Regex::new(r"^#define VTSS_IO_ORIGIN([0-9]+)_OFFSET\s+(0x[[:xdigit:]]+)$")
         .expect("failed to build regex");
-    let mut offsets = HashMap::new();
+    let mut offsets = BTreeMap::new();
 
     // (Register group name, map of register name -> Address)
-    let mut active_regs: Option<(String, HashMap<String, Address>)> = None;
-    let mut known_regs = HashMap::new();
+    let mut active_regs: Option<(String, BTreeMap<String, Address>)> = None;
+    let mut known_regs = BTreeMap::new();
 
     // (Target name, map of register group -> (Address, Group map))
     let mut active_target: Option<(String, TargetMap)> = None;
 
     // Map from target name to target memory map
-    let mut known_targets = HashMap::new();
-    let mut target_list = HashMap::new();
+    let mut known_targets = BTreeMap::new();
+    let mut target_list = BTreeMap::new();
 
     for s in s.lines() {
         // When a block ends, finalize it
@@ -67,11 +67,11 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
 
         if let Some(caps) = regs_within_re.captures(s) {
             assert!(active_regs.is_none());
-            active_regs = Some((caps[1].to_owned(), HashMap::new()));
+            active_regs = Some((caps[1].to_owned(), BTreeMap::new()));
         }
         if let Some(caps) = reggrp_within_re.captures(s) {
             assert!(active_target.is_none());
-            active_target = Some((caps[1].to_owned(), HashMap::new()));
+            active_target = Some((caps[1].to_owned(), BTreeMap::new()));
         }
 
         // For each register within a group, insert it into active_regs
@@ -112,16 +112,12 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
         if let Some(caps) = target_re.captures(s) {
             let name = caps[1].trim_matches('\"').to_owned();
             let repl: i32 = caps[2].parse().unwrap();
-            let addr = parse_int::parse::<usize>(&caps[5]).unwrap();
+            let addr = parse_int::parse::<u32>(&caps[5]).unwrap();
             let entry = target_list
                 .entry(name)
                 .or_insert((caps[6].to_owned(), Vec::new()));
             assert!(entry.0 == caps[6]);
-            let repl = if repl == -1 {
-                None
-            } else {
-                Some(repl as usize)
-            };
+            let repl = if repl == -1 { None } else { Some(repl as u32) };
             entry.1.push((repl, addr + offsets.get(&caps[4]).unwrap()));
         }
     }

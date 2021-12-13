@@ -1,9 +1,9 @@
 use regex::Regex;
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 use vsc7448_types::{Address, Field, Page, Register};
 
-pub fn parse_phy_pages(s: &str) -> HashMap<String, Page<String>> {
+pub fn parse_phy_pages(s: &str) -> BTreeMap<String, Page<String>> {
     let re =
         Regex::new(r"^#define VTSS_PHY_PAGE_([A-Z0-9_]+)\s+(0x[[:xdigit:]]+) /\*\*< (.*) \*/$")
             .unwrap();
@@ -15,14 +15,14 @@ pub fn parse_phy_pages(s: &str) -> HashMap<String, Page<String>> {
                 Page {
                     desc: cap[3].to_owned(),
                     base: parse_int::parse(&cap[2]).unwrap(),
-                    regs: HashMap::new(),
+                    regs: BTreeMap::new(),
                 },
             )
         })
         .collect()
 }
 
-pub fn parse_phy_registers(s: &str, pages: &mut HashMap<String, Page<String>>) {
+pub fn parse_phy_registers(s: &str, pages: &mut BTreeMap<String, Page<String>>) {
     //#define  VTSS_PHY_MODE_CONTROL VTSS_PHY_PAGE_STANDARD, 0
     let reg_re = Regex::new(
         r"^#define\s+VTSS_PHY_(?:PAGE_)?([A-Z0-9_]+)\s+VTSS_PHY_PAGE_([A-Z0-9_]+),\s*([0-9]+)$",
@@ -58,7 +58,7 @@ pub fn parse_phy_registers(s: &str, pages: &mut HashMap<String, Page<String>>) {
                     },
                     brief: None,
                     details: None,
-                    fields: HashMap::new(),
+                    fields: BTreeMap::new(),
                 },
             ));
         }
