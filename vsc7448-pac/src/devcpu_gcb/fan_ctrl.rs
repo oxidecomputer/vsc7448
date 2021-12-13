@@ -111,17 +111,17 @@ impl FAN_CFG {
         self.0 |= value;
     }
 }
-/// Currently active interrupts
+/// TACH counter
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SIO_INTR_IDENT(u32);
-impl SIO_INTR_IDENT {
-    /// Shows the currently active interrupts. This register is the result of the SIO_INTR interrupts with the disabled interrupts (from SIO_INTR_ENA and SIO_GPIO_INTR_ENA) removed.
-    ///
-    /// 0: No active interrupt for given gpio 1: Active interrupt for given gpio
-    pub fn sio_intr_ident(&self) -> u32 {
-        self.0
+pub struct FAN_CNT(u32);
+impl FAN_CNT {
+    /// Counts the number of TACH input ticks. If DEVCPU_GCB::FAN_CFG.FAN_STAT_CFG is set then this is a wrapping counter that shows the total number of registered TACH ticks. If DEVCPU_GCB::FAN_CFG.FAN_STAT_CFG is cleared then this counter is updated once every second with the number of TACH ticks registered during the last second.
+    pub fn fan_cnt(&self) -> u32 {
+        self.0 & 0xffff
     }
-    pub fn set_sio_intr_ident(&mut self, value: u32) {
-        self.0 = value;
+    pub fn set_fan_cnt(&mut self, value: u32) {
+        assert!(value <= 0xffff);
+        self.0 &= !0xffff;
+        self.0 |= value;
     }
 }

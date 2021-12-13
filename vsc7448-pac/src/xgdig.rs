@@ -156,6 +156,9 @@ impl SD10G65_APC {
     pub fn APC_LC_SOFTCTRL_CFG(&self) -> RegisterAddress<sd10g65_apc::APC_LC_SOFTCTRL_CFG> {
         RegisterAddress::new(self.0 + 0xa8)
     }
+    pub fn APC_LC_SOFTCTRL_CFG1(&self) -> RegisterAddress<sd10g65_apc::APC_LC_SOFTCTRL_CFG1> {
+        RegisterAddress::new(self.0 + 0xac)
+    }
     pub fn APC_LD_CAL_CFG(&self) -> RegisterAddress<sd10g65_apc::APC_LD_CAL_CFG> {
         RegisterAddress::new(self.0 + 0x18)
     }
@@ -204,6 +207,9 @@ impl SD10G65_DFT {
     pub fn DFT_CLK_CMP_VALUE(&self) -> RegisterAddress<sd10g65_dft::DFT_CLK_CMP_VALUE> {
         RegisterAddress::new(self.0 + 0x3c)
     }
+    pub fn DFT_CLK_GEN_CFG(&self) -> RegisterAddress<sd10g65_dft::DFT_CLK_GEN_CFG> {
+        RegisterAddress::new(self.0 + 0x48)
+    }
     pub fn DFT_ERR_STAT(&self) -> RegisterAddress<sd10g65_dft::DFT_ERR_STAT> {
         RegisterAddress::new(self.0 + 0x1c)
     }
@@ -234,17 +240,11 @@ impl SD10G65_DFT {
     pub fn DFT_TX_PAT_CFG(&self) -> RegisterAddress<sd10g65_dft::DFT_TX_PAT_CFG> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    pub fn VSCOPE_DBG_LSB(&self) -> RegisterAddress<sd10g65_dft::VSCOPE_DBG_LSB> {
-        RegisterAddress::new(self.0 + 0x18)
-    }
 }
 
 /// SD10G65 RX and TX RCPLL BIST Configuration and Status Register set
 pub struct SD10G65_RCPLL_BIST(pub(super) u32);
 impl SD10G65_RCPLL_BIST {
-    pub fn RX_SYNC_CTRL_STAT(&self) -> RegisterAddress<sd10g65_rcpll_bist::RX_SYNC_CTRL_STAT> {
-        RegisterAddress::new(self.0 + 0xc)
-    }
     pub fn SD10G65_RCPLL_BIST_CFG0(
         &self,
     ) -> RegisterAddress<sd10g65_rcpll_bist::SD10G65_RCPLL_BIST_CFG0> {
@@ -285,11 +285,11 @@ impl SD10G65_RCPLL_BIST {
 /// SYNC_CTRL Configuration and Status Register set
 pub struct SD10G65_SYNC_CTRL(pub(super) u32);
 impl SD10G65_SYNC_CTRL {
-    pub fn DFT_CLK_GEN_CFG(&self) -> RegisterAddress<sd10g65_sync_ctrl::DFT_CLK_GEN_CFG> {
-        RegisterAddress::new(self.0 + 0x48)
-    }
     pub fn RX_SYNC_CTRL_CFG(&self) -> RegisterAddress<sd10g65_sync_ctrl::RX_SYNC_CTRL_CFG> {
         RegisterAddress::new(self.0 + 0x8)
+    }
+    pub fn RX_SYNC_CTRL_STAT(&self) -> RegisterAddress<sd10g65_sync_ctrl::RX_SYNC_CTRL_STAT> {
+        RegisterAddress::new(self.0 + 0xc)
     }
     pub fn SYNC_CTRL_CFG(&self) -> RegisterAddress<sd10g65_sync_ctrl::SYNC_CTRL_CFG> {
         RegisterAddress::new(self.0 + 0x0)
@@ -302,11 +302,11 @@ impl SD10G65_SYNC_CTRL {
 /// SD10G65 VSCOPE Configuration and Status Register set
 pub struct SD10G65_VSCOPE2(pub(super) u32);
 impl SD10G65_VSCOPE2 {
-    pub fn APC_LC_SOFTCTRL_CFG1(&self) -> RegisterAddress<sd10g65_vscope2::APC_LC_SOFTCTRL_CFG1> {
-        RegisterAddress::new(self.0 + 0xac)
-    }
     pub fn VSCOPE_CNT(&self) -> RegisterAddress<sd10g65_vscope2::VSCOPE_CNT> {
         RegisterAddress::new(self.0 + 0x14)
+    }
+    pub fn VSCOPE_DBG_LSB(&self) -> RegisterAddress<sd10g65_vscope2::VSCOPE_DBG_LSB> {
+        RegisterAddress::new(self.0 + 0x18)
     }
     pub fn VSCOPE_HW_SCAN_CFG1(&self) -> RegisterAddress<sd10g65_vscope2::VSCOPE_HW_SCAN_CFG1> {
         RegisterAddress::new(self.0 + 0x8)

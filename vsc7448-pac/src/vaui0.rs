@@ -50,9 +50,8 @@ impl ANEG_CFG {
     pub fn ANEG_NEXT_PAGE_0(&self) -> RegisterAddress<aneg_cfg::ANEG_NEXT_PAGE_0> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn VAUI_CHANNEL_CFG(&self, index: u32) -> RegisterAddress<aneg_cfg::VAUI_CHANNEL_CFG> {
-        assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+    pub fn ANEG_NEXT_PAGE_1(&self) -> RegisterAddress<aneg_cfg::ANEG_NEXT_PAGE_1> {
+        RegisterAddress::new(self.0 + 0x10)
     }
 }
 
@@ -65,9 +64,6 @@ impl ANEG_STATUS {
     pub fn ANEG_LP_ADV_ABILITY_1(&self) -> RegisterAddress<aneg_status::ANEG_LP_ADV_ABILITY_1> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn ANEG_NEXT_PAGE_1(&self) -> RegisterAddress<aneg_status::ANEG_NEXT_PAGE_1> {
-        RegisterAddress::new(self.0 + 0x10)
-    }
     pub fn ANEG_STATUS(&self) -> RegisterAddress<aneg_status::ANEG_STATUS> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -75,4 +71,12 @@ impl ANEG_STATUS {
 
 /// VAUI channel Configuration Registers
 pub struct VAUI_CHANNEL_CFG(pub(super) u32);
-impl VAUI_CHANNEL_CFG {}
+impl VAUI_CHANNEL_CFG {
+    pub fn VAUI_CHANNEL_CFG(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<vaui_channel_cfg::VAUI_CHANNEL_CFG> {
+        assert!(index < 2);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+    }
+}

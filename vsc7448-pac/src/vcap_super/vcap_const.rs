@@ -123,18 +123,16 @@ impl ENTRY_WIDTH {
         self.0 = value;
     }
 }
-/// Debug information
+/// Number of VCAP interfaces
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct VCAP_STICKY(u32);
-impl VCAP_STICKY {
-    /// A move operation has resulted in deleting of one or more rules. This field applies only to version 1 VCAPs, for version 2 VCAPs it is not implemented and reading it will return zero.
-    pub fn vcap_row_deleted_sticky(&self) -> u32 {
-        self.0 & 0x1
+pub struct IF_CNT(u32);
+impl IF_CNT {
+    /// The number of VCAP interfaces.
+    pub fn if_cnt(&self) -> u32 {
+        self.0
     }
-    pub fn set_vcap_row_deleted_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
+    pub fn set_if_cnt(&mut self, value: u32) {
+        self.0 = value;
     }
 }
 /// VCAP version

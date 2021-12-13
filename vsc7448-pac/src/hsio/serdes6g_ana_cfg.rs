@@ -357,6 +357,32 @@ impl SERDES6G_DES_CFG {
         self.0 |= value;
     }
 }
+/// SERDES6G GP CFG
+///
+/// General purpose register A
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct SERDES6G_GP_CFG(u32);
+impl SERDES6G_GP_CFG {
+    /// Bit 9: SNFBC Select negative feedback center - enable for hysteresis suppression in main sampler FFs Bit 8: SNFBV Select negative feedback Vscope - enable for hysteresis suppression in vscope sampler FFs Bit 1: ERLS (used for debug only, allows for manual stepping through calibration procedure) Bit 0: CRLS (used for debug only, allows for manual stepping through calibration procedure)
+    pub fn gp_lsb(&self) -> u32 {
+        self.0 & 0xffff
+    }
+    pub fn set_gp_lsb(&mut self, value: u32) {
+        assert!(value <= 0xffff);
+        self.0 &= !0xffff;
+        self.0 |= value;
+    }
+    /// To be defined
+    pub fn gp_msb(&self) -> u32 {
+        (self.0 & 0xffff0000) >> 16
+    }
+    pub fn set_gp_msb(&mut self, value: u32) {
+        let value = value << 16;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
+        self.0 |= value;
+    }
+}
 /// SERDES6G IB Configuration register 0
 ///
 /// Configuration settings 0
@@ -916,24 +942,6 @@ impl SERDES6G_IB_CFG5 {
     pub fn set_ib_min_offset(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
-        self.0 |= value;
-    }
-}
-/// SERDES6G Misc Status
-///
-/// Status register for miscellaneous functions
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SERDES6G_MISC_STATUS(u32);
-impl SERDES6G_MISC_STATUS {
-    /// Phase selection of DES in 100fx mode
-    ///
-    /// 0: CDR locked at bit 9 1: CDR locked at bit 4
-    pub fn des_100fx_phase_sel(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_des_100fx_phase_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
         self.0 |= value;
     }
 }

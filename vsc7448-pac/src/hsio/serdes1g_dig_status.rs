@@ -117,115 +117,21 @@ impl SERDES1G_DFT_STATUS {
         self.0 |= value;
     }
 }
-/// SERDES1G Misc Configuration
+/// SERDES1G Misc Status
 ///
-/// Configuration register for miscellaneous functions
+/// Status register for miscellaneous functions
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SERDES1G_MISC_CFG(u32);
-impl SERDES1G_MISC_CFG {
-    /// Enable deserializer cp/md handling for 100fx mode
+pub struct SERDES1G_MISC_STATUS(u32);
+impl SERDES1G_MISC_STATUS {
+    /// Phase selection of DES in 100fx mode
     ///
-    /// 0: Disable 1: Enable
-    pub fn des_100fx_cpmd_ena(&self) -> u32 {
-        (self.0 & 0x100) >> 8
-    }
-    pub fn set_des_100fx_cpmd_ena(&mut self, value: u32) {
-        let value = value << 8;
-        assert!(value <= 0x100);
-        self.0 &= !0x100;
-        self.0 |= value;
-    }
-    /// Select simple 100fx mode
-    ///
-    /// 0: Normal mode 1: Simple mode
-    pub fn des_100fx_cpmd_mode(&self) -> u32 {
-        (self.0 & 0x200) >> 9
-    }
-    pub fn set_des_100fx_cpmd_mode(&mut self, value: u32) {
-        let value = value << 9;
-        assert!(value <= 0x200);
-        self.0 &= !0x200;
-        self.0 |= value;
-    }
-    /// Swap cp/md signals in 100fx mode
-    ///
-    /// 0: No swapping of cp and md 1: Swap cp and md
-    pub fn des_100fx_cpmd_swap(&self) -> u32 {
-        (self.0 & 0x400) >> 10
-    }
-    pub fn set_des_100fx_cpmd_swap(&mut self, value: u32) {
-        let value = value << 10;
-        assert!(value <= 0x400);
-        self.0 &= !0x400;
-        self.0 |= value;
-    }
-    /// Select mode of kick-out-of-180-degree functionality
-    pub fn des_100fx_kick_mode(&self) -> u32 {
-        (self.0 & 0x1800) >> 11
-    }
-    pub fn set_des_100fx_kick_mode(&mut self, value: u32) {
-        let value = value << 11;
-        assert!(value <= 0x1800);
-        self.0 &= !0x1800;
-        self.0 |= value;
-    }
-    /// Lane Reset
-    ///
-    /// 0: No reset 1: Reset (not self-clearing)
-    pub fn lane_rst(&self) -> u32 {
+    /// 0: CDR locked at bit 9 1: CDR locked at bit 4
+    pub fn des_100fx_phase_sel(&self) -> u32 {
         self.0 & 0x1
     }
-    pub fn set_lane_rst(&mut self, value: u32) {
+    pub fn set_des_100fx_phase_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// Enable data inversion received from Deserializer
-    ///
-    /// 0: Disable 1: Enable
-    pub fn rx_data_inv_ena(&self) -> u32 {
-        (self.0 & 0x8) >> 3
-    }
-    pub fn set_rx_data_inv_ena(&mut self, value: u32) {
-        let value = value << 3;
-        assert!(value <= 0x8);
-        self.0 &= !0x8;
-        self.0 |= value;
-    }
-    /// Enable RX-Low-Power feature (Power control by LPI-FSM in connected PCS)
-    ///
-    /// 0: Disable 1: Enable
-    pub fn rx_lpi_mode_ena(&self) -> u32 {
-        (self.0 & 0x20) >> 5
-    }
-    pub fn set_rx_lpi_mode_ena(&mut self, value: u32) {
-        let value = value << 5;
-        assert!(value <= 0x20);
-        self.0 &= !0x20;
-        self.0 |= value;
-    }
-    /// Enable data inversion sent to Serializer
-    ///
-    /// 0: Disable 1: Enable
-    pub fn tx_data_inv_ena(&self) -> u32 {
-        (self.0 & 0x4) >> 2
-    }
-    pub fn set_tx_data_inv_ena(&mut self, value: u32) {
-        let value = value << 2;
-        assert!(value <= 0x4);
-        self.0 &= !0x4;
-        self.0 |= value;
-    }
-    /// Enable TX-Low-Power feature (Power control by LPI-FSM in connected PCS)
-    ///
-    /// 0: Disable 1: Enable
-    pub fn tx_lpi_mode_ena(&self) -> u32 {
-        (self.0 & 0x10) >> 4
-    }
-    pub fn set_tx_lpi_mode_ena(&mut self, value: u32) {
-        let value = value << 4;
-        assert!(value <= 0x10);
-        self.0 &= !0x10;
         self.0 |= value;
     }
 }

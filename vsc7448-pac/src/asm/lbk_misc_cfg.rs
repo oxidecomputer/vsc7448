@@ -41,17 +41,16 @@ impl LBK_AGING_DIS {
         self.0 = value;
     }
 }
-/// Loopback watermark configration for flowcontrol on virtual devices
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct VD_FC_WM(u32);
-impl VD_FC_WM {
-    /// Flowcontrol to QS is set when the FIFO fill level reaches this watermark.
-    pub fn vd_fc_wm(&self) -> u32 {
-        self.0 & 0x1f
+pub struct LBK_FIFO_CFG(u32);
+impl LBK_FIFO_CFG {
+    /// Flush all data in the FIFO
+    pub fn fifo_flush(&self) -> u32 {
+        self.0 & 0x1
     }
-    pub fn set_vd_fc_wm(&mut self, value: u32) {
-        assert!(value <= 0x1f);
-        self.0 &= !0x1f;
+    pub fn set_fifo_flush(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
         self.0 |= value;
     }
 }

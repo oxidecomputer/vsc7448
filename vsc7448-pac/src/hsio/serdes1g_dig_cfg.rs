@@ -273,55 +273,115 @@ impl SERDES1G_DFT_CFG2 {
         self.0 |= value;
     }
 }
-/// SERDES1G Pll Status
+/// SERDES1G Misc Configuration
 ///
-/// Status register of SERDES1G RCPLL
+/// Configuration register for miscellaneous functions
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SERDES1G_PLL_STATUS(u32);
-impl SERDES1G_PLL_STATUS {
-    /// Calibration error
+pub struct SERDES1G_MISC_CFG(u32);
+impl SERDES1G_MISC_CFG {
+    /// Enable deserializer cp/md handling for 100fx mode
     ///
-    /// 0: No error during calibration 1: Errors occured during calibration
-    pub fn pll_cal_err(&self) -> u32 {
-        (self.0 & 0x800) >> 11
+    /// 0: Disable 1: Enable
+    pub fn des_100fx_cpmd_ena(&self) -> u32 {
+        (self.0 & 0x100) >> 8
     }
-    pub fn set_pll_cal_err(&mut self, value: u32) {
-        let value = value << 11;
-        assert!(value <= 0x800);
-        self.0 &= !0x800;
+    pub fn set_des_100fx_cpmd_ena(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0x100);
+        self.0 &= !0x100;
         self.0 |= value;
     }
-    /// Calibration status
+    /// Select simple 100fx mode
     ///
-    /// 0: Calibration not started or ongoing 1: Calibration finished
-    pub fn pll_cal_not_done(&self) -> u32 {
-        (self.0 & 0x1000) >> 12
+    /// 0: Normal mode 1: Simple mode
+    pub fn des_100fx_cpmd_mode(&self) -> u32 {
+        (self.0 & 0x200) >> 9
     }
-    pub fn set_pll_cal_not_done(&mut self, value: u32) {
-        let value = value << 12;
-        assert!(value <= 0x1000);
-        self.0 &= !0x1000;
+    pub fn set_des_100fx_cpmd_mode(&mut self, value: u32) {
+        let value = value << 9;
+        assert!(value <= 0x200);
+        self.0 &= !0x200;
         self.0 |= value;
     }
-    /// Out of range error
+    /// Swap cp/md signals in 100fx mode
     ///
-    /// 0: No out of range condition detected 1: Out of range condition since last calibration detected
-    pub fn pll_out_of_range_err(&self) -> u32 {
+    /// 0: No swapping of cp and md 1: Swap cp and md
+    pub fn des_100fx_cpmd_swap(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    pub fn set_pll_out_of_range_err(&mut self, value: u32) {
+    pub fn set_des_100fx_cpmd_swap(&mut self, value: u32) {
         let value = value << 10;
         assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
-    /// PLL read-back data, depending on "pll_rb_data_sel" either the calibrated setting or the measured period
-    pub fn pll_rb_data(&self) -> u32 {
-        self.0 & 0xff
+    /// Select mode of kick-out-of-180-degree functionality
+    pub fn des_100fx_kick_mode(&self) -> u32 {
+        (self.0 & 0x1800) >> 11
     }
-    pub fn set_pll_rb_data(&mut self, value: u32) {
-        assert!(value <= 0xff);
-        self.0 &= !0xff;
+    pub fn set_des_100fx_kick_mode(&mut self, value: u32) {
+        let value = value << 11;
+        assert!(value <= 0x1800);
+        self.0 &= !0x1800;
+        self.0 |= value;
+    }
+    /// Lane Reset
+    ///
+    /// 0: No reset 1: Reset (not self-clearing)
+    pub fn lane_rst(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_lane_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Enable data inversion received from Deserializer
+    ///
+    /// 0: Disable 1: Enable
+    pub fn rx_data_inv_ena(&self) -> u32 {
+        (self.0 & 0x8) >> 3
+    }
+    pub fn set_rx_data_inv_ena(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x8);
+        self.0 &= !0x8;
+        self.0 |= value;
+    }
+    /// Enable RX-Low-Power feature (Power control by LPI-FSM in connected PCS)
+    ///
+    /// 0: Disable 1: Enable
+    pub fn rx_lpi_mode_ena(&self) -> u32 {
+        (self.0 & 0x20) >> 5
+    }
+    pub fn set_rx_lpi_mode_ena(&mut self, value: u32) {
+        let value = value << 5;
+        assert!(value <= 0x20);
+        self.0 &= !0x20;
+        self.0 |= value;
+    }
+    /// Enable data inversion sent to Serializer
+    ///
+    /// 0: Disable 1: Enable
+    pub fn tx_data_inv_ena(&self) -> u32 {
+        (self.0 & 0x4) >> 2
+    }
+    pub fn set_tx_data_inv_ena(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0x4);
+        self.0 &= !0x4;
+        self.0 |= value;
+    }
+    /// Enable TX-Low-Power feature (Power control by LPI-FSM in connected PCS)
+    ///
+    /// 0: Disable 1: Enable
+    pub fn tx_lpi_mode_ena(&self) -> u32 {
+        (self.0 & 0x10) >> 4
+    }
+    pub fn set_tx_lpi_mode_ena(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x10);
+        self.0 &= !0x10;
         self.0 |= value;
     }
 }

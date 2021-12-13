@@ -267,15 +267,17 @@ impl GPIO_OUT_SET1 {
         self.0 = value;
     }
 }
-/// Data register for VCore accesses (will not initiate access)
+/// GPIO Signal Detect Mapping
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct VA_DATA_INERT(u32);
-impl VA_DATA_INERT {
-    /// This field behaves in the same way as VA_DATA.VA_DATA. Except accesses (read or write) does not initiate VCore accesses. Writing to this register just overwrites the value currently held by all of the data registers (VA_DATA, VA_DATA_INCR, and VA_DATA_INERT).
-    pub fn va_data_inert(&self) -> u32 {
-        self.0
+pub struct GPIO_SD_MAP(u32);
+impl GPIO_SD_MAP {
+    /// Set to map a specific GPIO mapped signal detect input to specific front-port index. There is one replication for each GPIO mapped signal detect input. If multiple signal detects are enabled and map to same front-port index, then the higher replication index will take priority. For example to map 3'rd signal detect input asif it was provided by 2'nd SERDES; set DEVCPU_GCB::GPIO_SD_MAP[2].G_SD_MAP = 1 and enable SD2 via DEVCPU_GCB::GPIO_ALT registers.
+    pub fn g_sd_map(&self) -> u32 {
+        self.0 & 0x3f
     }
-    pub fn set_va_data_inert(&mut self, value: u32) {
-        self.0 = value;
+    pub fn set_g_sd_map(&mut self, value: u32) {
+        assert!(value <= 0x3f);
+        self.0 &= !0x3f;
+        self.0 |= value;
     }
 }

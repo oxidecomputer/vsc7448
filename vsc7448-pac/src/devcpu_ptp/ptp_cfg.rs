@@ -167,3 +167,27 @@ impl PTP_PIN_INTR_ENA {
         self.0 |= value;
     }
 }
+/// System clock configuration
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct PTP_SYS_CLK_CFG(u32);
+impl PTP_SYS_CLK_CFG {
+    /// Must be configured to running system clock period, rounded down to closest interger nanoseconds value.
+    pub fn ptp_sys_clk_per_ns(&self) -> u32 {
+        (self.0 & 0x1f0) >> 4
+    }
+    pub fn set_ptp_sys_clk_per_ns(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x1f0);
+        self.0 &= !0x1f0;
+        self.0 |= value;
+    }
+    /// Must be configured to number of 100ps to add on top of the PTP_SYS_CLK_PER_NS value to get to the correct clock period.
+    pub fn ptp_sys_clk_per_ps100(&self) -> u32 {
+        self.0 & 0xf
+    }
+    pub fn set_ptp_sys_clk_per_ps100(&mut self, value: u32) {
+        assert!(value <= 0xf);
+        self.0 &= !0xf;
+        self.0 |= value;
+    }
+}

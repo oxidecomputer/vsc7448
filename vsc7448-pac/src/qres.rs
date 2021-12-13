@@ -41,9 +41,6 @@ impl RES_CTRL {
     pub fn RES_CFG(&self) -> RegisterAddress<res_ctrl::RES_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn RES_DLB_OFFSET(&self) -> RegisterAddress<res_ctrl::RES_DLB_OFFSET> {
-        RegisterAddress::new(self.0 + 0x1cc)
-    }
     pub fn RES_STAT(&self) -> RegisterAddress<res_ctrl::RES_STAT> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -59,6 +56,9 @@ impl RES_QOS_ADV {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0xe8 + index * 0x4)
     }
+    pub fn RES_DLB_OFFSET(&self) -> RegisterAddress<res_qos_adv::RES_DLB_OFFSET> {
+        RegisterAddress::new(self.0 + 0x1cc)
+    }
     pub fn RES_QOS_MODE(&self) -> RegisterAddress<res_qos_adv::RES_QOS_MODE> {
         RegisterAddress::new(self.0 + 0xe4)
     }
@@ -66,11 +66,12 @@ impl RES_QOS_ADV {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn WRED_PROFILE(&self) -> RegisterAddress<res_qos_adv::WRED_PROFILE> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// Not documented
 pub struct RES_WRED(pub(super) u32);
-impl RES_WRED {}
+impl RES_WRED {
+    pub fn WRED_PROFILE(&self) -> RegisterAddress<res_wred::WRED_PROFILE> {
+        RegisterAddress::new(self.0 + 0x0)
+    }
+}

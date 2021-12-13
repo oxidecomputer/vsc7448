@@ -61,19 +61,17 @@ impl QSHP_ALLOC_CFG {
         self.0 |= value;
     }
 }
-/// Configuration of queue shaper
+/// Configuration of the connections between queue shapers
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct QSHP_CFG(u32);
-impl QSHP_CFG {
-    /// Accounting mode for this shaper.
-    ///
-    /// 0: Line rate. Shape bytes including HSCH_MISC_CFG.FRM_ADJ. 1: Data rate. Shape bytes excluding IPG. 2. Frame rate. Shape frames with rate unit = 100 fps and burst unit = 32.8 frames. 3: Frame rate. Shape framed with rate unit = 1 fps and burst unit = 0.3 frames.
-    pub fn se_frm_mode(&self) -> u32 {
-        self.0 & 0x3
+pub struct QSHP_CONNECT(u32);
+impl QSHP_CONNECT {
+    /// Forms the leak chains.
+    pub fn se_leak_link(&self) -> u32 {
+        self.0 & 0xfff
     }
-    pub fn set_se_frm_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
-        self.0 &= !0x3;
+    pub fn set_se_leak_link(&mut self, value: u32) {
+        assert!(value <= 0xfff);
+        self.0 &= !0xfff;
         self.0 |= value;
     }
 }

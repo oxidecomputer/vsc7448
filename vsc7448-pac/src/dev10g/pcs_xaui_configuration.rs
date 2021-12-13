@@ -331,6 +331,60 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         self.0 |= value;
     }
 }
+/// PCS Low Power Idle Configuration
+///
+/// Configuration register for Low Power Idle (Energy Efficient Ethernet)
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct PCS_XAUI_LPI_CFG(u32);
+impl PCS_XAUI_LPI_CFG {
+    /// Max wake-up time before link_fail
+    ///
+    /// 00: 8 us 01: 11 us 10: 15 us 11: 18 us
+    pub fn lpi_rx_wtim(&self) -> u32 {
+        (self.0 & 0x30) >> 4
+    }
+    pub fn set_lpi_rx_wtim(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x30);
+        self.0 &= !0x30;
+        self.0 |= value;
+    }
+    /// LPI-Timer test mode.
+    ///
+    /// 0: Normal timing constants are used 1: Shortened timing constants are used
+    pub fn lpi_testmode(&self) -> u32 {
+        (self.0 & 0x10000) >> 16
+    }
+    pub fn set_lpi_testmode(&mut self, value: u32) {
+        let value = value << 16;
+        assert!(value <= 0x10000);
+        self.0 &= !0x10000;
+        self.0 |= value;
+    }
+    /// Disable output of Low-Power Idle in receive direction (to core)
+    ///
+    /// 0: Enable 1: Disable
+    pub fn rx_lpi_out_dis(&self) -> u32 {
+        (self.0 & 0x20000) >> 17
+    }
+    pub fn set_rx_lpi_out_dis(&mut self, value: u32) {
+        let value = value << 17;
+        assert!(value <= 0x20000);
+        self.0 &= !0x20000;
+        self.0 |= value;
+    }
+    /// Assert Low-Power Idle (LPI) in transmit mode
+    ///
+    /// 0: Disable LPI transmission 1: Enable LPI transmission
+    pub fn tx_assert_lpidle(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_tx_assert_lpidle(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+}
 /// PCS XAUI Receiver Error Counter Configuration
 ///
 /// Error Counter Configuration Register (if a bit in the mask field is set, the errors of that lane are not counted).
@@ -453,24 +507,6 @@ impl PCS_XAUI_TX_SEQ_CFG {
         let value = value << 7;
         assert!(value <= 0x80);
         self.0 &= !0x80;
-        self.0 |= value;
-    }
-}
-/// Tx OK Bytes Counter - MSB partTx OK Bytes Counter - MSB
-///
-/// The number of bytes transmitted - MSBs only.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TX_OK_BYTES_MSB_CNT(u32);
-impl TX_OK_BYTES_MSB_CNT {
-    /// The numbe rof transmitted bytes transmitted successfully - MSBs only.
-    ///
-    /// Counter can be written by SW.
-    pub fn tx_ok_bytes_msb_cnt(&self) -> u32 {
-        self.0 & 0xff
-    }
-    pub fn set_tx_ok_bytes_msb_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
-        self.0 &= !0xff;
         self.0 |= value;
     }
 }

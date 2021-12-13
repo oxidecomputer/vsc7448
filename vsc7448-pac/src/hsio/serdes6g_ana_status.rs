@@ -63,32 +63,6 @@ impl SERDES6G_ACJTAG_STATUS {
         self.0 |= value;
     }
 }
-/// SERDES6G GP CFG
-///
-/// General purpose register A
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SERDES6G_GP_CFG(u32);
-impl SERDES6G_GP_CFG {
-    /// Bit 9: SNFBC Select negative feedback center - enable for hysteresis suppression in main sampler FFs Bit 8: SNFBV Select negative feedback Vscope - enable for hysteresis suppression in vscope sampler FFs Bit 1: ERLS (used for debug only, allows for manual stepping through calibration procedure) Bit 0: CRLS (used for debug only, allows for manual stepping through calibration procedure)
-    pub fn gp_lsb(&self) -> u32 {
-        self.0 & 0xffff
-    }
-    pub fn set_gp_lsb(&mut self, value: u32) {
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
-        self.0 |= value;
-    }
-    /// To be defined
-    pub fn gp_msb(&self) -> u32 {
-        (self.0 & 0xffff0000) >> 16
-    }
-    pub fn set_gp_msb(&mut self, value: u32) {
-        let value = value << 16;
-        assert!(value <= 0xffff0000);
-        self.0 &= !0xffff0000;
-        self.0 |= value;
-    }
-}
 /// SERDES6G IB Status register 0
 ///
 /// Status register for Signal Detect
@@ -280,6 +254,72 @@ impl SERDES6G_PLL_STATUS {
     pub fn set_pll_rb_data(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
+        self.0 |= value;
+    }
+}
+/// SERDES6G REVID
+///
+/// Revision ID register
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct SERDES6G_REVID(u32);
+impl SERDES6G_REVID {
+    /// DES revision
+    pub fn des_rev(&self) -> u32 {
+        (self.0 & 0xfc00) >> 10
+    }
+    pub fn set_des_rev(&mut self, value: u32) {
+        let value = value << 10;
+        assert!(value <= 0xfc00);
+        self.0 &= !0xfc00;
+        self.0 |= value;
+    }
+    /// IB revision
+    pub fn ib_rev(&self) -> u32 {
+        self.0 & 0x1f
+    }
+    pub fn set_ib_rev(&mut self, value: u32) {
+        assert!(value <= 0x1f);
+        self.0 &= !0x1f;
+        self.0 |= value;
+    }
+    /// OB revision
+    pub fn ob_rev(&self) -> u32 {
+        (self.0 & 0x3e0) >> 5
+    }
+    pub fn set_ob_rev(&mut self, value: u32) {
+        let value = value << 5;
+        assert!(value <= 0x3e0);
+        self.0 &= !0x3e0;
+        self.0 |= value;
+    }
+    /// RCPLL revision
+    pub fn rcpll_rev(&self) -> u32 {
+        (self.0 & 0x3e00000) >> 21
+    }
+    pub fn set_rcpll_rev(&mut self, value: u32) {
+        let value = value << 21;
+        assert!(value <= 0x3e00000);
+        self.0 &= !0x3e00000;
+        self.0 |= value;
+    }
+    /// Serdes revision
+    pub fn serdes_rev(&self) -> u32 {
+        (self.0 & 0xfc000000) >> 26
+    }
+    pub fn set_serdes_rev(&mut self, value: u32) {
+        let value = value << 26;
+        assert!(value <= 0xfc000000);
+        self.0 &= !0xfc000000;
+        self.0 |= value;
+    }
+    /// SER revision
+    pub fn ser_rev(&self) -> u32 {
+        (self.0 & 0x1f0000) >> 16
+    }
+    pub fn set_ser_rev(&mut self, value: u32) {
+        let value = value << 16;
+        assert!(value <= 0x1f0000);
+        self.0 &= !0x1f0000;
         self.0 |= value;
     }
 }

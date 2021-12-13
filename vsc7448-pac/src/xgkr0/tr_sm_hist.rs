@@ -41,17 +41,27 @@ impl HIST_LSW {
         self.0 |= value;
     }
 }
-/// VS training prbs11 error_count
+/// VS training lptrain state machine history msw
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TR_ERRCNT(u32);
-impl TR_ERRCNT {
-    /// bit error count of prbs11 checker
-    pub fn errcnt(&self) -> u32 {
-        self.0 & 0xffff
+pub struct HIST_MSW(u32);
+impl HIST_MSW {
+    /// lptrain state machine history
+    pub fn lptsm_hist_msw(&self) -> u32 {
+        self.0 & 0x3
     }
-    pub fn set_errcnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+    pub fn set_lptsm_hist_msw(&mut self, value: u32) {
+        assert!(value <= 0x3);
+        self.0 &= !0x3;
+        self.0 |= value;
+    }
+    /// training state machine history
+    pub fn sm_hist(&self) -> u32 {
+        (self.0 & 0x7f0) >> 4
+    }
+    pub fn set_sm_hist(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x7f0);
+        self.0 &= !0x7f0;
         self.0 |= value;
     }
 }

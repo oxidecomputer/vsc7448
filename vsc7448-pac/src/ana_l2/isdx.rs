@@ -73,6 +73,20 @@ impl ISDX_BASE_CFG {
         self.0 |= value;
     }
 }
+/// Ingress service counter set, offset per COS ID
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct ISDX_COS_CFG(u32);
+impl ISDX_COS_CFG {
+    /// Ingress service counter set offset per COS ID.
+    pub fn isdx_cos_offset(&self) -> u32 {
+        self.0 & 0x7
+    }
+    pub fn set_isdx_cos_offset(&mut self, value: u32) {
+        assert!(value <= 0x7);
+        self.0 &= !0x7;
+        self.0 |= value;
+    }
+}
 /// Controls various indexes.
 ///
 /// Controls BDLB and BUM indexes and SDLB policer pipeline point.
@@ -118,48 +132,6 @@ impl MISC_CFG {
         let value = value << 21;
         assert!(value <= 0x1e00000);
         self.0 &= !0x1e00000;
-        self.0 |= value;
-    }
-}
-/// Controls automatic learn limits per logical port or GLAG
-///
-/// Per Port configuration of MAC table learn limits
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PORT_LIMIT_CTRL(u32);
-impl PORT_LIMIT_CTRL {
-    /// Allow setting PORT_LIMIT_INTR when exceeding limit on learning (happens when MAC address are supposed to be installed in the MAC table.
-    ///
-    /// 0: Disable 1: allow PORT_LIMIT_INTR to be set upon trying to learn a MAC address that causes learn limit to be exeeded
-    pub fn port_limit_exceed_irq_ena(&self) -> u32 {
-        (self.0 & 0x20000) >> 17
-    }
-    pub fn set_port_limit_exceed_irq_ena(&mut self, value: u32) {
-        let value = value << 17;
-        assert!(value <= 0x20000);
-        self.0 &= !0x20000;
-        self.0 |= value;
-    }
-    /// Action for traffic when learn limit is exceeded.
-    ///
-    /// 00: Normal forward 01: Enable redirection to CPU queue 10: Enable copy to CPU queue 11: Discard the frame
-    pub fn port_limit_exceed_sel(&self) -> u32 {
-        (self.0 & 0x18000) >> 15
-    }
-    pub fn set_port_limit_exceed_sel(&mut self, value: u32) {
-        let value = value << 15;
-        assert!(value <= 0x18000);
-        self.0 &= !0x18000;
-        self.0 |= value;
-    }
-    /// Configures the number of MAC table entries that can be used for a given PORT (through Automatic learning and CPU based learning with LOCK bit cleared and not multicast).
-    ///
-    /// 0: Disable i.e. no learn limit for the PORT 1: Only learning of one MAC address allowed for this logical port ... n: Learning of n MAC address allowed for this port
-    pub fn port_lrn_cnt_limit(&self) -> u32 {
-        self.0 & 0x7fff
-    }
-    pub fn set_port_lrn_cnt_limit(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
-        self.0 &= !0x7fff;
         self.0 |= value;
     }
 }

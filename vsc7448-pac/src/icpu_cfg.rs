@@ -50,6 +50,9 @@ impl CPU_SYSTEM_CTRL {
     pub fn GENERAL_CTRL(&self) -> RegisterAddress<cpu_system_ctrl::GENERAL_CTRL> {
         RegisterAddress::new(self.0 + 0x24)
     }
+    pub fn GENERAL_STAT(&self) -> RegisterAddress<cpu_system_ctrl::GENERAL_STAT> {
+        RegisterAddress::new(self.0 + 0x28)
+    }
     pub fn GPR(&self, index: u32) -> RegisterAddress<cpu_system_ctrl::GPR> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -105,6 +108,9 @@ impl FDMA {
     }
     pub fn FDMA_CH_STAT(&self) -> RegisterAddress<fdma::FDMA_CH_STAT> {
         RegisterAddress::new(self.0 + 0xc8)
+    }
+    pub fn FDMA_CONST(&self) -> RegisterAddress<fdma::FDMA_CONST> {
+        RegisterAddress::new(self.0 + 0x1c0)
     }
     pub fn FDMA_DCB_DATAL(&self, index: u32) -> RegisterAddress<fdma::FDMA_DCB_DATAL> {
         assert!(index < 10);
@@ -165,9 +171,6 @@ impl FDMA {
     pub fn FDMA_INTR_SIG_ENA(&self) -> RegisterAddress<fdma::FDMA_INTR_SIG_ENA> {
         RegisterAddress::new(self.0 + 0x180)
     }
-    pub fn TWI_SPIKE_FILTER_CFG(&self) -> RegisterAddress<fdma::TWI_SPIKE_FILTER_CFG> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// Interrupt controller
@@ -187,6 +190,9 @@ impl INTR {
     }
     pub fn DEV_INTR_IDENT(&self) -> RegisterAddress<intr::DEV_INTR_IDENT> {
         RegisterAddress::new(self.0 + 0x8c)
+    }
+    pub fn DEV_INTR_IDENT1(&self) -> RegisterAddress<intr::DEV_INTR_IDENT1> {
+        RegisterAddress::new(self.0 + 0x90)
     }
     pub fn DEV_INTR_POL(&self) -> RegisterAddress<intr::DEV_INTR_POL> {
         RegisterAddress::new(self.0 + 0x54)
@@ -259,9 +265,6 @@ impl INTR {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
-    pub fn MPU8051_IROM(&self) -> RegisterAddress<intr::MPU8051_IROM> {
-        RegisterAddress::new(self.0 + 0x18)
-    }
 }
 
 /// Manual extraction and injection via FDMA
@@ -283,10 +286,6 @@ impl MANUAL_XTRINJ {
     pub fn MANUAL_XTR(&self, index: u32) -> RegisterAddress<manual_xtrinj::MANUAL_XTR> {
         assert!(index < 4096);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
-    }
-    pub fn PCIE_INTR_STAT(&self, index: u32) -> RegisterAddress<manual_xtrinj::PCIE_INTR_STAT> {
-        assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x50 + index * 0x4)
     }
 }
 
@@ -370,15 +369,14 @@ impl MEMCTRL {
     pub fn MEMPHY_ZCAL(&self) -> RegisterAddress<memctrl::MEMPHY_ZCAL> {
         RegisterAddress::new(self.0 + 0x78)
     }
+    pub fn MEMPHY_ZCAL_FORCE(&self) -> RegisterAddress<memctrl::MEMPHY_ZCAL_FORCE> {
+        RegisterAddress::new(self.0 + 0x84)
+    }
     pub fn MEMPHY_ZCAL_OVR(&self) -> RegisterAddress<memctrl::MEMPHY_ZCAL_OVR> {
         RegisterAddress::new(self.0 + 0x80)
     }
     pub fn MEMPHY_ZCAL_STAT(&self) -> RegisterAddress<memctrl::MEMPHY_ZCAL_STAT> {
         RegisterAddress::new(self.0 + 0x7c)
-    }
-    pub fn TIMER_CTRL(&self, index: u32) -> RegisterAddress<memctrl::TIMER_CTRL> {
-        assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
 }
 
@@ -397,23 +395,20 @@ impl MPU8051 {
     pub fn MPU8051_CFG(&self) -> RegisterAddress<mpu8051::MPU8051_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    pub fn MPU8051_IROM(&self) -> RegisterAddress<mpu8051::MPU8051_IROM> {
+        RegisterAddress::new(self.0 + 0x18)
+    }
     pub fn MPU8051_MMAP(&self) -> RegisterAddress<mpu8051::MPU8051_MMAP> {
         RegisterAddress::new(self.0 + 0x8)
     }
     pub fn MPU8051_STAT(&self) -> RegisterAddress<mpu8051::MPU8051_STAT> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn SW_MODE(&self) -> RegisterAddress<mpu8051::SW_MODE> {
-        RegisterAddress::new(self.0 + 0x14)
-    }
 }
 
 /// PCIe endpoint
 pub struct PCIE(pub(super) u32);
 impl PCIE {
-    pub fn FDMA_CONST(&self) -> RegisterAddress<pcie::FDMA_CONST> {
-        RegisterAddress::new(self.0 + 0x1c0)
-    }
     pub fn PCIEMST_BAR1_MASK(&self) -> RegisterAddress<pcie::PCIEMST_BAR1_MASK> {
         RegisterAddress::new(self.0 + 0x1c)
     }
@@ -469,6 +464,10 @@ impl PCIE {
     pub fn PCIE_INTR_IDENT(&self) -> RegisterAddress<pcie::PCIE_INTR_IDENT> {
         RegisterAddress::new(self.0 + 0x40)
     }
+    pub fn PCIE_INTR_STAT(&self, index: u32) -> RegisterAddress<pcie::PCIE_INTR_STAT> {
+        assert!(index < 2);
+        RegisterAddress::new(self.0 + 0x50 + index * 0x4)
+    }
     pub fn PCIE_STAT(&self) -> RegisterAddress<pcie::PCIE_STAT> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -477,9 +476,6 @@ impl PCIE {
 /// Parallel Interface Configuration
 pub struct PI_MST(pub(super) u32);
 impl PI_MST {
-    pub fn GENERAL_STAT(&self) -> RegisterAddress<pi_mst::GENERAL_STAT> {
-        RegisterAddress::new(self.0 + 0x28)
-    }
     pub fn PI_MST_CFG(&self) -> RegisterAddress<pi_mst::PI_MST_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -489,14 +485,14 @@ impl PI_MST {
     pub fn PI_MST_STATUS(&self) -> RegisterAddress<pi_mst::PI_MST_STATUS> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    pub fn PI_SLV_CFG(&self) -> RegisterAddress<pi_mst::PI_SLV_CFG> {
+        RegisterAddress::new(self.0 + 0xc)
+    }
 }
 
 /// SPI boot master
 pub struct SPI_MST(pub(super) u32);
 impl SPI_MST {
-    pub fn PI_SLV_CFG(&self) -> RegisterAddress<spi_mst::PI_SLV_CFG> {
-        RegisterAddress::new(self.0 + 0xc)
-    }
     pub fn SPI_MST_CFG(&self) -> RegisterAddress<spi_mst::SPI_MST_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -504,13 +500,17 @@ impl SPI_MST {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
+    pub fn SW_MODE(&self) -> RegisterAddress<spi_mst::SW_MODE> {
+        RegisterAddress::new(self.0 + 0x14)
+    }
 }
 
 /// Timers
 pub struct TIMERS(pub(super) u32);
 impl TIMERS {
-    pub fn DEV_INTR_IDENT1(&self) -> RegisterAddress<timers::DEV_INTR_IDENT1> {
-        RegisterAddress::new(self.0 + 0x90)
+    pub fn TIMER_CTRL(&self, index: u32) -> RegisterAddress<timers::TIMER_CTRL> {
+        assert!(index < 3);
+        RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
     pub fn TIMER_RELOAD_VALUE(&self, index: u32) -> RegisterAddress<timers::TIMER_RELOAD_VALUE> {
         assert!(index < 3);
@@ -531,15 +531,15 @@ impl TIMERS {
 /// TWI hold time configuration
 pub struct TWI_DELAY(pub(super) u32);
 impl TWI_DELAY {
-    pub fn MEMPHY_ZCAL_FORCE(&self) -> RegisterAddress<twi_delay::MEMPHY_ZCAL_FORCE> {
-        RegisterAddress::new(self.0 + 0x84)
+    pub fn TWI_CONFIG(&self) -> RegisterAddress<twi_delay::TWI_CONFIG> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// TWI spike filter configuration
 pub struct TWI_SPIKE_FILTER(pub(super) u32);
 impl TWI_SPIKE_FILTER {
-    pub fn TWI_CONFIG(&self) -> RegisterAddress<twi_spike_filter::TWI_CONFIG> {
+    pub fn TWI_SPIKE_FILTER_CFG(&self) -> RegisterAddress<twi_spike_filter::TWI_SPIKE_FILTER_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }

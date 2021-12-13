@@ -45,10 +45,6 @@ pub mod sticky_mask;
 /// Common configurations for all ports
 pub struct COMMON(pub(super) u32);
 impl COMMON {
-    pub fn ADV_CL_CFG(&self, index: u32) -> RegisterAddress<common::ADV_CL_CFG> {
-        assert!(index < 6);
-        RegisterAddress::new(self.0 + 0xb4 + index * 0x4)
-    }
     pub fn ADV_RNG_CTRL(&self, index: u32) -> RegisterAddress<common::ADV_RNG_CTRL> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0xa4 + index * 0x4)
@@ -88,6 +84,9 @@ impl COMMON {
     pub fn HM_CFG(&self, index: u32) -> RegisterAddress<common::HM_CFG> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0xec + index * 0x4)
+    }
+    pub fn MIP_CTRL(&self) -> RegisterAddress<common::MIP_CTRL> {
+        RegisterAddress::new(self.0 + 0x2e4)
     }
     pub fn MPLS_CFG(&self) -> RegisterAddress<common::MPLS_CFG> {
         RegisterAddress::new(self.0 + 0x2dc)
@@ -130,12 +129,11 @@ impl COMMON {
 /// Ingress Protection Table
 pub struct IPT(pub(super) u32);
 impl IPT {
+    pub fn IPT(&self) -> RegisterAddress<ipt::IPT> {
+        RegisterAddress::new(self.0 + 0xc)
+    }
     pub fn ISDX_CFG(&self) -> RegisterAddress<ipt::ISDX_CFG> {
         RegisterAddress::new(self.0 + 0x0)
-    }
-    pub fn MAP_ENTRY(&self, index: u32) -> RegisterAddress<ipt::MAP_ENTRY> {
-        assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
     pub fn OAM_MEP_CFG(&self) -> RegisterAddress<ipt::OAM_MEP_CFG> {
         RegisterAddress::new(self.0 + 0x8)
@@ -148,16 +146,17 @@ impl IPT {
 /// L2CP table
 pub struct L2CP_TBL(pub(super) u32);
 impl L2CP_TBL {
-    pub fn LBM_MAC_LOW(&self) -> RegisterAddress<l2cp_tbl::LBM_MAC_LOW> {
-        RegisterAddress::new(self.0 + 0x10)
+    pub fn L2CP_ENTRY_CFG(&self) -> RegisterAddress<l2cp_tbl::L2CP_ENTRY_CFG> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// QoS mapping table
 pub struct MAP_TBL(pub(super) u32);
 impl MAP_TBL {
-    pub fn L2CP_ENTRY_CFG(&self) -> RegisterAddress<map_tbl::L2CP_ENTRY_CFG> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn MAP_ENTRY(&self, index: u32) -> RegisterAddress<map_tbl::MAP_ENTRY> {
+        assert!(index < 8);
+        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
     pub fn SET_CTRL(&self) -> RegisterAddress<map_tbl::SET_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
@@ -173,28 +172,32 @@ impl MIP_TBL {
     pub fn LBM_MAC_HIGH(&self) -> RegisterAddress<mip_tbl::LBM_MAC_HIGH> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    pub fn LBM_MAC_LOW(&self) -> RegisterAddress<mip_tbl::LBM_MAC_LOW> {
+        RegisterAddress::new(self.0 + 0x10)
+    }
     pub fn MIP_CFG(&self) -> RegisterAddress<mip_tbl::MIP_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
     pub fn MIP_CL_VID_CTRL(&self) -> RegisterAddress<mip_tbl::MIP_CL_VID_CTRL> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn PROFILE_CFG(&self) -> RegisterAddress<mip_tbl::PROFILE_CFG> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// Configuriong of profiles used for MPLS traffic exception handling
 pub struct MPLS_PROFILE(pub(super) u32);
 impl MPLS_PROFILE {
-    pub fn MIP_CTRL(&self) -> RegisterAddress<mpls_profile::MIP_CTRL> {
-        RegisterAddress::new(self.0 + 0x2e4)
+    pub fn PROFILE_CFG(&self) -> RegisterAddress<mpls_profile::PROFILE_CFG> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Classification and filter configurations per port
 pub struct PORT(pub(super) u32);
 impl PORT {
+    pub fn ADV_CL_CFG(&self, index: u32) -> RegisterAddress<port::ADV_CL_CFG> {
+        assert!(index < 6);
+        RegisterAddress::new(self.0 + 0xb4 + index * 0x4)
+    }
     pub fn CAPTURE_BPDU_CFG(&self) -> RegisterAddress<port::CAPTURE_BPDU_CFG> {
         RegisterAddress::new(self.0 + 0xb0)
     }
@@ -242,8 +245,9 @@ impl PORT {
 /// Protection Programming Table
 pub struct PPT(pub(super) u32);
 impl PPT {
-    pub fn IPT(&self) -> RegisterAddress<ppt::IPT> {
-        RegisterAddress::new(self.0 + 0xc)
+    pub fn PP_CFG(&self, index: u32) -> RegisterAddress<ppt::PP_CFG> {
+        assert!(index < 16);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
 }
 
@@ -265,12 +269,11 @@ impl STICKY {
     pub fn FILTER_STICKY(&self) -> RegisterAddress<sticky::FILTER_STICKY> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    pub fn IP_HDR_CHK_STICKY(&self) -> RegisterAddress<sticky::IP_HDR_CHK_STICKY> {
+        RegisterAddress::new(self.0 + 0x24)
+    }
     pub fn MIP_STICKY(&self) -> RegisterAddress<sticky::MIP_STICKY> {
         RegisterAddress::new(self.0 + 0x20)
-    }
-    pub fn PP_CFG(&self, index: u32) -> RegisterAddress<sticky::PP_CFG> {
-        assert!(index < 16);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
     pub fn VLAN_FILTER_STICKY(&self, index: u32) -> RegisterAddress<sticky::VLAN_FILTER_STICKY> {
         assert!(index < 3);
@@ -289,9 +292,6 @@ impl STICKY_MASK {
     }
     pub fn FILTER_STICKY_MASK(&self) -> RegisterAddress<sticky_mask::FILTER_STICKY_MASK> {
         RegisterAddress::new(self.0 + 0x0)
-    }
-    pub fn IP_HDR_CHK_STICKY(&self) -> RegisterAddress<sticky_mask::IP_HDR_CHK_STICKY> {
-        RegisterAddress::new(self.0 + 0x24)
     }
     pub fn IP_HDR_CHK_STICKY_MASK(&self) -> RegisterAddress<sticky_mask::IP_HDR_CHK_STICKY_MASK> {
         RegisterAddress::new(self.0 + 0x1c)

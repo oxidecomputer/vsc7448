@@ -377,6 +377,70 @@ impl INTR_ENA {
         self.0 |= value;
     }
 }
+/// ANA_L2 interrupt status
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct INTR_IDENT(u32);
+impl INTR_IDENT {
+    /// Status of FID_LIMIT_INTR interrupts
+    ///
+    /// 0: No interrupt 1: Interrupt to CPU
+    pub fn fid_limit_intr_ident(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_fid_limit_intr_ident(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Status of LRN_ACCESS_COMPLETE_INTR interrupts
+    ///
+    /// 0: No interrupt 1: Interrupt to CPU
+    pub fn lrn_access_complete_intr_ident(&self) -> u32 {
+        (self.0 & 0x8) >> 3
+    }
+    pub fn set_lrn_access_complete_intr_ident(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x8);
+        self.0 &= !0x8;
+        self.0 |= value;
+    }
+    /// Status of PORT_LRN_LIMIT_INTR interrupts
+    ///
+    /// 0: No interrupt 1: Interrupt to CPU
+    pub fn port_lrn_limit_intr_ident(&self) -> u32 {
+        (self.0 & 0x2) >> 1
+    }
+    pub fn set_port_lrn_limit_intr_ident(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+    /// Status of SUPER_VCAP_INTR interrupts
+    ///
+    /// 0: No interrupt 1: Interrupt to CPU
+    pub fn super_vcap_intr_ident(&self) -> u32 {
+        (self.0 & 0x10) >> 4
+    }
+    pub fn set_super_vcap_intr_ident(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x10);
+        self.0 &= !0x10;
+        self.0 |= value;
+    }
+    /// Status of VCAP_S2_INTR interrupts
+    ///
+    /// 0: No interrupt 1: Interrupt to CPU
+    pub fn vcap_s2_intr_ident(&self) -> u32 {
+        (self.0 & 0x4) >> 2
+    }
+    pub fn set_vcap_s2_intr_ident(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0x4);
+        self.0 &= !0x4;
+        self.0 |= value;
+    }
+}
 /// Learn configuration
 ///
 /// Configures learn handling. Upon reception of a frame the (SMAC, IFID) is used to perform a lookup in the MAC table. If an entry is found the station sending the frame is considered known and the SOURCE entry is retrieved from the MAC table - alternatively the station is considered unknown. A comparison of the received port information and the port information known is performed for known stations to detection port move. A frame with changed or unknown station information is considered a learn frame.

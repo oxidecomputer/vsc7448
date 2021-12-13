@@ -71,6 +71,18 @@ impl CHIP_ID {
         self.0 |= value;
     }
 }
+/// Disable of features
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct FEA_DIS(u32);
+impl FEA_DIS {
+    /// Efuse force values. These bits are or'ed together with the corresponding efuse fields - setting bits here corresponds to burning efuses and can be used for validation purposes.
+    pub fn fea_dis(&self) -> u32 {
+        self.0
+    }
+    pub fn set_fea_dis(&mut self, value: u32) {
+        self.0 = value;
+    }
+}
 /// Encoded features
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct FEA_STAT(u32);

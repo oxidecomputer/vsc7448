@@ -67,14 +67,14 @@ impl CT_CCM_TLV_INFO_ANA {
         self.0 |= value;
     }
 }
-/// Context data
+/// Analyzer Context data
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct CT_OAM_DATA1_REW(u32);
-impl CT_OAM_DATA1_REW {
-    pub fn ct_oam_misc_rew(&self) -> u32 {
+pub struct CT_OAM_DATA1_ANA(u32);
+impl CT_OAM_DATA1_ANA {
+    pub fn ct_oam_misc_ana(&self) -> u32 {
         self.0
     }
-    pub fn set_ct_oam_misc_rew(&mut self, value: u32) {
+    pub fn set_ct_oam_misc_ana(&mut self, value: u32) {
         self.0 = value;
     }
 }

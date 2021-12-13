@@ -179,6 +179,62 @@ impl GENERAL_CTRL {
         self.0 |= value;
     }
 }
+/// General status
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct GENERAL_STAT(u32);
+impl GENERAL_STAT {
+    /// This field is set if the VCore CPU has entered sleep mode.
+    pub fn cpu_sleep(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_cpu_sleep(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// This field is set if the PI slave interface has received error indication from the SBA fabric during a read access. The PI slave will have returned 0x88888888 for the offending read.
+    pub fn pi_slv_rd_err(&self) -> u32 {
+        (self.0 & 0x100) >> 8
+    }
+    pub fn set_pi_slv_rd_err(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0x100);
+        self.0 &= !0x100;
+        self.0 |= value;
+    }
+    /// This field is set if the PI slave interface has received error indication from the SBA fabric during a write access.
+    pub fn pi_slv_wr_err(&self) -> u32 {
+        (self.0 & 0x200) >> 9
+    }
+    pub fn set_pi_slv_wr_err(&mut self, value: u32) {
+        let value = value << 9;
+        assert!(value <= 0x200);
+        self.0 &= !0x200;
+        self.0 |= value;
+    }
+    /// Debug information for checking register read/write problems. This is a read-only field which can only be cleared by reset of the VCore System.
+    ///
+    /// 0: No errors detected. 1: Non-32bit access to VCore or SwC registers, access has been discarded, read returns 0x8888 or 0x88. 2: SwC registers not ready when accessed, access has been discarded, read returns 0x88888888. 3: SwC registers reported error, check DEVCPU_ORG::ERR_CNTS for error, read returns 0x88888888. 4: Unimplemented VCore register, access has been discarded, read returns 0x88888888.
+    pub fn reg_if_err(&self) -> u32 {
+        (self.0 & 0xe) >> 1
+    }
+    pub fn set_reg_if_err(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0xe);
+        self.0 &= !0xe;
+        self.0 |= value;
+    }
+    /// Shows the value of the VCore Cfg strapping inputs.
+    pub fn vcore_cfg(&self) -> u32 {
+        (self.0 & 0xf0) >> 4
+    }
+    pub fn set_vcore_cfg(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0xf0);
+        self.0 &= !0xf0;
+        self.0 |= value;
+    }
+}
 /// General Purpose Register
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct GPR(u32);

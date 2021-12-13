@@ -505,6 +505,87 @@ impl SERDES1G_OB_CFG {
         self.0 |= value;
     }
 }
+/// SERDES1G Pll Cfg
+///
+/// Configuration register for SERDES1G RCPLL
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct SERDES1G_PLL_CFG(u32);
+impl SERDES1G_PLL_CFG {
+    /// Enable feedback divider (divide by two)
+    ///
+    /// 0: Disable 1: Enable
+    pub fn pll_ena_fb_div2(&self) -> u32 {
+        (self.0 & 0x400000) >> 22
+    }
+    pub fn set_pll_ena_fb_div2(&mut self, value: u32) {
+        let value = value << 22;
+        assert!(value <= 0x400000);
+        self.0 &= !0x400000;
+        self.0 |= value;
+    }
+    /// Enable reference clock divider (divide by two)
+    ///
+    /// 0: Disable 1: Enable
+    pub fn pll_ena_rc_div2(&self) -> u32 {
+        (self.0 & 0x200000) >> 21
+    }
+    pub fn set_pll_ena_rc_div2(&mut self, value: u32) {
+        let value = value << 21;
+        assert!(value <= 0x200000);
+        self.0 &= !0x200000;
+        self.0 |= value;
+    }
+    /// Control data for FSM
+    pub fn pll_fsm_ctrl_data(&self) -> u32 {
+        (self.0 & 0xff00) >> 8
+    }
+    pub fn set_pll_fsm_ctrl_data(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0xff00);
+        self.0 &= !0xff00;
+        self.0 |= value;
+    }
+    /// Enable FSM
+    pub fn pll_fsm_ena(&self) -> u32 {
+        (self.0 & 0x80) >> 7
+    }
+    pub fn set_pll_fsm_ena(&mut self, value: u32) {
+        let value = value << 7;
+        assert!(value <= 0x80);
+        self.0 &= !0x80;
+        self.0 |= value;
+    }
+    /// Enable FSM forcing
+    pub fn pll_fsm_force_set_ena(&self) -> u32 {
+        (self.0 & 0x40) >> 6
+    }
+    pub fn set_pll_fsm_force_set_ena(&mut self, value: u32) {
+        let value = value << 6;
+        assert!(value <= 0x40);
+        self.0 &= !0x40;
+        self.0 |= value;
+    }
+    /// Enable FSM recalibration
+    pub fn pll_fsm_oor_recal_ena(&self) -> u32 {
+        (self.0 & 0x20) >> 5
+    }
+    pub fn set_pll_fsm_oor_recal_ena(&mut self, value: u32) {
+        let value = value << 5;
+        assert!(value <= 0x20);
+        self.0 &= !0x20;
+        self.0 |= value;
+    }
+    /// Select RB data
+    pub fn pll_rb_data_sel(&self) -> u32 {
+        (self.0 & 0x8) >> 3
+    }
+    pub fn set_pll_rb_data_sel(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x8);
+        self.0 &= !0x8;
+        self.0 |= value;
+    }
+}
 /// SERDES1G Serializer Cfg
 ///
 /// Configuration register for SERDES1G serializer
@@ -616,31 +697,6 @@ impl SERDES1G_SER_CFG {
         let value = value << 6;
         assert!(value <= 0x40);
         self.0 &= !0x40;
-        self.0 |= value;
-    }
-}
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SYNC_ETH_SD10G_CFG(u32);
-impl SYNC_ETH_SD10G_CFG {
-    /// Set to enable auto-squelching for sync. ethernet clock output: when set the clock output will stop toggling (keep its last value constantly) when PCS looses link synchrony.
-    pub fn sd10g_auto_squelch_ena(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_sd10g_auto_squelch_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// Divider setting for the SD10G recovered clock output. These settings are applied prior to sending recovered clock to the optional PAD-divder (see HSIO::SYNC_ETH_CFG.SEL_RECO_CLK_DIV.)
-    ///
-    /// 0: No clock dividing 1: Divide clock by 2 2: Divide clock by (66/32) 3: reserved
-    pub fn sd10g_reco_clk_div(&self) -> u32 {
-        (self.0 & 0x6) >> 1
-    }
-    pub fn set_sd10g_reco_clk_div(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x6);
-        self.0 &= !0x6;
         self.0 |= value;
     }
 }

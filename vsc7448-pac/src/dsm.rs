@@ -49,8 +49,8 @@ impl CFG {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x294 + index * 0x4)
     }
-    pub fn CM_DATA(&self) -> RegisterAddress<cfg::CM_DATA> {
-        RegisterAddress::new(self.0 + 0x4)
+    pub fn DBG_CTRL(&self) -> RegisterAddress<cfg::DBG_CTRL> {
+        RegisterAddress::new(self.0 + 0xa48)
     }
     pub fn DEV_TX_STOP_WM_CFG(&self, index: u32) -> RegisterAddress<cfg::DEV_TX_STOP_WM_CFG> {
         assert!(index < 55);
@@ -107,21 +107,22 @@ impl COREMEM {
     pub fn CM_ADDR(&self) -> RegisterAddress<coremem::CM_ADDR> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn RAM_INIT(&self) -> RegisterAddress<coremem::RAM_INIT> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn CM_DATA(&self) -> RegisterAddress<coremem::CM_DATA> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
-impl RAM_CTRL {}
+impl RAM_CTRL {
+    pub fn RAM_INIT(&self) -> RegisterAddress<ram_ctrl::RAM_INIT> {
+        RegisterAddress::new(self.0 + 0x0)
+    }
+}
 
 /// Configuration registers for rate limit modes
 pub struct RATE_LIMIT_CFG(pub(super) u32);
 impl RATE_LIMIT_CFG {
-    pub fn PRE_CNT_OFLW_STICKY(&self) -> RegisterAddress<rate_limit_cfg::PRE_CNT_OFLW_STICKY> {
-        RegisterAddress::new(self.0 + 0xf0)
-    }
     pub fn TX_FRAME_RATE_START_CFG(
         &self,
         index: u32,
@@ -136,6 +137,9 @@ impl RATE_LIMIT_CFG {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0xdc + index * 0x4)
     }
+    pub fn TX_RATE_LIMIT_HDR_CFG(&self) -> RegisterAddress<rate_limit_cfg::TX_RATE_LIMIT_HDR_CFG> {
+        RegisterAddress::new(self.0 + 0x294)
+    }
     pub fn TX_RATE_LIMIT_MODE(
         &self,
         index: u32,
@@ -148,11 +152,6 @@ impl RATE_LIMIT_CFG {
 /// Status registers for rate limit modes
 pub struct RATE_LIMIT_STATUS(pub(super) u32);
 impl RATE_LIMIT_STATUS {
-    pub fn TX_RATE_LIMIT_HDR_CFG(
-        &self,
-    ) -> RegisterAddress<rate_limit_status::TX_RATE_LIMIT_HDR_CFG> {
-        RegisterAddress::new(self.0 + 0x294)
-    }
     pub fn TX_RATE_LIMIT_STICKY(
         &self,
         index: u32,
@@ -180,7 +179,7 @@ impl STATUS {
     pub fn CELL_BUS_STICKY(&self) -> RegisterAddress<status::CELL_BUS_STICKY> {
         RegisterAddress::new(self.0 + 0xdc)
     }
-    pub fn DBG_CTRL(&self) -> RegisterAddress<status::DBG_CTRL> {
-        RegisterAddress::new(self.0 + 0xa48)
+    pub fn PRE_CNT_OFLW_STICKY(&self) -> RegisterAddress<status::PRE_CNT_OFLW_STICKY> {
+        RegisterAddress::new(self.0 + 0xf0)
     }
 }

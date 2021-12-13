@@ -51,29 +51,15 @@ impl CM_ADDR {
         self.0 |= value;
     }
 }
-/// Core reset control
-///
-/// Controls reset and initialization of the switching core. Proper startup sequence is: - Enable memories - Initialize memories - Enable core
+/// Data register for core memory access.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct RAM_INIT(u32);
-impl RAM_INIT {
-    /// Core memory controllers are enabled when this field is set.
-    pub fn ram_ena(&self) -> u32 {
-        self.0 & 0x1
+pub struct CM_DATA(u32);
+impl CM_DATA {
+    /// Data register for core memory access. Wider memories are big endian mapped into the 32 BIT inspection space.
+    pub fn cm_data(&self) -> u32 {
+        self.0
     }
-    pub fn set_ram_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// Initialize core memories. Field is automatically cleared when operation is complete ( approx. 40 us).
-    pub fn ram_init(&self) -> u32 {
-        (self.0 & 0x2) >> 1
-    }
-    pub fn set_ram_init(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x2);
-        self.0 &= !0x2;
-        self.0 |= value;
+    pub fn set_cm_data(&mut self, value: u32) {
+        self.0 = value;
     }
 }

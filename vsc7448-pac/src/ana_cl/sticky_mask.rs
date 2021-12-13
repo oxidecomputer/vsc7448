@@ -316,58 +316,6 @@ impl FILTER_STICKY_MASK {
         self.0 |= value;
     }
 }
-/// Sticky bits register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct IP_HDR_CHK_STICKY(u32);
-impl IP_HDR_CHK_STICKY {
-    /// Set if an IP checksum error is found.
-    ///
-    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    pub fn ip4_chksum_sticky(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_ip4_chksum_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// Set if an IP fragmented frame is found.
-    ///
-    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    pub fn ip4_fragment_sticky(&self) -> u32 {
-        (self.0 & 0x4) >> 2
-    }
-    pub fn set_ip4_fragment_sticky(&mut self, value: u32) {
-        let value = value << 2;
-        assert!(value <= 0x4);
-        self.0 &= !0x4;
-        self.0 |= value;
-    }
-    /// Set if IP total length is less that IP header length.
-    ///
-    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    pub fn ip4_len_sticky(&self) -> u32 {
-        (self.0 & 0x2) >> 1
-    }
-    pub fn set_ip4_len_sticky(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x2);
-        self.0 &= !0x2;
-        self.0 |= value;
-    }
-    /// Set if an IP packet with options is found.
-    ///
-    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    pub fn ip_options_sticky(&self) -> u32 {
-        (self.0 & 0x8) >> 3
-    }
-    pub fn set_ip_options_sticky(&mut self, value: u32) {
-        let value = value << 3;
-        assert!(value <= 0x8);
-        self.0 &= !0x8;
-        self.0 |= value;
-    }
-}
 /// Sticky counter mask register
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct IP_HDR_CHK_STICKY_MASK(u32);

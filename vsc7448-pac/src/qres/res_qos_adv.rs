@@ -51,6 +51,20 @@ impl PFC_CFG {
         self.0 |= value;
     }
 }
+/// DLB shaping offset
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct RES_DLB_OFFSET(u32);
+impl RES_DLB_OFFSET {
+    /// The watermarks for enabling DLB rate will be offset this value compared to the sensed resource. Ie. if shared priority 0 watermark is set to 40000 cells, the default value will allow higher rate shaping when 39950 cells has been used.
+    pub fn res_dlb_offs_val(&self) -> u32 {
+        self.0 & 0x3ff
+    }
+    pub fn set_res_dlb_offs_val(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
+        self.0 &= !0x3ff;
+        self.0 |= value;
+    }
+}
 /// Shared QOS resource mode
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RES_QOS_MODE(u32);
@@ -78,32 +92,6 @@ impl WRED_GROUP {
     pub fn set_wred_group(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
-        self.0 |= value;
-    }
-}
-/// Random Early Discard (WRED) configuration
-///
-/// Configuration of Random Early Discard (RED) profile per RedGroup/QoS class/DP level. The profile index is calulated as Group*24+(DP-1)*8+QOS. There are no profiled for DP=0..
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct WRED_PROFILE(u32);
-impl WRED_PROFILE {
-    /// See WM_RED_LOW. Unit is 2816 bytes.
-    pub fn wm_red_high(&self) -> u32 {
-        self.0 & 0x7ff
-    }
-    pub fn set_wm_red_high(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
-        self.0 &= !0x7ff;
-        self.0 |= value;
-    }
-    /// When enqueuing a frame, RED is active if the egress memory consumption for the applicaple profile is above WM_RED_LEVEL. The probability of random early discarding is calculated as: (Memory consumption - WM_RED_LOW)/(WM_RED_HIGH - WM_RED_LOW). Unit is 2816 bytes.
-    pub fn wm_red_low(&self) -> u32 {
-        (self.0 & 0x3ff800) >> 11
-    }
-    pub fn set_wm_red_low(&mut self, value: u32) {
-        let value = value << 11;
-        assert!(value <= 0x3ff800);
-        self.0 &= !0x3ff800;
         self.0 |= value;
     }
 }

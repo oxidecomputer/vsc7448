@@ -41,17 +41,19 @@ impl VCAP_CORE_IDX {
         self.0 |= value;
     }
 }
-/// Cache rule enable
+/// Mapping of core
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct VCAP_RULE_ENA(u32);
-impl VCAP_RULE_ENA {
-    /// Cache register. Set to enable ES0 rule. Applies only to the ES0 VCAP.
-    pub fn rule_ena(&self) -> u32 {
-        self.0 & 0x1
+pub struct VCAP_CORE_MAP(u32);
+impl VCAP_CORE_MAP {
+    /// Configure ownership of core n (defined by VCAP_SUPER::VCAP_CORE_IDX). When a core is mapped to a specific VCAP; lookups for that VCAP will be applied to the core. VCAP priority is still observed, a match in two cores will only cause the most significant rule to be "hit" (highest address.) After reset all cores are in power-save mode.
+    ///
+    /// Applies only to the Super VCAP.
+    pub fn core_map(&self) -> u32 {
+        self.0 & 0x7
     }
-    pub fn set_rule_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
+    pub fn set_core_map(&mut self, value: u32) {
+        assert!(value <= 0x7);
+        self.0 &= !0x7;
         self.0 |= value;
     }
 }

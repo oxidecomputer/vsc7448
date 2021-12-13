@@ -44,6 +44,22 @@ impl COMMON_MEP_MC_MAC_LSB {
         self.0 |= value;
     }
 }
+/// VOP Multicast MAC address configuration (MSB)
+///
+/// Each VOE can be addressed using either a common Multicast MAC address or a VOE specific Unicast MAC address. This register configures the Multicast Address common to all the VOEs. The full MAC address is a concatenation of the folliowing registers: 1) VOP::COMMON_MEP_MC_MAC_LSB 2) VOP::COMMON_MEP_MC_MAC_MSB The default value of this register is determined by 802.1ag. The DMAC check to be performed for each VOE is configured in the following bit field: VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL Note that only the upper 44 bits are matched, since the lower 4 bits of the DMAC address contain the MEG level.
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct COMMON_MEP_MC_MAC_MSB(u32);
+impl COMMON_MEP_MC_MAC_MSB {
+    /// See register description.
+    pub fn mep_mc_mac_msb(&self) -> u32 {
+        self.0 & 0xffff
+    }
+    pub fn set_mep_mc_mac_msb(&mut self, value: u32) {
+        assert!(value <= 0xffff);
+        self.0 &= !0xffff;
+        self.0 |= value;
+    }
+}
 /// Configuring destination for frames extracted to the CPU by Ethernet VOEs
 ///
 /// This register configures the destination for OAM frames which are extracted to CPU by the VOE for various reasons. An OAM PDU may be extracted to the CPU for various reasons: * Based on PDU type (See register: VOP:VOE_CONF:OAM_CPU_COPY_CTRL.* * OAM error condition (e.g. DMAC error) * PDU specific extraction reasons. Most HW supported OAM PDUs have their own configuration, while some related PDUs share a single configuration. The configuration for each OAM PDU consists of one bit field which indicate which of the extraction queues the relevant PDUs are extracted: *_CPU_QU OAM PDU types which do not have a specific configuration will use the default configuration: DEF_COPY_CPU_QU The details are described for each bit field.

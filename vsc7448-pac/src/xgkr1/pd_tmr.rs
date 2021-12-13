@@ -41,15 +41,15 @@ impl PD_LSW {
         self.0 |= value;
     }
 }
-/// VS AN training state timer msw
+/// VS AN page_detect timer msw
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TR_MSW(u32);
-impl TR_MSW {
-    /// training_state_timer setting
-    pub fn tr_tmr_msw(&self) -> u32 {
+pub struct PD_MSW(u32);
+impl PD_MSW {
+    /// page_detect_timer setting
+    pub fn pd_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
-    pub fn set_tr_tmr_msw(&mut self, value: u32) {
+    pub fn set_pd_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

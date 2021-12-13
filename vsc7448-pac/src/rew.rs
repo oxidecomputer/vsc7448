@@ -85,6 +85,9 @@ impl COMMON {
     pub fn MIP_CTRL(&self) -> RegisterAddress<common::MIP_CTRL> {
         RegisterAddress::new(self.0 + 0xe8)
     }
+    pub fn MIP_STICKY_EVENT(&self) -> RegisterAddress<common::MIP_STICKY_EVENT> {
+        RegisterAddress::new(self.0 + 0x270)
+    }
     pub fn MIRROR_PROBE_CFG(&self, index: u32) -> RegisterAddress<common::MIRROR_PROBE_CFG> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0xec + index * 0x4)
@@ -135,9 +138,6 @@ impl COREMEM {
     pub fn CM_DATA(&self) -> RegisterAddress<coremem::CM_DATA> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn RAM_INIT(&self) -> RegisterAddress<coremem::RAM_INIT> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// Encapsulation RAM configuration
@@ -168,6 +168,10 @@ impl ENCAP {
     pub fn LL_TAG_CFG(&self) -> RegisterAddress<encap::LL_TAG_CFG> {
         RegisterAddress::new(self.0 + 0x3c)
     }
+    pub fn LL_TAG_REMARK_CFG(&self, index: u32) -> RegisterAddress<encap::LL_TAG_REMARK_CFG> {
+        assert!(index < 2);
+        RegisterAddress::new(self.0 + 0x48 + index * 0x4)
+    }
     pub fn LL_TAG_VAL(&self, index: u32) -> RegisterAddress<encap::LL_TAG_VAL> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x40 + index * 0x4)
@@ -178,9 +182,6 @@ impl ENCAP {
     pub fn MPLS_REMARK_CFG(&self, index: u32) -> RegisterAddress<encap::MPLS_REMARK_CFG> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x30 + index * 0x4)
-    }
-    pub fn PTP_RSRV_NOT_ZERO_1(&self) -> RegisterAddress<encap::PTP_RSRV_NOT_ZERO_1> {
-        RegisterAddress::new(self.0 + 0x1c)
     }
     pub fn RSV_LABEL_CFG(&self) -> RegisterAddress<encap::RSV_LABEL_CFG> {
         RegisterAddress::new(self.0 + 0x18)
@@ -193,26 +194,27 @@ impl ENCAP {
 /// ISDX configuration table
 pub struct ISDX_TBL(pub(super) u32);
 impl ISDX_TBL {
-    pub fn LBM_MAC_LOW(&self) -> RegisterAddress<isdx_tbl::LBM_MAC_LOW> {
-        RegisterAddress::new(self.0 + 0x10)
+    pub fn COS_CTRL(&self, index: u32) -> RegisterAddress<isdx_tbl::COS_CTRL> {
+        assert!(index < 3);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
 }
 
 /// Mapping resource A
 pub struct MAP_RES_A(pub(super) u32);
 impl MAP_RES_A {
+    pub fn MAP_LBL_A(&self) -> RegisterAddress<map_res_a::MAP_LBL_A> {
+        RegisterAddress::new(self.0 + 0x4)
+    }
     pub fn MAP_VAL_A(&self) -> RegisterAddress<map_res_a::MAP_VAL_A> {
         RegisterAddress::new(self.0 + 0x0)
-    }
-    pub fn MIP_STICKY_EVENT(&self) -> RegisterAddress<map_res_a::MIP_STICKY_EVENT> {
-        RegisterAddress::new(self.0 + 0x270)
     }
 }
 
 /// Mapping resource B
 pub struct MAP_RES_B(pub(super) u32);
 impl MAP_RES_B {
-    pub fn MAP_LBL_A(&self) -> RegisterAddress<map_res_b::MAP_LBL_A> {
+    pub fn MAP_LBL_B(&self) -> RegisterAddress<map_res_b::MAP_LBL_B> {
         RegisterAddress::new(self.0 + 0x4)
     }
     pub fn MAP_VAL_B(&self) -> RegisterAddress<map_res_b::MAP_VAL_B> {
@@ -226,11 +228,11 @@ impl MIP_TBL {
     pub fn CCM_HMO_CTRL(&self) -> RegisterAddress<mip_tbl::CCM_HMO_CTRL> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn HIH_CTRL(&self) -> RegisterAddress<mip_tbl::HIH_CTRL> {
-        RegisterAddress::new(self.0 + 0xac)
-    }
     pub fn LBM_MAC_HIGH(&self) -> RegisterAddress<mip_tbl::LBM_MAC_HIGH> {
         RegisterAddress::new(self.0 + 0xc)
+    }
+    pub fn LBM_MAC_LOW(&self) -> RegisterAddress<mip_tbl::LBM_MAC_LOW> {
+        RegisterAddress::new(self.0 + 0x10)
     }
     pub fn MIP_CFG(&self) -> RegisterAddress<mip_tbl::MIP_CFG> {
         RegisterAddress::new(self.0 + 0x0)
@@ -246,14 +248,14 @@ impl OAM_PDU_MOD_CONT {
     pub fn CCM_LM_INFO_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::CCM_LM_INFO_REG> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    pub fn CCM_LM_RX_B_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::CCM_LM_RX_B_REG> {
+        RegisterAddress::new(self.0 + 0x10)
+    }
     pub fn CCM_LM_TX_B_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::CCM_LM_TX_B_REG> {
         RegisterAddress::new(self.0 + 0xc)
     }
     pub fn LM_CNT_FRAME(&self) -> RegisterAddress<oam_pdu_mod_cont::LM_CNT_FRAME> {
         RegisterAddress::new(self.0 + 0x4)
-    }
-    pub fn PORT_BYTE_CNT_LSB(&self) -> RegisterAddress<oam_pdu_mod_cont::PORT_BYTE_CNT_LSB> {
-        RegisterAddress::new(self.0 + 0xc)
     }
     pub fn TEMP_CNT_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::TEMP_CNT_REG> {
         RegisterAddress::new(self.0 + 0x0)
@@ -263,12 +265,14 @@ impl OAM_PDU_MOD_CONT {
 /// OAM_PDU_MOD misc. configuration
 pub struct PDU_MOD_CFG(pub(super) u32);
 impl PDU_MOD_CFG {
-    pub fn CCM_LM_RX_B_REG(&self) -> RegisterAddress<pdu_mod_cfg::CCM_LM_RX_B_REG> {
-        RegisterAddress::new(self.0 + 0x10)
-    }
     pub fn DM_PTP_DOMAIN_CFG(&self, index: u32) -> RegisterAddress<pdu_mod_cfg::DM_PTP_DOMAIN_CFG> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+    }
+    pub fn RD_LAST_PORT_BYTE_CNT_LSB(
+        &self,
+    ) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_BYTE_CNT_LSB> {
+        RegisterAddress::new(self.0 + 0xe0)
     }
     pub fn RD_LAST_PORT_BYTE_CNT_MSB(
         &self,
@@ -299,8 +303,8 @@ impl PORT {
     pub fn DSCP_MAP(&self) -> RegisterAddress<port::DSCP_MAP> {
         RegisterAddress::new(self.0 + 0x88)
     }
-    pub fn MAP_LBL_B(&self) -> RegisterAddress<port::MAP_LBL_B> {
-        RegisterAddress::new(self.0 + 0x4)
+    pub fn HIH_CTRL(&self) -> RegisterAddress<port::HIH_CTRL> {
+        RegisterAddress::new(self.0 + 0xac)
     }
     pub fn PCP_MAP_DE0(&self, index: u32) -> RegisterAddress<port::PCP_MAP_DE0> {
         assert!(index < 8);
@@ -343,16 +347,15 @@ impl PORT {
 /// PTP Control
 pub struct PTP_CTRL(pub(super) u32);
 impl PTP_CTRL {
-    pub fn COS_CTRL(&self, index: u32) -> RegisterAddress<ptp_ctrl::COS_CTRL> {
-        assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
-    }
     pub fn PTP_CPUVD_MODE_CFG(&self, index: u32) -> RegisterAddress<ptp_ctrl::PTP_CPUVD_MODE_CFG> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
     pub fn PTP_RSRV_NOT_ZERO(&self) -> RegisterAddress<ptp_ctrl::PTP_RSRV_NOT_ZERO> {
         RegisterAddress::new(self.0 + 0x18)
+    }
+    pub fn PTP_RSRV_NOT_ZERO_1(&self) -> RegisterAddress<ptp_ctrl::PTP_RSRV_NOT_ZERO_1> {
+        RegisterAddress::new(self.0 + 0x1c)
     }
     pub fn PTP_TWOSTEP_CTRL(&self) -> RegisterAddress<ptp_ctrl::PTP_TWOSTEP_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
@@ -365,33 +368,34 @@ impl PTP_CTRL {
 /// Sequence numbers for PTP frames
 pub struct PTP_SEQ_NO(pub(super) u32);
 impl PTP_SEQ_NO {
-    pub fn RLEG_CTRL(&self) -> RegisterAddress<ptp_seq_no::RLEG_CTRL> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn PTP_SEQ_NO(&self, index: u32) -> RegisterAddress<ptp_seq_no::PTP_SEQ_NO> {
+        assert!(index < 256);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
 }
 
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
-    pub fn RD_LAST_PORT_BYTE_CNT_LSB(
-        &self,
-    ) -> RegisterAddress<ram_ctrl::RD_LAST_PORT_BYTE_CNT_LSB> {
-        RegisterAddress::new(self.0 + 0xe0)
+    pub fn RAM_INIT(&self) -> RegisterAddress<ram_ctrl::RAM_INIT> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Egress Mapped VLAN (EVMID) configuration
 pub struct VMID(pub(super) u32);
 impl VMID {
-    pub fn LL_TAG_REMARK_CFG(&self, index: u32) -> RegisterAddress<vmid::LL_TAG_REMARK_CFG> {
-        assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x48 + index * 0x4)
+    pub fn RLEG_CTRL(&self) -> RegisterAddress<vmid::RLEG_CTRL> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// OAM LM port counters pr. priority
 pub struct VOE_PORT_LM_CNT(pub(super) u32);
 impl VOE_PORT_LM_CNT {
+    pub fn PORT_BYTE_CNT_LSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_BYTE_CNT_LSB> {
+        RegisterAddress::new(self.0 + 0xc)
+    }
     pub fn PORT_BYTE_CNT_MSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_BYTE_CNT_MSB> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -401,16 +405,12 @@ impl VOE_PORT_LM_CNT {
     pub fn PORT_LM_CNT_LSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_LM_CNT_LSB> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn SRV_LM_CNT_LSB(&self) -> RegisterAddress<voe_port_lm_cnt::SRV_LM_CNT_LSB> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// OAM Service LM counters pr. priority
 pub struct VOE_SRV_LM_CNT(pub(super) u32);
 impl VOE_SRV_LM_CNT {
-    pub fn PTP_SEQ_NO(&self, index: u32) -> RegisterAddress<voe_srv_lm_cnt::PTP_SEQ_NO> {
-        assert!(index < 256);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+    pub fn SRV_LM_CNT_LSB(&self) -> RegisterAddress<voe_srv_lm_cnt::SRV_LM_CNT_LSB> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }

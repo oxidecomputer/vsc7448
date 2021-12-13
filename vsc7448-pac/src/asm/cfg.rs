@@ -55,6 +55,30 @@ impl CPU_FC_CFG {
         self.0 |= value;
     }
 }
+/// Configure custom VLAN tag for injection
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct INJ_VLAN_CFG(u32);
+impl INJ_VLAN_CFG {
+    /// The TPID used for VLAN tag matching when injection with long IFH prefix is selected in INJ_FORMAT_CFG.
+    pub fn inj_tpid_cfg(&self) -> u32 {
+        self.0 & 0xffff
+    }
+    pub fn set_inj_tpid_cfg(&mut self, value: u32) {
+        assert!(value <= 0xffff);
+        self.0 &= !0xffff;
+        self.0 |= value;
+    }
+    /// The VID used for VLAN tag matching when injection with long IFH prefix is selected in INJ_FORMAT_CFG.
+    pub fn inj_vid_cfg(&self) -> u32 {
+        (self.0 & 0xfff0000) >> 16
+    }
+    pub fn set_inj_vid_cfg(&mut self, value: u32) {
+        let value = value << 16;
+        assert!(value <= 0xfff0000);
+        self.0 &= !0xfff0000;
+        self.0 |= value;
+    }
+}
 /// MAC Address Configuration Register (MSB)
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MAC_ADDR_HIGH_CFG(u32);
@@ -231,20 +255,6 @@ impl PORT_CFG {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
-    }
-}
-/// Counter to track the PCS's Sync-lost error
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct RX_SYNC_LOST_ERR_CNT(u32);
-impl RX_SYNC_LOST_ERR_CNT {
-    /// Counter to track the PCS's Sync-lost error
-    ///
-    /// Counter can be written by SW.
-    pub fn rx_sync_lost_err_cnt(&self) -> u32 {
-        self.0
-    }
-    pub fn set_rx_sync_lost_err_cnt(&mut self, value: u32) {
-        self.0 = value;
     }
 }
 /// Statistics counter configuration

@@ -41,15 +41,15 @@ impl MW_TMR_LSW {
         self.0 |= value;
     }
 }
-/// VS training wait_timer
+/// VS training maxwait_timer msw
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct WT_TMR(u32);
-impl WT_TMR {
-    /// wait_timer for training state machine to allow extra training frames to be exchanged
-    pub fn wt_tmr(&self) -> u32 {
+pub struct MW_TMR_MSW(u32);
+impl MW_TMR_MSW {
+    /// maxwait_timer, when training expires and failure declared. 500ms
+    pub fn mw_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
-    pub fn set_wt_tmr(&mut self, value: u32) {
+    pub fn set_mw_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

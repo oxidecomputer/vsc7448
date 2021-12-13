@@ -2833,6 +2833,32 @@ impl APC_LC_SOFTCTRL_CFG {
         self.0 |= value;
     }
 }
+/// APC LC softcontrol configuration register 1
+///
+/// Configuration register 1 for the LC-Softcontrol logic block.
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct APC_LC_SOFTCTRL_CFG1(u32);
+impl APC_LC_SOFTCTRL_CFG1 {
+    /// Target value for DFE1 during L/C-control operation
+    pub fn lc_sc_dfe1_target(&self) -> u32 {
+        self.0 & 0x7f
+    }
+    pub fn set_lc_sc_dfe1_target(&mut self, value: u32) {
+        assert!(value <= 0x7f);
+        self.0 &= !0x7f;
+        self.0 |= value;
+    }
+    /// Target value for DFE2 during L/C-control operation
+    pub fn lc_sc_dfe2_target(&self) -> u32 {
+        (self.0 & 0x3f00) >> 8
+    }
+    pub fn set_lc_sc_dfe2_target(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0x3f00);
+        self.0 &= !0x3f00;
+        self.0 |= value;
+    }
+}
 /// APC level detect calibration configuration register
 ///
 /// Configuration register for APC level detect calibrations logic

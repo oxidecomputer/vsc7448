@@ -41,15 +41,17 @@ impl AGGR_CFG {
         self.0 = value;
     }
 }
-/// Mirror probe port mask configuration
+/// Aggregation port mask
+///
+/// See ANA_AC:AGGR.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PROBE_PORT_CFG1(u32);
-impl PROBE_PORT_CFG1 {
-    /// Refer to PROBE_PORT_CFG.PROBE_PORT_MASK description.
-    pub fn probe_port_mask1(&self) -> u32 {
+pub struct AGGR_CFG1(u32);
+impl AGGR_CFG1 {
+    /// Refer to AGGR_CFG.PORT_MASK description.
+    pub fn port_mask1(&self) -> u32 {
         self.0 & 0x1fffff
     }
-    pub fn set_probe_port_mask1(&mut self, value: u32) {
+    pub fn set_port_mask1(&mut self, value: u32) {
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;

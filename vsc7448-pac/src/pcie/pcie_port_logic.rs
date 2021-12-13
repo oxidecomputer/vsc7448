@@ -481,17 +481,6 @@ impl GEN2_CTRL {
         self.0 |= value;
     }
 }
-/// Word offset 10
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct HDR_LOG_REG_3(u32);
-impl HDR_LOG_REG_3 {
-    pub fn fourth_dword(&self) -> u32 {
-        self.0
-    }
-    pub fn set_fourth_dword(&mut self, value: u32) {
-        self.0 = value;
-    }
-}
 /// Lane Skew
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LANE_SKEW(u32);

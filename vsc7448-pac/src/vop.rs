@@ -49,10 +49,10 @@ pub mod voe_stat;
 /// COSID / Color config in ANA - Service VOEs
 pub struct ANA_COSID_MAP_CONF(pub(super) u32);
 impl ANA_COSID_MAP_CONF {
-    pub fn COSID_MAP_TABLE_ANA(&self) -> RegisterAddress<ana_cosid_map_conf::COSID_MAP_TABLE_ANA> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn COSID_MAP_CFG_ANA(&self) -> RegisterAddress<ana_cosid_map_conf::COSID_MAP_CFG_ANA> {
+        RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn LBR_CRC_ERR_CNT(&self) -> RegisterAddress<ana_cosid_map_conf::LBR_CRC_ERR_CNT> {
+    pub fn COSID_MAP_TABLE_ANA(&self) -> RegisterAddress<ana_cosid_map_conf::COSID_MAP_TABLE_ANA> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -62,6 +62,9 @@ pub struct COMMON(pub(super) u32);
 impl COMMON {
     pub fn COMMON_MEP_MC_MAC_LSB(&self) -> RegisterAddress<common::COMMON_MEP_MC_MAC_LSB> {
         RegisterAddress::new(self.0 + 0x128)
+    }
+    pub fn COMMON_MEP_MC_MAC_MSB(&self) -> RegisterAddress<common::COMMON_MEP_MC_MAC_MSB> {
+        RegisterAddress::new(self.0 + 0x12c)
     }
     pub fn CPU_EXTR_CFG(&self) -> RegisterAddress<common::CPU_EXTR_CFG> {
         RegisterAddress::new(self.0 + 0x4)
@@ -138,17 +141,11 @@ impl COREMEM {
     pub fn CM_DATA(&self) -> RegisterAddress<coremem::CM_DATA> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn RAM_INIT(&self) -> RegisterAddress<coremem::RAM_INIT> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// COSID / Color config - Port VOEs
 pub struct PORT_COSID_MAP_CONF(pub(super) u32);
 impl PORT_COSID_MAP_CONF {
-    pub fn COSID_MAP_CFG_REW(&self) -> RegisterAddress<port_cosid_map_conf::COSID_MAP_CFG_REW> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn PORT_RX_COSID_MAP(&self) -> RegisterAddress<port_cosid_map_conf::PORT_RX_COSID_MAP> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -158,24 +155,23 @@ impl PORT_COSID_MAP_CONF {
     pub fn PORT_TX_COSID_MAP(&self) -> RegisterAddress<port_cosid_map_conf::PORT_TX_COSID_MAP> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    pub fn PORT_TX_COSID_MAP1(&self) -> RegisterAddress<port_cosid_map_conf::PORT_TX_COSID_MAP1> {
+        RegisterAddress::new(self.0 + 0xc)
+    }
 }
 
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
-    pub fn SAM_LBR_RX_TRANSID_ERR_CNT(
-        &self,
-        index: u32,
-    ) -> RegisterAddress<ram_ctrl::SAM_LBR_RX_TRANSID_ERR_CNT> {
-        assert!(index < 7);
-        RegisterAddress::new(self.0 + 0x70 + index * 0x4)
+    pub fn RAM_INIT(&self) -> RegisterAddress<ram_ctrl::RAM_INIT> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// COSID / Color config in REW - Service VOEs
 pub struct REW_COSID_MAP_CONF(pub(super) u32);
 impl REW_COSID_MAP_CONF {
-    pub fn COSID_MAP_CFG_ANA(&self) -> RegisterAddress<rew_cosid_map_conf::COSID_MAP_CFG_ANA> {
+    pub fn COSID_MAP_CFG_REW(&self) -> RegisterAddress<rew_cosid_map_conf::COSID_MAP_CFG_REW> {
         RegisterAddress::new(self.0 + 0x4)
     }
     pub fn COSID_MAP_TABLE_REW(&self) -> RegisterAddress<rew_cosid_map_conf::COSID_MAP_TABLE_REW> {
@@ -186,9 +182,6 @@ impl REW_COSID_MAP_CONF {
 /// SAM per COSID sequence counters
 pub struct SAM_COSID_SEQ_CNT(pub(super) u32);
 impl SAM_COSID_SEQ_CNT {
-    pub fn PORT_TX_COSID_MAP1(&self) -> RegisterAddress<sam_cosid_seq_cnt::PORT_TX_COSID_MAP1> {
-        RegisterAddress::new(self.0 + 0xc)
-    }
     pub fn SAM_LBM_TX_TRANSID(
         &self,
         index: u32,
@@ -210,6 +203,13 @@ impl SAM_COSID_SEQ_CNT {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x54 + index * 0x4)
     }
+    pub fn SAM_LBR_RX_TRANSID_ERR_CNT(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_TRANSID_ERR_CNT> {
+        assert!(index < 7);
+        RegisterAddress::new(self.0 + 0x70 + index * 0x4)
+    }
     pub fn SAM_LBR_TX_FRM_CNT(
         &self,
         index: u32,
@@ -222,11 +222,11 @@ impl SAM_COSID_SEQ_CNT {
 /// VOE CCM-LM samples
 pub struct VOE_CCM_LM(pub(super) u32);
 impl VOE_CCM_LM {
+    pub fn CCM_RX_FCB_CFG(&self) -> RegisterAddress<voe_ccm_lm::CCM_RX_FCB_CFG> {
+        RegisterAddress::new(self.0 + 0x4)
+    }
     pub fn CCM_TX_FCB_CFG(&self) -> RegisterAddress<voe_ccm_lm::CCM_TX_FCB_CFG> {
         RegisterAddress::new(self.0 + 0x0)
-    }
-    pub fn SLM_TX_FRM_CNT(&self) -> RegisterAddress<voe_ccm_lm::SLM_TX_FRM_CNT> {
-        RegisterAddress::new(self.0 + 0x74)
     }
 }
 
@@ -251,6 +251,9 @@ impl VOE_CONF {
     }
     pub fn G_8113_1_REMOTE_MIPID2(&self) -> RegisterAddress<voe_conf::G_8113_1_REMOTE_MIPID2> {
         RegisterAddress::new(self.0 + 0xa8)
+    }
+    pub fn G_8113_1_REMOTE_MIPID3(&self) -> RegisterAddress<voe_conf::G_8113_1_REMOTE_MIPID3> {
+        RegisterAddress::new(self.0 + 0xac)
     }
     pub fn LOOPBACK_CFG(&self) -> RegisterAddress<voe_conf::LOOPBACK_CFG> {
         RegisterAddress::new(self.0 + 0x38)
@@ -310,16 +313,13 @@ impl VOE_CONF {
     pub fn VOE_MEPID_CFG(&self) -> RegisterAddress<voe_conf::VOE_MEPID_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn VOE_MISC_CONFIG(&self) -> RegisterAddress<voe_conf::VOE_MISC_CONFIG> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// VOE configuration registers
 pub struct VOE_CONF_REG(pub(super) u32);
 impl VOE_CONF_REG {
-    pub fn COMMON_MEP_MC_MAC_MSB(&self) -> RegisterAddress<voe_conf_reg::COMMON_MEP_MC_MAC_MSB> {
-        RegisterAddress::new(self.0 + 0x12c)
+    pub fn VOE_MISC_CONFIG(&self) -> RegisterAddress<voe_conf_reg::VOE_MISC_CONFIG> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
@@ -329,7 +329,7 @@ impl VOE_CONTEXT_ANA {
     pub fn CT_CCM_TLV_INFO_ANA(&self) -> RegisterAddress<voe_context_ana::CT_CCM_TLV_INFO_ANA> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn CT_OAM_DATA1_REW(&self) -> RegisterAddress<voe_context_ana::CT_OAM_DATA1_REW> {
+    pub fn CT_OAM_DATA1_ANA(&self) -> RegisterAddress<voe_context_ana::CT_OAM_DATA1_ANA> {
         RegisterAddress::new(self.0 + 0x10)
     }
     pub fn CT_OAM_DATA_ANA(&self) -> RegisterAddress<voe_context_ana::CT_OAM_DATA_ANA> {
@@ -346,11 +346,11 @@ impl VOE_CONTEXT_ANA {
 /// [MCC_DEBUG] Contains the context for the VOE if in REW.
 pub struct VOE_CONTEXT_REW(pub(super) u32);
 impl VOE_CONTEXT_REW {
-    pub fn CCM_RX_FCB_CFG(&self) -> RegisterAddress<voe_context_rew::CCM_RX_FCB_CFG> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn CT_CCM_TLV_INFO_REW(&self) -> RegisterAddress<voe_context_rew::CT_CCM_TLV_INFO_REW> {
         RegisterAddress::new(self.0 + 0x8)
+    }
+    pub fn CT_OAM_DATA1_REW(&self) -> RegisterAddress<voe_context_rew::CT_OAM_DATA1_REW> {
+        RegisterAddress::new(self.0 + 0x10)
     }
     pub fn CT_OAM_DATA_REW(&self) -> RegisterAddress<voe_context_rew::CT_OAM_DATA_REW> {
         RegisterAddress::new(self.0 + 0xc)
@@ -366,8 +366,8 @@ impl VOE_CONTEXT_REW {
 /// Count the number of CRC errors in Rx LBR / TST TLVs
 pub struct VOE_CRC_ERR(pub(super) u32);
 impl VOE_CRC_ERR {
-    pub fn CT_OAM_DATA1_ANA(&self) -> RegisterAddress<voe_crc_err::CT_OAM_DATA1_ANA> {
-        RegisterAddress::new(self.0 + 0x10)
+    pub fn LBR_CRC_ERR_CNT(&self) -> RegisterAddress<voe_crc_err::LBR_CRC_ERR_CNT> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
@@ -403,9 +403,6 @@ impl VOE_STAT {
     }
     pub fn DM_PDU_CNT(&self) -> RegisterAddress<voe_stat::DM_PDU_CNT> {
         RegisterAddress::new(self.0 + 0x3c)
-    }
-    pub fn G_8113_1_REMOTE_MIPID3(&self) -> RegisterAddress<voe_stat::G_8113_1_REMOTE_MIPID3> {
-        RegisterAddress::new(self.0 + 0xac)
     }
     pub fn INTR_ENA(&self) -> RegisterAddress<voe_stat::INTR_ENA> {
         RegisterAddress::new(self.0 + 0x70)
@@ -451,6 +448,9 @@ impl VOE_STAT {
     }
     pub fn RX_SEL_OAM_CNT(&self) -> RegisterAddress<voe_stat::RX_SEL_OAM_CNT> {
         RegisterAddress::new(self.0 + 0x0)
+    }
+    pub fn SLM_TX_FRM_CNT(&self) -> RegisterAddress<voe_stat::SLM_TX_FRM_CNT> {
+        RegisterAddress::new(self.0 + 0x74)
     }
     pub fn SYNLM_EXTRACT(&self) -> RegisterAddress<voe_stat::SYNLM_EXTRACT> {
         RegisterAddress::new(self.0 + 0x54)

@@ -71,16 +71,22 @@ impl CLR_BUF {
         self.0 = value;
     }
 }
-/// Data register for core memory access.
+/// Debug control
+///
+/// Configures which events are counterd in the ageing counter.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct CM_DATA(u32);
-impl CM_DATA {
-    /// Data register for core memory access. Wider memories are big endian mapped into the 32 BIT inspection space.
-    pub fn cm_data(&self) -> u32 {
-        self.0
+pub struct DBG_CTRL(u32);
+impl DBG_CTRL {
+    /// Controls which event the AGE counter counts. This setting is common for all aging counters.
+    ///
+    /// 0: Number of aged frames 1: Number of SOF transmitted on taxi bus 2: Number of EOF transmitted on taxi bus 3: Number of ABORT transmitted on taxi bus 4: Reserved 5: Number of retransmits requests received from port status 6: Reserved 7: Reserved
+    pub fn dbg_event_ctrl(&self) -> u32 {
+        self.0 & 0x7
     }
-    pub fn set_cm_data(&mut self, value: u32) {
-        self.0 = value;
+    pub fn set_dbg_event_ctrl(&mut self, value: u32) {
+        assert!(value <= 0x7);
+        self.0 &= !0x7;
+        self.0 |= value;
     }
 }
 /// Token count tx stop watermark

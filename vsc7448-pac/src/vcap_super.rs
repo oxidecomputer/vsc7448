@@ -41,9 +41,6 @@ pub mod vcap_core_sticky;
 /// Build in test for TCAM
 pub struct TCAM_BIST(pub(super) u32);
 impl TCAM_BIST {
-    pub fn IF_CNT(&self) -> RegisterAddress<tcam_bist::IF_CNT> {
-        RegisterAddress::new(self.0 + 0x24)
-    }
     pub fn TCAM_CFG(&self) -> RegisterAddress<tcam_bist::TCAM_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -82,8 +79,8 @@ impl VCAP_CONST {
     pub fn ENTRY_WIDTH(&self) -> RegisterAddress<vcap_const::ENTRY_WIDTH> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn VCAP_STICKY(&self) -> RegisterAddress<vcap_const::VCAP_STICKY> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn IF_CNT(&self) -> RegisterAddress<vcap_const::IF_CNT> {
+        RegisterAddress::new(self.0 + 0x24)
     }
     pub fn VCAP_VER(&self) -> RegisterAddress<vcap_const::VCAP_VER> {
         RegisterAddress::new(self.0 + 0x0)
@@ -109,14 +106,17 @@ impl VCAP_CORE_CACHE {
         assert!(index < 64);
         RegisterAddress::new(self.0 + 0x100 + index * 0x4)
     }
-    pub fn VCAP_MV_CFG(&self) -> RegisterAddress<vcap_core_cache::VCAP_MV_CFG> {
-        RegisterAddress::new(self.0 + 0x4)
+    pub fn VCAP_RULE_ENA(&self) -> RegisterAddress<vcap_core_cache::VCAP_RULE_ENA> {
+        RegisterAddress::new(self.0 + 0x380)
     }
 }
 
 /// VCAP operations
 pub struct VCAP_CORE_CFG(pub(super) u32);
 impl VCAP_CORE_CFG {
+    pub fn VCAP_MV_CFG(&self) -> RegisterAddress<vcap_core_cfg::VCAP_MV_CFG> {
+        RegisterAddress::new(self.0 + 0x4)
+    }
     pub fn VCAP_UPDATE_CTRL(&self) -> RegisterAddress<vcap_core_cfg::VCAP_UPDATE_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -128,15 +128,15 @@ impl VCAP_CORE_MAP {
     pub fn VCAP_CORE_IDX(&self) -> RegisterAddress<vcap_core_map::VCAP_CORE_IDX> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn VCAP_RULE_ENA(&self) -> RegisterAddress<vcap_core_map::VCAP_RULE_ENA> {
-        RegisterAddress::new(self.0 + 0x380)
+    pub fn VCAP_CORE_MAP(&self) -> RegisterAddress<vcap_core_map::VCAP_CORE_MAP> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
 /// Sticky bits
 pub struct VCAP_CORE_STICKY(pub(super) u32);
 impl VCAP_CORE_STICKY {
-    pub fn VCAP_CORE_MAP(&self) -> RegisterAddress<vcap_core_sticky::VCAP_CORE_MAP> {
-        RegisterAddress::new(self.0 + 0x4)
+    pub fn VCAP_STICKY(&self) -> RegisterAddress<vcap_core_sticky::VCAP_STICKY> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }

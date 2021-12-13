@@ -239,6 +239,88 @@ impl MAC_MODE_CFG {
         self.0 |= value;
     }
 }
+/// Sticky Bit Register
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct MAC_STICKY(u32);
+impl MAC_STICKY {
+    /// Sticky bit indicating that an inter packet gap shrink was detected (IPG < 12 bytes).
+    pub fn rx_ipg_shrink_sticky(&self) -> u32 {
+        (self.0 & 0x200) >> 9
+    }
+    pub fn set_rx_ipg_shrink_sticky(&mut self, value: u32) {
+        let value = value << 9;
+        assert!(value <= 0x200);
+        self.0 &= !0x200;
+        self.0 |= value;
+    }
+    /// Sticky bit indicating that junk was received (bytes not recognized as a frame).
+    ///
+    /// '0': no junk was received '1': junk was received one or more times Bit is cleared by writing a '1' to this position.
+    pub fn rx_junk_sticky(&self) -> u32 {
+        (self.0 & 0x20) >> 5
+    }
+    pub fn set_rx_junk_sticky(&mut self, value: u32) {
+        let value = value << 5;
+        assert!(value <= 0x20);
+        self.0 &= !0x20;
+        self.0 |= value;
+    }
+    /// Sticky bit indicating that a preamble shrink was detected (preamble < 8 bytes).
+    ///
+    /// '0': no preamble shrink was detected '1': a preamble shrink was detected one or more times Bit is cleared by writing a '1' to this position.
+    pub fn rx_pream_shrink_sticky(&self) -> u32 {
+        (self.0 & 0x100) >> 8
+    }
+    pub fn set_rx_pream_shrink_sticky(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0x100);
+        self.0 &= !0x100;
+        self.0 |= value;
+    }
+    /// Sticky bit indicating that the transmit host initiated abort was executed.
+    pub fn tx_abort_sticky(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_tx_abort_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Sticky bit indicating that the MAC transmit FIFO has overrun.
+    pub fn tx_fifo_oflw_sticky(&self) -> u32 {
+        (self.0 & 0x4) >> 2
+    }
+    pub fn set_tx_fifo_oflw_sticky(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0x4);
+        self.0 &= !0x4;
+        self.0 |= value;
+    }
+    /// Sticky bit indicating that the transmit host issued a jamming signal.
+    ///
+    /// '0': the transmit host issued no jamming signal '1': the transmit host issued one or morejamming signals Bit is cleared by writing a '1' to this position.
+    pub fn tx_jam_sticky(&self) -> u32 {
+        (self.0 & 0x8) >> 3
+    }
+    pub fn set_tx_jam_sticky(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x8);
+        self.0 &= !0x8;
+        self.0 |= value;
+    }
+    /// Sticky bit indicating that the transmit MAC asked the host for a frame retransmission.
+    ///
+    /// '0': no tx retransmission was initiated '1': one or more tx retransmissions were initiated Bit is cleared by writing a '1' to this position.
+    pub fn tx_retransmit_sticky(&self) -> u32 {
+        (self.0 & 0x10) >> 4
+    }
+    pub fn set_tx_retransmit_sticky(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x10);
+        self.0 &= !0x10;
+        self.0 |= value;
+    }
+}
 /// VLAN / Service tag configuration register
 ///
 /// The MAC can be configured to accept 0, 1 and 2 tags and the TAG value can be user-defined.
@@ -316,20 +398,6 @@ impl MAC_TAGS_CFG2 {
         let value = value << 16;
         assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
-        self.0 |= value;
-    }
-}
-/// PTP events per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PTP_EVENTS(u32);
-impl PTP_EVENTS {
-    /// The correction field update went out of range. Valid range is -2^47 to 2^48-1. The frame CF will be changed to the maximum value. This range check is bypassed if ADDS48 mode is in use on the ingress or egress port.
-    pub fn cf_too_big_sticky(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_cf_too_big_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
         self.0 |= value;
     }
 }

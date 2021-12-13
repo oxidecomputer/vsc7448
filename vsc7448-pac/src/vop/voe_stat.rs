@@ -443,22 +443,6 @@ impl DM_PDU_CNT {
         self.0 |= value;
     }
 }
-/// G.8113.1 MIP ID verification configuration
-///
-/// When the G.8113.1 'Initator MEP' is configured for : Connection Verification - MIP: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_INITIATOR_FUNCTION There are 14 bytes in the 'Replying MIP ID' TLV which must be verified. These are configured in this register. I practice the register is split into 4 separate registers: * G_8113_1_REMOTE_MIPID (32 bits) * G_8113_1_REMOTE_MIPID1 (32 bits) * G_8113_1_REMOTE_MIPID2 (32 bits) * G_8113_1_REMOTE_MIPID3 (16 bits) The below description will assume that these 4 registers are concatenated into one 14 byte long register. The bytes to be verified in the 'Replying MIP ID' TLV are configured as follows: * LBR.CarrierCode == G_8113_1_REMOTE_MIPID[13:8] * LBR.NodeID == G_8113_1_REMOTE_MIPID[7:4] * LBR.IfNum == G_8113_1_REMOTE_MIPID[3:0]
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct G_8113_1_REMOTE_MIPID3(u32);
-impl G_8113_1_REMOTE_MIPID3 {
-    /// See register description.
-    pub fn g_8113_1_remote_mipid3(&self) -> u32 {
-        self.0 & 0xffff
-    }
-    pub fn set_g_8113_1_remote_mipid3(&mut self, value: u32) {
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
-        self.0 |= value;
-    }
-}
 /// Enable VOE interrupt sources
 ///
 /// This register contains a bitfield for each of the interrupt sources defined for the VOE. This allows enabling the interrupts independently. Status of interrupt sources can be found in VOP:VOE_STAT:INTR_STICKY Current status of the VOE interrupt can be found in VOP::INTR
@@ -1510,6 +1494,20 @@ impl RX_SEL_OAM_CNT {
         self.0
     }
     pub fn set_rx_sel_oam_frm_cnt(&mut self, value: u32) {
+        self.0 = value;
+    }
+}
+/// SynLM Tx frame counter.
+///
+/// TX counter for counting Initiator MEP Tx SynLM PDUs (SLM / SL1). The counter value is written into the the following fields of Tx SynLM PDUs: * SLM.TxFCf * 1SL.TxFCf The counter is increased (+1) after being written to the Tx PDU. Note: To send TxFCf = 1 in the first Tx SynLM PDU, this register must be initialized to 1.
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct SLM_TX_FRM_CNT(u32);
+impl SLM_TX_FRM_CNT {
+    /// See register description.
+    pub fn slm_tx_frm_cnt(&self) -> u32 {
+        self.0
+    }
+    pub fn set_slm_tx_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }
 }

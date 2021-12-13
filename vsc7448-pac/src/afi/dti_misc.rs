@@ -41,17 +41,29 @@ impl DTI_CNT_DOWN {
         self.0 |= value;
     }
 }
-/// Duration of last DTI run
+/// DTI control
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct DTI_DURATION(u32);
-impl DTI_DURATION {
-    /// Duration of last DTI run in DTI Duration Ticks. Before starting a DTI, DURATION must be set to 0. When AFI:DTI_MISC:DTI_CTRL.ENA becomes 0, DURATION is updated with the duration of the DTI run. While a DTI is running DURATION holds an internal time stamp of when the DTI was started. This value is not intended for SW usage. Related parameters: AFI:MISC:DTI_DURATION_TICK_LEN.DTI_DURATION_TICK_LEN
-    pub fn duration(&self) -> u32 {
-        self.0 & 0x7fffffff
+pub struct DTI_CTRL(u32);
+impl DTI_CTRL {
+    /// DTI bandwidth. Used to give arbitration precedence to high bandwidth DTIs.
+    ///
+    /// 0: <5Gbps 1: >=5Gbps
+    pub fn bw(&self) -> u32 {
+        (self.0 & 0x2) >> 1
     }
-    pub fn set_duration(&mut self, value: u32) {
-        assert!(value <= 0x7fffffff);
-        self.0 &= !0x7fffffff;
+    pub fn set_bw(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+    /// Enable DTI. If MODE=0 or MODE=2, then ENA is cleared by AFI when configured number of sequences have been injected. Before (re)starting a DTI the following initialization should be done: DURATION must be set to 0. NEXT_FRM_PTR should be set to FIRST_FRM_PTR. DTI_CNT_DOWN.CNT_DOWN should be set to 0. FRM_INJ_CNT should be set to 0 AFI::MISC_CTRL.AFI_ENA must be set to 1. If MODE=2, then the AFI will set ENA=1 for the DTI pointed to by DTI_NEXT once the DTI with MODE=2 completes.
+    pub fn ena(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
         self.0 |= value;
     }
 }

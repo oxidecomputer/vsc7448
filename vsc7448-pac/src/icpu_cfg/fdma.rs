@@ -227,6 +227,30 @@ impl FDMA_CH_STAT {
         self.0 |= value;
     }
 }
+/// Constants for this FDMA implementation.
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct FDMA_CONST(u32);
+impl FDMA_CONST {
+    /// The number of injection channels.
+    pub fn ch_inj_cnt(&self) -> u32 {
+        (self.0 & 0xff00) >> 8
+    }
+    pub fn set_ch_inj_cnt(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0xff00);
+        self.0 &= !0xff00;
+        self.0 |= value;
+    }
+    /// The number of extraction channels.
+    pub fn ch_xtr_cnt(&self) -> u32 {
+        self.0 & 0xff
+    }
+    pub fn set_ch_xtr_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
+        self.0 &= !0xff;
+        self.0 |= value;
+    }
+}
 /// Length of data block
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct FDMA_DCB_DATAL(u32);
@@ -591,20 +615,6 @@ impl FDMA_INTR_SIG_ENA {
     pub fn set_intr_sig_ena(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
-        self.0 |= value;
-    }
-}
-/// TWI spike filter configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TWI_SPIKE_FILTER_CFG(u32);
-impl TWI_SPIKE_FILTER_CFG {
-    /// Configuration of the spike filter width on the SCL and SDA inputs. Filters spikes with a width of (SPIKE_FILTER_CFG+1)*SYSTEM_CLK or less.
-    pub fn spike_filter_cfg(&self) -> u32 {
-        self.0 & 0x1f
-    }
-    pub fn set_spike_filter_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1f);
-        self.0 &= !0x1f;
         self.0 |= value;
     }
 }

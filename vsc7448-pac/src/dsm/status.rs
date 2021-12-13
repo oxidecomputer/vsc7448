@@ -105,21 +105,22 @@ impl CELL_BUS_STICKY {
         self.0 |= value;
     }
 }
-/// Debug control
+/// Pause Frame pre-counter overflow sticky register
 ///
-/// Configures which events are counterd in the ageing counter.
+/// Pause Frame pre-counter overflow sticky register
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct DBG_CTRL(u32);
-impl DBG_CTRL {
-    /// Controls which event the AGE counter counts. This setting is common for all aging counters.
+pub struct PRE_CNT_OFLW_STICKY(u32);
+impl PRE_CNT_OFLW_STICKY {
+    /// Will be set if one of the statistics pre counter have an overflow.
     ///
-    /// 0: Number of aged frames 1: Number of SOF transmitted on taxi bus 2: Number of EOF transmitted on taxi bus 3: Number of ABORT transmitted on taxi bus 4: Reserved 5: Number of retransmits requests received from port status 6: Reserved 7: Reserved
-    pub fn dbg_event_ctrl(&self) -> u32 {
-        self.0 & 0x7
+    /// '0': Pre counter overflow has not occurred '1': Pre counter overflow has occurred Bit is cleared by writing a '1' to this position.
+    pub fn pre_cnt_oflw_sticky(&self) -> u32 {
+        (self.0 & 0x100) >> 8
     }
-    pub fn set_dbg_event_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x7);
-        self.0 &= !0x7;
+    pub fn set_pre_cnt_oflw_sticky(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0x100);
+        self.0 &= !0x100;
         self.0 |= value;
     }
 }

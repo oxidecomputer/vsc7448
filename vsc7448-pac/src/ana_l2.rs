@@ -65,6 +65,9 @@ impl COMMON {
     pub fn INTR_ENA(&self) -> RegisterAddress<common::INTR_ENA> {
         RegisterAddress::new(self.0 + 0x15c)
     }
+    pub fn INTR_IDENT(&self) -> RegisterAddress<common::INTR_IDENT> {
+        RegisterAddress::new(self.0 + 0x160)
+    }
     pub fn LRN_CFG(&self) -> RegisterAddress<common::LRN_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -121,11 +124,12 @@ impl ISDX {
     pub fn ISDX_BASE_CFG(&self) -> RegisterAddress<isdx::ISDX_BASE_CFG> {
         RegisterAddress::new(self.0 + 0x38)
     }
+    pub fn ISDX_COS_CFG(&self, index: u32) -> RegisterAddress<isdx::ISDX_COS_CFG> {
+        assert!(index < 8);
+        RegisterAddress::new(self.0 + 0x3c + index * 0x4)
+    }
     pub fn MISC_CFG(&self) -> RegisterAddress<isdx::MISC_CFG> {
         RegisterAddress::new(self.0 + 0x10)
-    }
-    pub fn PORT_LIMIT_CTRL(&self) -> RegisterAddress<isdx::PORT_LIMIT_CTRL> {
-        RegisterAddress::new(self.0 + 0x4)
     }
     pub fn PORT_MASK_CFG(&self) -> RegisterAddress<isdx::PORT_MASK_CFG> {
         RegisterAddress::new(self.0 + 0x0)
@@ -144,18 +148,18 @@ impl ISDX {
 /// Learn limits per FID
 pub struct LRN_LIMIT(pub(super) u32);
 impl LRN_LIMIT {
+    pub fn FID_LIMIT_CTRL(&self) -> RegisterAddress<lrn_limit::FID_LIMIT_CTRL> {
+        RegisterAddress::new(self.0 + 0x4)
+    }
     pub fn FID_LIMIT_STATUS(&self) -> RegisterAddress<lrn_limit::FID_LIMIT_STATUS> {
         RegisterAddress::new(self.0 + 0x0)
-    }
-    pub fn INTR_IDENT(&self) -> RegisterAddress<lrn_limit::INTR_IDENT> {
-        RegisterAddress::new(self.0 + 0x160)
     }
 }
 
 /// Learn limits per PORT and GLAG
 pub struct PORT_LIMIT(pub(super) u32);
 impl PORT_LIMIT {
-    pub fn FID_LIMIT_CTRL(&self) -> RegisterAddress<port_limit::FID_LIMIT_CTRL> {
+    pub fn PORT_LIMIT_CTRL(&self) -> RegisterAddress<port_limit::PORT_LIMIT_CTRL> {
         RegisterAddress::new(self.0 + 0x4)
     }
     pub fn PORT_LIMIT_STATUS(&self) -> RegisterAddress<port_limit::PORT_LIMIT_STATUS> {
@@ -166,18 +170,14 @@ impl PORT_LIMIT {
 /// Sticky diagnostic status
 pub struct STICKY(pub(super) u32);
 impl STICKY {
-    pub fn ISDX_COS_CFG(&self, index: u32) -> RegisterAddress<sticky::ISDX_COS_CFG> {
-        assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x3c + index * 0x4)
+    pub fn STICKY(&self) -> RegisterAddress<sticky::STICKY> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Sticky diagnostic global port counter event configuration
 pub struct STICKY_MASK(pub(super) u32);
 impl STICKY_MASK {
-    pub fn STICKY(&self) -> RegisterAddress<sticky_mask::STICKY> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
     pub fn STICKY_MASK(&self) -> RegisterAddress<sticky_mask::STICKY_MASK> {
         RegisterAddress::new(self.0 + 0x0)
     }

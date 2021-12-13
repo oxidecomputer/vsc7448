@@ -53,6 +53,20 @@ impl CCM_LM_INFO_REG {
 }
 /// CCM-LM sample
 ///
+/// Contains the sampled value of CCM_LM.rx_fc_b from the last valid CCM_LM frame.
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct CCM_LM_RX_B_REG(u32);
+impl CCM_LM_RX_B_REG {
+    /// Contains the sampled value of CCM_LM.rx_fc_b from the last valid CCM_LM frame.
+    pub fn ccm_lm_rx_b(&self) -> u32 {
+        self.0
+    }
+    pub fn set_ccm_lm_rx_b(&mut self, value: u32) {
+        self.0 = value;
+    }
+}
+/// CCM-LM sample
+///
 /// Contains the sampled value of CCM_LM.tx_fc_b from the last valid CCM_LM frame.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CCM_LM_TX_B_REG(u32);
@@ -87,20 +101,6 @@ impl LM_CNT_FRAME {
         assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
-    }
-}
-/// Byte count of all frames passing through the Port VOE (LSB)
-///
-/// Byte count of all frames passing through the Port VOE. Whenever this RAM is read, the value of this register will be sampled into the following register: * ANA_AC_OAM_MOD::RD_LAST_PORT_BYTE_CNT_LSB.RD_LAST_PORT_BYTE_CNT_LSB (ANA) * REW::RD_LAST_PORT_BYTE_CNT_LSB.RD_LAST_PORT_BYTE_CNT_LSB (REW)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PORT_BYTE_CNT_LSB(u32);
-impl PORT_BYTE_CNT_LSB {
-    /// See Register Description.
-    pub fn port_byte_cnt_lsb(&self) -> u32 {
-        self.0
-    }
-    pub fn set_port_byte_cnt_lsb(&mut self, value: u32) {
-        self.0 = value;
     }
 }
 /// LM temp count

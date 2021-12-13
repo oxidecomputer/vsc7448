@@ -62,10 +62,8 @@ impl PCIE_AER_CAP {
     pub fn HDR_LOG_REG_2(&self) -> RegisterAddress<pcie_aer_cap::HDR_LOG_REG_2> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    pub fn LINK_CONTROL2_LINK_STATUS2(
-        &self,
-    ) -> RegisterAddress<pcie_aer_cap::LINK_CONTROL2_LINK_STATUS2> {
-        RegisterAddress::new(self.0 + 0x30)
+    pub fn HDR_LOG_REG_3(&self) -> RegisterAddress<pcie_aer_cap::HDR_LOG_REG_3> {
+        RegisterAddress::new(self.0 + 0x28)
     }
     pub fn UNCORR_ERR_MASK(&self) -> RegisterAddress<pcie_aer_cap::UNCORR_ERR_MASK> {
         RegisterAddress::new(self.0 + 0x8)
@@ -103,11 +101,13 @@ impl PCIE_CAP {
     pub fn LINK_CAPABILITIES2(&self) -> RegisterAddress<pcie_cap::LINK_CAPABILITIES2> {
         RegisterAddress::new(self.0 + 0x2c)
     }
+    pub fn LINK_CONTROL2_LINK_STATUS2(
+        &self,
+    ) -> RegisterAddress<pcie_cap::LINK_CONTROL2_LINK_STATUS2> {
+        RegisterAddress::new(self.0 + 0x30)
+    }
     pub fn LINK_CONTROL_LINK_STATUS(&self) -> RegisterAddress<pcie_cap::LINK_CONTROL_LINK_STATUS> {
         RegisterAddress::new(self.0 + 0x10)
-    }
-    pub fn MSI_PENDING_BIT(&self) -> RegisterAddress<pcie_cap::MSI_PENDING_BIT> {
-        RegisterAddress::new(self.0 + 0x14)
     }
     pub fn PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP(
         &self,
@@ -119,11 +119,11 @@ impl PCIE_CAP {
 /// PCIe Message Signaled Interrupts
 pub struct PCIE_MSI_CAP(pub(super) u32);
 impl PCIE_MSI_CAP {
-    pub fn CON_STATUS(&self) -> RegisterAddress<pcie_msi_cap::CON_STATUS> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn MSI_LOWER_32(&self) -> RegisterAddress<pcie_msi_cap::MSI_LOWER_32> {
         RegisterAddress::new(self.0 + 0x4)
+    }
+    pub fn MSI_PENDING_BIT(&self) -> RegisterAddress<pcie_msi_cap::MSI_PENDING_BIT> {
+        RegisterAddress::new(self.0 + 0x14)
     }
     pub fn MSI_UPPER_32(&self) -> RegisterAddress<pcie_msi_cap::MSI_UPPER_32> {
         RegisterAddress::new(self.0 + 0x8)
@@ -141,10 +141,8 @@ impl PCIE_PM_CAP {
     pub fn CAP_ID_NXT_PTR(&self) -> RegisterAddress<pcie_pm_cap::CAP_ID_NXT_PTR> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE(
-        &self,
-    ) -> RegisterAddress<pcie_pm_cap::MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE> {
-        RegisterAddress::new(self.0 + 0x3c)
+    pub fn CON_STATUS(&self) -> RegisterAddress<pcie_pm_cap::CON_STATUS> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
@@ -214,9 +212,6 @@ impl PCIE_PORT_LOGIC {
     }
     pub fn GEN2_CTRL(&self) -> RegisterAddress<pcie_port_logic::GEN2_CTRL> {
         RegisterAddress::new(self.0 + 0x10c)
-    }
-    pub fn HDR_LOG_REG_3(&self) -> RegisterAddress<pcie_port_logic::HDR_LOG_REG_3> {
-        RegisterAddress::new(self.0 + 0x28)
     }
     pub fn LANE_SKEW(&self) -> RegisterAddress<pcie_port_logic::LANE_SKEW> {
         RegisterAddress::new(self.0 + 0x14)
@@ -319,6 +314,11 @@ impl PCIE_TYPE0_HDR {
     }
     pub fn EXP_ROM_BASE_ADDR(&self) -> RegisterAddress<pcie_type0_hdr::EXP_ROM_BASE_ADDR> {
         RegisterAddress::new(self.0 + 0x30)
+    }
+    pub fn MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE(
+        &self,
+    ) -> RegisterAddress<pcie_type0_hdr::MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE> {
+        RegisterAddress::new(self.0 + 0x3c)
     }
     pub fn PCI_CAP_PTR(&self) -> RegisterAddress<pcie_type0_hdr::PCI_CAP_PTR> {
         RegisterAddress::new(self.0 + 0x34)

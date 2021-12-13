@@ -274,63 +274,15 @@ impl HDR_LOG_REG_2 {
         self.0 = value;
     }
 }
-/// Word offset 12
+/// Word offset 10
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct LINK_CONTROL2_LINK_STATUS2(u32);
-impl LINK_CONTROL2_LINK_STATUS2 {
-    pub fn pcie_cap_curr_deemphasis(&self) -> u32 {
-        (self.0 & 0x10000) >> 16
+pub struct HDR_LOG_REG_3(u32);
+impl HDR_LOG_REG_3 {
+    pub fn fourth_dword(&self) -> u32 {
+        self.0
     }
-    pub fn set_pcie_cap_curr_deemphasis(&mut self, value: u32) {
-        let value = value << 16;
-        assert!(value <= 0x10000);
-        self.0 &= !0x10000;
-        self.0 |= value;
-    }
-    pub fn pcie_cap_eq_cpl(&self) -> u32 {
-        (self.0 & 0x20000) >> 17
-    }
-    pub fn set_pcie_cap_eq_cpl(&mut self, value: u32) {
-        let value = value << 17;
-        assert!(value <= 0x20000);
-        self.0 &= !0x20000;
-        self.0 |= value;
-    }
-    pub fn pcie_cap_eq_cpl_p1(&self) -> u32 {
-        (self.0 & 0x40000) >> 18
-    }
-    pub fn set_pcie_cap_eq_cpl_p1(&mut self, value: u32) {
-        let value = value << 18;
-        assert!(value <= 0x40000);
-        self.0 &= !0x40000;
-        self.0 |= value;
-    }
-    pub fn pcie_cap_eq_cpl_p2(&self) -> u32 {
-        (self.0 & 0x80000) >> 19
-    }
-    pub fn set_pcie_cap_eq_cpl_p2(&mut self, value: u32) {
-        let value = value << 19;
-        assert!(value <= 0x80000);
-        self.0 &= !0x80000;
-        self.0 |= value;
-    }
-    pub fn pcie_cap_eq_cpl_p3(&self) -> u32 {
-        (self.0 & 0x100000) >> 20
-    }
-    pub fn set_pcie_cap_eq_cpl_p3(&mut self, value: u32) {
-        let value = value << 20;
-        assert!(value <= 0x100000);
-        self.0 &= !0x100000;
-        self.0 |= value;
-    }
-    pub fn pcie_cap_link_eq_req(&self) -> u32 {
-        (self.0 & 0x200000) >> 21
-    }
-    pub fn set_pcie_cap_link_eq_req(&mut self, value: u32) {
-        let value = value << 21;
-        assert!(value <= 0x200000);
-        self.0 &= !0x200000;
-        self.0 |= value;
+    pub fn set_fourth_dword(&mut self, value: u32) {
+        self.0 = value;
     }
 }
 /// Word offset 2

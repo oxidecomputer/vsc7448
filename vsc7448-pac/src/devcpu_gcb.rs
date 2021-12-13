@@ -50,6 +50,9 @@ impl CHIP_REGS {
     pub fn CHIP_ID(&self) -> RegisterAddress<chip_regs::CHIP_ID> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    pub fn FEA_DIS(&self) -> RegisterAddress<chip_regs::FEA_DIS> {
+        RegisterAddress::new(self.0 + 0x1c)
+    }
     pub fn FEA_STAT(&self) -> RegisterAddress<chip_regs::FEA_STAT> {
         RegisterAddress::new(self.0 + 0x18)
     }
@@ -76,9 +79,8 @@ impl FAN_CTRL {
     pub fn FAN_CFG(&self) -> RegisterAddress<fan_ctrl::FAN_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn SIO_INTR_IDENT(&self, index: u32) -> RegisterAddress<fan_ctrl::SIO_INTR_IDENT> {
-        assert!(index < 4);
-        RegisterAddress::new(self.0 + 0xfc + index * 0x4)
+    pub fn FAN_CNT(&self) -> RegisterAddress<fan_ctrl::FAN_CNT> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
@@ -141,19 +143,20 @@ impl GPIO {
     pub fn GPIO_OUT_SET1(&self) -> RegisterAddress<gpio::GPIO_OUT_SET1> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn VA_DATA_INERT(&self) -> RegisterAddress<gpio::VA_DATA_INERT> {
-        RegisterAddress::new(self.0 + 0x10)
+    pub fn GPIO_SD_MAP(&self, index: u32) -> RegisterAddress<gpio::GPIO_SD_MAP> {
+        assert!(index < 16);
+        RegisterAddress::new(self.0 + 0x50 + index * 0x4)
     }
 }
 
 /// Memory integrity monitor
 pub struct MEMITGR(pub(super) u32);
 impl MEMITGR {
-    pub fn FAN_CNT(&self) -> RegisterAddress<memitgr::FAN_CNT> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn MEMITGR_CTRL(&self) -> RegisterAddress<memitgr::MEMITGR_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
+    }
+    pub fn MEMITGR_DBG(&self) -> RegisterAddress<memitgr::MEMITGR_DBG> {
+        RegisterAddress::new(self.0 + 0x14)
     }
     pub fn MEMITGR_DIV(&self) -> RegisterAddress<memitgr::MEMITGR_DIV> {
         RegisterAddress::new(self.0 + 0x10)
@@ -172,10 +175,6 @@ impl MEMITGR {
 /// Not documented
 pub struct MIIM(pub(super) u32);
 impl MIIM {
-    pub fn GPIO_SD_MAP(&self, index: u32) -> RegisterAddress<miim::GPIO_SD_MAP> {
-        assert!(index < 16);
-        RegisterAddress::new(self.0 + 0x50 + index * 0x4)
-    }
     pub fn MII_CFG(&self) -> RegisterAddress<miim::MII_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
@@ -197,6 +196,9 @@ impl MIIM {
     pub fn MII_SCAN_LAST_RSLTS(&self) -> RegisterAddress<miim::MII_SCAN_LAST_RSLTS> {
         RegisterAddress::new(self.0 + 0x1c)
     }
+    pub fn MII_SCAN_LAST_RSLTS_VLD(&self) -> RegisterAddress<miim::MII_SCAN_LAST_RSLTS_VLD> {
+        RegisterAddress::new(self.0 + 0x20)
+    }
     pub fn MII_STATUS(&self) -> RegisterAddress<miim::MII_STATUS> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -205,27 +207,26 @@ impl MIIM {
 /// Not documented
 pub struct MIIM_READ_SCAN(pub(super) u32);
 impl MIIM_READ_SCAN {
-    pub fn MII_SCAN_LAST_RSLTS_VLD(
+    pub fn MII_SCAN_RSLTS_STICKY(
         &self,
-    ) -> RegisterAddress<miim_read_scan::MII_SCAN_LAST_RSLTS_VLD> {
-        RegisterAddress::new(self.0 + 0x20)
+        index: u32,
+    ) -> RegisterAddress<miim_read_scan::MII_SCAN_RSLTS_STICKY> {
+        assert!(index < 3);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
 }
 
 /// Not documented
 pub struct MIIM_SLAVE(pub(super) u32);
 impl MIIM_SLAVE {
-    pub fn TEMP_SENSOR_STAT(&self) -> RegisterAddress<miim_slave::TEMP_SENSOR_STAT> {
-        RegisterAddress::new(self.0 + 0x8)
+    pub fn MIIM_SLAVE_CFG(&self) -> RegisterAddress<miim_slave::MIIM_SLAVE_CFG> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Serial IO control configuration
 pub struct SIO_CTRL(pub(super) u32);
 impl SIO_CTRL {
-    pub fn MIIM_SLAVE_CFG(&self) -> RegisterAddress<sio_ctrl::MIIM_SLAVE_CFG> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
     pub fn SIO_CFG(&self) -> RegisterAddress<sio_ctrl::SIO_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
@@ -242,6 +243,10 @@ impl SIO_CTRL {
     }
     pub fn SIO_INTR_ENA(&self) -> RegisterAddress<sio_ctrl::SIO_INTR_ENA> {
         RegisterAddress::new(self.0 + 0xf8)
+    }
+    pub fn SIO_INTR_IDENT(&self, index: u32) -> RegisterAddress<sio_ctrl::SIO_INTR_IDENT> {
+        assert!(index < 4);
+        RegisterAddress::new(self.0 + 0xfc + index * 0x4)
     }
     pub fn SIO_INTR_POL(&self, index: u32) -> RegisterAddress<sio_ctrl::SIO_INTR_POL> {
         assert!(index < 4);
@@ -275,35 +280,28 @@ impl SIO_CTRL {
 /// Registers for software/software interaction
 pub struct SW_REGS(pub(super) u32);
 impl SW_REGS {
-    pub fn FEA_DIS(&self) -> RegisterAddress<sw_regs::FEA_DIS> {
-        RegisterAddress::new(self.0 + 0x1c)
+    pub fn SW_INTR(&self) -> RegisterAddress<sw_regs::SW_INTR> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Temperature sensor control
 pub struct TEMP_SENSOR(pub(super) u32);
 impl TEMP_SENSOR {
-    pub fn MII_SCAN_RSLTS_STICKY(
-        &self,
-        index: u32,
-    ) -> RegisterAddress<temp_sensor::MII_SCAN_RSLTS_STICKY> {
-        assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
-    }
     pub fn TEMP_SENSOR_CFG(&self) -> RegisterAddress<temp_sensor::TEMP_SENSOR_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
     pub fn TEMP_SENSOR_CTRL(&self) -> RegisterAddress<temp_sensor::TEMP_SENSOR_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    pub fn TEMP_SENSOR_STAT(&self) -> RegisterAddress<temp_sensor::TEMP_SENSOR_STAT> {
+        RegisterAddress::new(self.0 + 0x8)
+    }
 }
 
 /// Registers for accessing the VCore
 pub struct VCORE_ACCESS(pub(super) u32);
 impl VCORE_ACCESS {
-    pub fn SW_INTR(&self) -> RegisterAddress<vcore_access::SW_INTR> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
     pub fn VA_ADDR(&self) -> RegisterAddress<vcore_access::VA_ADDR> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -316,14 +314,14 @@ impl VCORE_ACCESS {
     pub fn VA_DATA_INCR(&self) -> RegisterAddress<vcore_access::VA_DATA_INCR> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    pub fn VA_DATA_INERT(&self) -> RegisterAddress<vcore_access::VA_DATA_INERT> {
+        RegisterAddress::new(self.0 + 0x10)
+    }
 }
 
 /// VRAP controller
 pub struct VRAP(pub(super) u32);
 impl VRAP {
-    pub fn MEMITGR_DBG(&self) -> RegisterAddress<vrap::MEMITGR_DBG> {
-        RegisterAddress::new(self.0 + 0x14)
-    }
     pub fn VRAP_ACCESS_STAT(&self) -> RegisterAddress<vrap::VRAP_ACCESS_STAT> {
         RegisterAddress::new(self.0 + 0x0)
     }

@@ -43,29 +43,19 @@ impl ATOP {
         self.0 |= value;
     }
 }
-/// Internal events for debugging only
-///
-/// Core events.
+/// Total raw memory use before tail dropping is activated
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct EVENTS_CORE(u32);
-impl EVENTS_CORE {
-    /// Look in the RTL!
-    pub fn ev_fdc(&self) -> u32 {
-        self.0 & 0x7
+pub struct ATOP_TOT_CFG(u32);
+impl ATOP_TOT_CFG {
+    /// Tail dropping is activate on a port when the port use has exceeded the ATOP watermark for the port, and the total memory use has exceeded this watermark.
+    ///
+    /// See RES_CFG
+    pub fn atop_tot(&self) -> u32 {
+        self.0 & 0xfff
     }
-    pub fn set_ev_fdc(&mut self, value: u32) {
-        assert!(value <= 0x7);
-        self.0 &= !0x7;
-        self.0 |= value;
-    }
-    /// Look in the RTL!
-    pub fn ev_fwr(&self) -> u32 {
-        (self.0 & 0x8) >> 3
-    }
-    pub fn set_ev_fwr(&mut self, value: u32) {
-        let value = value << 3;
-        assert!(value <= 0x8);
-        self.0 &= !0x8;
+    pub fn set_atop_tot(&mut self, value: u32) {
+        assert!(value <= 0xfff);
+        self.0 &= !0xfff;
         self.0 |= value;
     }
 }

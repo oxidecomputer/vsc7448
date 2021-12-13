@@ -41,17 +41,17 @@ impl FRSENT_LSW {
         self.0 |= value;
     }
 }
-/// VS tap CP value
+/// VS training frames_sent lsw
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TR_CPVAL(u32);
-impl TR_CPVAL {
-    /// CP value
-    pub fn cp_val(&self) -> u32 {
-        self.0 & 0x7f
+pub struct FRSENT_MSW(u32);
+impl FRSENT_MSW {
+    /// Number of training frames sent to complete training.
+    pub fn frsent_msw(&self) -> u32 {
+        self.0 & 0xffff
     }
-    pub fn set_cp_val(&mut self, value: u32) {
-        assert!(value <= 0x7f);
-        self.0 &= !0x7f;
+    pub fn set_frsent_msw(&mut self, value: u32) {
+        assert!(value <= 0xffff);
+        self.0 &= !0xffff;
         self.0 |= value;
     }
 }

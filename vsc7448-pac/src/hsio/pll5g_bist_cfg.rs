@@ -105,59 +105,19 @@ impl PLL5G_BIST_CFG1 {
         self.0 |= value;
     }
 }
-/// PLL5G Status 1
+/// PLL5G BIST Configuration register 2
 ///
-/// Status register 1 for the PLL5G
+/// Configuration register 2 for PLL5G BIST.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PLL5G_STATUS1(u32);
-impl PLL5G_STATUS1 {
-    /// VCO frequency difference to refclk
-    pub fn fbcnt_dif(&self) -> u32 {
-        (self.0 & 0x3ff0) >> 4
+pub struct PLL5G_BIST_CFG2(u32);
+impl PLL5G_BIST_CFG2 {
+    /// BIST compare divider N
+    pub fn pllb_div_factor_n(&self) -> u32 {
+        self.0 & 0xffff
     }
-    pub fn set_fbcnt_dif(&mut self, value: u32) {
-        let value = value << 4;
-        assert!(value <= 0x3ff0);
-        self.0 &= !0x3ff0;
-        self.0 |= value;
-    }
-    /// startup FSM lock status
-    pub fn fsm_lock(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_fsm_lock(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// startup FSM internal status
-    pub fn fsm_stat(&self) -> u32 {
-        (self.0 & 0xe) >> 1
-    }
-    pub fn set_fsm_stat(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0xe);
-        self.0 &= !0xe;
-        self.0 |= value;
-    }
-    /// VCO frequency step stop
-    pub fn gain_stat(&self) -> u32 {
-        (self.0 & 0x7c000) >> 14
-    }
-    pub fn set_gain_stat(&mut self, value: u32) {
-        let value = value << 14;
-        assert!(value <= 0x7c000);
-        self.0 &= !0x7c000;
-        self.0 |= value;
-    }
-    /// sigma delta ADC output
-    pub fn sig_del(&self) -> u32 {
-        (self.0 & 0x7f80000) >> 19
-    }
-    pub fn set_sig_del(&mut self, value: u32) {
-        let value = value << 19;
-        assert!(value <= 0x7f80000);
-        self.0 &= !0x7f80000;
+    pub fn set_pllb_div_factor_n(&mut self, value: u32) {
+        assert!(value <= 0xffff);
+        self.0 &= !0xffff;
         self.0 |= value;
     }
 }

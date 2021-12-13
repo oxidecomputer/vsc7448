@@ -58,7 +58,7 @@ pub mod tr_tmr;
 /// Not documented
 pub struct AN_CFG0(pub(super) u32);
 impl AN_CFG0 {
-    pub fn KR_7X0030(&self) -> RegisterAddress<an_cfg0::KR_7X0030> {
+    pub fn AN_CFG0(&self) -> RegisterAddress<an_cfg0::AN_CFG0> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -66,15 +66,15 @@ impl AN_CFG0 {
 /// Not documented
 pub struct AN_HIST(pub(super) u32);
 impl AN_HIST {
-    pub fn KR1G_MSW(&self) -> RegisterAddress<an_hist::KR1G_MSW> {
-        RegisterAddress::new(self.0 + 0x4)
+    pub fn AN_HIST(&self) -> RegisterAddress<an_hist::AN_HIST> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Not documented
 pub struct AN_SM(pub(super) u32);
 impl AN_SM {
-    pub fn AN_HIST(&self) -> RegisterAddress<an_sm::AN_HIST> {
+    pub fn AN_SM(&self) -> RegisterAddress<an_sm::AN_SM> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -82,9 +82,6 @@ impl AN_SM {
 /// Not documented
 pub struct AN_STS0(pub(super) u32);
 impl AN_STS0 {
-    pub fn AN_SM(&self) -> RegisterAddress<an_sts0::AN_SM> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
     pub fn AN_STS0(&self) -> RegisterAddress<an_sts0::AN_STS0> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -96,7 +93,7 @@ impl AW_TMR {
     pub fn AW_LSW(&self) -> RegisterAddress<aw_tmr::AW_LSW> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn BL_MSW(&self) -> RegisterAddress<aw_tmr::BL_MSW> {
+    pub fn AW_MSW(&self) -> RegisterAddress<aw_tmr::AW_MSW> {
         RegisterAddress::new(self.0 + 0x4)
     }
 }
@@ -104,11 +101,11 @@ impl AW_TMR {
 /// Not documented
 pub struct BL_TMR(pub(super) u32);
 impl BL_TMR {
-    pub fn AN_CFG0(&self) -> RegisterAddress<bl_tmr::AN_CFG0> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
     pub fn BL_LSW(&self) -> RegisterAddress<bl_tmr::BL_LSW> {
         RegisterAddress::new(self.0 + 0x0)
+    }
+    pub fn BL_MSW(&self) -> RegisterAddress<bl_tmr::BL_MSW> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
@@ -118,7 +115,7 @@ impl KR10G_TMR {
     pub fn KR10G_LSW(&self) -> RegisterAddress<kr10g_tmr::KR10G_LSW> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn PD_MSW(&self) -> RegisterAddress<kr10g_tmr::PD_MSW> {
+    pub fn KR10G_MSW(&self) -> RegisterAddress<kr10g_tmr::KR10G_MSW> {
         RegisterAddress::new(self.0 + 0x4)
     }
 }
@@ -129,7 +126,7 @@ impl KR1G_TMR {
     pub fn KR1G_LSW(&self) -> RegisterAddress<kr1g_tmr::KR1G_LSW> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn KR3G_MSW(&self) -> RegisterAddress<kr1g_tmr::KR3G_MSW> {
+    pub fn KR1G_MSW(&self) -> RegisterAddress<kr1g_tmr::KR1G_MSW> {
         RegisterAddress::new(self.0 + 0x4)
     }
 }
@@ -137,22 +134,26 @@ impl KR1G_TMR {
 /// Not documented
 pub struct KR3G_TMR(pub(super) u32);
 impl KR3G_TMR {
-    pub fn KR10G_MSW(&self) -> RegisterAddress<kr3g_tmr::KR10G_MSW> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn KR3G_LSW(&self) -> RegisterAddress<kr3g_tmr::KR3G_LSW> {
         RegisterAddress::new(self.0 + 0x0)
+    }
+    pub fn KR3G_MSW(&self) -> RegisterAddress<kr3g_tmr::KR3G_MSW> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
 /// Not documented
 pub struct KR_7X0000(pub(super) u32);
-impl KR_7X0000 {}
+impl KR_7X0000 {
+    pub fn KR_7X0000(&self) -> RegisterAddress<kr_7x0000::KR_7X0000> {
+        RegisterAddress::new(self.0 + 0x0)
+    }
+}
 
 /// Not documented
 pub struct KR_7X0001(pub(super) u32);
 impl KR_7X0001 {
-    pub fn KR_7X0000(&self) -> RegisterAddress<kr_7x0001::KR_7X0000> {
+    pub fn KR_7X0001(&self) -> RegisterAddress<kr_7x0001::KR_7X0001> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -160,73 +161,73 @@ impl KR_7X0001 {
 /// Not documented
 pub struct KR_7X0030(pub(super) u32);
 impl KR_7X0030 {
-    pub fn KR_7X001B(&self) -> RegisterAddress<kr_7x0030::KR_7X001B> {
-        RegisterAddress::new(self.0 + 0x8)
+    pub fn KR_7X0030(&self) -> RegisterAddress<kr_7x0030::KR_7X0030> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Not documented
 pub struct LD_ADV(pub(super) u32);
 impl LD_ADV {
-    pub fn KR_7X0001(&self) -> RegisterAddress<ld_adv::KR_7X0001> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
     pub fn KR_7X0010(&self) -> RegisterAddress<ld_adv::KR_7X0010> {
         RegisterAddress::new(self.0 + 0x0)
     }
     pub fn KR_7X0011(&self) -> RegisterAddress<ld_adv::KR_7X0011> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    pub fn KR_7X0012(&self) -> RegisterAddress<ld_adv::KR_7X0012> {
+        RegisterAddress::new(self.0 + 0x8)
+    }
 }
 
 /// Not documented
 pub struct LD_NEXT_PAGE(pub(super) u32);
 impl LD_NEXT_PAGE {
-    pub fn KR_7X0015(&self) -> RegisterAddress<ld_next_page::KR_7X0015> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
     pub fn KR_7X0016(&self) -> RegisterAddress<ld_next_page::KR_7X0016> {
         RegisterAddress::new(self.0 + 0x0)
     }
     pub fn KR_7X0017(&self) -> RegisterAddress<ld_next_page::KR_7X0017> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    pub fn KR_7X0018(&self) -> RegisterAddress<ld_next_page::KR_7X0018> {
+        RegisterAddress::new(self.0 + 0x8)
+    }
 }
 
 /// Not documented
 pub struct LFLONG_TMR(pub(super) u32);
 impl LFLONG_TMR {
-    pub fn AW_MSW(&self) -> RegisterAddress<lflong_tmr::AW_MSW> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn LFLONG_LSW(&self) -> RegisterAddress<lflong_tmr::LFLONG_LSW> {
         RegisterAddress::new(self.0 + 0x0)
+    }
+    pub fn LFLONG_MSW(&self) -> RegisterAddress<lflong_tmr::LFLONG_MSW> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
 /// Not documented
 pub struct LFSHORT_TMR(pub(super) u32);
 impl LFSHORT_TMR {
-    pub fn LFLONG_MSW(&self) -> RegisterAddress<lfshort_tmr::LFLONG_MSW> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn LFSHORT_LSW(&self) -> RegisterAddress<lfshort_tmr::LFSHORT_LSW> {
         RegisterAddress::new(self.0 + 0x0)
+    }
+    pub fn LFSHORT_MSW(&self) -> RegisterAddress<lfshort_tmr::LFSHORT_MSW> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
 /// Not documented
 pub struct LP_BASE_PAGE_0(pub(super) u32);
 impl LP_BASE_PAGE_0 {
-    pub fn KR_7X0012(&self) -> RegisterAddress<lp_base_page_0::KR_7X0012> {
-        RegisterAddress::new(self.0 + 0x8)
+    pub fn KR_7X0013(&self) -> RegisterAddress<lp_base_page_0::KR_7X0013> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Not documented
 pub struct LP_BASE_PAGE_1(pub(super) u32);
 impl LP_BASE_PAGE_1 {
-    pub fn KR_7X0013(&self) -> RegisterAddress<lp_base_page_1::KR_7X0013> {
+    pub fn KR_7X0014(&self) -> RegisterAddress<lp_base_page_1::KR_7X0014> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -234,7 +235,7 @@ impl LP_BASE_PAGE_1 {
 /// Not documented
 pub struct LP_BASE_PAGE_2(pub(super) u32);
 impl LP_BASE_PAGE_2 {
-    pub fn KR_7X0014(&self) -> RegisterAddress<lp_base_page_2::KR_7X0014> {
+    pub fn KR_7X0015(&self) -> RegisterAddress<lp_base_page_2::KR_7X0015> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -242,25 +243,25 @@ impl LP_BASE_PAGE_2 {
 /// Not documented
 pub struct LP_NEXT_PAGE(pub(super) u32);
 impl LP_NEXT_PAGE {
-    pub fn KR_7X0018(&self) -> RegisterAddress<lp_next_page::KR_7X0018> {
-        RegisterAddress::new(self.0 + 0x8)
-    }
     pub fn KR_7X0019(&self) -> RegisterAddress<lp_next_page::KR_7X0019> {
         RegisterAddress::new(self.0 + 0x0)
     }
     pub fn KR_7X001A(&self) -> RegisterAddress<lp_next_page::KR_7X001A> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    pub fn KR_7X001B(&self) -> RegisterAddress<lp_next_page::KR_7X001B> {
+        RegisterAddress::new(self.0 + 0x8)
+    }
 }
 
 /// Not documented
 pub struct LP_TMR(pub(super) u32);
 impl LP_TMR {
-    pub fn LFSHORT_MSW(&self) -> RegisterAddress<lp_tmr::LFSHORT_MSW> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn LP_LSW(&self) -> RegisterAddress<lp_tmr::LP_LSW> {
         RegisterAddress::new(self.0 + 0x0)
+    }
+    pub fn LP_MSW(&self) -> RegisterAddress<lp_tmr::LP_MSW> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
@@ -270,7 +271,7 @@ impl PD_TMR {
     pub fn PD_LSW(&self) -> RegisterAddress<pd_tmr::PD_LSW> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn TR_MSW(&self) -> RegisterAddress<pd_tmr::TR_MSW> {
+    pub fn PD_MSW(&self) -> RegisterAddress<pd_tmr::PD_MSW> {
         RegisterAddress::new(self.0 + 0x4)
     }
 }
@@ -278,10 +279,10 @@ impl PD_TMR {
 /// Not documented
 pub struct TR_TMR(pub(super) u32);
 impl TR_TMR {
-    pub fn LP_MSW(&self) -> RegisterAddress<tr_tmr::LP_MSW> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn TR_LSW(&self) -> RegisterAddress<tr_tmr::TR_LSW> {
         RegisterAddress::new(self.0 + 0x0)
+    }
+    pub fn TR_MSW(&self) -> RegisterAddress<tr_tmr::TR_MSW> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }

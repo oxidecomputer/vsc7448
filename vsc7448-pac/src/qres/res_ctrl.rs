@@ -45,20 +45,6 @@ impl RES_CFG {
         self.0 |= value;
     }
 }
-/// DLB shaping offset
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct RES_DLB_OFFSET(u32);
-impl RES_DLB_OFFSET {
-    /// The watermarks for enabling DLB rate will be offset this value compared to the sensed resource. Ie. if shared priority 0 watermark is set to 40000 cells, the default value will allow higher rate shaping when 39950 cells has been used.
-    pub fn res_dlb_offs_val(&self) -> u32 {
-        self.0 & 0x3ff
-    }
-    pub fn set_res_dlb_offs_val(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
-        self.0 &= !0x3ff;
-        self.0 |= value;
-    }
-}
 /// Resource status
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RES_STAT(u32);

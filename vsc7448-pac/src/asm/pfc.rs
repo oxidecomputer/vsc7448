@@ -53,31 +53,19 @@ impl PFC_CFG {
         self.0 |= value;
     }
 }
-/// ASM port sticky bits
-///
-/// This register holds all the sticky bits that exists for each port.
+/// Current timer per priority
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PORT_STICKY(u32);
-impl PORT_STICKY {
-    /// This field indicates if one or more Ethernet frames have been discarded due to aging.
+pub struct PFC_TIMER(u32);
+impl PFC_TIMER {
+    /// The current timer value per priority. Value >0 indicates that the priority is paused.
     ///
-    /// '0': No Ethernet frames have been discarded due to aging. '1': One or more Ethernet frames have been discarded due to aging. Bit is cleared by writing a '1' to this position.
-    pub fn frm_aging_sticky(&self) -> u32 {
-        self.0 & 0x1
+    /// Unit is 1024 bit times.
+    pub fn pfc_timer_val(&self) -> u32 {
+        self.0 & 0xffff
     }
-    pub fn set_frm_aging_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// This field is set if the PORT_CFG.INJ_FORMAT_CFG field is set to one of the IFH modes and the incoming frame's format does not comply with the configured prefix.
-    pub fn ifh_prefix_err_sticky(&self) -> u32 {
-        (self.0 & 0x2) >> 1
-    }
-    pub fn set_ifh_prefix_err_sticky(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x2);
-        self.0 &= !0x2;
+    pub fn set_pfc_timer_val(&mut self, value: u32) {
+        assert!(value <= 0xffff);
+        self.0 &= !0xffff;
         self.0 |= value;
     }
 }

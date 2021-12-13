@@ -55,20 +55,6 @@ impl PIN_WF_LOW_PERIOD {
         self.0 |= value;
     }
 }
-/// Current time of day
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PTP_CUR_SEC_MSB(u32);
-impl PTP_CUR_SEC_MSB {
-    /// Current time of day, seconds part, latched when NSF was read
-    pub fn ptp_cur_sec_msb(&self) -> u32 {
-        self.0 & 0xffff
-    }
-    pub fn set_ptp_cur_sec_msb(&mut self, value: u32) {
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
-        self.0 |= value;
-    }
-}
 /// Stamper clock
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PTP_NSF(u32);

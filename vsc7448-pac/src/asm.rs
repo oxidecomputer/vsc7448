@@ -48,6 +48,9 @@ impl CFG {
     pub fn CPU_FC_CFG(&self) -> RegisterAddress<cfg::CPU_FC_CFG> {
         RegisterAddress::new(self.0 + 0x298)
     }
+    pub fn INJ_VLAN_CFG(&self) -> RegisterAddress<cfg::INJ_VLAN_CFG> {
+        RegisterAddress::new(self.0 + 0x378)
+    }
     pub fn MAC_ADDR_HIGH_CFG(&self, index: u32) -> RegisterAddress<cfg::MAC_ADDR_HIGH_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
@@ -64,9 +67,6 @@ impl CFG {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x1bc + index * 0x4)
     }
-    pub fn RX_SYNC_LOST_ERR_CNT(&self) -> RegisterAddress<cfg::RX_SYNC_LOST_ERR_CNT> {
-        RegisterAddress::new(self.0 + 0xd8)
-    }
     pub fn STAT_CFG(&self) -> RegisterAddress<cfg::STAT_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -81,9 +81,6 @@ impl COREMEM {
     pub fn CM_DATA(&self) -> RegisterAddress<coremem::CM_DATA> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn RAM_INIT(&self) -> RegisterAddress<coremem::RAM_INIT> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// Assembler Debug Registers
@@ -96,8 +93,8 @@ impl DBG {
         assert!(index < 9);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
-    pub fn INJ_VLAN_CFG(&self) -> RegisterAddress<dbg::INJ_VLAN_CFG> {
-        RegisterAddress::new(self.0 + 0x378)
+    pub fn PRE_CNT_OFLW_STICKY(&self) -> RegisterAddress<dbg::PRE_CNT_OFLW_STICKY> {
+        RegisterAddress::new(self.0 + 0x28)
     }
 }
 
@@ -182,6 +179,9 @@ impl DEV_STATISTICS {
     }
     pub fn RX_SYMBOL_ERR_CNT(&self) -> RegisterAddress<dev_statistics::RX_SYMBOL_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x4)
+    }
+    pub fn RX_SYNC_LOST_ERR_CNT(&self) -> RegisterAddress<dev_statistics::RX_SYNC_LOST_ERR_CNT> {
+        RegisterAddress::new(self.0 + 0xd8)
     }
     pub fn RX_TAGGED_FRMS_CNT(&self) -> RegisterAddress<dev_statistics::RX_TAGGED_FRMS_CNT> {
         RegisterAddress::new(self.0 + 0x98)
@@ -279,17 +279,17 @@ impl LBK_MISC_CFG {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    pub fn VD_FC_WM(&self, index: u32) -> RegisterAddress<lbk_misc_cfg::VD_FC_WM> {
-        assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+    pub fn LBK_FIFO_CFG(&self, index: u32) -> RegisterAddress<lbk_misc_cfg::LBK_FIFO_CFG> {
+        assert!(index < 3);
+        RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
 }
 
 /// Loopback Block Status registers
 pub struct LBK_STAT(pub(super) u32);
 impl LBK_STAT {
-    pub fn LBK_FIFO_CFG(&self, index: u32) -> RegisterAddress<lbk_stat::LBK_FIFO_CFG> {
-        assert!(index < 3);
+    pub fn LBK_AGING_STICKY(&self, index: u32) -> RegisterAddress<lbk_stat::LBK_AGING_STICKY> {
+        assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
     pub fn LBK_OVFLW_STICKY(&self, index: u32) -> RegisterAddress<lbk_stat::LBK_OVFLW_STICKY> {
@@ -301,9 +301,9 @@ impl LBK_STAT {
 /// Loopback Watermark Configuration
 pub struct LBK_WM_CFG(pub(super) u32);
 impl LBK_WM_CFG {
-    pub fn PFC_TIMER(&self, index: u32) -> RegisterAddress<lbk_wm_cfg::PFC_TIMER> {
-        assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+    pub fn VD_FC_WM(&self, index: u32) -> RegisterAddress<lbk_wm_cfg::VD_FC_WM> {
+        assert!(index < 2);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
 }
 
@@ -313,25 +313,25 @@ impl PFC {
     pub fn PFC_CFG(&self) -> RegisterAddress<pfc::PFC_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn PORT_STICKY(&self, index: u32) -> RegisterAddress<pfc::PORT_STICKY> {
-        assert!(index < 55);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+    pub fn PFC_TIMER(&self, index: u32) -> RegisterAddress<pfc::PFC_TIMER> {
+        assert!(index < 8);
+        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
 }
 
 /// Status for ASM ingress ports
 pub struct PORT_STATUS(pub(super) u32);
 impl PORT_STATUS {
-    pub fn PRE_CNT_OFLW_STICKY(&self) -> RegisterAddress<port_status::PRE_CNT_OFLW_STICKY> {
-        RegisterAddress::new(self.0 + 0x28)
+    pub fn PORT_STICKY(&self, index: u32) -> RegisterAddress<port_status::PORT_STICKY> {
+        assert!(index < 55);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
 }
 
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
-    pub fn LBK_AGING_STICKY(&self, index: u32) -> RegisterAddress<ram_ctrl::LBK_AGING_STICKY> {
-        assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x8 + index * 0x4)
+    pub fn RAM_INIT(&self) -> RegisterAddress<ram_ctrl::RAM_INIT> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }

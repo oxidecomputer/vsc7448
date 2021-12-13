@@ -461,6 +461,96 @@ impl MIP_CTRL {
         self.0 |= value;
     }
 }
+/// MIP sticky bit register
+///
+/// Event register common for all MIPs
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct MIP_STICKY_EVENT(u32);
+impl MIP_STICKY_EVENT {
+    /// This bit is set if a CCM CPU is copied to CPU
+    ///
+    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
+    pub fn mip_ccm_copy_sticky(&self) -> u32 {
+        (self.0 & 0x40) >> 6
+    }
+    pub fn set_mip_ccm_copy_sticky(&mut self, value: u32) {
+        let value = value << 6;
+        assert!(value <= 0x40);
+        self.0 &= !0x40;
+        self.0 |= value;
+    }
+    /// This bit is set if a Generic PDU has been handled
+    ///
+    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
+    pub fn mip_generic_sticky(&self) -> u32 {
+        (self.0 & 0x4) >> 2
+    }
+    pub fn set_mip_generic_sticky(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0x4);
+        self.0 &= !0x4;
+        self.0 |= value;
+    }
+    /// This bit is set if a destination MAC address check has failed for LBM frame
+    ///
+    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
+    pub fn mip_lbm_da_chk_fail_sticky(&self) -> u32 {
+        (self.0 & 0x2) >> 1
+    }
+    pub fn set_mip_lbm_da_chk_fail_sticky(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+    /// This bit is set if a LBM PDU has been redirected to the CPU
+    ///
+    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
+    pub fn mip_lbm_redir_sticky(&self) -> u32 {
+        (self.0 & 0x20) >> 5
+    }
+    pub fn set_mip_lbm_redir_sticky(&mut self, value: u32) {
+        let value = value << 5;
+        assert!(value <= 0x20);
+        self.0 &= !0x20;
+        self.0 |= value;
+    }
+    /// This bit is set if a LTM PDU has been redirected to the CPU
+    ///
+    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
+    pub fn mip_ltm_redir_sticky(&self) -> u32 {
+        (self.0 & 0x10) >> 4
+    }
+    pub fn set_mip_ltm_redir_sticky(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x10);
+        self.0 &= !0x10;
+        self.0 |= value;
+    }
+    /// This bit is set if a MEL check has failed for enabled OAM frames
+    ///
+    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
+    pub fn mip_mel_chk_fail_sticky(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_mip_mel_chk_fail_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// This bit is set if a Ring APS PDU has been handled
+    ///
+    /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
+    pub fn mip_raps_sticky(&self) -> u32 {
+        (self.0 & 0x8) >> 3
+    }
+    pub fn set_mip_raps_sticky(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x8);
+        self.0 &= !0x8;
+        self.0 |= value;
+    }
+}
 /// Configure mirror probes
 ///
 /// Related parameters: ANA_AC:MIRROR_PROBE

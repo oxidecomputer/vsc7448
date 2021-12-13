@@ -1454,6 +1454,40 @@ impl MEMPHY_ZCAL {
         self.0 |= value;
     }
 }
+/// SSTL drive-strength force
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct MEMPHY_ZCAL_FORCE(u32);
+impl MEMPHY_ZCAL_FORCE {
+    /// Set to force override of calibration signals.
+    pub fn zcal_force_ena(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_zcal_force_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// ZCAL value when forcing calibration signals.
+    pub fn zcal_force_zcal(&self) -> u32 {
+        (self.0 & 0xc) >> 2
+    }
+    pub fn set_zcal_force_zcal(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0xc);
+        self.0 &= !0xc;
+        self.0 |= value;
+    }
+    /// ZQ_OFF value when forcing calibration signals.
+    pub fn zcal_force_zq_off(&self) -> u32 {
+        (self.0 & 0x2) >> 1
+    }
+    pub fn set_zcal_force_zq_off(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+}
 /// SSTL drive-strength override
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MEMPHY_ZCAL_OVR(u32);
@@ -1577,52 +1611,6 @@ impl MEMPHY_ZCAL_STAT {
         let value = value << 12;
         assert!(value <= 0xfffff000);
         self.0 &= !0xfffff000;
-        self.0 |= value;
-    }
-}
-/// Timer control
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TIMER_CTRL(u32);
-impl TIMER_CTRL {
-    /// Set this field to force the reload of the timer, this will set the TIMER_VALUE to TIMER_RELOAD_VALUE for the corresponding timer. This field can be set at the same time as enabeling the counter, in that case the counter will be reloaded and then enabled for counting.
-    pub fn force_reload(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_force_reload(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// When set the timer will count continously (increment in each clock cycle) with out regard to the timer-tick generator. This feature is used for timing validation of the VCore system.
-    pub fn max_freq_ena(&self) -> u32 {
-        (self.0 & 0x8) >> 3
-    }
-    pub fn set_max_freq_ena(&mut self, value: u32) {
-        let value = value << 3;
-        assert!(value <= 0x8);
-        self.0 &= !0x8;
-        self.0 |= value;
-    }
-    /// When set the timer will automatically disable itself after it has generated interrupt.
-    pub fn one_shot_ena(&self) -> u32 {
-        (self.0 & 0x4) >> 2
-    }
-    pub fn set_one_shot_ena(&mut self, value: u32) {
-        let value = value << 2;
-        assert!(value <= 0x4);
-        self.0 &= !0x4;
-        self.0 |= value;
-    }
-    /// When enabled, the correponding timer decrements at each timer-tick. If TIMER_CTRL.ONE_SHOT_ENA is set this field is cleared when the timer reach 0 and interrupt is generated.
-    ///
-    /// 0: Timer is disabled 1: Timer is enabled
-    pub fn timer_ena(&self) -> u32 {
-        (self.0 & 0x2) >> 1
-    }
-    pub fn set_timer_ena(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x2);
-        self.0 &= !0x2;
         self.0 |= value;
     }
 }

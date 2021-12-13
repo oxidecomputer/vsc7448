@@ -53,22 +53,21 @@ impl HSCH_CFG {
     pub fn EIR_CFG(&self) -> RegisterAddress<hsch_cfg::EIR_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn HSCH_L1W(&self, index: u32) -> RegisterAddress<hsch_cfg::HSCH_L1W> {
-        assert!(index < 64);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
-    }
     pub fn SE_CFG(&self) -> RegisterAddress<hsch_cfg::SE_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
     pub fn SE_CONNECT(&self) -> RegisterAddress<hsch_cfg::SE_CONNECT> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    pub fn SE_DLB_SENSE(&self) -> RegisterAddress<hsch_cfg::SE_DLB_SENSE> {
+        RegisterAddress::new(self.0 + 0x10)
+    }
 }
 
 /// Configure DWRR weights
 pub struct HSCH_DWRR(pub(super) u32);
 impl HSCH_DWRR {
-    pub fn INP_STATE(&self) -> RegisterAddress<hsch_dwrr::INP_STATE> {
+    pub fn DWRR_ENTRY(&self) -> RegisterAddress<hsch_dwrr::DWRR_ENTRY> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -76,27 +75,32 @@ impl HSCH_DWRR {
 /// Status of scheduling element inputs
 pub struct HSCH_INP_STATE(pub(super) u32);
 impl HSCH_INP_STATE {
-    pub fn QSHP_CIR_STATE(&self) -> RegisterAddress<hsch_inp_state::QSHP_CIR_STATE> {
+    pub fn INP_STATE(&self) -> RegisterAddress<hsch_inp_state::INP_STATE> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Hierarchy configuration
 pub struct HSCH_L0_CFG(pub(super) u32);
-impl HSCH_L0_CFG {}
+impl HSCH_L0_CFG {
+    pub fn HSCH_L0_CFG(&self) -> RegisterAddress<hsch_l0_cfg::HSCH_L0_CFG> {
+        RegisterAddress::new(self.0 + 0x0)
+    }
+}
 
 /// Win data for layer 1
 pub struct HSCH_L1W(pub(super) u32);
 impl HSCH_L1W {
-    pub fn HSCH_L1_CFG(&self) -> RegisterAddress<hsch_l1w::HSCH_L1_CFG> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn HSCH_L1W(&self, index: u32) -> RegisterAddress<hsch_l1w::HSCH_L1W> {
+        assert!(index < 64);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
 }
 
 /// Hierarchy configuration
 pub struct HSCH_L1_CFG(pub(super) u32);
 impl HSCH_L1_CFG {
-    pub fn HSCH_L0_CFG(&self) -> RegisterAddress<hsch_l1_cfg::HSCH_L0_CFG> {
+    pub fn HSCH_L1_CFG(&self) -> RegisterAddress<hsch_l1_cfg::HSCH_L1_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -104,9 +108,6 @@ impl HSCH_L1_CFG {
 /// Configuration of leak lists
 pub struct HSCH_LEAK_LISTS(pub(super) u32);
 impl HSCH_LEAK_LISTS {
-    pub fn HSCH_FORCE_CTRL(&self) -> RegisterAddress<hsch_leak_lists::HSCH_FORCE_CTRL> {
-        RegisterAddress::new(self.0 + 0x228)
-    }
     pub fn HSCH_LEAK_CFG(&self, index: u32) -> RegisterAddress<hsch_leak_lists::HSCH_LEAK_CFG> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
@@ -123,9 +124,6 @@ impl HSCH_MISC {
     pub fn DEBUG_CTRL(&self) -> RegisterAddress<hsch_misc::DEBUG_CTRL> {
         RegisterAddress::new(self.0 + 0x218)
     }
-    pub fn DWRR_ENTRY(&self) -> RegisterAddress<hsch_misc::DWRR_ENTRY> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
     pub fn EQ_STAT(&self) -> RegisterAddress<hsch_misc::EQ_STAT> {
         RegisterAddress::new(self.0 + 0x214)
     }
@@ -140,6 +138,9 @@ impl HSCH_MISC {
     }
     pub fn HSCH_CFG_CFG(&self) -> RegisterAddress<hsch_misc::HSCH_CFG_CFG> {
         RegisterAddress::new(self.0 + 0x4)
+    }
+    pub fn HSCH_FORCE_CTRL(&self) -> RegisterAddress<hsch_misc::HSCH_FORCE_CTRL> {
+        RegisterAddress::new(self.0 + 0x228)
     }
     pub fn HSCH_LARGE_ENA(&self, index: u32) -> RegisterAddress<hsch_misc::HSCH_LARGE_ENA> {
         assert!(index < 14);
@@ -180,8 +181,8 @@ impl HSCH_STATUS {
     pub fn EIR_STATE(&self) -> RegisterAddress<hsch_status::EIR_STATE> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn SE_DLB_SENSE(&self) -> RegisterAddress<hsch_status::SE_DLB_SENSE> {
-        RegisterAddress::new(self.0 + 0x10)
+    pub fn SE_STATE(&self) -> RegisterAddress<hsch_status::SE_STATE> {
+        RegisterAddress::new(self.0 + 0x8)
     }
 }
 
@@ -191,7 +192,7 @@ impl QSHP_ALLOC_CFG {
     pub fn QSHP_ALLOC_CFG(&self) -> RegisterAddress<qshp_alloc_cfg::QSHP_ALLOC_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn QSHP_CFG(&self) -> RegisterAddress<qshp_alloc_cfg::QSHP_CFG> {
+    pub fn QSHP_CONNECT(&self) -> RegisterAddress<qshp_alloc_cfg::QSHP_CONNECT> {
         RegisterAddress::new(self.0 + 0x4)
     }
 }
@@ -199,18 +200,18 @@ impl QSHP_ALLOC_CFG {
 /// Configuration of queue shapers
 pub struct QSHP_CFG(pub(super) u32);
 impl QSHP_CFG {
+    pub fn QSHP_CFG(&self) -> RegisterAddress<qshp_cfg::QSHP_CFG> {
+        RegisterAddress::new(self.0 + 0x4)
+    }
     pub fn QSHP_CIR_CFG(&self) -> RegisterAddress<qshp_cfg::QSHP_CIR_CFG> {
         RegisterAddress::new(self.0 + 0x0)
-    }
-    pub fn SE_STATE(&self) -> RegisterAddress<qshp_cfg::SE_STATE> {
-        RegisterAddress::new(self.0 + 0x8)
     }
 }
 
 /// Status of queue shapers
 pub struct QSHP_STATUS(pub(super) u32);
 impl QSHP_STATUS {
-    pub fn QSHP_CONNECT(&self) -> RegisterAddress<qshp_status::QSHP_CONNECT> {
-        RegisterAddress::new(self.0 + 0x4)
+    pub fn QSHP_CIR_STATE(&self) -> RegisterAddress<qshp_status::QSHP_CIR_STATE> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }

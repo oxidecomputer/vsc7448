@@ -51,9 +51,6 @@ impl DEV1G_INTR_CFG_STATUS {
     pub fn DEV1G_INTR_IDENT(&self) -> RegisterAddress<dev1g_intr_cfg_status::DEV1G_INTR_IDENT> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn PCS_FX100_STATUS(&self) -> RegisterAddress<dev1g_intr_cfg_status::PCS_FX100_STATUS> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// Dev1g Configuration and Status Registers
@@ -76,6 +73,9 @@ impl DEV_CFG_STATUS {
     }
     pub fn PTP_CFG(&self) -> RegisterAddress<dev_cfg_status::PTP_CFG> {
         RegisterAddress::new(self.0 + 0x14)
+    }
+    pub fn PTP_EVENTS(&self) -> RegisterAddress<dev_cfg_status::PTP_EVENTS> {
+        RegisterAddress::new(self.0 + 0x18)
     }
 }
 
@@ -100,23 +100,20 @@ impl MAC_CFG_STATUS {
     pub fn MAC_MODE_CFG(&self) -> RegisterAddress<mac_cfg_status::MAC_MODE_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    pub fn MAC_STICKY(&self) -> RegisterAddress<mac_cfg_status::MAC_STICKY> {
+        RegisterAddress::new(self.0 + 0x20)
+    }
     pub fn MAC_TAGS_CFG(&self) -> RegisterAddress<mac_cfg_status::MAC_TAGS_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
     pub fn MAC_TAGS_CFG2(&self) -> RegisterAddress<mac_cfg_status::MAC_TAGS_CFG2> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    pub fn PTP_EVENTS(&self) -> RegisterAddress<mac_cfg_status::PTP_EVENTS> {
-        RegisterAddress::new(self.0 + 0x18)
-    }
 }
 
 /// PCS 1G Configuration Status Registers
 pub struct PCS1G_CFG_STATUS(pub(super) u32);
 impl PCS1G_CFG_STATUS {
-    pub fn MAC_STICKY(&self) -> RegisterAddress<pcs1g_cfg_status::MAC_STICKY> {
-        RegisterAddress::new(self.0 + 0x20)
-    }
     pub fn PCS1G_ANEG_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_ANEG_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
@@ -153,6 +150,9 @@ impl PCS1G_CFG_STATUS {
     pub fn PCS1G_LPI_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LPI_CFG> {
         RegisterAddress::new(self.0 + 0x38)
     }
+    pub fn PCS1G_LPI_STATUS(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LPI_STATUS> {
+        RegisterAddress::new(self.0 + 0x40)
+    }
     pub fn PCS1G_LPI_WAKE_ERROR_CNT(
         &self,
     ) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LPI_WAKE_ERROR_CNT> {
@@ -172,30 +172,30 @@ impl PCS1G_CFG_STATUS {
 /// PCS1G Testpattern Configuration and Status Registers
 pub struct PCS1G_TSTPAT_CFG_STATUS(pub(super) u32);
 impl PCS1G_TSTPAT_CFG_STATUS {
-    pub fn PCS1G_LPI_STATUS(&self) -> RegisterAddress<pcs1g_tstpat_cfg_status::PCS1G_LPI_STATUS> {
-        RegisterAddress::new(self.0 + 0x40)
-    }
     pub fn PCS1G_TSTPAT_MODE_CFG(
         &self,
     ) -> RegisterAddress<pcs1g_tstpat_cfg_status::PCS1G_TSTPAT_MODE_CFG> {
         RegisterAddress::new(self.0 + 0x0)
+    }
+    pub fn PCS1G_TSTPAT_STATUS(
+        &self,
+    ) -> RegisterAddress<pcs1g_tstpat_cfg_status::PCS1G_TSTPAT_STATUS> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
 /// PCS FX100 Configuration Registers
 pub struct PCS_FX100_CONFIGURATION(pub(super) u32);
 impl PCS_FX100_CONFIGURATION {
-    pub fn PCS1G_TSTPAT_STATUS(
-        &self,
-    ) -> RegisterAddress<pcs_fx100_configuration::PCS1G_TSTPAT_STATUS> {
-        RegisterAddress::new(self.0 + 0x4)
+    pub fn PCS_FX100_CFG(&self) -> RegisterAddress<pcs_fx100_configuration::PCS_FX100_CFG> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// PCS FX100 Status Registers
 pub struct PCS_FX100_STATUS(pub(super) u32);
 impl PCS_FX100_STATUS {
-    pub fn PCS_FX100_CFG(&self) -> RegisterAddress<pcs_fx100_status::PCS_FX100_CFG> {
+    pub fn PCS_FX100_STATUS(&self) -> RegisterAddress<pcs_fx100_status::PCS_FX100_STATUS> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }

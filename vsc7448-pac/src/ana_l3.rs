@@ -49,16 +49,16 @@ impl ARP {
     pub fn ARP_CFG_0(&self) -> RegisterAddress<arp::ARP_CFG_0> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn ARP_PTR_REMAP_CFG(&self) -> RegisterAddress<arp::ARP_PTR_REMAP_CFG> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn ARP_CFG_1(&self) -> RegisterAddress<arp::ARP_CFG_1> {
+        RegisterAddress::new(self.0 + 0x4)
     }
 }
 
 /// ARP Pointer Remap Table
 pub struct ARP_PTR_REMAP(pub(super) u32);
 impl ARP_PTR_REMAP {
-    pub fn MAX_LEN(&self) -> RegisterAddress<arp_ptr_remap::MAX_LEN> {
-        RegisterAddress::new(self.0 + 0x14)
+    pub fn ARP_PTR_REMAP_CFG(&self) -> RegisterAddress<arp_ptr_remap::ARP_PTR_REMAP_CFG> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
@@ -110,6 +110,9 @@ impl COMMON {
     pub fn ROUTING_CFG(&self) -> RegisterAddress<common::ROUTING_CFG> {
         RegisterAddress::new(self.0 + 0x40)
     }
+    pub fn SERVICE_CFG(&self) -> RegisterAddress<common::SERVICE_CFG> {
+        RegisterAddress::new(self.0 + 0x78)
+    }
     pub fn SIP_RPF_ENA(&self) -> RegisterAddress<common::SIP_RPF_ENA> {
         RegisterAddress::new(self.0 + 0x70)
     }
@@ -160,21 +163,18 @@ impl COMMON {
 /// L3 Multicast Table
 pub struct L3MC(pub(super) u32);
 impl L3MC {
-    pub fn ARP_CFG_1(&self) -> RegisterAddress<l3mc::ARP_CFG_1> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn EVMID_MASK_CFG(&self, index: u32) -> RegisterAddress<l3mc::EVMID_MASK_CFG> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+    }
+    pub fn L3MC_CTRL(&self) -> RegisterAddress<l3mc::L3MC_CTRL> {
+        RegisterAddress::new(self.0 + 0x10)
     }
 }
 
 /// Counter configuration for diagnostic information
 pub struct L3_STICKY_MASK(pub(super) u32);
 impl L3_STICKY_MASK {
-    pub fn L3_ARP_IPMC_STICKY(&self) -> RegisterAddress<l3_sticky_mask::L3_ARP_IPMC_STICKY> {
-        RegisterAddress::new(self.0 + 0x4)
-    }
     pub fn RLEG_STICKY_MASK(&self) -> RegisterAddress<l3_sticky_mask::RLEG_STICKY_MASK> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -192,8 +192,8 @@ impl L3_STICKY_MASK {
 /// Diagnostic information
 pub struct LPM_REMAP_STICKY(pub(super) u32);
 impl LPM_REMAP_STICKY {
-    pub fn L3MC_CTRL(&self) -> RegisterAddress<lpm_remap_sticky::L3MC_CTRL> {
-        RegisterAddress::new(self.0 + 0x10)
+    pub fn L3_LPM_REMAP_STICKY(&self) -> RegisterAddress<lpm_remap_sticky::L3_LPM_REMAP_STICKY> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
@@ -209,17 +209,14 @@ impl MSTP {
     pub fn MSTP_LRN_CFG(&self) -> RegisterAddress<mstp::MSTP_LRN_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn VLAN_MASK_CFG1(&self) -> RegisterAddress<mstp::VLAN_MASK_CFG1> {
-        RegisterAddress::new(self.0 + 0x14)
+    pub fn MSTP_LRN_CFG1(&self) -> RegisterAddress<mstp::MSTP_LRN_CFG1> {
+        RegisterAddress::new(self.0 + 0xc)
     }
 }
 
 /// Table UPdata Engine (TUPE)
 pub struct TUPE(pub(super) u32);
 impl TUPE {
-    pub fn SERVICE_CFG(&self) -> RegisterAddress<tupe::SERVICE_CFG> {
-        RegisterAddress::new(self.0 + 0x78)
-    }
     pub fn TUPE_ADDR(&self) -> RegisterAddress<tupe::TUPE_ADDR> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -256,6 +253,9 @@ impl TUPE {
     pub fn TUPE_PORT_MASK_B(&self) -> RegisterAddress<tupe::TUPE_PORT_MASK_B> {
         RegisterAddress::new(self.0 + 0x2c)
     }
+    pub fn TUPE_PORT_MASK_B1(&self) -> RegisterAddress<tupe::TUPE_PORT_MASK_B1> {
+        RegisterAddress::new(self.0 + 0x30)
+    }
 }
 
 /// VLAN table configuration
@@ -267,14 +267,14 @@ impl VLAN {
     pub fn TUPE_CTRL(&self) -> RegisterAddress<vlan::TUPE_CTRL> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    pub fn TUPE_PORT_MASK_B1(&self) -> RegisterAddress<vlan::TUPE_PORT_MASK_B1> {
-        RegisterAddress::new(self.0 + 0x30)
-    }
     pub fn VLAN_CFG(&self) -> RegisterAddress<vlan::VLAN_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
     pub fn VLAN_MASK_CFG(&self) -> RegisterAddress<vlan::VLAN_MASK_CFG> {
         RegisterAddress::new(self.0 + 0x10)
+    }
+    pub fn VLAN_MASK_CFG1(&self) -> RegisterAddress<vlan::VLAN_MASK_CFG1> {
+        RegisterAddress::new(self.0 + 0x14)
     }
     pub fn VMID_CFG(&self) -> RegisterAddress<vlan::VMID_CFG> {
         RegisterAddress::new(self.0 + 0x0)
@@ -284,10 +284,8 @@ impl VLAN {
 /// Diagnostic information
 pub struct VLAN_ARP_L3MC_STICKY(pub(super) u32);
 impl VLAN_ARP_L3MC_STICKY {
-    pub fn L3_LPM_REMAP_STICKY(
-        &self,
-    ) -> RegisterAddress<vlan_arp_l3mc_sticky::L3_LPM_REMAP_STICKY> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn L3_ARP_IPMC_STICKY(&self) -> RegisterAddress<vlan_arp_l3mc_sticky::L3_ARP_IPMC_STICKY> {
+        RegisterAddress::new(self.0 + 0x4)
     }
     pub fn VLAN_STICKY(&self) -> RegisterAddress<vlan_arp_l3mc_sticky::VLAN_STICKY> {
         RegisterAddress::new(self.0 + 0x0)
@@ -297,8 +295,8 @@ impl VLAN_ARP_L3MC_STICKY {
 /// Router Leg Table
 pub struct VMID(pub(super) u32);
 impl VMID {
-    pub fn MSTP_LRN_CFG1(&self) -> RegisterAddress<vmid::MSTP_LRN_CFG1> {
-        RegisterAddress::new(self.0 + 0xc)
+    pub fn MAX_LEN(&self) -> RegisterAddress<vmid::MAX_LEN> {
+        RegisterAddress::new(self.0 + 0x14)
     }
     pub fn RLEG_CTRL(&self) -> RegisterAddress<vmid::RLEG_CTRL> {
         RegisterAddress::new(self.0 + 0x0)

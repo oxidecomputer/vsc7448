@@ -43,30 +43,6 @@ impl DEBUG_CTRL {
         self.0 |= value;
     }
 }
-/// Configuration and status of a dwrr entry
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct DWRR_ENTRY(u32);
-impl DWRR_ENTRY {
-    /// Current balance of the input
-    pub fn dwrr_balance(&self) -> u32 {
-        self.0 & 0xfffff
-    }
-    pub fn set_dwrr_balance(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
-        self.0 &= !0xfffff;
-        self.0 |= value;
-    }
-    /// When a specific input to an element is used, the cost is used when updating the balance.
-    pub fn dwrr_cost(&self) -> u32 {
-        (self.0 & 0x1f00000) >> 20
-    }
-    pub fn set_dwrr_cost(&mut self, value: u32) {
-        let value = value << 20;
-        assert!(value <= 0x1f00000);
-        self.0 &= !0x1f00000;
-        self.0 |= value;
-    }
-}
 /// Egress queue status
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EQ_STAT(u32);
@@ -246,6 +222,42 @@ impl HSCH_CFG_CFG {
         let value = value << 12;
         assert!(value <= 0x3000);
         self.0 &= !0x3000;
+        self.0 |= value;
+    }
+}
+/// Force update of an element in the hierarchy
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct HSCH_FORCE_CTRL(u32);
+impl HSCH_FORCE_CTRL {
+    /// Update the requested scheduling element
+    pub fn hforce_1shot(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_hforce_1shot(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Set to layer in which an element must be updated.
+    ///
+    /// 0: Update a layer 0 element 1: Update a layer 1 element 2: Update a layer 2 element 3: Reserved
+    pub fn hforce_layer(&self) -> u32 {
+        (self.0 & 0x6000) >> 13
+    }
+    pub fn set_hforce_layer(&mut self, value: u32) {
+        let value = value << 13;
+        assert!(value <= 0x6000);
+        self.0 &= !0x6000;
+        self.0 |= value;
+    }
+    /// Set to index of element to force
+    pub fn hforce_se_idx(&self) -> u32 {
+        (self.0 & 0x1ffe) >> 1
+    }
+    pub fn set_hforce_se_idx(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x1ffe);
+        self.0 &= !0x1ffe;
         self.0 |= value;
     }
 }

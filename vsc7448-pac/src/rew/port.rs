@@ -83,21 +83,79 @@ impl DSCP_MAP {
         self.0 |= value;
     }
 }
-/// Configuration of mapping tables 2 and 3. MPLS label
-///
-/// Lookup 2 and 3 values
+/// Various Host Mode control
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct MAP_LBL_B(u32);
-impl MAP_LBL_B {
-    /// Mapped MPLS label value
+pub struct HIH_CTRL(u32);
+impl HIH_CTRL {
+    /// Select the source of the HIH.CKSM field.
     ///
-    /// n: Label value
-    pub fn label_val(&self) -> u32 {
-        self.0 & 0xfffff
+    /// 0: Set HIH.CKSM to fixed default value (HIH_DEF_CKSM) 1: Calculate HIH.CKSM according to HIH contents.
+    pub fn hih_auto_cksm(&self) -> u32 {
+        self.0 & 0x1
     }
-    pub fn set_label_val(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
-        self.0 &= !0xfffff;
+    pub fn set_hih_auto_cksm(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Enables prepending of Host Interface Header (HIH) on the port. The HiH will be placed after the SFD and will be covered by the FCS. For 10G ports it is possible to place the HiH before the SFD (in the preamble). See HIH_DEV10G_CFG.HIH_LOCATION
+    ///
+    /// 0: Disable HiH functionality 1: Enable HiH insertion
+    pub fn hih_ena(&self) -> u32 {
+        (self.0 & 0x40) >> 6
+    }
+    pub fn set_hih_ena(&mut self, value: u32) {
+        let value = value << 6;
+        assert!(value <= 0x40);
+        self.0 &= !0x40;
+        self.0 |= value;
+    }
+    /// Select source of the HIH.CL field.
+    ///
+    /// 0: Always set HIH.CL to fixed default value = HIH_DEF_CL 1: Set HIH.CL to IFH.ENCAP.HIH_CL if IFH.FWD.DST_MODE = ENCAP else 0 2: Set HIH.CL to IFH.VSTAX.MISC.ISDX*4+1 if ISDX>0 else use mode 1 3: Reserved
+    pub fn hih_frm_cl(&self) -> u32 {
+        (self.0 & 0x18) >> 3
+    }
+    pub fn set_hih_frm_cl(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x18);
+        self.0 &= !0x18;
+        self.0 |= value;
+    }
+    /// Select the source of the HIH.FLAGS field.
+    ///
+    /// 0: Set HIH.FLAGS to fixed default value = HIH_DEF_FLAGS 1: Set HIH.FLAGS to frame IPRIO and COLOR bits. 2: Set HIH.FLAGS to frame COSID and COLOR bits. 3: Reserved
+    pub fn hih_frm_flags(&self) -> u32 {
+        (self.0 & 0x6) >> 1
+    }
+    pub fn set_hih_frm_flags(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x6);
+        self.0 &= !0x6;
+        self.0 |= value;
+    }
+    /// Configure which value goes into the HIH.LPID field.
+    ///
+    /// 0: Set LPID to fixed default value (HIH_DEF_CFG) 1: Set LPID according egress frame (Formatted by HIH_LPID_MODE)
+    pub fn hih_frm_lpid(&self) -> u32 {
+        (self.0 & 0x20) >> 5
+    }
+    pub fn set_hih_frm_lpid(&mut self, value: u32) {
+        let value = value << 5;
+        assert!(value <= 0x20);
+        self.0 &= !0x20;
+        self.0 |= value;
+    }
+    /// Set the format of the Logical Port ID (LPID) (Value put into the HIH will be determined by HIH_FRM_LPID)
+    ///
+    /// 0: Egress port number 1: Ingress port number
+    pub fn hih_lpid_mode(&self) -> u32 {
+        (self.0 & 0x80) >> 7
+    }
+    pub fn set_hih_lpid_mode(&mut self, value: u32) {
+        let value = value << 7;
+        assert!(value <= 0x80);
+        self.0 &= !0x80;
         self.0 |= value;
     }
 }

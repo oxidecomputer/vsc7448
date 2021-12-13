@@ -75,17 +75,15 @@ impl MSTP_LRN_CFG {
         self.0 = value;
     }
 }
-/// VLAN Port Mask Configuration
-///
-/// Configuration of VLAN port mask.
+/// MSTP Learning Control
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct VLAN_MASK_CFG1(u32);
-impl VLAN_MASK_CFG1 {
-    /// Refer to VLAN_MASK_CFG.VLAN_PORT_MASK description.
-    pub fn vlan_port_mask1(&self) -> u32 {
+pub struct MSTP_LRN_CFG1(u32);
+impl MSTP_LRN_CFG1 {
+    /// Refer to MSTP_LRN_CFG.MSTP_LRN_MASK description.
+    pub fn mstp_lrn_mask1(&self) -> u32 {
         self.0 & 0x1fffff
     }
-    pub fn set_vlan_port_mask1(&mut self, value: u32) {
+    pub fn set_mstp_lrn_mask1(&mut self, value: u32) {
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;

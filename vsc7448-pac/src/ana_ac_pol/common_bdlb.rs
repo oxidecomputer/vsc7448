@@ -77,27 +77,79 @@ impl DLB_CTRL {
         self.0 |= value;
     }
 }
-/// Configuration of leaky bucket value
+/// LB policer diagnostic
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct LB_BUCKET_VAL(u32);
-impl LB_BUCKET_VAL {
-    /// Number of bytes in leaky bucket.
-    pub fn bucket_val(&self) -> u32 {
-        (self.0 & 0xffffe00) >> 9
+pub struct DLB_STICKY(u32);
+impl DLB_STICKY {
+    /// Set when the frame rate is exceeding the Committed Information Rate. Bit is cleared by writing a 1 to this position.
+    ///
+    /// 0: No event has occured 1: CIR exceeded
+    pub fn cir_exceeded_sticky(&self) -> u32 {
+        (self.0 & 0x2) >> 1
     }
-    pub fn set_bucket_val(&mut self, value: u32) {
-        let value = value << 9;
-        assert!(value <= 0xffffe00);
-        self.0 &= !0xffffe00;
+    pub fn set_cir_exceeded_sticky(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
         self.0 |= value;
     }
-    /// Number of subbytes in leaky bucket.
-    pub fn rem_val(&self) -> u32 {
-        self.0 & 0x1ff
+    /// Set when the frame rate is below both the Committed Information Rate and the Peak Information Rate. Bit is cleared by writing a 1 to this position.
+    ///
+    /// 0: No event has occured 1: Traffic received without triggering CIR and PIR policing
+    pub fn cir_pir_open_sticky(&self) -> u32 {
+        self.0 & 0x1
     }
-    pub fn set_rem_val(&mut self, value: u32) {
-        assert!(value <= 0x1ff);
-        self.0 &= !0x1ff;
+    pub fn set_cir_pir_open_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Set when a LB scan completes. Bit is cleared by writing a 1.
+    ///
+    /// 0: No event has occured 1: Leak scan completes
+    pub fn leak_scan_completed_sticky(&self) -> u32 {
+        (self.0 & 0x80000000) >> 31
+    }
+    pub fn set_leak_scan_completed_sticky(&mut self, value: u32) {
+        let value = value << 31;
+        assert!(value <= 0x80000000);
+        self.0 &= !0x80000000;
+        self.0 |= value;
+    }
+    /// Set when a LB scan starts. Bit is cleared by writing a 1 to this position.
+    ///
+    /// 0: No event has occured 1: Leak scan started
+    pub fn leak_scan_started_sticky(&self) -> u32 {
+        (self.0 & 0x40000000) >> 30
+    }
+    pub fn set_leak_scan_started_sticky(&mut self, value: u32) {
+        let value = value << 30;
+        assert!(value <= 0x40000000);
+        self.0 &= !0x40000000;
+        self.0 |= value;
+    }
+    /// Set when a LB scan could not start because a scan is already ongoing. If this occur, BASE_TICK_CNT is set too low and must be increased. Bit is cleared by writing a 1 to this position.
+    ///
+    /// 0: No event has occured 1: Leak scan could not start at time
+    pub fn leak_start_delayed_sticky(&self) -> u32 {
+        (self.0 & 0x20000000) >> 29
+    }
+    pub fn set_leak_start_delayed_sticky(&mut self, value: u32) {
+        let value = value << 29;
+        assert!(value <= 0x20000000);
+        self.0 &= !0x20000000;
+        self.0 |= value;
+    }
+    /// Set when the frame rate is exceeding the Peak Information Rate. Bit is cleared by writing a 1 to this position.
+    ///
+    /// 0: No event has occured 1: PIR exceeded
+    pub fn pir_exceeded_sticky(&self) -> u32 {
+        (self.0 & 0x4) >> 2
+    }
+    pub fn set_pir_exceeded_sticky(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0x4);
+        self.0 &= !0x4;
         self.0 |= value;
     }
 }

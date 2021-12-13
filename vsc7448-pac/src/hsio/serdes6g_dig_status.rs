@@ -145,59 +145,21 @@ impl SERDES6G_ERR_CNT {
         self.0 |= value;
     }
 }
-/// SERDES6G OB ANEG Configuration
+/// SERDES6G Misc Status
 ///
-/// Configuration register for ANEG Output Buffer overwrite parameter. The values are used during Backplane Ethernet Auto-Negotiation when the output level of transmitter (OB output) have to be reduced.
+/// Status register for miscellaneous functions
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SERDES6G_OB_ANEG_CFG(u32);
-impl SERDES6G_OB_ANEG_CFG {
-    /// ANEG overwrite value for SERDES6G_OB_CFG1.ob_ena_cas
-    pub fn an_ob_ena_cas(&self) -> u32 {
-        (self.0 & 0x1c0) >> 6
+pub struct SERDES6G_MISC_STATUS(u32);
+impl SERDES6G_MISC_STATUS {
+    /// Phase selection of DES in 100fx mode
+    ///
+    /// 0: CDR locked at bit 9 1: CDR locked at bit 4
+    pub fn des_100fx_phase_sel(&self) -> u32 {
+        self.0 & 0x1
     }
-    pub fn set_an_ob_ena_cas(&mut self, value: u32) {
-        let value = value << 6;
-        assert!(value <= 0x1c0);
-        self.0 &= !0x1c0;
-        self.0 |= value;
-    }
-    /// ANEG overwrite value for SERDES6G_OB_CFG1.ob_lev
-    pub fn an_ob_lev(&self) -> u32 {
-        self.0 & 0x3f
-    }
-    pub fn set_an_ob_lev(&mut self, value: u32) {
-        assert!(value <= 0x3f);
-        self.0 &= !0x3f;
-        self.0 |= value;
-    }
-    /// ANEG overwrite value for SERDES6G_OB_CFG.post0
-    pub fn an_ob_post0(&self) -> u32 {
-        (self.0 & 0x1f800000) >> 23
-    }
-    pub fn set_an_ob_post0(&mut self, value: u32) {
-        let value = value << 23;
-        assert!(value <= 0x1f800000);
-        self.0 &= !0x1f800000;
-        self.0 |= value;
-    }
-    /// ANEG overwrite value for SERDES6G_OB_CFG.post1
-    pub fn an_ob_post1(&self) -> u32 {
-        (self.0 & 0x7c0000) >> 18
-    }
-    pub fn set_an_ob_post1(&mut self, value: u32) {
-        let value = value << 18;
-        assert!(value <= 0x7c0000);
-        self.0 &= !0x7c0000;
-        self.0 |= value;
-    }
-    /// ANEG overwrite value for SERDES6G_OB_CFG.prec
-    pub fn an_ob_prec(&self) -> u32 {
-        (self.0 & 0x3e000) >> 13
-    }
-    pub fn set_an_ob_prec(&mut self, value: u32) {
-        let value = value << 13;
-        assert!(value <= 0x3e000);
-        self.0 &= !0x3e000;
+    pub fn set_des_100fx_phase_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
         self.0 |= value;
     }
 }

@@ -389,6 +389,20 @@ impl RX_SYMBOL_ERR_CNT {
         self.0 = value;
     }
 }
+/// Counter to track the PCS's Sync-lost error
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct RX_SYNC_LOST_ERR_CNT(u32);
+impl RX_SYNC_LOST_ERR_CNT {
+    /// Counter to track the PCS's Sync-lost error
+    ///
+    /// Counter can be written by SW.
+    pub fn rx_sync_lost_err_cnt(&self) -> u32 {
+        self.0
+    }
+    pub fn set_rx_sync_lost_err_cnt(&mut self, value: u32) {
+        self.0 = value;
+    }
+}
 /// Counts frames that are tagged (C-Tagged or S-Tagged).
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RX_TAGGED_FRMS_CNT(u32);

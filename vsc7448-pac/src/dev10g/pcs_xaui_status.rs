@@ -59,57 +59,93 @@ impl PCS_XAUI_DESKEW_STATUS {
         self.0 |= value;
     }
 }
-/// PCS Low Power Idle Configuration
+/// PCS Low Power Idle Status
 ///
-/// Configuration register for Low Power Idle (Energy Efficient Ethernet)
+/// Status register for Low Power Idle (Energy Efficient Ethernet)
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PCS_XAUI_LPI_CFG(u32);
-impl PCS_XAUI_LPI_CFG {
-    /// Max wake-up time before link_fail
+pub struct PCS_XAUI_LPI_STATUS(u32);
+impl PCS_XAUI_LPI_STATUS {
+    /// Receiver Low-Pwer idle occurrence
     ///
-    /// 00: 8 us 01: 11 us 10: 15 us 11: 18 us
-    pub fn lpi_rx_wtim(&self) -> u32 {
-        (self.0 & 0x30) >> 4
+    /// 0: No LPI symbols received 1: Receiver has received LPI symbols Bit is cleared by writing a 1 to this position.
+    pub fn rx_lpi_event_sticky(&self) -> u32 {
+        (self.0 & 0x1000) >> 12
     }
-    pub fn set_lpi_rx_wtim(&mut self, value: u32) {
+    pub fn set_rx_lpi_event_sticky(&mut self, value: u32) {
+        let value = value << 12;
+        assert!(value <= 0x1000);
+        self.0 &= !0x1000;
+        self.0 |= value;
+    }
+    /// Receiver Low-Power Idle mode
+    ///
+    /// 0: Receiver not in low power idle mode 1: Receiver is in low power idle mode
+    pub fn rx_lpi_mode(&self) -> u32 {
+        (self.0 & 0x100) >> 8
+    }
+    pub fn set_rx_lpi_mode(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0x100);
+        self.0 &= !0x100;
+        self.0 |= value;
+    }
+    /// Receiver Low-Power Quiet mode
+    ///
+    /// 0: Receiver not in quiet mode 1: Receiver is in quiet mode
+    pub fn rx_quiet(&self) -> u32 {
+        (self.0 & 0x200) >> 9
+    }
+    pub fn set_rx_quiet(&mut self, value: u32) {
+        let value = value << 9;
+        assert!(value <= 0x200);
+        self.0 &= !0x200;
+        self.0 |= value;
+    }
+    /// Transmitter Low-Pwer idle occurrence
+    ///
+    /// 0: No LPI symbols transmitted 1: Transmitter has transmitted LPI symbols Bit is cleared by writing a 1 to this position.
+    pub fn tx_lpi_event_sticky(&self) -> u32 {
+        (self.0 & 0x10) >> 4
+    }
+    pub fn set_tx_lpi_event_sticky(&mut self, value: u32) {
         let value = value << 4;
-        assert!(value <= 0x30);
-        self.0 &= !0x30;
+        assert!(value <= 0x10);
+        self.0 &= !0x10;
         self.0 |= value;
     }
-    /// LPI-Timer test mode.
+    /// Transmitter Low-Power Idle mode
     ///
-    /// 0: Normal timing constants are used 1: Shortened timing constants are used
-    pub fn lpi_testmode(&self) -> u32 {
-        (self.0 & 0x10000) >> 16
-    }
-    pub fn set_lpi_testmode(&mut self, value: u32) {
-        let value = value << 16;
-        assert!(value <= 0x10000);
-        self.0 &= !0x10000;
-        self.0 |= value;
-    }
-    /// Disable output of Low-Power Idle in receive direction (to core)
-    ///
-    /// 0: Enable 1: Disable
-    pub fn rx_lpi_out_dis(&self) -> u32 {
-        (self.0 & 0x20000) >> 17
-    }
-    pub fn set_rx_lpi_out_dis(&mut self, value: u32) {
-        let value = value << 17;
-        assert!(value <= 0x20000);
-        self.0 &= !0x20000;
-        self.0 |= value;
-    }
-    /// Assert Low-Power Idle (LPI) in transmit mode
-    ///
-    /// 0: Disable LPI transmission 1: Enable LPI transmission
-    pub fn tx_assert_lpidle(&self) -> u32 {
+    /// 0: Transmitter not in low power idle mode 1: Transmitter is in low power idle mode
+    pub fn tx_lpi_mode(&self) -> u32 {
         self.0 & 0x1
     }
-    pub fn set_tx_assert_lpidle(&mut self, value: u32) {
+    pub fn set_tx_lpi_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Transmitter Low-Power Quiet mode
+    ///
+    /// 0: Transmitter not in quiet mode 1: Transmitter is in quiet mode
+    pub fn tx_quiet(&self) -> u32 {
+        (self.0 & 0x2) >> 1
+    }
+    pub fn set_tx_quiet(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+    /// Receiver has failed to recover from Low-Power Idle mode
+    ///
+    /// 0: No failure 1: Failed to recover from LPI mode
+    pub fn wake_err_cnt(&self) -> u32 {
+        (self.0 & 0xffff0000) >> 16
+    }
+    pub fn set_wake_err_cnt(&mut self, value: u32) {
+        let value = value << 16;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }
 }

@@ -139,19 +139,29 @@ impl TTI_TICK_LEN_4_7 {
         self.0 |= value;
     }
 }
-/// TUPE Control
+/// Current state of TTI Tick counters
 ///
-/// Control value for Table UPdate Engine (TUPE). See AFI:TUPE.
+/// The TTI Tick counters are permanently running. Their current state (CNT and ERA) can be inspected and written to through these registers.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TTI_TUPE_CTRL(u32);
-impl TTI_TUPE_CTRL {
-    /// Control value for Table UPdate Engine (TUPE). See AFI:TUPE.
-    pub fn tupe_ctrl(&self) -> u32 {
+pub struct TTI_TICK_STATE(u32);
+impl TTI_TICK_STATE {
+    /// Tick's current counter value.
+    pub fn tick_cnt(&self) -> u32 {
         self.0 & 0xff
     }
-    pub fn set_tupe_ctrl(&mut self, value: u32) {
+    pub fn set_tick_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
+        self.0 |= value;
+    }
+    /// Tick's current era. Each tick counts up to its configured LEN. When LEN is reached TICK_ERA toggles and the tick restarts counting from 0. When a TTI in TTI_TBL is processed, then the LAST_TICK_ERA of the TTI is compared with the TICK_ERA of the tick used by the TTI and if they differ the TTI's TICK_CNT is decremented.
+    pub fn tick_era(&self) -> u32 {
+        (self.0 & 0x10000) >> 16
+    }
+    pub fn set_tick_era(&mut self, value: u32) {
+        let value = value << 16;
+        assert!(value <= 0x10000);
+        self.0 &= !0x10000;
         self.0 |= value;
     }
 }

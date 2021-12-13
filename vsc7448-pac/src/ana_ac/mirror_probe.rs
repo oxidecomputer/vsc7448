@@ -137,29 +137,17 @@ impl PROBE_PORT_CFG {
         self.0 = value;
     }
 }
-/// CPU debug configuration
+/// Mirror probe port mask configuration
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PS_DBG_CTRL(u32);
-impl PS_DBG_CTRL {
-    /// If ZERO_DST_REDIR_ENA is set and the destination port set calculation for the frame results in an empty port set, then the frame gets redirected to the CPU queue configured by this parameter. Related parameters: ANA_AC::PS_DBG_CTRL.ZERO_DST_REDIR_ENA
-    ///
-    /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
-    pub fn cpu_qu_zero_dst(&self) -> u32 {
-        (self.0 & 0x70) >> 4
+pub struct PROBE_PORT_CFG1(u32);
+impl PROBE_PORT_CFG1 {
+    /// Refer to PROBE_PORT_CFG.PROBE_PORT_MASK description.
+    pub fn probe_port_mask1(&self) -> u32 {
+        self.0 & 0x1fffff
     }
-    pub fn set_cpu_qu_zero_dst(&mut self, value: u32) {
-        let value = value << 4;
-        assert!(value <= 0x70);
-        self.0 &= !0x70;
-        self.0 |= value;
-    }
-    /// See ANA_AC::PS_DBG_CTRL.CPU_QU_ZERO_DST.
-    pub fn zero_dst_redir_ena(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_zero_dst_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
+    pub fn set_probe_port_mask1(&mut self, value: u32) {
+        assert!(value <= 0x1fffff);
+        self.0 &= !0x1fffff;
         self.0 |= value;
     }
 }

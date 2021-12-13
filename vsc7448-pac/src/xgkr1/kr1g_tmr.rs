@@ -41,15 +41,15 @@ impl KR1G_LSW {
         self.0 |= value;
     }
 }
-/// VS AN rate_detect_3g timer msw
+/// VS AN rate_detect_1g timer msw
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct KR3G_MSW(u32);
-impl KR3G_MSW {
-    /// rate_detect_3g_timer setting
-    pub fn kr3g_tmr_msw(&self) -> u32 {
+pub struct KR1G_MSW(u32);
+impl KR1G_MSW {
+    /// rate_detect_1g_timer setting
+    pub fn kr1g_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
-    pub fn set_kr3g_tmr_msw(&mut self, value: u32) {
+    pub fn set_kr1g_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

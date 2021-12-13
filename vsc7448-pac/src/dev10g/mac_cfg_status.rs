@@ -435,6 +435,132 @@ impl MAC_RX_LANE_STICKY_1 {
         self.0 |= value;
     }
 }
+/// Sticky Bit Register
+///
+/// Clear the sticky bits by writing a '0' in the relevant bitgroups (writing a '1' sets the bit)!.
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct MAC_STICKY(u32);
+impl MAC_STICKY {
+    /// Indicates that an inter packet gap shrink was detected (IPG < 12 bytes).
+    ///
+    /// '0': no ipg shrink was detected '1': one or more ipg shrink were detected Bit is cleared by writing a '1' to this position.
+    pub fn rx_ipg_shrink_sticky(&self) -> u32 {
+        (self.0 & 0x200) >> 9
+    }
+    pub fn set_rx_ipg_shrink_sticky(&mut self, value: u32) {
+        let value = value << 9;
+        assert!(value <= 0x200);
+        self.0 &= !0x200;
+        self.0 |= value;
+    }
+    /// Indicates that a frame with MPLS multicast was received.
+    ///
+    /// '0': No frames with MPLS multicast EtherType has been detected; '1': One or more frames with MPLS multicast EtherType have been detected; Bit is cleared by writing a '1' to this position.
+    pub fn rx_mpls_mc_sticky(&self) -> u32 {
+        (self.0 & 0x10) >> 4
+    }
+    pub fn set_rx_mpls_mc_sticky(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x10);
+        self.0 &= !0x10;
+        self.0 |= value;
+    }
+    /// Indicates that a frame with MPLS unicast was received.
+    ///
+    /// '0': No frames with MPLS Unicast EtherType has been detected; '1': One or more frames with MPLS Unicast EtherType have been detected; Bit is cleared by writing a '1' to this position.
+    pub fn rx_mpls_uc_sticky(&self) -> u32 {
+        (self.0 & 0x8) >> 3
+    }
+    pub fn set_rx_mpls_uc_sticky(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x8);
+        self.0 &= !0x8;
+        self.0 |= value;
+    }
+    /// Indicates that a frame was received with a non-standard preamble.
+    ///
+    /// '0': No non-standard preamble detected; '1': One or more frames with non-standard preamble detected; Bit is cleared by writing a '1' to this position.
+    pub fn rx_non_std_pream_sticky(&self) -> u32 {
+        (self.0 & 0x20) >> 5
+    }
+    pub fn set_rx_non_std_pream_sticky(&mut self, value: u32) {
+        let value = value << 5;
+        assert!(value <= 0x20);
+        self.0 &= !0x20;
+        self.0 |= value;
+    }
+    /// If a SOP is received and a following control character is received within the preamble, this bit is set. (No data is passed to the host interface of the MAC).
+    ///
+    /// '0': No Preamble error detected; '1': One or more preamble errors detected; Bit is cleared by writing a '1' to this position.
+    pub fn rx_pream_err_sticky(&self) -> u32 {
+        (self.0 & 0x40) >> 6
+    }
+    pub fn set_rx_pream_err_sticky(&mut self, value: u32) {
+        let value = value << 6;
+        assert!(value <= 0x40);
+        self.0 &= !0x40;
+        self.0 |= value;
+    }
+    /// If Preamble Check is enabled and a SOP is received, this bit is set if the following bytes do not match a "5555555555..55D5" pattern. A 12 bytes preamble of "55555555.55555555.555555D5" will not cause this sticky bit to be set. This sticky bit can only be set when the port is setup in 10 Gbps mode.
+    ///
+    /// '0': No Preamble check has failed; '1': One or more preamble checks have failed; Bit is cleared by writing a '1' to this position.
+    pub fn rx_pream_mismatch_sticky(&self) -> u32 {
+        (self.0 & 0x80) >> 7
+    }
+    pub fn set_rx_pream_mismatch_sticky(&mut self, value: u32) {
+        let value = value << 7;
+        assert!(value <= 0x80);
+        self.0 &= !0x80;
+        self.0 |= value;
+    }
+    /// Indicates that a preamble shrink was detected (preamble < 8 bytes). This sticky bit can only be set when the port is setup in 10 Gbps mode, where frames with e.g. a 4 bytes preamble will be discarded, and it requires that PRM_SHK_CHK_DIS = 0 and SFD_CHK_ENA = 1. In SGMII mode, all preamble sizes down to 3 bytes (including SFD) are accepted and will not cause this sticky bit to be set.
+    ///
+    /// '0': no preamble shrink detected; '1': one or more preamble shrinks detected; Bit is cleared by writing a '1' to this position.
+    pub fn rx_pream_shrink_sticky(&self) -> u32 {
+        (self.0 & 0x100) >> 8
+    }
+    pub fn set_rx_pream_shrink_sticky(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0x100);
+        self.0 &= !0x100;
+        self.0 |= value;
+    }
+    /// Indicates that a frame was received with a VLAN tag.
+    ///
+    /// '0': No Tagged frames have been detected; '1': One or more Tagged frames have been detected; Bit is cleared by writing a '1' to this position.
+    pub fn rx_tag_sticky(&self) -> u32 {
+        (self.0 & 0x4) >> 2
+    }
+    pub fn set_rx_tag_sticky(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0x4);
+        self.0 &= !0x4;
+        self.0 |= value;
+    }
+    /// Indicates that the transmit host initiated abort was executed.
+    ///
+    /// '0': no tx frame was aborted '1': one or more tx frames were aborted Bit is cleared by writing a '1' to this position.
+    pub fn tx_abort_sticky(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_tx_abort_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Sticky bit indicating that the MAC Transmit FIFO has dropped one or more frames because of underrun.
+    ///
+    /// '0': No MAC Tx FIFO underrun has occured '1': One or more MAC Tx FIFO underruns have occured Bit is cleared by writing a '1' to this position.
+    pub fn tx_uflw_sticky(&self) -> u32 {
+        (self.0 & 0x2) >> 1
+    }
+    pub fn set_tx_uflw_sticky(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+}
 /// VLAN / Service tag configuration register
 ///
 /// The MAC can be configured to accept 0, 1, 2 and 3 tags and the TAG value can be user-defined.

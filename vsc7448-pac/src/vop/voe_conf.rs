@@ -195,6 +195,22 @@ impl G_8113_1_REMOTE_MIPID2 {
         self.0 = value;
     }
 }
+/// G.8113.1 MIP ID verification configuration
+///
+/// When the G.8113.1 'Initator MEP' is configured for : Connection Verification - MIP: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_INITIATOR_FUNCTION There are 14 bytes in the 'Replying MIP ID' TLV which must be verified. These are configured in this register. I practice the register is split into 4 separate registers: * G_8113_1_REMOTE_MIPID (32 bits) * G_8113_1_REMOTE_MIPID1 (32 bits) * G_8113_1_REMOTE_MIPID2 (32 bits) * G_8113_1_REMOTE_MIPID3 (16 bits) The below description will assume that these 4 registers are concatenated into one 14 byte long register. The bytes to be verified in the 'Replying MIP ID' TLV are configured as follows: * LBR.CarrierCode == G_8113_1_REMOTE_MIPID[13:8] * LBR.NodeID == G_8113_1_REMOTE_MIPID[7:4] * LBR.IfNum == G_8113_1_REMOTE_MIPID[3:0]
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct G_8113_1_REMOTE_MIPID3(u32);
+impl G_8113_1_REMOTE_MIPID3 {
+    /// See register description.
+    pub fn g_8113_1_remote_mipid3(&self) -> u32 {
+        self.0 & 0xffff
+    }
+    pub fn set_g_8113_1_remote_mipid3(&mut self, value: u32) {
+        assert!(value <= 0xffff);
+        self.0 &= !0xffff;
+        self.0 |= value;
+    }
+}
 /// OAM Loopback configuration
 ///
 /// Contains configuration for loopbing back frames. I.e. returning OAM replies in response to messages. When OAM Messages are looped into OAM Replies, by the VOE, the ISDX of the OAM Reply is set to the value configured in: * LB_ISDX regardless of the ISDX of the incoming OAM Message. All OAM Replies are assigned the same ISDX value.
@@ -1346,44 +1362,6 @@ impl VOE_MEPID_CFG {
     pub fn set_voe_mepid(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
-        self.0 |= value;
-    }
-}
-/// Miscellanous per VOE configuration
-///
-/// Miscellaneous per VOE configuration.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct VOE_MISC_CONFIG(u32);
-impl VOE_MISC_CONFIG {
-    /// If this field is asserted, the VOE will count bytes instead of frames. This is not 100% supported and tested. Feature is only available for Service / Path VOEs. Byte count is disabled for Port VOEs.
-    pub fn lm_cnt_byte(&self) -> u32 {
-        (self.0 & 0x2) >> 1
-    }
-    pub fn set_lm_cnt_byte(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x2);
-        self.0 &= !0x2;
-        self.0 |= value;
-    }
-    /// The VOE will process either Y.1731 or MPLS OAM PDUs depending on the configuration of this register. To enable a specific VOE for MPLS OAM processing, the corresponding bit in this register must be asserted.
-    ///
-    /// '0': VOE is configured to process Y.1731 OAM PDUs '1': VOE is configured to process MPLS-TP OAM PDUs
-    pub fn mpls_oam_ena(&self) -> u32 {
-        (self.0 & 0x4) >> 2
-    }
-    pub fn set_mpls_oam_ena(&mut self, value: u32) {
-        let value = value << 2;
-        assert!(value <= 0x4);
-        self.0 &= !0x4;
-        self.0 |= value;
-    }
-    /// Enable the VOE for Synthetic Loss Measurements. If enabled, the normal LM counters are used differently than when running standard frame loss measurements. The Rx counters are used to count SLR/SL1 frames received from different Peer MEPs. The Tx counters are used to count SLR/SL1 frames transmitted to different Peer MEPs. Note that there is no counting of data frames or other NON SL OAM PDUs. Asserting this register will avoid any other VOEs from updating the LM counters of this VOE as part of a hierarchical LM counter update.
-    pub fn sl_ena(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_sl_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
         self.0 |= value;
     }
 }

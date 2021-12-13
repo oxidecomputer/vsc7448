@@ -77,31 +77,17 @@ impl VCAP_MASK_DAT {
         self.0 = value;
     }
 }
-/// Configuration for move/initialization
+/// Cache rule enable
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct VCAP_MV_CFG(u32);
-impl VCAP_MV_CFG {
-    /// Specifies the distance during move operations. I.e. if this field is set to 4 for a move-down operation, then source address n is moved to destination address n+5.
-    ///
-    /// 0: Distance is one position 1: Distance is two positions n: Distance is n+1 positions
-    pub fn mv_num_pos(&self) -> u32 {
-        (self.0 & 0xffff0000) >> 16
+pub struct VCAP_RULE_ENA(u32);
+impl VCAP_RULE_ENA {
+    /// Cache register. Set to enable ES0 rule. Applies only to the ES0 VCAP.
+    pub fn rule_ena(&self) -> u32 {
+        self.0 & 0x1
     }
-    pub fn set_mv_num_pos(&mut self, value: u32) {
-        let value = value << 16;
-        assert!(value <= 0xffff0000);
-        self.0 &= !0xffff0000;
-        self.0 |= value;
-    }
-    /// Specifies the number of addresses to move/initialize during	move/init operations.
-    ///
-    /// 0: Address VCAP_UPDATE_CTRL.UPDATE_ADDR is moved/initialized n: Addresses VCAP_UPDATE_CTRL.UPDATE_ADDR through VCAP_UPDATE_CTRL.UPDATE_ADDR+n are moved/initialized
-    pub fn mv_size(&self) -> u32 {
-        self.0 & 0xffff
-    }
-    pub fn set_mv_size(&mut self, value: u32) {
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+    pub fn set_rule_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
         self.0 |= value;
     }
 }

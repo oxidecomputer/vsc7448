@@ -411,6 +411,28 @@ impl EXP_ROM_BASE_ADDR {
         self.0 |= value;
     }
 }
+/// Word offset 15
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE(u32);
+impl MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE {
+    pub fn int_line(&self) -> u32 {
+        self.0 & 0xff
+    }
+    pub fn set_int_line(&mut self, value: u32) {
+        assert!(value <= 0xff);
+        self.0 &= !0xff;
+        self.0 |= value;
+    }
+    pub fn int_pin(&self) -> u32 {
+        (self.0 & 0xff00) >> 8
+    }
+    pub fn set_int_pin(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0xff00);
+        self.0 &= !0xff00;
+        self.0 |= value;
+    }
+}
 /// Word offset 13
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCI_CAP_PTR(u32);

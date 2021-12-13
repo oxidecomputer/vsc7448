@@ -50,32 +50,6 @@ impl QLIMIT_CONG_CNT_STAT {
         self.0 |= value;
     }
 }
-/// Queue Limitation Configuration
-///
-/// Disabling queue limitation per port.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct QLIMIT_DIS_CFG(u32);
-impl QLIMIT_DIS_CFG {
-    /// Disable queue limitation for the port. If either queue limitation is disabled for the source port, or for the destination port, the queue limitation algorithm is bypassed.
-    pub fn qlimit_egr_dis(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_qlimit_egr_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// Disable queue limitation for the port. If either queue limitation is disabled for the source port, or for the destination port, the queue limitation algorithm is bypassed.
-    pub fn qlimit_igr_dis(&self) -> u32 {
-        (self.0 & 0x2) >> 1
-    }
-    pub fn set_qlimit_igr_dis(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x2);
-        self.0 &= !0x2;
-        self.0 |= value;
-    }
-}
 /// Size of an active queue
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct QLIMIT_QUE_ACT_CFG(u32);
@@ -194,6 +168,19 @@ impl QLIMIT_SHR_TOP_CFG {
         self.0 & 0x7fff
     }
     pub fn set_qlimit_shr_top(&mut self, value: u32) {
+        assert!(value <= 0x7fff);
+        self.0 &= !0x7fff;
+        self.0 |= value;
+    }
+}
+/// Current per SE watermark
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct QLIMIT_SHR_WM_STAT(u32);
+impl QLIMIT_SHR_WM_STAT {
+    pub fn qlimit_shr_wm(&self) -> u32 {
+        self.0 & 0x7fff
+    }
+    pub fn set_qlimit_shr_wm(&mut self, value: u32) {
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;

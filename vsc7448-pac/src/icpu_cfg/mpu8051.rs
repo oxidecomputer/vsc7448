@@ -111,6 +111,21 @@ impl MPU8051_CFG {
         self.0 |= value;
     }
 }
+/// 8051 ROM configuration
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct MPU8051_IROM(u32);
+impl MPU8051_IROM {
+    /// This Field specifies the offset into AHB space from which the 8051 must fetch its IROM code during firmware startup.
+    pub fn rom_offset(&self) -> u32 {
+        (self.0 & 0xffff0000) >> 16
+    }
+    pub fn set_rom_offset(&mut self, value: u32) {
+        let value = value << 16;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
+        self.0 |= value;
+    }
+}
 /// 8051 memory mapping mechanism
 ///
 /// The MAP_* and MSADDR_* fields in this register is similar to the corresponding 8051 SFR register for control mapping the on-chip memory into the 8051 memory space. These fields must be used to configure 8051 memory mapping if the 8051 on-chip memory is loaded manually via an external processor. If the 8051 program itself does loading of on-chip memory then it must instead use the SFR equivalents.
@@ -230,92 +245,6 @@ impl MPU8051_STAT {
         let value = value << 8;
         assert!(value <= 0x100);
         self.0 &= !0x100;
-        self.0 |= value;
-    }
-}
-/// Manual control of the SPI interface
-///
-/// Note: There are 4 chip selects in total, but only chip select 0 is mapped to IO-pin (SI_nEn). The rest of the SPI chip selects are available as alternate functions on GPIOs, these must be enabled in the GPIO controller before they can be controlled via this register.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SW_MODE(u32);
-impl SW_MODE {
-    /// Set to enable software pin control mode (Bit banging), when set software has direct control of the SPI interface. This mode is used for writing into flash.
-    pub fn sw_pin_ctrl_mode(&self) -> u32 {
-        (self.0 & 0x2000) >> 13
-    }
-    pub fn set_sw_pin_ctrl_mode(&mut self, value: u32) {
-        let value = value << 13;
-        assert!(value <= 0x2000);
-        self.0 &= !0x2000;
-        self.0 |= value;
-    }
-    /// Value to drive on SI_nEn outputs, each bit in this field maps to a corresponding chip-select (0 though 3). This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set. Note: Chip selects 1 though 3 are available as alternate GPIO functions.
-    pub fn sw_spi_cs(&self) -> u32 {
-        (self.0 & 0x1e0) >> 5
-    }
-    pub fn set_sw_spi_cs(&mut self, value: u32) {
-        let value = value << 5;
-        assert!(value <= 0x1e0);
-        self.0 &= !0x1e0;
-        self.0 |= value;
-    }
-    /// This field has not effect, chip selects are always driven.
-    pub fn sw_spi_cs_oe(&self) -> u32 {
-        (self.0 & 0x1e) >> 1
-    }
-    pub fn set_sw_spi_cs_oe(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x1e);
-        self.0 &= !0x1e;
-        self.0 |= value;
-    }
-    /// Value to drive on SI_Clk output. This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set.
-    pub fn sw_spi_sck(&self) -> u32 {
-        (self.0 & 0x1000) >> 12
-    }
-    pub fn set_sw_spi_sck(&mut self, value: u32) {
-        let value = value << 12;
-        assert!(value <= 0x1000);
-        self.0 &= !0x1000;
-        self.0 |= value;
-    }
-    /// Set to enable drive of SI_Clk output. This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set.
-    pub fn sw_spi_sck_oe(&self) -> u32 {
-        (self.0 & 0x800) >> 11
-    }
-    pub fn set_sw_spi_sck_oe(&mut self, value: u32) {
-        let value = value << 11;
-        assert!(value <= 0x800);
-        self.0 &= !0x800;
-        self.0 |= value;
-    }
-    /// Current value of the SI_DI input.
-    pub fn sw_spi_sdi(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_sw_spi_sdi(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// Value to drive on SI_DO output. This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set.
-    pub fn sw_spi_sdo(&self) -> u32 {
-        (self.0 & 0x400) >> 10
-    }
-    pub fn set_sw_spi_sdo(&mut self, value: u32) {
-        let value = value << 10;
-        assert!(value <= 0x400);
-        self.0 &= !0x400;
-        self.0 |= value;
-    }
-    /// Set to enable drive of SI_DO output. This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set.
-    pub fn sw_spi_sdo_oe(&self) -> u32 {
-        (self.0 & 0x200) >> 9
-    }
-    pub fn set_sw_spi_sdo_oe(&mut self, value: u32) {
-        let value = value << 9;
-        assert!(value <= 0x200);
-        self.0 &= !0x200;
         self.0 |= value;
     }
 }

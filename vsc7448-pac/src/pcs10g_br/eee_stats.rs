@@ -116,22 +116,6 @@ impl EEE_STATUS {
         self.0 |= value;
     }
 }
-/// EEE RX Sleep timer configuration register
-///
-/// This register value is used to elaps time in RX_WTF state of EEE RX-FSM as specified in IEEE802.3az-2010 clause 49.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct RX_WF_TIMER_REG(u32);
-impl RX_WF_TIMER_REG {
-    /// This holds no.of 64-bit PMA clocks required to achieve specified wake time fault time interval. As per IEEE 803.3az-2010, this value is: MAX: 10 ms = 1611328
-    pub fn rx_wf_timer(&self) -> u32 {
-        self.0 & 0x1fffff
-    }
-    pub fn set_rx_wf_timer(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
-        self.0 &= !0x1fffff;
-        self.0 |= value;
-    }
-}
 /// Wake Error Counter
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct WAKE_ERR_CNT(u32);

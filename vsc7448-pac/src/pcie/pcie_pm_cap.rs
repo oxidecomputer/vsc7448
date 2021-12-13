@@ -112,25 +112,88 @@ impl CAP_ID_NXT_PTR {
         self.0 |= value;
     }
 }
-/// Word offset 15
+/// Word offset 1
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE(u32);
-impl MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE {
-    pub fn int_line(&self) -> u32 {
-        self.0 & 0xff
+pub struct CON_STATUS(u32);
+impl CON_STATUS {
+    pub fn b2_b3_support(&self) -> u32 {
+        (self.0 & 0x400000) >> 22
     }
-    pub fn set_int_line(&mut self, value: u32) {
-        assert!(value <= 0xff);
-        self.0 &= !0xff;
+    pub fn set_b2_b3_support(&mut self, value: u32) {
+        let value = value << 22;
+        assert!(value <= 0x400000);
+        self.0 &= !0x400000;
         self.0 |= value;
     }
-    pub fn int_pin(&self) -> u32 {
-        (self.0 & 0xff00) >> 8
+    pub fn bus_pwr_clk_con_en(&self) -> u32 {
+        (self.0 & 0x800000) >> 23
     }
-    pub fn set_int_pin(&mut self, value: u32) {
+    pub fn set_bus_pwr_clk_con_en(&mut self, value: u32) {
+        let value = value << 23;
+        assert!(value <= 0x800000);
+        self.0 &= !0x800000;
+        self.0 |= value;
+    }
+    pub fn data_reg_add_info(&self) -> u32 {
+        (self.0 & 0xff000000) >> 24
+    }
+    pub fn set_data_reg_add_info(&mut self, value: u32) {
+        let value = value << 24;
+        assert!(value <= 0xff000000);
+        self.0 &= !0xff000000;
+        self.0 |= value;
+    }
+    pub fn data_scale(&self) -> u32 {
+        (self.0 & 0x6000) >> 13
+    }
+    pub fn set_data_scale(&mut self, value: u32) {
+        let value = value << 13;
+        assert!(value <= 0x6000);
+        self.0 &= !0x6000;
+        self.0 |= value;
+    }
+    pub fn data_select(&self) -> u32 {
+        (self.0 & 0x1e00) >> 9
+    }
+    pub fn set_data_select(&mut self, value: u32) {
+        let value = value << 9;
+        assert!(value <= 0x1e00);
+        self.0 &= !0x1e00;
+        self.0 |= value;
+    }
+    pub fn no_soft_rst(&self) -> u32 {
+        (self.0 & 0x8) >> 3
+    }
+    pub fn set_no_soft_rst(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x8);
+        self.0 &= !0x8;
+        self.0 |= value;
+    }
+    pub fn pme_enable(&self) -> u32 {
+        (self.0 & 0x100) >> 8
+    }
+    pub fn set_pme_enable(&mut self, value: u32) {
         let value = value << 8;
-        assert!(value <= 0xff00);
-        self.0 &= !0xff00;
+        assert!(value <= 0x100);
+        self.0 &= !0x100;
+        self.0 |= value;
+    }
+    pub fn pme_status(&self) -> u32 {
+        (self.0 & 0x8000) >> 15
+    }
+    pub fn set_pme_status(&mut self, value: u32) {
+        let value = value << 15;
+        assert!(value <= 0x8000);
+        self.0 &= !0x8000;
+        self.0 |= value;
+    }
+    pub fn power_state(&self) -> u32 {
+        self.0 & 0x3
+    }
+    pub fn set_power_state(&mut self, value: u32) {
+        assert!(value <= 0x3);
+        self.0 &= !0x3;
         self.0 |= value;
     }
 }

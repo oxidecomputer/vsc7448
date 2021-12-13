@@ -509,36 +509,6 @@ impl INTR_IDENT {
         self.0 |= value;
     }
 }
-/// PCS2x6G Extended Configuration
-///
-/// Special configuration bit groups for PCS2x6G.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PCS2X6G_EXT_CFG(u32);
-impl PCS2X6G_EXT_CFG {
-    /// Flip HM-Bus, i.e. map lane 0 on 1 and lane 1 on 0
-    ///
-    /// 0: Normal operation 1: Flipped lane assignment
-    pub fn flip_hmbus(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_flip_hmbus(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// Invert HM-Bus, invert all data signals from/to SERDES
-    ///
-    /// 0: Normal operation 1: Inverted HM-bus
-    pub fn invert_hmbus(&self) -> u32 {
-        (self.0 & 0x2) >> 1
-    }
-    pub fn set_invert_hmbus(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x2);
-        self.0 &= !0x2;
-        self.0 |= value;
-    }
-}
 /// selects mode for which status counter will count the coresponding frames on RX and TX
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PFC_PAUSE_MODE_CTRL(u32);

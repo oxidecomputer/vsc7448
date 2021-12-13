@@ -53,19 +53,17 @@ impl QLIMIT_MON {
     pub fn QLIMIT_MON_CFG(&self) -> RegisterAddress<qlimit_mon::QLIMIT_MON_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn QLIMIT_SHR_WM_STAT(
+    pub fn QLIMIT_SHR_FILL_MAX_STAT(
         &self,
-        index: u32,
-    ) -> RegisterAddress<qlimit_mon::QLIMIT_SHR_WM_STAT> {
-        assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x3c + index * 0x4)
+    ) -> RegisterAddress<qlimit_mon::QLIMIT_SHR_FILL_MAX_STAT> {
+        RegisterAddress::new(self.0 + 0x8)
     }
 }
 
 /// Queue Limitation Configuration
 pub struct QLIMIT_PORT(pub(super) u32);
 impl QLIMIT_PORT {
-    pub fn QLIMIT_CONG_CNT(&self) -> RegisterAddress<qlimit_port::QLIMIT_CONG_CNT> {
+    pub fn QLIMIT_DIS_CFG(&self) -> RegisterAddress<qlimit_port::QLIMIT_DIS_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
     pub fn QLIMIT_PORT_CFG(&self) -> RegisterAddress<qlimit_port::QLIMIT_PORT_CFG> {
@@ -76,18 +74,18 @@ impl QLIMIT_PORT {
 /// Queue Size Table
 pub struct QLIMIT_QUEUE(pub(super) u32);
 impl QLIMIT_QUEUE {
-    pub fn DROP_STAT_CTRL(&self) -> RegisterAddress<qlimit_queue::DROP_STAT_CTRL> {
-        RegisterAddress::new(self.0 + 0x4)
+    pub fn QUEUE_SIZE(&self) -> RegisterAddress<qlimit_queue::QUEUE_SIZE> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// SE Size Table
 pub struct QLIMIT_SE(pub(super) u32);
 impl QLIMIT_SE {
-    pub fn QLIMIT_SE_USE(&self) -> RegisterAddress<qlimit_se::QLIMIT_SE_USE> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn QLIMIT_CONG_CNT(&self) -> RegisterAddress<qlimit_se::QLIMIT_CONG_CNT> {
+        RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn QUEUE_SIZE(&self) -> RegisterAddress<qlimit_se::QUEUE_SIZE> {
+    pub fn QLIMIT_SE_USE(&self) -> RegisterAddress<qlimit_se::QLIMIT_SE_USE> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -97,9 +95,6 @@ pub struct QLIMIT_SHR(pub(super) u32);
 impl QLIMIT_SHR {
     pub fn QLIMIT_CONG_CNT_STAT(&self) -> RegisterAddress<qlimit_shr::QLIMIT_CONG_CNT_STAT> {
         RegisterAddress::new(self.0 + 0x34)
-    }
-    pub fn QLIMIT_DIS_CFG(&self) -> RegisterAddress<qlimit_shr::QLIMIT_DIS_CFG> {
-        RegisterAddress::new(self.0 + 0x4)
     }
     pub fn QLIMIT_QUE_ACT_CFG(&self) -> RegisterAddress<qlimit_shr::QLIMIT_QUE_ACT_CFG> {
         RegisterAddress::new(self.0 + 0x2c)
@@ -148,15 +143,22 @@ impl QLIMIT_SHR {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    pub fn QLIMIT_SHR_WM_STAT(
+        &self,
+        index: u32,
+    ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_WM_STAT> {
+        assert!(index < 2);
+        RegisterAddress::new(self.0 + 0x3c + index * 0x4)
+    }
 }
 
 /// Select scheduling modes
 pub struct QMAP_QOS_TBL(pub(super) u32);
 impl QMAP_QOS_TBL {
-    pub fn QMAP_QOS_TBL(&self) -> RegisterAddress<qmap_qos_tbl::QMAP_QOS_TBL> {
-        RegisterAddress::new(self.0 + 0x0)
+    pub fn DROP_STAT_CTRL(&self) -> RegisterAddress<qmap_qos_tbl::DROP_STAT_CTRL> {
+        RegisterAddress::new(self.0 + 0x4)
     }
-    pub fn QMAP_SE_TBL(&self) -> RegisterAddress<qmap_qos_tbl::QMAP_SE_TBL> {
+    pub fn QMAP_QOS_TBL(&self) -> RegisterAddress<qmap_qos_tbl::QMAP_QOS_TBL> {
         RegisterAddress::new(self.0 + 0x0)
     }
 }
@@ -164,17 +166,17 @@ impl QMAP_QOS_TBL {
 /// Select scheduling modes
 pub struct QMAP_SE_TBL(pub(super) u32);
 impl QMAP_SE_TBL {
-    pub fn QMAP_VPORT_TBL(&self, index: u32) -> RegisterAddress<qmap_se_tbl::QMAP_VPORT_TBL> {
-        assert!(index < 53);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+    pub fn QMAP_SE_TBL(&self) -> RegisterAddress<qmap_se_tbl::QMAP_SE_TBL> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// Mapping into virtual ports
 pub struct QMAP_VPORT_TBL(pub(super) u32);
 impl QMAP_VPORT_TBL {
-    pub fn STAT_CFG(&self) -> RegisterAddress<qmap_vport_tbl::STAT_CFG> {
-        RegisterAddress::new(self.0 + 0x1d4)
+    pub fn QMAP_VPORT_TBL(&self, index: u32) -> RegisterAddress<qmap_vport_tbl::QMAP_VPORT_TBL> {
+        assert!(index < 53);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
 }
 
@@ -183,9 +185,6 @@ pub struct STAT(pub(super) u32);
 impl STAT {
     pub fn CNT(&self) -> RegisterAddress<stat::CNT> {
         RegisterAddress::new(self.0 + 0x0)
-    }
-    pub fn QLIMIT_SHR_FILL_MAX_STAT(&self) -> RegisterAddress<stat::QLIMIT_SHR_FILL_MAX_STAT> {
-        RegisterAddress::new(self.0 + 0x8)
     }
 }
 
@@ -212,6 +211,9 @@ impl SYSTEM {
     pub fn QMAP_PORT_MODE(&self, index: u32) -> RegisterAddress<system::QMAP_PORT_MODE> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x100 + index * 0x4)
+    }
+    pub fn STAT_CFG(&self) -> RegisterAddress<system::STAT_CFG> {
+        RegisterAddress::new(self.0 + 0x1d4)
     }
     pub fn STAT_CNT_CFG(&self) -> RegisterAddress<system::STAT_CNT_CFG> {
         RegisterAddress::new(self.0 + 0x0)

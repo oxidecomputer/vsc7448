@@ -99,17 +99,17 @@ impl STAT_LSB_CNT {
         self.0 = value;
     }
 }
-/// Reset all counters.
+/// The counter's most significant 8 bits.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct STAT_RESET(u32);
-impl STAT_RESET {
-    /// Write '1' to this field to reset all counters and configuration for this stat group. The device will set the bit back to '0' when reset has completed.
-    pub fn reset(&self) -> u32 {
-        self.0 & 0x1
+pub struct STAT_MSB_CNT(u32);
+impl STAT_MSB_CNT {
+    /// The counter's most significant 8 bits. The field stores the value in the counters of a flow from bit 32 to the most significant bit. Reading: The MSB part of the counter is latched to a shadow register, when the LSB part is read. As a result, the LSB part must always be read first, and the MSB part must be read immediately after the LSB part is read. Writing: The procedure for writing differs depending on counter group: ANA_AC:STAT_CNT_CFG_PORT: LSB part must be written first, followed by MSB part. All other counter groups: MSB part must be written first, followed by LSB part.
+    pub fn msb_cnt(&self) -> u32 {
+        self.0 & 0xff
     }
-    pub fn set_reset(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
+    pub fn set_msb_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
+        self.0 &= !0xff;
         self.0 |= value;
     }
 }

@@ -705,3 +705,41 @@ impl PLL5G_CFG5 {
         self.0 |= value;
     }
 }
+/// PLL5G Configuration 6
+///
+/// Configuration register 6 for PLL5G
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct PLL5G_CFG6(u32);
+impl PLL5G_CFG6 {
+    /// Setting for DDR clock divider
+    ///
+    /// 2: 500 MHz 5: 250 MHz 6: 416.66 MHz 14: 312.5 MHz 15: 166.66 MHz Others: Reserved
+    pub fn ddr_clk_div(&self) -> u32 {
+        self.0 & 0x3f
+    }
+    pub fn set_ddr_clk_div(&mut self, value: u32) {
+        assert!(value <= 0x3f);
+        self.0 &= !0x3f;
+        self.0 |= value;
+    }
+    /// enable feedback divider CMOS 1/2 clock (for FSM)
+    pub fn ena_fbclkc2(&self) -> u32 {
+        (self.0 & 0x40) >> 6
+    }
+    pub fn set_ena_fbclkc2(&mut self, value: u32) {
+        let value = value << 6;
+        assert!(value <= 0x40);
+        self.0 &= !0x40;
+        self.0 |= value;
+    }
+    /// Enable reference CMOS 1/2 clock
+    pub fn ena_refclkc2(&self) -> u32 {
+        (self.0 & 0x80) >> 7
+    }
+    pub fn set_ena_refclkc2(&mut self, value: u32) {
+        let value = value << 7;
+        assert!(value <= 0x80);
+        self.0 &= !0x80;
+        self.0 |= value;
+    }
+}

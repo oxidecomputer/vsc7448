@@ -41,39 +41,17 @@ impl BRKMASK_LSW {
         self.0 |= value;
     }
 }
-/// VS training LUT selection
+/// VS training break_mask msw
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TR_LUTSEL(u32);
-impl TR_LUTSEL {
-    /// Clears LUT table
-    pub fn lut_clr(&self) -> u32 {
-        (self.0 & 0x1000) >> 12
+pub struct BRKMASK_MSW(u32);
+impl BRKMASK_MSW {
+    /// Select lptrain state machine breakpoints. Each bit correpsonds to a state (see design doc)
+    pub fn brkmask_msw(&self) -> u32 {
+        self.0 & 0xffff
     }
-    pub fn set_lut_clr(&mut self, value: u32) {
-        let value = value << 12;
-        assert!(value <= 0x1000);
-        self.0 &= !0x1000;
-        self.0 |= value;
-    }
-    /// Selects LUT table entry (0 to 63).
-    pub fn lut_row(&self) -> u32 {
-        (self.0 & 0x1f8) >> 3
-    }
-    pub fn set_lut_row(&mut self, value: u32) {
-        let value = value << 3;
-        assert!(value <= 0x1f8);
-        self.0 &= !0x1f8;
-        self.0 |= value;
-    }
-    /// Selects LUT for lut_o
-    ///
-    /// 0: Gain 1: DFE_1 2: DFE_2 3: DFE_avg_1 4: DFE_avg_2 5: BER_1 6: BER_2 7: BER_3
-    pub fn lut_sel(&self) -> u32 {
-        self.0 & 0x7
-    }
-    pub fn set_lut_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
-        self.0 &= !0x7;
+    pub fn set_brkmask_msw(&mut self, value: u32) {
+        assert!(value <= 0xffff);
+        self.0 &= !0xffff;
         self.0 |= value;
     }
 }

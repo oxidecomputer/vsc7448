@@ -40,15 +40,17 @@ pub mod vcap_s2;
 /// VCAP_IS2 counter table
 pub struct CNT_TBL(pub(super) u32);
 impl CNT_TBL {
-    pub fn SEC_LOOKUP_STICKY(&self, index: u32) -> RegisterAddress<cnt_tbl::SEC_LOOKUP_STICKY> {
-        assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+    pub fn CNT(&self) -> RegisterAddress<cnt_tbl::CNT> {
+        RegisterAddress::new(self.0 + 0x0)
     }
 }
 
 /// VCAP_IS2 configuration per port
 pub struct PORT(pub(super) u32);
 impl PORT {
+    pub fn PTP_CFG(&self) -> RegisterAddress<port::PTP_CFG> {
+        RegisterAddress::new(self.0 + 0x8)
+    }
     pub fn VCAP_S2_KEY_SEL(&self, index: u32) -> RegisterAddress<port::VCAP_S2_KEY_SEL> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -58,9 +60,6 @@ impl PORT {
 /// PTP domain configuration
 pub struct PTP_DOM(pub(super) u32);
 impl PTP_DOM {
-    pub fn CNT(&self) -> RegisterAddress<ptp_dom::CNT> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
     pub fn PTP_CLOCK_ID_LSB(&self) -> RegisterAddress<ptp_dom::PTP_CLOCK_ID_LSB> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -78,17 +77,15 @@ impl PTP_DOM {
 /// Sticky diagnostic status
 pub struct STICKY(pub(super) u32);
 impl STICKY {
-    pub fn VOE_LOOPBACK_CFG(&self) -> RegisterAddress<sticky::VOE_LOOPBACK_CFG> {
-        RegisterAddress::new(self.0 + 0x1b4)
+    pub fn SEC_LOOKUP_STICKY(&self, index: u32) -> RegisterAddress<sticky::SEC_LOOKUP_STICKY> {
+        assert!(index < 2);
+        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
 }
 
 /// Common configurations used by VCAP_IS2
 pub struct VCAP_S2(pub(super) u32);
 impl VCAP_S2 {
-    pub fn PTP_CFG(&self) -> RegisterAddress<vcap_s2::PTP_CFG> {
-        RegisterAddress::new(self.0 + 0x8)
-    }
     pub fn PTP_MISC_CTRL(&self) -> RegisterAddress<vcap_s2::PTP_MISC_CTRL> {
         RegisterAddress::new(self.0 + 0x164)
     }
@@ -119,5 +116,8 @@ impl VCAP_S2 {
     ) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_VALUE_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x190 + index * 0x4)
+    }
+    pub fn VOE_LOOPBACK_CFG(&self) -> RegisterAddress<vcap_s2::VOE_LOOPBACK_CFG> {
+        RegisterAddress::new(self.0 + 0x1b4)
     }
 }

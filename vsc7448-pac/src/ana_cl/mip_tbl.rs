@@ -65,6 +65,18 @@ impl LBM_MAC_HIGH {
         self.0 |= value;
     }
 }
+/// MAC address configuration - bits 31:0
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct LBM_MAC_LOW(u32);
+impl LBM_MAC_LOW {
+    /// Destination MAC address bit 31:0 used for LBM. See LBM_MAC_HIGH.
+    pub fn lbm_mac_low(&self) -> u32 {
+        self.0
+    }
+    pub fn set_lbm_mac_low(&mut self, value: u32) {
+        self.0 = value;
+    }
+}
 /// MIP configuration
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MIP_CFG(u32);
@@ -188,100 +200,6 @@ impl MIP_CL_VID_CTRL {
         let value = value << 2;
         assert!(value <= 0x3ffc);
         self.0 &= !0x3ffc;
-        self.0 |= value;
-    }
-}
-/// Generalized MPLS exception handling
-///
-/// This register allows exception handling of reserved MPLS labels and IP control protocols.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PROFILE_CFG(u32);
-impl PROFILE_CFG {
-    /// If the frame is forwarded to the CPU (via PROFILE_CFG.FWD_SEL), it will be forwarded to the CPU queue configured in this field.
-    pub fn cpu_qu(&self) -> u32 {
-        self.0 & 0x7
-    }
-    pub fn set_cpu_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
-        self.0 &= !0x7;
-        self.0 |= value;
-    }
-    /// Controls S2 custom rule selection.
-    ///
-    /// Bit 0: Selects custom key to use (0: CUSTOM_1, 1: CUSTOM_2) Bit 1: Enables custom key for first lookup Bit 2: Enables custom key for second lookup
-    pub fn custom_ace_ena(&self) -> u32 {
-        (self.0 & 0x38000) >> 15
-    }
-    pub fn set_custom_ace_ena(&mut self, value: u32) {
-        let value = value << 15;
-        assert!(value <= 0x38000);
-        self.0 &= !0x38000;
-        self.0 |= value;
-    }
-    /// CPU forward configuration per profile.
-    ///
-    /// 0: Normal forward 1: Enable redirection to CPU queue: PROFILE_CFG.CPU_QU 2: Enable copy to CPU queue: PROFILE_CFG.CPU_QU 3: Discard the frame
-    pub fn fwd_sel(&self) -> u32 {
-        (self.0 & 0x18) >> 3
-    }
-    pub fn set_fwd_sel(&mut self, value: u32) {
-        let value = value << 3;
-        assert!(value <= 0x18);
-        self.0 &= !0x18;
-        self.0 |= value;
-    }
-    /// Controls if profile traffic should be part of OAM LM count.
-    pub fn lm_cnt_dis(&self) -> u32 {
-        (self.0 & 0x80000) >> 19
-    }
-    pub fn set_lm_cnt_dis(&mut self, value: u32) {
-        let value = value << 19;
-        assert!(value <= 0x80000);
-        self.0 &= !0x80000;
-        self.0 |= value;
-    }
-    /// Controls if profile traffic should be normalized according to normal action handling: nxt_normalize.
-    pub fn normalize_dis(&self) -> u32 {
-        (self.0 & 0x40000) >> 18
-    }
-    pub fn set_normalize_dis(&mut self, value: u32) {
-        let value = value << 18;
-        assert!(value <= 0x40000);
-        self.0 &= !0x40000;
-        self.0 |= value;
-    }
-    /// Determines the next CLM lookup. Could also specify no further CLM lookups
-    ///
-    /// 0: no overrule 2: SGL_MLBS 3: DBL_MLBS 4: TRI_MLBS 12: CUSTOM1 13: CUSTOM2 14: CUSTOM4 15: No Lookup other: reserved
-    pub fn nxt_key_type(&self) -> u32 {
-        (self.0 & 0x1e0) >> 5
-    }
-    pub fn set_nxt_key_type(&mut self, value: u32) {
-        let value = value << 5;
-        assert!(value <= 0x1e0);
-        self.0 &= !0x1e0;
-        self.0 |= value;
-    }
-    /// Determines frame pointer movement.
-    pub fn nxt_norm_w16_offset(&self) -> u32 {
-        (self.0 & 0x1e00) >> 9
-    }
-    pub fn set_nxt_norm_w16_offset(&mut self, value: u32) {
-        let value = value << 9;
-        assert!(value <= 0x1e00);
-        self.0 &= !0x1e00;
-        self.0 |= value;
-    }
-    /// Controls Protocol layer (frame_type) at frame pointer position after update PROFILE_CFG.NXT_NORM_W16_OFFSET.
-    ///
-    /// 0: ETH  - Frame pointer points to start of DMAC. 1: CW (IP / MPLS PW CW / MPLS ACH) - Frame pointer points to MPLS CW/ACH or IP version. 2: MPLS - Frame pointer points to MPLS label. 3: DATA -"Raw" data, i.e. unknown protocol type.
-    pub fn nxt_type_after_offset(&self) -> u32 {
-        (self.0 & 0x6000) >> 13
-    }
-    pub fn set_nxt_type_after_offset(&mut self, value: u32) {
-        let value = value << 13;
-        assert!(value <= 0x6000);
-        self.0 &= !0x6000;
         self.0 |= value;
     }
 }

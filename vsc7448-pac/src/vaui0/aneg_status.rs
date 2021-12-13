@@ -177,32 +177,6 @@ impl ANEG_LP_ADV_ABILITY_1 {
         self.0 |= value;
     }
 }
-/// ANEG Next Page 1
-///
-/// 48 bits that contain the new next page to transmit during auto-negotiation (here: upper 16 bits).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct ANEG_NEXT_PAGE_1(u32);
-impl ANEG_NEXT_PAGE_1 {
-    /// Must be set when a new next page is programmed (self-clearing)
-    pub fn next_page_loaded_one_shot(&self) -> u32 {
-        (self.0 & 0x80000000) >> 31
-    }
-    pub fn set_next_page_loaded_one_shot(&mut self, value: u32) {
-        let value = value << 31;
-        assert!(value <= 0x80000000);
-        self.0 &= !0x80000000;
-        self.0 |= value;
-    }
-    /// Upper 16 bits of next page link code word
-    pub fn np_tx_msb(&self) -> u32 {
-        self.0 & 0xffff
-    }
-    pub fn set_np_tx_msb(&mut self, value: u32) {
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
-        self.0 |= value;
-    }
-}
 /// ANEG Status
 ///
 /// Auto negotiation status register

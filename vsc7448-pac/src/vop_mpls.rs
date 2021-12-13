@@ -46,6 +46,9 @@ impl VOE_CONF_MPLS {
     pub fn BFD_LOCAL_DISCR_SRC(&self) -> RegisterAddress<voe_conf_mpls::BFD_LOCAL_DISCR_SRC> {
         RegisterAddress::new(self.0 + 0x1c)
     }
+    pub fn BFD_REMOTE_DISCR_SINK(&self) -> RegisterAddress<voe_conf_mpls::BFD_REMOTE_DISCR_SINK> {
+        RegisterAddress::new(self.0 + 0x28)
+    }
     pub fn BFD_REMOTE_DISCR_SRC(&self) -> RegisterAddress<voe_conf_mpls::BFD_REMOTE_DISCR_SRC> {
         RegisterAddress::new(self.0 + 0x20)
     }
@@ -93,9 +96,6 @@ impl VOE_STAT_MPLS {
     }
     pub fn BFD_CV_TX_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CV_TX_CNT_REG> {
         RegisterAddress::new(self.0 + 0x3c)
-    }
-    pub fn BFD_REMOTE_DISCR_SINK(&self) -> RegisterAddress<voe_stat_mpls::BFD_REMOTE_DISCR_SINK> {
-        RegisterAddress::new(self.0 + 0x28)
     }
     pub fn BFD_RX_LAST(&self) -> RegisterAddress<voe_stat_mpls::BFD_RX_LAST> {
         RegisterAddress::new(self.0 + 0x1c)

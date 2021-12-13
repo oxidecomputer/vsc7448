@@ -572,6 +572,36 @@ impl ROUTING_CFG {
         self.0 |= value;
     }
 }
+/// Service Control
+///
+/// Miscellaneous service configuration.
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct SERVICE_CFG(u32);
+impl SERVICE_CFG {
+    /// Force Egress FID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when ANA_CL:IPT:VSI_CFG.VSI_ENA==1 and frame has multicast DMAC. See also SERVICE_CFG.VSI_FORCE_MC_EFID_ENA.
+    ///
+    /// 0: Normal EFID behaviour for multicast  DMAC. 1: Force EFID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when VSI_ENA==1 and frame has multicast DMAC.
+    pub fn isdx_force_mc_efid_ena(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_isdx_force_mc_efid_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Force Egress FID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when ISDX > 0 and frame has multicast DMAC. See also SERVICE_CFG.VSI_FORCE_MC_EFID_ENA.
+    ///
+    /// 0: Normal EFID behaviour for multicast  DMAC. 1: Force EFID=ANA_L3:VLAN:VLAN_CFG.VLAN_FIDfor multicast DMAC when ISDX > 0.
+    pub fn vsi_force_mc_efid_ena(&self) -> u32 {
+        (self.0 & 0x2) >> 1
+    }
+    pub fn set_vsi_force_mc_efid_ena(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+}
 /// Enable SIP RPF check
 ///
 /// Bit per port that enables SIP RPF check.

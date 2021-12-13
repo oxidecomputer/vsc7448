@@ -31,26 +31,26 @@ use derive_more::{From, Into};
 ///
 /// The bit fields in this register determines the source of the COSID mapping / COLOR of frames not processed by the VOE.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct COSID_MAP_CFG_ANA(u32);
-impl COSID_MAP_CFG_ANA {
+pub struct COSID_MAP_CFG_REW(u32);
+impl COSID_MAP_CFG_REW {
     /// Determines if the VOE LM counters counts all frames or only GREEN frames.
     ///
     /// '0': do not include yellow frames in the LM count. '1': include yellow frames in the LM count.
-    pub fn cnt_yellow_ana(&self) -> u32 {
+    pub fn cnt_yellow_rew(&self) -> u32 {
         self.0 & 0x1
     }
-    pub fn set_cnt_yellow_ana(&mut self, value: u32) {
+    pub fn set_cnt_yellow_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
-    /// Determines which internal signal carries color for the current VOE. This configuration is only used in ANA, the corresponding configuration in the REW is not used.
+    /// Determines which internal signal carries color for the current VOE.
     ///
-    /// "00": ifh.dp_color "01": ifh.cl_dei "10": ANA_CL:MAP_TBL:MAP_ENTRY.PATH_COLOR_VAL (Output from mapping table. Do not use for Up-MEP) "11": reserved for future use (do not use)
-    pub fn color_src_sel_ana(&self) -> u32 {
+    /// "00": ifh.dp_color "01": ifh.cl_dei "10": REW:MAP_RES_X:MAP_VAL_A.OAM_COLOR (Output from the mapping table) "11": reserved for future use (do not use)
+    pub fn color_src_sel_rew(&self) -> u32 {
         (self.0 & 0x6) >> 1
     }
-    pub fn set_color_src_sel_ana(&mut self, value: u32) {
+    pub fn set_color_src_sel_rew(&mut self, value: u32) {
         let value = value << 1;
         assert!(value <= 0x6);
         self.0 &= !0x6;
@@ -58,11 +58,11 @@ impl COSID_MAP_CFG_ANA {
     }
     /// Selects the source of the COSID mapping.
     ///
-    /// "00": ifh.cosid "01": ifh.tc "10": ifh_iprio "11": ANA_CL:MAP_TBL:MAP_ENTRY.PATH_COSID_VAL (Output from mapping table. Do not use for Up-MEP)
-    pub fn cosid_src_sel_ana(&self) -> u32 {
+    /// "00": ifh.cosid "01": ifh.tc "10": ifh_iprio "11": REW:MAP_RES_X:MAP_VAL_A.OAM_COSID (Output from the mapping table)
+    pub fn cosid_src_sel_rew(&self) -> u32 {
         (self.0 & 0x18) >> 3
     }
-    pub fn set_cosid_src_sel_ana(&mut self, value: u32) {
+    pub fn set_cosid_src_sel_rew(&mut self, value: u32) {
         let value = value << 3;
         assert!(value <= 0x18);
         self.0 &= !0x18;

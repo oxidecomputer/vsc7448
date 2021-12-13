@@ -123,20 +123,6 @@ impl RX_OK_BYTES_MSB_CNT {
         self.0 |= value;
     }
 }
-/// Rx XGMII Protocol Error Counter
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct RX_XGMII_PROT_ERR_CNT(u32);
-impl RX_XGMII_PROT_ERR_CNT {
-    /// Number of XGMII protocol errors detected.
-    ///
-    /// Counter can be written by SW.
-    pub fn rx_xgmii_prot_err_cnt(&self) -> u32 {
-        self.0
-    }
-    pub fn set_rx_xgmii_prot_err_cnt(&mut self, value: u32) {
-        self.0 = value;
-    }
-}
 /// Tx OK Byte Counter
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TX_OK_BYTES_CNT(u32);
@@ -149,6 +135,24 @@ impl TX_OK_BYTES_CNT {
     }
     pub fn set_tx_ok_bytes_cnt(&mut self, value: u32) {
         self.0 = value;
+    }
+}
+/// Tx OK Bytes Counter - MSB partTx OK Bytes Counter - MSB
+///
+/// The number of bytes transmitted - MSBs only.
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct TX_OK_BYTES_MSB_CNT(u32);
+impl TX_OK_BYTES_MSB_CNT {
+    /// The numbe rof transmitted bytes transmitted successfully - MSBs only.
+    ///
+    /// Counter can be written by SW.
+    pub fn tx_ok_bytes_msb_cnt(&self) -> u32 {
+        self.0 & 0xff
+    }
+    pub fn set_tx_ok_bytes_msb_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
+        self.0 &= !0xff;
+        self.0 |= value;
     }
 }
 /// Tx Byte Counter

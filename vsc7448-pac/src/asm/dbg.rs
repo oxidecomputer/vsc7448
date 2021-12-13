@@ -241,27 +241,33 @@ impl ERR_STICKY {
         self.0 |= value;
     }
 }
-/// Configure custom VLAN tag for injection
+/// Register containing sticky bits for pre counter overflow
+///
+/// Register containing sticky bits for pre counter overflow
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct INJ_VLAN_CFG(u32);
-impl INJ_VLAN_CFG {
-    /// The TPID used for VLAN tag matching when injection with long IFH prefix is selected in INJ_FORMAT_CFG.
-    pub fn inj_tpid_cfg(&self) -> u32 {
-        self.0 & 0xffff
+pub struct PRE_CNT_OFLW_STICKY(u32);
+impl PRE_CNT_OFLW_STICKY {
+    /// Will be set if one of the statistics pause frame pre counters has an overflow.
+    ///
+    /// '0': An overflow in	pre-counter has not occured '1': An overflow in	pre-counter has occured Bit is cleared by writing a '1' to this position.
+    pub fn pause_frm_pre_cnt_oflw_sticky(&self) -> u32 {
+        self.0 & 0x1
     }
-    pub fn set_inj_tpid_cfg(&mut self, value: u32) {
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+    pub fn set_pause_frm_pre_cnt_oflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
         self.0 |= value;
     }
-    /// The VID used for VLAN tag matching when injection with long IFH prefix is selected in INJ_FORMAT_CFG.
-    pub fn inj_vid_cfg(&self) -> u32 {
-        (self.0 & 0xfff0000) >> 16
+    /// Will be set if one of the statistics pre counters for unsupported control frames has an overflow.
+    ///
+    /// '0': An overflow in	pre-counter has not occured '1': An overflow in	pre-counter has occured Bit is cleared by writing a '1' to this position.
+    pub fn unsup_opcode_pre_cnt_oflw_sticky(&self) -> u32 {
+        (self.0 & 0x2) >> 1
     }
-    pub fn set_inj_vid_cfg(&mut self, value: u32) {
-        let value = value << 16;
-        assert!(value <= 0xfff0000);
-        self.0 &= !0xfff0000;
+    pub fn set_unsup_opcode_pre_cnt_oflw_sticky(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
         self.0 |= value;
     }
 }

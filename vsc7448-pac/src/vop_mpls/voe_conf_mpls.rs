@@ -205,6 +205,20 @@ impl BFD_LOCAL_DISCR_SRC {
         self.0 = value;
     }
 }
+/// BFD Remote Discriminator (BFD_SINK)
+///
+/// The Discriminator of the remote BFD entity communicating with the Local BFD Sink. Only used if the BFD session is configured for Independent Mode: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_COORDINATED_MODE_ENA = 0
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct BFD_REMOTE_DISCR_SINK(u32);
+impl BFD_REMOTE_DISCR_SINK {
+    /// See register description.
+    pub fn bfd_remote_discr_sink(&self) -> u32 {
+        self.0
+    }
+    pub fn set_bfd_remote_discr_sink(&mut self, value: u32) {
+        self.0 = value;
+    }
+}
 /// BFD Remote Discriminator (BFD_SRC)
 ///
 /// The Discriminator of the remote BFD entity communicating with the Local BFD Source

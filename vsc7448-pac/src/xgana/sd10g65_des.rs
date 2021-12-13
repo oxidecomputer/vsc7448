@@ -95,3 +95,69 @@ impl SD10G65_DES_CFG0 {
         self.0 |= value;
     }
 }
+/// SD10G65 MOEBDIV Configuration register 0
+///
+/// Configuration register 0 for SD10G65 MoebiusDivider
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct SD10G65_MOEBDIV_CFG0(u32);
+impl SD10G65_MOEBDIV_CFG0 {
+    /// Bandwidth selection for cp/md of cdr loop when core NOT flags valid data detected
+    pub fn moebdiv_bw_cdr_sel_a(&self) -> u32 {
+        (self.0 & 0xe00) >> 9
+    }
+    pub fn set_moebdiv_bw_cdr_sel_a(&mut self, value: u32) {
+        let value = value << 9;
+        assert!(value <= 0xe00);
+        self.0 &= !0xe00;
+        self.0 |= value;
+    }
+    /// Bandwidth selection for cp/md of cdr loop when core flags valid data detected
+    pub fn moebdiv_bw_cdr_sel_b(&self) -> u32 {
+        (self.0 & 0x1c0) >> 6
+    }
+    pub fn set_moebdiv_bw_cdr_sel_b(&mut self, value: u32) {
+        let value = value << 6;
+        assert!(value <= 0x1c0);
+        self.0 &= !0x1c0;
+        self.0 |= value;
+    }
+    /// Bandwidth selection for cp/md signals towards core
+    pub fn moebdiv_bw_core_sel(&self) -> u32 {
+        (self.0 & 0x38) >> 3
+    }
+    pub fn set_moebdiv_bw_core_sel(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x38);
+        self.0 &= !0x38;
+        self.0 |= value;
+    }
+    /// CP/MD swapping
+    pub fn moebdiv_cpmd_swap(&self) -> u32 {
+        (self.0 & 0x4) >> 2
+    }
+    pub fn set_moebdiv_cpmd_swap(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0x4);
+        self.0 &= !0x4;
+        self.0 |= value;
+    }
+    /// Divider disable
+    pub fn moebdiv_dis(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_moebdiv_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// MD divider enable
+    pub fn moebdiv_div32_ena(&self) -> u32 {
+        (self.0 & 0x2) >> 1
+    }
+    pub fn set_moebdiv_div32_ena(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+}

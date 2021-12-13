@@ -1469,6 +1469,62 @@ impl SD10G65_IB_CFG9 {
         self.0 |= value;
     }
 }
+/// SD10G65_RX Revision ID
+///
+/// Revision numbers of the analog sub IPs used in the SD10G65_RX
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct SD10G65_RX_REV_ID(u32);
+impl SD10G65_RX_REV_ID {
+    /// Feature set number of deserializer (des10g_N)
+    pub fn des_rev_id(&self) -> u32 {
+        (self.0 & 0xfc000000) >> 26
+    }
+    pub fn set_des_rev_id(&mut self, value: u32) {
+        let value = value << 26;
+        assert!(value <= 0xfc000000);
+        self.0 &= !0xfc000000;
+        self.0 |= value;
+    }
+    /// Feature set number of input buffer (ib10g_N)
+    pub fn ib_rev_id(&self) -> u32 {
+        (self.0 & 0x3f00000) >> 20
+    }
+    pub fn set_ib_rev_id(&mut self, value: u32) {
+        let value = value << 20;
+        assert!(value <= 0x3f00000);
+        self.0 &= !0x3f00000;
+        self.0 |= value;
+    }
+    /// Feature set number of RC-PLL (pll10g_N)
+    pub fn rcpll_rev_id(&self) -> u32 {
+        (self.0 & 0x3f00) >> 8
+    }
+    pub fn set_rcpll_rev_id(&mut self, value: u32) {
+        let value = value << 8;
+        assert!(value <= 0x3f00);
+        self.0 &= !0x3f00;
+        self.0 |= value;
+    }
+    /// Feature set number of synthesizer (syn_N)
+    pub fn synth_rev_id(&self) -> u32 {
+        (self.0 & 0xfc000) >> 14
+    }
+    pub fn set_synth_rev_id(&mut self, value: u32) {
+        let value = value << 14;
+        assert!(value <= 0xfc000);
+        self.0 &= !0xfc000;
+        self.0 |= value;
+    }
+    /// Feature set number of Toplevel (sd10g65_N)
+    pub fn top_rev_id(&self) -> u32 {
+        self.0 & 0xff
+    }
+    pub fn set_top_rev_id(&mut self, value: u32) {
+        assert!(value <= 0xff);
+        self.0 &= !0xff;
+        self.0 |= value;
+    }
+}
 /// SD10G65_RX subversion revision number
 ///
 /// Subversion revision number for the RTL used in SD10G65_RX
@@ -1564,52 +1620,6 @@ impl SD10G65_SBUS_RX_CFG {
         let value = value << 16;
         assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
-        self.0 |= value;
-    }
-}
-/// SD10G65_TX Revision ID
-///
-/// Revision numbers of the analog sub IPs used in the SD10G65_TX
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SD10G65_TX_REV_ID(u32);
-impl SD10G65_TX_REV_ID {
-    /// Feature set number of output buffer (ob10g_N)
-    pub fn ob_rev_id(&self) -> u32 {
-        (self.0 & 0x3f00000) >> 20
-    }
-    pub fn set_ob_rev_id(&mut self, value: u32) {
-        let value = value << 20;
-        assert!(value <= 0x3f00000);
-        self.0 &= !0x3f00000;
-        self.0 |= value;
-    }
-    /// Feature set number of RC-PLL (pll10g_N)
-    pub fn rcpll_rev_id(&self) -> u32 {
-        (self.0 & 0x3f00) >> 8
-    }
-    pub fn set_rcpll_rev_id(&mut self, value: u32) {
-        let value = value << 8;
-        assert!(value <= 0x3f00);
-        self.0 &= !0x3f00;
-        self.0 |= value;
-    }
-    /// Feature set number of synthesizer (syn_N)
-    pub fn synth_rev_id(&self) -> u32 {
-        (self.0 & 0xfc000) >> 14
-    }
-    pub fn set_synth_rev_id(&mut self, value: u32) {
-        let value = value << 14;
-        assert!(value <= 0xfc000);
-        self.0 &= !0xfc000;
-        self.0 |= value;
-    }
-    /// Feature set number of Toplevel (sd10g65_N)
-    pub fn top_rev_id(&self) -> u32 {
-        self.0 & 0xff
-    }
-    pub fn set_top_rev_id(&mut self, value: u32) {
-        assert!(value <= 0xff);
-        self.0 &= !0xff;
         self.0 |= value;
     }
 }

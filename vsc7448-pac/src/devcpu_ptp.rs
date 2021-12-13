@@ -58,6 +58,9 @@ impl PTP_CFG {
     pub fn PTP_PIN_INTR_ENA(&self) -> RegisterAddress<ptp_cfg::PTP_PIN_INTR_ENA> {
         RegisterAddress::new(self.0 + 0x20)
     }
+    pub fn PTP_SYS_CLK_CFG(&self) -> RegisterAddress<ptp_cfg::PTP_SYS_CLK_CFG> {
+        RegisterAddress::new(self.0 + 0x28)
+    }
 }
 
 /// Timing synchronization
@@ -68,9 +71,6 @@ impl PTP_PINS {
     }
     pub fn PIN_WF_LOW_PERIOD(&self) -> RegisterAddress<ptp_pins::PIN_WF_LOW_PERIOD> {
         RegisterAddress::new(self.0 + 0x18)
-    }
-    pub fn PTP_CUR_SEC_MSB(&self) -> RegisterAddress<ptp_pins::PTP_CUR_SEC_MSB> {
-        RegisterAddress::new(self.0 + 0xc)
     }
     pub fn PTP_NSF(&self) -> RegisterAddress<ptp_pins::PTP_NSF> {
         RegisterAddress::new(self.0 + 0x10)
@@ -101,7 +101,7 @@ impl PTP_STATUS {
     pub fn PTP_CUR_SEC_LSB(&self) -> RegisterAddress<ptp_status::PTP_CUR_SEC_LSB> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    pub fn PTP_SYS_CLK_CFG(&self) -> RegisterAddress<ptp_status::PTP_SYS_CLK_CFG> {
-        RegisterAddress::new(self.0 + 0x28)
+    pub fn PTP_CUR_SEC_MSB(&self) -> RegisterAddress<ptp_status::PTP_CUR_SEC_MSB> {
+        RegisterAddress::new(self.0 + 0xc)
     }
 }

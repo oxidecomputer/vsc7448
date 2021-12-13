@@ -61,17 +61,19 @@ impl STAT_GLOBAL_CFG {
         self.0 |= value;
     }
 }
-/// The counter's most significant 8 bits.
+/// Event mask for counters.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct STAT_MSB_CNT(u32);
-impl STAT_MSB_CNT {
-    /// The counter's most significant 8 bits. The field stores the value in the counters of a flow from bit 32 to the most significant bit. Reading: The MSB part of the counter is latched to a shadow register, when the LSB part is read. As a result, the LSB part must always be read first, and the MSB part must be read immediately after the LSB part is read. Writing: The procedure for writing differs depending on counter group: ANA_AC:STAT_CNT_CFG_PORT: LSB part must be written first, followed by MSB part. All other counter groups: MSB part must be written first, followed by LSB part.
-    pub fn msb_cnt(&self) -> u32 {
-        self.0 & 0xff
+pub struct STAT_GLOBAL_EVENT_MASK(u32);
+impl STAT_GLOBAL_EVENT_MASK {
+    /// This value stores the event mask which indicates the counter of all flows to count certain events. If set to '1' the respective event is not filtered and can trigger the counter. If set to '0' the respective event is filtered and the counter will treat the frame as if no event has occurred. The following events apply to ACL stat: Bit0: Count CPU traffic applicable for CPU ACL policer but not discarded Bit1: Count front port traffic applicable for ACL policer but not discarded Bit2: Count CPU traffic discarded by ACL policer Bit3: Count front port traffic discarded by ACL policer
+    ///
+    /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
+    pub fn global_event_mask(&self) -> u32 {
+        self.0 & 0xf
     }
-    pub fn set_msb_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
-        self.0 &= !0xff;
+    pub fn set_global_event_mask(&mut self, value: u32) {
+        assert!(value <= 0xf);
+        self.0 &= !0xf;
         self.0 |= value;
     }
 }

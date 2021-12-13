@@ -55,37 +55,17 @@ impl TR_CMVAL {
         self.0 |= value;
     }
 }
-/// VS training status 2
+/// VS tap CP value
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TR_STS2(u32);
-impl TR_STS2 {
-    /// C0 range error (LH)
-    pub fn c0_range_err(&self) -> u32 {
-        (self.0 & 0x2) >> 1
+pub struct TR_CPVAL(u32);
+impl TR_CPVAL {
+    /// CP value
+    pub fn cp_val(&self) -> u32 {
+        self.0 & 0x7f
     }
-    pub fn set_c0_range_err(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x2);
-        self.0 &= !0x2;
-        self.0 |= value;
-    }
-    /// CM range error (LH)
-    pub fn cm_range_err(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_cm_range_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-    /// CP range error (LH)
-    pub fn cp_range_err(&self) -> u32 {
-        (self.0 & 0x4) >> 2
-    }
-    pub fn set_cp_range_err(&mut self, value: u32) {
-        let value = value << 2;
-        assert!(value <= 0x4);
-        self.0 &= !0x4;
+    pub fn set_cp_val(&mut self, value: u32) {
+        assert!(value <= 0x7f);
+        self.0 &= !0x7f;
         self.0 |= value;
     }
 }

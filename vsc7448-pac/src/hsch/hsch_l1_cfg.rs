@@ -29,23 +29,13 @@
 use derive_more::{From, Into};
 /// Hierarchy configuration
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct HSCH_L0_CFG(u32);
-impl HSCH_L0_CFG {
-    /// Index of layer 1 element connected to.
-    pub fn l1_idx(&self) -> u32 {
-        (self.0 & 0xfc0) >> 6
-    }
-    pub fn set_l1_idx(&mut self, value: u32) {
-        let value = value << 6;
-        assert!(value <= 0xfc0);
-        self.0 &= !0xfc0;
-        self.0 |= value;
-    }
-    /// Input of layer 1 element connected to
-    pub fn l1_inp(&self) -> u32 {
+pub struct HSCH_L1_CFG(u32);
+impl HSCH_L1_CFG {
+    /// Index of layer 2 element connected to by this layer 1 element
+    pub fn l2_idx(&self) -> u32 {
         self.0 & 0x3f
     }
-    pub fn set_l1_inp(&mut self, value: u32) {
+    pub fn set_l2_idx(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;

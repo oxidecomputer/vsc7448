@@ -91,6 +91,20 @@ impl DEV_INTR_IDENT {
         self.0 = value;
     }
 }
+/// Currently active device interrupts
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct DEV_INTR_IDENT1(u32);
+impl DEV_INTR_IDENT1 {
+    /// See ICPU_CFG::DEV_INTR_IDENT for description, this register holds bits above 32.
+    pub fn dev_intr_ident1(&self) -> u32 {
+        self.0 & 0x1fffff
+    }
+    pub fn set_dev_intr_ident1(&mut self, value: u32) {
+        assert!(value <= 0x1fffff);
+        self.0 &= !0x1fffff;
+        self.0 |= value;
+    }
+}
 /// Device interrupt polarity
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEV_INTR_POL(u32);
@@ -404,21 +418,6 @@ impl INTR_TRIGGER {
     pub fn set_intr_trigger(&mut self, value: u32) {
         assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
-        self.0 |= value;
-    }
-}
-/// 8051 ROM configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct MPU8051_IROM(u32);
-impl MPU8051_IROM {
-    /// This Field specifies the offset into AHB space from which the 8051 must fetch its IROM code during firmware startup.
-    pub fn rom_offset(&self) -> u32 {
-        (self.0 & 0xffff0000) >> 16
-    }
-    pub fn set_rom_offset(&mut self, value: u32) {
-        let value = value << 16;
-        assert!(value <= 0xffff0000);
-        self.0 &= !0xffff0000;
         self.0 |= value;
     }
 }

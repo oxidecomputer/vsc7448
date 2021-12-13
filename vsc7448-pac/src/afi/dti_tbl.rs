@@ -41,6 +41,20 @@ impl DTI_CNT {
         self.0 |= value;
     }
 }
+/// Duration of last DTI run
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct DTI_DURATION(u32);
+impl DTI_DURATION {
+    /// Duration of last DTI run in DTI Duration Ticks. Before starting a DTI, DURATION must be set to 0. When AFI:DTI_MISC:DTI_CTRL.ENA becomes 0, DURATION is updated with the duration of the DTI run. While a DTI is running DURATION holds an internal time stamp of when the DTI was started. This value is not intended for SW usage. Related parameters: AFI:MISC:DTI_DURATION_TICK_LEN.DTI_DURATION_TICK_LEN
+    pub fn duration(&self) -> u32 {
+        self.0 & 0x7fffffff
+    }
+    pub fn set_duration(&mut self, value: u32) {
+        assert!(value <= 0x7fffffff);
+        self.0 &= !0x7fffffff;
+        self.0 |= value;
+    }
+}
 /// DTI Frame Table pointers
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DTI_FRM(u32);
@@ -156,24 +170,6 @@ impl DTI_PORT_QU {
         let value = value << 8;
         assert!(value <= 0xffff00);
         self.0 &= !0xffff00;
-        self.0 |= value;
-    }
-}
-/// Frame Table entry configuration
-///
-/// Note: Write operations to entries in the frame table, which are in the process of being removed (FRM_RM=1, see FRM_ENTRY_PART0) are not allowed.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct FRM_ENTRY_PART0(u32);
-impl FRM_ENTRY_PART0 {
-    /// Configuration of frame or delay entry in Frame Table. Delay entries are only used for DTI. Delay entry fields: DELAY: Delay between injection of start of frames. Unit: One system clock cycle. Frame entry fields: INJ_CNT: Injection count. Number times to inject frame. Frame is ignored if INJ_CNT=0 or FRM_RM=1. Only applicable for DTI. FRM_RM: When set, next frame injection causes frame to be removed from buffer memory. This injection will not be transmitted on the destination port. Once removed, HW sets FRM_GONE=1. FRM_GONE: Set by AFI when frame has been removed from buffer memory. FRM_INFO: Frame information, ref. AFI:MISC:NEW_FRM_INFO.FRM_INFO.
-    ///
-    /// Delay entry type: Bit 0-29: DELAY Frame entry type: Bit 0-7: INJ_CNT Bit 8-10: Reserved, must be set to 0 Bit 11: FRM_RM Bit 12: FRM_GONE Bit 13-29: FRM_INFO
-    pub fn part0(&self) -> u32 {
-        self.0 & 0x3fffffff
-    }
-    pub fn set_part0(&mut self, value: u32) {
-        assert!(value <= 0x3fffffff);
-        self.0 &= !0x3fffffff;
         self.0 |= value;
     }
 }

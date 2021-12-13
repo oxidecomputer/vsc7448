@@ -41,15 +41,15 @@ impl KR10G_LSW {
         self.0 |= value;
     }
 }
-/// VS AN page_detect timer msw
+/// VS AN rate_detect_10g timer msw
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PD_MSW(u32);
-impl PD_MSW {
-    /// page_detect_timer setting
-    pub fn pd_tmr_msw(&self) -> u32 {
+pub struct KR10G_MSW(u32);
+impl KR10G_MSW {
+    /// rate_detect_10g_timer setting
+    pub fn kr10g_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
-    pub fn set_pd_tmr_msw(&mut self, value: u32) {
+    pub fn set_kr10g_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

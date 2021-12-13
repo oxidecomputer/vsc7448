@@ -41,15 +41,15 @@ impl AW_LSW {
         self.0 |= value;
     }
 }
-/// VS AN break_link timer msw
+/// VS AN aneg_wait timer msw
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct BL_MSW(u32);
-impl BL_MSW {
-    /// break_link_timer setting
-    pub fn bl_tmr_msw(&self) -> u32 {
+pub struct AW_MSW(u32);
+impl AW_MSW {
+    /// an_wait_timer setting
+    pub fn aw_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
-    pub fn set_bl_tmr_msw(&mut self, value: u32) {
+    pub fn set_aw_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;

@@ -105,31 +105,19 @@ impl ARP_CFG_0 {
         self.0 |= value;
     }
 }
-/// ARP Pointer Remap Configuration
+/// ARP table data 1
 ///
-/// This information is used for LPM VCAP actions of type ARP_PTR and with ARP_PTR_REMAP_ENA=1.
+/// Configuration registers for ARP table
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct ARP_PTR_REMAP_CFG(u32);
-impl ARP_PTR_REMAP_CFG {
-    /// Address of ARP entry in ARP Table (ANA_L3:ARP).
-    pub fn arp_ptr(&self) -> u32 {
-        self.0 & 0x7ff
-    }
-    pub fn set_arp_ptr(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
-        self.0 &= !0x7ff;
-        self.0 |= value;
-    }
-    /// Number of Equal Cost Multiple Paths. Overrules any value in LPM VCAP action.
+pub struct ARP_CFG_1(u32);
+impl ARP_CFG_1 {
+    /// 32 least significant bits of MAC address. Used for ARP entry and/or (SMAC,SIP)/(DMAC,DIP) check. Most significant bits are configured in ARP_CFG_0.MAC_MSB. If MAC address for ARP entry is all-zeros, then the frame is redirected to CPU. CPU queue used for such frames is configured in ZERO_DMAC_CPU_QU.
     ///
-    /// 0: 1 path 1: 2 paths 2: 3 paths ...
-    pub fn ecmp_cnt(&self) -> u32 {
-        (self.0 & 0xf0000) >> 16
+    /// Bit 0: MAC bit 0 ... Bit 31: MAC bit 31
+    pub fn mac_lsb(&self) -> u32 {
+        self.0
     }
-    pub fn set_ecmp_cnt(&mut self, value: u32) {
-        let value = value << 16;
-        assert!(value <= 0xf0000);
-        self.0 &= !0xf0000;
-        self.0 |= value;
+    pub fn set_mac_lsb(&mut self, value: u32) {
+        self.0 = value;
     }
 }

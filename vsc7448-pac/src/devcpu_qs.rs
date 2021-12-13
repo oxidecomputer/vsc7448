@@ -59,14 +59,14 @@ impl INJ {
     pub fn VTSS_DBG(&self) -> RegisterAddress<inj::VTSS_DBG> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    pub fn XTR_CFG(&self) -> RegisterAddress<inj::XTR_CFG> {
-        RegisterAddress::new(self.0 + 0x20)
-    }
 }
 
 /// Frame extraction
 pub struct XTR(pub(super) u32);
 impl XTR {
+    pub fn XTR_CFG(&self) -> RegisterAddress<xtr::XTR_CFG> {
+        RegisterAddress::new(self.0 + 0x20)
+    }
     pub fn XTR_DATA_PRESENT(&self) -> RegisterAddress<xtr::XTR_DATA_PRESENT> {
         RegisterAddress::new(self.0 + 0x1c)
     }

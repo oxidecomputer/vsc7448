@@ -457,59 +457,41 @@ impl SD10G65_RX_RCPLL_STAT0 {
         self.0 |= value;
     }
 }
-/// SD10G65_RX Revision ID
+/// SD10G65 RX RCPLL Status register 1
 ///
-/// Revision numbers of the analog sub IPs used in the SD10G65_RX
+/// Status register 1 for SD10G65 RX RCPLL.
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct SD10G65_RX_REV_ID(u32);
-impl SD10G65_RX_REV_ID {
-    /// Feature set number of deserializer (des10g_N)
-    pub fn des_rev_id(&self) -> u32 {
-        (self.0 & 0xfc000000) >> 26
+pub struct SD10G65_RX_RCPLL_STAT1(u32);
+impl SD10G65_RX_RCPLL_STAT1 {
+    /// Actual value of step up counter
+    pub fn pllf_fsm_cnt_stat(&self) -> u32 {
+        (self.0 & 0x7ff0) >> 4
     }
-    pub fn set_des_rev_id(&mut self, value: u32) {
-        let value = value << 26;
-        assert!(value <= 0xfc000000);
-        self.0 &= !0xfc000000;
+    pub fn set_pllf_fsm_cnt_stat(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x7ff0);
+        self.0 &= !0x7ff0;
         self.0 |= value;
     }
-    /// Feature set number of input buffer (ib10g_N)
-    pub fn ib_rev_id(&self) -> u32 {
-        (self.0 & 0x3f00000) >> 20
+    /// Actual value of the FSM stage,
+    ///
+    /// 0: reset state 1: init state after reset 3: ramp up state checks for the counters and ramps up the frequency 6: additional wait state for internal BIAS settling 8: additional wait state 1 9: additional wait state 2 10; additional wait state 3 11: additional wait state 4 12: 1st locking state enables dynamic locking 13: final locking state checks for out of lock and overrun condition 14: error state low frequency 15: error state high frequency
+    pub fn pllf_fsm_stat(&self) -> u32 {
+        self.0 & 0xf
     }
-    pub fn set_ib_rev_id(&mut self, value: u32) {
-        let value = value << 20;
-        assert!(value <= 0x3f00000);
-        self.0 &= !0x3f00000;
+    pub fn set_pllf_fsm_stat(&mut self, value: u32) {
+        assert!(value <= 0xf);
+        self.0 &= !0xf;
         self.0 |= value;
     }
-    /// Feature set number of RC-PLL (pll10g_N)
-    pub fn rcpll_rev_id(&self) -> u32 {
-        (self.0 & 0x3f00) >> 8
+    /// Internal FSM values selected by pllf_ref_cnt_sel
+    pub fn pllf_ref_cnt_stat(&self) -> u32 {
+        (self.0 & 0xffff0000) >> 16
     }
-    pub fn set_rcpll_rev_id(&mut self, value: u32) {
-        let value = value << 8;
-        assert!(value <= 0x3f00);
-        self.0 &= !0x3f00;
-        self.0 |= value;
-    }
-    /// Feature set number of synthesizer (syn_N)
-    pub fn synth_rev_id(&self) -> u32 {
-        (self.0 & 0xfc000) >> 14
-    }
-    pub fn set_synth_rev_id(&mut self, value: u32) {
-        let value = value << 14;
-        assert!(value <= 0xfc000);
-        self.0 &= !0xfc000;
-        self.0 |= value;
-    }
-    /// Feature set number of Toplevel (sd10g65_N)
-    pub fn top_rev_id(&self) -> u32 {
-        self.0 & 0xff
-    }
-    pub fn set_top_rev_id(&mut self, value: u32) {
-        assert!(value <= 0xff);
-        self.0 &= !0xff;
+    pub fn set_pllf_ref_cnt_stat(&mut self, value: u32) {
+        let value = value << 16;
+        assert!(value <= 0xffff0000);
+        self.0 &= !0xffff0000;
         self.0 |= value;
     }
 }

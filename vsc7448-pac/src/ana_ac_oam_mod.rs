@@ -42,14 +42,14 @@ impl OAM_PDU_MOD_CONT {
     pub fn CCM_LM_INFO_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::CCM_LM_INFO_REG> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    pub fn CCM_LM_RX_B_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::CCM_LM_RX_B_REG> {
+        RegisterAddress::new(self.0 + 0x10)
+    }
     pub fn CCM_LM_TX_B_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::CCM_LM_TX_B_REG> {
         RegisterAddress::new(self.0 + 0xc)
     }
     pub fn LM_CNT_FRAME(&self) -> RegisterAddress<oam_pdu_mod_cont::LM_CNT_FRAME> {
         RegisterAddress::new(self.0 + 0x4)
-    }
-    pub fn PORT_BYTE_CNT_LSB(&self) -> RegisterAddress<oam_pdu_mod_cont::PORT_BYTE_CNT_LSB> {
-        RegisterAddress::new(self.0 + 0xc)
     }
     pub fn TEMP_CNT_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::TEMP_CNT_REG> {
         RegisterAddress::new(self.0 + 0x0)
@@ -59,9 +59,6 @@ impl OAM_PDU_MOD_CONT {
 /// OAM_PDU_MOD misc. configuration
 pub struct PDU_MOD_CFG(pub(super) u32);
 impl PDU_MOD_CFG {
-    pub fn CCM_LM_RX_B_REG(&self) -> RegisterAddress<pdu_mod_cfg::CCM_LM_RX_B_REG> {
-        RegisterAddress::new(self.0 + 0x10)
-    }
     pub fn DM_PTP_DOMAIN_CFG(&self, index: u32) -> RegisterAddress<pdu_mod_cfg::DM_PTP_DOMAIN_CFG> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -89,6 +86,9 @@ impl PDU_MOD_CFG {
 /// OAM LM port counters pr. priority
 pub struct VOE_PORT_LM_CNT(pub(super) u32);
 impl VOE_PORT_LM_CNT {
+    pub fn PORT_BYTE_CNT_LSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_BYTE_CNT_LSB> {
+        RegisterAddress::new(self.0 + 0xc)
+    }
     pub fn PORT_BYTE_CNT_MSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_BYTE_CNT_MSB> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -98,11 +98,12 @@ impl VOE_PORT_LM_CNT {
     pub fn PORT_LM_CNT_LSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_LM_CNT_LSB> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    pub fn SRV_LM_CNT_LSB(&self) -> RegisterAddress<voe_port_lm_cnt::SRV_LM_CNT_LSB> {
-        RegisterAddress::new(self.0 + 0x0)
-    }
 }
 
 /// OAM Service LM counters pr. priority
 pub struct VOE_SRV_LM_CNT(pub(super) u32);
-impl VOE_SRV_LM_CNT {}
+impl VOE_SRV_LM_CNT {
+    pub fn SRV_LM_CNT_LSB(&self) -> RegisterAddress<voe_srv_lm_cnt::SRV_LM_CNT_LSB> {
+        RegisterAddress::new(self.0 + 0x0)
+    }
+}

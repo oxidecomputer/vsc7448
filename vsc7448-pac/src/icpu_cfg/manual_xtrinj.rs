@@ -173,27 +173,3 @@ impl MANUAL_XTR {
         self.0 = value;
     }
 }
-/// PCIe outbound MSI interrupt status
-///
-/// Replicated per EXT_DST interrupt.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct PCIE_INTR_STAT(u32);
-impl PCIE_INTR_STAT {
-    pub fn intr_pending_falling(&self) -> u32 {
-        (self.0 & 0x2) >> 1
-    }
-    pub fn set_intr_pending_falling(&mut self, value: u32) {
-        let value = value << 1;
-        assert!(value <= 0x2);
-        self.0 &= !0x2;
-        self.0 |= value;
-    }
-    pub fn intr_pending_rising(&self) -> u32 {
-        self.0 & 0x1
-    }
-    pub fn set_intr_pending_rising(&mut self, value: u32) {
-        assert!(value <= 0x1);
-        self.0 &= !0x1;
-        self.0 |= value;
-    }
-}

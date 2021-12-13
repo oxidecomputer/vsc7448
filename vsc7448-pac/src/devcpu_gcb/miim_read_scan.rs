@@ -29,15 +29,15 @@
 use derive_more::{From, Into};
 /// MIIM Results
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct MII_SCAN_LAST_RSLTS_VLD(u32);
-impl MII_SCAN_LAST_RSLTS_VLD {
-    /// Indicates for each PHY if a PHY register matched are valid or not.
+pub struct MII_SCAN_RSLTS_STICKY(u32);
+impl MII_SCAN_RSLTS_STICKY {
+    /// Indicates for each PHY if a PHY register has had a mismatch of the expected value (with mask) since last reading of MIIM_SCAN_RSLTS_STICKY. Result is sticky, and result will indicate if there has been a mismatch since the last reading of this register. Upon reading this register, all bits are reset to '1'.
     ///
-    /// 0 : Scan result not valid. 1 : Scan result valid.
-    pub fn miim_last_rslt_vld(&self) -> u32 {
+    /// 0 : Mismatch 1 : Match.
+    pub fn miim_scan_rslts_sticky(&self) -> u32 {
         self.0
     }
-    pub fn set_miim_last_rslt_vld(&mut self, value: u32) {
+    pub fn set_miim_scan_rslts_sticky(&mut self, value: u32) {
         self.0 = value;
     }
 }

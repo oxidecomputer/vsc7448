@@ -625,6 +625,46 @@ impl POL_STICKY {
         self.0 |= value;
     }
 }
+/// Policer diagnostic information
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct POL_STICKY1(u32);
+impl POL_STICKY1 {
+    /// Set if frame has been dropped by a BDLB policer. Bit is cleared by writing a 1 to this position.
+    ///
+    /// 0: No event has occurred 1: BDLB policer drop event has occurred
+    pub fn pol_bdlb_drop_sticky(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_pol_bdlb_drop_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// Set if BUM policer has been active. One bit per BUM policer. Bit is cleared by writing a 1 to this position.
+    ///
+    /// 0: No event has occurred 1: BUM policer has been active.
+    pub fn pol_bum_slb_active_sticky(&self) -> u32 {
+        (self.0 & 0x1c) >> 2
+    }
+    pub fn set_pol_bum_slb_active_sticky(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0x1c);
+        self.0 &= !0x1c;
+        self.0 |= value;
+    }
+    /// Set if frame has been dropped by a BUM policer. One bit per BUM policer. Bit is cleared by writing a 1 to this position.
+    ///
+    /// 0: No event has occurred 1: BUM policer drop event has occurred
+    pub fn pol_bum_slb_drop_sticky(&self) -> u32 {
+        (self.0 & 0x2) >> 1
+    }
+    pub fn set_pol_bum_slb_drop_sticky(&mut self, value: u32) {
+        let value = value << 1;
+        assert!(value <= 0x2);
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+}
 /// Configuration of storm policer parameters
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct POL_STORM_CTRL(u32);

@@ -431,3 +431,17 @@ impl PTP_CFG {
         self.0 |= value;
     }
 }
+/// PTP events per port
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct PTP_EVENTS(u32);
+impl PTP_EVENTS {
+    /// The correction field update went out of range. Valid range is -2^47 to 2^48-1. The frame CF will be changed to the maximum value. This range check is bypassed if ADDS48 mode is in use on the ingress or egress port.
+    pub fn cf_too_big_sticky(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_cf_too_big_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+}

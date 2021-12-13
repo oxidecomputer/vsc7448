@@ -247,6 +247,58 @@ impl DFT_CLK_CMP_VALUE {
         self.0 = value;
     }
 }
+/// DFT clock generator configuration register
+///
+/// Configuration register for clock generator to build a low speed clock signal of variable length and variable duty cycle provided on all data bits simultaniously
+#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+pub struct DFT_CLK_GEN_CFG(u32);
+impl DFT_CLK_GEN_CFG {
+    /// Duty cycle distortion: Refer to configuration fields 'cg_per_cfg' and 'cg_per_jump_cfg' for encoding description
+    pub fn cg_dcd_cfg(&self) -> u32 {
+        (self.0 & 0xffc) >> 2
+    }
+    pub fn set_cg_dcd_cfg(&mut self, value: u32) {
+        let value = value << 2;
+        assert!(value <= 0xffc);
+        self.0 &= !0xffc;
+        self.0 |= value;
+    }
+    /// clock generator mode
+    ///
+    /// 0: normal operation; cg_per_cfg controls period 0->1 transition: after current period has finished (only) the next period is controlled by cg_per_jump_cfg afterwards normal operation 2: every N'th period the high value is replaced by a low value N is defined by cg_timer_cfg 3: every N'th period the low value is replaced by a high value N is defined by cg_timer_cfg
+    pub fn cg_mode_cfg(&self) -> u32 {
+        self.0 & 0x3
+    }
+    pub fn set_cg_mode_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
+        self.0 &= !0x3;
+        self.0 |= value;
+    }
+    /// (Half) clock period configuration in normal mode (refer also to configuration field cg_mode_cfg):
+    ///
+    /// high period = cg_per_cfg + cg_dcd_cfg low period = cg_per_cfg - cg_dcd_cfg
+    pub fn cg_per_cfg(&self) -> u32 {
+        (self.0 & 0xffc00000) >> 22
+    }
+    pub fn set_cg_per_cfg(&mut self, value: u32) {
+        let value = value << 22;
+        assert!(value <= 0xffc00000);
+        self.0 &= !0xffc00000;
+        self.0 |= value;
+    }
+    /// (Half) clock period configuration in jump mode (refer also to configuration field cg_mode_cfg):
+    ///
+    /// high period = cg_per_jump_cfg + cg_dcd_cfg low period = cg_per_jump_cfg - cg_dcd_cfg
+    pub fn cg_per_jump_cfg(&self) -> u32 {
+        (self.0 & 0x3ff000) >> 12
+    }
+    pub fn set_cg_per_jump_cfg(&mut self, value: u32) {
+        let value = value << 12;
+        assert!(value <= 0x3ff000);
+        self.0 &= !0x3ff000;
+        self.0 |= value;
+    }
+}
 /// DFT error status register
 ///
 /// Status register for SD10G65 DFT containing the error counter value
@@ -865,19 +917,5 @@ impl DFT_TX_PAT_CFG {
         assert!(value <= 0x3c00);
         self.0 &= !0x3c00;
         self.0 |= value;
-    }
-}
-/// Vscope general purpose register
-///
-/// Vscope general purpose  register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct VSCOPE_DBG_LSB(u32);
-impl VSCOPE_DBG_LSB {
-    /// 32 LSBs of general purpose register
-    pub fn gp_reg_lsb(&self) -> u32 {
-        self.0
-    }
-    pub fn set_gp_reg_lsb(&mut self, value: u32) {
-        self.0 = value;
     }
 }

@@ -129,21 +129,45 @@ impl PCS_INTR_STAT {
         self.0 |= value;
     }
 }
-/// Counter for 125 microsecond period
+/// PCS status register
 ///
-/// This register sets the number of WIS/PMA divide-by-2 clocks in one 125 microsecond interval. The counter increments and wraps. It should be set to (125 * freq_Mhz/2) where freq_Mhz is the WIS/PMA frequency in Megahertz. 0 disables the counter.
+/// Contains status information from the PCS core
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
-pub struct TIMER_125(u32);
-impl TIMER_125 {
-    /// Sets the maximum count for the 125 microsecond counter. Counts input clocks.
+pub struct PCS_STATUS(u32);
+impl PCS_STATUS {
+    /// The block_lock status from the synchronization state machine
     ///
-    /// 16-bit binary number
-    pub fn timer_125(&self) -> u32 {
-        self.0 & 0xffff
+    /// 0: Not synchronized 1: Synchronized, lock obtained
+    pub fn rx_block_lock(&self) -> u32 {
+        (self.0 & 0x8) >> 3
     }
-    pub fn set_timer_125(&mut self, value: u32) {
-        assert!(value <= 0xffff);
-        self.0 &= !0xffff;
+    pub fn set_rx_block_lock(&mut self, value: u32) {
+        let value = value << 3;
+        assert!(value <= 0x8);
+        self.0 &= !0x8;
+        self.0 |= value;
+    }
+    /// Set by the Rx BER state machine when a high bit-error-rate condition is detected
+    ///
+    /// 0: Normal BER 1: High BER
+    pub fn rx_hi_ber(&self) -> u32 {
+        self.0 & 0x1
+    }
+    pub fn set_rx_hi_ber(&mut self, value: u32) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    /// When in test pattern check mode, this bit will read 1 if the test pattern checker detects a match. When 0, the test pattern does not match. The test pattern error counts should still be used along with this register bit to determine proper test match status. The bit will read back 1 only when the test pattern is matching. This may happen even while test pattern errors are counted on other clock cycles.
+    ///
+    /// 0: Test pattern mismatch 1: Test pattern match
+    pub fn testpat_match(&self) -> u32 {
+        (self.0 & 0x10) >> 4
+    }
+    pub fn set_testpat_match(&mut self, value: u32) {
+        let value = value << 4;
+        assert!(value <= 0x10);
+        self.0 &= !0x10;
         self.0 |= value;
     }
 }
