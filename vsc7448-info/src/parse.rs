@@ -76,6 +76,12 @@ pub enum ParseError {
     NotRegisterGroupArray(&'static str),
     #[error("Register group index for {0} is out of range ({0} >= {1})")]
     InvalidRegisterGroupIndex(&'static str, u32, u32),
+    #[error("Register address is not valid for any targets")]
+    InvalidTargetAddress,
+    #[error("Register address is not valid within target {0}")]
+    InvalidGroupAddress(&'static str),
+    #[error("Register address is not valid within {0}:{1}")]
+    InvalidRegisterAddress(&'static str, &'static str),
 }
 
 impl TargetRegister {
@@ -112,6 +118,9 @@ impl TargetRegister {
                 }
             }
         }
+        if found_target.is_none() {
+            return Err(ParseError::InvalidTargetAddress);
+        }
         let (target_name, base, target_index) = found_target.unwrap();
         let offset = (addr - base) / 4;
         let target = &TARGETS[&MEMORY_MAP[target_name].0];
@@ -122,6 +131,9 @@ impl TargetRegister {
             if offset >= start && offset < end {
                 found_group = Some((name, (offset - start) / g.addr.width));
             }
+        }
+        if found_group.is_none() {
+            return Err(ParseError::InvalidGroupAddress(target_name));
         }
 
         let (group_name, group_index) = found_group.unwrap();
@@ -134,6 +146,9 @@ impl TargetRegister {
             if offset >= start && offset < end {
                 found_reg = Some((name, (offset - start) / r.addr.width));
             }
+        }
+        if found_reg.is_none() {
+            return Err(ParseError::InvalidRegisterAddress(target_name, group_name));
         }
 
         let (reg_name, reg_index) = found_reg.unwrap();
