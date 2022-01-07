@@ -7,13 +7,17 @@
 use std::collections::BTreeMap;
 
 use lazy_static::lazy_static;
-use vsc7448_types::{Page, OwnedTarget};
+use vsc7448_types::{OwnedTarget, Page};
 
 pub mod parse;
 
+/// Represents a list of target indexes (optional) and memory locations.  If
+/// there is only one instance, then this is vec![(None, Address)]
+type TargetAddrList = Vec<(Option<u32>, u32)>;
+
 #[derive(serde::Deserialize)]
 pub struct InfoFileContents {
-    memory_map: BTreeMap<String, (String, Vec<(Option<u32>, u32)>)>,
+    memory_map: BTreeMap<String, (String, TargetAddrList)>,
     targets: BTreeMap<String, OwnedTarget>,
     phy_map: BTreeMap<String, Page<String>>,
 }
@@ -36,7 +40,7 @@ lazy_static! {
     /// - Name in `TARGETS` map (which may be different!)
     /// - List of instances, as tuples of `(instance id, address)`.  If there is
     ///   only one instance of this target, then this is vec![(None, ADDRESS)].
-    pub static ref MEMORY_MAP: &'static BTreeMap<String, (String, Vec<(Option<u32>, u32)>)> = {
+    pub static ref MEMORY_MAP: &'static BTreeMap<String, (String, TargetAddrList)> = {
         &FILE_CONTENTS.memory_map
     };
 
