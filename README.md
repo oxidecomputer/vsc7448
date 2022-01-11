@@ -6,7 +6,7 @@ It's useful if you're building a 10G ethernet switch from scratch, which is...
 very few people.
 
 - `vsc7448-types` are common types
-- `mesa-parse` parses `MESA` headers and generates `vsc7448-info`
+- `mesa-parse` parses `MESA` headers and generates `vsc7448-info` and `vsc7448-pac`
 - `vsc7448-info` exposes a register map as a userland data structure
 - `vsc7448-pac` exposes the same register map as addresses
   (for use in embedded devices)
