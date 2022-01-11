@@ -36,8 +36,8 @@ impl PFC_CFG {
         (self.0 & 0x1fe) >> 1
     }
     pub fn set_tx_pfc_ena(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 1;
-        assert!(value <= 0x1fe);
         self.0 &= !0x1fe;
         self.0 |= value;
     }

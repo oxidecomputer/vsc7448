@@ -36,8 +36,8 @@ impl KR_7X0000 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_an_enable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl KR_7X0000 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_an_reset(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -56,8 +56,8 @@ impl KR_7X0000 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_an_restart(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -66,8 +66,8 @@ impl KR_7X0000 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_npctl(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }

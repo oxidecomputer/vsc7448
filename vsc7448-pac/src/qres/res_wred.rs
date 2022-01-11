@@ -47,8 +47,8 @@ impl WRED_PROFILE {
         (self.0 & 0x3ff800) >> 11
     }
     pub fn set_wm_red_low(&mut self, value: u32) {
+        assert!(value <= 0x7ff);
         let value = value << 11;
-        assert!(value <= 0x3ff800);
         self.0 &= !0x3ff800;
         self.0 |= value;
     }

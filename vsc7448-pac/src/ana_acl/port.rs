@@ -49,8 +49,8 @@ impl PTP_CFG {
         (self.0 & 0xfc) >> 2
     }
     pub fn set_ptp_port_num(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 2;
-        assert!(value <= 0xfc);
         self.0 &= !0xfc;
         self.0 |= value;
     }
@@ -79,8 +79,8 @@ impl VCAP_S2_KEY_SEL {
         (self.0 & 0xc0) >> 6
     }
     pub fn set_ip4_mc_key_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 6;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -91,8 +91,8 @@ impl VCAP_S2_KEY_SEL {
         (self.0 & 0x30) >> 4
     }
     pub fn set_ip4_uc_key_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -103,8 +103,8 @@ impl VCAP_S2_KEY_SEL {
         (self.0 & 0xc) >> 2
     }
     pub fn set_ip6_mc_key_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -115,8 +115,8 @@ impl VCAP_S2_KEY_SEL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ip6_uc_key_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -127,8 +127,8 @@ impl VCAP_S2_KEY_SEL {
         (self.0 & 0x300) >> 8
     }
     pub fn set_non_eth_key_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 8;
-        assert!(value <= 0x300);
         self.0 &= !0x300;
         self.0 |= value;
     }

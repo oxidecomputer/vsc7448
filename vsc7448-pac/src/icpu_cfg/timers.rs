@@ -45,8 +45,8 @@ impl TIMER_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_max_freq_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -55,8 +55,8 @@ impl TIMER_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_one_shot_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -67,8 +67,8 @@ impl TIMER_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_timer_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -124,8 +124,8 @@ impl WDT {
         (self.0 & 0x100) >> 8
     }
     pub fn set_wdt_enable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -145,8 +145,8 @@ impl WDT {
         (self.0 & 0x200) >> 9
     }
     pub fn set_wdt_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }

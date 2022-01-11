@@ -45,8 +45,8 @@ impl CCM_HMO_CTRL {
         (self.0 & 0x6) >> 1
     }
     pub fn set_ccm_interval(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -86,8 +86,8 @@ impl MIP_CFG {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_ccm_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -96,8 +96,8 @@ impl MIP_CFG {
         (self.0 & 0xe) >> 1
     }
     pub fn set_cpu_mip_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 1;
-        assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
     }
@@ -108,8 +108,8 @@ impl MIP_CFG {
         (self.0 & 0x30) >> 4
     }
     pub fn set_generic_opcode_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -118,8 +118,8 @@ impl MIP_CFG {
         (self.0 & 0x3fc0) >> 6
     }
     pub fn set_generic_opcode_val(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 6;
-        assert!(value <= 0x3fc0);
         self.0 &= !0x3fc0;
         self.0 |= value;
     }
@@ -128,8 +128,8 @@ impl MIP_CFG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_lbm_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -138,8 +138,8 @@ impl MIP_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_ltm_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -148,8 +148,8 @@ impl MIP_CFG {
         (self.0 & 0x380000) >> 19
     }
     pub fn set_mel_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 19;
-        assert!(value <= 0x380000);
         self.0 &= !0x380000;
         self.0 |= value;
     }
@@ -171,8 +171,8 @@ impl MIP_CFG {
         (self.0 & 0xc000) >> 14
     }
     pub fn set_raps_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 14;
-        assert!(value <= 0xc000);
         self.0 &= !0xc000;
         self.0 |= value;
     }
@@ -199,8 +199,8 @@ impl MIP_VID_CTRL {
         (self.0 & 0x3ffc) >> 2
     }
     pub fn set_vid_val(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 2;
-        assert!(value <= 0x3ffc);
         self.0 &= !0x3ffc;
         self.0 |= value;
     }

@@ -38,8 +38,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_bank_cnt(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -50,8 +50,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_burst_len(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -62,8 +62,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_burst_size(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -72,8 +72,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_ddr_512mbyte_plus(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -82,8 +82,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_ddr_ecc_cor_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -92,8 +92,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_ddr_ecc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -102,8 +102,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_ddr_ecc_err_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -114,8 +114,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ddr_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -126,8 +126,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_ddr_width(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -145,8 +145,8 @@ impl MEMCTRL_CFG {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_msb_row_addr(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -169,8 +169,8 @@ impl MEMCTRL_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_mdset(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -179,8 +179,8 @@ impl MEMCTRL_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_pwr_down(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -189,8 +189,8 @@ impl MEMCTRL_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_stall_ref_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -203,8 +203,8 @@ impl MEMCTRL_DFT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ddrdft_a10(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -224,8 +224,8 @@ impl MEMCTRL_DFT {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ddrdft_gate_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -234,8 +234,8 @@ impl MEMCTRL_DFT {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ddrdft_lbw(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -246,8 +246,8 @@ impl MEMCTRL_DFT {
         (self.0 & 0x6) >> 1
     }
     pub fn set_ddrdft_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -258,8 +258,8 @@ impl MEMCTRL_DFT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ddrdft_stat(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -268,8 +268,8 @@ impl MEMCTRL_DFT {
         (self.0 & 0x20) >> 5
     }
     pub fn set_ddrdft_term_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -285,8 +285,8 @@ impl MEMCTRL_DQS_AUTO {
         (self.0 & 0x2) >> 1
     }
     pub fn set_dqs_auto_down(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -306,8 +306,8 @@ impl MEMCTRL_DQS_AUTO {
         (self.0 & 0x8) >> 3
     }
     pub fn set_dqs_auto_src(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -316,8 +316,8 @@ impl MEMCTRL_DQS_AUTO {
         (self.0 & 0x4) >> 2
     }
     pub fn set_dqs_auto_up(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -326,8 +326,8 @@ impl MEMCTRL_DQS_AUTO {
         (self.0 & 0xc0) >> 6
     }
     pub fn set_dqs_drift(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 6;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -336,8 +336,8 @@ impl MEMCTRL_DQS_AUTO {
         (self.0 & 0x20) >> 5
     }
     pub fn set_dqs_overflow(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -346,8 +346,8 @@ impl MEMCTRL_DQS_AUTO {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dqs_underflow(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -374,8 +374,8 @@ impl MEMCTRL_DQS_DLY {
         (self.0 & 0xe0) >> 5
     }
     pub fn set_dqs_dly_trm0(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 5;
-        assert!(value <= 0xe0);
         self.0 &= !0xe0;
         self.0 |= value;
     }
@@ -384,8 +384,8 @@ impl MEMCTRL_DQS_DLY {
         (self.0 & 0x700) >> 8
     }
     pub fn set_dqs_dly_trm1(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 8;
-        assert!(value <= 0x700);
         self.0 &= !0x700;
         self.0 |= value;
     }
@@ -394,8 +394,8 @@ impl MEMCTRL_DQS_DLY {
         (self.0 & 0x800) >> 11
     }
     pub fn set_train_dq_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -465,8 +465,8 @@ impl MEMCTRL_REF_PERIOD {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_max_pend_ref(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -498,8 +498,8 @@ impl MEMCTRL_STAT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pwr_down_ack(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -508,8 +508,8 @@ impl MEMCTRL_STAT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rdata_dummy(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -518,8 +518,8 @@ impl MEMCTRL_STAT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rdata_ecc_cor(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -528,8 +528,8 @@ impl MEMCTRL_STAT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rdata_ecc_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -538,8 +538,8 @@ impl MEMCTRL_STAT {
         (self.0 & 0x20) >> 5
     }
     pub fn set_rdata_masked(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -562,8 +562,8 @@ impl MEMCTRL_TERMRES_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_local_odt_rd_ext(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -574,8 +574,8 @@ impl MEMCTRL_TERMRES_CTRL {
         (self.0 & 0x780) >> 7
     }
     pub fn set_odt_rd_ena(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 7;
-        assert!(value <= 0x780);
         self.0 &= !0x780;
         self.0 |= value;
     }
@@ -584,8 +584,8 @@ impl MEMCTRL_TERMRES_CTRL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_odt_rd_ext(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -596,8 +596,8 @@ impl MEMCTRL_TERMRES_CTRL {
         (self.0 & 0x3c) >> 2
     }
     pub fn set_odt_wr_ena(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 2;
-        assert!(value <= 0x3c);
         self.0 &= !0x3c;
         self.0 |= value;
     }
@@ -606,8 +606,8 @@ impl MEMCTRL_TERMRES_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_odt_wr_ext(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -625,8 +625,8 @@ impl MEMCTRL_TIMING0 {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_ras_to_prech_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -637,8 +637,8 @@ impl MEMCTRL_TIMING0 {
         (self.0 & 0xf00000) >> 20
     }
     pub fn set_rd_cs_change_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 20;
-        assert!(value <= 0xf00000);
         self.0 &= !0xf00000;
         self.0 |= value;
     }
@@ -660,8 +660,8 @@ impl MEMCTRL_TIMING0 {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_rd_to_prech_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -672,8 +672,8 @@ impl MEMCTRL_TIMING0 {
         (self.0 & 0xf0000000) >> 28
     }
     pub fn set_rd_to_wr_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 28;
-        assert!(value <= 0xf0000000);
         self.0 &= !0xf0000000;
         self.0 |= value;
     }
@@ -684,8 +684,8 @@ impl MEMCTRL_TIMING0 {
         (self.0 & 0xf000000) >> 24
     }
     pub fn set_wr_cs_change_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 24;
-        assert!(value <= 0xf000000);
         self.0 &= !0xf000000;
         self.0 |= value;
     }
@@ -696,8 +696,8 @@ impl MEMCTRL_TIMING0 {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_wr_data_xfr_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -708,8 +708,8 @@ impl MEMCTRL_TIMING0 {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_wr_to_prech_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -727,8 +727,8 @@ impl MEMCTRL_TIMING1 {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_bank8_faw_dly(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -739,8 +739,8 @@ impl MEMCTRL_TIMING1 {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_prech_to_ras_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -751,8 +751,8 @@ impl MEMCTRL_TIMING1 {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_ras_to_cas_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -763,8 +763,8 @@ impl MEMCTRL_TIMING1 {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_ras_to_ras_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -775,8 +775,8 @@ impl MEMCTRL_TIMING1 {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_ras_to_ras_same_bank_dly(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -816,8 +816,8 @@ impl MEMCTRL_TIMING2 {
         (self.0 & 0xf000000) >> 24
     }
     pub fn set_mdset_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 24;
-        assert!(value <= 0xf000000);
         self.0 &= !0xf000000;
         self.0 |= value;
     }
@@ -828,8 +828,8 @@ impl MEMCTRL_TIMING2 {
         (self.0 & 0xf0000000) >> 28
     }
     pub fn set_prech_all_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 28;
-        assert!(value <= 0xf0000000);
         self.0 &= !0xf0000000;
         self.0 |= value;
     }
@@ -840,8 +840,8 @@ impl MEMCTRL_TIMING2 {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_ref_dly(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -859,8 +859,8 @@ impl MEMCTRL_TIMING3 {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_local_odt_rd_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -871,8 +871,8 @@ impl MEMCTRL_TIMING3 {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_odt_rd_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -883,8 +883,8 @@ impl MEMCTRL_TIMING3 {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_odt_wr_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -893,8 +893,8 @@ impl MEMCTRL_TIMING3 {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_rmw_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -923,8 +923,8 @@ impl MEMCTRL_TIMING4 {
         (self.0 & 0xfff00000) >> 20
     }
     pub fn set_zqcal_init_dly(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 20;
-        assert!(value <= 0xfff00000);
         self.0 &= !0xfff00000;
         self.0 |= value;
     }
@@ -935,8 +935,8 @@ impl MEMCTRL_TIMING4 {
         (self.0 & 0xfff00) >> 8
     }
     pub fn set_zqcal_long_dly(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 8;
-        assert!(value <= 0xfff00);
         self.0 &= !0xfff00;
         self.0 |= value;
     }
@@ -961,8 +961,8 @@ impl MEMCTRL_ZQCAL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_zqcal_long(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -985,8 +985,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_phy_ck_oe(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -995,8 +995,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_phy_cl_oe(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -1007,8 +1007,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_phy_dll_bl_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -1019,8 +1019,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_phy_dll_cl_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -1029,8 +1029,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_phy_dqs_ext(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -1041,8 +1041,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_phy_fifo_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -1051,8 +1051,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_phy_flush_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -1061,8 +1061,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_phy_odt_oe(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -1071,8 +1071,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_phy_rd_adj_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -1092,8 +1092,8 @@ impl MEMPHY_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_phy_sstl_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1107,8 +1107,8 @@ impl MEMPHY_DFT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_phy_at_oe(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1117,8 +1117,8 @@ impl MEMPHY_DFT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_phy_dll_bypass(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -1145,8 +1145,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x7000) >> 12
     }
     pub fn set_dllcfg_bias_trm0(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 12;
-        assert!(value <= 0x7000);
         self.0 &= !0x7000;
         self.0 |= value;
     }
@@ -1157,8 +1157,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x70000) >> 16
     }
     pub fn set_dllcfg_bias_trm1(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 16;
-        assert!(value <= 0x70000);
         self.0 &= !0x70000;
         self.0 |= value;
     }
@@ -1169,8 +1169,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x700000) >> 20
     }
     pub fn set_dllcfg_bias_trm2(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 20;
-        assert!(value <= 0x700000);
         self.0 &= !0x700000;
         self.0 |= value;
     }
@@ -1181,8 +1181,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x7000000) >> 24
     }
     pub fn set_dllcfg_bias_trm3(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 24;
-        assert!(value <= 0x7000000);
         self.0 &= !0x7000000;
         self.0 |= value;
     }
@@ -1193,8 +1193,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x1c) >> 2
     }
     pub fn set_dllcfg_ipump_trm(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 2;
-        assert!(value <= 0x1c);
         self.0 &= !0x1c;
         self.0 |= value;
     }
@@ -1205,8 +1205,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_dllcfg_lock_det_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -1224,8 +1224,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_dllcfg_res1(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -1234,8 +1234,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_dllcfg_res2(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -1244,8 +1244,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_dllcfg_res3(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -1254,8 +1254,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_dllcfg_res4(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -1264,8 +1264,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x18000000) >> 27
     }
     pub fn set_dllcfg_res5(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 27;
-        assert!(value <= 0x18000000);
         self.0 &= !0x18000000;
         self.0 |= value;
     }
@@ -1274,8 +1274,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0xc0000000) >> 30
     }
     pub fn set_dllcfg_res6(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 30;
-        assert!(value <= 0xc0000000);
         self.0 &= !0xc0000000;
         self.0 |= value;
     }
@@ -1286,8 +1286,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x600) >> 9
     }
     pub fn set_dllcfg_test_ctrl_a(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 9;
-        assert!(value <= 0x600);
         self.0 &= !0x600;
         self.0 |= value;
     }
@@ -1298,8 +1298,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x1c0) >> 6
     }
     pub fn set_dllcfg_test_ctrl_d(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 6;
-        assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
     }
@@ -1310,8 +1310,8 @@ impl MEMPHY_DLLCFG0 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_dllcfg_test_ctrl_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -1329,8 +1329,8 @@ impl MEMPHY_DLLCFG1 {
         (self.0 & 0x1c0) >> 6
     }
     pub fn set_dllcfg_fb_trm(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 6;
-        assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
     }
@@ -1341,8 +1341,8 @@ impl MEMPHY_DLLCFG1 {
         (self.0 & 0xe00) >> 9
     }
     pub fn set_dllcfg_ff_trm(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 9;
-        assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
     }
@@ -1360,8 +1360,8 @@ impl MEMPHY_DLLCFG1 {
         (self.0 & 0x3f000) >> 12
     }
     pub fn set_dllcfg_res8(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 12;
-        assert!(value <= 0x3f000);
         self.0 &= !0x3f000;
         self.0 |= value;
     }
@@ -1370,8 +1370,8 @@ impl MEMPHY_DLLCFG1 {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_dllcfg_res9(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -1382,8 +1382,8 @@ impl MEMPHY_DLLCFG1 {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_dllcfg_test_hizb_a(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -1415,8 +1415,8 @@ impl MEMPHY_ZCAL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_zcal_clk_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -1436,8 +1436,8 @@ impl MEMPHY_ZCAL {
         (self.0 & 0x1e) >> 1
     }
     pub fn set_zcal_prog(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 1;
-        assert!(value <= 0x1e);
         self.0 &= !0x1e;
         self.0 |= value;
     }
@@ -1448,8 +1448,8 @@ impl MEMPHY_ZCAL {
         (self.0 & 0x1e0) >> 5
     }
     pub fn set_zcal_prog_odt(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 5;
-        assert!(value <= 0x1e0);
         self.0 &= !0x1e0;
         self.0 |= value;
     }
@@ -1472,8 +1472,8 @@ impl MEMPHY_ZCAL_FORCE {
         (self.0 & 0xc) >> 2
     }
     pub fn set_zcal_force_zcal(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -1482,8 +1482,8 @@ impl MEMPHY_ZCAL_FORCE {
         (self.0 & 0x2) >> 1
     }
     pub fn set_zcal_force_zq_off(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1497,8 +1497,8 @@ impl MEMPHY_ZCAL_OVR {
         (self.0 & 0x4) >> 2
     }
     pub fn set_zcal_enaclr_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -1507,8 +1507,8 @@ impl MEMPHY_ZCAL_OVR {
         (self.0 & 0xfffff000) >> 12
     }
     pub fn set_zcal_ovr_data(&mut self, value: u32) {
+        assert!(value <= 0xfffff);
         let value = value << 12;
-        assert!(value <= 0xfffff000);
         self.0 &= !0xfffff000;
         self.0 |= value;
     }
@@ -1526,8 +1526,8 @@ impl MEMPHY_ZCAL_OVR {
         (self.0 & 0x2) >> 1
     }
     pub fn set_zcal_zcomp(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1550,8 +1550,8 @@ impl MEMPHY_ZCAL_STAT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_zcal_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1562,8 +1562,8 @@ impl MEMPHY_ZCAL_STAT {
         (self.0 & 0xc0) >> 6
     }
     pub fn set_zcal_stat_odtpd(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 6;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -1574,8 +1574,8 @@ impl MEMPHY_ZCAL_STAT {
         (self.0 & 0x300) >> 8
     }
     pub fn set_zcal_stat_odtpu(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 8;
-        assert!(value <= 0x300);
         self.0 &= !0x300;
         self.0 |= value;
     }
@@ -1586,8 +1586,8 @@ impl MEMPHY_ZCAL_STAT {
         (self.0 & 0xc) >> 2
     }
     pub fn set_zcal_stat_pd(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -1598,8 +1598,8 @@ impl MEMPHY_ZCAL_STAT {
         (self.0 & 0x30) >> 4
     }
     pub fn set_zcal_stat_pu(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -1608,8 +1608,8 @@ impl MEMPHY_ZCAL_STAT {
         (self.0 & 0xfffff000) >> 12
     }
     pub fn set_zcal_zctrl(&mut self, value: u32) {
+        assert!(value <= 0xfffff);
         let value = value << 12;
-        assert!(value <= 0xfffff000);
         self.0 &= !0xfffff000;
         self.0 |= value;
     }

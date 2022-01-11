@@ -38,8 +38,8 @@ impl PCS1G_ANEG_CFG {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_adv_ability(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -61,8 +61,8 @@ impl PCS1G_ANEG_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_aneg_restart_one_shot(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -73,8 +73,8 @@ impl PCS1G_ANEG_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_sw_resolve_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -101,8 +101,8 @@ impl PCS1G_ANEG_NP_CFG {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_np_tx(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -118,8 +118,8 @@ impl PCS1G_ANEG_NP_STATUS {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_lp_np_rx(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -146,8 +146,8 @@ impl PCS1G_ANEG_STATUS {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_lp_adv_ability(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -158,8 +158,8 @@ impl PCS1G_ANEG_STATUS {
         (self.0 & 0x8) >> 3
     }
     pub fn set_page_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -170,8 +170,8 @@ impl PCS1G_ANEG_STATUS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_pr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -207,8 +207,8 @@ impl PCS1G_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_an_link_ctrl_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -219,8 +219,8 @@ impl PCS1G_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_link_status_type(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -267,8 +267,8 @@ impl PCS1G_DEBUG_STATUS {
         (self.0 & 0x3000) >> 12
     }
     pub fn set_xmit_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 12;
-        assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
     }
@@ -286,8 +286,8 @@ impl PCS1G_LB_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_gmii_phy_lb_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -298,8 +298,8 @@ impl PCS1G_LB_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ra_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -342,8 +342,8 @@ impl PCS1G_LINK_STATUS {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_delay_var(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -354,8 +354,8 @@ impl PCS1G_LINK_STATUS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_link_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -366,8 +366,8 @@ impl PCS1G_LINK_STATUS {
         (self.0 & 0x100) >> 8
     }
     pub fn set_signal_detect(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -396,8 +396,8 @@ impl PCS1G_LPI_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_lpi_testmode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -408,8 +408,8 @@ impl PCS1G_LPI_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_qsgmii_ms_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -420,8 +420,8 @@ impl PCS1G_LPI_CFG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rx_lpi_out_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -450,8 +450,8 @@ impl PCS1G_LPI_STATUS {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rx_lpi_event_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -462,8 +462,8 @@ impl PCS1G_LPI_STATUS {
         (self.0 & 0x100) >> 8
     }
     pub fn set_rx_lpi_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -474,8 +474,8 @@ impl PCS1G_LPI_STATUS {
         (self.0 & 0x200) >> 9
     }
     pub fn set_rx_quiet(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -486,8 +486,8 @@ impl PCS1G_LPI_STATUS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tx_lpi_event_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -509,8 +509,8 @@ impl PCS1G_LPI_STATUS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tx_quiet(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -555,8 +555,8 @@ impl PCS1G_MODE_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_unidir_mode_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -585,8 +585,8 @@ impl PCS1G_SD_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_sd_pol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -597,8 +597,8 @@ impl PCS1G_SD_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_sd_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -616,8 +616,8 @@ impl PCS1G_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_link_down_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }

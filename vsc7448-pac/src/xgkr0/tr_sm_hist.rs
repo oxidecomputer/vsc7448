@@ -59,8 +59,8 @@ impl HIST_MSW {
         (self.0 & 0x7f0) >> 4
     }
     pub fn set_sm_hist(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 4;
-        assert!(value <= 0x7f0);
         self.0 &= !0x7f0;
         self.0 |= value;
     }

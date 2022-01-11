@@ -107,8 +107,8 @@ impl MISC_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_bum_slb_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -117,8 +117,8 @@ impl MISC_CFG {
         (self.0 & 0xffc00) >> 10
     }
     pub fn set_bum_slb_idx(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 10;
-        assert!(value <= 0xffc00);
         self.0 &= !0xffc00;
         self.0 |= value;
     }
@@ -129,8 +129,8 @@ impl MISC_CFG {
         (self.0 & 0x1e00000) >> 21
     }
     pub fn set_pipeline_pt(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 21;
-        assert!(value <= 0x1e00000);
         self.0 &= !0x1e00000;
         self.0 |= value;
     }
@@ -180,8 +180,8 @@ impl QGRP_CFG {
         (self.0 & 0xffc) >> 2
     }
     pub fn set_qgrp_idx(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 2;
-        assert!(value <= 0xffc);
         self.0 &= !0xffc;
         self.0 |= value;
     }
@@ -210,8 +210,8 @@ impl SERVICE_CTRL {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_aggr_replace_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -222,8 +222,8 @@ impl SERVICE_CTRL {
         (self.0 & 0x1e00000) >> 21
     }
     pub fn set_aggr_val(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 21;
-        assert!(value <= 0x1e00000);
         self.0 &= !0x1e00000;
         self.0 |= value;
     }
@@ -232,8 +232,8 @@ impl SERVICE_CTRL {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_cda_fwd_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -244,8 +244,8 @@ impl SERVICE_CTRL {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_es0_isdx_key_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -267,8 +267,8 @@ impl SERVICE_CTRL {
         (self.0 & 0x7000) >> 12
     }
     pub fn set_fwd_type(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 12;
-        assert!(value <= 0x7000);
         self.0 &= !0x7000;
         self.0 |= value;
     }
@@ -279,8 +279,8 @@ impl SERVICE_CTRL {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_isdx_based_fwd_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -291,8 +291,8 @@ impl SERVICE_CTRL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_isdx_based_src_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -301,8 +301,8 @@ impl SERVICE_CTRL {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_port_mask_replace_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -313,8 +313,8 @@ impl SERVICE_CTRL {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_src_mask_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }

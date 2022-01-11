@@ -45,8 +45,8 @@ impl TCAM_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_tcam_bist_soe_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -55,8 +55,8 @@ impl TCAM_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_tcam_cg_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -65,8 +65,8 @@ impl TCAM_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_tcam_hcg_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -80,8 +80,8 @@ impl TCAM_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tcam_bist(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -104,8 +104,8 @@ impl TCAM_STAT {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_bist_addr_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -114,8 +114,8 @@ impl TCAM_STAT {
         (self.0 & 0x200) >> 9
     }
     pub fn set_bist_bl0e_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -124,8 +124,8 @@ impl TCAM_STAT {
         (self.0 & 0x100) >> 8
     }
     pub fn set_bist_bl0_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -134,8 +134,8 @@ impl TCAM_STAT {
         (self.0 & 0x800) >> 11
     }
     pub fn set_bist_bl1e_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -144,8 +144,8 @@ impl TCAM_STAT {
         (self.0 & 0x400) >> 10
     }
     pub fn set_bist_bl1_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -154,8 +154,8 @@ impl TCAM_STAT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_bist_busy(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -164,8 +164,8 @@ impl TCAM_STAT {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_bist_comp_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -174,8 +174,8 @@ impl TCAM_STAT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_bist_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -184,8 +184,8 @@ impl TCAM_STAT {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_bist_penc_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -194,8 +194,8 @@ impl TCAM_STAT {
         (self.0 & 0x40) >> 6
     }
     pub fn set_bist_ph0_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -204,8 +204,8 @@ impl TCAM_STAT {
         (self.0 & 0x80) >> 7
     }
     pub fn set_bist_ph1_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -214,8 +214,8 @@ impl TCAM_STAT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_bist_pv0_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -224,8 +224,8 @@ impl TCAM_STAT {
         (self.0 & 0x20) >> 5
     }
     pub fn set_bist_pv1_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -234,8 +234,8 @@ impl TCAM_STAT {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_bist_rt_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -244,8 +244,8 @@ impl TCAM_STAT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_bist_run(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }

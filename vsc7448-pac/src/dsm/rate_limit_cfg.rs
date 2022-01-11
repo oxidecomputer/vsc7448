@@ -94,8 +94,8 @@ impl TX_RATE_LIMIT_MODE {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_ipg_scale_val(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -106,8 +106,8 @@ impl TX_RATE_LIMIT_MODE {
         (self.0 & 0x200) >> 9
     }
     pub fn set_payload_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -118,8 +118,8 @@ impl TX_RATE_LIMIT_MODE {
         (self.0 & 0x100) >> 8
     }
     pub fn set_payload_pream_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -130,8 +130,8 @@ impl TX_RATE_LIMIT_MODE {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tx_rate_ipg_ppm_adapt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -142,8 +142,8 @@ impl TX_RATE_LIMIT_MODE {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tx_rate_limit_accum_mode_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -165,8 +165,8 @@ impl TX_RATE_LIMIT_MODE {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tx_rate_limit_frame_rate_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -177,8 +177,8 @@ impl TX_RATE_LIMIT_MODE {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tx_rate_limit_payload_rate_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

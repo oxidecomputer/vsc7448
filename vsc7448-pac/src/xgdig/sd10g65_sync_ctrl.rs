@@ -38,8 +38,8 @@ impl RX_SYNC_CTRL_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_rx_i2_clr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl RX_SYNC_CTRL_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_rx_i2_hold(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }

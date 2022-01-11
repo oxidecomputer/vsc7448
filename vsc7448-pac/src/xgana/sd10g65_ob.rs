@@ -38,8 +38,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_byp_d(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x600000) >> 21
     }
     pub fn set_clk_buf_cmv(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 21;
-        assert!(value <= 0x600000);
         self.0 &= !0x600000;
         self.0 |= value;
     }
@@ -58,8 +58,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_en_direct(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -68,8 +68,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_en_inp_loop(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -78,8 +78,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_en_ob(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_en_pad_loop(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -98,8 +98,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_incr_levn(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -117,8 +117,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x180000) >> 19
     }
     pub fn set_ob_spare_pool(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 19;
-        assert!(value <= 0x180000);
         self.0 &= !0x180000;
         self.0 |= value;
     }
@@ -127,8 +127,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -139,8 +139,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0xe0) >> 5
     }
     pub fn set_sel_ifw(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 5;
-        assert!(value <= 0xe0);
         self.0 &= !0xe0;
         self.0 |= value;
     }
@@ -149,8 +149,8 @@ impl SD10G65_OB_CFG0 {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_ser_inv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -166,8 +166,8 @@ impl SD10G65_OB_CFG1 {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_ab_comp_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -178,8 +178,8 @@ impl SD10G65_OB_CFG1 {
         (self.0 & 0x3800000) >> 23
     }
     pub fn set_diode_cur(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 23;
-        assert!(value <= 0x3800000);
         self.0 &= !0x3800000;
         self.0 |= value;
     }
@@ -190,8 +190,8 @@ impl SD10G65_OB_CFG1 {
         (self.0 & 0x600000) >> 21
     }
     pub fn set_lev_shft(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 21;
-        assert!(value <= 0x600000);
         self.0 &= !0x600000;
         self.0 |= value;
     }
@@ -202,8 +202,8 @@ impl SD10G65_OB_CFG1 {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_predrv_c_ctrl(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -212,8 +212,8 @@ impl SD10G65_OB_CFG1 {
         (self.0 & 0xc0000) >> 18
     }
     pub fn set_predrv_r_ctrl(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 18;
-        assert!(value <= 0xc0000);
         self.0 &= !0xc0000;
         self.0 |= value;
     }
@@ -222,8 +222,8 @@ impl SD10G65_OB_CFG1 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_r_cor(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -245,8 +245,8 @@ impl SD10G65_OB_CFG1 {
         (self.0 & 0x3e0) >> 5
     }
     pub fn set_vcas(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 5;
-        assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
     }
@@ -257,8 +257,8 @@ impl SD10G65_OB_CFG1 {
         (self.0 & 0xfc00) >> 10
     }
     pub fn set_vtail(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 10;
-        assert!(value <= 0xfc00);
         self.0 &= !0xfc00;
         self.0 |= value;
     }
@@ -292,8 +292,8 @@ impl SD10G65_OB_CFG3 {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_rec_det_done(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -302,8 +302,8 @@ impl SD10G65_OB_CFG3 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_rec_det_enable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -312,8 +312,8 @@ impl SD10G65_OB_CFG3 {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rec_det_start(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -324,8 +324,8 @@ impl SD10G65_OB_CFG3 {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_rec_det_thrs(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -350,8 +350,8 @@ impl SD10G65_SBUS_TX_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_sbus_anaout_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -362,8 +362,8 @@ impl SD10G65_SBUS_TX_CFG {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_sbus_anaout_sel(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -385,8 +385,8 @@ impl SD10G65_SBUS_TX_CFG {
         (self.0 & 0x6) >> 1
     }
     pub fn set_sbus_bias_speed_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -395,8 +395,8 @@ impl SD10G65_SBUS_TX_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_sbus_loopdrv_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -407,8 +407,8 @@ impl SD10G65_SBUS_TX_CFG {
         (self.0 & 0x78) >> 3
     }
     pub fn set_sbus_rcomp(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 3;
-        assert!(value <= 0x78);
         self.0 &= !0x78;
         self.0 |= value;
     }
@@ -417,8 +417,8 @@ impl SD10G65_SBUS_TX_CFG {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_sbus_spare_pool(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -434,8 +434,8 @@ impl SD10G65_TX_REV_ID {
         (self.0 & 0x3f00000) >> 20
     }
     pub fn set_ob_rev_id(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 20;
-        assert!(value <= 0x3f00000);
         self.0 &= !0x3f00000;
         self.0 |= value;
     }
@@ -444,8 +444,8 @@ impl SD10G65_TX_REV_ID {
         (self.0 & 0x3f00) >> 8
     }
     pub fn set_rcpll_rev_id(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 8;
-        assert!(value <= 0x3f00);
         self.0 &= !0x3f00;
         self.0 |= value;
     }
@@ -454,8 +454,8 @@ impl SD10G65_TX_REV_ID {
         (self.0 & 0xfc000) >> 14
     }
     pub fn set_synth_rev_id(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 14;
-        assert!(value <= 0xfc000);
         self.0 &= !0xfc000;
         self.0 |= value;
     }

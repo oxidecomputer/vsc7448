@@ -36,8 +36,8 @@ impl PROBE_CFG {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_mirror_cpu_inject_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl PROBE_CFG {
         (self.0 & 0x3fc0000) >> 18
     }
     pub fn set_probe_cpu_set(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 18;
-        assert!(value <= 0x3fc0000);
         self.0 &= !0x3fc0000;
         self.0 |= value;
     }
@@ -71,8 +71,8 @@ impl PROBE_CFG {
         (self.0 & 0xc) >> 2
     }
     pub fn set_probe_mac_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -83,8 +83,8 @@ impl PROBE_CFG {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_probe_phys_rx_port(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -95,8 +95,8 @@ impl PROBE_CFG {
         (self.0 & 0x3c000000) >> 26
     }
     pub fn set_probe_rx_cpu_and_vd(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 26;
-        assert!(value <= 0x3c000000);
         self.0 &= !0x3c000000;
         self.0 |= value;
     }
@@ -105,8 +105,8 @@ impl PROBE_CFG {
         (self.0 & 0x3ffc0) >> 6
     }
     pub fn set_probe_vid(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 6;
-        assert!(value <= 0x3ffc0);
         self.0 &= !0x3ffc0;
         self.0 |= value;
     }
@@ -117,8 +117,8 @@ impl PROBE_CFG {
         (self.0 & 0x30) >> 4
     }
     pub fn set_probe_vlan_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }

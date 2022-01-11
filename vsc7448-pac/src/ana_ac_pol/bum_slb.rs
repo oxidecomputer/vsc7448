@@ -38,8 +38,8 @@ impl LB_BUCKET_VAL {
         (self.0 & 0xffffe00) >> 9
     }
     pub fn set_bucket_val(&mut self, value: u32) {
+        assert!(value <= 0x7ffff);
         let value = value << 9;
-        assert!(value <= 0xffffe00);
         self.0 &= !0xffffe00;
         self.0 |= value;
     }
@@ -77,8 +77,8 @@ impl LB_CFG {
         (self.0 & 0x7f0000) >> 16
     }
     pub fn set_thres_val(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 16;
-        assert!(value <= 0x7f0000);
         self.0 &= !0x7f0000;
         self.0 |= value;
     }
@@ -110,8 +110,8 @@ impl SLB_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_encap_data_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -122,8 +122,8 @@ impl SLB_CFG {
         (self.0 & 0x1fc) >> 2
     }
     pub fn set_gap_val(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 2;
-        assert!(value <= 0x1fc);
         self.0 &= !0x1fc;
         self.0 |= value;
     }
@@ -143,8 +143,8 @@ impl SLB_CFG {
         (self.0 & 0x1ffc00) >> 10
     }
     pub fn set_timestamp_val(&mut self, value: u32) {
+        assert!(value <= 0x7ff);
         let value = value << 10;
-        assert!(value <= 0x1ffc00);
         self.0 &= !0x1ffc00;
         self.0 |= value;
     }

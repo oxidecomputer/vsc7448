@@ -36,8 +36,8 @@ impl INJ_CTRL {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_abort(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl INJ_CTRL {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_eof(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -56,8 +56,8 @@ impl INJ_CTRL {
         (self.0 & 0x1e00000) >> 21
     }
     pub fn set_gap_size(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 21;
-        assert!(value <= 0x1e00000);
         self.0 &= !0x1e00000;
         self.0 |= value;
     }
@@ -66,8 +66,8 @@ impl INJ_CTRL {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_sof(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -78,8 +78,8 @@ impl INJ_CTRL {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_vld_bytes(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -93,8 +93,8 @@ impl INJ_ERR {
         (self.0 & 0x2) >> 1
     }
     pub fn set_abort_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -130,8 +130,8 @@ impl INJ_GRP_CFG {
         (self.0 & 0xc) >> 2
     }
     pub fn set_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -147,8 +147,8 @@ impl INJ_STATUS {
         (self.0 & 0xc) >> 2
     }
     pub fn set_fifo_rdy(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -170,8 +170,8 @@ impl INJ_STATUS {
         (self.0 & 0x30) >> 4
     }
     pub fn set_wmark_reached(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }

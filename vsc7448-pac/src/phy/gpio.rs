@@ -64,8 +64,8 @@ impl SIGDET_GPIO_CONTROL {
         (self.0 & 0x0) >> 2
     }
     pub fn set_gpio1(&mut self, value: u16) {
-        let value = value << 2;
         assert!(value <= 0x0);
+        let value = value << 2;
         self.0 &= !0x0;
         self.0 |= value;
     }
@@ -73,8 +73,8 @@ impl SIGDET_GPIO_CONTROL {
         (self.0 & 0xfc) >> 8
     }
     pub fn set_gpio2(&mut self, value: u16) {
+        assert!(value <= 0x3ffffff);
         let value = value << 8;
-        assert!(value <= 0xfc);
         self.0 &= !0xfc;
         self.0 |= value;
     }
@@ -82,8 +82,8 @@ impl SIGDET_GPIO_CONTROL {
         (self.0 & 0x3fc) >> 10
     }
     pub fn set_gpio3(&mut self, value: u16) {
+        assert!(value <= 0xffffff);
         let value = value << 10;
-        assert!(value <= 0x3fc);
         self.0 &= !0x3fc;
         self.0 |= value;
     }
@@ -95,8 +95,8 @@ impl GPIO_CONTROL_2 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_coma_mode_output_data(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -104,8 +104,8 @@ impl GPIO_CONTROL_2 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_coma_mode_output_enable(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -113,8 +113,8 @@ impl GPIO_CONTROL_2 {
         (self.0 & 0x3ffc) >> 14
     }
     pub fn set_gpio12_gpio13(&mut self, value: u16) {
+        assert!(value <= 0xfffff);
         let value = value << 14;
-        assert!(value <= 0x3ffc);
         self.0 &= !0x3ffc;
         self.0 |= value;
     }
@@ -130,8 +130,8 @@ impl GPIO_CONTROL_2 {
         (self.0 & 0x0) >> 2
     }
     pub fn set_gpio5(&mut self, value: u16) {
-        let value = value << 2;
         assert!(value <= 0x0);
+        let value = value << 2;
         self.0 &= !0x0;
         self.0 |= value;
     }
@@ -157,8 +157,8 @@ impl GPIO_IN_OUT_CONF {
         (self.0 & 0x2) >> 1
     }
     pub fn set_gpio1(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -166,8 +166,8 @@ impl GPIO_IN_OUT_CONF {
         (self.0 & 0x10) >> 4
     }
     pub fn set_gpio2(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -175,8 +175,8 @@ impl GPIO_IN_OUT_CONF {
         (self.0 & 0x20) >> 5
     }
     pub fn set_gpio3(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -184,8 +184,8 @@ impl GPIO_IN_OUT_CONF {
         (self.0 & 0x100) >> 8
     }
     pub fn set_gpio4(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -193,8 +193,8 @@ impl GPIO_IN_OUT_CONF {
         (self.0 & 0x200) >> 9
     }
     pub fn set_gpio5(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -212,8 +212,8 @@ impl I2C_MUX_CONTROL_1 {
         (self.0 & 0x180) >> 9
     }
     pub fn set_dev_addr(&mut self, value: u16) {
+        assert!(value <= 0x3fffffff);
         let value = value << 9;
-        assert!(value <= 0x180);
         self.0 &= !0x180;
         self.0 |= value;
     }
@@ -229,8 +229,8 @@ impl I2C_MUX_CONTROL_1 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_port_1_enable(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -238,8 +238,8 @@ impl I2C_MUX_CONTROL_1 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_port_2_enable(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -247,8 +247,8 @@ impl I2C_MUX_CONTROL_1 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_port_3_enable(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -256,8 +256,8 @@ impl I2C_MUX_CONTROL_1 {
         (self.0 & 0xc) >> 4
     }
     pub fn set_scl_clk_freq(&mut self, value: u16) {
+        assert!(value <= 0x3fffffff);
         let value = value << 4;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -269,8 +269,8 @@ impl I2C_MUX_CONTROL_2 {
         (self.0 & 0x7f) >> 7
     }
     pub fn set_addr(&mut self, value: u16) {
+        assert!(value <= 0x1ffffff);
         let value = value << 7;
-        assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -278,8 +278,8 @@ impl I2C_MUX_CONTROL_2 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ena_i2c_mux_access(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -287,8 +287,8 @@ impl I2C_MUX_CONTROL_2 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_mux_ready(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -296,8 +296,8 @@ impl I2C_MUX_CONTROL_2 {
         (self.0 & 0x3fe) >> 10
     }
     pub fn set_phy_port_addr(&mut self, value: u16) {
+        assert!(value <= 0x7fffff);
         let value = value << 10;
-        assert!(value <= 0x3fe);
         self.0 &= !0x3fe;
         self.0 |= value;
     }
@@ -305,8 +305,8 @@ impl I2C_MUX_CONTROL_2 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_rd(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -318,8 +318,8 @@ impl I2C_MUX_DATA_READ_WRITE {
         (self.0 & 0x0) >> 8
     }
     pub fn set_read_data(&mut self, value: u16) {
-        let value = value << 8;
         assert!(value <= 0x0);
+        let value = value << 8;
         self.0 &= !0x0;
         self.0 |= value;
     }

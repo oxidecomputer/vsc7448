@@ -70,8 +70,8 @@ impl FWD_PRESSURE {
         (self.0 & 0x7ff8) >> 3
     }
     pub fn set_fwd_pressure(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 3;
-        assert!(value <= 0x7ff8);
         self.0 &= !0x7ff8;
         self.0 |= value;
     }
@@ -105,8 +105,8 @@ impl PAUSE_CFG {
         (self.0 & 0x1ffe000) >> 13
     }
     pub fn set_pause_start(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 13;
-        assert!(value <= 0x1ffe000);
         self.0 &= !0x1ffe000;
         self.0 |= value;
     }
@@ -117,8 +117,8 @@ impl PAUSE_CFG {
         (self.0 & 0x1ffe) >> 1
     }
     pub fn set_pause_stop(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 1;
-        assert!(value <= 0x1ffe);
         self.0 &= !0x1ffe;
         self.0 |= value;
     }
@@ -134,8 +134,8 @@ impl PAUSE_TOT_CFG {
         (self.0 & 0xfff000) >> 12
     }
     pub fn set_pause_tot_start(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 12;
-        assert!(value <= 0xfff000);
         self.0 &= !0xfff000;
         self.0 |= value;
     }

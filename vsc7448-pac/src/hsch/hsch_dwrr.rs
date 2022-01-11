@@ -45,8 +45,8 @@ impl DWRR_ENTRY {
         (self.0 & 0x1f00000) >> 20
     }
     pub fn set_dwrr_cost(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 20;
-        assert!(value <= 0x1f00000);
         self.0 &= !0x1f00000;
         self.0 |= value;
     }

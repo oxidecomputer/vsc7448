@@ -48,8 +48,8 @@ impl EXTENDED_MODE_CONTROL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_fast_link_failure(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -57,8 +57,8 @@ impl EXTENDED_MODE_CONTROL {
         (self.0 & 0x0) >> 2
     }
     pub fn set_force_mdi_crossover(&mut self, value: u16) {
-        let value = value << 2;
         assert!(value <= 0x0);
+        let value = value << 2;
         self.0 &= !0x0;
         self.0 |= value;
     }
@@ -70,8 +70,8 @@ impl EXTENDED_PHY_CONTROL_3 {
         (self.0 & 0x3c) >> 6
     }
     pub fn set_media_mode_status(&mut self, value: u16) {
+        assert!(value <= 0xfffffff);
         let value = value << 6;
-        assert!(value <= 0x3c);
         self.0 &= !0x3c;
         self.0 |= value;
     }
@@ -89,8 +89,8 @@ impl VERIPHY_CTRL_REG1 {
         (self.0 & 0xc0) >> 8
     }
     pub fn set_pair_a_distance(&mut self, value: u16) {
+        assert!(value <= 0x3fffffff);
         let value = value << 8;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -106,8 +106,8 @@ impl VERIPHY_CTRL_REG1 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_trigger(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -115,8 +115,8 @@ impl VERIPHY_CTRL_REG1 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_valid(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -128,8 +128,8 @@ impl VERIPHY_CTRL_REG2 {
         (self.0 & 0xc0) >> 8
     }
     pub fn set_pair_c_distance(&mut self, value: u16) {
+        assert!(value <= 0x3fffffff);
         let value = value << 8;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -149,8 +149,8 @@ impl VERIPHY_CTRL_REG3 {
         (self.0 & 0xff0) >> 12
     }
     pub fn set_pair_a_termination_status(&mut self, value: u16) {
+        assert!(value <= 0xffffff);
         let value = value << 12;
-        assert!(value <= 0xff0);
         self.0 &= !0xff0;
         self.0 |= value;
     }
@@ -158,8 +158,8 @@ impl VERIPHY_CTRL_REG3 {
         (self.0 & 0xf0) >> 8
     }
     pub fn set_pair_b_termination_status(&mut self, value: u16) {
+        assert!(value <= 0xfffffff);
         let value = value << 8;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -167,8 +167,8 @@ impl VERIPHY_CTRL_REG3 {
         (self.0 & 0x0) >> 4
     }
     pub fn set_pair_c_termination_status(&mut self, value: u16) {
-        let value = value << 4;
         assert!(value <= 0x0);
+        let value = value << 4;
         self.0 &= !0x0;
         self.0 |= value;
     }
@@ -196,8 +196,8 @@ impl EXT_28 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_etype_udpdest_ov_ena(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -205,8 +205,8 @@ impl EXT_28 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ipg_ov_ena(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -214,8 +214,8 @@ impl EXT_28 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_pkt_sz_ov_ena(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -223,8 +223,8 @@ impl EXT_28 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sig_ctr_ena(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }

@@ -50,8 +50,8 @@ impl MEMITGR_DBG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_data_in(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -69,8 +69,8 @@ impl MEMITGR_DBG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ena_in(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -79,8 +79,8 @@ impl MEMITGR_DBG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ena_out(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -89,8 +89,8 @@ impl MEMITGR_DBG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_force_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -99,8 +99,8 @@ impl MEMITGR_DBG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_force_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -109,8 +109,8 @@ impl MEMITGR_DBG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_intr_in(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -119,8 +119,8 @@ impl MEMITGR_DBG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_mem_div_sense(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -129,8 +129,8 @@ impl MEMITGR_DBG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_sync_in(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -139,8 +139,8 @@ impl MEMITGR_DBG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_sync_out(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -197,8 +197,8 @@ impl MEMITGR_INFO {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_mem_cor(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -207,8 +207,8 @@ impl MEMITGR_INFO {
         (self.0 & 0x10000000) >> 28
     }
     pub fn set_mem_cor_ovf(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 28;
-        assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
     }
@@ -217,8 +217,8 @@ impl MEMITGR_INFO {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_mem_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -227,8 +227,8 @@ impl MEMITGR_INFO {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_mem_err_ovf(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -242,8 +242,8 @@ impl MEMITGR_STAT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_indication(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -252,8 +252,8 @@ impl MEMITGR_STAT {
         (self.0 & 0x20) >> 5
     }
     pub fn set_indication_ovf(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -271,8 +271,8 @@ impl MEMITGR_STAT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_mode_detect(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -281,8 +281,8 @@ impl MEMITGR_STAT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_mode_idle(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -291,8 +291,8 @@ impl MEMITGR_STAT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_mode_listen(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }

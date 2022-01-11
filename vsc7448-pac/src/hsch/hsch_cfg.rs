@@ -45,8 +45,8 @@ impl CIR_CFG {
         (self.0 & 0x7fffc0) >> 6
     }
     pub fn set_cir_rate(&mut self, value: u32) {
+        assert!(value <= 0x1ffff);
         let value = value << 6;
-        assert!(value <= 0x7fffc0);
         self.0 &= !0x7fffc0;
         self.0 |= value;
     }
@@ -69,8 +69,8 @@ impl EIR_CFG {
         (self.0 & 0x7fffc0) >> 6
     }
     pub fn set_eir_rate(&mut self, value: u32) {
+        assert!(value <= 0x1ffff);
         let value = value << 6;
-        assert!(value <= 0x7fffc0);
         self.0 &= !0x7fffc0;
         self.0 |= value;
     }
@@ -84,8 +84,8 @@ impl SE_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_se_avb_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -96,8 +96,8 @@ impl SE_CFG {
         (self.0 & 0xfc0) >> 6
     }
     pub fn set_se_dwrr_cnt(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 6;
-        assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
     }
@@ -108,8 +108,8 @@ impl SE_CFG {
         (self.0 & 0x6) >> 1
     }
     pub fn set_se_dwrr_frm_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -120,8 +120,8 @@ impl SE_CFG {
         (self.0 & 0x18) >> 3
     }
     pub fn set_se_frm_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 3;
-        assert!(value <= 0x18);
         self.0 &= !0x18;
         self.0 |= value;
     }
@@ -160,8 +160,8 @@ impl SE_DLB_SENSE {
         (self.0 & 0x3f00) >> 8
     }
     pub fn set_se_dlb_dport(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 8;
-        assert!(value <= 0x3f00);
         self.0 &= !0x3f00;
         self.0 |= value;
     }
@@ -179,8 +179,8 @@ impl SE_DLB_SENSE {
         (self.0 & 0x1c000) >> 14
     }
     pub fn set_se_dlb_prio(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 14;
-        assert!(value <= 0x1c000);
         self.0 &= !0x1c000;
         self.0 |= value;
     }
@@ -189,8 +189,8 @@ impl SE_DLB_SENSE {
         (self.0 & 0x2) >> 1
     }
     pub fn set_se_dlb_prio_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -199,8 +199,8 @@ impl SE_DLB_SENSE {
         (self.0 & 0xfc) >> 2
     }
     pub fn set_se_dlb_sport_obsolete(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 2;
-        assert!(value <= 0xfc);
         self.0 &= !0xfc;
         self.0 |= value;
     }

@@ -51,8 +51,8 @@ impl STAT_CFG {
         (self.0 & 0xe) >> 1
     }
     pub fn set_cfg_cnt_frm_type(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 1;
-        assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
     }
@@ -63,8 +63,8 @@ impl STAT_CFG {
         (self.0 & 0xff0) >> 4
     }
     pub fn set_cfg_prio_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 4;
-        assert!(value <= 0xff0);
         self.0 &= !0xff0;
         self.0 |= value;
     }

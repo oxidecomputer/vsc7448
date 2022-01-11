@@ -40,8 +40,8 @@ impl DATA_VALID_DETECT_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ewis_detect_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl DATA_VALID_DETECT_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_otn_detect_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -80,8 +80,8 @@ impl HSS_MASK {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_dft_active_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -92,8 +92,8 @@ impl HSS_MASK {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_dft_active_lo_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -104,8 +104,8 @@ impl HSS_MASK {
         (self.0 & 0x8000000) >> 27
     }
     pub fn set_dft_incomplete_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 27;
-        assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
     }
@@ -116,8 +116,8 @@ impl HSS_MASK {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_dft_incomplete_lo_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -128,8 +128,8 @@ impl HSS_MASK {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_dft_instable_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -140,8 +140,8 @@ impl HSS_MASK {
         (self.0 & 0x10000000) >> 28
     }
     pub fn set_dft_instable_lo_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 28;
-        assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
     }
@@ -152,8 +152,8 @@ impl HSS_MASK {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_dft_no_sync_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -164,8 +164,8 @@ impl HSS_MASK {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_dft_no_sync_lo_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -176,8 +176,8 @@ impl HSS_MASK {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_dft_stuck_at_01_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -188,8 +188,8 @@ impl HSS_MASK {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_dft_stuck_at_par_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -200,8 +200,8 @@ impl HSS_MASK {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_rxsigdet_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -212,8 +212,8 @@ impl HSS_MASK {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rxsigdet_lo_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -224,8 +224,8 @@ impl HSS_MASK {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_rx_los_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -236,8 +236,8 @@ impl HSS_MASK {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_rx_los_lo_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -248,8 +248,8 @@ impl HSS_MASK {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rx_pll_lock_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -260,8 +260,8 @@ impl HSS_MASK {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_rx_pll_lock_lo_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -272,8 +272,8 @@ impl HSS_MASK {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_tx_fifo_los_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -284,8 +284,8 @@ impl HSS_MASK {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_tx_pll_lock_hi_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -296,8 +296,8 @@ impl HSS_MASK {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_tx_pll_lock_lo_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -313,8 +313,8 @@ impl HSS_STATUS {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rxsigdet_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -325,8 +325,8 @@ impl HSS_STATUS {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_rx_los_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -337,8 +337,8 @@ impl HSS_STATUS {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_rx_pll_lock_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -349,8 +349,8 @@ impl HSS_STATUS {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_tx_fifo_los_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -361,8 +361,8 @@ impl HSS_STATUS {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_tx_pll_lock_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -378,8 +378,8 @@ impl HSS_STICKY {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_dft_active_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -390,8 +390,8 @@ impl HSS_STICKY {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_dft_active_lo_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -402,8 +402,8 @@ impl HSS_STICKY {
         (self.0 & 0x8000000) >> 27
     }
     pub fn set_dft_incomplete_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 27;
-        assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
     }
@@ -414,8 +414,8 @@ impl HSS_STICKY {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_dft_incomplete_lo_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -426,8 +426,8 @@ impl HSS_STICKY {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_dft_instable_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -438,8 +438,8 @@ impl HSS_STICKY {
         (self.0 & 0x10000000) >> 28
     }
     pub fn set_dft_instable_lo_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 28;
-        assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
     }
@@ -450,8 +450,8 @@ impl HSS_STICKY {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_dft_no_sync_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -462,8 +462,8 @@ impl HSS_STICKY {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_dft_no_sync_lo_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -474,8 +474,8 @@ impl HSS_STICKY {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_dft_stuck_at_01_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -486,8 +486,8 @@ impl HSS_STICKY {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_dft_stuck_at_par_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -498,8 +498,8 @@ impl HSS_STICKY {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_rxsigdet_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -510,8 +510,8 @@ impl HSS_STICKY {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rxsigdet_lo_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -522,8 +522,8 @@ impl HSS_STICKY {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_rx_los_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -534,8 +534,8 @@ impl HSS_STICKY {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_rx_los_lo_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -546,8 +546,8 @@ impl HSS_STICKY {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rx_pll_lock_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -558,8 +558,8 @@ impl HSS_STICKY {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_rx_pll_lock_lo_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -570,8 +570,8 @@ impl HSS_STICKY {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_tx_fifo_los_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -582,8 +582,8 @@ impl HSS_STICKY {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_tx_pll_lock_hi_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -594,8 +594,8 @@ impl HSS_STICKY {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_tx_pll_lock_lo_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -613,8 +613,8 @@ impl INT_CTRL {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_aneg_active_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -625,8 +625,8 @@ impl INT_CTRL {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_aneg_kr_int_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -637,8 +637,8 @@ impl INT_CTRL {
         (self.0 & 0x8000000) >> 27
     }
     pub fn set_rxsigdet_inv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 27;
-        assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
     }
@@ -649,8 +649,8 @@ impl INT_CTRL {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_rxsigdet_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -661,8 +661,8 @@ impl INT_CTRL {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_rx_los_inv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -673,8 +673,8 @@ impl INT_CTRL {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_rx_los_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -685,8 +685,8 @@ impl INT_CTRL {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_rx_pll_lock_inv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -697,8 +697,8 @@ impl INT_CTRL {
         (self.0 & 0x10000000) >> 28
     }
     pub fn set_rx_pll_lock_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 28;
-        assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
     }
@@ -709,8 +709,8 @@ impl INT_CTRL {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_ssf_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -721,8 +721,8 @@ impl INT_CTRL {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_tx_pll_lock_inv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -733,8 +733,8 @@ impl INT_CTRL {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_tx_pll_lock_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -763,8 +763,8 @@ impl KR_CONTROL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_kr_aneg_10g_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -775,8 +775,8 @@ impl KR_CONTROL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_kr_aneg_1g_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -787,8 +787,8 @@ impl KR_CONTROL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_kr_aneg_3g_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -799,8 +799,8 @@ impl KR_CONTROL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_kr_aneg_fec_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -811,8 +811,8 @@ impl KR_CONTROL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_kr_aneg_rate_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -823,8 +823,8 @@ impl KR_CONTROL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_kr_aneg_rx10g_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -846,8 +846,8 @@ impl KR_CONTROL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_kr_aneg_rx3g_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -858,8 +858,8 @@ impl KR_CONTROL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_kr_aneg_tx10g_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -870,8 +870,8 @@ impl KR_CONTROL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_kr_aneg_tx1g_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -882,8 +882,8 @@ impl KR_CONTROL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_kr_aneg_tx3g_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -894,8 +894,8 @@ impl KR_CONTROL {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_kr_fec_enable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -906,8 +906,8 @@ impl KR_CONTROL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_kr_fec_int_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -918,8 +918,8 @@ impl KR_CONTROL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_kr_int_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -930,8 +930,8 @@ impl KR_CONTROL {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_kr_int_pol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -942,8 +942,8 @@ impl KR_CONTROL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_kr_mode_int_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -954,8 +954,8 @@ impl KR_CONTROL {
         (self.0 & 0x60000) >> 17
     }
     pub fn set_kr_rate(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 17;
-        assert!(value <= 0x60000);
         self.0 &= !0x60000;
         self.0 |= value;
     }
@@ -966,8 +966,8 @@ impl KR_CONTROL {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_kr_rate_int_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -1014,8 +1014,8 @@ impl SSF_HYST_TIMING_CTRL {
         (self.0 & 0xfff0000) >> 16
     }
     pub fn set_ssf_deassert_timing(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 16;
-        assert!(value <= 0xfff0000);
         self.0 &= !0xfff0000;
         self.0 |= value;
     }
@@ -1033,8 +1033,8 @@ impl XFI_MODE {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_des_100fx_phase_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -1045,8 +1045,8 @@ impl XFI_MODE {
         (self.0 & 0x10) >> 4
     }
     pub fn set_endian(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -1057,8 +1057,8 @@ impl XFI_MODE {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_ext_rx_sync_ctrl_sel(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -1069,8 +1069,8 @@ impl XFI_MODE {
         (self.0 & 0x78000000) >> 27
     }
     pub fn set_ext_sync_ctrl_sel(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 27;
-        assert!(value <= 0x78000000);
         self.0 &= !0x78000000;
         self.0 |= value;
     }
@@ -1081,8 +1081,8 @@ impl XFI_MODE {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_fx100_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -1093,8 +1093,8 @@ impl XFI_MODE {
         (self.0 & 0x1800000) >> 23
     }
     pub fn set_fx100_kick_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 23;
-        assert!(value <= 0x1800000);
         self.0 &= !0x1800000;
         self.0 |= value;
     }
@@ -1105,8 +1105,8 @@ impl XFI_MODE {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_fx100_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -1117,8 +1117,8 @@ impl XFI_MODE {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_fx100_swap_cp_md(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -1129,8 +1129,8 @@ impl XFI_MODE {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_port_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -1141,8 +1141,8 @@ impl XFI_MODE {
         (self.0 & 0x200) >> 9
     }
     pub fn set_rx_invert(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -1153,8 +1153,8 @@ impl XFI_MODE {
         (self.0 & 0x40) >> 6
     }
     pub fn set_sel_linelb(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -1165,8 +1165,8 @@ impl XFI_MODE {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_spi_clk_div(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -1177,8 +1177,8 @@ impl XFI_MODE {
         (self.0 & 0x2) >> 1
     }
     pub fn set_sw_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1200,8 +1200,8 @@ impl XFI_MODE {
         (self.0 & 0x20) >> 5
     }
     pub fn set_txf_err_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -1212,8 +1212,8 @@ impl XFI_MODE {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tx_autoresync(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -1224,8 +1224,8 @@ impl XFI_MODE {
         (self.0 & 0x100) >> 8
     }
     pub fn set_tx_invert(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -1236,8 +1236,8 @@ impl XFI_MODE {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tx_resync_shot(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -1248,8 +1248,8 @@ impl XFI_MODE {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_tx_use_fifo(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -1267,8 +1267,8 @@ impl XFI_STATUS {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_aneg_active_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -1279,8 +1279,8 @@ impl XFI_STATUS {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_aneg_kr_int_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -1291,8 +1291,8 @@ impl XFI_STATUS {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_receiver_detect_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -1303,8 +1303,8 @@ impl XFI_STATUS {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_ssf_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }

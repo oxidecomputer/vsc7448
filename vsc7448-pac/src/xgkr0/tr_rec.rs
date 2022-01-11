@@ -50,8 +50,8 @@ impl TR_C0_LIM_REC {
         (self.0 & 0x7f00) >> 8
     }
     pub fn set_c0_max_rec(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 8;
-        assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl TR_CM_LIM_REC {
         (self.0 & 0x7f00) >> 8
     }
     pub fn set_cm_max_rec(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 8;
-        assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
     }
@@ -126,8 +126,8 @@ impl TR_CP_LIM_REC {
         (self.0 & 0x7f00) >> 8
     }
     pub fn set_cp_max_rec(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 8;
-        assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
     }

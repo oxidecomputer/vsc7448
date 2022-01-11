@@ -47,8 +47,8 @@ impl ARP_CFG_0 {
         (self.0 & 0x7f00) >> 8
     }
     pub fn set_arp_vmid(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 8;
-        assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
     }
@@ -59,8 +59,8 @@ impl ARP_CFG_0 {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_mac_msb(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -69,8 +69,8 @@ impl ARP_CFG_0 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_secur_match_mac_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -79,8 +79,8 @@ impl ARP_CFG_0 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_secur_match_vmid_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -89,8 +89,8 @@ impl ARP_CFG_0 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_sip_rpf_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -99,8 +99,8 @@ impl ARP_CFG_0 {
         (self.0 & 0x70) >> 4
     }
     pub fn set_zero_dmac_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }

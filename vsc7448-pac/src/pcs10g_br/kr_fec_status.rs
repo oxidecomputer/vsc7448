@@ -38,8 +38,8 @@ impl KR_FEC_STATUS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_fec_fixed_error_count_error_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -66,8 +66,8 @@ impl KR_FEC_STICKY {
         (self.0 & 0x100) >> 8
     }
     pub fn set_fec_fixed_error_count_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -89,8 +89,8 @@ impl KR_FEC_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_fec_unfixable_error_count_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -106,8 +106,8 @@ impl KR_FEC_STICKY_MASK {
         (self.0 & 0x100) >> 8
     }
     pub fn set_fec_fixed_error_count_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -129,8 +129,8 @@ impl KR_FEC_STICKY_MASK {
         (self.0 & 0x10) >> 4
     }
     pub fn set_fec_unfixable_error_count_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }

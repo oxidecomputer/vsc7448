@@ -45,8 +45,8 @@ impl CM_ADDR {
         (self.0 & 0x3fc00000) >> 22
     }
     pub fn set_cm_id(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 22;
-        assert!(value <= 0x3fc00000);
         self.0 &= !0x3fc00000;
         self.0 |= value;
     }

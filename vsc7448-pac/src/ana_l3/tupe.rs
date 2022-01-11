@@ -36,8 +36,8 @@ impl TUPE_ADDR {
         (self.0 & 0x1fff0000) >> 16
     }
     pub fn set_tupe_end_addr(&mut self, value: u32) {
+        assert!(value <= 0x1fff);
         let value = value << 16;
-        assert!(value <= 0x1fff0000);
         self.0 &= !0x1fff0000;
         self.0 |= value;
     }
@@ -158,8 +158,8 @@ impl TUPE_MISC {
         (self.0 & 0x20) >> 5
     }
     pub fn set_tupe_comb_mask_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -168,8 +168,8 @@ impl TUPE_MISC {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tupe_ctrl_bit_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -178,8 +178,8 @@ impl TUPE_MISC {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tupe_ctrl_val_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -188,8 +188,8 @@ impl TUPE_MISC {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tupe_port_mask_a_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -198,8 +198,8 @@ impl TUPE_MISC {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tupe_port_mask_b_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }

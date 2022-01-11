@@ -36,8 +36,8 @@ impl EEE_CONTROL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_enable_1000base_t_force_mode(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -45,8 +45,8 @@ impl EEE_CONTROL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_enable_10base_te(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -60,8 +60,8 @@ impl RGMII_CONTROL {
         (self.0 & 0x8) >> 4
     }
     pub fn set_nano_rgmii_skew_rx(&mut self, value: u16) {
+        assert!(value <= 0x7fffffff);
         let value = value << 4;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -77,8 +77,8 @@ impl RGMII_CONTROL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_rx_clk_out_disable(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -102,8 +102,8 @@ impl WOL_CONTROL {
         (self.0 & 0xf0) >> 8
     }
     pub fn set_addr_rep_count(&mut self, value: u16) {
+        assert!(value <= 0xfffffff);
         let value = value << 8;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -119,8 +119,8 @@ impl WOL_CONTROL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_mdint_signal_sep(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -128,8 +128,8 @@ impl WOL_CONTROL {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_reserved_001(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -137,8 +137,8 @@ impl WOL_CONTROL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_reserved_002(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -146,8 +146,8 @@ impl WOL_CONTROL {
         (self.0 & 0x3c) >> 2
     }
     pub fn set_reserved_003(&mut self, value: u16) {
+        assert!(value <= 0xf);
         let value = value << 2;
-        assert!(value <= 0x3c);
         self.0 &= !0x3c;
         self.0 |= value;
     }
@@ -155,8 +155,8 @@ impl WOL_CONTROL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_secure_on_enable(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -164,8 +164,8 @@ impl WOL_CONTROL {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_secure_on_passwd_len_4(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }

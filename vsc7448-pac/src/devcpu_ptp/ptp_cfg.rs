@@ -40,8 +40,8 @@ impl CLK_ADJ_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_clk_adj_dir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -81,8 +81,8 @@ impl CLK_ADJ_FRQ {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_clk_adj_unit(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -112,8 +112,8 @@ impl PTP_MISC_CFG {
         (self.0 & 0x1c0) >> 6
     }
     pub fn set_ptp_ena(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 6;
-        assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
     }
@@ -124,8 +124,8 @@ impl PTP_MISC_CFG {
         (self.0 & 0x38) >> 3
     }
     pub fn set_ptp_hold(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 3;
-        assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
     }
@@ -176,8 +176,8 @@ impl PTP_SYS_CLK_CFG {
         (self.0 & 0x1f0) >> 4
     }
     pub fn set_ptp_sys_clk_per_ns(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 4;
-        assert!(value <= 0x1f0);
         self.0 &= !0x1f0;
         self.0 |= value;
     }

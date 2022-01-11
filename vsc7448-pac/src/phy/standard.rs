@@ -34,8 +34,8 @@ impl MODE_CONTROL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_auto_neg_ena(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -43,8 +43,8 @@ impl MODE_CONTROL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_isolate(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl MODE_CONTROL {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_loop(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -61,8 +61,8 @@ impl MODE_CONTROL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_power_down(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -70,8 +70,8 @@ impl MODE_CONTROL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_restart_auto_neg(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -79,8 +79,8 @@ impl MODE_CONTROL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_sw_reset(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl MODE_CONTROL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_unidirectional(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -107,8 +107,8 @@ impl DEVICE_AUTONEG_ADVERTISEMENT {
         (self.0 & 0x100) >> 8
     }
     pub fn set_100basetx_fdx(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -116,8 +116,8 @@ impl DEVICE_AUTONEG_ADVERTISEMENT {
         (self.0 & 0x80) >> 7
     }
     pub fn set_100basetx_hdx(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -125,8 +125,8 @@ impl DEVICE_AUTONEG_ADVERTISEMENT {
         (self.0 & 0x40) >> 6
     }
     pub fn set_10baset_fdx(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -134,8 +134,8 @@ impl DEVICE_AUTONEG_ADVERTISEMENT {
         (self.0 & 0x20) >> 5
     }
     pub fn set_10baset_hdx(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -149,8 +149,8 @@ impl REG_1000BASE_T_CONTROL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_1000base_t_fdx_capability(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -158,8 +158,8 @@ impl REG_1000BASE_T_CONTROL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_1000base_t_hdx_capability(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -177,8 +177,8 @@ impl BYPASS_CONTROL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_disable_pari_swap_correction(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -186,8 +186,8 @@ impl BYPASS_CONTROL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_hp_auto_mdix_at_force(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -225,8 +225,8 @@ impl EXTENDED_CONTROL_AND_STATUS {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_force_10base_t_high(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -238,8 +238,8 @@ impl EXTENDED_PHY_CONTROL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ams_enabled(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -247,8 +247,8 @@ impl EXTENDED_PHY_CONTROL {
         (self.0 & 0x3c) >> 6
     }
     pub fn set_ams_override(&mut self, value: u16) {
+        assert!(value <= 0xfffffff);
         let value = value << 6;
-        assert!(value <= 0x3c);
         self.0 &= !0x3c;
         self.0 |= value;
     }
@@ -256,8 +256,8 @@ impl EXTENDED_PHY_CONTROL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ams_preference(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -265,8 +265,8 @@ impl EXTENDED_PHY_CONTROL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_far_end_loopback_mode(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -274,8 +274,8 @@ impl EXTENDED_PHY_CONTROL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_mac_interface_mode(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -283,8 +283,8 @@ impl EXTENDED_PHY_CONTROL {
         (self.0 & 0xf8) >> 8
     }
     pub fn set_media_operating_mode(&mut self, value: u16) {
+        assert!(value <= 0x7ffffff);
         let value = value << 8;
-        assert!(value <= 0xf8);
         self.0 &= !0xf8;
         self.0 |= value;
     }
@@ -292,8 +292,8 @@ impl EXTENDED_PHY_CONTROL {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_rxclk_bug_15388(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -317,8 +317,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ams_media_change_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -326,8 +326,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x400) >> 10
     }
     pub fn set_auto_neg_complete_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -335,8 +335,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x800) >> 11
     }
     pub fn set_auto_neg_error_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -344,8 +344,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x20) >> 5
     }
     pub fn set_extended_int_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -353,8 +353,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x8) >> 3
     }
     pub fn set_false_carrier_int_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -362,8 +362,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x80) >> 7
     }
     pub fn set_fast_link_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -371,8 +371,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_fdx_state_change_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -380,8 +380,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x200) >> 9
     }
     pub fn set_inline_pow_dev_detect_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -389,8 +389,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_int_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -398,8 +398,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_link_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -407,8 +407,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x4) >> 2
     }
     pub fn set_link_speed_ds_detect_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -416,8 +416,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x2) >> 1
     }
     pub fn set_master_slave_res_err_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -433,8 +433,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x20) >> 5
     }
     pub fn set_rx_fifo_overflow_int_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -442,8 +442,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_speed_state_change_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -451,8 +451,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x100) >> 8
     }
     pub fn set_symbol_err_int_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -460,8 +460,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x40) >> 6
     }
     pub fn set_tx_fifo_overflow_int_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -469,8 +469,8 @@ impl INTERRUPT_MASK {
         (self.0 & 0x40) >> 6
     }
     pub fn set_wake_on_lan_mask(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -488,8 +488,8 @@ impl AUXILIARY_CONTROL_AND_STATUS {
         (self.0 & 0x40) >> 6
     }
     pub fn set_actiphy_mode_enable(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -497,8 +497,8 @@ impl AUXILIARY_CONTROL_AND_STATUS {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_aneg_complete(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -506,8 +506,8 @@ impl AUXILIARY_CONTROL_AND_STATUS {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_aneg_disabled(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -515,8 +515,8 @@ impl AUXILIARY_CONTROL_AND_STATUS {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_hp_auto_mdix_crossover_indication(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -530,8 +530,8 @@ impl LED_BEHAVIOR {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_led_pulsing_enable(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }

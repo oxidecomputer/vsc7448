@@ -38,8 +38,8 @@ impl DLB_CFG {
         (self.0 & 0x3000) >> 12
     }
     pub fn set_cir_inc_dp_val(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 12;
-        assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
     }
@@ -50,8 +50,8 @@ impl DLB_CFG {
         (self.0 & 0xc000) >> 14
     }
     pub fn set_color_aware_lvl(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 14;
-        assert!(value <= 0xc000);
         self.0 &= !0xc000;
         self.0 |= value;
     }
@@ -62,8 +62,8 @@ impl DLB_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_coupling_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -74,8 +74,8 @@ impl DLB_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_encap_data_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -86,8 +86,8 @@ impl DLB_CFG {
         (self.0 & 0x1fc) >> 2
     }
     pub fn set_gap_val(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 2;
-        assert!(value <= 0x1fc);
         self.0 &= !0x1fc;
         self.0 |= value;
     }
@@ -107,8 +107,8 @@ impl DLB_CFG {
         (self.0 & 0xffe0000) >> 17
     }
     pub fn set_timestamp_val(&mut self, value: u32) {
+        assert!(value <= 0x7ff);
         let value = value << 17;
-        assert!(value <= 0xffe0000);
         self.0 &= !0xffe0000;
         self.0 |= value;
     }
@@ -119,8 +119,8 @@ impl DLB_CFG {
         (self.0 & 0xc00) >> 10
     }
     pub fn set_traffic_type_mask(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 10;
-        assert!(value <= 0xc00);
         self.0 &= !0xc00;
         self.0 |= value;
     }
@@ -134,8 +134,8 @@ impl LB_BUCKET_VAL {
         (self.0 & 0xffffe00) >> 9
     }
     pub fn set_bucket_val(&mut self, value: u32) {
+        assert!(value <= 0x7ffff);
         let value = value << 9;
-        assert!(value <= 0xffffe00);
         self.0 &= !0xffffe00;
         self.0 |= value;
     }
@@ -171,8 +171,8 @@ impl LB_CFG {
         (self.0 & 0x7f0000) >> 16
     }
     pub fn set_thres_val(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 16;
-        assert!(value <= 0x7f0000);
         self.0 &= !0x7f0000;
         self.0 |= value;
     }
@@ -188,8 +188,8 @@ impl MISC_CFG {
         (self.0 & 0x6) >> 1
     }
     pub fn set_dp_bypass_lvl(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }

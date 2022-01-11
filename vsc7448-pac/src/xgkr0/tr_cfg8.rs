@@ -36,8 +36,8 @@ impl TR_CFG8 {
         (self.0 & 0xc0) >> 6
     }
     pub fn set_wt1(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 6;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl TR_CFG8 {
         (self.0 & 0x30) >> 4
     }
     pub fn set_wt2(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -56,8 +56,8 @@ impl TR_CFG8 {
         (self.0 & 0xc) >> 2
     }
     pub fn set_wt3(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }

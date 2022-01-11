@@ -45,8 +45,8 @@ impl KR_7X0030 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_an_neg_cr10(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -55,8 +55,8 @@ impl KR_7X0030 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_an_neg_cr4(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -65,8 +65,8 @@ impl KR_7X0030 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_an_neg_fec(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -75,8 +75,8 @@ impl KR_7X0030 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_an_neg_kr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -85,8 +85,8 @@ impl KR_7X0030 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_an_neg_kr4(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -95,8 +95,8 @@ impl KR_7X0030 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_an_neg_kx(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -105,8 +105,8 @@ impl KR_7X0030 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_an_neg_kx4(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }

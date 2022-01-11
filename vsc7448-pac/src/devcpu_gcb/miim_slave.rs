@@ -36,8 +36,8 @@ impl MIIM_SLAVE_CFG {
         (self.0 & 0x3e) >> 1
     }
     pub fn set_spike_filter_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 1;
-        assert!(value <= 0x3e);
         self.0 &= !0x3e;
         self.0 |= value;
     }

@@ -38,8 +38,8 @@ impl SERDES1G_DFT_CFG0 {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_inv_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl SERDES1G_DFT_CFG0 {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_lazybit(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -60,8 +60,8 @@ impl SERDES1G_DFT_CFG0 {
         (self.0 & 0x300000) >> 20
     }
     pub fn set_prbs_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 20;
-        assert!(value <= 0x300000);
         self.0 &= !0x300000;
         self.0 |= value;
     }
@@ -72,8 +72,8 @@ impl SERDES1G_DFT_CFG0 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rx_dft_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -84,8 +84,8 @@ impl SERDES1G_DFT_CFG0 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rx_pdsens_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -96,8 +96,8 @@ impl SERDES1G_DFT_CFG0 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rx_phs_corr_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -108,8 +108,8 @@ impl SERDES1G_DFT_CFG0 {
         (self.0 & 0x70000) >> 16
     }
     pub fn set_test_mode(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 16;
-        assert!(value <= 0x70000);
         self.0 &= !0x70000;
         self.0 |= value;
     }
@@ -138,8 +138,8 @@ impl SERDES1G_DFT_CFG1 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tx_freqoff_dir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -159,8 +159,8 @@ impl SERDES1G_DFT_CFG1 {
         (self.0 & 0x3ff00) >> 8
     }
     pub fn set_tx_jitter_ampl(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 8;
-        assert!(value <= 0x3ff00);
         self.0 &= !0x3ff00;
         self.0 |= value;
     }
@@ -171,8 +171,8 @@ impl SERDES1G_DFT_CFG1 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tx_ji_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -181,8 +181,8 @@ impl SERDES1G_DFT_CFG1 {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_tx_step_freq(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -193,8 +193,8 @@ impl SERDES1G_DFT_CFG1 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tx_waveform_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -212,8 +212,8 @@ impl SERDES1G_DFT_CFG2 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_rx_freqoff_dir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -233,8 +233,8 @@ impl SERDES1G_DFT_CFG2 {
         (self.0 & 0x3ff00) >> 8
     }
     pub fn set_rx_jitter_ampl(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 8;
-        assert!(value <= 0x3ff00);
         self.0 &= !0x3ff00;
         self.0 |= value;
     }
@@ -245,8 +245,8 @@ impl SERDES1G_DFT_CFG2 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rx_ji_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -255,8 +255,8 @@ impl SERDES1G_DFT_CFG2 {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_rx_step_freq(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -267,8 +267,8 @@ impl SERDES1G_DFT_CFG2 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rx_waveform_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -286,8 +286,8 @@ impl SERDES1G_MISC_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_des_100fx_cpmd_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -298,8 +298,8 @@ impl SERDES1G_MISC_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_des_100fx_cpmd_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -310,8 +310,8 @@ impl SERDES1G_MISC_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_des_100fx_cpmd_swap(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -320,8 +320,8 @@ impl SERDES1G_MISC_CFG {
         (self.0 & 0x1800) >> 11
     }
     pub fn set_des_100fx_kick_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 11;
-        assert!(value <= 0x1800);
         self.0 &= !0x1800;
         self.0 |= value;
     }
@@ -343,8 +343,8 @@ impl SERDES1G_MISC_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rx_data_inv_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -355,8 +355,8 @@ impl SERDES1G_MISC_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_rx_lpi_mode_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -367,8 +367,8 @@ impl SERDES1G_MISC_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tx_data_inv_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -379,8 +379,8 @@ impl SERDES1G_MISC_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tx_lpi_mode_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -396,8 +396,8 @@ impl SERDES1G_RC_PLL_BIST_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_pll_bist_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -406,8 +406,8 @@ impl SERDES1G_RC_PLL_BIST_CFG {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_pll_bist_fbs_high(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -416,8 +416,8 @@ impl SERDES1G_RC_PLL_BIST_CFG {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_pll_bist_high(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }

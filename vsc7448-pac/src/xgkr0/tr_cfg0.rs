@@ -38,8 +38,8 @@ impl TR_CFG0 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ld_pre_init(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -50,8 +50,8 @@ impl TR_CFG0 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_lp_pre_init(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -60,8 +60,8 @@ impl TR_CFG0 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_nosum(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -70,8 +70,8 @@ impl TR_CFG0 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_part_cfg_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -80,8 +80,8 @@ impl TR_CFG0 {
         (self.0 & 0x400) >> 10
     }
     pub fn set_rx_inv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -90,8 +90,8 @@ impl TR_CFG0 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sm_hist_clr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -109,8 +109,8 @@ impl TR_CFG0 {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_tmr_dvdr(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -119,8 +119,8 @@ impl TR_CFG0 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_tx_inv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }

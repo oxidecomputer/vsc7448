@@ -40,8 +40,8 @@ impl CCM_CFG {
         (self.0 & 0x1c00) >> 10
     }
     pub fn set_ccm_lm_period(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 10;
-        assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl CCM_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ccm_megid_chk_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -73,8 +73,8 @@ impl CCM_CFG {
         (self.0 & 0x1c) >> 2
     }
     pub fn set_ccm_period(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 2;
-        assert!(value <= 0x1c);
         self.0 &= !0x1c;
         self.0 |= value;
     }
@@ -83,8 +83,8 @@ impl CCM_CFG {
         (self.0 & 0xe0) >> 5
     }
     pub fn set_ccm_prio(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 5;
-        assert!(value <= 0xe0);
         self.0 &= !0xe0;
         self.0 |= value;
     }
@@ -93,8 +93,8 @@ impl CCM_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ccm_rx_seq_chk_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -103,8 +103,8 @@ impl CCM_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ccm_seq_upd_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -136,8 +136,8 @@ impl G_8113_1_CFG {
         (self.0 & 0x6) >> 1
     }
     pub fn set_g_8113_1_initiator_function(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -233,8 +233,8 @@ impl LOOPBACK_CFG {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_lb_es0_isdx_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -245,8 +245,8 @@ impl LOOPBACK_CFG {
         (self.0 & 0x1ffe) >> 1
     }
     pub fn set_lb_isdx(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 1;
-        assert!(value <= 0x1ffe);
         self.0 &= !0x1ffe;
         self.0 |= value;
     }
@@ -275,8 +275,8 @@ impl LOOPBACK_ENA {
         (self.0 & 0x4) >> 2
     }
     pub fn set_lb_lbm_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -287,8 +287,8 @@ impl LOOPBACK_ENA {
         (self.0 & 0x2) >> 1
     }
     pub fn set_lb_lmm_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -347,8 +347,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_dmm_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -359,8 +359,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_dmr_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -371,8 +371,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0xff000) >> 12
     }
     pub fn set_generic_data_cnt_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 12;
-        assert!(value <= 0xff000);
         self.0 &= !0xff000;
         self.0 |= value;
     }
@@ -383,8 +383,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_lbm_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -395,8 +395,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_lbr_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -407,8 +407,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_lmm_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -419,8 +419,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_lmr_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -431,8 +431,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ltm_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -443,8 +443,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ltr_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -455,8 +455,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_sdm_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -467,8 +467,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_tst_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -479,8 +479,8 @@ impl OAM_CNT_DATA_CTRL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_unk_opcode_data_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -507,8 +507,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ccm_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -519,8 +519,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dmm_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -531,8 +531,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_dmr_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -543,8 +543,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x1fe000) >> 13
     }
     pub fn set_generic_oam_cnt_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 13;
-        assert!(value <= 0x1fe000);
         self.0 &= !0x1fe000;
         self.0 |= value;
     }
@@ -555,8 +555,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_lbm_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -567,8 +567,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_lbr_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -579,8 +579,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_lmm_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -591,8 +591,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_lmr_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -603,8 +603,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ltm_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -615,8 +615,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ltr_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -627,8 +627,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_sdm_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -639,8 +639,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_tst_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -651,8 +651,8 @@ impl OAM_CNT_OAM_CTRL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_unk_opcode_oam_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -670,8 +670,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ccm_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -682,8 +682,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ccm_lm_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -694,8 +694,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_dmm_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -706,8 +706,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dmr_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -718,8 +718,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x3fc000) >> 14
     }
     pub fn set_generic_copy_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 14;
-        assert!(value <= 0x3fc000);
         self.0 &= !0x3fc000;
         self.0 |= value;
     }
@@ -730,8 +730,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_lbm_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -742,8 +742,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_lbr_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -754,8 +754,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_lmm_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -766,8 +766,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_lmr_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -778,8 +778,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_ltm_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -790,8 +790,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ltr_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -813,8 +813,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_sdm_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -825,8 +825,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_tst_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -837,8 +837,8 @@ impl OAM_CPU_COPY_CTRL {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_unk_opcode_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -854,8 +854,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ccm_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -873,8 +873,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dmm_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -883,8 +883,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_dmr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -893,8 +893,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_lbm_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -903,8 +903,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_lbr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -913,8 +913,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_lbr_tlv_crc_verify_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -923,8 +923,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_lmm_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -933,8 +933,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_lmr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -943,8 +943,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_sdm_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -953,8 +953,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_tst_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -963,8 +963,8 @@ impl OAM_HW_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_tst_tlv_crc_verify_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -991,8 +991,8 @@ impl PATH_VOE_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_path_voe_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -1040,8 +1040,8 @@ impl SAM_COSID_SEQ_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_per_cosid_ccm(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -1059,8 +1059,8 @@ impl SAM_COSID_SEQ_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_per_cosid_lbm(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -1076,8 +1076,8 @@ impl SAM_NON_OAM_SEQ_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_sam_seq_init(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -1088,8 +1088,8 @@ impl SAM_NON_OAM_SEQ_CFG {
         (self.0 & 0xfc) >> 2
     }
     pub fn set_sam_seq_offset_seq_no(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 2;
-        assert!(value <= 0xfc);
         self.0 &= !0xfc;
         self.0 |= value;
     }
@@ -1098,8 +1098,8 @@ impl SAM_NON_OAM_SEQ_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_sam_seq_resp(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -1121,8 +1121,8 @@ impl SAM_NON_OAM_SEQ_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_sam_seq_upd_chksum(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1163,8 +1163,8 @@ impl SLM_PEER_LIST {
         (self.0 & 0x3ffe) >> 1
     }
     pub fn set_slm_peer_mepid(&mut self, value: u32) {
+        assert!(value <= 0x1fff);
         let value = value << 1;
-        assert!(value <= 0x3ffe);
         self.0 &= !0x3ffe;
         self.0 |= value;
     }
@@ -1194,8 +1194,8 @@ impl TX_TRANSID_UPDATE {
         (self.0 & 0x2) >> 1
     }
     pub fn set_lbm_update_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1220,8 +1220,8 @@ impl VOE_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_block_data_rx(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -1230,8 +1230,8 @@ impl VOE_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_block_data_tx(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1242,8 +1242,8 @@ impl VOE_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_block_mel_high_rx(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -1252,8 +1252,8 @@ impl VOE_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_extern_dm_tstamp(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -1264,8 +1264,8 @@ impl VOE_CTRL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_g_8113_1_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -1274,8 +1274,8 @@ impl VOE_CTRL {
         (self.0 & 0x3800) >> 11
     }
     pub fn set_mel_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 11;
-        assert!(value <= 0x3800);
         self.0 &= !0x3800;
         self.0 |= value;
     }
@@ -1286,8 +1286,8 @@ impl VOE_CTRL {
         (self.0 & 0xc0) >> 6
     }
     pub fn set_rx_dmac_chk_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 6;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -1309,8 +1309,8 @@ impl VOE_CTRL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_upmep_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -1319,8 +1319,8 @@ impl VOE_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_verify_version_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -1331,8 +1331,8 @@ impl VOE_CTRL {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_voe_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -1343,8 +1343,8 @@ impl VOE_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_voe_is_path(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }

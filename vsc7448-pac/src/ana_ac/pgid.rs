@@ -75,8 +75,8 @@ impl PGID_MISC_CFG {
         (self.0 & 0x70) >> 4
     }
     pub fn set_pgid_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -87,8 +87,8 @@ impl PGID_MISC_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_stack_type_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

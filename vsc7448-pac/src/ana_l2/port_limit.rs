@@ -40,8 +40,8 @@ impl PORT_LIMIT_CTRL {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_port_limit_exceed_irq_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl PORT_LIMIT_CTRL {
         (self.0 & 0x18000) >> 15
     }
     pub fn set_port_limit_exceed_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 15;
-        assert!(value <= 0x18000);
         self.0 &= !0x18000;
         self.0 |= value;
     }
@@ -93,8 +93,8 @@ impl PORT_LIMIT_STATUS {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_port_lrn_limit_exceeded_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }

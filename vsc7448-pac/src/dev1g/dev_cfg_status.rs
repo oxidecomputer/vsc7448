@@ -51,8 +51,8 @@ impl DEV_DBG_CFG {
         (self.0 & 0xc) >> 2
     }
     pub fn set_fcs_update_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -63,8 +63,8 @@ impl DEV_DBG_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ifg_len_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -75,8 +75,8 @@ impl DEV_DBG_CFG {
         (self.0 & 0x3f000000) >> 24
     }
     pub fn set_pre_cnt_oflw_id(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 24;
-        assert!(value <= 0x3f000000);
         self.0 &= !0x3f000000;
         self.0 |= value;
     }
@@ -87,8 +87,8 @@ impl DEV_DBG_CFG {
         (self.0 & 0x1f00) >> 8
     }
     pub fn set_tx_buf_high_wm(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 8;
-        assert!(value <= 0x1f00);
         self.0 &= !0x1f00;
         self.0 |= value;
     }
@@ -99,8 +99,8 @@ impl DEV_DBG_CFG {
         (self.0 & 0x1f0000) >> 16
     }
     pub fn set_tx_max_fill_lvl(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 16;
-        assert!(value <= 0x1f0000);
         self.0 &= !0x1f0000;
         self.0 |= value;
     }
@@ -111,8 +111,8 @@ impl DEV_DBG_CFG {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_tx_max_fill_lvl_clr_one_shot(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -141,8 +141,8 @@ impl DEV_PORT_PROTECT {
         (self.0 & 0x70) >> 4
     }
     pub fn set_port_protect_id(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -171,8 +171,8 @@ impl DEV_RST_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_mac_tx_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -183,8 +183,8 @@ impl DEV_RST_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_pcs_rx_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -195,8 +195,8 @@ impl DEV_RST_CTRL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pcs_tx_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -207,8 +207,8 @@ impl DEV_RST_CTRL {
         (self.0 & 0x300000) >> 20
     }
     pub fn set_speed_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 20;
-        assert!(value <= 0x300000);
         self.0 &= !0x300000;
         self.0 |= value;
     }
@@ -226,8 +226,8 @@ impl DEV_STICKY {
         (self.0 & 0x800) >> 11
     }
     pub fn set_pre_cnt_oflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -238,8 +238,8 @@ impl DEV_STICKY {
         (self.0 & 0x400) >> 10
     }
     pub fn set_rx_oflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -250,8 +250,8 @@ impl DEV_STICKY {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_sd_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -262,8 +262,8 @@ impl DEV_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tx_eof_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -274,8 +274,8 @@ impl DEV_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tx_oflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -286,8 +286,8 @@ impl DEV_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tx_sof_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -298,8 +298,8 @@ impl DEV_STICKY {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_tx_taxi_prot_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -324,8 +324,8 @@ impl EEE_CFG {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_eee_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -336,8 +336,8 @@ impl EEE_CFG {
         (self.0 & 0x3f8000) >> 15
     }
     pub fn set_eee_timer_age(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 15;
-        assert!(value <= 0x3f8000);
         self.0 &= !0x3f8000;
         self.0 |= value;
     }
@@ -348,8 +348,8 @@ impl EEE_CFG {
         (self.0 & 0xfe) >> 1
     }
     pub fn set_eee_timer_holdoff(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 1;
-        assert!(value <= 0xfe);
         self.0 &= !0xfe;
         self.0 |= value;
     }
@@ -360,8 +360,8 @@ impl EEE_CFG {
         (self.0 & 0x7f00) >> 8
     }
     pub fn set_eee_timer_wakeup(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 8;
-        assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
     }
@@ -384,8 +384,8 @@ impl PTP_CFG {
         (self.0 & 0x300000) >> 20
     }
     pub fn set_ptp_dom(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 20;
-        assert!(value <= 0x300000);
         self.0 &= !0x300000;
         self.0 |= value;
     }
@@ -394,8 +394,8 @@ impl PTP_CFG {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_ptp_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -406,8 +406,8 @@ impl PTP_CFG {
         (self.0 & 0xc0000) >> 18
     }
     pub fn set_ptp_if_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 18;
-        assert!(value <= 0xc0000);
         self.0 &= !0xc0000;
         self.0 |= value;
     }
@@ -416,8 +416,8 @@ impl PTP_CFG {
         (self.0 & 0x3fe00) >> 9
     }
     pub fn set_ptp_rx_io_dly(&mut self, value: u32) {
+        assert!(value <= 0x1ff);
         let value = value << 9;
-        assert!(value <= 0x3fe00);
         self.0 &= !0x3fe00;
         self.0 |= value;
     }

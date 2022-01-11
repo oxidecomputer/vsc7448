@@ -40,8 +40,8 @@ impl CPU_QU_CFG {
         (self.0 & 0x7000) >> 12
     }
     pub fn set_cpu_ip_len_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 12;
-        assert!(value <= 0x7000);
         self.0 &= !0x7000;
         self.0 |= value;
     }
@@ -63,8 +63,8 @@ impl CPU_QU_CFG {
         (self.0 & 0x700) >> 8
     }
     pub fn set_cpu_mc_fail_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 8;
-        assert!(value <= 0x700);
         self.0 &= !0x700;
         self.0 |= value;
     }
@@ -75,8 +75,8 @@ impl CPU_QU_CFG {
         (self.0 & 0x700000) >> 20
     }
     pub fn set_cpu_rleg_ip_hdr_fail_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 20;
-        assert!(value <= 0x700000);
         self.0 &= !0x700000;
         self.0 |= value;
     }
@@ -87,8 +87,8 @@ impl CPU_QU_CFG {
         (self.0 & 0x7000000) >> 24
     }
     pub fn set_cpu_rleg_ip_opt_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 24;
-        assert!(value <= 0x7000000);
         self.0 &= !0x7000000;
         self.0 |= value;
     }
@@ -99,8 +99,8 @@ impl CPU_QU_CFG {
         (self.0 & 0x70000000) >> 28
     }
     pub fn set_cpu_rleg_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 28;
-        assert!(value <= 0x70000000);
         self.0 &= !0x70000000;
         self.0 |= value;
     }
@@ -111,8 +111,8 @@ impl CPU_QU_CFG {
         (self.0 & 0x70000) >> 16
     }
     pub fn set_cpu_sip_rpf_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 16;
-        assert!(value <= 0x70000);
         self.0 &= !0x70000;
         self.0 |= value;
     }
@@ -123,8 +123,8 @@ impl CPU_QU_CFG {
         (self.0 & 0x70) >> 4
     }
     pub fn set_cpu_uc_fail_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -308,8 +308,8 @@ impl RLEG_CFG_0 {
         (self.0 & 0xffffff00) >> 8
     }
     pub fn set_rleg_mac_lsb(&mut self, value: u32) {
+        assert!(value <= 0xffffff);
         let value = value << 8;
-        assert!(value <= 0xffffff00);
         self.0 &= !0xffffff00;
         self.0 |= value;
     }
@@ -338,8 +338,8 @@ impl RLEG_CFG_1 {
         (self.0 & 0x3000000) >> 24
     }
     pub fn set_rleg_mac_type_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 24;
-        assert!(value <= 0x3000000);
         self.0 &= !0x3000000;
         self.0 |= value;
     }
@@ -355,8 +355,8 @@ impl ROUTING_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_cpu_ip4_options_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -365,8 +365,8 @@ impl ROUTING_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_cpu_ip6_hopbyhop_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -377,8 +377,8 @@ impl ROUTING_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_cpu_rleg_ip_hdr_fail_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -389,8 +389,8 @@ impl ROUTING_CFG {
         (self.0 & 0x3800) >> 11
     }
     pub fn set_ip4_dip_addr_violation_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 11;
-        assert!(value <= 0x3800);
         self.0 &= !0x3800;
         self.0 |= value;
     }
@@ -399,8 +399,8 @@ impl ROUTING_CFG {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_ip4_l2_bc_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -411,8 +411,8 @@ impl ROUTING_CFG {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_ip4_len_redir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -421,8 +421,8 @@ impl ROUTING_CFG {
         (self.0 & 0x8000000) >> 27
     }
     pub fn set_ip4_mc_dip_fwd_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 27;
-        assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
     }
@@ -433,8 +433,8 @@ impl ROUTING_CFG {
         (self.0 & 0xe0) >> 5
     }
     pub fn set_ip4_sip_addr_violation_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 5;
-        assert!(value <= 0xe0);
         self.0 &= !0xe0;
         self.0 |= value;
     }
@@ -456,8 +456,8 @@ impl ROUTING_CFG {
         (self.0 & 0x18000) >> 15
     }
     pub fn set_ip6_dip_addr_violation_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 15;
-        assert!(value <= 0x18000);
         self.0 &= !0x18000;
         self.0 |= value;
     }
@@ -468,8 +468,8 @@ impl ROUTING_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ip6_hc_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -478,8 +478,8 @@ impl ROUTING_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_ip6_l2_bc_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -490,8 +490,8 @@ impl ROUTING_CFG {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_ip6_len_redir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -500,8 +500,8 @@ impl ROUTING_CFG {
         (self.0 & 0x10000000) >> 28
     }
     pub fn set_ip6_mc_dip_fwd_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 28;
-        assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
     }
@@ -512,8 +512,8 @@ impl ROUTING_CFG {
         (self.0 & 0x700) >> 8
     }
     pub fn set_ip6_sip_addr_violation_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 8;
-        assert!(value <= 0x700);
         self.0 &= !0x700;
         self.0 |= value;
     }
@@ -524,8 +524,8 @@ impl ROUTING_CFG {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_l3_ena_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -534,8 +534,8 @@ impl ROUTING_CFG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rleg_ip4_sip_rpf_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -544,8 +544,8 @@ impl ROUTING_CFG {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_rleg_ip6_sip_rpf_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -556,8 +556,8 @@ impl ROUTING_CFG {
         (self.0 & 0x3000000) >> 24
     }
     pub fn set_rleg_nonip_uc_redir_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 24;
-        assert!(value <= 0x3000000);
         self.0 &= !0x3000000;
         self.0 |= value;
     }
@@ -566,8 +566,8 @@ impl ROUTING_CFG {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_rt_smac_update_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -596,8 +596,8 @@ impl SERVICE_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_vsi_force_mc_efid_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -787,8 +787,8 @@ impl VRRP_IP4_CFG_0 {
         (self.0 & 0xffffff00) >> 8
     }
     pub fn set_vrrp_ip4_base_mac_mid(&mut self, value: u32) {
+        assert!(value <= 0xffffff);
         let value = value << 8;
-        assert!(value <= 0xffffff00);
         self.0 &= !0xffffff00;
         self.0 |= value;
     }

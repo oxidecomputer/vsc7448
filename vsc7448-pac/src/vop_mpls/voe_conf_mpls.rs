@@ -38,8 +38,8 @@ impl BFD_CONFIG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_bfd_cc_auth_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -50,8 +50,8 @@ impl BFD_CONFIG {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_bfd_cc_rfc6428(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -60,8 +60,8 @@ impl BFD_CONFIG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_bfd_coordinated_mode_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -70,8 +70,8 @@ impl BFD_CONFIG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_bfd_cv_auth_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -89,8 +89,8 @@ impl BFD_CONFIG {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_bfd_rx_sample_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -99,8 +99,8 @@ impl BFD_CONFIG {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_bfd_rx_verify_cc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -109,8 +109,8 @@ impl BFD_CONFIG {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_bfd_rx_verify_cv_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -119,8 +119,8 @@ impl BFD_CONFIG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_bfd_rx_verify_discr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -129,8 +129,8 @@ impl BFD_CONFIG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_bfd_rx_verify_flags_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -139,8 +139,8 @@ impl BFD_CONFIG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_bfd_rx_verify_min_len_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -149,8 +149,8 @@ impl BFD_CONFIG {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_bfd_rx_verify_version_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -161,8 +161,8 @@ impl BFD_CONFIG {
         (self.0 & 0x380000) >> 19
     }
     pub fn set_bfd_scan_period(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 19;
-        assert!(value <= 0x380000);
         self.0 &= !0x380000;
         self.0 |= value;
     }
@@ -171,8 +171,8 @@ impl BFD_CONFIG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_bfd_tx_update_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -246,8 +246,8 @@ impl CPU_COPY_CTRL_MPLS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_bfd_cc_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -269,8 +269,8 @@ impl CPU_COPY_CTRL_MPLS {
         (self.0 & 0x7f8) >> 3
     }
     pub fn set_generic_copy_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 3;
-        assert!(value <= 0x7f8);
         self.0 &= !0x7f8;
         self.0 |= value;
     }
@@ -281,8 +281,8 @@ impl CPU_COPY_CTRL_MPLS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_unk_cpt_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -300,8 +300,8 @@ impl OAM_CNT_DATA_MPLS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_bfd_cc_cnt_data_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -323,8 +323,8 @@ impl OAM_CNT_DATA_MPLS {
         (self.0 & 0x7f8) >> 3
     }
     pub fn set_generic_cpt_cnt_data_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 3;
-        assert!(value <= 0x7f8);
         self.0 &= !0x7f8;
         self.0 |= value;
     }
@@ -335,8 +335,8 @@ impl OAM_CNT_DATA_MPLS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_unk_cpt_cnt_data_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -354,8 +354,8 @@ impl OAM_CNT_SEL_MPLS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_bfd_cc_cnt_sel_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -377,8 +377,8 @@ impl OAM_CNT_SEL_MPLS {
         (self.0 & 0x7f8) >> 3
     }
     pub fn set_generic_cpt_cnt_sel_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 3;
-        assert!(value <= 0x7f8);
         self.0 &= !0x7f8;
         self.0 |= value;
     }
@@ -389,8 +389,8 @@ impl OAM_CNT_SEL_MPLS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_unk_cpt_cnt_sel_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -406,8 +406,8 @@ impl OAM_HW_CTRL_MPLS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_bfd_cc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -441,8 +441,8 @@ impl PATH_VOE_MPLS {
         (self.0 & 0x400) >> 10
     }
     pub fn set_path_voe_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -458,8 +458,8 @@ impl VOE_CTRL_MPLS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_upmep_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -468,8 +468,8 @@ impl VOE_CTRL_MPLS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_voe_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }

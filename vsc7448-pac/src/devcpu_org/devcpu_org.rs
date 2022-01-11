@@ -36,8 +36,8 @@ impl ERR_CNTS {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_err_no_action(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl ERR_CNTS {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_err_tgt_busy(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -65,8 +65,8 @@ impl ERR_CNTS {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_err_wd_drop(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -75,8 +75,8 @@ impl ERR_CNTS {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_err_wd_drop_org(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -115,8 +115,8 @@ impl IF_CFGSTAT {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_if_num(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -125,8 +125,8 @@ impl IF_CFGSTAT {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_if_stat(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -192,8 +192,8 @@ impl ORG_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_blocking_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -202,8 +202,8 @@ impl ORG_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_drop_mode_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

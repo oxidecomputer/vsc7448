@@ -38,8 +38,8 @@ impl PLL5G_STATUS0 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_calibration_done(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl PLL5G_STATUS0 {
         (self.0 & 0x400) >> 10
     }
     pub fn set_calibration_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -67,8 +67,8 @@ impl PLL5G_STATUS0 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_out_of_range_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -77,8 +77,8 @@ impl PLL5G_STATUS0 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_range_lim(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -87,8 +87,8 @@ impl PLL5G_STATUS0 {
         (self.0 & 0x1fe) >> 1
     }
     pub fn set_readback_data(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 1;
-        assert!(value <= 0x1fe);
         self.0 &= !0x1fe;
         self.0 |= value;
     }
@@ -104,8 +104,8 @@ impl PLL5G_STATUS1 {
         (self.0 & 0x3ff0) >> 4
     }
     pub fn set_fbcnt_dif(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 4;
-        assert!(value <= 0x3ff0);
         self.0 &= !0x3ff0;
         self.0 |= value;
     }
@@ -123,8 +123,8 @@ impl PLL5G_STATUS1 {
         (self.0 & 0xe) >> 1
     }
     pub fn set_fsm_stat(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 1;
-        assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
     }
@@ -133,8 +133,8 @@ impl PLL5G_STATUS1 {
         (self.0 & 0x7c000) >> 14
     }
     pub fn set_gain_stat(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 14;
-        assert!(value <= 0x7c000);
         self.0 &= !0x7c000;
         self.0 |= value;
     }
@@ -143,8 +143,8 @@ impl PLL5G_STATUS1 {
         (self.0 & 0x7f80000) >> 19
     }
     pub fn set_sig_del(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 19;
-        assert!(value <= 0x7f80000);
         self.0 &= !0x7f80000;
         self.0 |= value;
     }

@@ -77,8 +77,8 @@ impl DSCP_MAP {
         (self.0 & 0x2) >> 1
     }
     pub fn set_dscp_update_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -105,8 +105,8 @@ impl HIH_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_hih_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -117,8 +117,8 @@ impl HIH_CTRL {
         (self.0 & 0x18) >> 3
     }
     pub fn set_hih_frm_cl(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 3;
-        assert!(value <= 0x18);
         self.0 &= !0x18;
         self.0 |= value;
     }
@@ -129,8 +129,8 @@ impl HIH_CTRL {
         (self.0 & 0x6) >> 1
     }
     pub fn set_hih_frm_flags(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -141,8 +141,8 @@ impl HIH_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_hih_frm_lpid(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -153,8 +153,8 @@ impl HIH_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_hih_lpid_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -198,8 +198,8 @@ impl PORT_VLAN_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_port_dei(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -210,8 +210,8 @@ impl PORT_VLAN_CFG {
         (self.0 & 0xe000) >> 13
     }
     pub fn set_port_pcp(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 13;
-        assert!(value <= 0xe000);
         self.0 &= !0xe000;
         self.0 |= value;
     }
@@ -281,8 +281,8 @@ impl PTP_MISC_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ptp_udp6_csum_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -309,8 +309,8 @@ impl PTP_MODE_CFG {
         (self.0 & 0x1c) >> 2
     }
     pub fn set_ptp_mode_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 2;
-        assert!(value <= 0x1c);
         self.0 &= !0x1c;
         self.0 |= value;
     }
@@ -352,8 +352,8 @@ impl TAG_CTRL {
         (self.0 & 0xc00) >> 10
     }
     pub fn set_tag_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 10;
-        assert!(value <= 0xc00);
         self.0 &= !0xc00;
         self.0 |= value;
     }
@@ -364,8 +364,8 @@ impl TAG_CTRL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_tag_cfg_obey_was_tagged(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -387,8 +387,8 @@ impl TAG_CTRL {
         (self.0 & 0x38) >> 3
     }
     pub fn set_tag_pcp_cfg(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 3;
-        assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
     }
@@ -399,8 +399,8 @@ impl TAG_CTRL {
         (self.0 & 0x380) >> 7
     }
     pub fn set_tag_tpid_cfg(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 7;
-        assert!(value <= 0x380);
         self.0 &= !0x380;
         self.0 |= value;
     }
@@ -411,8 +411,8 @@ impl TAG_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_tag_vid_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }

@@ -54,8 +54,8 @@ impl LABEL_VAL {
         (self.0 & 0xfffff000) >> 12
     }
     pub fn set_label_val(&mut self, value: u32) {
+        assert!(value <= 0xfffff);
         let value = value << 12;
-        assert!(value <= 0xfffff000);
         self.0 &= !0xfffff000;
         self.0 |= value;
     }
@@ -66,8 +66,8 @@ impl LABEL_VAL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_sbit_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -78,8 +78,8 @@ impl LABEL_VAL {
         (self.0 & 0xe00) >> 9
     }
     pub fn set_tc_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 9;
-        assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
     }
@@ -182,8 +182,8 @@ impl LL_TAG_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ifh_encap_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -210,8 +210,8 @@ impl LL_TAG_REMARK_CFG {
         (self.0 & 0xe) >> 1
     }
     pub fn set_tag_dei_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 1;
-        assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
     }
@@ -222,8 +222,8 @@ impl LL_TAG_REMARK_CFG {
         (self.0 & 0x70) >> 4
     }
     pub fn set_tag_pcp_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -245,8 +245,8 @@ impl LL_TAG_REMARK_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_tag_vid_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -275,8 +275,8 @@ impl LL_TAG_VAL {
         (self.0 & 0xe) >> 1
     }
     pub fn set_tag_pcp_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 1;
-        assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
     }
@@ -287,8 +287,8 @@ impl LL_TAG_VAL {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_tag_tpid(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -299,8 +299,8 @@ impl LL_TAG_VAL {
         (self.0 & 0xfff0) >> 4
     }
     pub fn set_tag_vid_val(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 4;
-        assert!(value <= 0xfff0);
         self.0 &= !0xfff0;
         self.0 |= value;
     }
@@ -316,8 +316,8 @@ impl MPLS_LABEL_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_cw_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -339,8 +339,8 @@ impl MPLS_LABEL_CFG {
         (self.0 & 0xc) >> 2
     }
     pub fn set_label_cnt(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -358,8 +358,8 @@ impl MPLS_REMARK_CFG {
         (self.0 & 0x380) >> 7
     }
     pub fn set_lbl_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 7;
-        assert!(value <= 0x380);
         self.0 &= !0x380;
         self.0 |= value;
     }
@@ -370,8 +370,8 @@ impl MPLS_REMARK_CFG {
         (self.0 & 0xc) >> 2
     }
     pub fn set_sbit_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -382,8 +382,8 @@ impl MPLS_REMARK_CFG {
         (self.0 & 0x70) >> 4
     }
     pub fn set_tc_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -421,8 +421,8 @@ impl RSV_LABEL_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_rsv_lbl_pos(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -433,8 +433,8 @@ impl RSV_LABEL_CFG {
         (self.0 & 0x1c) >> 2
     }
     pub fn set_rsv_tc_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 2;
-        assert!(value <= 0x1c);
         self.0 &= !0x1c;
         self.0 |= value;
     }
@@ -452,8 +452,8 @@ impl RSV_LABEL_VAL {
         (self.0 & 0xfffff000) >> 12
     }
     pub fn set_rsv_lbl_val(&mut self, value: u32) {
+        assert!(value <= 0xfffff);
         let value = value << 12;
-        assert!(value <= 0xfffff000);
         self.0 &= !0xfffff000;
         self.0 |= value;
     }
@@ -464,8 +464,8 @@ impl RSV_LABEL_VAL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_rsv_sbit_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -476,8 +476,8 @@ impl RSV_LABEL_VAL {
         (self.0 & 0xe00) >> 9
     }
     pub fn set_rsv_tc_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 9;
-        assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
     }

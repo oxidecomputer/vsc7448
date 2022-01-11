@@ -36,8 +36,8 @@ impl TR_CFG4 {
         (self.0 & 0xfc0) >> 6
     }
     pub fn set_c0_max(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 6;
-        assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
     }

@@ -49,8 +49,8 @@ impl PTP_CPUVD_MODE_CFG {
         (self.0 & 0x1c) >> 2
     }
     pub fn set_ptp_mode_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 2;
-        assert!(value <= 0x1c);
         self.0 &= !0x1c;
         self.0 |= value;
     }
@@ -90,8 +90,8 @@ impl PTP_TWOSTEP_CTRL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ptp_nxt(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -109,8 +109,8 @@ impl PTP_TWOSTEP_CTRL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_ptp_ovwr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -119,8 +119,8 @@ impl PTP_TWOSTEP_CTRL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ptp_vld(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -129,8 +129,8 @@ impl PTP_TWOSTEP_CTRL {
         (self.0 & 0x1fe) >> 1
     }
     pub fn set_stamp_port(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 1;
-        assert!(value <= 0x1fe);
         self.0 &= !0x1fe;
         self.0 |= value;
     }
@@ -139,8 +139,8 @@ impl PTP_TWOSTEP_CTRL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_stamp_tx(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }

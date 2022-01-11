@@ -36,8 +36,8 @@ impl XTR_CFG {
         (self.0 & 0x1c) >> 2
     }
     pub fn set_dp_wm(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 2;
-        assert!(value <= 0x1c);
         self.0 &= !0x1c;
         self.0 |= value;
     }
@@ -123,8 +123,8 @@ impl XTR_GRP_CFG {
         (self.0 & 0xc) >> 2
     }
     pub fn set_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -135,8 +135,8 @@ impl XTR_GRP_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_status_word_pos(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

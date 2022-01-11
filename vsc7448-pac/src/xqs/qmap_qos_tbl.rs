@@ -36,8 +36,8 @@ impl DROP_STAT_CTRL {
         (self.0 & 0x1ffc0) >> 6
     }
     pub fn set_drop_stat_base_addr(&mut self, value: u32) {
+        assert!(value <= 0x7ff);
         let value = value << 6;
-        assert!(value <= 0x1ffc0);
         self.0 &= !0x1ffc0;
         self.0 |= value;
     }
@@ -59,8 +59,8 @@ impl DROP_STAT_CTRL {
         (self.0 & 0x6) >> 1
     }
     pub fn set_drop_stat_cos_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -71,8 +71,8 @@ impl DROP_STAT_CTRL {
         (self.0 & 0x38) >> 3
     }
     pub fn set_drop_stat_oam_cnt_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 3;
-        assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
     }

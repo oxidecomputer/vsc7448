@@ -45,8 +45,8 @@ impl QUEUE_SIZE {
         (self.0 & 0xffe) >> 1
     }
     pub fn set_queue_size(&mut self, value: u32) {
+        assert!(value <= 0x7ff);
         let value = value << 1;
-        assert!(value <= 0xffe);
         self.0 &= !0xffe;
         self.0 |= value;
     }

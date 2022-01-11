@@ -61,8 +61,8 @@ impl QSHP_CIR_CFG {
         (self.0 & 0x7fffc0) >> 6
     }
     pub fn set_cir_rate(&mut self, value: u32) {
+        assert!(value <= 0x1ffff);
         let value = value << 6;
-        assert!(value <= 0x7fffc0);
         self.0 &= !0x7fffc0;
         self.0 |= value;
     }

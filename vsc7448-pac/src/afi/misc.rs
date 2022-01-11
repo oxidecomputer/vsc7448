@@ -121,8 +121,8 @@ impl STICKY_INFO {
         (self.0 & 0xf0000000) >> 28
     }
     pub fn set_sticky_info_wr_cnt(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 28;
-        assert!(value <= 0xf0000000);
         self.0 &= !0xf0000000;
         self.0 |= value;
     }
@@ -131,8 +131,8 @@ impl STICKY_INFO {
         (self.0 & 0xfff00) >> 8
     }
     pub fn set_tti_ptr(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 8;
-        assert!(value <= 0xfff00);
         self.0 &= !0xfff00;
         self.0 |= value;
     }
@@ -146,8 +146,8 @@ impl STICKY_INFO_ENA {
         (self.0 & 0x4) >> 2
     }
     pub fn set_enq_stop_info_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -156,8 +156,8 @@ impl STICKY_INFO_ENA {
         (self.0 & 0x2) >> 1
     }
     pub fn set_frm_out_max_info_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -175,8 +175,8 @@ impl STICKY_INFO_ENA {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tti_busy_info_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -192,8 +192,8 @@ impl WARN {
         (self.0 & 0x10) >> 4
     }
     pub fn set_warn_dti_cnt_down_max_neg_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -202,8 +202,8 @@ impl WARN {
         (self.0 & 0x4) >> 2
     }
     pub fn set_warn_enq_stop_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -212,8 +212,8 @@ impl WARN {
         (self.0 & 0x2) >> 1
     }
     pub fn set_warn_frm_out_max_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -231,8 +231,8 @@ impl WARN {
         (self.0 & 0x8) >> 3
     }
     pub fn set_warn_tti_busy_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }

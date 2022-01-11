@@ -36,8 +36,8 @@ impl TR_BER_THR {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_ber_err_th(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }

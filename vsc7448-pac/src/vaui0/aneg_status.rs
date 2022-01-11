@@ -38,8 +38,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_ackn(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -50,8 +50,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_cap_10gkr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -62,8 +62,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_cap_10gkx4(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -74,8 +74,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_cap_1gkx(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -84,8 +84,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0x3e0) >> 5
     }
     pub fn set_echoed_nonce(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 5;
-        assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
     }
@@ -94,8 +94,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_lp_adv_abil_lsb(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -106,8 +106,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_np(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -116,8 +116,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0x1c00) >> 10
     }
     pub fn set_pause(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 10;
-        assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
     }
@@ -126,8 +126,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_rf(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -145,8 +145,8 @@ impl ANEG_LP_ADV_ABILITY_0 {
         (self.0 & 0x1f0000) >> 16
     }
     pub fn set_tx_nonce(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 16;
-        assert!(value <= 0x1f0000);
         self.0 &= !0x1f0000;
         self.0 |= value;
     }
@@ -162,8 +162,8 @@ impl ANEG_LP_ADV_ABILITY_1 {
         (self.0 & 0xc000) >> 14
     }
     pub fn set_fec(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 14;
-        assert!(value <= 0xc000);
         self.0 &= !0xc000;
         self.0 |= value;
     }
@@ -190,8 +190,8 @@ impl ANEG_STATUS {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_aneg_arb_fsm_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -211,8 +211,8 @@ impl ANEG_STATUS {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_aneg_rx_fsm_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -223,8 +223,8 @@ impl ANEG_STATUS {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_aneg_tx_fsm_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -235,8 +235,8 @@ impl ANEG_STATUS {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_arbiter_state(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -245,8 +245,8 @@ impl ANEG_STATUS {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_incompatible_link(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -257,8 +257,8 @@ impl ANEG_STATUS {
         (self.0 & 0x30000000) >> 28
     }
     pub fn set_link_ctrl_10gkx4(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 28;
-        assert!(value <= 0x30000000);
         self.0 &= !0x30000000;
         self.0 |= value;
     }
@@ -269,8 +269,8 @@ impl ANEG_STATUS {
         (self.0 & 0xc000000) >> 26
     }
     pub fn set_link_ctrl_1gkx(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 26;
-        assert!(value <= 0xc000000);
         self.0 &= !0xc000000;
         self.0 |= value;
     }
@@ -281,8 +281,8 @@ impl ANEG_STATUS {
         (self.0 & 0x3000000) >> 24
     }
     pub fn set_link_ctrl_2g5(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 24;
-        assert!(value <= 0x3000000);
         self.0 &= !0x3000000;
         self.0 |= value;
     }
@@ -291,8 +291,8 @@ impl ANEG_STATUS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_lp_aneg_able(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -301,8 +301,8 @@ impl ANEG_STATUS {
         (self.0 & 0x8) >> 3
     }
     pub fn set_page_rx(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -313,8 +313,8 @@ impl ANEG_STATUS {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_par_detect_fault_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }

@@ -34,8 +34,8 @@ impl REG_1588_16 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_cmd_bit(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -43,8 +43,8 @@ impl REG_1588_16 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_read(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }

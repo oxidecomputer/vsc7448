@@ -38,8 +38,8 @@ impl KR_1X0097 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_frlock(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -61,8 +61,8 @@ impl KR_1X0097 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_stprot(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -73,8 +73,8 @@ impl KR_1X0097 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tr_fail(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }

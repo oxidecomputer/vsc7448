@@ -38,8 +38,8 @@ impl COMMON_MEP_MC_MAC_LSB {
         (self.0 & 0x7ffffff8) >> 3
     }
     pub fn set_mep_mc_mac_lsb(&mut self, value: u32) {
+        assert!(value <= 0xfffffff);
         let value = value << 3;
-        assert!(value <= 0x7ffffff8);
         self.0 &= !0x7ffffff8;
         self.0 |= value;
     }
@@ -73,8 +73,8 @@ impl CPU_EXTR_CFG {
         (self.0 & 0x7000) >> 12
     }
     pub fn set_cpu_err_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 12;
-        assert!(value <= 0x7000);
         self.0 &= !0x7000;
         self.0 |= value;
     }
@@ -85,8 +85,8 @@ impl CPU_EXTR_CFG {
         (self.0 & 0x38000) >> 15
     }
     pub fn set_def_copy_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 15;
-        assert!(value <= 0x38000);
         self.0 &= !0x38000;
         self.0 |= value;
     }
@@ -97,8 +97,8 @@ impl CPU_EXTR_CFG {
         (self.0 & 0x38) >> 3
     }
     pub fn set_dmm_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 3;
-        assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
     }
@@ -120,8 +120,8 @@ impl CPU_EXTR_CFG {
         (self.0 & 0xe00) >> 9
     }
     pub fn set_lmm_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 9;
-        assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
     }
@@ -132,8 +132,8 @@ impl CPU_EXTR_CFG {
         (self.0 & 0x1c0) >> 6
     }
     pub fn set_lmr_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 6;
-        assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
     }
@@ -151,8 +151,8 @@ impl CPU_EXTR_CFG_1 {
         (self.0 & 0x38000) >> 15
     }
     pub fn set_ccm_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 15;
-        assert!(value <= 0x38000);
         self.0 &= !0x38000;
         self.0 |= value;
     }
@@ -163,8 +163,8 @@ impl CPU_EXTR_CFG_1 {
         (self.0 & 0x7000) >> 12
     }
     pub fn set_ccm_lm_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 12;
-        assert!(value <= 0x7000);
         self.0 &= !0x7000;
         self.0 |= value;
     }
@@ -175,8 +175,8 @@ impl CPU_EXTR_CFG_1 {
         (self.0 & 0xe00) >> 9
     }
     pub fn set_lbm_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 9;
-        assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
     }
@@ -187,8 +187,8 @@ impl CPU_EXTR_CFG_1 {
         (self.0 & 0x1c0) >> 6
     }
     pub fn set_lbr_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 6;
-        assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
     }
@@ -210,8 +210,8 @@ impl CPU_EXTR_CFG_1 {
         (self.0 & 0x38) >> 3
     }
     pub fn set_tst_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 3;
-        assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
     }
@@ -229,8 +229,8 @@ impl CPU_EXTR_MPLS {
         (self.0 & 0x38) >> 3
     }
     pub fn set_bfd_cc_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 3;
-        assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
     }
@@ -289,8 +289,8 @@ impl HMO_TIMER_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_hmo_ccm_rx_bad_nxt_timer(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -299,8 +299,8 @@ impl HMO_TIMER_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_hmo_ccm_rx_tlv_non_zero_timer(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -318,8 +318,8 @@ impl HMO_TIMER_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_hmo_rx_ccm_nxt_timer(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -328,8 +328,8 @@ impl HMO_TIMER_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_hmo_rx_test_frm_nxt_timer(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -363,8 +363,8 @@ impl LOC_CTRL {
         (self.0 & 0x7f800) >> 11
     }
     pub fn set_loc_base_tick_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 11;
-        assert!(value <= 0x7f800);
         self.0 &= !0x7f800;
         self.0 |= value;
     }
@@ -386,8 +386,8 @@ impl LOC_CTRL {
         (self.0 & 0x600) >> 9
     }
     pub fn set_loc_space_between_entry_scan(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 9;
-        assert!(value <= 0x600);
         self.0 &= !0x600;
         self.0 |= value;
     }
@@ -421,8 +421,8 @@ impl LOC_SCAN_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_loc_scan_completed_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -433,8 +433,8 @@ impl LOC_SCAN_STICKY {
         (self.0 & 0xff8) >> 3
     }
     pub fn set_loc_scan_ongoing_status(&mut self, value: u32) {
+        assert!(value <= 0x1ff);
         let value = value << 3;
-        assert!(value <= 0xff8);
         self.0 &= !0xff8;
         self.0 |= value;
     }
@@ -445,8 +445,8 @@ impl LOC_SCAN_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_loc_scan_started_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -475,8 +475,8 @@ impl MASTER_INTR_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_oam_mep_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -487,8 +487,8 @@ impl MASTER_INTR_CTRL {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_oam_mep_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -504,8 +504,8 @@ impl MPLS_GENERIC_CODEPOINT {
         (self.0 & 0x700) >> 8
     }
     pub fn set_generic_codepoint_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 8;
-        assert!(value <= 0x700);
         self.0 &= !0x700;
         self.0 |= value;
     }
@@ -514,8 +514,8 @@ impl MPLS_GENERIC_CODEPOINT {
         (self.0 & 0x7fff800) >> 11
     }
     pub fn set_generic_codepoint_val(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 11;
-        assert!(value <= 0x7fff800);
         self.0 &= !0x7fff800;
         self.0 |= value;
     }
@@ -533,8 +533,8 @@ impl OAM_GENERIC_CFG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_generic_dmac_chk_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -545,8 +545,8 @@ impl OAM_GENERIC_CFG {
         (self.0 & 0x700) >> 8
     }
     pub fn set_generic_opcode_cpu_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 8;
-        assert!(value <= 0x700);
         self.0 &= !0x700;
         self.0 |= value;
     }
@@ -573,8 +573,8 @@ impl VERSION_CTRL {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_ccm_version(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -585,8 +585,8 @@ impl VERSION_CTRL {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_dm_version(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -597,8 +597,8 @@ impl VERSION_CTRL {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_lm_version(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -627,8 +627,8 @@ impl VERSION_CTRL_2 {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_lb_version(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -650,8 +650,8 @@ impl VERSION_CTRL_2 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_sl_version(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -662,8 +662,8 @@ impl VERSION_CTRL_2 {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_tst_version(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -709,8 +709,8 @@ impl VOP_CTRL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ccm_lm_upd_rsv_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -721,8 +721,8 @@ impl VOP_CTRL {
         (self.0 & 0x380) >> 7
     }
     pub fn set_ccm_rx_src_port_detect_cnt(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 7;
-        assert!(value <= 0x380);
         self.0 &= !0x380;
         self.0 |= value;
     }
@@ -733,8 +733,8 @@ impl VOP_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_g_8113_1_cnt_lbr_rx_error_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -745,8 +745,8 @@ impl VOP_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_g_8113_1_lbk_indc_chk_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -757,8 +757,8 @@ impl VOP_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_g_8113_1_mel_chk_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -769,8 +769,8 @@ impl VOP_CTRL {
         (self.0 & 0x30) >> 4
     }
     pub fn set_g_8113_1_mep_scenario(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -781,8 +781,8 @@ impl VOP_CTRL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_lmr_upd_rxfcl_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -791,8 +791,8 @@ impl VOP_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_loc_scan_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

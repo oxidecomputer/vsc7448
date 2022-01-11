@@ -40,8 +40,8 @@ impl PCS_XAUI_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_an_link_ctrl_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl PCS_XAUI_CFG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_fifo_rpt_res(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -64,8 +64,8 @@ impl PCS_XAUI_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_idle_seq_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -76,8 +76,8 @@ impl PCS_XAUI_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_lf_gen_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -99,8 +99,8 @@ impl PCS_XAUI_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_pt_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -111,8 +111,8 @@ impl PCS_XAUI_CFG {
         (self.0 & 0x38) >> 3
     }
     pub fn set_pt_ipg_size(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 3;
-        assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
     }
@@ -123,8 +123,8 @@ impl PCS_XAUI_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_xaui_loop_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -142,8 +142,8 @@ impl PCS_XAUI_EXT_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rx_flip_hmbus(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -154,8 +154,8 @@ impl PCS_XAUI_EXT_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rx_inv_hmbus(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -177,8 +177,8 @@ impl PCS_XAUI_EXT_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tx_inv_hmbus(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -194,8 +194,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_comma_repl(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -206,8 +206,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_com_align_pos(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -218,8 +218,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_dc_a_align_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -230,8 +230,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ilv_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -253,8 +253,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_k28_5_sync_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -265,8 +265,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_rxchan_reord1_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -277,8 +277,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rxchan_reord2_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -289,8 +289,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rx_8b10b_ilv_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -301,8 +301,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_txchan_reord1_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -313,8 +313,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_txchan_reord2_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -325,8 +325,8 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tx_8b10b_ilv_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -344,8 +344,8 @@ impl PCS_XAUI_LPI_CFG {
         (self.0 & 0x30) >> 4
     }
     pub fn set_lpi_rx_wtim(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -356,8 +356,8 @@ impl PCS_XAUI_LPI_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_lpi_testmode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -368,8 +368,8 @@ impl PCS_XAUI_LPI_CFG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rx_lpi_out_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -398,8 +398,8 @@ impl PCS_XAUI_RX_ERR_CNT_CFG {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_cerr_mask(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -410,8 +410,8 @@ impl PCS_XAUI_RX_ERR_CNT_CFG {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_derr_mask(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -433,8 +433,8 @@ impl PCS_XAUI_RX_ERR_CNT_CFG {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_uferr_mask(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -463,8 +463,8 @@ impl PCS_XAUI_SD_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_sd_pol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -475,8 +475,8 @@ impl PCS_XAUI_SD_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_sd_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -492,8 +492,8 @@ impl PCS_XAUI_TX_SEQ_CFG {
         (self.0 & 0xffffff00) >> 8
     }
     pub fn set_tx_q(&mut self, value: u32) {
+        assert!(value <= 0xffffff);
         let value = value << 8;
-        assert!(value <= 0xffffff00);
         self.0 &= !0xffffff00;
         self.0 |= value;
     }
@@ -504,8 +504,8 @@ impl PCS_XAUI_TX_SEQ_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_tx_q_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }

@@ -138,11 +138,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         mesa_version
     );
     if let Some(pac) = matches.value_of("pac") {
-        print_pac_lib(&header, pac, &target_list, &target_docs, &pages)?;
+        write_pac_lib(&header, pac, &target_list, &target_docs, &pages)?;
     }
 
     if let Some(info) = matches.value_of("info") {
-        print_info_table(info, &target_list, &target_docs, &pages)?;
+        write_info_table(info, &target_list, &target_docs, &pages)?;
     }
 
     if matches.value_of("info").is_none() && matches.value_of("pac").is_none() {
@@ -153,7 +153,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 /// Prints `lib.rs` for the vsc7448_pac crate
-fn print_pac_lib(
+fn write_pac_lib(
     header: &str,
     dir: &str,
     target_list: &TargetList,
@@ -481,6 +481,7 @@ pub struct {}({}{});",
         // compiler warnings).
         let shift = field.lo;
         let mask = (((1u64 << field.hi) - 1) ^ ((1u64 << field.lo) - 1)) as u32;
+        let max = (1u32 << (field.hi - field.lo)) - 1;
 
         // Special case for fields which aren't valid Rust identifiers
         let get = if fname == "LOOP" || fname.chars().next().unwrap().is_numeric() {
@@ -523,13 +524,14 @@ pub struct {}({}{});",
         (self.0 & 0x{mask:x}) >> {shift}
     }}
     pub fn set_{field}(&mut self, value: {t}) {{
+        assert!(value <= 0x{max:x});
         let value = value << {shift};
-        assert!(value <= 0x{mask:x});
         self.0 &= !0x{mask:x};
         self.0 |= value;
     }}",
                 get = get,
                 field = fname.to_lowercase(),
+                max = max,
                 shift = shift,
                 mask = mask,
                 t = inttype,
@@ -543,7 +545,7 @@ pub struct {}({}{});",
     Ok(())
 }
 
-fn print_info_table(
+fn write_info_table(
     dir: &str,
     target_list: &TargetList,
     target_docs: &BTreeMap<String, OwnedTarget>,

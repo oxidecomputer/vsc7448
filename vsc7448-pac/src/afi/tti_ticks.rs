@@ -36,8 +36,8 @@ impl TTI_TICK_BASE {
         (self.0 & 0x3fff0000) >> 16
     }
     pub fn set_base_cnt(&mut self, value: u32) {
+        assert!(value <= 0x3fff);
         let value = value << 16;
-        assert!(value <= 0x3fff0000);
         self.0 &= !0x3fff0000;
         self.0 |= value;
     }
@@ -69,8 +69,8 @@ impl TTI_TICK_LEN_0_3 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_len1(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -79,8 +79,8 @@ impl TTI_TICK_LEN_0_3 {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_len2(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -89,8 +89,8 @@ impl TTI_TICK_LEN_0_3 {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_len3(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -113,8 +113,8 @@ impl TTI_TICK_LEN_4_7 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_len5(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -123,8 +123,8 @@ impl TTI_TICK_LEN_4_7 {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_len6(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -133,8 +133,8 @@ impl TTI_TICK_LEN_4_7 {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_len7(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -159,8 +159,8 @@ impl TTI_TICK_STATE {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_tick_era(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }

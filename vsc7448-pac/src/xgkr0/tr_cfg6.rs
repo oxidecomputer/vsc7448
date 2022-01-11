@@ -45,8 +45,8 @@ impl TR_CFG6 {
         (self.0 & 0xfc0) >> 6
     }
     pub fn set_cp_init(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 6;
-        assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
     }

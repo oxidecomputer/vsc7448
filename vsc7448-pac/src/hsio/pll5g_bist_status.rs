@@ -38,8 +38,8 @@ impl PLL5G_BIST_STAT0 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_pllb_busy(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl PLL5G_BIST_STAT0 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pllb_done_n(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -67,8 +67,8 @@ impl PLL5G_BIST_STAT0 {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_pllb_fsm_stat(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }

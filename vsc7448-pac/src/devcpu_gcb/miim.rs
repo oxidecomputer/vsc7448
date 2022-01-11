@@ -36,8 +36,8 @@ impl MII_CFG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_deadlock_fix_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl MII_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_miim_cfg_dbg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -67,8 +67,8 @@ impl MII_CFG {
         (self.0 & 0x600) >> 9
     }
     pub fn set_miim_st_cfg_field(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 9;
-        assert!(value <= 0x600);
         self.0 &= !0x600;
         self.0 |= value;
     }
@@ -84,8 +84,8 @@ impl MII_CFG_7226 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_miim_7226_cfg_field(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -101,8 +101,8 @@ impl MII_CMD {
         (self.0 & 0x6) >> 1
     }
     pub fn set_miim_cmd_opr_field(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -111,8 +111,8 @@ impl MII_CMD {
         (self.0 & 0x3e000000) >> 25
     }
     pub fn set_miim_cmd_phyad(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 25;
-        assert!(value <= 0x3e000000);
         self.0 &= !0x3e000000;
         self.0 |= value;
     }
@@ -121,8 +121,8 @@ impl MII_CMD {
         (self.0 & 0x1f00000) >> 20
     }
     pub fn set_miim_cmd_regad(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 20;
-        assert!(value <= 0x1f00000);
         self.0 &= !0x1f00000;
         self.0 |= value;
     }
@@ -144,8 +144,8 @@ impl MII_CMD {
         (self.0 & 0x8) >> 3
     }
     pub fn set_miim_cmd_single_scan(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -156,8 +156,8 @@ impl MII_CMD {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_miim_cmd_vld(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -166,8 +166,8 @@ impl MII_CMD {
         (self.0 & 0xffff0) >> 4
     }
     pub fn set_miim_cmd_wrdata(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 4;
-        assert!(value <= 0xffff0);
         self.0 &= !0xffff0;
         self.0 |= value;
     }
@@ -192,8 +192,8 @@ impl MII_DATA {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_miim_data_success(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -207,8 +207,8 @@ impl MII_SCAN_0 {
         (self.0 & 0x3e0) >> 5
     }
     pub fn set_miim_scan_phyadhi(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 5;
-        assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
     }
@@ -240,8 +240,8 @@ impl MII_SCAN_1 {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_miim_scan_mask(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -285,8 +285,8 @@ impl MII_STATUS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_miim_scan_complete(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -297,8 +297,8 @@ impl MII_STATUS {
         (self.0 & 0x8) >> 3
     }
     pub fn set_miim_stat_busy(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -309,8 +309,8 @@ impl MII_STATUS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_miim_stat_opr_pend(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -321,8 +321,8 @@ impl MII_STATUS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_miim_stat_pending_rd(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

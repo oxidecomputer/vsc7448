@@ -51,8 +51,8 @@ impl DBG_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_cell_bus_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -63,8 +63,8 @@ impl DBG_CFG {
         (self.0 & 0xff8) >> 3
     }
     pub fn set_fifo_rst(&mut self, value: u32) {
+        assert!(value <= 0x1ff);
         let value = value << 3;
-        assert!(value <= 0xff8);
         self.0 &= !0xff8;
         self.0 |= value;
     }
@@ -73,8 +73,8 @@ impl DBG_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_idle_to_vd(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -92,8 +92,8 @@ impl ERR_STICKY {
         (self.0 & 0x80) >> 7
     }
     pub fn set_calendar_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -104,8 +104,8 @@ impl ERR_STICKY {
         (self.0 & 0x400) >> 10
     }
     pub fn set_cc_intrn_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -116,8 +116,8 @@ impl ERR_STICKY {
         (self.0 & 0x100) >> 8
     }
     pub fn set_cc_oflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -128,8 +128,8 @@ impl ERR_STICKY {
         (self.0 & 0x200) >> 9
     }
     pub fn set_cc_uflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -140,8 +140,8 @@ impl ERR_STICKY {
         (self.0 & 0x800) >> 11
     }
     pub fn set_fc_oflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -152,8 +152,8 @@ impl ERR_STICKY {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_fc_uflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -164,8 +164,8 @@ impl ERR_STICKY {
         (self.0 & 0x20) >> 5
     }
     pub fn set_fragment_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -176,8 +176,8 @@ impl ERR_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_invld_abort_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -188,8 +188,8 @@ impl ERR_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_main_sm_intrn_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -211,8 +211,8 @@ impl ERR_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_missing_eof_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -223,8 +223,8 @@ impl ERR_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_missing_sof_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -235,8 +235,8 @@ impl ERR_STICKY {
         (self.0 & 0x40) >> 6
     }
     pub fn set_unused_bytes_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -265,8 +265,8 @@ impl PRE_CNT_OFLW_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_unsup_opcode_pre_cnt_oflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

@@ -36,8 +36,8 @@ impl TR_STS1 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_ber_busy(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl TR_STS1 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_dme_viol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -56,8 +56,8 @@ impl TR_STS1 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_frloss(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -66,8 +66,8 @@ impl TR_STS1 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_gain_fail(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -76,8 +76,8 @@ impl TR_STS1 {
         (self.0 & 0x1f0) >> 4
     }
     pub fn set_lpt_sm(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 4;
-        assert!(value <= 0x1f0);
         self.0 &= !0x1f0;
         self.0 |= value;
     }
@@ -86,8 +86,8 @@ impl TR_STS1 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_training(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -105,8 +105,8 @@ impl TR_STS1 {
         (self.0 & 0xe00) >> 9
     }
     pub fn set_tr_sm(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 9;
-        assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
     }

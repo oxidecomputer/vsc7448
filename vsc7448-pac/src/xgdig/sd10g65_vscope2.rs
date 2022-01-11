@@ -68,8 +68,8 @@ impl VSCOPE_HW_SCAN_CFG1 {
         (self.0 & 0x70) >> 4
     }
     pub fn set_ampl_incr(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -78,8 +78,8 @@ impl VSCOPE_HW_SCAN_CFG1 {
         (self.0 & 0x3e000000) >> 25
     }
     pub fn set_ampl_offs_val(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 25;
-        assert!(value <= 0x3e000000);
         self.0 &= !0x3e000000;
         self.0 |= value;
     }
@@ -99,8 +99,8 @@ impl VSCOPE_HW_SCAN_CFG1 {
         (self.0 & 0xfc00) >> 10
     }
     pub fn set_max_ampl_incr_val(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 10;
-        assert!(value <= 0xfc00);
         self.0 &= !0xfc00;
         self.0 |= value;
     }
@@ -109,8 +109,8 @@ impl VSCOPE_HW_SCAN_CFG1 {
         (self.0 & 0x1fe0000) >> 17
     }
     pub fn set_max_phase_incr_val(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 17;
-        assert!(value <= 0x1fe0000);
         self.0 &= !0x1fe0000;
         self.0 |= value;
     }
@@ -121,8 +121,8 @@ impl VSCOPE_HW_SCAN_CFG1 {
         (self.0 & 0xc) >> 2
     }
     pub fn set_num_scans_per_itr(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -133,8 +133,8 @@ impl VSCOPE_HW_SCAN_CFG1 {
         (self.0 & 0x380) >> 7
     }
     pub fn set_phase_incr(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 7;
-        assert!(value <= 0x380);
         self.0 &= !0x380;
         self.0 |= value;
     }
@@ -143,8 +143,8 @@ impl VSCOPE_HW_SCAN_CFG1 {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_phase_jump_inv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -160,8 +160,8 @@ impl VSCOPE_HW_SCAN_CFG2 {
         (self.0 & 0x3f00) >> 8
     }
     pub fn set_ampl_start_val(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 8;
-        assert!(value <= 0x3f00);
         self.0 &= !0x3f00;
         self.0 |= value;
     }
@@ -170,8 +170,8 @@ impl VSCOPE_HW_SCAN_CFG2 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_aux_ampl_sym_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -182,8 +182,8 @@ impl VSCOPE_HW_SCAN_CFG2 {
         (self.0 & 0xe0000000) >> 29
     }
     pub fn set_fast_scan_thres(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 29;
-        assert!(value <= 0xe0000000);
         self.0 &= !0xe0000000;
         self.0 |= value;
     }
@@ -194,8 +194,8 @@ impl VSCOPE_HW_SCAN_CFG2 {
         (self.0 & 0x1f000000) >> 24
     }
     pub fn set_fs_thres_shift(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 24;
-        assert!(value <= 0x1f000000);
         self.0 &= !0x1f000000;
         self.0 |= value;
     }
@@ -204,8 +204,8 @@ impl VSCOPE_HW_SCAN_CFG2 {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_phase_jump_val(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -232,8 +232,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_cnt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -244,8 +244,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x1c000000) >> 26
     }
     pub fn set_cnt_out_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 26;
-        assert!(value <= 0x1c000000);
         self.0 &= !0x1c000000;
         self.0 |= value;
     }
@@ -256,8 +256,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x3800000) >> 23
     }
     pub fn set_comp_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 23;
-        assert!(value <= 0x3800000);
         self.0 &= !0x3800000;
         self.0 |= value;
     }
@@ -268,8 +268,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x3e0) >> 5
     }
     pub fn set_count_per(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 5;
-        assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
     }
@@ -278,8 +278,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_gp_reg_freeze(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -290,8 +290,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x600000) >> 21
     }
     pub fn set_gp_select(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 21;
-        assert!(value <= 0x600000);
         self.0 &= !0x600000;
         self.0 |= value;
     }
@@ -300,8 +300,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_ib_aux_offs_wr_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -310,8 +310,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_ib_jump_ena_wr_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -322,8 +322,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0xe) >> 1
     }
     pub fn set_if_mode(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 1;
-        assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
     }
@@ -332,8 +332,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_intr_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -344,8 +344,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x3e000) >> 13
     }
     pub fn set_preload_val(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 13;
-        assert!(value <= 0x3e000);
         self.0 &= !0x3e000;
         self.0 |= value;
     }
@@ -354,8 +354,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_quick_scan(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -366,8 +366,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0xc0000) >> 18
     }
     pub fn set_scan_lim(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 18;
-        assert!(value <= 0xc0000);
         self.0 &= !0xc0000;
         self.0 |= value;
     }
@@ -376,8 +376,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_syn_phase_wr_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -386,8 +386,8 @@ impl VSCOPE_MAIN_CFG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_trig_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -414,8 +414,8 @@ impl VSCOPE_PAT_LOCK_CFG {
         (self.0 & 0xffc00) >> 10
     }
     pub fn set_dc_mask(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 10;
-        assert!(value <= 0xffc00);
         self.0 &= !0xffc00;
         self.0 |= value;
     }
@@ -435,8 +435,8 @@ impl VSCOPE_PAT_LOCK_CFG {
         (self.0 & 0x1f00000) >> 20
     }
     pub fn set_preload_hit_cnt(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 20;
-        assert!(value <= 0x1f00000);
         self.0 &= !0x1f00000;
         self.0 |= value;
     }
@@ -461,8 +461,8 @@ impl VSCOPE_STAT {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_fast_scan_hit(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -471,8 +471,8 @@ impl VSCOPE_STAT {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_gp_reg_msb(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }

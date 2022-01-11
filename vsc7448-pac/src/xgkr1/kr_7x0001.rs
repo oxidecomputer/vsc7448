@@ -36,8 +36,8 @@ impl KR_7X0001 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_an_able(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl KR_7X0001 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_an_complete(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -65,8 +65,8 @@ impl KR_7X0001 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_linkstat(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -75,8 +75,8 @@ impl KR_7X0001 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_npstat(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -85,8 +85,8 @@ impl KR_7X0001 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_pardetflt(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -95,8 +95,8 @@ impl KR_7X0001 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_pg_rcvd(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -105,8 +105,8 @@ impl KR_7X0001 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rem_flt(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }

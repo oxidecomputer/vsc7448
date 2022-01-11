@@ -49,8 +49,8 @@ impl CPU_FC_CFG {
         (self.0 & 0xe) >> 1
     }
     pub fn set_cpu_fc_wm(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 1;
-        assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
     }
@@ -73,8 +73,8 @@ impl INJ_VLAN_CFG {
         (self.0 & 0xfff0000) >> 16
     }
     pub fn set_inj_vid_cfg(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 16;
-        assert!(value <= 0xfff0000);
         self.0 &= !0xfff0000;
         self.0 |= value;
     }
@@ -124,8 +124,8 @@ impl PAUSE_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_abort_ctrl_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -152,8 +152,8 @@ impl PORT_CFG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_csc_stat_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -164,8 +164,8 @@ impl PORT_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_frm_aging_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -174,8 +174,8 @@ impl PORT_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_hih_after_preamble_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -184,8 +184,8 @@ impl PORT_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ign_taxi_abort_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -196,8 +196,8 @@ impl PORT_CFG {
         (self.0 & 0x18) >> 3
     }
     pub fn set_inj_discard_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 3;
-        assert!(value <= 0x18);
         self.0 &= !0x18;
         self.0 |= value;
     }
@@ -208,8 +208,8 @@ impl PORT_CFG {
         (self.0 & 0x6) >> 1
     }
     pub fn set_inj_format_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -218,8 +218,8 @@ impl PORT_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_no_preamble_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -230,8 +230,8 @@ impl PORT_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_pad_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -240,8 +240,8 @@ impl PORT_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_skip_preamble_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }

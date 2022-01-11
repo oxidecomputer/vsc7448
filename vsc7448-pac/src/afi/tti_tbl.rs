@@ -73,8 +73,8 @@ impl TTI_PORT_QU {
         (self.0 & 0xffff00) >> 8
     }
     pub fn set_qu_num(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 8;
-        assert!(value <= 0xffff00);
         self.0 &= !0xffff00;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl TTI_TICKS {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_last_tick_era(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -114,8 +114,8 @@ impl TTI_TIMER {
         (self.0 & 0x30) >> 4
     }
     pub fn set_jitter(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -133,8 +133,8 @@ impl TTI_TIMER {
         (self.0 & 0x40) >> 6
     }
     pub fn set_timer_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -145,8 +145,8 @@ impl TTI_TIMER {
         (self.0 & 0x1ff0000) >> 16
     }
     pub fn set_timer_len(&mut self, value: u32) {
+        assert!(value <= 0x1ff);
         let value = value << 16;
-        assert!(value <= 0x1ff0000);
         self.0 &= !0x1ff0000;
         self.0 |= value;
     }

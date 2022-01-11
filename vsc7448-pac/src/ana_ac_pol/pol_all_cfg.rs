@@ -40,8 +40,8 @@ impl POL_ACL_CTRL {
         (self.0 & 0x78) >> 3
     }
     pub fn set_acl_pipeline_pt(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 3;
-        assert!(value <= 0x78);
         self.0 &= !0x78;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl POL_ACL_CTRL {
         (self.0 & 0x6) >> 1
     }
     pub fn set_acl_traffic_type_mask(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -64,8 +64,8 @@ impl POL_ACL_CTRL {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_dp_bypass_lvl(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -87,8 +87,8 @@ impl POL_ACL_CTRL {
         (self.0 & 0x7f00) >> 8
     }
     pub fn set_gap_value(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 8;
-        assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
     }
@@ -136,8 +136,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_acl_force_close(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -148,8 +148,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_acl_force_init(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -160,8 +160,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_acl_force_open(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -170,8 +170,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_dbg_dp_chg_prio_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -182,8 +182,8 @@ impl POL_ALL_CFG {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_dp_to_color_map(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -194,8 +194,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_force_close(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -217,8 +217,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_force_open(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -229,8 +229,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_lport_police_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -239,8 +239,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_port_fc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -251,8 +251,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_port_pol_in_parallel_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -263,8 +263,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_prio_force_close(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -275,8 +275,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_prio_force_init(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -287,8 +287,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_prio_force_open(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -299,8 +299,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_storm_force_close(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -311,8 +311,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_storm_force_init(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -323,8 +323,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_storm_force_open(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -335,8 +335,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x7f000000) >> 24
     }
     pub fn set_storm_gap_value(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 24;
-        assert!(value <= 0x7f000000);
         self.0 &= !0x7f000000;
         self.0 |= value;
     }
@@ -347,8 +347,8 @@ impl POL_ALL_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_use_sdlb_color_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -375,8 +375,8 @@ impl POL_PORT_FC_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_fc_state(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -392,8 +392,8 @@ impl POL_STICKY {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pol_acl_active_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -404,8 +404,8 @@ impl POL_STICKY {
         (self.0 & 0x400) >> 10
     }
     pub fn set_pol_acl_bypass_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -416,8 +416,8 @@ impl POL_STICKY {
         (self.0 & 0x800) >> 11
     }
     pub fn set_pol_acl_drop_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -428,8 +428,8 @@ impl POL_STICKY {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_pol_acl_pt_bypass_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -440,8 +440,8 @@ impl POL_STICKY {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_pol_dlb_drop_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -452,8 +452,8 @@ impl POL_STICKY {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_pol_dlb_pt_bypass_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -464,8 +464,8 @@ impl POL_STICKY {
         (self.0 & 0x1e0) >> 5
     }
     pub fn set_pol_port_active_sticky(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 5;
-        assert!(value <= 0x1e0);
         self.0 &= !0x1e0;
         self.0 |= value;
     }
@@ -487,8 +487,8 @@ impl POL_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pol_port_drop_cpu_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -499,8 +499,8 @@ impl POL_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_pol_port_drop_fwd_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -511,8 +511,8 @@ impl POL_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_pol_port_fc_clear_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -523,8 +523,8 @@ impl POL_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_pol_port_fc_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -535,8 +535,8 @@ impl POL_STICKY {
         (self.0 & 0x200) >> 9
     }
     pub fn set_pol_port_pt_bypass_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -547,8 +547,8 @@ impl POL_STICKY {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_pol_prio_active_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -559,8 +559,8 @@ impl POL_STICKY {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_pol_prio_bypass_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -571,8 +571,8 @@ impl POL_STICKY {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_pol_prio_drop_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -583,8 +583,8 @@ impl POL_STICKY {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_pol_prio_pt_bypass_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -595,8 +595,8 @@ impl POL_STICKY {
         (self.0 & 0x3fc00000) >> 22
     }
     pub fn set_pol_storm_active_sticky(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 22;
-        assert!(value <= 0x3fc00000);
         self.0 &= !0x3fc00000;
         self.0 |= value;
     }
@@ -607,8 +607,8 @@ impl POL_STICKY {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_pol_storm_drop_cpu_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -619,8 +619,8 @@ impl POL_STICKY {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_pol_storm_drop_fwd_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -647,8 +647,8 @@ impl POL_STICKY1 {
         (self.0 & 0x1c) >> 2
     }
     pub fn set_pol_bum_slb_active_sticky(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 2;
-        assert!(value <= 0x1c);
         self.0 &= !0x1c;
         self.0 |= value;
     }
@@ -659,8 +659,8 @@ impl POL_STICKY1 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pol_bum_slb_drop_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -676,8 +676,8 @@ impl POL_STORM_CTRL {
         (self.0 & 0x3fc00) >> 10
     }
     pub fn set_storm_cpu_qu_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 10;
-        assert!(value <= 0x3fc00);
         self.0 &= !0x3fc00;
         self.0 |= value;
     }
@@ -688,8 +688,8 @@ impl POL_STORM_CTRL {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_storm_frame_rate_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -700,8 +700,8 @@ impl POL_STORM_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_storm_limit_cpu_traffic_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -712,8 +712,8 @@ impl POL_STORM_CTRL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_storm_limit_noncpu_traffic_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }

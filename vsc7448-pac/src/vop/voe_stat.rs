@@ -38,8 +38,8 @@ impl AUTO_HIT_ME_ONCE {
         (self.0 & 0x200) >> 9
     }
     pub fn set_hmo_ccm_rx_bad_nxt(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl AUTO_HIT_ME_ONCE {
         (self.0 & 0x800) >> 11
     }
     pub fn set_hmo_ccm_rx_ccm_nxt(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -58,8 +58,8 @@ impl AUTO_HIT_ME_ONCE {
         (self.0 & 0x400) >> 10
     }
     pub fn set_hmo_ccm_rx_tlv_non_zero(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -77,8 +77,8 @@ impl AUTO_HIT_ME_ONCE {
         (self.0 & 0x100) >> 8
     }
     pub fn set_hmo_rx_test_frm_nxt(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -87,8 +87,8 @@ impl AUTO_HIT_ME_ONCE {
         (self.0 & 0x7000) >> 12
     }
     pub fn set_hmo_slot(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 12;
-        assert!(value <= 0x7000);
         self.0 &= !0x7000;
         self.0 |= value;
     }
@@ -120,8 +120,8 @@ impl CCM_RX_ERR_1 {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_ccm_rx_megid_err_cnt(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -155,8 +155,8 @@ impl CCM_RX_FRM_CNT {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_ccm_rx_vld_fc_cnt(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -174,8 +174,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ccm_loc_defect(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -186,8 +186,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ccm_megid_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -198,8 +198,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ccm_mepid_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -210,8 +210,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ccm_period_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -222,8 +222,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ccm_prio_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -245,8 +245,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ccm_rx_rdi(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -257,8 +257,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x7e000) >> 13
     }
     pub fn set_ccm_rx_src_port(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 13;
-        assert!(value <= 0x7e000);
         self.0 &= !0x7e000;
         self.0 |= value;
     }
@@ -269,8 +269,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x20) >> 5
     }
     pub fn set_ccm_zero_period_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -279,8 +279,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x700) >> 8
     }
     pub fn set_tlv_interface_status(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 8;
-        assert!(value <= 0x700);
         self.0 &= !0x700;
         self.0 |= value;
     }
@@ -289,8 +289,8 @@ impl CCM_RX_LAST {
         (self.0 & 0x1800) >> 11
     }
     pub fn set_tlv_port_status(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 11;
-        assert!(value <= 0x1800);
         self.0 &= !0x1800;
         self.0 |= value;
     }
@@ -329,8 +329,8 @@ impl CCM_RX_WARNING {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_ccm_rx_seqno_err_cnt(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -346,8 +346,8 @@ impl CCM_STAT {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ccm_lm_insert_nxt(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -358,8 +358,8 @@ impl CCM_STAT {
         (self.0 & 0x38) >> 3
     }
     pub fn set_ccm_miss_cnt(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 3;
-        assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
     }
@@ -377,8 +377,8 @@ impl CCM_STAT {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ccm_tx_rdi(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -408,8 +408,8 @@ impl DM_PDU_CNT {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_dmm_rx_pdu_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -418,8 +418,8 @@ impl DM_PDU_CNT {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_dmm_tx_pdu_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -437,8 +437,8 @@ impl DM_PDU_CNT {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_dmr_tx_pdu_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -456,8 +456,8 @@ impl INTR_ENA {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ccm_loc_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -468,8 +468,8 @@ impl INTR_ENA {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ccm_megid_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -480,8 +480,8 @@ impl INTR_ENA {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ccm_mepid_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -492,8 +492,8 @@ impl INTR_ENA {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ccm_period_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -504,8 +504,8 @@ impl INTR_ENA {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ccm_prio_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -527,8 +527,8 @@ impl INTR_ENA {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ccm_rx_rdi_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -537,8 +537,8 @@ impl INTR_ENA {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ccm_rx_src_port_detect_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -549,8 +549,8 @@ impl INTR_ENA {
         (self.0 & 0x20) >> 5
     }
     pub fn set_ccm_zero_period_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -559,8 +559,8 @@ impl INTR_ENA {
         (self.0 & 0x100) >> 8
     }
     pub fn set_tlv_interface_status_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -569,8 +569,8 @@ impl INTR_ENA {
         (self.0 & 0x200) >> 9
     }
     pub fn set_tlv_port_status_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -588,8 +588,8 @@ impl INTR_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ccm_loc_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -600,8 +600,8 @@ impl INTR_STICKY {
         (self.0 & 0x20) >> 5
     }
     pub fn set_ccm_megid_rx_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -612,8 +612,8 @@ impl INTR_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ccm_mepid_rx_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -624,8 +624,8 @@ impl INTR_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ccm_period_rx_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -636,8 +636,8 @@ impl INTR_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ccm_prio_rx_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -648,8 +648,8 @@ impl INTR_STICKY {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ccm_rx_mel_low_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -671,8 +671,8 @@ impl INTR_STICKY {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ccm_rx_src_port_detect_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -683,8 +683,8 @@ impl INTR_STICKY {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ccm_zero_period_rx_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -693,8 +693,8 @@ impl INTR_STICKY {
         (self.0 & 0x100) >> 8
     }
     pub fn set_tlv_interface_status_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -703,8 +703,8 @@ impl INTR_STICKY {
         (self.0 & 0x200) >> 9
     }
     pub fn set_tlv_port_status_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -790,8 +790,8 @@ impl LM_PDU_CNT {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_lmm_rx_pdu_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -800,8 +800,8 @@ impl LM_PDU_CNT {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_lmm_tx_pdu_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -819,8 +819,8 @@ impl LM_PDU_CNT {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_lmr_tx_pdu_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -838,8 +838,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ccm_lm_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -850,8 +850,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ccm_rx_seq_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -862,8 +862,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_ccm_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -874,8 +874,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ccm_rx_tlv_non_zero_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -886,8 +886,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x20) >> 5
     }
     pub fn set_dmac_rx_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -898,8 +898,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_dmm_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -910,8 +910,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_dmr_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -920,8 +920,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_generic_rx_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -932,8 +932,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_lbm_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -944,8 +944,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_lbr_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -956,8 +956,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x40) >> 6
     }
     pub fn set_lbr_transid_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -968,8 +968,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_lmm_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -980,8 +980,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_lmr_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -992,8 +992,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_ltm_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -1004,8 +1004,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_ltr_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -1016,8 +1016,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x80) >> 7
     }
     pub fn set_non_oam_seq_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -1028,8 +1028,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_pdu_version_rx_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -1047,8 +1047,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_rx_mel_low_block_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1059,8 +1059,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_sdm_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -1071,8 +1071,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x100) >> 8
     }
     pub fn set_sl1_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -1083,8 +1083,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x400) >> 10
     }
     pub fn set_slm_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -1095,8 +1095,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x200) >> 9
     }
     pub fn set_slr_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -1107,8 +1107,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_tst_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -1119,8 +1119,8 @@ impl OAM_RX_STICKY {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_unk_opcode_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -1145,8 +1145,8 @@ impl OAM_RX_STICKY2 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_g_8113_1_lbx_rx_illegal_mexid_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1155,8 +1155,8 @@ impl OAM_RX_STICKY2 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_g_8113_1_lbx_rx_illegal_subtype_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -1165,8 +1165,8 @@ impl OAM_RX_STICKY2 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_g_8113_1_lbx_rx_missing_tlv_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -1175,8 +1175,8 @@ impl OAM_RX_STICKY2 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rx_ini_illegal_mepid_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -1185,8 +1185,8 @@ impl OAM_RX_STICKY2 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_rx_slm_mepid_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -1195,8 +1195,8 @@ impl OAM_RX_STICKY2 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_rx_slm_prio_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -1205,8 +1205,8 @@ impl OAM_RX_STICKY2 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_rx_slm_testid_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -1222,8 +1222,8 @@ impl OAM_TX_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tx_block_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1250,8 +1250,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ccm_megid_rx_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -1262,8 +1262,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ccm_mepid_rx_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -1274,8 +1274,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ccm_period_rx_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -1286,8 +1286,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ccm_prio_rx_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -1298,8 +1298,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ccm_rx_ccm_nxt_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -1310,8 +1310,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ccm_rx_tlv_non_zero_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -1322,8 +1322,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_ccm_zero_period_rx_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -1334,8 +1334,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_dmac_rx_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -1346,8 +1346,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_extract_hit_me_once(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -1356,8 +1356,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_g_8113_1_lbm_rx_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1377,8 +1377,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pdu_version_rx_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -1389,8 +1389,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_rx_mel_high_block_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -1401,8 +1401,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_rx_mel_low_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -1413,8 +1413,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x20) >> 5
     }
     pub fn set_rx_test_frm_nxt_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -1425,8 +1425,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_sam_rx_seq_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -1437,8 +1437,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_sl_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -1449,8 +1449,8 @@ impl PDU_EXTRACT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tx_block_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -1522,8 +1522,8 @@ impl SYNLM_EXTRACT {
         (self.0 & 0x100) >> 8
     }
     pub fn set_extract_hmo(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }

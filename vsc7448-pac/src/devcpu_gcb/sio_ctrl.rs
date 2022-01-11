@@ -36,8 +36,8 @@ impl SIO_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_sio_auto_repeat(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl SIO_CFG {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_sio_blink_reset(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -60,8 +60,8 @@ impl SIO_CFG {
         (self.0 & 0x180000) >> 19
     }
     pub fn set_sio_bmode_0(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 19;
-        assert!(value <= 0x180000);
         self.0 &= !0x180000;
         self.0 |= value;
     }
@@ -72,8 +72,8 @@ impl SIO_CFG {
         (self.0 & 0x600000) >> 21
     }
     pub fn set_sio_bmode_1(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 21;
-        assert!(value <= 0x600000);
         self.0 &= !0x600000;
         self.0 |= value;
     }
@@ -84,8 +84,8 @@ impl SIO_CFG {
         (self.0 & 0x1f000) >> 12
     }
     pub fn set_sio_burst_gap(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 12;
-        assert!(value <= 0x1f000);
         self.0 &= !0x1f000;
         self.0 |= value;
     }
@@ -94,8 +94,8 @@ impl SIO_CFG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_sio_burst_gap_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -106,8 +106,8 @@ impl SIO_CFG {
         (self.0 & 0x1e) >> 1
     }
     pub fn set_sio_gpio_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 1;
-        assert!(value <= 0x1e);
         self.0 &= !0x1e;
         self.0 |= value;
     }
@@ -118,8 +118,8 @@ impl SIO_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_sio_ld_polarity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -141,8 +141,8 @@ impl SIO_CFG {
         (self.0 & 0x180) >> 7
     }
     pub fn set_sio_port_width(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 7;
-        assert!(value <= 0x180);
         self.0 &= !0x180;
         self.0 |= value;
     }
@@ -153,8 +153,8 @@ impl SIO_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sio_reverse_input(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -165,8 +165,8 @@ impl SIO_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_sio_reverse_output(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -175,8 +175,8 @@ impl SIO_CFG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_sio_single_shot(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -192,8 +192,8 @@ impl SIO_CLOCK {
         (self.0 & 0xfff00) >> 8
     }
     pub fn set_sio_clk_freq(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 8;
-        assert!(value <= 0xfff00);
         self.0 &= !0xfff00;
         self.0 |= value;
     }
@@ -335,8 +335,8 @@ impl SIO_PORT_CFG {
         (self.0 & 0xfff000) >> 12
     }
     pub fn set_bit_source(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 12;
-        assert!(value <= 0xfff000);
         self.0 &= !0xfff000;
         self.0 |= value;
     }
@@ -347,8 +347,8 @@ impl SIO_PORT_CFG {
         (self.0 & 0xff0) >> 4
     }
     pub fn set_pwm_source(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 4;
-        assert!(value <= 0xff0);
         self.0 &= !0xff0;
         self.0 |= value;
     }

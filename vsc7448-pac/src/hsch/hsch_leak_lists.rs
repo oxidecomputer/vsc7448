@@ -45,8 +45,8 @@ impl HSCH_LEAK_CFG {
         (self.0 & 0xfffe) >> 1
     }
     pub fn set_leak_first(&mut self, value: u32) {
+        assert!(value <= 0x7fff);
         let value = value << 1;
-        assert!(value <= 0xfffe);
         self.0 &= !0xfffe;
         self.0 |= value;
     }

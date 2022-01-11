@@ -38,8 +38,8 @@ impl POL_PORT_CFG {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_cpu_qu_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -50,8 +50,8 @@ impl POL_PORT_CFG {
         (self.0 & 0x3000) >> 12
     }
     pub fn set_dp_bypass_lvl(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 12;
-        assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
     }
@@ -62,8 +62,8 @@ impl POL_PORT_CFG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_frame_rate_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -74,8 +74,8 @@ impl POL_PORT_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_limit_cpu_traffic_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -86,8 +86,8 @@ impl POL_PORT_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_limit_noncpu_traffic_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -98,8 +98,8 @@ impl POL_PORT_CFG {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_service_bypass_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -137,8 +137,8 @@ impl POL_PORT_GAP {
         (self.0 & 0xf80) >> 7
     }
     pub fn set_port_pipeline_pt(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 7;
-        assert!(value <= 0xf80);
         self.0 &= !0xf80;
         self.0 |= value;
     }

@@ -38,8 +38,8 @@ impl SERDES6G_ACJTAG_STATUS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_acjtag_capt_data_n(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl SERDES6G_ACJTAG_STATUS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_acjtag_capt_data_p(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -74,8 +74,8 @@ impl SERDES6G_IB_STATUS0 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ib_cal_done(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -84,8 +84,8 @@ impl SERDES6G_IB_STATUS0 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ib_hp_gain_act(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -94,8 +94,8 @@ impl SERDES6G_IB_STATUS0 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_ib_lp_gain_act(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -104,8 +104,8 @@ impl SERDES6G_IB_STATUS0 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ib_mid_gain_act(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -114,8 +114,8 @@ impl SERDES6G_IB_STATUS0 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ib_offsdir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -124,8 +124,8 @@ impl SERDES6G_IB_STATUS0 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ib_offset_act(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -134,8 +134,8 @@ impl SERDES6G_IB_STATUS0 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ib_offset_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -144,8 +144,8 @@ impl SERDES6G_IB_STATUS0 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ib_offset_vld(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -170,8 +170,8 @@ impl SERDES6G_IB_STATUS1 {
         (self.0 & 0xfc0000) >> 18
     }
     pub fn set_ib_hp_gain_stat(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 18;
-        assert!(value <= 0xfc0000);
         self.0 &= !0xfc0000;
         self.0 |= value;
     }
@@ -180,8 +180,8 @@ impl SERDES6G_IB_STATUS1 {
         (self.0 & 0xfc0) >> 6
     }
     pub fn set_ib_lp_gain_stat(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 6;
-        assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
     }
@@ -190,8 +190,8 @@ impl SERDES6G_IB_STATUS1 {
         (self.0 & 0x3f000) >> 12
     }
     pub fn set_ib_mid_gain_stat(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 12;
-        assert!(value <= 0x3f000);
         self.0 &= !0x3f000;
         self.0 |= value;
     }
@@ -218,8 +218,8 @@ impl SERDES6G_PLL_STATUS {
         (self.0 & 0x200) >> 9
     }
     pub fn set_pll_cal_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -230,8 +230,8 @@ impl SERDES6G_PLL_STATUS {
         (self.0 & 0x400) >> 10
     }
     pub fn set_pll_cal_not_done(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -242,8 +242,8 @@ impl SERDES6G_PLL_STATUS {
         (self.0 & 0x100) >> 8
     }
     pub fn set_pll_out_of_range_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -268,8 +268,8 @@ impl SERDES6G_REVID {
         (self.0 & 0xfc00) >> 10
     }
     pub fn set_des_rev(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 10;
-        assert!(value <= 0xfc00);
         self.0 &= !0xfc00;
         self.0 |= value;
     }
@@ -287,8 +287,8 @@ impl SERDES6G_REVID {
         (self.0 & 0x3e0) >> 5
     }
     pub fn set_ob_rev(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 5;
-        assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
     }
@@ -297,8 +297,8 @@ impl SERDES6G_REVID {
         (self.0 & 0x3e00000) >> 21
     }
     pub fn set_rcpll_rev(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 21;
-        assert!(value <= 0x3e00000);
         self.0 &= !0x3e00000;
         self.0 |= value;
     }
@@ -307,8 +307,8 @@ impl SERDES6G_REVID {
         (self.0 & 0xfc000000) >> 26
     }
     pub fn set_serdes_rev(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 26;
-        assert!(value <= 0xfc000000);
         self.0 &= !0xfc000000;
         self.0 |= value;
     }
@@ -317,8 +317,8 @@ impl SERDES6G_REVID {
         (self.0 & 0x1f0000) >> 16
     }
     pub fn set_ser_rev(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 16;
-        assert!(value <= 0x1f0000);
         self.0 &= !0x1f0000;
         self.0 |= value;
     }

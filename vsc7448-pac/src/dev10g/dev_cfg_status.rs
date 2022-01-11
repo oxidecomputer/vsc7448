@@ -51,8 +51,8 @@ impl DEV_LB_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_taxi_phy_lb_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -68,8 +68,8 @@ impl DEV_MISC_CFG {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_rx_resync_max_fill_lvl_clr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -80,8 +80,8 @@ impl DEV_MISC_CFG {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_tx_fcs_update_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -110,8 +110,8 @@ impl DEV_PORT_PROTECT {
         (self.0 & 0x30) >> 4
     }
     pub fn set_port_protect_id(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -138,8 +138,8 @@ impl DEV_RST_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_mac_tx_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -150,8 +150,8 @@ impl DEV_RST_CTRL {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_pardet_mode_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -162,8 +162,8 @@ impl DEV_RST_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_pcs_rx_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -174,8 +174,8 @@ impl DEV_RST_CTRL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pcs_tx_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -186,8 +186,8 @@ impl DEV_RST_CTRL {
         (self.0 & 0x700000) >> 20
     }
     pub fn set_speed_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 20;
-        assert!(value <= 0x700000);
         self.0 &= !0x700000;
         self.0 |= value;
     }
@@ -219,8 +219,8 @@ impl DEV_STICKY {
         (self.0 & 0x100) >> 8
     }
     pub fn set_rx_eof_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -231,8 +231,8 @@ impl DEV_STICKY {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rx_resync_fifo_oflw_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -243,8 +243,8 @@ impl DEV_STICKY {
         (self.0 & 0x400) >> 10
     }
     pub fn set_rx_sof_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -255,8 +255,8 @@ impl DEV_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tx_eof_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -267,8 +267,8 @@ impl DEV_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tx_sof_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -282,8 +282,8 @@ impl EEE_CFG {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_eee_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -294,8 +294,8 @@ impl EEE_CFG {
         (self.0 & 0x3f8000) >> 15
     }
     pub fn set_eee_timer_age(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 15;
-        assert!(value <= 0x3f8000);
         self.0 &= !0x3f8000;
         self.0 |= value;
     }
@@ -306,8 +306,8 @@ impl EEE_CFG {
         (self.0 & 0xfe) >> 1
     }
     pub fn set_eee_timer_holdoff(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 1;
-        assert!(value <= 0xfe);
         self.0 &= !0xfe;
         self.0 |= value;
     }
@@ -318,8 +318,8 @@ impl EEE_CFG {
         (self.0 & 0x7f00) >> 8
     }
     pub fn set_eee_timer_wakeup(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 8;
-        assert!(value <= 0x7f00);
         self.0 &= !0x7f00;
         self.0 |= value;
     }
@@ -357,8 +357,8 @@ impl INTR {
         (self.0 & 0x2) >> 1
     }
     pub fn set_link_up_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -367,8 +367,8 @@ impl INTR {
         (self.0 & 0x10) >> 4
     }
     pub fn set_pcs_br_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -379,8 +379,8 @@ impl INTR {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rx_lpi_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -391,8 +391,8 @@ impl INTR {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tx_lpi_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -417,8 +417,8 @@ impl INTR_ENA {
         (self.0 & 0x2) >> 1
     }
     pub fn set_link_up_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -427,8 +427,8 @@ impl INTR_ENA {
         (self.0 & 0x10) >> 4
     }
     pub fn set_pcs_br_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -437,8 +437,8 @@ impl INTR_ENA {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rx_lpi_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -447,8 +447,8 @@ impl INTR_ENA {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tx_lpi_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -473,8 +473,8 @@ impl INTR_IDENT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_link_up_intr_ident(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -483,8 +483,8 @@ impl INTR_IDENT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_pcs_br_intr_ident(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -493,8 +493,8 @@ impl INTR_IDENT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rx_lpi_intr_ident(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -503,8 +503,8 @@ impl INTR_IDENT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tx_lpi_intr_ident(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -532,8 +532,8 @@ impl PTP_CFG {
         (self.0 & 0xc0000) >> 18
     }
     pub fn set_ptp_dom(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 18;
-        assert!(value <= 0xc0000);
         self.0 &= !0xc0000;
         self.0 |= value;
     }
@@ -542,8 +542,8 @@ impl PTP_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_ptp_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -552,8 +552,8 @@ impl PTP_CFG {
         (self.0 & 0x3fe00) >> 9
     }
     pub fn set_ptp_rx_io_dly(&mut self, value: u32) {
+        assert!(value <= 0x1ff);
         let value = value << 9;
-        assert!(value <= 0x3fe00);
         self.0 &= !0x3fe00;
         self.0 |= value;
     }
@@ -576,8 +576,8 @@ impl PTP_CFG_BTDLY {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_ptp_rx_bt_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -586,8 +586,8 @@ impl PTP_CFG_BTDLY {
         (self.0 & 0xfc0) >> 6
     }
     pub fn set_ptp_rx_gearbox_ofs(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 6;
-        assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
     }
@@ -596,8 +596,8 @@ impl PTP_CFG_BTDLY {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_ptp_tx_bt_dly(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }

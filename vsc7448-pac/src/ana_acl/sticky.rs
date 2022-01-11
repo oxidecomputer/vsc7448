@@ -36,8 +36,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_sec_type_arp_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_sec_type_custom1_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -56,8 +56,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_sec_type_custom2_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -66,8 +66,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_sec_type_ip4_other_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -76,8 +76,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sec_type_ip4_tcpudp_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -86,8 +86,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x40) >> 6
     }
     pub fn set_sec_type_ip4_vid_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -96,8 +96,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x200) >> 9
     }
     pub fn set_sec_type_ip6_std_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -106,8 +106,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x100) >> 8
     }
     pub fn set_sec_type_ip6_tcpudp_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -116,8 +116,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x400) >> 10
     }
     pub fn set_sec_type_ip6_vid_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -126,8 +126,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x80) >> 7
     }
     pub fn set_sec_type_ip_7tuple_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -145,8 +145,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_sec_type_mac_llc_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -155,8 +155,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_sec_type_mac_snap_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -165,8 +165,8 @@ impl SEC_LOOKUP_STICKY {
         (self.0 & 0x800) >> 11
     }
     pub fn set_sec_type_oam_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }

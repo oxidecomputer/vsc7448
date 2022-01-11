@@ -36,8 +36,8 @@ impl CCM_LM_INFO_REG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ccm_lm_info_vld(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -97,8 +97,8 @@ impl LM_CNT_FRAME {
         (self.0 & 0x2) >> 1
     }
     pub fn set_srv_cnt_frm(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

@@ -72,8 +72,8 @@ impl PCS_XAUI_LPI_STATUS {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rx_lpi_event_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -84,8 +84,8 @@ impl PCS_XAUI_LPI_STATUS {
         (self.0 & 0x100) >> 8
     }
     pub fn set_rx_lpi_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -96,8 +96,8 @@ impl PCS_XAUI_LPI_STATUS {
         (self.0 & 0x200) >> 9
     }
     pub fn set_rx_quiet(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -108,8 +108,8 @@ impl PCS_XAUI_LPI_STATUS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tx_lpi_event_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -131,8 +131,8 @@ impl PCS_XAUI_LPI_STATUS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tx_quiet(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -143,8 +143,8 @@ impl PCS_XAUI_LPI_STATUS {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_wake_err_cnt(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -162,8 +162,8 @@ impl PCS_XAUI_RX_ERROR_STATUS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_alignment_lost_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -174,8 +174,8 @@ impl PCS_XAUI_RX_ERROR_STATUS {
         (self.0 & 0x20) >> 5
     }
     pub fn set_c8b10b_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -258,8 +258,8 @@ impl PCS_XAUI_RX_SEQ_REC_STATUS {
         (self.0 & 0xffffff00) >> 8
     }
     pub fn set_rx_q(&mut self, value: u32) {
+        assert!(value <= 0xffffff);
         let value = value << 8;
-        assert!(value <= 0xffffff00);
         self.0 &= !0xffffff00;
         self.0 |= value;
     }
@@ -288,8 +288,8 @@ impl PCS_XAUI_RX_STATUS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_alignment_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -300,8 +300,8 @@ impl PCS_XAUI_RX_STATUS {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_local_fault_sticky(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -310,8 +310,8 @@ impl PCS_XAUI_RX_STATUS {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_signal_detect(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }

@@ -58,8 +58,8 @@ impl MAP_VAL_A {
         (self.0 & 0x8) >> 3
     }
     pub fn set_dei_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -70,8 +70,8 @@ impl MAP_VAL_A {
         (self.0 & 0x3f0) >> 4
     }
     pub fn set_dscp_val(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 4;
-        assert!(value <= 0x3f0);
         self.0 &= !0x3f0;
         self.0 |= value;
     }
@@ -82,8 +82,8 @@ impl MAP_VAL_A {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_oam_color(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -94,8 +94,8 @@ impl MAP_VAL_A {
         (self.0 & 0xe000) >> 13
     }
     pub fn set_oam_cosid(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 13;
-        assert!(value <= 0xe000);
         self.0 &= !0xe000;
         self.0 |= value;
     }
@@ -117,8 +117,8 @@ impl MAP_VAL_A {
         (self.0 & 0x1c00) >> 10
     }
     pub fn set_tc_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 10;
-        assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
     }

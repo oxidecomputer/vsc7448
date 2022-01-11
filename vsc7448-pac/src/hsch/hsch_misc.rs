@@ -77,8 +77,8 @@ impl EVENTS_CORE {
         (self.0 & 0x1e) >> 1
     }
     pub fn set_ev_frd(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 1;
-        assert!(value <= 0x1e);
         self.0 &= !0x1e;
         self.0 |= value;
     }
@@ -87,8 +87,8 @@ impl EVENTS_CORE {
         (self.0 & 0xfe0) >> 5
     }
     pub fn set_ev_hsch(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 5;
-        assert!(value <= 0xfe0);
         self.0 &= !0xfe0;
         self.0 |= value;
     }
@@ -102,8 +102,8 @@ impl EVENT_ENQ_ERR {
         (self.0 & 0x1f8000) >> 15
     }
     pub fn set_enq_err_port(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 15;
-        assert!(value <= 0x1f8000);
         self.0 &= !0x1f8000;
         self.0 |= value;
     }
@@ -126,8 +126,8 @@ impl FLUSH_CTRL {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_flush_dst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -136,8 +136,8 @@ impl FLUSH_CTRL {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_flush_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -155,8 +155,8 @@ impl FLUSH_CTRL {
         (self.0 & 0x7e0000) >> 17
     }
     pub fn set_flush_port(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 17;
-        assert!(value <= 0x7e0000);
         self.0 &= !0x7e0000;
         self.0 |= value;
     }
@@ -165,8 +165,8 @@ impl FLUSH_CTRL {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_flush_queue(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -175,8 +175,8 @@ impl FLUSH_CTRL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_flush_se(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -185,8 +185,8 @@ impl FLUSH_CTRL {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_flush_src(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -200,8 +200,8 @@ impl HSCH_CFG_CFG {
         (self.0 & 0x3ffc000) >> 14
     }
     pub fn set_cfg_se_idx(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 14;
-        assert!(value <= 0x3ffc000);
         self.0 &= !0x3ffc000;
         self.0 |= value;
     }
@@ -219,8 +219,8 @@ impl HSCH_CFG_CFG {
         (self.0 & 0x3000) >> 12
     }
     pub fn set_hsch_layer(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 12;
-        assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
     }
@@ -245,8 +245,8 @@ impl HSCH_FORCE_CTRL {
         (self.0 & 0x6000) >> 13
     }
     pub fn set_hforce_layer(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 13;
-        assert!(value <= 0x6000);
         self.0 &= !0x6000;
         self.0 |= value;
     }
@@ -255,8 +255,8 @@ impl HSCH_FORCE_CTRL {
         (self.0 & 0x1ffe) >> 1
     }
     pub fn set_hforce_se_idx(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 1;
-        assert!(value <= 0x1ffe);
         self.0 &= !0x1ffe;
         self.0 |= value;
     }
@@ -291,8 +291,8 @@ impl HSCH_MISC_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_leak_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -352,8 +352,8 @@ impl PFC_CFG {
         (self.0 & 0xc0) >> 6
     }
     pub fn set_pfc_layer(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 6;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -378,8 +378,8 @@ impl PORT_MODE {
         (self.0 & 0x8) >> 3
     }
     pub fn set_age_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -399,8 +399,8 @@ impl PORT_MODE {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dequeue_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -409,8 +409,8 @@ impl PORT_MODE {
         (self.0 & 0x2) >> 1
     }
     pub fn set_eir_remark_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -419,8 +419,8 @@ impl PORT_MODE {
         (self.0 & 0x4) >> 2
     }
     pub fn set_trunc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }

@@ -36,8 +36,8 @@ impl TR_BER_OFS {
         (self.0 & 0x3e0) >> 5
     }
     pub fn set_c0_ber_ofs(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 5;
-        assert!(value <= 0x3e0);
         self.0 &= !0x3e0;
         self.0 |= value;
     }
@@ -55,8 +55,8 @@ impl TR_BER_OFS {
         (self.0 & 0x7c00) >> 10
     }
     pub fn set_cp_ber_ofs(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 10;
-        assert!(value <= 0x7c00);
         self.0 &= !0x7c00;
         self.0 |= value;
     }

@@ -36,8 +36,8 @@ impl PI_MST_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ate_mode_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -59,8 +59,8 @@ impl PI_MST_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_clk_pol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -71,8 +71,8 @@ impl PI_MST_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_tristate_ctrl(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl PI_MST_CTRL {
         (self.0 & 0x60) >> 5
     }
     pub fn set_cscc(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 5;
-        assert!(value <= 0x60);
         self.0 &= !0x60;
         self.0 |= value;
     }
@@ -100,8 +100,8 @@ impl PI_MST_CTRL {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_cs_tristate_ctrl(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -112,8 +112,8 @@ impl PI_MST_CTRL {
         (self.0 & 0x1c0000) >> 18
     }
     pub fn set_device_paced_timeout(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 18;
-        assert!(value <= 0x1c0000);
         self.0 &= !0x1c0000;
         self.0 |= value;
     }
@@ -122,8 +122,8 @@ impl PI_MST_CTRL {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_device_paced_timeout_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -134,8 +134,8 @@ impl PI_MST_CTRL {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_device_paced_xfer_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -146,8 +146,8 @@ impl PI_MST_CTRL {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_done_pol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -165,8 +165,8 @@ impl PI_MST_CTRL {
         (self.0 & 0x18) >> 3
     }
     pub fn set_oecc(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 3;
-        assert!(value <= 0x18);
         self.0 &= !0x18;
         self.0 |= value;
     }
@@ -177,8 +177,8 @@ impl PI_MST_CTRL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_smpl_on_done(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -187,8 +187,8 @@ impl PI_MST_CTRL {
         (self.0 & 0x7f80) >> 7
     }
     pub fn set_waitcc(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 7;
-        assert!(value <= 0x7f80);
         self.0 &= !0x7f80;
         self.0 |= value;
     }
@@ -218,8 +218,8 @@ impl PI_SLV_CFG {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_bigendian(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -241,8 +241,8 @@ impl PI_SLV_CFG {
         (self.0 & 0x3f0000) >> 16
     }
     pub fn set_donepark(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 16;
-        assert!(value <= 0x3f0000);
         self.0 &= !0x3f0000;
         self.0 |= value;
     }
@@ -251,8 +251,8 @@ impl PI_SLV_CFG {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_donepol_set(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -261,8 +261,8 @@ impl PI_SLV_CFG {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_donepol_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -273,8 +273,8 @@ impl PI_SLV_CFG {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_donewait(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }

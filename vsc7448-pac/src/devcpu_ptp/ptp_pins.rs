@@ -80,8 +80,8 @@ impl PTP_PIN_CFG {
         (self.0 & 0x70) >> 4
     }
     pub fn set_ptp_pin_action(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -101,8 +101,8 @@ impl PTP_PIN_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ptp_pin_inv_pol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -111,8 +111,8 @@ impl PTP_PIN_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ptp_pin_sync(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }

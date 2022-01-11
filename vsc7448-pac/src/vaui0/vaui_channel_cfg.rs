@@ -40,8 +40,8 @@ impl VAUI_CHANNEL_CFG {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_lane_sync_ena(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -63,8 +63,8 @@ impl VAUI_CHANNEL_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_sigdet_mode_r(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

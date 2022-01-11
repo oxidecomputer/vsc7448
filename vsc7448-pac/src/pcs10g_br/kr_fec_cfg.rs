@@ -38,8 +38,8 @@ impl KR_FEC_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_an_fec_ctrl_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -50,8 +50,8 @@ impl KR_FEC_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_enable_error_indication(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -73,8 +73,8 @@ impl KR_FEC_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_reset_monitor_counters(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -85,8 +85,8 @@ impl KR_FEC_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rx_data_flip(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -97,8 +97,8 @@ impl KR_FEC_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_tx_data_flip(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }

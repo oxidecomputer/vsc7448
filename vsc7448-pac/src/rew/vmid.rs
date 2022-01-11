@@ -49,8 +49,8 @@ impl RLEG_CTRL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rleg_vstax2_was_tagged(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }

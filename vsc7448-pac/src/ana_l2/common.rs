@@ -118,8 +118,8 @@ impl FWD_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_cpu_dmac_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -130,8 +130,8 @@ impl FWD_CFG {
         (self.0 & 0x700) >> 8
     }
     pub fn set_cpu_dmac_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 8;
-        assert!(value <= 0x700);
         self.0 &= !0x700;
         self.0 |= value;
     }
@@ -142,8 +142,8 @@ impl FWD_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_filter_mode_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -152,8 +152,8 @@ impl FWD_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_flood_cpu_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -162,8 +162,8 @@ impl FWD_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_flood_ignore_vlan_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -172,8 +172,8 @@ impl FWD_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_flood_mirror_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -193,8 +193,8 @@ impl FWD_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_isdx_lookup_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -203,8 +203,8 @@ impl FWD_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_loopback_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -215,8 +215,8 @@ impl FWD_CFG {
         (self.0 & 0x300000) >> 20
     }
     pub fn set_mac_tbl_split_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 20;
-        assert!(value <= 0x300000);
         self.0 &= !0x300000;
         self.0 |= value;
     }
@@ -227,8 +227,8 @@ impl FWD_CFG {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_port_default_bdlb_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -239,8 +239,8 @@ impl FWD_CFG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_queue_default_sdlb_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -269,8 +269,8 @@ impl INTR {
         (self.0 & 0x8) >> 3
     }
     pub fn set_lrn_access_complete_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -281,8 +281,8 @@ impl INTR {
         (self.0 & 0x2) >> 1
     }
     pub fn set_port_lrn_limit_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -293,8 +293,8 @@ impl INTR {
         (self.0 & 0x10) >> 4
     }
     pub fn set_super_vcap_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -305,8 +305,8 @@ impl INTR {
         (self.0 & 0x4) >> 2
     }
     pub fn set_vcap_s2_intr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -335,8 +335,8 @@ impl INTR_ENA {
         (self.0 & 0x8) >> 3
     }
     pub fn set_lrn_access_complete_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -347,8 +347,8 @@ impl INTR_ENA {
         (self.0 & 0x2) >> 1
     }
     pub fn set_port_lrn_limit_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -359,8 +359,8 @@ impl INTR_ENA {
         (self.0 & 0x10) >> 4
     }
     pub fn set_super_vcap_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -371,8 +371,8 @@ impl INTR_ENA {
         (self.0 & 0x4) >> 2
     }
     pub fn set_vcap_s2_intr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -399,8 +399,8 @@ impl INTR_IDENT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_lrn_access_complete_intr_ident(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -411,8 +411,8 @@ impl INTR_IDENT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_port_lrn_limit_intr_ident(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -423,8 +423,8 @@ impl INTR_IDENT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_super_vcap_intr_ident(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -435,8 +435,8 @@ impl INTR_IDENT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_vcap_s2_intr_ident(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -454,8 +454,8 @@ impl LRN_CFG {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_aged_before_nonaged(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -466,8 +466,8 @@ impl LRN_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_age_locked_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -478,8 +478,8 @@ impl LRN_CFG {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_age_size(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -490,8 +490,8 @@ impl LRN_CFG {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_auto_lrn_replace_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -502,8 +502,8 @@ impl LRN_CFG {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_auto_lrn_use_mac_cam_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -514,8 +514,8 @@ impl LRN_CFG {
         (self.0 & 0x700000) >> 20
     }
     pub fn set_cpu_fid_limit_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 20;
-        assert!(value <= 0x700000);
         self.0 &= !0x700000;
         self.0 |= value;
     }
@@ -526,8 +526,8 @@ impl LRN_CFG {
         (self.0 & 0x70) >> 4
     }
     pub fn set_cpu_lrn_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -538,8 +538,8 @@ impl LRN_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_cpu_lrn_use_mac_cam_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -557,8 +557,8 @@ impl LRN_CFG {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_ignore_mcidx_portmove_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -567,8 +567,8 @@ impl LRN_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_locked_portmove_copy_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -577,8 +577,8 @@ impl LRN_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_locked_portmove_detect_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -589,8 +589,8 @@ impl LRN_CFG {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_lrn_move_cam_entry_back(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -601,8 +601,8 @@ impl LRN_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_vstax_basic_lrn_mode_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -611,8 +611,8 @@ impl LRN_CFG {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_vstax_lrn_skip_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -773,8 +773,8 @@ impl PORT_DLB_CFG {
         (self.0 & 0x7ffc00) >> 10
     }
     pub fn set_queue_dlb_idx(&mut self, value: u32) {
+        assert!(value <= 0x1fff);
         let value = value << 10;
-        assert!(value <= 0x7ffc00);
         self.0 &= !0x7ffc00;
         self.0 |= value;
     }
@@ -828,8 +828,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x7000) >> 12
     }
     pub fn set_cpu_vstax_qu(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 12;
-        assert!(value <= 0x7000);
         self.0 &= !0x7000;
         self.0 |= value;
     }
@@ -838,8 +838,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x1f0000) >> 16
     }
     pub fn set_own_upsid(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 16;
-        assert!(value <= 0x1f0000);
         self.0 &= !0x1f0000;
         self.0 |= value;
     }
@@ -848,8 +848,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_vstax2_lcpu_cp_acl_rt_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -858,8 +858,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_vstax2_lcpu_cp_move_front_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -868,8 +868,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_vstax2_lcpu_cp_move_stack_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -878,8 +878,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_vstax2_lcpu_cp_new_front_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -888,8 +888,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_vstax2_lcpu_cp_new_stack_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -898,8 +898,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_vstax2_lcpu_cp_nxt_lrn_all_front_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -908,8 +908,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_vstax2_lcpu_cp_refresh_front_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -918,8 +918,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_vstax2_lcpu_cp_refresh_stack_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -928,8 +928,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_vstax2_lcpu_cp_unexp_dst_port_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -938,8 +938,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_vstax2_lrn_all_move_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -957,8 +957,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_vstax2_lrn_all_refresh_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -967,8 +967,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_vstax2_lrn_all_unexp_flood_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -977,8 +977,8 @@ impl VSTAX_CTRL {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_vstax2_nxt_lrn_all_rt_acl_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }

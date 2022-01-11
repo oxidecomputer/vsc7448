@@ -38,8 +38,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_entry_not_found_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_ip4_sip_rpf_filter_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -58,8 +58,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x8000000) >> 27
     }
     pub fn set_ip6_sip_rpf_filter_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 27;
-        assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
     }
@@ -68,8 +68,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_ip_max_len_exceeded_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -78,8 +78,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_l2_mc_fwd_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_l3_mc_fwd_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -98,8 +98,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_mc_looped_cp_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -108,8 +108,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_mc_rpf_filter_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -118,8 +118,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_no_mc_fwd_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -128,8 +128,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_no_mc_vmid_avail_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -138,8 +138,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rleg_mc_hdr_err_redir_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -148,8 +148,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x40) >> 6
     }
     pub fn set_rleg_mc_hit_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -158,8 +158,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rleg_mc_ip_opt_redir_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -168,8 +168,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_rleg_mc_ttl_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -187,8 +187,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_rleg_uc_hdr_err_redir_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -197,8 +197,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x20) >> 5
     }
     pub fn set_rleg_uc_hit_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -207,8 +207,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rleg_uc_ip_opt_redir_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -217,8 +217,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x100) >> 8
     }
     pub fn set_secur_dip_fail_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -227,8 +227,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x400) >> 10
     }
     pub fn set_secur_ip4_dip_match_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -237,8 +237,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_secur_ip4_sip_match_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -247,8 +247,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x800) >> 11
     }
     pub fn set_secur_ip6_dip_match_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -257,8 +257,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x200) >> 9
     }
     pub fn set_secur_ip6_sip_match_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -267,8 +267,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x80) >> 7
     }
     pub fn set_secur_sip_fail_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -277,8 +277,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_uc_entry_found_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -287,8 +287,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_uc_icmp_redir_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -297,8 +297,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_uc_ttl_filtering_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -307,8 +307,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_uc_zero_dmac_found_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -317,8 +317,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x10000000) >> 28
     }
     pub fn set_wrong_dip_lpm_action_type_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 28;
-        assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
     }
@@ -327,8 +327,8 @@ impl L3_ARP_IPMC_STICKY {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_wrong_sip_lpm_action_type_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -342,8 +342,8 @@ impl VLAN_STICKY {
         (self.0 & 0x20) >> 5
     }
     pub fn set_mstp_discard_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -352,8 +352,8 @@ impl VLAN_STICKY {
         (self.0 & 0x40) >> 6
     }
     pub fn set_mstp_fwd_allowed_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -362,8 +362,8 @@ impl VLAN_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_mstp_lrn_allowed_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -372,8 +372,8 @@ impl VLAN_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_mstp_lrn_deny_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -382,8 +382,8 @@ impl VLAN_STICKY {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_port_fwd_deny_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -392,8 +392,8 @@ impl VLAN_STICKY {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_port_lrn_deny_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -411,8 +411,8 @@ impl VLAN_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_vlan_lookup_invld_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -421,8 +421,8 @@ impl VLAN_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_vlan_lrn_deny_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }

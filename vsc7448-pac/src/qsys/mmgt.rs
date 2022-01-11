@@ -45,8 +45,8 @@ impl MMGT {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_relcnt(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -60,8 +60,8 @@ impl MMGT_FAST {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_freevld(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }

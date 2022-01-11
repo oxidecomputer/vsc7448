@@ -36,8 +36,8 @@ impl HW_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_anaout_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl HW_CFG {
         (self.0 & 0x3000) >> 12
     }
     pub fn set_dev10g_0_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 12;
-        assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
     }
@@ -60,8 +60,8 @@ impl HW_CFG {
         (self.0 & 0xc000) >> 14
     }
     pub fn set_dev10g_1_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 14;
-        assert!(value <= 0xc000);
         self.0 &= !0xc000;
         self.0 |= value;
     }
@@ -72,8 +72,8 @@ impl HW_CFG {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_dev10g_2_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -84,8 +84,8 @@ impl HW_CFG {
         (self.0 & 0xc0000) >> 18
     }
     pub fn set_dev10g_3_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 18;
-        assert!(value <= 0xc0000);
         self.0 &= !0xc0000;
         self.0 |= value;
     }
@@ -108,8 +108,8 @@ impl HW_QSGMII_CFG {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_e_det_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -127,8 +127,8 @@ impl HW_QSGMII_CFG {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_shyst_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -137,8 +137,8 @@ impl HW_QSGMII_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_use_i1_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -152,8 +152,8 @@ impl HW_QSGMII_STAT {
         (self.0 & 0x7e) >> 1
     }
     pub fn set_delay_var_x200ps(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 1;
-        assert!(value <= 0x7e);
         self.0 &= !0x7e;
         self.0 |= value;
     }

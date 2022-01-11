@@ -35,8 +35,8 @@ impl ADV_ERR_CAP_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ecrc_check_cap(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -44,8 +44,8 @@ impl ADV_ERR_CAP_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ecrc_check_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -53,8 +53,8 @@ impl ADV_ERR_CAP_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_ecrc_gen_cap(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -62,8 +62,8 @@ impl ADV_ERR_CAP_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ecrc_gen_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -92,8 +92,8 @@ impl AER_EXT_CAP_HDR {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_cap_version(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -101,8 +101,8 @@ impl AER_EXT_CAP_HDR {
         (self.0 & 0xfff00000) >> 20
     }
     pub fn set_next_offset(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 20;
-        assert!(value <= 0xfff00000);
         self.0 &= !0xfff00000;
         self.0 |= value;
     }
@@ -115,8 +115,8 @@ impl CORR_ERR_MASK {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_advisory_non_fatal_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -124,8 +124,8 @@ impl CORR_ERR_MASK {
         (self.0 & 0x80) >> 7
     }
     pub fn set_bad_dllp_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -133,8 +133,8 @@ impl CORR_ERR_MASK {
         (self.0 & 0x40) >> 6
     }
     pub fn set_bad_tlp_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -142,8 +142,8 @@ impl CORR_ERR_MASK {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_corrected_int_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -151,8 +151,8 @@ impl CORR_ERR_MASK {
         (self.0 & 0x100) >> 8
     }
     pub fn set_replay_no_roleover_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -160,8 +160,8 @@ impl CORR_ERR_MASK {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rpl_timer_timeout_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -182,8 +182,8 @@ impl CORR_ERR_STATUS {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_advisory_non_fatal_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -191,8 +191,8 @@ impl CORR_ERR_STATUS {
         (self.0 & 0x80) >> 7
     }
     pub fn set_bad_dllp_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -200,8 +200,8 @@ impl CORR_ERR_STATUS {
         (self.0 & 0x40) >> 6
     }
     pub fn set_bad_tlp_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -209,8 +209,8 @@ impl CORR_ERR_STATUS {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_corrected_int_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -218,8 +218,8 @@ impl CORR_ERR_STATUS {
         (self.0 & 0x100) >> 8
     }
     pub fn set_replay_no_roleover_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -227,8 +227,8 @@ impl CORR_ERR_STATUS {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rpl_timer_timeout_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -293,8 +293,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_atomic_egress_blocked_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -302,8 +302,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_cmplt_abort_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -311,8 +311,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_cmplt_timeout_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -320,8 +320,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dl_protocol_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -329,8 +329,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_ecrc_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -338,8 +338,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_fc_protocol_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -347,8 +347,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_internal_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -356,8 +356,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_malf_tlp_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -365,8 +365,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pois_tlp_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -374,8 +374,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rec_overflow_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -383,8 +383,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sur_dwn_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -392,8 +392,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_unexp_cmplt_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -401,8 +401,8 @@ impl UNCORR_ERR_MASK {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_unsupported_req_err_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -415,8 +415,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_atomic_egress_blocked_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -424,8 +424,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_cmplt_abort_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -433,8 +433,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_cmplt_timeout_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -442,8 +442,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dl_protocol_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -451,8 +451,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_ecrc_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -460,8 +460,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_fc_protocol_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -469,8 +469,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_internal_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -478,8 +478,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_malf_tlp_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -487,8 +487,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pois_tlp_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -496,8 +496,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rec_overflow_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -505,8 +505,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sur_dwn_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -514,8 +514,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_unexp_cmplt_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -523,8 +523,8 @@ impl UNCORR_ERR_SEV {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_unsupported_req_err_severity(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -537,8 +537,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_atomic_egress_blocked_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -546,8 +546,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_cmplt_abort_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -555,8 +555,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_cmplt_timeout_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -564,8 +564,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_dl_protocol_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -573,8 +573,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_ecrc_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -582,8 +582,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_fc_protocol_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -591,8 +591,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_internal_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -600,8 +600,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_malf_tlp_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -609,8 +609,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_pois_tlp_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -618,8 +618,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rec_overflow_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -627,8 +627,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x20) >> 5
     }
     pub fn set_sur_dwn_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -636,8 +636,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_unexp_cmplt_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -645,8 +645,8 @@ impl UNCORR_ERR_STATUS {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_unsupported_req_err_status(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }

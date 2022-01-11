@@ -58,8 +58,8 @@ impl PCS1G_TSTPAT_STATUS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_jtp_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -68,8 +68,8 @@ impl PCS1G_TSTPAT_STATUS {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_jtp_err_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }

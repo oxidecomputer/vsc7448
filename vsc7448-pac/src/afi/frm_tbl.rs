@@ -58,8 +58,8 @@ impl FRM_NEXT_AND_TYPE {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_entry_type(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }

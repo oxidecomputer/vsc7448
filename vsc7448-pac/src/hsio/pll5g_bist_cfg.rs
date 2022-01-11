@@ -54,8 +54,8 @@ impl PLL5G_BIST_CFG0B {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_pllb_lock_repeat(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -73,8 +73,8 @@ impl PLL5G_BIST_CFG0B {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_pllb_meas_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -83,8 +83,8 @@ impl PLL5G_BIST_CFG0B {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_pllb_start_bist(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }

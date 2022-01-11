@@ -36,8 +36,8 @@ impl TR_MTHD {
         (self.0 & 0x300) >> 8
     }
     pub fn set_mthd_c0(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 8;
-        assert!(value <= 0x300);
         self.0 &= !0x300;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl TR_MTHD {
         (self.0 & 0xc0) >> 6
     }
     pub fn set_mthd_cm(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 6;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -58,8 +58,8 @@ impl TR_MTHD {
         (self.0 & 0xc00) >> 10
     }
     pub fn set_mthd_cp(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 10;
-        assert!(value <= 0xc00);
         self.0 &= !0xc00;
         self.0 |= value;
     }
@@ -70,8 +70,8 @@ impl TR_MTHD {
         (self.0 & 0x30) >> 4
     }
     pub fn set_ord1(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -80,8 +80,8 @@ impl TR_MTHD {
         (self.0 & 0xc) >> 2
     }
     pub fn set_ord2(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }

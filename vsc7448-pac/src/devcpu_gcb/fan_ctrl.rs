@@ -38,8 +38,8 @@ impl FAN_CFG {
         (self.0 & 0x7f80) >> 7
     }
     pub fn set_clk_period(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 7;
-        assert!(value <= 0x7f80);
         self.0 &= !0x7f80;
         self.0 |= value;
     }
@@ -50,8 +50,8 @@ impl FAN_CFG {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_duty_cycle(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -71,8 +71,8 @@ impl FAN_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_gate_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -83,8 +83,8 @@ impl FAN_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_inv_pol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -95,8 +95,8 @@ impl FAN_CFG {
         (self.0 & 0x70) >> 4
     }
     pub fn set_pwm_freq(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -105,8 +105,8 @@ impl FAN_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pwm_open_col_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

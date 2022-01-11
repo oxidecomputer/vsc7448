@@ -38,8 +38,8 @@ impl CNT_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_event_cnt_all(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -50,8 +50,8 @@ impl CNT_CTRL {
         (self.0 & 0x7e0) >> 5
     }
     pub fn set_event_cnt_port(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 5;
-        assert!(value <= 0x7e0);
         self.0 &= !0x7e0;
         self.0 |= value;
     }
@@ -62,8 +62,8 @@ impl CNT_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_stat_cnt_frm_abort_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -85,8 +85,8 @@ impl CNT_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_vstax_stat_esdx_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -113,8 +113,8 @@ impl COMMON_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_invld_w16_pop_cnt_frm_abort(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -125,8 +125,8 @@ impl COMMON_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_l3_clr_vstax_dst_rsv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -137,8 +137,8 @@ impl COMMON_CTRL {
         (self.0 & 0x7c) >> 2
     }
     pub fn set_own_upsid(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 2;
-        assert!(value <= 0x7c);
         self.0 &= !0x7c;
         self.0 |= value;
     }
@@ -186,8 +186,8 @@ impl ES0_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_es0_by_rleg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -198,8 +198,8 @@ impl ES0_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_es0_by_rt_fwd(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -210,8 +210,8 @@ impl ES0_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_es0_frm_lbk_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -240,8 +240,8 @@ impl GCPU_CFG {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_gcpu_do_not_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -252,8 +252,8 @@ impl GCPU_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_gcpu_fwd_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -264,8 +264,8 @@ impl GCPU_CFG {
         (self.0 & 0x300000) >> 20
     }
     pub fn set_gcpu_keep_ifh(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 20;
-        assert!(value <= 0x300000);
         self.0 &= !0x300000;
         self.0 |= value;
     }
@@ -276,8 +276,8 @@ impl GCPU_CFG {
         (self.0 & 0x60000) >> 17
     }
     pub fn set_gcpu_tag_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 17;
-        assert!(value <= 0x60000);
         self.0 &= !0x60000;
         self.0 |= value;
     }
@@ -299,8 +299,8 @@ impl GCPU_CFG {
         (self.0 & 0x1f00) >> 8
     }
     pub fn set_gcpu_upspn(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 8;
-        assert!(value <= 0x1f00);
         self.0 &= !0x1f00;
         self.0 |= value;
     }
@@ -318,8 +318,8 @@ impl GCPU_TAG_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tag_dei_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -330,8 +330,8 @@ impl GCPU_TAG_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tag_pcp_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -353,8 +353,8 @@ impl GCPU_TAG_CFG {
         (self.0 & 0xe0000) >> 17
     }
     pub fn set_tag_tpid_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 17;
-        assert!(value <= 0xe0000);
         self.0 &= !0xe0000;
         self.0 |= value;
     }
@@ -365,8 +365,8 @@ impl GCPU_TAG_CFG {
         (self.0 & 0x1ffe0) >> 5
     }
     pub fn set_tag_vid_val(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 5;
-        assert!(value <= 0x1ffe0);
         self.0 &= !0x1ffe0;
         self.0 |= value;
     }
@@ -389,8 +389,8 @@ impl HIH_DEF_CFG {
         (self.0 & 0xffff00) >> 8
     }
     pub fn set_hih_def_cl(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 8;
-        assert!(value <= 0xffff00);
         self.0 &= !0xffff00;
         self.0 |= value;
     }
@@ -399,8 +399,8 @@ impl HIH_DEF_CFG {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_hih_def_flags(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -409,8 +409,8 @@ impl HIH_DEF_CFG {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_hih_def_lpid(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -444,8 +444,8 @@ impl MIP_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_mip_ccm_hmo_set_shot(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -474,8 +474,8 @@ impl MIP_STICKY_EVENT {
         (self.0 & 0x40) >> 6
     }
     pub fn set_mip_ccm_copy_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -486,8 +486,8 @@ impl MIP_STICKY_EVENT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_mip_generic_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -498,8 +498,8 @@ impl MIP_STICKY_EVENT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_mip_lbm_da_chk_fail_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -510,8 +510,8 @@ impl MIP_STICKY_EVENT {
         (self.0 & 0x20) >> 5
     }
     pub fn set_mip_lbm_redir_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -522,8 +522,8 @@ impl MIP_STICKY_EVENT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_mip_ltm_redir_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -545,8 +545,8 @@ impl MIP_STICKY_EVENT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_mip_raps_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -564,8 +564,8 @@ impl MIRROR_PROBE_CFG {
         (self.0 & 0x3f000) >> 12
     }
     pub fn set_mirror_tx_port(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 12;
-        assert!(value <= 0x3f000);
         self.0 &= !0x3f000;
         self.0 |= value;
     }
@@ -576,8 +576,8 @@ impl MIRROR_PROBE_CFG {
         (self.0 & 0xffc) >> 2
     }
     pub fn set_remote_encap_id(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 2;
-        assert!(value <= 0xffc);
         self.0 &= !0xffc;
         self.0 |= value;
     }
@@ -606,8 +606,8 @@ impl MIRROR_TAG_A_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tag_a_dei_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -618,8 +618,8 @@ impl MIRROR_TAG_A_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tag_a_pcp_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -641,8 +641,8 @@ impl MIRROR_TAG_A_CFG {
         (self.0 & 0xe0000) >> 17
     }
     pub fn set_tag_a_tpid_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 17;
-        assert!(value <= 0xe0000);
         self.0 &= !0xe0000;
         self.0 |= value;
     }
@@ -653,8 +653,8 @@ impl MIRROR_TAG_A_CFG {
         (self.0 & 0x1ffe0) >> 5
     }
     pub fn set_tag_a_vid_val(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 5;
-        assert!(value <= 0x1ffe0);
         self.0 &= !0x1ffe0;
         self.0 |= value;
     }
@@ -672,8 +672,8 @@ impl MIRROR_TAG_B_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tag_b_dei_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -684,8 +684,8 @@ impl MIRROR_TAG_B_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_tag_b_pcp_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -707,8 +707,8 @@ impl MIRROR_TAG_B_CFG {
         (self.0 & 0xe0000) >> 17
     }
     pub fn set_tag_b_tpid_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 17;
-        assert!(value <= 0xe0000);
         self.0 &= !0xe0000;
         self.0 |= value;
     }
@@ -719,8 +719,8 @@ impl MIRROR_TAG_B_CFG {
         (self.0 & 0x1ffe0) >> 5
     }
     pub fn set_tag_b_vid_val(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 5;
-        assert!(value <= 0x1ffe0);
         self.0 &= !0x1ffe0;
         self.0 |= value;
     }
@@ -738,8 +738,8 @@ impl PORT_CTRL {
         (self.0 & 0x3f000000) >> 24
     }
     pub fn set_es0_lport_num(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 24;
-        assert!(value <= 0x3f000000);
         self.0 &= !0x3f000000;
         self.0 |= value;
     }
@@ -750,8 +750,8 @@ impl PORT_CTRL {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_inj_stat_pipeline_pt(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -762,8 +762,8 @@ impl PORT_CTRL {
         (self.0 & 0x30) >> 4
     }
     pub fn set_keep_ifh_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -774,8 +774,8 @@ impl PORT_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_port_voe_default_dei(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -786,8 +786,8 @@ impl PORT_CTRL {
         (self.0 & 0x380) >> 7
     }
     pub fn set_port_voe_default_pcp(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 7;
-        assert!(value <= 0x380);
         self.0 &= !0x380;
         self.0 |= value;
     }
@@ -798,8 +798,8 @@ impl PORT_CTRL {
         (self.0 & 0x7c00) >> 10
     }
     pub fn set_port_voe_tpid_aware_dis(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 10;
-        assert!(value <= 0x7c00);
         self.0 &= !0x7c00;
         self.0 |= value;
     }
@@ -810,8 +810,8 @@ impl PORT_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_vstax2_mirror_obey_was_tagged(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -822,8 +822,8 @@ impl PORT_CTRL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_vstax2_misc_isdx_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -834,8 +834,8 @@ impl PORT_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_vstax_hdr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -846,8 +846,8 @@ impl PORT_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_vstax_pad_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -869,8 +869,8 @@ impl PORT_CTRL {
         (self.0 & 0xf00000) >> 20
     }
     pub fn set_xtr_stat_pipeline_pt(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 20;
-        assert!(value <= 0xf00000);
         self.0 &= !0xf00000;
         self.0 |= value;
     }
@@ -913,8 +913,8 @@ impl RLEG_CFG_1 {
         (self.0 & 0x3000000) >> 24
     }
     pub fn set_rleg_mac_type_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 24;
-        assert!(value <= 0x3000000);
         self.0 &= !0x3000000;
         self.0 |= value;
     }
@@ -930,8 +930,8 @@ impl STICKY_EVENT {
         (self.0 & 0x80) >> 7
     }
     pub fn set_dscp_remap_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -942,8 +942,8 @@ impl STICKY_EVENT {
         (self.0 & 0x40) >> 6
     }
     pub fn set_dscp_replace_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -954,8 +954,8 @@ impl STICKY_EVENT {
         (self.0 & 0x20) >> 5
     }
     pub fn set_invld_ifh_for_ptp_frm_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -966,8 +966,8 @@ impl STICKY_EVENT {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_invld_pop_cnt_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -978,8 +978,8 @@ impl STICKY_EVENT {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_invld_w16_pop_cnt_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -990,8 +990,8 @@ impl STICKY_EVENT {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ip4_mc_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -1002,8 +1002,8 @@ impl STICKY_EVENT {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ip4_uc_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -1014,8 +1014,8 @@ impl STICKY_EVENT {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ip6_mc_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -1026,8 +1026,8 @@ impl STICKY_EVENT {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ip6_uc_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -1038,8 +1038,8 @@ impl STICKY_EVENT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_link_layer_added_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -1050,8 +1050,8 @@ impl STICKY_EVENT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_link_layer_error_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -1062,8 +1062,8 @@ impl STICKY_EVENT {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_rewrite_overflow_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -1085,8 +1085,8 @@ impl STICKY_EVENT {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_vlan_prio_tagged_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -1097,8 +1097,8 @@ impl STICKY_EVENT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_vlan_tag_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -1109,8 +1109,8 @@ impl STICKY_EVENT {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_vlan_untagged_vid0_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -1121,8 +1121,8 @@ impl STICKY_EVENT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_vlan_untag_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1138,8 +1138,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_dscp_remap_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -1150,8 +1150,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_dscp_replace_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -1162,8 +1162,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_invld_ifh_for_ptp_frm_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -1174,8 +1174,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_invld_pop_cnt_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -1186,8 +1186,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_invld_w16_pop_cnt_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -1198,8 +1198,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ip4_mc_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -1210,8 +1210,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ip4_uc_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -1222,8 +1222,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ip6_mc_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -1234,8 +1234,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ip6_uc_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -1246,8 +1246,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_link_layer_added_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -1258,8 +1258,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_link_layer_error_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -1270,8 +1270,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_rewrite_overflow_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -1293,8 +1293,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_vlan_prio_tagged_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -1305,8 +1305,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_vlan_tag_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -1317,8 +1317,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_vlan_untagged_vid0_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -1329,8 +1329,8 @@ impl STICKY_EVENT_CNT_MASK_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_vlan_untag_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1376,8 +1376,8 @@ impl VSTAX_PORT_GRP_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_vstax_lrn_all_hp_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -1397,8 +1397,8 @@ impl VSTAX_PORT_GRP_CFG {
         (self.0 & 0x1f0) >> 4
     }
     pub fn set_vstax_ttl(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 4;
-        assert!(value <= 0x1f0);
         self.0 &= !0x1f0;
         self.0 |= value;
     }

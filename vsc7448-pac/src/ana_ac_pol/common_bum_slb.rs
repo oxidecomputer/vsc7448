@@ -36,8 +36,8 @@ impl DLB_CTRL {
         (self.0 & 0x7fff0) >> 4
     }
     pub fn set_base_tick_cnt(&mut self, value: u32) {
+        assert!(value <= 0x7fff);
         let value = value << 4;
-        assert!(value <= 0x7fff0);
         self.0 &= !0x7fff0;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl DLB_CTRL {
         (self.0 & 0x7f80000) >> 19
     }
     pub fn set_clk_period_01ns(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 19;
-        assert!(value <= 0x7f80000);
         self.0 &= !0x7f80000;
         self.0 |= value;
     }
@@ -71,8 +71,8 @@ impl DLB_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_leak_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl SLB_STICKY {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_leak_scan_completed_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -100,8 +100,8 @@ impl SLB_STICKY {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_leak_scan_started_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -112,8 +112,8 @@ impl SLB_STICKY {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_leak_start_delayed_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }

@@ -47,8 +47,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_cpu_8051_irom_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -57,8 +57,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_cpu_be_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -67,8 +67,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_cpu_busif_sleep_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -77,8 +77,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_cpu_busif_werr_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -89,8 +89,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_cpu_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -99,8 +99,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_cpu_mips_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -109,8 +109,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x800) >> 11
     }
     pub fn set_if_miim_slv_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -119,8 +119,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x200) >> 9
     }
     pub fn set_if_pi_mst_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -129,8 +129,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x400) >> 10
     }
     pub fn set_if_pi_slv_donepol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -139,8 +139,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x100) >> 8
     }
     pub fn set_if_pi_slv_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -151,8 +151,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x30) >> 4
     }
     pub fn set_if_si1_owner(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -163,8 +163,8 @@ impl GENERAL_CTRL {
         (self.0 & 0xc0) >> 6
     }
     pub fn set_if_si_owner(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 6;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -173,8 +173,8 @@ impl GENERAL_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_simc_ssp_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -197,8 +197,8 @@ impl GENERAL_STAT {
         (self.0 & 0x100) >> 8
     }
     pub fn set_pi_slv_rd_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -207,8 +207,8 @@ impl GENERAL_STAT {
         (self.0 & 0x200) >> 9
     }
     pub fn set_pi_slv_wr_err(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -219,8 +219,8 @@ impl GENERAL_STAT {
         (self.0 & 0xe) >> 1
     }
     pub fn set_reg_if_err(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 1;
-        assert!(value <= 0xe);
         self.0 &= !0xe;
         self.0 |= value;
     }
@@ -229,8 +229,8 @@ impl GENERAL_STAT {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_vcore_cfg(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }
@@ -258,8 +258,8 @@ impl RESET {
         (self.0 & 0x8) >> 3
     }
     pub fn set_core_rst_cpu_only(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -270,8 +270,8 @@ impl RESET {
         (self.0 & 0x2) >> 1
     }
     pub fn set_core_rst_force(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -282,8 +282,8 @@ impl RESET {
         (self.0 & 0x4) >> 2
     }
     pub fn set_core_rst_protect(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }

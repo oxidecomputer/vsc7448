@@ -51,8 +51,8 @@ impl SYNC_ETH_CFG {
         (self.0 & 0x6) >> 1
     }
     pub fn set_sel_reco_clk_div(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -63,8 +63,8 @@ impl SYNC_ETH_CFG {
         (self.0 & 0x1f8) >> 3
     }
     pub fn set_sel_reco_clk_src(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 3;
-        assert!(value <= 0x1f8);
         self.0 &= !0x1f8;
         self.0 |= value;
     }
@@ -78,8 +78,8 @@ impl SYNC_ETH_PLL2_CFG {
         (self.0 & 0xfc) >> 2
     }
     pub fn set_cpu_clk_div(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 2;
-        assert!(value <= 0xfc);
         self.0 &= !0xfc;
         self.0 |= value;
     }
@@ -99,8 +99,8 @@ impl SYNC_ETH_PLL2_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pll2_reco_clk_div(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -124,8 +124,8 @@ impl SYNC_ETH_SD10G_CFG {
         (self.0 & 0x6) >> 1
     }
     pub fn set_sd10g_reco_clk_div(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }

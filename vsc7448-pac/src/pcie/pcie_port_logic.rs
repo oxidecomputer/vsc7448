@@ -43,8 +43,8 @@ impl ACK_F_ASPM_CTRL {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_ack_n_fts(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl ACK_F_ASPM_CTRL {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_common_clk_n_fts(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -61,8 +61,8 @@ impl ACK_F_ASPM_CTRL {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_enter_aspm(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -70,8 +70,8 @@ impl ACK_F_ASPM_CTRL {
         (self.0 & 0x7000000) >> 24
     }
     pub fn set_l0_entrance_latency(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 24;
-        assert!(value <= 0x7000000);
         self.0 &= !0x7000000;
         self.0 |= value;
     }
@@ -79,8 +79,8 @@ impl ACK_F_ASPM_CTRL {
         (self.0 & 0x38000000) >> 27
     }
     pub fn set_l1_entrance_latency(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 27;
-        assert!(value <= 0x38000000);
         self.0 &= !0x38000000;
         self.0 |= value;
     }
@@ -93,8 +93,8 @@ impl ACK_LATENCY_TIMER {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_replay_time_limit(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -154,8 +154,8 @@ impl ATU_BASE_ADDR_LOW {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_atu_base_addr_low(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -168,8 +168,8 @@ impl ATU_CFG1 {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_atu_at(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -178,8 +178,8 @@ impl ATU_CFG1 {
         (self.0 & 0x600) >> 9
     }
     pub fn set_atu_attr(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 9;
-        assert!(value <= 0x600);
         self.0 &= !0x600;
         self.0 |= value;
     }
@@ -188,8 +188,8 @@ impl ATU_CFG1 {
         (self.0 & 0x1f00000) >> 20
     }
     pub fn set_atu_fn(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 20;
-        assert!(value <= 0x1f00000);
         self.0 &= !0x1f00000;
         self.0 |= value;
     }
@@ -198,8 +198,8 @@ impl ATU_CFG1 {
         (self.0 & 0xe0) >> 5
     }
     pub fn set_atu_tc(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 5;
-        assert!(value <= 0xe0);
         self.0 &= !0xe0;
         self.0 |= value;
     }
@@ -208,8 +208,8 @@ impl ATU_CFG1 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_atu_td(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -233,8 +233,8 @@ impl ATU_CFG2 {
         (self.0 & 0x10000000) >> 28
     }
     pub fn set_atu_cfg_shift_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 28;
-        assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
     }
@@ -243,8 +243,8 @@ impl ATU_CFG2 {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_atu_fn_match_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -252,8 +252,8 @@ impl ATU_CFG2 {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_atu_invert_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -271,8 +271,8 @@ impl ATU_CFG2 {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_atu_region_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -285,8 +285,8 @@ impl ATU_CFG3 {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_vf_active(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -308,8 +308,8 @@ impl ATU_LIMIT_ADDR {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_atu_limit_addr(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -335,8 +335,8 @@ impl ATU_REGION {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_atu_direction(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -371,8 +371,8 @@ impl ATU_TGT_ADDR_LOW {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_atu_tgt_addr_low(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -398,8 +398,8 @@ impl AXI_MASTER_CTRL_REG_0 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_remote_max_bridge_tag(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -466,8 +466,8 @@ impl GEN2_CTRL {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_gen1_ei_inference(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -475,8 +475,8 @@ impl GEN2_CTRL {
         (self.0 & 0x1ff00) >> 8
     }
     pub fn set_num_of_lanes(&mut self, value: u32) {
+        assert!(value <= 0x1ff);
         let value = value << 8;
-        assert!(value <= 0x1ff00);
         self.0 &= !0x1ff00;
         self.0 |= value;
     }
@@ -489,8 +489,8 @@ impl LANE_SKEW {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_ack_nak_disable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -498,8 +498,8 @@ impl LANE_SKEW {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_disable_lane_to_lane_deskew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -507,8 +507,8 @@ impl LANE_SKEW {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_flow_ctrl_disable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -564,8 +564,8 @@ impl PORT_FORCE {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_cpl_sent_count(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -573,8 +573,8 @@ impl PORT_FORCE {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_forced_ltssm(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -590,8 +590,8 @@ impl PORT_FORCE {
         (self.0 & 0x3f0000) >> 16
     }
     pub fn set_link_state(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 16;
-        assert!(value <= 0x3f0000);
         self.0 &= !0x3f0000;
         self.0 |= value;
     }
@@ -604,8 +604,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_beacon_enable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -613,8 +613,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_corrupt_lcrc_enable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -622,8 +622,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_dll_link_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -631,8 +631,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_extended_synch(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -640,8 +640,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_fast_link_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -649,8 +649,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x3f0000) >> 16
     }
     pub fn set_link_capable(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 16;
-        assert!(value <= 0x3f0000);
         self.0 &= !0x3f0000;
         self.0 |= value;
     }
@@ -658,8 +658,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_link_disable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -667,8 +667,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_link_rate(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -676,8 +676,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_loopback_enable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -685,8 +685,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_reserved0(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -694,8 +694,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_reserved1(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -703,8 +703,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0xc00000) >> 22
     }
     pub fn set_reserved2(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 22;
-        assert!(value <= 0xc00000);
         self.0 &= !0xc00000;
         self.0 |= value;
     }
@@ -712,8 +712,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0xf0000000) >> 28
     }
     pub fn set_reserved3(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 28;
-        assert!(value <= 0xf0000000);
         self.0 &= !0xf0000000;
         self.0 |= value;
     }
@@ -721,8 +721,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_reset_assert(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -730,8 +730,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_scramble_disable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -739,8 +739,8 @@ impl PORT_LINK_CTRL {
         (self.0 & 0x8000000) >> 27
     }
     pub fn set_transmit_lane_reversale_enable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 27;
-        assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
     }
@@ -761,8 +761,8 @@ impl Q_STATUS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rx_queue_non_empty(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -778,8 +778,8 @@ impl Q_STATUS {
         (self.0 & 0x1fff0000) >> 16
     }
     pub fn set_timer_mod_flow_control(&mut self, value: u32) {
+        assert!(value <= 0x1fff);
         let value = value << 16;
-        assert!(value <= 0x1fff0000);
         self.0 &= !0x1fff0000;
         self.0 |= value;
     }
@@ -787,8 +787,8 @@ impl Q_STATUS {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_timer_mod_flow_control_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -796,8 +796,8 @@ impl Q_STATUS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tx_retry_buffer_ne(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -810,8 +810,8 @@ impl SYMBOL_TIMER_FILTER_1 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_disable_fc_wd_timer(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -819,8 +819,8 @@ impl SYMBOL_TIMER_FILTER_1 {
         (self.0 & 0x7800) >> 11
     }
     pub fn set_eidle_timer(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 11;
-        assert!(value <= 0x7800);
         self.0 &= !0x7800;
         self.0 |= value;
     }
@@ -828,8 +828,8 @@ impl SYMBOL_TIMER_FILTER_1 {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_mask_radm_1(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -858,8 +858,8 @@ impl TIMER_CTRL_MAX_FUNC_NUM {
         (self.0 & 0xf80000) >> 19
     }
     pub fn set_timer_mod_ack_nak(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 19;
-        assert!(value <= 0xf80000);
         self.0 &= !0xf80000;
         self.0 |= value;
     }
@@ -867,8 +867,8 @@ impl TIMER_CTRL_MAX_FUNC_NUM {
         (self.0 & 0x7c000) >> 14
     }
     pub fn set_timer_mod_replay_timer(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 14;
-        assert!(value <= 0x7c000);
         self.0 &= !0x7c000;
         self.0 |= value;
     }
@@ -876,8 +876,8 @@ impl TIMER_CTRL_MAX_FUNC_NUM {
         (self.0 & 0x1f000000) >> 24
     }
     pub fn set_update_freq_timer(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 24;
-        assert!(value <= 0x1f000000);
         self.0 &= !0x1f000000;
         self.0 |= value;
     }
@@ -898,8 +898,8 @@ impl TX_CPL_FC_CREDIT_STATUS {
         (self.0 & 0xff000) >> 12
     }
     pub fn set_tx_cpl_header_fc_credit(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 12;
-        assert!(value <= 0xff000);
         self.0 &= !0xff000;
         self.0 |= value;
     }
@@ -920,8 +920,8 @@ impl TX_NP_FC_CREDIT_STATUS {
         (self.0 & 0xff000) >> 12
     }
     pub fn set_tx_np_header_fc_credit(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 12;
-        assert!(value <= 0xff000);
         self.0 &= !0xff000;
         self.0 |= value;
     }
@@ -942,8 +942,8 @@ impl TX_P_FC_CREDIT_STATUS {
         (self.0 & 0xff000) >> 12
     }
     pub fn set_tx_p_header_fc_credit(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 12;
-        assert!(value <= 0xff000);
         self.0 &= !0xff000;
         self.0 |= value;
     }
@@ -956,8 +956,8 @@ impl VC0_CPL_RX_Q_CTRL {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_reserved8(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -965,8 +965,8 @@ impl VC0_CPL_RX_Q_CTRL {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_reserved9(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -982,8 +982,8 @@ impl VC0_CPL_RX_Q_CTRL {
         (self.0 & 0xff000) >> 12
     }
     pub fn set_vc0_cpl_header_credit(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 12;
-        assert!(value <= 0xff000);
         self.0 &= !0xff000;
         self.0 |= value;
     }
@@ -991,8 +991,8 @@ impl VC0_CPL_RX_Q_CTRL {
         (self.0 & 0xe00000) >> 21
     }
     pub fn set_vc0_cpl_tlp_q_mode(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 21;
-        assert!(value <= 0xe00000);
         self.0 &= !0xe00000;
         self.0 |= value;
     }
@@ -1005,8 +1005,8 @@ impl VC0_NP_RX_Q_CTRL {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_reserved6(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -1014,8 +1014,8 @@ impl VC0_NP_RX_Q_CTRL {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_reserved7(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -1031,8 +1031,8 @@ impl VC0_NP_RX_Q_CTRL {
         (self.0 & 0xff000) >> 12
     }
     pub fn set_vc0_np_header_credit(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 12;
-        assert!(value <= 0xff000);
         self.0 &= !0xff000;
         self.0 |= value;
     }
@@ -1040,8 +1040,8 @@ impl VC0_NP_RX_Q_CTRL {
         (self.0 & 0xe00000) >> 21
     }
     pub fn set_vc0_np_tlp_q_mode(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 21;
-        assert!(value <= 0xe00000);
         self.0 &= !0xe00000;
         self.0 |= value;
     }
@@ -1054,8 +1054,8 @@ impl VC0_P_RX_Q_CTRL {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_reserved4(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -1063,8 +1063,8 @@ impl VC0_P_RX_Q_CTRL {
         (self.0 & 0x3f000000) >> 24
     }
     pub fn set_reserved5(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 24;
-        assert!(value <= 0x3f000000);
         self.0 &= !0x3f000000;
         self.0 |= value;
     }
@@ -1072,8 +1072,8 @@ impl VC0_P_RX_Q_CTRL {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_tlp_type_ordering_vc0(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -1089,8 +1089,8 @@ impl VC0_P_RX_Q_CTRL {
         (self.0 & 0xff000) >> 12
     }
     pub fn set_vc0_p_header_credit(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 12;
-        assert!(value <= 0xff000);
         self.0 &= !0xff000;
         self.0 |= value;
     }
@@ -1098,8 +1098,8 @@ impl VC0_P_RX_Q_CTRL {
         (self.0 & 0xe00000) >> 21
     }
     pub fn set_vc0_p_tlp_q_mode(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 21;
-        assert!(value <= 0xe00000);
         self.0 &= !0xe00000;
         self.0 |= value;
     }
@@ -1107,8 +1107,8 @@ impl VC0_P_RX_Q_CTRL {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_vc_ordering_rx_q(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -1129,8 +1129,8 @@ impl VC_TX_ARBI_REG_1 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_wrr_weight_vc_1(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -1138,8 +1138,8 @@ impl VC_TX_ARBI_REG_1 {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_wrr_weight_vc_2(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -1147,8 +1147,8 @@ impl VC_TX_ARBI_REG_1 {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_wrr_weight_vc_3(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -1169,8 +1169,8 @@ impl VC_TX_ARBI_REG_2 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_wrr_weight_vc_5(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -1178,8 +1178,8 @@ impl VC_TX_ARBI_REG_2 {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_wrr_weight_vc_6(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -1187,8 +1187,8 @@ impl VC_TX_ARBI_REG_2 {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_wrr_weight_vc_7(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }

@@ -36,8 +36,8 @@ impl HSCH_L0_CFG {
         (self.0 & 0xfc0) >> 6
     }
     pub fn set_l1_idx(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 6;
-        assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
     }

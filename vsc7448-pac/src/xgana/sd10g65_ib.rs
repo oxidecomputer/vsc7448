@@ -40,8 +40,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ib_1v_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_ib_clkdiv_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -64,8 +64,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_ib_dfe_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -74,8 +74,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_ib_direct_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -86,8 +86,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ib_eqz_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -98,8 +98,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ib_ia_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -110,8 +110,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ib_ia_sdet_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -122,8 +122,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ib_ie_sdet_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -134,8 +134,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ib_ld_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -146,8 +146,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x78000000) >> 27
     }
     pub fn set_ib_rcml_adj(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 27;
-        assert!(value <= 0x78000000);
         self.0 &= !0x78000000;
         self.0 |= value;
     }
@@ -158,8 +158,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x1e0000) >> 17
     }
     pub fn set_ib_rib_adj(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 17;
-        assert!(value <= 0x1e0000);
         self.0 &= !0x1e0000;
         self.0 |= value;
     }
@@ -168,8 +168,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_ib_rib_shift(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -180,8 +180,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ib_sam_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -192,8 +192,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x3000) >> 12
     }
     pub fn set_ib_sig_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 12;
-        assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
     }
@@ -202,8 +202,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ib_spare_pool2(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -214,8 +214,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_ib_term_vdd_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -224,8 +224,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x7800000) >> 23
     }
     pub fn set_ib_term_v_sel(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 23;
-        assert!(value <= 0x7800000);
         self.0 &= !0x7800000;
         self.0 |= value;
     }
@@ -236,8 +236,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ib_vbulk_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -248,8 +248,8 @@ impl SD10G65_IB_CFG0 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ib_vscope_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -267,8 +267,8 @@ impl SD10G65_IB_CFG1 {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_ib_agc_l(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -279,8 +279,8 @@ impl SD10G65_IB_CFG1 {
         (self.0 & 0xe00) >> 9
     }
     pub fn set_ib_amp_c(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 9;
-        assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
     }
@@ -291,8 +291,8 @@ impl SD10G65_IB_CFG1 {
         (self.0 & 0xf0000000) >> 28
     }
     pub fn set_ib_amp_l(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 28;
-        assert!(value <= 0xf0000000);
         self.0 &= !0xf0000000;
         self.0 |= value;
     }
@@ -303,8 +303,8 @@ impl SD10G65_IB_CFG1 {
         (self.0 & 0x1c0) >> 6
     }
     pub fn set_ib_eqz_c0(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 6;
-        assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
     }
@@ -315,8 +315,8 @@ impl SD10G65_IB_CFG1 {
         (self.0 & 0x38) >> 3
     }
     pub fn set_ib_eqz_c1(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 3;
-        assert!(value <= 0x38);
         self.0 &= !0x38;
         self.0 |= value;
     }
@@ -338,8 +338,8 @@ impl SD10G65_IB_CFG1 {
         (self.0 & 0xf000000) >> 24
     }
     pub fn set_ib_eqz_l0(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 24;
-        assert!(value <= 0xf000000);
         self.0 &= !0xf000000;
         self.0 |= value;
     }
@@ -350,8 +350,8 @@ impl SD10G65_IB_CFG1 {
         (self.0 & 0xf00000) >> 20
     }
     pub fn set_ib_eqz_l1(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 20;
-        assert!(value <= 0xf00000);
         self.0 &= !0xf00000;
         self.0 |= value;
     }
@@ -362,8 +362,8 @@ impl SD10G65_IB_CFG1 {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_ib_eqz_l2(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -381,8 +381,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_ib_eqz_ld0_nedge(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -393,8 +393,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_ib_eqz_ld0_pedge(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -405,8 +405,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_ib_eqz_ld1_nedge(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -417,8 +417,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_ib_eqz_ld1_pedge(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -427,8 +427,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_ib_ia_direct_data(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -437,8 +437,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_ib_ia_doffs_cal(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -447,8 +447,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_ib_ia_sdet(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -457,8 +457,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_ib_ie_direct_data(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -467,8 +467,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x8000000) >> 27
     }
     pub fn set_ib_ie_sdet(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 27;
-        assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
     }
@@ -477,8 +477,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x10000000) >> 28
     }
     pub fn set_ib_ie_sdet_nedge(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 28;
-        assert!(value <= 0x10000000);
         self.0 &= !0x10000000;
         self.0 |= value;
     }
@@ -487,8 +487,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x20000000) >> 29
     }
     pub fn set_ib_ie_sdet_pedge(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 29;
-        assert!(value <= 0x20000000);
         self.0 &= !0x20000000;
         self.0 |= value;
     }
@@ -497,8 +497,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_ib_is_doffs_cal(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -507,8 +507,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_ib_jtag_clk(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -526,8 +526,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ib_jtag_in_n(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -536,8 +536,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ib_jtag_in_p(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -546,8 +546,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ib_jtag_out_n(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -556,8 +556,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ib_jtag_out_p(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -568,8 +568,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x1f0) >> 4
     }
     pub fn set_ib_jtag_thres(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 4;
-        assert!(value <= 0x1f0);
         self.0 &= !0x1f0;
         self.0 |= value;
     }
@@ -578,8 +578,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_ib_loop_drv(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -588,8 +588,8 @@ impl SD10G65_IB_CFG10 {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_ib_loop_rec(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -607,8 +607,8 @@ impl SD10G65_IB_CFG11 {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_ib_dfe_isel(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -617,8 +617,8 @@ impl SD10G65_IB_CFG11 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ib_ena_400_inp(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -627,8 +627,8 @@ impl SD10G65_IB_CFG11 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_ib_spare_pool(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -637,8 +637,8 @@ impl SD10G65_IB_CFG11 {
         (self.0 & 0x7c0) >> 6
     }
     pub fn set_ib_tc_dfe(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 6;
-        assert!(value <= 0x7c0);
         self.0 &= !0x7c0;
         self.0 |= value;
     }
@@ -647,8 +647,8 @@ impl SD10G65_IB_CFG11 {
         (self.0 & 0x3e) >> 1
     }
     pub fn set_ib_tc_eq(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 1;
-        assert!(value <= 0x3e);
         self.0 &= !0x3e;
         self.0 |= value;
     }
@@ -666,8 +666,8 @@ impl SD10G65_IB_CFG2 {
         (self.0 & 0x3fc00) >> 10
     }
     pub fn set_ib_eqz_agc(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 10;
-        assert!(value <= 0x3fc00);
         self.0 &= !0x3fc00;
         self.0 |= value;
     }
@@ -678,8 +678,8 @@ impl SD10G65_IB_CFG2 {
         (self.0 & 0xffc0000) >> 18
     }
     pub fn set_ib_eqz_gain(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 18;
-        assert!(value <= 0xffc0000);
         self.0 &= !0xffc0000;
         self.0 |= value;
     }
@@ -708,8 +708,8 @@ impl SD10G65_IB_CFG3 {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_ib_direct_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -720,8 +720,8 @@ impl SD10G65_IB_CFG3 {
         (self.0 & 0x1f800) >> 11
     }
     pub fn set_ib_eq_ld0_level(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 11;
-        assert!(value <= 0x1f800);
         self.0 &= !0x1f800;
         self.0 |= value;
     }
@@ -732,8 +732,8 @@ impl SD10G65_IB_CFG3 {
         (self.0 & 0x7e0000) >> 17
     }
     pub fn set_ib_eq_ld1_offset(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 17;
-        assert!(value <= 0x7e0000);
         self.0 &= !0x7e0000;
         self.0 |= value;
     }
@@ -755,8 +755,8 @@ impl SD10G65_IB_CFG3 {
         (self.0 & 0x7e0) >> 5
     }
     pub fn set_ib_ie_sdet_level(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 5;
-        assert!(value <= 0x7e0);
         self.0 &= !0x7e0;
         self.0 |= value;
     }
@@ -767,8 +767,8 @@ impl SD10G65_IB_CFG3 {
         (self.0 & 0xc0000000) >> 30
     }
     pub fn set_ib_ldsd_divsel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 30;
-        assert!(value <= 0xc0000000);
         self.0 &= !0xc0000000;
         self.0 |= value;
     }
@@ -779,8 +779,8 @@ impl SD10G65_IB_CFG3 {
         (self.0 & 0x38000000) >> 27
     }
     pub fn set_ib_sdet_clk_div(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 27;
-        assert!(value <= 0x38000000);
         self.0 &= !0x38000000;
         self.0 |= value;
     }
@@ -791,8 +791,8 @@ impl SD10G65_IB_CFG3 {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_ib_sdet_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -803,8 +803,8 @@ impl SD10G65_IB_CFG3 {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_ib_set_sdet(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -822,8 +822,8 @@ impl SD10G65_IB_CFG4 {
         (self.0 & 0x3000000) >> 24
     }
     pub fn set_ib_eqz_c_adj_es0(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 24;
-        assert!(value <= 0x3000000);
         self.0 &= !0x3000000;
         self.0 |= value;
     }
@@ -834,8 +834,8 @@ impl SD10G65_IB_CFG4 {
         (self.0 & 0xc000000) >> 26
     }
     pub fn set_ib_eqz_c_adj_es1(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 26;
-        assert!(value <= 0xc000000);
         self.0 &= !0xc000000;
         self.0 |= value;
     }
@@ -846,8 +846,8 @@ impl SD10G65_IB_CFG4 {
         (self.0 & 0x30000000) >> 28
     }
     pub fn set_ib_eqz_c_adj_es2(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 28;
-        assert!(value <= 0x30000000);
         self.0 &= !0x30000000;
         self.0 |= value;
     }
@@ -858,8 +858,8 @@ impl SD10G65_IB_CFG4 {
         (self.0 & 0xc0000000) >> 30
     }
     pub fn set_ib_eqz_c_adj_ib(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 30;
-        assert!(value <= 0xc0000000);
         self.0 &= !0xc0000000;
         self.0 |= value;
     }
@@ -870,8 +870,8 @@ impl SD10G65_IB_CFG4 {
         (self.0 & 0x1c0000) >> 18
     }
     pub fn set_ib_eqz_c_mode(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 18;
-        assert!(value <= 0x1c0000);
         self.0 &= !0x1c0000;
         self.0 |= value;
     }
@@ -882,8 +882,8 @@ impl SD10G65_IB_CFG4 {
         (self.0 & 0xe00000) >> 21
     }
     pub fn set_ib_eqz_l_mode(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 21;
-        assert!(value <= 0xe00000);
         self.0 &= !0xe00000;
         self.0 |= value;
     }
@@ -905,8 +905,8 @@ impl SD10G65_IB_CFG4 {
         (self.0 & 0x3f000) >> 12
     }
     pub fn set_ib_vscope_h_thres(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 12;
-        assert!(value <= 0x3f000);
         self.0 &= !0x3f000;
         self.0 |= value;
     }
@@ -917,8 +917,8 @@ impl SD10G65_IB_CFG4 {
         (self.0 & 0xfc0) >> 6
     }
     pub fn set_ib_vscope_l_thres(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 6;
-        assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
     }
@@ -936,8 +936,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x60000) >> 17
     }
     pub fn set_ib_agc_dis(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 17;
-        assert!(value <= 0x60000);
         self.0 &= !0x60000;
         self.0 |= value;
     }
@@ -946,8 +946,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ib_calmux_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -958,8 +958,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x180000) >> 19
     }
     pub fn set_ib_dfe_dis(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 19;
-        assert!(value <= 0x180000);
         self.0 &= !0x180000;
         self.0 |= value;
     }
@@ -968,8 +968,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_ib_eq_ld_cal_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -980,8 +980,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ib_hys_cal_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -990,8 +990,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_ib_ia_offs_cal_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -1000,8 +1000,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_ib_ie_sdet_cal_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -1010,8 +1010,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_ib_is_offs_cal_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -1022,8 +1022,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_ib_jumph_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -1034,8 +1034,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_ib_jumpl_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -1046,8 +1046,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x3c0) >> 6
     }
     pub fn set_ib_offs_blksel(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 6;
-        assert!(value <= 0x3c0);
         self.0 &= !0x3c0;
         self.0 |= value;
     }
@@ -1067,8 +1067,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_ib_thres_cal_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -1079,8 +1079,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0xf0000000) >> 28
     }
     pub fn set_ib_tstgen_ampl(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 28;
-        assert!(value <= 0xf0000000);
         self.0 &= !0xf0000000;
         self.0 |= value;
     }
@@ -1091,8 +1091,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_ib_tstgen_data(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -1103,8 +1103,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x8000000) >> 27
     }
     pub fn set_ib_tstgen_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 27;
-        assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
     }
@@ -1115,8 +1115,8 @@ impl SD10G65_IB_CFG5 {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_ib_tstgen_toggle_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -1134,8 +1134,8 @@ impl SD10G65_IB_CFG6 {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_ib_auto_agc_adj(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -1146,8 +1146,8 @@ impl SD10G65_IB_CFG6 {
         (self.0 & 0xfe0) >> 5
     }
     pub fn set_ib_eqz_agc_adj(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 5;
-        assert!(value <= 0xfe0);
         self.0 &= !0xfe0;
         self.0 |= value;
     }
@@ -1158,8 +1158,8 @@ impl SD10G65_IB_CFG6 {
         (self.0 & 0x7f0000) >> 16
     }
     pub fn set_ib_eqz_gain_adj(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 16;
-        assert!(value <= 0x7f0000);
         self.0 &= !0x7f0000;
         self.0 |= value;
     }
@@ -1188,8 +1188,8 @@ impl SD10G65_IB_CFG7 {
         (self.0 & 0x3f0000) >> 16
     }
     pub fn set_ib_dfe_gain_adj(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 16;
-        assert!(value <= 0x3f0000);
         self.0 &= !0x3f0000;
         self.0 |= value;
     }
@@ -1200,8 +1200,8 @@ impl SD10G65_IB_CFG7 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_ib_dfe_gain_adj_s(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -1212,8 +1212,8 @@ impl SD10G65_IB_CFG7 {
         (self.0 & 0xfc0) >> 6
     }
     pub fn set_ib_dfe_offset_h(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 6;
-        assert!(value <= 0xfc0);
         self.0 &= !0xfc0;
         self.0 |= value;
     }
@@ -1224,8 +1224,8 @@ impl SD10G65_IB_CFG7 {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_ib_dfe_offset_h_l(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }
@@ -1245,8 +1245,8 @@ impl SD10G65_IB_CFG7 {
         (self.0 & 0x1f800000) >> 23
     }
     pub fn set_ib_main_thres_cal(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 23;
-        assert!(value <= 0x1f800000);
         self.0 &= !0x1f800000;
         self.0 |= value;
     }
@@ -1264,8 +1264,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_ib_aout_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -1274,8 +1274,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_ib_aout_mux(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -1286,8 +1286,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x3e000000) >> 25
     }
     pub fn set_ib_aout_pool(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 25;
-        assert!(value <= 0x3e000000);
         self.0 &= !0x3e000000;
         self.0 |= value;
     }
@@ -1298,8 +1298,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x3f0) >> 4
     }
     pub fn set_ib_bias_adj(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 4;
-        assert!(value <= 0x3f0);
         self.0 &= !0x3f0;
         self.0 |= value;
     }
@@ -1310,8 +1310,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_ib_bias_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -1322,8 +1322,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x1c00) >> 10
     }
     pub fn set_ib_cml_ampl(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 10;
-        assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
     }
@@ -1345,8 +1345,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_ib_eq_curr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -1355,8 +1355,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_ib_inv_ia_cal_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -1365,8 +1365,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_ib_inv_ia_dofs(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -1375,8 +1375,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_ib_inv_is_dofs(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -1385,8 +1385,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_ib_inv_offs_cal_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -1395,8 +1395,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_ib_inv_thr_cal_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -1407,8 +1407,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_ib_lat_neutral(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -1417,8 +1417,8 @@ impl SD10G65_IB_CFG8 {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_ib_sel_vclk(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -1443,8 +1443,8 @@ impl SD10G65_IB_CFG9 {
         (self.0 & 0x3f00) >> 8
     }
     pub fn set_ib_dfe_coef2(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 8;
-        assert!(value <= 0x3f00);
         self.0 &= !0x3f00;
         self.0 |= value;
     }
@@ -1453,8 +1453,8 @@ impl SD10G65_IB_CFG9 {
         (self.0 & 0x1f0000) >> 16
     }
     pub fn set_ib_dfe_coef3(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 16;
-        assert!(value <= 0x1f0000);
         self.0 &= !0x1f0000;
         self.0 |= value;
     }
@@ -1463,8 +1463,8 @@ impl SD10G65_IB_CFG9 {
         (self.0 & 0x1f000000) >> 24
     }
     pub fn set_ib_dfe_coef4(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 24;
-        assert!(value <= 0x1f000000);
         self.0 &= !0x1f000000;
         self.0 |= value;
     }
@@ -1480,8 +1480,8 @@ impl SD10G65_RX_REV_ID {
         (self.0 & 0xfc000000) >> 26
     }
     pub fn set_des_rev_id(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 26;
-        assert!(value <= 0xfc000000);
         self.0 &= !0xfc000000;
         self.0 |= value;
     }
@@ -1490,8 +1490,8 @@ impl SD10G65_RX_REV_ID {
         (self.0 & 0x3f00000) >> 20
     }
     pub fn set_ib_rev_id(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 20;
-        assert!(value <= 0x3f00000);
         self.0 &= !0x3f00000;
         self.0 |= value;
     }
@@ -1500,8 +1500,8 @@ impl SD10G65_RX_REV_ID {
         (self.0 & 0x3f00) >> 8
     }
     pub fn set_rcpll_rev_id(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 8;
-        assert!(value <= 0x3f00);
         self.0 &= !0x3f00;
         self.0 |= value;
     }
@@ -1510,8 +1510,8 @@ impl SD10G65_RX_REV_ID {
         (self.0 & 0xfc000) >> 14
     }
     pub fn set_synth_rev_id(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 14;
-        assert!(value <= 0xfc000);
         self.0 &= !0xfc000;
         self.0 |= value;
     }
@@ -1550,8 +1550,8 @@ impl SD10G65_SBUS_RX_CFG {
         (self.0 & 0x80) >> 7
     }
     pub fn set_sbus_anaout_en(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -1562,8 +1562,8 @@ impl SD10G65_SBUS_RX_CFG {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_sbus_anaout_sel(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -1585,8 +1585,8 @@ impl SD10G65_SBUS_RX_CFG {
         (self.0 & 0x6) >> 1
     }
     pub fn set_sbus_bias_speed_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -1595,8 +1595,8 @@ impl SD10G65_SBUS_RX_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_sbus_loopdrv_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -1607,8 +1607,8 @@ impl SD10G65_SBUS_RX_CFG {
         (self.0 & 0x78) >> 3
     }
     pub fn set_sbus_rcomp(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 3;
-        assert!(value <= 0x78);
         self.0 &= !0x78;
         self.0 |= value;
     }
@@ -1617,8 +1617,8 @@ impl SD10G65_SBUS_RX_CFG {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_sbus_spare_pool(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }

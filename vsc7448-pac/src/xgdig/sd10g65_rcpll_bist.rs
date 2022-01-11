@@ -38,8 +38,8 @@ impl SD10G65_RCPLL_BIST_CFG0 {
         (self.0 & 0xff0) >> 4
     }
     pub fn set_pllb_comp_uncert(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 4;
-        assert!(value <= 0xff0);
         self.0 &= !0xff0;
         self.0 |= value;
     }
@@ -48,8 +48,8 @@ impl SD10G65_RCPLL_BIST_CFG0 {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_pllb_freq_devi(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -58,8 +58,8 @@ impl SD10G65_RCPLL_BIST_CFG0 {
         (self.0 & 0xc) >> 2
     }
     pub fn set_pllb_inc_dec_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -93,8 +93,8 @@ impl SD10G65_RCPLL_BIST_CFG1 {
         (self.0 & 0xf00000) >> 20
     }
     pub fn set_pllb_lock_repeat(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 20;
-        assert!(value <= 0xf00000);
         self.0 &= !0xf00000;
         self.0 |= value;
     }
@@ -103,8 +103,8 @@ impl SD10G65_RCPLL_BIST_CFG1 {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_pllb_lock_uncert(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -152,8 +152,8 @@ impl SD10G65_RCPLL_BIST_STAT0 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_pllb_busy(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -162,8 +162,8 @@ impl SD10G65_RCPLL_BIST_STAT0 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pllb_done_n(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -181,8 +181,8 @@ impl SD10G65_RCPLL_BIST_STAT0 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_pllb_phase_lock(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -191,8 +191,8 @@ impl SD10G65_RCPLL_BIST_STAT0 {
         (self.0 & 0x7ff0000) >> 16
     }
     pub fn set_pllb_pll_cnt_high(&mut self, value: u32) {
+        assert!(value <= 0x7ff);
         let value = value << 16;
-        assert!(value <= 0x7ff0000);
         self.0 &= !0x7ff0000;
         self.0 |= value;
     }
@@ -201,8 +201,8 @@ impl SD10G65_RCPLL_BIST_STAT0 {
         (self.0 & 0xffe0) >> 5
     }
     pub fn set_pllb_pll_cnt_low(&mut self, value: u32) {
+        assert!(value <= 0x7ff);
         let value = value << 5;
-        assert!(value <= 0xffe0);
         self.0 &= !0xffe0;
         self.0 |= value;
     }
@@ -243,8 +243,8 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pllb_meas_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -253,8 +253,8 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_pllb_sel125clk(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -263,8 +263,8 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_pllb_spi_base_addr(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -273,8 +273,8 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_pllb_start_meas(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }

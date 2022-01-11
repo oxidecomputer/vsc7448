@@ -138,8 +138,8 @@ impl BFD_RX_STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_auth_mismatch_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -148,8 +148,8 @@ impl BFD_RX_STICKY {
         (self.0 & 0x40) >> 6
     }
     pub fn set_dm_zero_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -158,8 +158,8 @@ impl BFD_RX_STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_d_bit_set_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -168,8 +168,8 @@ impl BFD_RX_STICKY {
         (self.0 & 0x80) >> 7
     }
     pub fn set_max_len_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -178,8 +178,8 @@ impl BFD_RX_STICKY {
         (self.0 & 0x100) >> 8
     }
     pub fn set_min_len_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -188,8 +188,8 @@ impl BFD_RX_STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_my_discr_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -198,8 +198,8 @@ impl BFD_RX_STICKY {
         (self.0 & 0x20) >> 5
     }
     pub fn set_m_bit_set_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -217,8 +217,8 @@ impl BFD_RX_STICKY {
         (self.0 & 0x200) >> 9
     }
     pub fn set_version_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -227,8 +227,8 @@ impl BFD_RX_STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_your_discr_err_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -246,8 +246,8 @@ impl BFD_SINK_INFO {
         (self.0 & 0x3e00000) >> 21
     }
     pub fn set_bfd_local_diag_sink(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 21;
-        assert!(value <= 0x3e00000);
         self.0 &= !0x3e00000;
         self.0 |= value;
     }
@@ -256,8 +256,8 @@ impl BFD_SINK_INFO {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_bfd_local_dm_sink(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -268,8 +268,8 @@ impl BFD_SINK_INFO {
         (self.0 & 0x30000000) >> 28
     }
     pub fn set_bfd_local_state_sink(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 28;
-        assert!(value <= 0x30000000);
         self.0 &= !0x30000000;
         self.0 |= value;
     }
@@ -280,8 +280,8 @@ impl BFD_SINK_INFO {
         (self.0 & 0x1f0000) >> 16
     }
     pub fn set_bfd_remote_diag_sink(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 16;
-        assert!(value <= 0x1f0000);
         self.0 &= !0x1f0000;
         self.0 |= value;
     }
@@ -301,8 +301,8 @@ impl BFD_SINK_INFO {
         (self.0 & 0xc000000) >> 26
     }
     pub fn set_bfd_remote_state_sink(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 26;
-        assert!(value <= 0xc000000);
         self.0 &= !0xc000000;
         self.0 |= value;
     }
@@ -320,8 +320,8 @@ impl BFD_SRC_INFO {
         (self.0 & 0x3e00000) >> 21
     }
     pub fn set_bfd_local_diag_src(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 21;
-        assert!(value <= 0x3e00000);
         self.0 &= !0x3e00000;
         self.0 |= value;
     }
@@ -330,8 +330,8 @@ impl BFD_SRC_INFO {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_bfd_local_dm_src(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -342,8 +342,8 @@ impl BFD_SRC_INFO {
         (self.0 & 0x30000000) >> 28
     }
     pub fn set_bfd_local_state_src(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 28;
-        assert!(value <= 0x30000000);
         self.0 &= !0x30000000;
         self.0 |= value;
     }
@@ -354,8 +354,8 @@ impl BFD_SRC_INFO {
         (self.0 & 0x1f0000) >> 16
     }
     pub fn set_bfd_remote_diag_src(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 16;
-        assert!(value <= 0x1f0000);
         self.0 &= !0x1f0000;
         self.0 |= value;
     }
@@ -375,8 +375,8 @@ impl BFD_SRC_INFO {
         (self.0 & 0xc000000) >> 26
     }
     pub fn set_bfd_remote_state_src(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 26;
-        assert!(value <= 0xc000000);
         self.0 &= !0xc000000;
         self.0 |= value;
     }
@@ -426,8 +426,8 @@ impl CPT_RX_STICKY_MPLS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_bfd_cc_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -449,8 +449,8 @@ impl CPT_RX_STICKY_MPLS {
         (self.0 & 0x7f8) >> 3
     }
     pub fn set_generic_cpt_rx_sticky_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 3;
-        assert!(value <= 0x7f8);
         self.0 &= !0x7f8;
         self.0 |= value;
     }
@@ -461,8 +461,8 @@ impl CPT_RX_STICKY_MPLS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_unk_cpt_rx_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -478,8 +478,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x400) >> 10
     }
     pub fn set_bfd_loc_change_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -488,8 +488,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_bfd_rx_diag_change_sink_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -498,8 +498,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x80) >> 7
     }
     pub fn set_bfd_rx_diag_change_src_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -508,8 +508,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_bfd_rx_dm_change_sink_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -518,8 +518,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x200) >> 9
     }
     pub fn set_bfd_rx_dm_change_src_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -537,8 +537,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x20) >> 5
     }
     pub fn set_bfd_rx_f_set_src_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -547,8 +547,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_bfd_rx_p_set_sink_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -557,8 +557,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x40) >> 6
     }
     pub fn set_bfd_rx_p_set_src_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -567,8 +567,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x8) >> 3
     }
     pub fn set_bfd_rx_state_change_sink_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -577,8 +577,8 @@ impl INTR_ENA_MPLS {
         (self.0 & 0x100) >> 8
     }
     pub fn set_bfd_rx_state_change_src_int_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -594,8 +594,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x400) >> 10
     }
     pub fn set_bfd_loc_change_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -604,8 +604,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_bfd_rx_diag_change_sink_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -614,8 +614,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x80) >> 7
     }
     pub fn set_bfd_rx_diag_change_src_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -624,8 +624,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_bfd_rx_dm_change_sink_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -634,8 +634,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x200) >> 9
     }
     pub fn set_bfd_rx_dm_change_src_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -653,8 +653,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x20) >> 5
     }
     pub fn set_bfd_rx_f_set_src_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -663,8 +663,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_bfd_rx_p_set_sink_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -673,8 +673,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x40) >> 6
     }
     pub fn set_bfd_rx_p_set_src_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -683,8 +683,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x8) >> 3
     }
     pub fn set_bfd_rx_state_change_sink_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -693,8 +693,8 @@ impl INTR_STICKY_MPLS {
         (self.0 & 0x100) >> 8
     }
     pub fn set_bfd_rx_state_change_src_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -710,8 +710,8 @@ impl PDU_EXTRACT_MPLS {
         (self.0 & 0x80) >> 7
     }
     pub fn set_bfd_cc_rx_next_good_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -720,8 +720,8 @@ impl PDU_EXTRACT_MPLS {
         (self.0 & 0x40) >> 6
     }
     pub fn set_bfd_cv_rx_next_good_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -730,8 +730,8 @@ impl PDU_EXTRACT_MPLS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_bfd_rx_err_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -740,8 +740,8 @@ impl PDU_EXTRACT_MPLS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_bfd_rx_f_set_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -750,8 +750,8 @@ impl PDU_EXTRACT_MPLS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_bfd_rx_param_change_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -760,8 +760,8 @@ impl PDU_EXTRACT_MPLS {
         (self.0 & 0x8) >> 3
     }
     pub fn set_bfd_rx_p_set_extr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -779,8 +779,8 @@ impl PDU_EXTRACT_MPLS {
         (self.0 & 0x20) >> 5
     }
     pub fn set_extract_hit_me_once(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }

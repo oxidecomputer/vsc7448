@@ -71,8 +71,8 @@ impl PTP_MISC_CFG {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_flag_field_mask(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -95,8 +95,8 @@ impl PTP_SRC_PORT_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_port_num_sel(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }

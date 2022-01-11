@@ -47,8 +47,8 @@ impl PFC_CFG {
         (self.0 & 0x7f8) >> 3
     }
     pub fn set_rx_pfc_ena(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 3;
-        assert!(value <= 0x7f8);
         self.0 &= !0x7f8;
         self.0 |= value;
     }

@@ -40,8 +40,8 @@ impl STICKY {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_acl_redir_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl STICKY {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_frame_fwd_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -62,8 +62,8 @@ impl STICKY {
         (self.0 & 0x200) >> 9
     }
     pub fn set_glag_contrib_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -72,8 +72,8 @@ impl STICKY {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ip4_mc_ctrl_flood_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -82,8 +82,8 @@ impl STICKY {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ip4_mc_data_flood_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -92,8 +92,8 @@ impl STICKY {
         (self.0 & 0x20) >> 5
     }
     pub fn set_ip6_mc_ctrl_flood_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -102,8 +102,8 @@ impl STICKY {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ip6_mc_data_flood_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -112,8 +112,8 @@ impl STICKY {
         (self.0 & 0x2) >> 1
     }
     pub fn set_l2_mc_flood_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -122,8 +122,8 @@ impl STICKY {
         (self.0 & 0x40) >> 6
     }
     pub fn set_no_l2_l3_fwd_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -132,8 +132,8 @@ impl STICKY {
         (self.0 & 0x80) >> 7
     }
     pub fn set_pgid_cpu_mask_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -144,8 +144,8 @@ impl STICKY {
         (self.0 & 0x700000) >> 20
     }
     pub fn set_probe_sticky(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 20;
-        assert!(value <= 0x700000);
         self.0 &= !0x700000;
         self.0 |= value;
     }
@@ -154,8 +154,8 @@ impl STICKY {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_sflow_cand_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -166,8 +166,8 @@ impl STICKY {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_sflow_dst_sample_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -178,8 +178,8 @@ impl STICKY {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_sflow_sample_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -190,8 +190,8 @@ impl STICKY {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_sflow_src_sample_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -200,8 +200,8 @@ impl STICKY {
         (self.0 & 0x100) >> 8
     }
     pub fn set_src_contrib_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -219,8 +219,8 @@ impl STICKY {
         (self.0 & 0x800) >> 11
     }
     pub fn set_vlan_contrib_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -229,8 +229,8 @@ impl STICKY {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_zero_dst_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }

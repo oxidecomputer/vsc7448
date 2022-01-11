@@ -49,8 +49,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_pllf_fbdiv_pre(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -61,8 +61,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_pllf_loop_ctrl_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -71,8 +71,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x400) >> 10
     }
     pub fn set_pllf_loop_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -81,8 +81,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_pllf_oor_recal_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -93,8 +93,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x380) >> 7
     }
     pub fn set_pllf_ramp_mode_sel(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 7;
-        assert!(value <= 0x380);
         self.0 &= !0x380;
         self.0 |= value;
     }
@@ -105,8 +105,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x3000) >> 12
     }
     pub fn set_pllf_ref_cnt_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 12;
-        assert!(value <= 0x3000);
         self.0 &= !0x3000;
         self.0 |= value;
     }
@@ -115,8 +115,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x20) >> 5
     }
     pub fn set_pllf_rst_frqdet_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -125,8 +125,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x10) >> 4
     }
     pub fn set_pllf_rst_overrun_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -135,8 +135,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x3ff0000) >> 16
     }
     pub fn set_pllf_start_cnt(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 16;
-        assert!(value <= 0x3ff0000);
         self.0 &= !0x3ff0000;
         self.0 |= value;
     }
@@ -147,8 +147,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_pllf_syn_clk_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -159,8 +159,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x4) >> 2
     }
     pub fn set_pllf_vco_fast_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -171,8 +171,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x8) >> 3
     }
     pub fn set_pllf_vco_load_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -183,8 +183,8 @@ impl SD10G65_RX_RCPLL_CFG0 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pllf_vco_slow_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -200,8 +200,8 @@ impl SD10G65_RX_RCPLL_CFG1 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_pllf_bist_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -210,8 +210,8 @@ impl SD10G65_RX_RCPLL_CFG1 {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_pllf_ref_cnt_end(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -222,8 +222,8 @@ impl SD10G65_RX_RCPLL_CFG1 {
         (self.0 & 0xc) >> 2
     }
     pub fn set_pllf_vco_fast(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -234,8 +234,8 @@ impl SD10G65_RX_RCPLL_CFG1 {
         (self.0 & 0x3ff0) >> 4
     }
     pub fn set_pllf_vco_load(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 4;
-        assert!(value <= 0x3ff0);
         self.0 &= !0x3ff0;
         self.0 |= value;
     }
@@ -262,8 +262,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pll_cal_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -283,8 +283,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0x7000000) >> 24
     }
     pub fn set_pll_fbsel820(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 24;
-        assert!(value <= 0x7000000);
         self.0 &= !0x7000000;
         self.0 |= value;
     }
@@ -295,8 +295,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0x1800) >> 11
     }
     pub fn set_pll_lpf_cur(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 11;
-        assert!(value <= 0x1800);
         self.0 &= !0x1800;
         self.0 |= value;
     }
@@ -307,8 +307,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0x780) >> 7
     }
     pub fn set_pll_lpf_res(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 7;
-        assert!(value <= 0x780);
         self.0 &= !0x780;
         self.0 |= value;
     }
@@ -319,8 +319,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_pll_short_bulkhn_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -331,8 +331,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_pll_short_bulkhp_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -343,8 +343,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0x2000) >> 13
     }
     pub fn set_pll_short_bulkn_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 13;
-        assert!(value <= 0x2000);
         self.0 &= !0x2000;
         self.0 |= value;
     }
@@ -355,8 +355,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_pll_short_bulkp_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -367,8 +367,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0x7c) >> 2
     }
     pub fn set_pll_vco_cur(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 2;
-        assert!(value <= 0x7c);
         self.0 &= !0x7c;
         self.0 |= value;
     }
@@ -379,8 +379,8 @@ impl SD10G65_RX_RCPLL_CFG2 {
         (self.0 & 0xf00000) >> 20
     }
     pub fn set_pll_vreg18(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 20;
-        assert!(value <= 0xf00000);
         self.0 &= !0xf00000;
         self.0 |= value;
     }
@@ -398,8 +398,8 @@ impl SD10G65_RX_RCPLL_STAT0 {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_pllf_lock_stat(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -408,8 +408,8 @@ impl SD10G65_RX_RCPLL_STAT0 {
         (self.0 & 0xc) >> 2
     }
     pub fn set_pllf_vco_fast_stat(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -418,8 +418,8 @@ impl SD10G65_RX_RCPLL_STAT0 {
         (self.0 & 0x3ff0) >> 4
     }
     pub fn set_pllf_vco_load_stat(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 4;
-        assert!(value <= 0x3ff0);
         self.0 &= !0x3ff0;
         self.0 |= value;
     }
@@ -439,8 +439,8 @@ impl SD10G65_RX_RCPLL_STAT0 {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_pll_range_limit(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -451,8 +451,8 @@ impl SD10G65_RX_RCPLL_STAT0 {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_pll_range_limit_sty(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -468,8 +468,8 @@ impl SD10G65_RX_RCPLL_STAT1 {
         (self.0 & 0x7ff0) >> 4
     }
     pub fn set_pllf_fsm_cnt_stat(&mut self, value: u32) {
+        assert!(value <= 0x7ff);
         let value = value << 4;
-        assert!(value <= 0x7ff0);
         self.0 &= !0x7ff0;
         self.0 |= value;
     }
@@ -489,8 +489,8 @@ impl SD10G65_RX_RCPLL_STAT1 {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_pllf_ref_cnt_stat(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }

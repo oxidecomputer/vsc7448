@@ -36,8 +36,8 @@ impl MAP_ENTRY {
         (self.0 & 0xe000) >> 13
     }
     pub fn set_cosid_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 13;
-        assert!(value <= 0xe000);
         self.0 &= !0xe000;
         self.0 |= value;
     }
@@ -46,8 +46,8 @@ impl MAP_ENTRY {
         (self.0 & 0x200) >> 9
     }
     pub fn set_dei_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -56,8 +56,8 @@ impl MAP_ENTRY {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_dp_val(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -75,8 +75,8 @@ impl MAP_ENTRY {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_fwd_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -85,8 +85,8 @@ impl MAP_ENTRY {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_path_color_val(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -95,8 +95,8 @@ impl MAP_ENTRY {
         (self.0 & 0xe00000) >> 21
     }
     pub fn set_path_cosid_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 21;
-        assert!(value <= 0xe00000);
         self.0 &= !0xe00000;
         self.0 |= value;
     }
@@ -105,8 +105,8 @@ impl MAP_ENTRY {
         (self.0 & 0x1c0) >> 6
     }
     pub fn set_pcp_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 6;
-        assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
     }
@@ -115,8 +115,8 @@ impl MAP_ENTRY {
         (self.0 & 0x1c00) >> 10
     }
     pub fn set_qos_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 10;
-        assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
     }
@@ -125,8 +125,8 @@ impl MAP_ENTRY {
         (self.0 & 0x1c0000) >> 18
     }
     pub fn set_tc_val(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 18;
-        assert!(value <= 0x1c0000);
         self.0 &= !0x1c0000;
         self.0 |= value;
     }
@@ -140,8 +140,8 @@ impl SET_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_cosid_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -150,8 +150,8 @@ impl SET_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_dei_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -160,8 +160,8 @@ impl SET_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_dp_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -179,8 +179,8 @@ impl SET_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_path_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -189,8 +189,8 @@ impl SET_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_pcp_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -199,8 +199,8 @@ impl SET_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_qos_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -209,8 +209,8 @@ impl SET_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_tc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }

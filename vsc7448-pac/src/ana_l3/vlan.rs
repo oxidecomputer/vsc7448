@@ -70,8 +70,8 @@ impl VLAN_CFG {
         (self.0 & 0x1fff00) >> 8
     }
     pub fn set_vlan_fid(&mut self, value: u32) {
+        assert!(value <= 0x1fff);
         let value = value << 8;
-        assert!(value <= 0x1fff00);
         self.0 &= !0x1fff00;
         self.0 |= value;
     }
@@ -80,8 +80,8 @@ impl VLAN_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_vlan_flood_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -90,8 +90,8 @@ impl VLAN_CFG {
         (self.0 & 0x40) >> 6
     }
     pub fn set_vlan_igr_filter_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -100,8 +100,8 @@ impl VLAN_CFG {
         (self.0 & 0x8) >> 3
     }
     pub fn set_vlan_lrn_dis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -119,8 +119,8 @@ impl VLAN_CFG {
         (self.0 & 0x7f000000) >> 24
     }
     pub fn set_vlan_mstp_ptr(&mut self, value: u32) {
+        assert!(value <= 0x7f);
         let value = value << 24;
-        assert!(value <= 0x7f000000);
         self.0 &= !0x7f000000;
         self.0 |= value;
     }
@@ -129,8 +129,8 @@ impl VLAN_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_vlan_private_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -139,8 +139,8 @@ impl VLAN_CFG {
         (self.0 & 0x4) >> 2
     }
     pub fn set_vlan_rleg_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -151,8 +151,8 @@ impl VLAN_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_vlan_sec_fwd_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }

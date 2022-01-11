@@ -43,8 +43,8 @@ impl CT_CCM_TLV_INFO_REW {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ct_if_status_vld_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -52,8 +52,8 @@ impl CT_CCM_TLV_INFO_REW {
         (self.0 & 0x30) >> 4
     }
     pub fn set_ct_port_statis_value_rew(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -61,8 +61,8 @@ impl CT_CCM_TLV_INFO_REW {
         (self.0 & 0x40) >> 6
     }
     pub fn set_ct_port_status_vld_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -100,8 +100,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x80) >> 7
     }
     pub fn set_ct_block_data_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -109,8 +109,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ct_ccm_lm_as_sel_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -118,8 +118,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x800) >> 11
     }
     pub fn set_ct_chk_seq_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -128,8 +128,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x40000000) >> 30
     }
     pub fn set_ct_entry_valid_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 30;
-        assert!(value <= 0x40000000);
         self.0 &= !0x40000000;
         self.0 |= value;
     }
@@ -137,8 +137,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x70) >> 4
     }
     pub fn set_ct_frame_prio_rew(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -149,8 +149,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x3c000000) >> 26
     }
     pub fn set_ct_lookup_type_rew(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 26;
-        assert!(value <= 0x3c000000);
         self.0 &= !0x3c000000;
         self.0 |= value;
     }
@@ -158,8 +158,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ct_non_oam_err_cnt_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -167,8 +167,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x4) >> 2
     }
     pub fn set_ct_non_oam_fwd_err_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -177,8 +177,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x1c0000) >> 18
     }
     pub fn set_ct_oam_gen_idx_rew(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 18;
-        assert!(value <= 0x1c0000);
         self.0 &= !0x1c0000;
         self.0 |= value;
     }
@@ -187,8 +187,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x3e00000) >> 21
     }
     pub fn set_ct_oam_pdu_rew(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 21;
-        assert!(value <= 0x3e00000);
         self.0 &= !0x3e00000;
         self.0 |= value;
     }
@@ -208,8 +208,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ct_sel_oam_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -218,8 +218,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x3f000) >> 12
     }
     pub fn set_ct_src_port_rew(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 12;
-        assert!(value <= 0x3f000);
         self.0 &= !0x3f000;
         self.0 |= value;
     }
@@ -228,8 +228,8 @@ impl CT_OAM_INFO_REW {
         (self.0 & 0x400) >> 10
     }
     pub fn set_ct_upd_seq_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -244,8 +244,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_ct_ccm_nonzero_endtlv_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -254,8 +254,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_ct_ccm_period_err_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -264,8 +264,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_ct_ccm_prio_err_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -274,8 +274,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x3e000) >> 13
     }
     pub fn set_ct_extract_cause_rew(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 13;
-        assert!(value <= 0x3e000);
         self.0 &= !0x3e000;
         self.0 |= value;
     }
@@ -283,8 +283,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x1c00) >> 10
     }
     pub fn set_ct_extract_qu_rew(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 10;
-        assert!(value <= 0x1c00);
         self.0 &= !0x1c00;
         self.0 |= value;
     }
@@ -293,8 +293,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_ct_mel_high_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -303,8 +303,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x200000) >> 21
     }
     pub fn set_ct_pdu_hw_ena_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 21;
-        assert!(value <= 0x200000);
         self.0 &= !0x200000;
         self.0 |= value;
     }
@@ -312,8 +312,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x100) >> 8
     }
     pub fn set_ct_sam_seq_ccm_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -321,8 +321,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0xf8) >> 3
     }
     pub fn set_ct_sam_seq_idx_rew(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 3;
-        assert!(value <= 0xf8);
         self.0 &= !0xf8;
         self.0 |= value;
     }
@@ -330,8 +330,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x200) >> 9
     }
     pub fn set_ct_sam_seq_lbm_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -348,8 +348,8 @@ impl CT_OAM_STICKY_REW {
         (self.0 & 0x400000) >> 22
     }
     pub fn set_ct_valid_pdu_rew(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 22;
-        assert!(value <= 0x400000);
         self.0 &= !0x400000;
         self.0 |= value;
     }

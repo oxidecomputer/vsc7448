@@ -45,8 +45,8 @@ impl QSHP_ALLOC_CFG {
         (self.0 & 0x7e000) >> 13
     }
     pub fn set_qshp_max(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 13;
-        assert!(value <= 0x7e000);
         self.0 &= !0x7e000;
         self.0 |= value;
     }
@@ -55,8 +55,8 @@ impl QSHP_ALLOC_CFG {
         (self.0 & 0x1f80000) >> 19
     }
     pub fn set_qshp_min(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 19;
-        assert!(value <= 0x1f80000);
         self.0 &= !0x1f80000;
         self.0 |= value;
     }

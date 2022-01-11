@@ -36,8 +36,8 @@ impl AN_SM {
         (self.0 & 0xf0) >> 4
     }
     pub fn set_abdet_cnt(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 4;
-        assert!(value <= 0xf0);
         self.0 &= !0xf0;
         self.0 |= value;
     }

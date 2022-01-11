@@ -51,8 +51,8 @@ impl EEE_INTR_MASK {
         (self.0 & 0x10) >> 4
     }
     pub fn set_tx_lpi_received_mask(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -66,8 +66,8 @@ impl EEE_STATUS {
         (self.0 & 0x40) >> 6
     }
     pub fn set_clock_stop_capable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -76,8 +76,8 @@ impl EEE_STATUS {
         (self.0 & 0x100) >> 8
     }
     pub fn set_rx_lpi_indication(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl EEE_STATUS {
         (self.0 & 0x400) >> 10
     }
     pub fn set_rx_lpi_received(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -98,8 +98,8 @@ impl EEE_STATUS {
         (self.0 & 0x200) >> 9
     }
     pub fn set_tx_lpi_indication(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -110,8 +110,8 @@ impl EEE_STATUS {
         (self.0 & 0x800) >> 11
     }
     pub fn set_tx_lpi_received(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }

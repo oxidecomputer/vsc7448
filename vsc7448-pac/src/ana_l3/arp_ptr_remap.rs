@@ -49,8 +49,8 @@ impl ARP_PTR_REMAP_CFG {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_ecmp_cnt(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }

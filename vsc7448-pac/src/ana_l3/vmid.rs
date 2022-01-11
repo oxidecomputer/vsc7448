@@ -45,8 +45,8 @@ impl MAX_LEN {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_ip6_max_len(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -60,8 +60,8 @@ impl RLEG_CTRL {
         (self.0 & 0xfff0000) >> 16
     }
     pub fn set_rleg_evid(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 16;
-        assert!(value <= 0xfff0000);
         self.0 &= !0xfff0000;
         self.0 |= value;
     }
@@ -70,8 +70,8 @@ impl RLEG_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rleg_ip4_icmp_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -80,8 +80,8 @@ impl RLEG_CTRL {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rleg_ip4_mc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -92,8 +92,8 @@ impl RLEG_CTRL {
         (self.0 & 0x300) >> 8
     }
     pub fn set_rleg_ip4_sip_rpf_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 8;
-        assert!(value <= 0x300);
         self.0 &= !0x300;
         self.0 |= value;
     }
@@ -102,8 +102,8 @@ impl RLEG_CTRL {
         (self.0 & 0x40) >> 6
     }
     pub fn set_rleg_ip4_uc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -121,8 +121,8 @@ impl RLEG_CTRL {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rleg_ip6_icmp_redir_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -131,8 +131,8 @@ impl RLEG_CTRL {
         (self.0 & 0x20) >> 5
     }
     pub fn set_rleg_ip6_mc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -143,8 +143,8 @@ impl RLEG_CTRL {
         (self.0 & 0xc00) >> 10
     }
     pub fn set_rleg_ip6_sip_rpf_mode(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 10;
-        assert!(value <= 0xc00);
         self.0 &= !0xc00;
         self.0 |= value;
     }
@@ -153,8 +153,8 @@ impl RLEG_CTRL {
         (self.0 & 0x80) >> 7
     }
     pub fn set_rleg_ip6_uc_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -163,8 +163,8 @@ impl RLEG_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_rleg_ip6_vrid_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -194,8 +194,8 @@ impl VMID_MC {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_rleg_ip4_mc_dmac_chk_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -215,8 +215,8 @@ impl VMID_MC {
         (self.0 & 0x20000) >> 17
     }
     pub fn set_rleg_ip6_mc_dmac_chk_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 17;
-        assert!(value <= 0x20000);
         self.0 &= !0x20000;
         self.0 |= value;
     }
@@ -227,8 +227,8 @@ impl VMID_MC {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_rleg_ip6_mc_ttl(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -253,8 +253,8 @@ impl VRRP_CFG {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_rleg_ip6_vrid(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }

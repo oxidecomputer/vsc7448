@@ -51,8 +51,8 @@ impl COSID_MAP_CFG_ANA {
         (self.0 & 0x6) >> 1
     }
     pub fn set_color_src_sel_ana(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -63,8 +63,8 @@ impl COSID_MAP_CFG_ANA {
         (self.0 & 0x18) >> 3
     }
     pub fn set_cosid_src_sel_ana(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 3;
-        assert!(value <= 0x18);
         self.0 &= !0x18;
         self.0 |= value;
     }

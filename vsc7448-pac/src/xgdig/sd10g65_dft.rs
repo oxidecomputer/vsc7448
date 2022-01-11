@@ -51,8 +51,8 @@ impl DFT_BIST_CFG0 {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_wakeup_dly_cfg(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -70,8 +70,8 @@ impl DFT_BIST_CFG1 {
         (self.0 & 0xffff0000) >> 16
     }
     pub fn set_max_unstable_cyc_cfg(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 16;
-        assert!(value <= 0xffff0000);
         self.0 &= !0xffff0000;
         self.0 |= value;
     }
@@ -132,8 +132,8 @@ impl DFT_CLK_CMP_CFG {
         (self.0 & 0x30) >> 4
     }
     pub fn set_clk_cmp_div_rx(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -144,8 +144,8 @@ impl DFT_CLK_CMP_CFG {
         (self.0 & 0xc0) >> 6
     }
     pub fn set_clk_cmp_div_tx(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 6;
-        assert!(value <= 0xc0);
         self.0 &= !0xc0;
         self.0 |= value;
     }
@@ -165,8 +165,8 @@ impl DFT_CLK_CMP_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_clk_cmp_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -177,8 +177,8 @@ impl DFT_CLK_CMP_CFG {
         (self.0 & 0xc) >> 2
     }
     pub fn set_clk_cmp_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -187,8 +187,8 @@ impl DFT_CLK_CMP_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_clk_cmp_updtog(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -199,8 +199,8 @@ impl DFT_CLK_CMP_CFG {
         (self.0 & 0x100) >> 8
     }
     pub fn set_clk_cmp_wrap_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -258,8 +258,8 @@ impl DFT_CLK_GEN_CFG {
         (self.0 & 0xffc) >> 2
     }
     pub fn set_cg_dcd_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 2;
-        assert!(value <= 0xffc);
         self.0 &= !0xffc;
         self.0 |= value;
     }
@@ -281,8 +281,8 @@ impl DFT_CLK_GEN_CFG {
         (self.0 & 0xffc00000) >> 22
     }
     pub fn set_cg_per_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 22;
-        assert!(value <= 0xffc00000);
         self.0 &= !0xffc00000;
         self.0 |= value;
     }
@@ -293,8 +293,8 @@ impl DFT_CLK_GEN_CFG {
         (self.0 & 0x3ff000) >> 12
     }
     pub fn set_cg_per_jump_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 12;
-        assert!(value <= 0x3ff000);
         self.0 &= !0x3ff000;
         self.0 |= value;
     }
@@ -333,8 +333,8 @@ impl DFT_MAIN_STAT {
         (self.0 & 0x3ff00) >> 8
     }
     pub fn set_cmp_data_stat(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 8;
-        assert!(value <= 0x3ff00);
         self.0 &= !0x3ff00;
         self.0 |= value;
     }
@@ -343,8 +343,8 @@ impl DFT_MAIN_STAT {
         (self.0 & 0x2) >> 1
     }
     pub fn set_incomplete(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -353,8 +353,8 @@ impl DFT_MAIN_STAT {
         (self.0 & 0x4) >> 2
     }
     pub fn set_instable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -363,8 +363,8 @@ impl DFT_MAIN_STAT {
         (self.0 & 0x8) >> 3
     }
     pub fn set_no_sync(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -373,8 +373,8 @@ impl DFT_MAIN_STAT {
         (self.0 & 0x10) >> 4
     }
     pub fn set_stuck_at_01(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -383,8 +383,8 @@ impl DFT_MAIN_STAT {
         (self.0 & 0x20) >> 5
     }
     pub fn set_stuck_at_par(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -416,8 +416,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x300000) >> 20
     }
     pub fn set_bist_cnt_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 20;
-        assert!(value <= 0x300000);
         self.0 &= !0x300000;
         self.0 |= value;
     }
@@ -428,8 +428,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x6) >> 1
     }
     pub fn set_bist_mode_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 1;
-        assert!(value <= 0x6);
         self.0 &= !0x6;
         self.0 |= value;
     }
@@ -440,8 +440,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x40000) >> 18
     }
     pub fn set_chk_mode_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 18;
-        assert!(value <= 0x40000);
         self.0 &= !0x40000;
         self.0 |= value;
     }
@@ -452,8 +452,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x200) >> 9
     }
     pub fn set_cmp_mode_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -464,8 +464,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x18) >> 3
     }
     pub fn set_cnt_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 3;
-        assert!(value <= 0x18);
         self.0 &= !0x18;
         self.0 |= value;
     }
@@ -474,8 +474,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_cnt_rst(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -495,8 +495,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x2000000) >> 25
     }
     pub fn set_direct_through_ena_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 25;
-        assert!(value <= 0x2000000);
         self.0 &= !0x2000000;
         self.0 |= value;
     }
@@ -505,8 +505,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_err_cnt_capt_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }
@@ -515,8 +515,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x80000) >> 19
     }
     pub fn set_freeze_pattern_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 19;
-        assert!(value <= 0x80000);
         self.0 &= !0x80000;
         self.0 |= value;
     }
@@ -525,8 +525,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x400) >> 10
     }
     pub fn set_inv_ena_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }
@@ -537,8 +537,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x1c0) >> 6
     }
     pub fn set_lrn_cnt_cfg(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 6;
-        assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
     }
@@ -549,8 +549,8 @@ impl DFT_RX_CFG {
         (self.0 & 0xc00000) >> 22
     }
     pub fn set_rx_data_src_sel(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 22;
-        assert!(value <= 0xc00000);
         self.0 &= !0xc00000;
         self.0 |= value;
     }
@@ -561,8 +561,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x3800) >> 11
     }
     pub fn set_rx_prbs_sel_cfg(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 11;
-        assert!(value <= 0x3800);
         self.0 &= !0x3800;
         self.0 |= value;
     }
@@ -573,8 +573,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x38000) >> 15
     }
     pub fn set_rx_wid_sel_cfg(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 15;
-        assert!(value <= 0x38000);
         self.0 &= !0x38000;
         self.0 |= value;
     }
@@ -583,8 +583,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_rx_word_mode_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -595,8 +595,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_stuck_at_01_mask_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -607,8 +607,8 @@ impl DFT_RX_CFG {
         (self.0 & 0x8000000) >> 27
     }
     pub fn set_stuck_at_par_mask_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 27;
-        assert!(value <= 0x8000000);
         self.0 &= !0x8000000;
         self.0 |= value;
     }
@@ -638,8 +638,8 @@ impl DFT_RX_PAT_CFG {
         (self.0 & 0xf00) >> 8
     }
     pub fn set_max_addr_chk_cfg(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 8;
-        assert!(value <= 0xf00);
         self.0 &= !0xf00;
         self.0 |= value;
     }
@@ -648,8 +648,8 @@ impl DFT_RX_PAT_CFG {
         (self.0 & 0xff000000) >> 24
     }
     pub fn set_msb_mask_cfg(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 24;
-        assert!(value <= 0xff000000);
         self.0 &= !0xff000000;
         self.0 |= value;
     }
@@ -658,8 +658,8 @@ impl DFT_RX_PAT_CFG {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_pat_read_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -697,8 +697,8 @@ impl DFT_TX_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_ipath_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -709,8 +709,8 @@ impl DFT_TX_CFG {
         (self.0 & 0xc) >> 2
     }
     pub fn set_opath_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -719,8 +719,8 @@ impl DFT_TX_CFG {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_rst_on_stuck_at_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -729,8 +729,8 @@ impl DFT_TX_CFG {
         (self.0 & 0x20) >> 5
     }
     pub fn set_scram_inv_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -741,8 +741,8 @@ impl DFT_TX_CFG {
         (self.0 & 0x1c0) >> 6
     }
     pub fn set_tx_prbs_sel_cfg(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 6;
-        assert!(value <= 0x1c0);
         self.0 &= !0x1c0;
         self.0 |= value;
     }
@@ -753,8 +753,8 @@ impl DFT_TX_CFG {
         (self.0 & 0xe00) >> 9
     }
     pub fn set_tx_wid_sel_cfg(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 9;
-        assert!(value <= 0xe00);
         self.0 &= !0xe00;
         self.0 |= value;
     }
@@ -765,8 +765,8 @@ impl DFT_TX_CFG {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tx_word_mode_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -791,8 +791,8 @@ impl DFT_TX_CMP_DAT_STAT {
         (self.0 & 0x1000) >> 12
     }
     pub fn set_tx_stuck_at_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 12;
-        assert!(value <= 0x1000);
         self.0 &= !0x1000;
         self.0 |= value;
     }
@@ -808,8 +808,8 @@ impl DFT_TX_ERR_INSERT_CFG {
         (self.0 & 0xffc00000) >> 22
     }
     pub fn set_cg_timer_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3ff);
         let value = value << 22;
-        assert!(value <= 0xffc00000);
         self.0 &= !0xffc00000;
         self.0 |= value;
     }
@@ -820,8 +820,8 @@ impl DFT_TX_ERR_INSERT_CFG {
         (self.0 & 0xf0000) >> 16
     }
     pub fn set_err_freq_cfg(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 16;
-        assert!(value <= 0xf0000);
         self.0 &= !0xf0000;
         self.0 |= value;
     }
@@ -832,8 +832,8 @@ impl DFT_TX_ERR_INSERT_CFG {
         (self.0 & 0xfc00) >> 10
     }
     pub fn set_err_posit_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 10;
-        assert!(value <= 0xfc00);
         self.0 &= !0xfc00;
         self.0 |= value;
     }
@@ -844,8 +844,8 @@ impl DFT_TX_ERR_INSERT_CFG {
         (self.0 & 0x3f0) >> 4
     }
     pub fn set_err_posit_offs_cfg(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 4;
-        assert!(value <= 0x3f0);
         self.0 &= !0x3f0;
         self.0 |= value;
     }
@@ -856,8 +856,8 @@ impl DFT_TX_ERR_INSERT_CFG {
         (self.0 & 0x100000) >> 20
     }
     pub fn set_err_trig_oneshot_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 20;
-        assert!(value <= 0x100000);
         self.0 &= !0x100000;
         self.0 |= value;
     }
@@ -884,8 +884,8 @@ impl DFT_TX_PAT_CFG {
         (self.0 & 0x3c0000) >> 18
     }
     pub fn set_max_addr_gen_cfg(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 18;
-        assert!(value <= 0x3c0000);
         self.0 &= !0x3c0000;
         self.0 |= value;
     }
@@ -903,8 +903,8 @@ impl DFT_TX_PAT_CFG {
         (self.0 & 0x4000000) >> 26
     }
     pub fn set_pat_vld_cfg(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 26;
-        assert!(value <= 0x4000000);
         self.0 &= !0x4000000;
         self.0 |= value;
     }
@@ -913,8 +913,8 @@ impl DFT_TX_PAT_CFG {
         (self.0 & 0x3c00) >> 10
     }
     pub fn set_store_addr_cfg(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 10;
-        assert!(value <= 0x3c00);
         self.0 &= !0x3c00;
         self.0 |= value;
     }

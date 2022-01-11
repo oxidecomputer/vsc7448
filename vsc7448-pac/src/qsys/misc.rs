@@ -47,8 +47,8 @@ impl EVENTS_CORE {
         (self.0 & 0x8) >> 3
     }
     pub fn set_ev_fwr(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }

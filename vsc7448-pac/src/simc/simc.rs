@@ -56,8 +56,8 @@ impl CTRLR0 {
         (self.0 & 0xf000) >> 12
     }
     pub fn set_cfs(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 12;
-        assert!(value <= 0xf000);
         self.0 &= !0xf000;
         self.0 |= value;
     }
@@ -79,8 +79,8 @@ impl CTRLR0 {
         (self.0 & 0x30) >> 4
     }
     pub fn set_frf(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -91,8 +91,8 @@ impl CTRLR0 {
         (self.0 & 0x40) >> 6
     }
     pub fn set_scph(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 6;
-        assert!(value <= 0x40);
         self.0 &= !0x40;
         self.0 |= value;
     }
@@ -103,8 +103,8 @@ impl CTRLR0 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_scpol(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -115,8 +115,8 @@ impl CTRLR0 {
         (self.0 & 0x800) >> 11
     }
     pub fn set_srl(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 11;
-        assert!(value <= 0x800);
         self.0 &= !0x800;
         self.0 |= value;
     }
@@ -127,8 +127,8 @@ impl CTRLR0 {
         (self.0 & 0x300) >> 8
     }
     pub fn set_tmod(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 8;
-        assert!(value <= 0x300);
         self.0 &= !0x300;
         self.0 |= value;
     }
@@ -188,8 +188,8 @@ impl IMR {
         (self.0 & 0x20) >> 5
     }
     pub fn set_mstim(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -198,8 +198,8 @@ impl IMR {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rxfim(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -208,8 +208,8 @@ impl IMR {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rxoim(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -218,8 +218,8 @@ impl IMR {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rxuim(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -237,8 +237,8 @@ impl IMR {
         (self.0 & 0x2) >> 1
     }
     pub fn set_txoim(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -254,8 +254,8 @@ impl ISR {
         (self.0 & 0x20) >> 5
     }
     pub fn set_mstis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -264,8 +264,8 @@ impl ISR {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rxfis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -274,8 +274,8 @@ impl ISR {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rxois(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -284,8 +284,8 @@ impl ISR {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rxuis(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -303,8 +303,8 @@ impl ISR {
         (self.0 & 0x2) >> 1
     }
     pub fn set_txois(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -334,8 +334,8 @@ impl MWCR {
         (self.0 & 0x2) >> 1
     }
     pub fn set_mdd(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -346,8 +346,8 @@ impl MWCR {
         (self.0 & 0x4) >> 2
     }
     pub fn set_mhs(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -372,8 +372,8 @@ impl RISR {
         (self.0 & 0x20) >> 5
     }
     pub fn set_mstir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 5;
-        assert!(value <= 0x20);
         self.0 &= !0x20;
         self.0 |= value;
     }
@@ -382,8 +382,8 @@ impl RISR {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rxfir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -392,8 +392,8 @@ impl RISR {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rxoir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -402,8 +402,8 @@ impl RISR {
         (self.0 & 0x4) >> 2
     }
     pub fn set_rxuir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -421,8 +421,8 @@ impl RISR {
         (self.0 & 0x2) >> 1
     }
     pub fn set_txoir(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -533,8 +533,8 @@ impl SR {
         (self.0 & 0x10) >> 4
     }
     pub fn set_rff(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -543,8 +543,8 @@ impl SR {
         (self.0 & 0x8) >> 3
     }
     pub fn set_rfne(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -553,8 +553,8 @@ impl SR {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tfe(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -563,8 +563,8 @@ impl SR {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tfnf(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }

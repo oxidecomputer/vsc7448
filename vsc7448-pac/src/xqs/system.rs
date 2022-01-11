@@ -62,8 +62,8 @@ impl FWD_DROP_EVENTS {
         (self.0 & 0x8) >> 3
     }
     pub fn set_fwd_drop_cpu_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 3;
-        assert!(value <= 0x8);
         self.0 &= !0x8;
         self.0 |= value;
     }
@@ -72,8 +72,8 @@ impl FWD_DROP_EVENTS {
         (self.0 & 0x4) >> 2
     }
     pub fn set_fwd_drop_learn_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }
@@ -82,8 +82,8 @@ impl FWD_DROP_EVENTS {
         (self.0 & 0x2) >> 1
     }
     pub fn set_fwd_drop_mirr_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -92,8 +92,8 @@ impl FWD_DROP_EVENTS {
         (self.0 & 0x10) >> 4
     }
     pub fn set_fwd_drop_norm_sticky(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -155,8 +155,8 @@ impl QMAP_PORT_MODE {
         (self.0 & 0xc) >> 2
     }
     pub fn set_qmap_mode_service(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -172,8 +172,8 @@ impl STAT_CFG {
         (self.0 & 0x3c0000) >> 18
     }
     pub fn set_stat_clear_shot(&mut self, value: u32) {
+        assert!(value <= 0xf);
         let value = value << 18;
-        assert!(value <= 0x3c0000);
         self.0 &= !0x3c0000;
         self.0 |= value;
     }
@@ -182,8 +182,8 @@ impl STAT_CFG {
         (self.0 & 0x10) >> 4
     }
     pub fn set_stat_srv_pkt_only(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 4;
-        assert!(value <= 0x10);
         self.0 &= !0x10;
         self.0 |= value;
     }
@@ -192,8 +192,8 @@ impl STAT_CFG {
         (self.0 & 0x3ffe0) >> 5
     }
     pub fn set_stat_view(&mut self, value: u32) {
+        assert!(value <= 0x1fff);
         let value = value << 5;
-        assert!(value <= 0x3ffe0);
         self.0 &= !0x3ffe0;
         self.0 |= value;
     }

@@ -52,8 +52,8 @@ impl TTI_CAL_SLOT_PTRS {
         (self.0 & 0xfff0000) >> 16
     }
     pub fn set_slot_end_ptr(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 16;
-        assert!(value <= 0xfff0000);
         self.0 &= !0xfff0000;
         self.0 |= value;
     }
@@ -90,8 +90,8 @@ impl TTI_CTRL {
         (self.0 & 0xff00000) >> 20
     }
     pub fn set_tti_cal_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 20;
-        assert!(value <= 0xff00000);
         self.0 &= !0xff00000;
         self.0 |= value;
     }
@@ -102,8 +102,8 @@ impl TTI_CTRL {
         (self.0 & 0x30) >> 4
     }
     pub fn set_tti_cal_len(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 4;
-        assert!(value <= 0x30);
         self.0 &= !0x30;
         self.0 |= value;
     }
@@ -112,8 +112,8 @@ impl TTI_CTRL {
         (self.0 & 0x30000) >> 16
     }
     pub fn set_tti_cal_ptr(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 16;
-        assert!(value <= 0x30000);
         self.0 &= !0x30000;
         self.0 |= value;
     }
@@ -124,8 +124,8 @@ impl TTI_CTRL {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_tti_csr_rsv(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -143,8 +143,8 @@ impl TTI_CTRL {
         (self.0 & 0x2) >> 1
     }
     pub fn set_tti_init(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 1;
-        assert!(value <= 0x2);
         self.0 &= !0x2;
         self.0 |= value;
     }
@@ -153,8 +153,8 @@ impl TTI_CTRL {
         (self.0 & 0x4) >> 2
     }
     pub fn set_tti_serial_ena(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 2;
-        assert!(value <= 0x4);
         self.0 &= !0x4;
         self.0 |= value;
     }

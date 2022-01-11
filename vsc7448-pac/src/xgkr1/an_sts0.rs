@@ -36,8 +36,8 @@ impl AN_STS0 {
         (self.0 & 0x80) >> 7
     }
     pub fn set_incp_link(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 7;
-        assert!(value <= 0x80);
         self.0 &= !0x80;
         self.0 |= value;
     }
@@ -59,8 +59,8 @@ impl AN_STS0 {
         (self.0 & 0xc) >> 2
     }
     pub fn set_link_ctl(&mut self, value: u32) {
+        assert!(value <= 0x3);
         let value = value << 2;
-        assert!(value <= 0xc);
         self.0 &= !0xc;
         self.0 |= value;
     }
@@ -71,8 +71,8 @@ impl AN_STS0 {
         (self.0 & 0x70) >> 4
     }
     pub fn set_link_hcd(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 4;
-        assert!(value <= 0x70);
         self.0 &= !0x70;
         self.0 |= value;
     }
@@ -81,8 +81,8 @@ impl AN_STS0 {
         (self.0 & 0x100) >> 8
     }
     pub fn set_nonce_match(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 8;
-        assert!(value <= 0x100);
         self.0 &= !0x100;
         self.0 |= value;
     }
@@ -91,8 +91,8 @@ impl AN_STS0 {
         (self.0 & 0x200) >> 9
     }
     pub fn set_sync10g(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 9;
-        assert!(value <= 0x200);
         self.0 &= !0x200;
         self.0 |= value;
     }
@@ -101,8 +101,8 @@ impl AN_STS0 {
         (self.0 & 0x400) >> 10
     }
     pub fn set_sync8b10b(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 10;
-        assert!(value <= 0x400);
         self.0 &= !0x400;
         self.0 |= value;
     }

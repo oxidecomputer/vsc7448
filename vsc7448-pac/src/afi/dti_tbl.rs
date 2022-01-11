@@ -73,8 +73,8 @@ impl DTI_FRM {
         (self.0 & 0xfff0000) >> 16
     }
     pub fn set_next_frm_ptr(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 16;
-        assert!(value <= 0xfff0000);
         self.0 &= !0xfff0000;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl DTI_MODE {
         (self.0 & 0x1f000000) >> 24
     }
     pub fn set_dti_next(&mut self, value: u32) {
+        assert!(value <= 0x1f);
         let value = value << 24;
-        assert!(value <= 0x1f000000);
         self.0 &= !0x1f000000;
         self.0 |= value;
     }
@@ -98,8 +98,8 @@ impl DTI_MODE {
         (self.0 & 0xff0000) >> 16
     }
     pub fn set_fc_postpone_len(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 16;
-        assert!(value <= 0xff0000);
         self.0 &= !0xff0000;
         self.0 |= value;
     }
@@ -110,8 +110,8 @@ impl DTI_MODE {
         (self.0 & 0x80000000) >> 31
     }
     pub fn set_fc_postpone_mode(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 31;
-        assert!(value <= 0x80000000);
         self.0 &= !0x80000000;
         self.0 |= value;
     }
@@ -120,8 +120,8 @@ impl DTI_MODE {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_frm_inj_cnt(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -143,8 +143,8 @@ impl DTI_MODE {
         (self.0 & 0xfc) >> 2
     }
     pub fn set_trailing_delay_seq_cnt(&mut self, value: u32) {
+        assert!(value <= 0x3f);
         let value = value << 2;
-        assert!(value <= 0xfc);
         self.0 &= !0xfc;
         self.0 |= value;
     }
@@ -167,8 +167,8 @@ impl DTI_PORT_QU {
         (self.0 & 0xffff00) >> 8
     }
     pub fn set_qu_num(&mut self, value: u32) {
+        assert!(value <= 0xffff);
         let value = value << 8;
-        assert!(value <= 0xffff00);
         self.0 &= !0xffff00;
         self.0 |= value;
     }

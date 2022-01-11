@@ -44,8 +44,8 @@ impl QLIMIT_CONG_CNT_STAT {
         (self.0 & 0x7ff8000) >> 15
     }
     pub fn set_qlimit_cong_cnt(&mut self, value: u32) {
+        assert!(value <= 0xfff);
         let value = value << 15;
-        assert!(value <= 0x7ff8000);
         self.0 &= !0x7ff8000;
         self.0 |= value;
     }

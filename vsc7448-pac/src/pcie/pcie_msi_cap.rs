@@ -35,8 +35,8 @@ impl MSI_LOWER_32 {
         (self.0 & 0xfffffffc) >> 2
     }
     pub fn set_pci_msi_lower_32(&mut self, value: u32) {
+        assert!(value <= 0x3fffffff);
         let value = value << 2;
-        assert!(value <= 0xfffffffc);
         self.0 &= !0xfffffffc;
         self.0 |= value;
     }
@@ -71,8 +71,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {
         (self.0 & 0x800000) >> 23
     }
     pub fn set_pci_msi_64_bit_addr_cap(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 23;
-        assert!(value <= 0x800000);
         self.0 &= !0x800000;
         self.0 |= value;
     }
@@ -88,8 +88,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {
         (self.0 & 0xff00) >> 8
     }
     pub fn set_pci_msi_cap_next_offset(&mut self, value: u32) {
+        assert!(value <= 0xff);
         let value = value << 8;
-        assert!(value <= 0xff00);
         self.0 &= !0xff00;
         self.0 |= value;
     }
@@ -97,8 +97,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {
         (self.0 & 0x10000) >> 16
     }
     pub fn set_pci_msi_enable(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 16;
-        assert!(value <= 0x10000);
         self.0 &= !0x10000;
         self.0 |= value;
     }
@@ -106,8 +106,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {
         (self.0 & 0xe0000) >> 17
     }
     pub fn set_pci_msi_multiple_msg_cap(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 17;
-        assert!(value <= 0xe0000);
         self.0 &= !0xe0000;
         self.0 |= value;
     }
@@ -115,8 +115,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {
         (self.0 & 0x700000) >> 20
     }
     pub fn set_pci_msi_multiple_msg_en(&mut self, value: u32) {
+        assert!(value <= 0x7);
         let value = value << 20;
-        assert!(value <= 0x700000);
         self.0 &= !0x700000;
         self.0 |= value;
     }
@@ -124,8 +124,8 @@ impl PCI_MSI_CAP_ID_NEXT_CTRL {
         (self.0 & 0x1000000) >> 24
     }
     pub fn set_pci_pvm_support(&mut self, value: u32) {
+        assert!(value <= 0x1);
         let value = value << 24;
-        assert!(value <= 0x1000000);
         self.0 &= !0x1000000;
         self.0 |= value;
     }

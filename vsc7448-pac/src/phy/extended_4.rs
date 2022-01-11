@@ -34,8 +34,8 @@ impl REG_1588_PPS_0_MUX_CTRL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_1588_soft_reset(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -47,8 +47,8 @@ impl SPI_DAISY_CHAIN_CTRL {
         (self.0 & 0x8000) >> 15
     }
     pub fn set_enable_input_port(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 15;
-        assert!(value <= 0x8000);
         self.0 &= !0x8000;
         self.0 |= value;
     }
@@ -56,8 +56,8 @@ impl SPI_DAISY_CHAIN_CTRL {
         (self.0 & 0x4000) >> 14
     }
     pub fn set_enable_output_port(&mut self, value: u16) {
+        assert!(value <= 0x1);
         let value = value << 14;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
@@ -69,8 +69,8 @@ impl SPI_DAISY_CHAIN_CNTR {
         (self.0 & 0x4000) >> 15
     }
     pub fn set_select_daisy_chain_cntr(&mut self, value: u16) {
+        assert!(value <= 0x7fffffff);
         let value = value << 15;
-        assert!(value <= 0x4000);
         self.0 &= !0x4000;
         self.0 |= value;
     }
