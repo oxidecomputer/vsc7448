@@ -36,11 +36,11 @@ impl PCS_INTR_STAT {
     /// Interrupt when an invalid Rx block is detected
     ///
     /// 0: No invalid blocks 1: Invalid block detected
-    #[inline]
+    #[inline(always)]
     pub fn c64b66b_err_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_c64b66b_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -50,11 +50,11 @@ impl PCS_INTR_STAT {
     /// Lock (loss of synchronization) changed interrupt Interrupt occurs whenever there is ANY change in the underlying status of the LOCK signal
     ///
     /// 0: Synchronization has not changed 1: Synchronization (lock) status changed
-    #[inline]
+    #[inline(always)]
     pub fn lock_changed_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lock_changed_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -64,11 +64,11 @@ impl PCS_INTR_STAT {
     /// Interrupt generated when the Rx signal ordered set FIFO is full or becomes not full Interrupt occurs whenever there is ANY change in the underlying status
     ///
     /// 0: Rx ordered set FIFO full status unchanged 1: Rx ordered set FIFO full status changed
-    #[inline]
+    #[inline(always)]
     pub fn rx_fset_fifo_full_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_fset_fifo_full_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -78,11 +78,11 @@ impl PCS_INTR_STAT {
     /// Interrupt indicating that a signal ordered set was received and captured (||Fsig||)
     ///
     /// 0: No ordered set captured 1: Ordered set captured in FIFO
-    #[inline]
+    #[inline(always)]
     pub fn rx_fset_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_fset_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -92,11 +92,11 @@ impl PCS_INTR_STAT {
     /// Set by the Rx BER state machine when a high bit error rate condition is detected or cleared Interrupt occurs whenever there is ANY change in the underlying status
     ///
     /// 0: High BER status unchanged 1: High BER status changed
-    #[inline]
+    #[inline(always)]
     pub fn rx_hi_ber_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_hi_ber_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -105,11 +105,11 @@ impl PCS_INTR_STAT {
     /// Interrupt generated when the Rx sequence ordered set FIFO is full or becomes not full Interrupt occurs whenever there is ANY change in the underlying status
     ///
     /// 0: Rx ordered set FIFO full status unchanged 1: Rx ordered set FIFO full status changed
-    #[inline]
+    #[inline(always)]
     pub fn rx_oset_fifo_full_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_oset_fifo_full_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -119,11 +119,11 @@ impl PCS_INTR_STAT {
     /// Interrupt indicating that a sequence ordered set was received and captured (||Q||)
     ///
     /// 0: No ordered set captured 1: Ordered set captured in FIFO
-    #[inline]
+    #[inline(always)]
     pub fn rx_oset_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_oset_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -133,11 +133,11 @@ impl PCS_INTR_STAT {
     /// Interrupt if an invalid Tx XGMII character is detected
     ///
     /// 0: No invalid character 1: Invalid character detected
-    #[inline]
+    #[inline(always)]
     pub fn xgmii_err_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_xgmii_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -154,11 +154,11 @@ impl PCS_STATUS {
     /// The block_lock status from the synchronization state machine
     ///
     /// 0: Not synchronized 1: Synchronized, lock obtained
-    #[inline]
+    #[inline(always)]
     pub fn rx_block_lock(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_block_lock(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -168,11 +168,11 @@ impl PCS_STATUS {
     /// Set by the Rx BER state machine when a high bit-error-rate condition is detected
     ///
     /// 0: Normal BER 1: High BER
-    #[inline]
+    #[inline(always)]
     pub fn rx_hi_ber(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_hi_ber(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -181,11 +181,11 @@ impl PCS_STATUS {
     /// When in test pattern check mode, this bit will read 1 if the test pattern checker detects a match. When 0, the test pattern does not match. The test pattern error counts should still be used along with this register bit to determine proper test match status. The bit will read back 1 only when the test pattern is matching. This may happen even while test pattern errors are counted on other clock cycles.
     ///
     /// 0: Test pattern mismatch 1: Test pattern match
-    #[inline]
+    #[inline(always)]
     pub fn testpat_match(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_testpat_match(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;

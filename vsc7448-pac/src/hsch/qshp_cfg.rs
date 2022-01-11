@@ -34,11 +34,11 @@ impl QSHP_CFG {
     /// Accounting mode for this shaper.
     ///
     /// 0: Line rate. Shape bytes including HSCH_MISC_CFG.FRM_ADJ. 1: Data rate. Shape bytes excluding IPG. 2. Frame rate. Shape frames with rate unit = 100 fps and burst unit = 32.8 frames. 3: Frame rate. Shape framed with rate unit = 1 fps and burst unit = 0.3 frames.
-    #[inline]
+    #[inline(always)]
     pub fn se_frm_mode(&self) -> u32 {
         self.0 & 0x3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_se_frm_mode(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -50,22 +50,22 @@ impl QSHP_CFG {
 pub struct QSHP_CIR_CFG(u32);
 impl QSHP_CIR_CFG {
     /// Burst capacity of this shaper. Unit is 4096 kilobytes. The shaper is disabled when CIR_BURST=0.
-    #[inline]
+    #[inline(always)]
     pub fn cir_burst(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cir_burst(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
     /// Leak rate for this shaper. Unit is defined by the leak list period the shaper is attached to (see HSCH_LEAK_CFG.LEAK_TIME).
-    #[inline]
+    #[inline(always)]
     pub fn cir_rate(&self) -> u32 {
         (self.0 & 0x7fffc0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cir_rate(&mut self, value: u32) {
         assert!(value <= 0x1ffff);
         let value = value << 6;

@@ -34,11 +34,11 @@ impl TR_CFG0 {
     /// Set local taps starting point
     ///
     /// 0: Set to INITIALIZE 1: Set to PRESET
-    #[inline]
+    #[inline(always)]
     pub fn ld_pre_init(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ld_pre_init(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -48,11 +48,11 @@ impl TR_CFG0 {
     /// Send first LP request
     ///
     /// 0: Send   INITIALIZE 1: Send   PRESET
-    #[inline]
+    #[inline(always)]
     pub fn lp_pre_init(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lp_pre_init(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -60,11 +60,11 @@ impl TR_CFG0 {
         self.0 |= value;
     }
     /// Update taps regardless of v2,vp sum.
-    #[inline]
+    #[inline(always)]
     pub fn nosum(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_nosum(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -72,11 +72,11 @@ impl TR_CFG0 {
         self.0 |= value;
     }
     /// Enable partial OB tap configuration.
-    #[inline]
+    #[inline(always)]
     pub fn part_cfg_en(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_part_cfg_en(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -84,11 +84,11 @@ impl TR_CFG0 {
         self.0 |= value;
     }
     /// Invert recieved prbs11 within training frame
-    #[inline]
+    #[inline(always)]
     pub fn rx_inv(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_inv(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -96,11 +96,11 @@ impl TR_CFG0 {
         self.0 |= value;
     }
     /// Clear all state machine history
-    #[inline]
+    #[inline(always)]
     pub fn sm_hist_clr(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sm_hist_clr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -108,22 +108,22 @@ impl TR_CFG0 {
         self.0 |= value;
     }
     /// Allow LP to to control tap settings.
-    #[inline]
+    #[inline(always)]
     pub fn tapctl_en(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tapctl_en(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Clock divider value for timer clocks.
-    #[inline]
+    #[inline(always)]
     pub fn tmr_dvdr(&self) -> u32 {
         (self.0 & 0xf000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tmr_dvdr(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 12;
@@ -131,11 +131,11 @@ impl TR_CFG0 {
         self.0 |= value;
     }
     /// Invert transmitted prbs11 within training frame
-    #[inline]
+    #[inline(always)]
     pub fn tx_inv(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_inv(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;

@@ -40,22 +40,22 @@ pub struct MAC_SERDES_STATUS(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MEDIA_SERDES_TX_GOOD_PACKET_COUNTER(u16);
 impl MEDIA_SERDES_TX_GOOD_PACKET_COUNTER {
-    #[inline]
+    #[inline(always)]
     pub fn active(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_active(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn cnt(&self) -> u16 {
         self.0 & 0x1fff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cnt(&mut self, value: u16) {
         assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
@@ -65,32 +65,32 @@ impl MEDIA_SERDES_TX_GOOD_PACKET_COUNTER {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MEDIA_SERDES_TX_CRC_ERROR_COUNTER(u16);
 impl MEDIA_SERDES_TX_CRC_ERROR_COUNTER {
-    #[inline]
+    #[inline(always)]
     pub fn cnt(&self) -> u16 {
         self.0 & 0x7f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cnt(&mut self, value: u16) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn tx_preamble_fix(&self) -> u16 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_preamble_fix(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn tx_select(&self) -> u16 {
         (self.0 & 0xc000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_select(&mut self, value: u16) {
         assert!(value <= 0x3);
         let value = value << 14;
@@ -103,88 +103,88 @@ pub struct MEDIA_SERDES_PCS_CONTROL(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MEDIA_SERDES_PCS_STATUS(u16);
 impl MEDIA_SERDES_PCS_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn get_100basefx_proto_xfer_link_status(&self) -> u16 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_100basefx_proto_xfer_link_status(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn get_10mb_link_status(&self) -> u16 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_10mb_link_status(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn lp_aneg_cap(&self) -> u16 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lp_aneg_cap(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn lp_full_duplex(&self) -> u16 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lp_full_duplex(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn lp_half_duplex(&self) -> u16 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lp_half_duplex(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn media_aneg_complete(&self) -> u16 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_media_aneg_complete(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn media_link_status(&self) -> u16 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_media_link_status(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn media_sig_det(&self) -> u16 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_media_sig_det(&mut self, value: u16) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -196,66 +196,66 @@ pub struct MEDIA_SERDES_CLAUSE_37_LP_ABILITY(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MEDIA_SERDES_STATUS(u16);
 impl MEDIA_SERDES_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn get_100fx_fefi_detect(&self) -> u16 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_100fx_fefi_detect(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn get_100fx_hls_detect(&self) -> u16 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_100fx_hls_detect(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn comma_detect(&self) -> u16 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_comma_detect(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn comma_realign(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_comma_realign(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn fiber_serdes_freq(&self) -> u16 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fiber_serdes_freq(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn sig_detect(&self) -> u16 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sig_detect(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -266,11 +266,11 @@ impl MEDIA_SERDES_STATUS {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MEDIA_MAC_SERDES_RX_GOOD_COUNTER(u16);
 impl MEDIA_MAC_SERDES_RX_GOOD_COUNTER {
-    #[inline]
+    #[inline(always)]
     pub fn cnt(&self) -> u16 {
         self.0 & 0x1fff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cnt(&mut self, value: u16) {
         assert!(value <= 0x1fff);
         self.0 &= !0x1fff;

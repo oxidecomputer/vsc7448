@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct BRKMASK_LSW(u32);
 impl BRKMASK_LSW {
     /// Select lptrain state machine breakpoints. Each bit correpsonds to a state (see design doc)
-    #[inline]
+    #[inline(always)]
     pub fn brkmask_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_brkmask_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -48,11 +48,11 @@ impl BRKMASK_LSW {
 pub struct BRKMASK_MSW(u32);
 impl BRKMASK_MSW {
     /// Select lptrain state machine breakpoints. Each bit correpsonds to a state (see design doc)
-    #[inline]
+    #[inline(always)]
     pub fn brkmask_msw(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_brkmask_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

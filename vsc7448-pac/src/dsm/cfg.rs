@@ -36,22 +36,22 @@ impl BUF_CFG {
     /// Enable aging of frames stuck in the DSM buffer system for long periods. Aging is done by comparing the age era stamped into the frame with the current age era. This check is only performed at SOF. If the current age era is more than one higher than the era stamped into the frame, then the frame is discarded.
     ///
     /// '0': Aging disabled. '1': Aging enabled.
-    #[inline]
+    #[inline(always)]
     pub fn aging_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aging_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Disables the CSC statistics counters in the DSM for the port. Set this when the port utilizes a DEV10G device as this handles the statistics locally in the device.
-    #[inline]
+    #[inline(always)]
     pub fn csc_stat_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_csc_stat_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -68,11 +68,11 @@ impl CLR_BUF {
     /// A write to this register clears the indicated buffer. No other buffers will be influenced by clearing this buffer. Encoding: 1: Clears buffer for port 0 2: Clears buffer for port 1 2^N: Clears buffer for port N If N > 31 Use respective next register.
     ///
     /// '0': No action '1': Buffer is cleared (Bit is automatically cleared)
-    #[inline]
+    #[inline(always)]
     pub fn clr_buf(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_clr_buf(&mut self, value: u32) {
         self.0 = value;
     }
@@ -86,11 +86,11 @@ impl DBG_CTRL {
     /// Controls which event the AGE counter counts. This setting is common for all aging counters.
     ///
     /// 0: Number of aged frames 1: Number of SOF transmitted on taxi bus 2: Number of EOF transmitted on taxi bus 3: Number of ABORT transmitted on taxi bus 4: Reserved 5: Number of retransmits requests received from port status 6: Reserved 7: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn dbg_event_ctrl(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dbg_event_ctrl(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -104,11 +104,11 @@ impl DBG_CTRL {
 pub struct DEV_TX_STOP_WM_CFG(u32);
 impl DEV_TX_STOP_WM_CFG {
     /// Set this to '1' when a 10G capable port runs at speeds below 10G.
-    #[inline]
+    #[inline(always)]
     pub fn dev10g_shadow_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dev10g_shadow_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -116,22 +116,22 @@ impl DEV_TX_STOP_WM_CFG {
         self.0 |= value;
     }
     /// When the token counter value for the device exceeds this value the DSM will stop transmission to the device. When set to 0 a hardware calculated default value is used. When a port is configured for HDX this WM must be set to 1.
-    #[inline]
+    #[inline(always)]
     pub fn dev_tx_stop_wm(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dev_tx_stop_wm(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
     /// Set this to 0 to disable the fast startup of frames in the token system.
-    #[inline]
+    #[inline(always)]
     pub fn fast_startup_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fast_startup_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -146,11 +146,11 @@ impl DEV_TX_STOP_WM_CFG {
 pub struct ETH_FC_CFG(u32);
 impl ETH_FC_CFG {
     /// Obey FC status received from ANA
-    #[inline]
+    #[inline(always)]
     pub fn fc_ana_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fc_ana_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -158,11 +158,11 @@ impl ETH_FC_CFG {
         self.0 |= value;
     }
     /// Obey FC status received from QSYS
-    #[inline]
+    #[inline(always)]
     pub fn fc_qs_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fc_qs_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -176,22 +176,22 @@ impl ETH_FC_CFG {
 pub struct ETH_PFC_CFG(u32);
 impl ETH_PFC_CFG {
     /// Enable PFC operation for the port.
-    #[inline]
+    #[inline(always)]
     pub fn pfc_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pfc_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Minimum time between two PFC PDUs when PFC state changes after transmission of PFC PDU.
-    #[inline]
+    #[inline(always)]
     pub fn pfc_min_update_time(&self) -> u32 {
         (self.0 & 0x1fffc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pfc_min_update_time(&mut self, value: u32) {
         assert!(value <= 0x7fff);
         let value = value << 2;
@@ -199,11 +199,11 @@ impl ETH_PFC_CFG {
         self.0 |= value;
     }
     /// Upon sending  PFC PDU with flow control deasserted for all priorities, enforce a PFC_MIN_UPDATE_TIME delay before allowing transmission of next PFC PDU.
-    #[inline]
+    #[inline(always)]
     pub fn pfc_xoff_min_update_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pfc_xoff_min_update_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -218,11 +218,11 @@ impl ETH_PFC_CFG {
 pub struct IPG_SHRINK_CFG(u32);
 impl IPG_SHRINK_CFG {
     /// Enable for preamble shrink in IPG shrink mode of DEV10G, DEV24G. Preamble shrink is only allowed when IPG shrink mode is enabled.
-    #[inline]
+    #[inline(always)]
     pub fn ipg_pream_shrink_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ipg_pream_shrink_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -230,11 +230,11 @@ impl IPG_SHRINK_CFG {
         self.0 |= value;
     }
     /// Enable for IPG shrink mode of DEV10G, DEV24G. In shrink mode frame gap compensation is depending on frame size.
-    #[inline]
+    #[inline(always)]
     pub fn ipg_shrink_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ipg_shrink_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -248,11 +248,11 @@ impl IPG_SHRINK_CFG {
 pub struct MAC_ADDR_BASE_HIGH_CFG(u32);
 impl MAC_ADDR_BASE_HIGH_CFG {
     /// Bits 47-24 of MAC base address. Used when generating Pause Control Frames with the specified MAC address.
-    #[inline]
+    #[inline(always)]
     pub fn mac_addr_high(&self) -> u32 {
         self.0 & 0xffffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mac_addr_high(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
@@ -266,11 +266,11 @@ impl MAC_ADDR_BASE_HIGH_CFG {
 pub struct MAC_ADDR_BASE_LOW_CFG(u32);
 impl MAC_ADDR_BASE_LOW_CFG {
     /// Bits 23-0 of MAC base address. Used when generating Pause Control Frames with the specified MAC address.
-    #[inline]
+    #[inline(always)]
     pub fn mac_addr_low(&self) -> u32 {
         self.0 & 0xffffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mac_addr_low(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
@@ -286,11 +286,11 @@ impl MAC_CFG {
     /// Enables HDX backpressure instead of FDX FC when FC is generated. Note: 10G and 24G ports can not run HDX, so for those ports this field must always be set to '0'.
     ///
     /// '0': FDX FC is used. '1': HDX backpreassure is used.
-    #[inline]
+    #[inline(always)]
     pub fn hdx_backpressure(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_hdx_backpressure(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -300,11 +300,11 @@ impl MAC_CFG {
     /// Defines whether or not each pause frame will be sent twice.
     ///
     /// '0': Send one pause frame two times per pause period. '1': Send two pause frames back to back two times per pause period.
-    #[inline]
+    #[inline(always)]
     pub fn send_pause_frm_twice(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_send_pause_frm_twice(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -314,11 +314,11 @@ impl MAC_CFG {
     /// Tx Pause Value: The pause value inserted in each Pause Control Frame in the Tx direction. It is also used to schedule the transmission of Pause Control Frames when Flow Control is enabled and active. If flow control is enabled, the pause value must be set to a value different from 0, based on the link characteristics.
     ///
     /// 0x0000: 0 quanta (512-bit times) 0x0001: 1 quanta ... 0xFFFF: 64K-1 quanta.
-    #[inline]
+    #[inline(always)]
     pub fn tx_pause_val(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_pause_val(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -328,11 +328,11 @@ impl MAC_CFG {
     /// TX pause zero on de-assert. Determines whether or not a pause control frame with pause value zero is transmitted when flow control is de-asserted.
     ///
     /// '0': No pause frame with value zero is transmitted. '1': Pause frame with value zero is transmitted when flow control becomes inactive.
-    #[inline]
+    #[inline(always)]
     pub fn tx_pause_xon_xoff(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_pause_xon_xoff(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -346,11 +346,11 @@ impl MAC_CFG {
 pub struct RATE_CTRL(u32);
 impl RATE_CTRL {
     /// If Rate Limit mode Frame Rate Overhead is enabled this bitgroup is used for configuration of txAdditionalFrameOverhead.
-    #[inline]
+    #[inline(always)]
     pub fn frm_gap_comp(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_gap_comp(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
@@ -367,11 +367,11 @@ impl RX_PAUSE_CFG {
     /// Configures for each Ethernet port whether flow control is obeyed locally in the DSM or if the flow_control information is sent to the SCH. If not all priorities should obey flow control for this port, then the DSM should not stop the data stream in a flow control case, but let the SCH stop the traffic to avoid head of line blocking. If all priorities should obey flow control for this port, then the DSM should stop the data stream locally to be able to pass 802.3 conformance testing. If the data stream is stopped by the SCH frames in the OQS can not be aged, thus the Allocation Bitmaps in the QS must not recover lost elements.
     ///
     /// '0': This Ethernet port obeys flow control locally in the DSM. '1': This Ethernet port sends flow control information to the SCH and does not stop traffic in the DSM.
-    #[inline]
+    #[inline(always)]
     pub fn fc_obey_local(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fc_obey_local(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -380,11 +380,11 @@ impl RX_PAUSE_CFG {
     /// Rx Pause Enable: Enables Flow Control in Rx direction:
     ///
     /// '0': Flow Control Disabled '1': Flow Control Enabled.
-    #[inline]
+    #[inline(always)]
     pub fn rx_pause_en(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_pause_en(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -401,11 +401,11 @@ impl SCH_STOP_WM_CFG {
     /// DSM buffer fill level at which SCH is stopped to send to this device.
     ///
     /// The SCH is stopped when the fill level is above the configured value. When set to 0 the hardware will use a default watermark set to the mid of the buffer.
-    #[inline]
+    #[inline(always)]
     pub fn sch_stop_wm(&self) -> u32 {
         self.0 & 0x1ff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sch_stop_wm(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
@@ -421,11 +421,11 @@ impl TX_START_WM_CFG {
     /// The number of 4-bytes words in DSM buffer required before the DSM will start to transmit on the taxi bus. The fill level must above a certain threshold to avoid underflow in the devices. Single cell frames will be transfered immediately.
     ///
     /// The DSM will not begin transmission until the fill level is above this watermark or one complete frame is present in the buffer.
-    #[inline]
+    #[inline(always)]
     pub fn tx_start_wm(&self) -> u32 {
         self.0 & 0x1ff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_start_wm(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;

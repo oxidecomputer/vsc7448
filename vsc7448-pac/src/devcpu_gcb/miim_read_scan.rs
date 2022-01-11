@@ -34,11 +34,11 @@ impl MII_SCAN_RSLTS_STICKY {
     /// Indicates for each PHY if a PHY register has had a mismatch of the expected value (with mask) since last reading of MIIM_SCAN_RSLTS_STICKY. Result is sticky, and result will indicate if there has been a mismatch since the last reading of this register. Upon reading this register, all bits are reset to '1'.
     ///
     /// 0 : Mismatch 1 : Match.
-    #[inline]
+    #[inline(always)]
     pub fn miim_scan_rslts_sticky(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_miim_scan_rslts_sticky(&mut self, value: u32) {
         self.0 = value;
     }

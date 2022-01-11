@@ -37,31 +37,31 @@ pub mod xtr;
 /// Frame injection
 pub struct INJ(pub(super) u32);
 impl INJ {
-    #[inline]
+    #[inline(always)]
     pub fn INJ_CTRL(&self, index: u32) -> RegisterAddress<inj::INJ_CTRL> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn INJ_ERR(&self, index: u32) -> RegisterAddress<inj::INJ_ERR> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x1c + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn INJ_GRP_CFG(&self, index: u32) -> RegisterAddress<inj::INJ_GRP_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn INJ_STATUS(&self) -> RegisterAddress<inj::INJ_STATUS> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn INJ_WR(&self, index: u32) -> RegisterAddress<inj::INJ_WR> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VTSS_DBG(&self) -> RegisterAddress<inj::VTSS_DBG> {
         RegisterAddress::new(self.0 + 0x24)
     }
@@ -70,29 +70,29 @@ impl INJ {
 /// Frame extraction
 pub struct XTR(pub(super) u32);
 impl XTR {
-    #[inline]
+    #[inline(always)]
     pub fn XTR_CFG(&self) -> RegisterAddress<xtr::XTR_CFG> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn XTR_DATA_PRESENT(&self) -> RegisterAddress<xtr::XTR_DATA_PRESENT> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn XTR_FLUSH(&self) -> RegisterAddress<xtr::XTR_FLUSH> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn XTR_FRM_PRUNING(&self, index: u32) -> RegisterAddress<xtr::XTR_FRM_PRUNING> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn XTR_GRP_CFG(&self, index: u32) -> RegisterAddress<xtr::XTR_GRP_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn XTR_RD(&self, index: u32) -> RegisterAddress<xtr::XTR_RD> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)

@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct HSCH_L0_CFG(u32);
 impl HSCH_L0_CFG {
     /// Index of layer 1 element connected to.
-    #[inline]
+    #[inline(always)]
     pub fn l1_idx(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_l1_idx(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 6;
@@ -44,11 +44,11 @@ impl HSCH_L0_CFG {
         self.0 |= value;
     }
     /// Input of layer 1 element connected to
-    #[inline]
+    #[inline(always)]
     pub fn l1_inp(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_l1_inp(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;

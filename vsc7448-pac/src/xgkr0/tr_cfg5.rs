@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_CFG5(u32);
 impl TR_CFG5 {
     /// max	settings for local transmitter.
-    #[inline]
+    #[inline(always)]
     pub fn cm_max(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cm_max(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 6;
@@ -44,11 +44,11 @@ impl TR_CFG5 {
         self.0 |= value;
     }
     /// min	settings for local transmitter.
-    #[inline]
+    #[inline(always)]
     pub fn cm_min(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cm_min(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;

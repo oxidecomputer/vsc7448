@@ -41,41 +41,41 @@ pub mod status;
 /// Configuration registers
 pub struct CFG(pub(super) u32);
 impl CFG {
-    #[inline]
+    #[inline(always)]
     pub fn BUF_CFG(&self, index: u32) -> RegisterAddress<cfg::BUF_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CLR_BUF(&self, index: u32) -> RegisterAddress<cfg::CLR_BUF> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x294 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DBG_CTRL(&self) -> RegisterAddress<cfg::DBG_CTRL> {
         RegisterAddress::new(self.0 + 0xa48)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DEV_TX_STOP_WM_CFG(&self, index: u32) -> RegisterAddress<cfg::DEV_TX_STOP_WM_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x454 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn ETH_FC_CFG(&self, index: u32) -> RegisterAddress<cfg::ETH_FC_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x60c + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn ETH_PFC_CFG(&self, index: u32) -> RegisterAddress<cfg::ETH_PFC_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x6e8 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn IPG_SHRINK_CFG(&self, index: u32) -> RegisterAddress<cfg::IPG_SHRINK_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x1b8 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_ADDR_BASE_HIGH_CFG(
         &self,
         index: u32,
@@ -83,32 +83,32 @@ impl CFG {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x8a0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_ADDR_BASE_LOW_CFG(&self, index: u32) -> RegisterAddress<cfg::MAC_ADDR_BASE_LOW_CFG> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x974 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_CFG(&self, index: u32) -> RegisterAddress<cfg::MAC_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x7c4 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RATE_CTRL(&self, index: u32) -> RegisterAddress<cfg::RATE_CTRL> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0xdc + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_PAUSE_CFG(&self, index: u32) -> RegisterAddress<cfg::RX_PAUSE_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x530 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SCH_STOP_WM_CFG(&self, index: u32) -> RegisterAddress<cfg::SCH_STOP_WM_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x29c + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_START_WM_CFG(&self, index: u32) -> RegisterAddress<cfg::TX_START_WM_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x378 + index * 0x4)
@@ -118,11 +118,11 @@ impl CFG {
 /// Access core memory
 pub struct COREMEM(pub(super) u32);
 impl COREMEM {
-    #[inline]
+    #[inline(always)]
     pub fn CM_ADDR(&self) -> RegisterAddress<coremem::CM_ADDR> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CM_DATA(&self) -> RegisterAddress<coremem::CM_DATA> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -131,7 +131,7 @@ impl COREMEM {
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
-    #[inline]
+    #[inline(always)]
     pub fn RAM_INIT(&self) -> RegisterAddress<ram_ctrl::RAM_INIT> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -140,7 +140,7 @@ impl RAM_CTRL {
 /// Configuration registers for rate limit modes
 pub struct RATE_LIMIT_CFG(pub(super) u32);
 impl RATE_LIMIT_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn TX_FRAME_RATE_START_CFG(
         &self,
         index: u32,
@@ -148,7 +148,7 @@ impl RATE_LIMIT_CFG {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x1b8 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_IPG_STRETCH_RATIO_CFG(
         &self,
         index: u32,
@@ -156,11 +156,11 @@ impl RATE_LIMIT_CFG {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0xdc + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_RATE_LIMIT_HDR_CFG(&self) -> RegisterAddress<rate_limit_cfg::TX_RATE_LIMIT_HDR_CFG> {
         RegisterAddress::new(self.0 + 0x294)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_RATE_LIMIT_MODE(
         &self,
         index: u32,
@@ -173,7 +173,7 @@ impl RATE_LIMIT_CFG {
 /// Status registers for rate limit modes
 pub struct RATE_LIMIT_STATUS(pub(super) u32);
 impl RATE_LIMIT_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn TX_RATE_LIMIT_STICKY(
         &self,
         index: u32,
@@ -186,26 +186,26 @@ impl RATE_LIMIT_STATUS {
 /// Status registers
 pub struct STATUS(pub(super) u32);
 impl STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn AGED_FRMS(&self, index: u32) -> RegisterAddress<status::AGED_FRMS> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn BUF_OFLW_STICKY(&self, index: u32) -> RegisterAddress<status::BUF_OFLW_STICKY> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0xe0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn BUF_UFLW_STICKY(&self, index: u32) -> RegisterAddress<status::BUF_UFLW_STICKY> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0xe8 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CELL_BUS_STICKY(&self) -> RegisterAddress<status::CELL_BUS_STICKY> {
         RegisterAddress::new(self.0 + 0xdc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PRE_CNT_OFLW_STICKY(&self) -> RegisterAddress<status::PRE_CNT_OFLW_STICKY> {
         RegisterAddress::new(self.0 + 0xf0)
     }

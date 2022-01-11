@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct VCAP_ACTION_DAT(u32);
 impl VCAP_ACTION_DAT {
     /// The cache register that holds action. The register is replicated; index 0 is the 32 LSBs of the action.
-    #[inline]
+    #[inline(always)]
     pub fn action_dat(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_action_dat(&mut self, value: u32) {
         self.0 = value;
     }
@@ -46,11 +46,11 @@ impl VCAP_ACTION_DAT {
 pub struct VCAP_CNT_DAT(u32);
 impl VCAP_CNT_DAT {
     /// The cache register that holds counter. The register is replicated; index 0 is the 32 LSBs of the counter. When the counter is 1 bit wide the counter operates as a 1 bit saturating counter; it is set by VCAP when a rule is matched by a key.
-    #[inline]
+    #[inline(always)]
     pub fn cnt_dat(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cnt_dat(&mut self, value: u32) {
         self.0 = value;
     }
@@ -62,11 +62,11 @@ impl VCAP_ENTRY_DAT {
     /// The cache register that holds entry data. The register is replicated; index 0 is the 32 LSBs of the entry-data. Together with VCAP_MASK_DAT.MASK_DAT this field defines match parameters for TCAM entries. Version 2 VCAPs allows programming of never-match, this is needed when disabling entries. Version 1 VCAPs converts match-off to match-any when reading/writing entries.
     ///
     /// Match-0: Entry=0, Mask=0 Match-1: Entry=1, Mask=0 Match-any (don't care): Entry=0, Mask=1 Match-off (never-match): Entry=1, Mask=1
-    #[inline]
+    #[inline(always)]
     pub fn entry_dat(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_entry_dat(&mut self, value: u32) {
         self.0 = value;
     }
@@ -76,11 +76,11 @@ impl VCAP_ENTRY_DAT {
 pub struct VCAP_MASK_DAT(u32);
 impl VCAP_MASK_DAT {
     /// The cache register that holds entry mask. The register is replicated; index 0 is the 32 LSBs of the entry-mask. See VCAP_MASK_DAT.MASK_DAT for encoding information.
-    #[inline]
+    #[inline(always)]
     pub fn mask_dat(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mask_dat(&mut self, value: u32) {
         self.0 = value;
     }
@@ -90,11 +90,11 @@ impl VCAP_MASK_DAT {
 pub struct VCAP_RULE_ENA(u32);
 impl VCAP_RULE_ENA {
     /// Cache register. Set to enable ES0 rule. Applies only to the ES0 VCAP.
-    #[inline]
+    #[inline(always)]
     pub fn rule_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rule_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

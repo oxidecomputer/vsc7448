@@ -44,15 +44,15 @@ pub mod tupe;
 /// Miscellaneous DTI configration and status information
 pub struct DTI_MISC(pub(super) u32);
 impl DTI_MISC {
-    #[inline]
+    #[inline(always)]
     pub fn DTI_CNT_DOWN(&self) -> RegisterAddress<dti_misc::DTI_CNT_DOWN> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DTI_CTRL(&self) -> RegisterAddress<dti_misc::DTI_CTRL> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DTI_FC_CNT_DOWN(&self) -> RegisterAddress<dti_misc::DTI_FC_CNT_DOWN> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -61,23 +61,23 @@ impl DTI_MISC {
 /// Delay Triggered Injection Table
 pub struct DTI_TBL(pub(super) u32);
 impl DTI_TBL {
-    #[inline]
+    #[inline(always)]
     pub fn DTI_CNT(&self) -> RegisterAddress<dti_tbl::DTI_CNT> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DTI_DURATION(&self) -> RegisterAddress<dti_tbl::DTI_DURATION> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DTI_FRM(&self) -> RegisterAddress<dti_tbl::DTI_FRM> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DTI_MODE(&self) -> RegisterAddress<dti_tbl::DTI_MODE> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DTI_PORT_QU(&self) -> RegisterAddress<dti_tbl::DTI_PORT_QU> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -86,11 +86,11 @@ impl DTI_TBL {
 /// Frame Table
 pub struct FRM_TBL(pub(super) u32);
 impl FRM_TBL {
-    #[inline]
+    #[inline(always)]
     pub fn FRM_ENTRY_PART0(&self) -> RegisterAddress<frm_tbl::FRM_ENTRY_PART0> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn FRM_NEXT_AND_TYPE(&self) -> RegisterAddress<frm_tbl::FRM_NEXT_AND_TYPE> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -99,35 +99,35 @@ impl FRM_TBL {
 /// Miscellaneous AFI configuration
 pub struct MISC(pub(super) u32);
 impl MISC {
-    #[inline]
+    #[inline(always)]
     pub fn DTI_DURATION_TICK_LEN(&self) -> RegisterAddress<misc::DTI_DURATION_TICK_LEN> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn ERR(&self) -> RegisterAddress<misc::ERR> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MISC_CTRL(&self) -> RegisterAddress<misc::MISC_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn NEW_FRM_CTRL(&self) -> RegisterAddress<misc::NEW_FRM_CTRL> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn NEW_FRM_INFO(&self) -> RegisterAddress<misc::NEW_FRM_INFO> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn STICKY_INFO(&self) -> RegisterAddress<misc::STICKY_INFO> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn STICKY_INFO_ENA(&self) -> RegisterAddress<misc::STICKY_INFO_ENA> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn WARN(&self) -> RegisterAddress<misc::WARN> {
         RegisterAddress::new(self.0 + 0x10)
     }
@@ -136,11 +136,11 @@ impl MISC {
 /// Port parameter configuration
 pub struct PORT_TBL(pub(super) u32);
 impl PORT_TBL {
-    #[inline]
+    #[inline(always)]
     pub fn PORT_CFG(&self) -> RegisterAddress<port_tbl::PORT_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PORT_FRM_OUT(&self) -> RegisterAddress<port_tbl::PORT_FRM_OUT> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -149,38 +149,38 @@ impl PORT_TBL {
 /// Miscellaneous TTI configration
 pub struct TTI_MISC(pub(super) u32);
 impl TTI_MISC {
-    #[inline]
+    #[inline(always)]
     pub fn TTI_CAL_SLOT_CNT(&self, index: u32) -> RegisterAddress<tti_misc::TTI_CAL_SLOT_CNT> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_CAL_SLOT_PTRS(&self, index: u32) -> RegisterAddress<tti_misc::TTI_CAL_SLOT_PTRS> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_CAL_STATE(&self, index: u32) -> RegisterAddress<tti_misc::TTI_CAL_STATE> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_CTRL(&self) -> RegisterAddress<tti_misc::TTI_CTRL> {
         RegisterAddress::new(self.0 + 0x30)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_CTRL2(&self) -> RegisterAddress<tti_misc::TTI_CTRL2> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_INJ_CNT(&self) -> RegisterAddress<tti_misc::TTI_INJ_CNT> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_PORT_FRM_OUT(&self) -> RegisterAddress<tti_misc::TTI_PORT_FRM_OUT> {
         RegisterAddress::new(self.0 + 0x40)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_RAND_STATE(&self) -> RegisterAddress<tti_misc::TTI_RAND_STATE> {
         RegisterAddress::new(self.0 + 0x3c)
     }
@@ -189,27 +189,27 @@ impl TTI_MISC {
 /// Timer Triggered Injection Table
 pub struct TTI_TBL(pub(super) u32);
 impl TTI_TBL {
-    #[inline]
+    #[inline(always)]
     pub fn TTI_FRM(&self) -> RegisterAddress<tti_tbl::TTI_FRM> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_MISC_CFG(&self) -> RegisterAddress<tti_tbl::TTI_MISC_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_PORT_QU(&self) -> RegisterAddress<tti_tbl::TTI_PORT_QU> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_TICKS(&self) -> RegisterAddress<tti_tbl::TTI_TICKS> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_TIMER(&self) -> RegisterAddress<tti_tbl::TTI_TIMER> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_TUPE_CTRL(&self) -> RegisterAddress<tti_tbl::TTI_TUPE_CTRL> {
         RegisterAddress::new(self.0 + 0x14)
     }
@@ -218,19 +218,19 @@ impl TTI_TBL {
 /// TTI Tick configuration
 pub struct TTI_TICKS(pub(super) u32);
 impl TTI_TICKS {
-    #[inline]
+    #[inline(always)]
     pub fn TTI_TICK_BASE(&self) -> RegisterAddress<tti_ticks::TTI_TICK_BASE> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_TICK_LEN_0_3(&self) -> RegisterAddress<tti_ticks::TTI_TICK_LEN_0_3> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_TICK_LEN_4_7(&self) -> RegisterAddress<tti_ticks::TTI_TICK_LEN_4_7> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TTI_TICK_STATE(&self, index: u32) -> RegisterAddress<tti_ticks::TTI_TICK_STATE> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0xc + index * 0x4)
@@ -240,28 +240,28 @@ impl TTI_TICKS {
 /// AFI Table UPdata Engine (AFI TUPE)
 pub struct TUPE(pub(super) u32);
 impl TUPE {
-    #[inline]
+    #[inline(always)]
     pub fn TUPE_ADDR(&self) -> RegisterAddress<tupe::TUPE_ADDR> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TUPE_CMD1(&self) -> RegisterAddress<tupe::TUPE_CMD1> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TUPE_CRIT1(&self) -> RegisterAddress<tupe::TUPE_CRIT1> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TUPE_CRIT2(&self) -> RegisterAddress<tupe::TUPE_CRIT2> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TUPE_CRIT3(&self, index: u32) -> RegisterAddress<tupe::TUPE_CRIT3> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TUPE_MISC(&self) -> RegisterAddress<tupe::TUPE_MISC> {
         RegisterAddress::new(self.0 + 0x0)
     }

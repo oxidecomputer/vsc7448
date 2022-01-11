@@ -31,55 +31,55 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ADV_ERR_CAP_CTRL(u32);
 impl ADV_ERR_CAP_CTRL {
-    #[inline]
+    #[inline(always)]
     pub fn ecrc_check_cap(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ecrc_check_cap(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ecrc_check_en(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ecrc_check_en(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ecrc_gen_cap(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ecrc_gen_cap(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ecrc_gen_en(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ecrc_gen_en(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn first_err_pointer(&self) -> u32 {
         self.0 & 0x1f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_first_err_pointer(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
@@ -90,32 +90,32 @@ impl ADV_ERR_CAP_CTRL {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct AER_EXT_CAP_HDR(u32);
 impl AER_EXT_CAP_HDR {
-    #[inline]
+    #[inline(always)]
     pub fn cap_id(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cap_id(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn cap_version(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cap_version(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn next_offset(&self) -> u32 {
         (self.0 & 0xfff00000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_next_offset(&mut self, value: u32) {
         assert!(value <= 0xfff);
         let value = value << 20;
@@ -127,77 +127,77 @@ impl AER_EXT_CAP_HDR {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CORR_ERR_MASK(u32);
 impl CORR_ERR_MASK {
-    #[inline]
+    #[inline(always)]
     pub fn advisory_non_fatal_err_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_advisory_non_fatal_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn bad_dllp_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bad_dllp_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn bad_tlp_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bad_tlp_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn corrected_int_err_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_corrected_int_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn replay_no_roleover_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_replay_no_roleover_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn rpl_timer_timeout_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rpl_timer_timeout_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn rx_err_mask(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -208,77 +208,77 @@ impl CORR_ERR_MASK {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CORR_ERR_STATUS(u32);
 impl CORR_ERR_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn advisory_non_fatal_err_status(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_advisory_non_fatal_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn bad_dllp_status(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bad_dllp_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn bad_tlp_status(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bad_tlp_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn corrected_int_err_status(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_corrected_int_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn replay_no_roleover_status(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_replay_no_roleover_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn rpl_timer_timeout_status(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rpl_timer_timeout_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn rx_err_status(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -289,11 +289,11 @@ impl CORR_ERR_STATUS {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HDR_LOG_REG_0(u32);
 impl HDR_LOG_REG_0 {
-    #[inline]
+    #[inline(always)]
     pub fn first_dword(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_first_dword(&mut self, value: u32) {
         self.0 = value;
     }
@@ -302,11 +302,11 @@ impl HDR_LOG_REG_0 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HDR_LOG_REG_1(u32);
 impl HDR_LOG_REG_1 {
-    #[inline]
+    #[inline(always)]
     pub fn second_dword(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_second_dword(&mut self, value: u32) {
         self.0 = value;
     }
@@ -315,11 +315,11 @@ impl HDR_LOG_REG_1 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HDR_LOG_REG_2(u32);
 impl HDR_LOG_REG_2 {
-    #[inline]
+    #[inline(always)]
     pub fn third_dword(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_third_dword(&mut self, value: u32) {
         self.0 = value;
     }
@@ -328,11 +328,11 @@ impl HDR_LOG_REG_2 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct HDR_LOG_REG_3(u32);
 impl HDR_LOG_REG_3 {
-    #[inline]
+    #[inline(always)]
     pub fn fourth_dword(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fourth_dword(&mut self, value: u32) {
         self.0 = value;
     }
@@ -341,143 +341,143 @@ impl HDR_LOG_REG_3 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct UNCORR_ERR_MASK(u32);
 impl UNCORR_ERR_MASK {
-    #[inline]
+    #[inline(always)]
     pub fn atomic_egress_blocked_err_mask(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_atomic_egress_blocked_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn cmplt_abort_err_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmplt_abort_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn cmplt_timeout_err_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmplt_timeout_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn dl_protocol_err_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dl_protocol_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ecrc_err_mask(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ecrc_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn fc_protocol_err_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fc_protocol_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn internal_err_mask(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_internal_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn malf_tlp_err_mask(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_malf_tlp_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pois_tlp_err_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pois_tlp_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn rec_overflow_err_mask(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rec_overflow_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn sur_dwn_err_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sur_dwn_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn unexp_cmplt_err_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unexp_cmplt_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn unsupported_req_err_mask(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unsupported_req_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -489,143 +489,143 @@ impl UNCORR_ERR_MASK {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct UNCORR_ERR_SEV(u32);
 impl UNCORR_ERR_SEV {
-    #[inline]
+    #[inline(always)]
     pub fn atomic_egress_blocked_err_severity(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_atomic_egress_blocked_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn cmplt_abort_err_severity(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmplt_abort_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn cmplt_timeout_err_severity(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmplt_timeout_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn dl_protocol_err_severity(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dl_protocol_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ecrc_err_severity(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ecrc_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn fc_protocol_err_severity(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fc_protocol_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn internal_err_severity(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_internal_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn malf_tlp_err_severity(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_malf_tlp_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pois_tlp_err_severity(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pois_tlp_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn rec_overflow_err_severity(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rec_overflow_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn sur_dwn_err_severity(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sur_dwn_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn unexp_cmplt_err_severity(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unexp_cmplt_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn unsupported_req_err_severity(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unsupported_req_err_severity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -637,143 +637,143 @@ impl UNCORR_ERR_SEV {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct UNCORR_ERR_STATUS(u32);
 impl UNCORR_ERR_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn atomic_egress_blocked_err_status(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_atomic_egress_blocked_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn cmplt_abort_err_status(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmplt_abort_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn cmplt_timeout_err_status(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmplt_timeout_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn dl_protocol_err_status(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dl_protocol_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ecrc_err_status(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ecrc_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn fc_protocol_err_status(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fc_protocol_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn internal_err_status(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_internal_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn malf_tlp_err_status(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_malf_tlp_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pois_tlp_err_status(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pois_tlp_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn rec_overflow_err_status(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rec_overflow_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn sur_dwn_err_status(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sur_dwn_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn unexp_cmplt_err_status(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unexp_cmplt_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn unsupported_req_err_status(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unsupported_req_err_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;

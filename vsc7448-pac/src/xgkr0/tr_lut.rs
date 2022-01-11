@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct LUT_LSW(u32);
 impl LUT_LSW {
     /// Measured value of selected LUT.
-    #[inline]
+    #[inline(always)]
     pub fn lut_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lut_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -48,11 +48,11 @@ impl LUT_LSW {
 pub struct LUT_MSW(u32);
 impl LUT_MSW {
     /// Measured value of selected LUT.
-    #[inline]
+    #[inline(always)]
     pub fn lut_msw(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lut_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

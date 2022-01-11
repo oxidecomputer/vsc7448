@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct WT_TMR(u32);
 impl WT_TMR {
     /// wait_timer for training state machine to allow extra training frames to be exchanged
-    #[inline]
+    #[inline(always)]
     pub fn wt_tmr(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt_tmr(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

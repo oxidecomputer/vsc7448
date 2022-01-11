@@ -36,11 +36,11 @@ impl ADV_RNG_CTRL {
     /// Selected frame field is matched against the range defined in ANA_CL::ADV_RNG_VALUE_CFG.
     ///
     /// 0: Idle (no matching) 1: TCP/UDP destination port is matched against range 2: TCP/UDP source port is matched against range 3: TCP/UDP destination and source ports are matched against range. There is a match if either of them matches. 4: Basic classified VID is matched against range 5: Basic classified DSCP value is matched against range 6: EtherType is matched against range.
-    #[inline]
+    #[inline(always)]
     pub fn rng_type_sel(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rng_type_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -52,11 +52,11 @@ impl ADV_RNG_CTRL {
 pub struct ADV_RNG_VALUE_CFG(u32);
 impl ADV_RNG_VALUE_CFG {
     /// Upper range value. Value is included in range.
-    #[inline]
+    #[inline(always)]
     pub fn rng_max_value(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rng_max_value(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -64,11 +64,11 @@ impl ADV_RNG_VALUE_CFG {
         self.0 |= value;
     }
     /// Lower range value. Value is included in range.
-    #[inline]
+    #[inline(always)]
     pub fn rng_min_value(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rng_min_value(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -84,11 +84,11 @@ impl AGGR_CFG {
     /// Allow destination MAC address to contribute to the aggregation code calculation.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_dmac_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_dmac_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -98,11 +98,11 @@ impl AGGR_CFG {
     /// Allow reversed DMAC address contribute to the aggregation code calculation.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_dmac_reversed_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_dmac_reversed_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -112,11 +112,11 @@ impl AGGR_CFG {
     /// Allow source and destination IPv4 addresses to contribute to the aggregation code calculation.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_ip4_sipdip_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_ip4_sipdip_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -126,11 +126,11 @@ impl AGGR_CFG {
     /// Allow IPv4 UDP/TCP destination and source port numbers to contribute to the aggregation code calculation.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_ip4_tcpudp_port_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_ip4_tcpudp_port_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -140,11 +140,11 @@ impl AGGR_CFG {
     /// Allow IPv6 flow label to contribute to the aggregation code calculation.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_ip6_flow_lbl_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_ip6_flow_lbl_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -154,11 +154,11 @@ impl AGGR_CFG {
     /// Enable source and destination IPv6 addresses to contribute to the aggregation code calculation.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_ip6_sipdip_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_ip6_sipdip_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -168,11 +168,11 @@ impl AGGR_CFG {
     /// Allow IPv6 UDP/TCP destination and source port numbers to contribute to the aggregation code calculation.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_ip6_tcpudp_port_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_ip6_tcpudp_port_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -182,11 +182,11 @@ impl AGGR_CFG {
     /// Allow the classified ISDX value to contribute to the aggregation code calculation.
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn aggr_isdx_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_isdx_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -196,11 +196,11 @@ impl AGGR_CFG {
     /// Enable a randomly generated aggregation code.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_rnd_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_rnd_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -210,11 +210,11 @@ impl AGGR_CFG {
     /// Allow source MAC address to contribute to the aggregation code calculation.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_smac_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_smac_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -223,11 +223,11 @@ impl AGGR_CFG {
     /// Use the AC code received in the VStaX header as aggregation code.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn aggr_use_vstax_ac_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aggr_use_vstax_ac_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -237,11 +237,11 @@ impl AGGR_CFG {
     /// Enable routed frames to update the aggregation code.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn rt_upd_vstax_ac_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rt_upd_vstax_ac_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -251,11 +251,11 @@ impl AGGR_CFG {
     /// Enable aggregation code calculations as in Jaguar1.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn short_aggr_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_short_aggr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -272,11 +272,11 @@ impl CLM_KEY_CFG {
     /// Select version of TRI_VID key.
     ///
     /// 0: Use TRI_VID 1: Use TRI_VID_IDX
-    #[inline]
+    #[inline(always)]
     pub fn clm_tri_vid_sel(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_clm_tri_vid_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -290,11 +290,11 @@ impl CLM_MISC_CTRL {
     /// Select default value of the G_IDX field in VCAP CLM.
     ///
     /// 0: Set G_IDX to zero 1: Set G_IDX to the frame's logical port number 2: Set G_IDX to the frame's masqueraded port number 3: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn clm_gidx_def_sel(&self) -> u32 {
         (self.0 & 0x180000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_clm_gidx_def_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 19;
@@ -304,11 +304,11 @@ impl CLM_MISC_CTRL {
     /// Enable VCAP_CLM key field IGR_PORT_MASK_SEL=3 for CPU injected frames.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_igr_mask_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_igr_mask_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -317,11 +317,11 @@ impl CLM_MISC_CTRL {
     /// Select VCAP_CLM key when a VCAP_CLM lookup is enforced by LBK_CLM_FORCE_ENA or IGR_PORT_CLM_FORCE_ENA.
     ///
     /// 0: Use NORMAL key with destination information 1: Use NORMAL key with source information 2: Use NORMAL_7TUPLE key 3: Use NORMAL_5TUPLE_IP4 key
-    #[inline]
+    #[inline(always)]
     pub fn forced_key_sel(&self) -> u32 {
         (self.0 & 0x60000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_forced_key_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 17;
@@ -331,11 +331,11 @@ impl CLM_MISC_CTRL {
     /// Force no VCAP_CLM lookup if frame is discarded or redirected by VCAP_CLM (this can be overruled with IGR_PORT_CLM_FORCE_ENA).
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn force_no_clm_for_basic_dis(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_force_no_clm_for_basic_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -345,11 +345,11 @@ impl CLM_MISC_CTRL {
     /// Enable VCAP_CLM key field IGR_PORT_MASK_SEL=3 for frames received with VStaX header.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn fp_vs2_igr_mask_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fp_vs2_igr_mask_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -359,11 +359,11 @@ impl CLM_MISC_CTRL {
     /// By default, frames discarded or redirected at a earlier pipeline point are not subject to further VCAP_CLM lookups. This configuration controls whether a VCAP_CLM lookup is enforced. See FORCED_KEY_SEL for key selection. When enforcing a VCAP_CLM lookup, the classified ISDX is placed in the VCAP_CLM key field G_IDX.
     ///
     /// Bit 0: Force VCAP_CLM lookup #0 with key selected by FORCED_KEY_SEL Bit 1: Force VCAP_CLM lookup #1 with key selected by FORCED_KEY_SEL ...
-    #[inline]
+    #[inline(always)]
     pub fn igr_port_clm_force_ena(&self) -> u32 {
         (self.0 & 0x7e0) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_igr_port_clm_force_ena(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 5;
@@ -373,11 +373,11 @@ impl CLM_MISC_CTRL {
     /// By default, looped frames are not subject to VCAP_CLM lookups. This configuration controls whether a VCAP_CLM lookup is enforced. See FORCED_KEY_SEL for key selection. When enforcing a VCAP_CLM lookup for looped frames, the classified ISDX is placed in the VCAP_CLM key field G_IDX.
     ///
     /// Bit 0: Force VCAP_CLM lookup #0 with key selected by FORCED_KEY_SEL Bit 1: Force VCAP_CLM lookup #1 with key selected by FORCED_KEY_SEL ...
-    #[inline]
+    #[inline(always)]
     pub fn lbk_clm_force_ena(&self) -> u32 {
         (self.0 & 0x1f800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lbk_clm_force_ena(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 11;
@@ -387,11 +387,11 @@ impl CLM_MISC_CTRL {
     /// Force VCAP_CLM lookup to use VCAP_CLM key field IGR_PORT_MASK_SEL=3 for looped frames instead of IGR_PORT_MASK_SEL=1.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn lbk_igr_mask_sel3_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lbk_igr_mask_sel3_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -401,11 +401,11 @@ impl CLM_MISC_CTRL {
     /// Enable VCAP_CLM key field IGR_PORT_MASK_SEL=2 for masqueraded frames.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn masq_igr_mask_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_masq_igr_mask_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -415,11 +415,11 @@ impl CLM_MISC_CTRL {
     /// Enable VCAP_CLM key field IGR_PORT_MASK_SEL=3 for frames from VD0 or VD1.
     ///
     /// 0: Disable 1: Enable.
-    #[inline]
+    #[inline(always)]
     pub fn vd_igr_mask_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vd_igr_mask_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -434,11 +434,11 @@ impl COMMON_VSTAX_CFG {
     /// Enable / disable getting DSCP from VSTAX MISC field when encoding as AC.
     ///
     /// 0: Disable 1: Enable (VSTAX MISC contains DSCP)
-    #[inline]
+    #[inline(always)]
     pub fn vstax2_misc_dscp_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vstax2_misc_dscp_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -452,22 +452,22 @@ impl COMMON_VSTAX_CFG {
 pub struct CPU_8021_QOS_CFG(u32);
 impl CPU_8021_QOS_CFG {
     /// Configures QoS class for frames with DMAC in BPDU range that are redirected to the CPU.
-    #[inline]
+    #[inline(always)]
     pub fn bpdu_qos(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bpdu_qos(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
     /// Configures QoS class for frames with DMAC in GXRP range that are redirected to the CPU.
-    #[inline]
+    #[inline(always)]
     pub fn gxrp_qos(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_gxrp_qos(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -475,11 +475,11 @@ impl CPU_8021_QOS_CFG {
         self.0 |= value;
     }
     /// Configures QoS class for frames with DMAC in Y1731_AG protocol range that are redirected to the CPU.
-    #[inline]
+    #[inline(always)]
     pub fn y1731_ag_qos(&self) -> u32 {
         (self.0 & 0x700) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_y1731_ag_qos(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 8;
@@ -494,22 +494,22 @@ impl CPU_8021_QOS_CFG {
 pub struct CPU_8021_QU_CFG(u32);
 impl CPU_8021_QU_CFG {
     /// CPU extraction queue for BPDU frames.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_bpdu_qu(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_bpdu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
     /// CPU extraction queue for GXRP frames.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_gxrp_qu(&self) -> u32 {
         (self.0 & 0x38) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_gxrp_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 3;
@@ -517,11 +517,11 @@ impl CPU_8021_QU_CFG {
         self.0 |= value;
     }
     /// CPU extraction queue used for IEEE802.1ag and Y.1731 frames.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_y1731_ag_qu(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_y1731_ag_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -534,11 +534,11 @@ impl CPU_8021_QU_CFG {
 pub struct CPU_PROTO_QU_CFG(u32);
 impl CPU_PROTO_QU_CFG {
     /// CPU extraction queue used for IPv6 Hop by hop and ICMP frames.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_hop_by_hop_icmp_qu(&self) -> u32 {
         (self.0 & 0x7000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_hop_by_hop_icmp_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 12;
@@ -546,22 +546,22 @@ impl CPU_PROTO_QU_CFG {
         self.0 |= value;
     }
     /// CPU extraction queue used for IGMP frames.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_igmp_qu(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_igmp_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
     /// CPU extraction queue used for IPv4 multicast control frames.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_ip4_mc_ctrl_qu(&self) -> u32 {
         (self.0 & 0x38) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_ip4_mc_ctrl_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 3;
@@ -569,11 +569,11 @@ impl CPU_PROTO_QU_CFG {
         self.0 |= value;
     }
     /// CPU extraction queue used for IPv6 multicast control frames.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_ip6_mc_ctrl_qu(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_ip6_mc_ctrl_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -581,11 +581,11 @@ impl CPU_PROTO_QU_CFG {
         self.0 |= value;
     }
     /// CPU extraction queue used for MLD frames.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mld_qu(&self) -> u32 {
         (self.0 & 0xe00) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mld_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 9;
@@ -593,11 +593,11 @@ impl CPU_PROTO_QU_CFG {
         self.0 |= value;
     }
     /// CPU extraction queue used for VRAP frames.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_vrap_qu(&self) -> u32 {
         (self.0 & 0x38000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_vrap_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 15;
@@ -610,11 +610,11 @@ impl CPU_PROTO_QU_CFG {
 pub struct DSCP_CFG(u32);
 impl DSCP_CFG {
     /// DP level for DSCP value if enabled (ANA_CL:PORT:QOS_CFG.DSCP_DP_ENA).
-    #[inline]
+    #[inline(always)]
     pub fn dscp_dp_val(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_dp_val(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -622,11 +622,11 @@ impl DSCP_CFG {
         self.0 |= value;
     }
     /// QoS class for DSCP value if enabled (ANA_CL:PORT:QOS_CFG.DSCP_QOS_ENA).
-    #[inline]
+    #[inline(always)]
     pub fn dscp_qos_val(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_qos_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -634,11 +634,11 @@ impl DSCP_CFG {
         self.0 |= value;
     }
     /// Set if the DSCP value is selected to be rewritten. This is controlled in ANA_CL:PORT:QOS_CFG.DSCP_REWR_MODE_SEL.
-    #[inline]
+    #[inline(always)]
     pub fn dscp_rewr_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_rewr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -646,11 +646,11 @@ impl DSCP_CFG {
         self.0 |= value;
     }
     /// Translated DSCP value if DSCP translation is enabled on the port (ANA_CL:PORT:QOS_CFG.DSCP_TRANSLATE_ENA).
-    #[inline]
+    #[inline(always)]
     pub fn dscp_translate_val(&self) -> u32 {
         (self.0 & 0x1f80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_translate_val(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 7;
@@ -658,11 +658,11 @@ impl DSCP_CFG {
         self.0 |= value;
     }
     /// If set, the DSCP value is trusted and can be used for QoS and DP classification.
-    #[inline]
+    #[inline(always)]
     pub fn dscp_trust_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_trust_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -674,11 +674,11 @@ impl DSCP_CFG {
 pub struct HM_CFG(u32);
 impl HM_CFG {
     /// Contains the port number of the used HMD X port
-    #[inline]
+    #[inline(always)]
     pub fn hmd_port(&self) -> u32 {
         (self.0 & 0xfc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_hmd_port(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 2;
@@ -688,11 +688,11 @@ impl HM_CFG {
     /// Enable the configured port as HMD port.
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn hmd_port_vld(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_hmd_port_vld(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -701,11 +701,11 @@ impl HM_CFG {
     /// If set, VCAP_CLM action MAP_KEY = 2 uses HIH.PCP and HIH.DEI instead of PCP and DEI from the frame's third tag. This enables mapping HIH values to internal values (DP, COS ID).
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn hm_force_mode_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_hm_force_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -720,11 +720,11 @@ impl MIP_CTRL {
     /// Set all CCM Hit me once bits. Cleared when the access completes. Ref: ANA_CL:MIP_TBL:CCM_HMO_CTRL
     ///
     /// 0: Idle 1: Initiate setting all ANA_CL:MIP_TBL:CCM_HMO_CTRL.CCM_COPY_ONCE_ENA where MIP_CCM_INTERVAL_MASK[CCM_HMO_CTRL.CCM_INTERVAL] is set The bit is cleared upon completion
-    #[inline]
+    #[inline(always)]
     pub fn mip_ccm_hmo_set_shot(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mip_ccm_hmo_set_shot(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -734,11 +734,11 @@ impl MIP_CTRL {
     /// Specifies which MIP CCM intervales that will have CCM_COPY_ONCE_ENA set.
     ///
     /// x0x: Interval is ignored x1x: ANA_CL:MIP_TBL:CCM_HMO_CTRL.CCM_COPY_ONCE_ENA is set where MIP_CCM_INTERVAL_MASK[CCM_HMO_CTRL.CCM_INTERVAL] is set.
-    #[inline]
+    #[inline(always)]
     pub fn mip_ccm_interval_mask(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mip_ccm_interval_mask(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -750,11 +750,11 @@ impl MIP_CTRL {
 pub struct MPLS_CFG(u32);
 impl MPLS_CFG {
     /// CPU copy of frames when channel_type check for G8113.1 (MPLS_OAM_FLAVOR) is not 0x8902.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_g8113_1_non_oam_ena(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_g8113_1_non_oam_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -762,11 +762,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// Selects CPU queue when channel type is not 0x8902 and CPU_MPLS_G8113_1_NON_OAM_ENA is set.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_g8113_1_non_oam_qu(&self) -> u32 {
         (self.0 & 0x1c0000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_g8113_1_non_oam_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 18;
@@ -774,11 +774,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// Selects CPU queue for IP frames received as LSR POP (FWD_TYPE=3) with (nxt_type_after_offset = CW).
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_ip_traffic_qu(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_ip_traffic_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 27;
@@ -786,11 +786,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// CPU queue when frames are detected as MPLS MIP OAM.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_mip_qu(&self) -> u32 {
         (self.0 & 0xe00000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_mip_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 21;
@@ -798,11 +798,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// CPU queue when frames are detected as Vccv2 or Vccv3 OAM but without (nxt_type_after_offset = CW) or incorrect ACH.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_oam_def_qu(&self) -> u32 {
         (self.0 & 0x7000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_oam_def_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 24;
@@ -810,11 +810,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// CPU copy of frames when MPLS OAM MEP err occur.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_oam_mep_err_ena(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_oam_mep_err_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -822,11 +822,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// Selects CPU queue when error occured when fwd_type = 3.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_oam_mep_err_qu(&self) -> u32 {
         (self.0 & 0x1c000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_oam_mep_err_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 14;
@@ -834,11 +834,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// CPU copy of frames when MPLS POP err occur.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_pop_err_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_pop_err_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -846,11 +846,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// Selects CPU queue when error occured when fwd_type = 3.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_pop_err_qu(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_pop_err_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 10;
@@ -858,22 +858,22 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// CPU copy of frames when termination PW (fwd_type = PW).
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_pw_err_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_pw_err_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Selects CPU queue when error occured when fwd_type = PW.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_pw_err_qu(&self) -> u32 {
         (self.0 & 0xe) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_pw_err_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 1;
@@ -881,11 +881,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// CPU termination of frames when termination PW (fwd_type = PW) with iTTL TTL=0. Can be send to CPU controlled through CPU_MPLS_PW_ERR_ENA
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_pw_ttl0_redir_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_pw_ttl0_redir_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -893,11 +893,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// CPU copy of frames when MPLS swap err occur.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_swap_err_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_swap_err_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -905,11 +905,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// Selects CPU queue when error occured when fwd_type = 2.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_mpls_swap_err_qu(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_mpls_swap_err_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -917,11 +917,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// If set Rsvd label is kept for VCCV4, LSP and SEGMENT OAM.
-    #[inline]
+    #[inline(always)]
     pub fn mpls_oam_keep_gal_ena(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpls_oam_keep_gal_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -929,11 +929,11 @@ impl MPLS_CFG {
         self.0 |= value;
     }
     /// If set only a valid selected TC_VAL by means of VCAP_CLM action TC_LABEL / TC_ENA can be used for looking up the QoS mapping table.
-    #[inline]
+    #[inline(always)]
     pub fn mpls_sel_tc_only_ena(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpls_sel_tc_only_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -946,11 +946,11 @@ impl MPLS_CFG {
 pub struct MPLS_LM_CFG(u32);
 impl MPLS_LM_CFG {
     /// Controls if profile should be part of OAM LM count.
-    #[inline]
+    #[inline(always)]
     pub fn mpls_common_err_lm_cnt_dis(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpls_common_err_lm_cnt_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -958,22 +958,22 @@ impl MPLS_LM_CFG {
         self.0 |= value;
     }
     /// Controls if profile should be part of OAM LM count.
-    #[inline]
+    #[inline(always)]
     pub fn mpls_g8113_1_non_oam_lm_cnt_dis(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpls_g8113_1_non_oam_lm_cnt_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Controls if profile should be part of OAM LM count.
-    #[inline]
+    #[inline(always)]
     pub fn mpls_ip_err_lm_cnt_dis(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpls_ip_err_lm_cnt_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -981,11 +981,11 @@ impl MPLS_LM_CFG {
         self.0 |= value;
     }
     /// Controls if profile should be part of OAM LM count.
-    #[inline]
+    #[inline(always)]
     pub fn mpls_oam_def_lm_cnt_dis(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpls_oam_def_lm_cnt_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -993,11 +993,11 @@ impl MPLS_LM_CFG {
         self.0 |= value;
     }
     /// Controls if profile should be part of OAM LM count.
-    #[inline]
+    #[inline(always)]
     pub fn mpls_oam_err_lm_cnt_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpls_oam_err_lm_cnt_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1005,11 +1005,11 @@ impl MPLS_LM_CFG {
         self.0 |= value;
     }
     /// Controls if profile should be part of OAM LM count.
-    #[inline]
+    #[inline(always)]
     pub fn mpls_pw_term_err_lm_cnt_dis(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpls_pw_term_err_lm_cnt_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -1026,22 +1026,22 @@ impl MPLS_MISC_CFG {
     /// Enable skipping of reserved label during label extract. In order for a reserved label to be skipped, either MPLS_RSV_LBL_CFG[<label>].RSVD_LBL_SKIP_ENA or MPLS_MISC_CFG.CLM_RSVD_LBL_SKIP_ENA[<clm idx>] must be set.
     ///
     /// Bit 0: Skip reserved label when generating MPLS label keys for VCAP_CLM lookup #0. Bit 1: Skip reserved label when generating MPLS label keys for VCAP_CLM lookup #1. ...
-    #[inline]
+    #[inline(always)]
     pub fn clm_rsvd_lbl_skip_ena(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_clm_rsvd_lbl_skip_ena(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
     /// G8113_1 Channel type
-    #[inline]
+    #[inline(always)]
     pub fn g8113_1_ach_ch_type(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g8113_1_ach_ch_type(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -1058,11 +1058,11 @@ impl MPLS_RSV_LBL_CFG {
     /// Enable skipping of reserved label during label extract. In order for a reserved label to be skipped, either MPLS_RSV_LBL_CFG[<label>].RSVD_LBL_SKIP_ENA or MPLS_MISC_CFG.CLM_RSVD_LBL_SKIP_ENA[<clm idx>] must be set.
     ///
     /// 0: Allow reserved label to be part of MPLS label keys 1: Reserved label will be skipped when generating MPLS label keys
-    #[inline]
+    #[inline(always)]
     pub fn rsvd_lbl_skip_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rsvd_lbl_skip_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -1076,22 +1076,22 @@ impl OAM_CFG {
     /// Used to enable VCCV2 OAM signalling. If not enabled, VCCV2 signalling can not be configured.
     ///
     /// 0: Disable VCCV2 signalling 1: Enable VCCV2 signalling
-    #[inline]
+    #[inline(always)]
     pub fn vccv2_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vccv2_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Reserved Label used for PW VCCV2 OAM channel. Default is to use (Router Alert Label = 1)
-    #[inline]
+    #[inline(always)]
     pub fn vccv2_label(&self) -> u32 {
         (self.0 & 0x1e) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vccv2_label(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 1;
@@ -1104,11 +1104,11 @@ impl OAM_CFG {
 pub struct QOS_MAP_CFG(u32);
 impl QOS_MAP_CFG {
     /// Table values for rewriting DSCP values using DP level and QoS class if enabled. Map the frame's DP level and QoS class to a DSCP value. DSCP = QOS_MAP_CFG[8*DP level + QoS class].DSCP_REWR_VAL. This is controlled in ANA_CL:PORT:QOS_CFG.DSCP_REWR_MODE_SEL and ANA_CL::DSCP_CFG.DSCP_REWR_ENA.
-    #[inline]
+    #[inline(always)]
     pub fn dscp_rewr_val(&self) -> u32 {
         (self.0 & 0x3f0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_rewr_val(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 4;
@@ -1121,11 +1121,11 @@ impl QOS_MAP_CFG {
 pub struct UPSID_CFG(u32);
 impl UPSID_CFG {
     /// Configures own unit port set ID (UPSID) to be used for stacking. The configured value must be even. Port numbers below 32 will use the configured (even) UPSID, whereas port numbers >=32 will use the configured UPSID plus 1. This must be configured consistently across the following registers: ANA_CL::UPSID_CFG.UPSID_NUM ANA_AC::COMMON_VSTAX_CFG.OWN_UPSID ANA_L2::VSTAX_CTRL.OWN_UPSID REW::COMMON_CTRL.OWN_UPSID
-    #[inline]
+    #[inline(always)]
     pub fn upsid_num(&self) -> u32 {
         self.0 & 0x1f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_upsid_num(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
@@ -1139,11 +1139,11 @@ impl UPSID_CFG {
 pub struct VLAN_STAG_CFG(u32);
 impl VLAN_STAG_CFG {
     /// Configurable S-tag TPID EtherType. This value must be configured identically in REW::TPID_CFG.TPID_VAL.
-    #[inline]
+    #[inline(always)]
     pub fn stag_etype_val(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_stag_etype_val(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -1155,22 +1155,22 @@ impl VLAN_STAG_CFG {
 pub struct VRAP_CFG(u32);
 impl VRAP_CFG {
     /// VID value for VRAP frames.
-    #[inline]
+    #[inline(always)]
     pub fn vrap_vid(&self) -> u32 {
         self.0 & 0xfff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vrap_vid(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
     /// If set, VRAP frames must be single VLAN tagged and the frame's VID must match ANA_CL::VRAP_CFG.VRAP_VID. If cleared, VRAP frames must be untagged.
-    #[inline]
+    #[inline(always)]
     pub fn vrap_vlan_aware_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vrap_vlan_aware_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -1183,11 +1183,11 @@ impl VRAP_CFG {
 pub struct VRAP_HDR_DATA(u32);
 impl VRAP_HDR_DATA {
     /// A VRAP frame's VRAP header is matched against VRAP_HDR_DATA, except for bits don't cared by VRAP_HDR_MASK. The VRAP header is four bytes located in the frame after EtherType = 0x8808 and EPID = 0x0004.
-    #[inline]
+    #[inline(always)]
     pub fn vrap_hdr_data(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vrap_hdr_data(&mut self, value: u32) {
         self.0 = value;
     }
@@ -1197,11 +1197,11 @@ impl VRAP_HDR_DATA {
 pub struct VRAP_HDR_MASK(u32);
 impl VRAP_HDR_MASK {
     /// Bits set in VRAP_HDR_MASK don't care the equivalent bits in VRAP_HDR_DATA.
-    #[inline]
+    #[inline(always)]
     pub fn vrap_hdr_mask(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vrap_hdr_mask(&mut self, value: u32) {
         self.0 = value;
     }

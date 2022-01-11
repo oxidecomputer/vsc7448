@@ -31,43 +31,43 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CT_CCM_TLV_INFO_REW(u32);
 impl CT_CCM_TLV_INFO_REW {
-    #[inline]
+    #[inline(always)]
     pub fn ct_if_status_value_rew(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_if_status_value_rew(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_if_status_vld_rew(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_if_status_vld_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_port_statis_value_rew(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_port_statis_value_rew(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_port_status_vld_rew(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_port_status_vld_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -79,11 +79,11 @@ impl CT_CCM_TLV_INFO_REW {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CT_OAM_DATA1_REW(u32);
 impl CT_OAM_DATA1_REW {
-    #[inline]
+    #[inline(always)]
     pub fn ct_oam_misc_rew(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_oam_misc_rew(&mut self, value: u32) {
         self.0 = value;
     }
@@ -93,11 +93,11 @@ impl CT_OAM_DATA1_REW {
 pub struct CT_OAM_DATA_REW(u32);
 impl CT_OAM_DATA_REW {
     /// Context register containing Sequence Number or Transaction ID
-    #[inline]
+    #[inline(always)]
     pub fn ct_oam_seq_rew(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_oam_seq_rew(&mut self, value: u32) {
         self.0 = value;
     }
@@ -108,33 +108,33 @@ impl CT_OAM_DATA_REW {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CT_OAM_INFO_REW(u32);
 impl CT_OAM_INFO_REW {
-    #[inline]
+    #[inline(always)]
     pub fn ct_block_data_rew(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_block_data_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_ccm_lm_as_sel_rew(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_ccm_lm_as_sel_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_chk_seq_rew(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_chk_seq_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -142,22 +142,22 @@ impl CT_OAM_INFO_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG]
-    #[inline]
+    #[inline(always)]
     pub fn ct_entry_valid_rew(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_entry_valid_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_frame_prio_rew(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_frame_prio_rew(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -167,33 +167,33 @@ impl CT_OAM_INFO_REW {
     /// [MCC_DEBUG]
     ///
     /// 0: OAM Frame is TX 1: OAM Frame is RX
-    #[inline]
+    #[inline(always)]
     pub fn ct_lookup_type_rew(&self) -> u32 {
         (self.0 & 0x3c000000) >> 26
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_lookup_type_rew(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 26;
         self.0 &= !0x3c000000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_non_oam_err_cnt_rew(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_non_oam_err_cnt_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_non_oam_fwd_err_rew(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_non_oam_fwd_err_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -201,11 +201,11 @@ impl CT_OAM_INFO_REW {
         self.0 |= value;
     }
     /// Generic index from if the OpCode is generic.
-    #[inline]
+    #[inline(always)]
     pub fn ct_oam_gen_idx_rew(&self) -> u32 {
         (self.0 & 0x1c0000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_oam_gen_idx_rew(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 18;
@@ -213,11 +213,11 @@ impl CT_OAM_INFO_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG] OAM PDU currently being processed
-    #[inline]
+    #[inline(always)]
     pub fn ct_oam_pdu_rew(&self) -> u32 {
         (self.0 & 0x3e00000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_oam_pdu_rew(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 21;
@@ -225,11 +225,11 @@ impl CT_OAM_INFO_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG] OAM type currently being processed
-    #[inline]
+    #[inline(always)]
     pub fn ct_oam_type_rew(&self) -> u32 {
         self.0 & 0x3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_oam_type_rew(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -238,11 +238,11 @@ impl CT_OAM_INFO_REW {
     /// Determines if the PDU is to be counted as Selected OAM or NON Selected OAM.
     ///
     /// 0: Count as NON Selected OAM 1: Count as Selected OAM
-    #[inline]
+    #[inline(always)]
     pub fn ct_sel_oam_rew(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_sel_oam_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -250,11 +250,11 @@ impl CT_OAM_INFO_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG] Source port.
-    #[inline]
+    #[inline(always)]
     pub fn ct_src_port_rew(&self) -> u32 {
         (self.0 & 0x3f000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_src_port_rew(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 12;
@@ -262,11 +262,11 @@ impl CT_OAM_INFO_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG]
-    #[inline]
+    #[inline(always)]
     pub fn ct_upd_seq_rew(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_upd_seq_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -280,11 +280,11 @@ impl CT_OAM_INFO_REW {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CT_OAM_STICKY_REW(u32);
 impl CT_OAM_STICKY_REW {
-    #[inline]
+    #[inline(always)]
     pub fn ct_ccm_nonzero_endtlv_rew(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_ccm_nonzero_endtlv_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -292,11 +292,11 @@ impl CT_OAM_STICKY_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG] PDU was correctly validaded by the VOE and is ready to be processed.
-    #[inline]
+    #[inline(always)]
     pub fn ct_ccm_period_err_rew(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_ccm_period_err_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -304,11 +304,11 @@ impl CT_OAM_STICKY_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG] PDU was correctly validaded by the VOE and is ready to be processed.
-    #[inline]
+    #[inline(always)]
     pub fn ct_ccm_prio_err_rew(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_ccm_prio_err_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -316,22 +316,22 @@ impl CT_OAM_STICKY_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG]
-    #[inline]
+    #[inline(always)]
     pub fn ct_extract_cause_rew(&self) -> u32 {
         (self.0 & 0x3e000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_extract_cause_rew(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 13;
         self.0 &= !0x3e000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_extract_qu_rew(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_extract_qu_rew(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 10;
@@ -339,11 +339,11 @@ impl CT_OAM_STICKY_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG]
-    #[inline]
+    #[inline(always)]
     pub fn ct_mel_high_rew(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_mel_high_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
@@ -351,66 +351,66 @@ impl CT_OAM_STICKY_REW {
         self.0 |= value;
     }
     /// [MCC_DEBUG] PDU was correctly validaded by the VOE and is ready to be processed.
-    #[inline]
+    #[inline(always)]
     pub fn ct_pdu_hw_ena_rew(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_pdu_hw_ena_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_sam_seq_ccm_rew(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_sam_seq_ccm_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_sam_seq_idx_rew(&self) -> u32 {
         (self.0 & 0xf8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_sam_seq_idx_rew(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 3;
         self.0 &= !0xf8;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_sam_seq_lbm_rew(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_sam_seq_lbm_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn ct_synlm_peer_idx_rew(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_synlm_peer_idx_rew(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
     /// [MCC_DEBUG] PDU was correctly validaded by the VOE and is ready to be processed.
-    #[inline]
+    #[inline(always)]
     pub fn ct_valid_pdu_rew(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ct_valid_pdu_rew(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;

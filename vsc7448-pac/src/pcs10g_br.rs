@@ -45,15 +45,15 @@ pub mod pcs_10gbr_status;
 /// Register group to indicate EEE FSM status
 pub struct EEE_STATS(pub(super) u32);
 impl EEE_STATS {
-    #[inline]
+    #[inline(always)]
     pub fn EEE_INTR_MASK(&self) -> RegisterAddress<eee_stats::EEE_INTR_MASK> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn EEE_STATUS(&self) -> RegisterAddress<eee_stats::EEE_STATUS> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn WAKE_ERR_CNT(&self) -> RegisterAddress<eee_stats::WAKE_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -62,31 +62,31 @@ impl EEE_STATS {
 /// Register group for timer configurations related to EEE of 10G Base-R PCS
 pub struct EEE_TIMER_CFG(pub(super) u32);
 impl EEE_TIMER_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn ONE_US_TIMER_REG(&self) -> RegisterAddress<eee_timer_cfg::ONE_US_TIMER_REG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_TQ_TIMER_REG(&self) -> RegisterAddress<eee_timer_cfg::RX_TQ_TIMER_REG> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_TW_TIMER_REG(&self) -> RegisterAddress<eee_timer_cfg::RX_TW_TIMER_REG> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_WF_TIMER_REG(&self) -> RegisterAddress<eee_timer_cfg::RX_WF_TIMER_REG> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_TQ_TIMER_REG(&self) -> RegisterAddress<eee_timer_cfg::TX_TQ_TIMER_REG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_TS_TIMER_REG(&self) -> RegisterAddress<eee_timer_cfg::TX_TS_TIMER_REG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_TW_TIMER_REG(&self) -> RegisterAddress<eee_timer_cfg::TX_TW_TIMER_REG> {
         RegisterAddress::new(self.0 + 0xc)
     }
@@ -95,7 +95,7 @@ impl EEE_TIMER_CFG {
 /// KR FEC capability register group
 pub struct KR_FEC_CAPABILITY(pub(super) u32);
 impl KR_FEC_CAPABILITY {
-    #[inline]
+    #[inline(always)]
     pub fn KR_FEC_CAPABILITY(&self) -> RegisterAddress<kr_fec_capability::KR_FEC_CAPABILITY> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -104,7 +104,7 @@ impl KR_FEC_CAPABILITY {
 /// KR FEC IEEE CONTROL REGISTER
 pub struct KR_FEC_CFG(pub(super) u32);
 impl KR_FEC_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn KR_FEC_CFG(&self) -> RegisterAddress<kr_fec_cfg::KR_FEC_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -113,11 +113,11 @@ impl KR_FEC_CFG {
 /// KR FEC IEEE status registers
 pub struct KR_FEC_HA_STATUS(pub(super) u32);
 impl KR_FEC_HA_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn KR_FEC_CORRECTED(&self) -> RegisterAddress<kr_fec_ha_status::KR_FEC_CORRECTED> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn KR_FEC_UNCORRECTED(&self) -> RegisterAddress<kr_fec_ha_status::KR_FEC_UNCORRECTED> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -126,15 +126,15 @@ impl KR_FEC_HA_STATUS {
 /// KR FEC sticky bit regsiter
 pub struct KR_FEC_STATUS(pub(super) u32);
 impl KR_FEC_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn KR_FEC_STATUS(&self) -> RegisterAddress<kr_fec_status::KR_FEC_STATUS> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn KR_FEC_STICKY(&self) -> RegisterAddress<kr_fec_status::KR_FEC_STICKY> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn KR_FEC_STICKY_MASK(&self) -> RegisterAddress<kr_fec_status::KR_FEC_STICKY_MASK> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -143,13 +143,13 @@ impl KR_FEC_STATUS {
 /// KR FEC counters threshold configurations
 pub struct KR_FEC_THRESHOLD_CFG(pub(super) u32);
 impl KR_FEC_THRESHOLD_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn FIXED_ERROR_COUNT_THRESHOLD(
         &self,
     ) -> RegisterAddress<kr_fec_threshold_cfg::FIXED_ERROR_COUNT_THRESHOLD> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn UNFIXABLE_ERROR_COUNT_THRESHOLD(
         &self,
     ) -> RegisterAddress<kr_fec_threshold_cfg::UNFIXABLE_ERROR_COUNT_THRESHOLD> {
@@ -160,59 +160,59 @@ impl KR_FEC_THRESHOLD_CFG {
 /// PCS configuration
 pub struct PCS_10GBR_CFG(pub(super) u32);
 impl PCS_10GBR_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn PCS_CFG(&self) -> RegisterAddress<pcs_10gbr_cfg::PCS_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS_INTR_MASK(&self) -> RegisterAddress<pcs_10gbr_cfg::PCS_INTR_MASK> {
         RegisterAddress::new(self.0 + 0x30)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS_SD_CFG(&self) -> RegisterAddress<pcs_10gbr_cfg::PCS_SD_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_DATAPAT_LSB(&self) -> RegisterAddress<pcs_10gbr_cfg::RX_DATAPAT_LSB> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_DATAPAT_MSB(&self) -> RegisterAddress<pcs_10gbr_cfg::RX_DATAPAT_MSB> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_PRBS31_INIT(&self) -> RegisterAddress<pcs_10gbr_cfg::RX_PRBS31_INIT> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TEST_CFG(&self) -> RegisterAddress<pcs_10gbr_cfg::TEST_CFG> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TIMER_125(&self) -> RegisterAddress<pcs_10gbr_cfg::TIMER_125> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_DATAPAT_LSB(&self) -> RegisterAddress<pcs_10gbr_cfg::TX_DATAPAT_LSB> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_DATAPAT_MSB(&self) -> RegisterAddress<pcs_10gbr_cfg::TX_DATAPAT_MSB> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SEEDA_LSB(&self) -> RegisterAddress<pcs_10gbr_cfg::TX_SEEDA_LSB> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SEEDA_MSB(&self) -> RegisterAddress<pcs_10gbr_cfg::TX_SEEDA_MSB> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SEEDB_LSB(&self) -> RegisterAddress<pcs_10gbr_cfg::TX_SEEDB_LSB> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SEEDB_MSB(&self) -> RegisterAddress<pcs_10gbr_cfg::TX_SEEDB_MSB> {
         RegisterAddress::new(self.0 + 0x10)
     }
@@ -221,43 +221,43 @@ impl PCS_10GBR_CFG {
 /// PCS status registers and counters
 pub struct PCS_10GBR_HA_STATUS(pub(super) u32);
 impl PCS_10GBR_HA_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn RX_BER_CNT(&self) -> RegisterAddress<pcs_10gbr_ha_status::RX_BER_CNT> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_CHARERR_CNT(&self) -> RegisterAddress<pcs_10gbr_ha_status::RX_CHARERR_CNT> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_ERRBLK_CNT(&self) -> RegisterAddress<pcs_10gbr_ha_status::RX_ERRBLK_CNT> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_FSET_FIFO_DATA(&self) -> RegisterAddress<pcs_10gbr_ha_status::RX_FSET_FIFO_DATA> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_FSET_FIFO_STAT(&self) -> RegisterAddress<pcs_10gbr_ha_status::RX_FSET_FIFO_STAT> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_OSET_FIFO_DATA(&self) -> RegisterAddress<pcs_10gbr_ha_status::RX_OSET_FIFO_DATA> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_OSET_FIFO_STAT(&self) -> RegisterAddress<pcs_10gbr_ha_status::RX_OSET_FIFO_STAT> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TEST_ERR_CNT(&self) -> RegisterAddress<pcs_10gbr_ha_status::TEST_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_CHARERR_CNT(&self) -> RegisterAddress<pcs_10gbr_ha_status::TX_CHARERR_CNT> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_ERRBLK_CNT(&self) -> RegisterAddress<pcs_10gbr_ha_status::TX_ERRBLK_CNT> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -266,11 +266,11 @@ impl PCS_10GBR_HA_STATUS {
 /// PCS status
 pub struct PCS_10GBR_STATUS(pub(super) u32);
 impl PCS_10GBR_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn PCS_INTR_STAT(&self) -> RegisterAddress<pcs_10gbr_status::PCS_INTR_STAT> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS_STATUS(&self) -> RegisterAddress<pcs_10gbr_status::PCS_STATUS> {
         RegisterAddress::new(self.0 + 0x4)
     }

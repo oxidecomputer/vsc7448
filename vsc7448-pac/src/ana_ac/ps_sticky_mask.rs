@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct STICKY_MASK(u32);
 impl STICKY_MASK {
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn frame_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frame_fwd_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -44,11 +44,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn glag_contrib_sticky_mask(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_glag_contrib_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -56,11 +56,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn ip4_mc_ctrl_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip4_mc_ctrl_flood_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -70,11 +70,11 @@ impl STICKY_MASK {
     /// Mask to enable counting of sticky event.
     ///
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn ip4_mc_data_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip4_mc_data_flood_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -82,11 +82,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn ip6_mc_ctrl_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip6_mc_ctrl_flood_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -94,11 +94,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn ip6_mc_data_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip6_mc_data_flood_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -106,11 +106,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn l2_mc_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_l2_mc_flood_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -118,11 +118,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn no_l2_l3_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_no_l2_l3_fwd_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -130,11 +130,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn pgid_cpu_mask_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pgid_cpu_mask_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -142,11 +142,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn probe_sticky_mask(&self) -> u32 {
         (self.0 & 0x700000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_probe_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 20;
@@ -154,11 +154,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn sflow_cand_sticky_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sflow_cand_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -166,11 +166,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn sflow_dst_sample_sticky_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sflow_dst_sample_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -178,11 +178,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn sflow_sample_sticky_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sflow_sample_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -190,11 +190,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn sflow_src_sample_sticky_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sflow_src_sample_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -202,11 +202,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn src_contrib_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_src_contrib_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -214,22 +214,22 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn uc_flood_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_uc_flood_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn vlan_contrib_sticky_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vlan_contrib_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -237,11 +237,11 @@ impl STICKY_MASK {
         self.0 |= value;
     }
     /// Mask to enable counting of sticky event.
-    #[inline]
+    #[inline(always)]
     pub fn zero_dst_sticky_mask(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_zero_dst_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;

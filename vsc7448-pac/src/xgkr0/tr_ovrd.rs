@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_OVRD(u32);
 impl TR_OVRD {
     /// Generate BER enable pulse (SC)
-    #[inline]
+    #[inline(always)]
     pub fn ber_en_ovrd(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ber_en_ovrd(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -44,11 +44,11 @@ impl TR_OVRD {
         self.0 |= value;
     }
     /// Generate Coef_update_valid pulse (SC)
-    #[inline]
+    #[inline(always)]
     pub fn coef_ovrd_vld(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_coef_ovrd_vld(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -56,11 +56,11 @@ impl TR_OVRD {
         self.0 |= value;
     }
     /// Enable manual training
-    #[inline]
+    #[inline(always)]
     pub fn ovrd_en(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ovrd_en(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -68,11 +68,11 @@ impl TR_OVRD {
         self.0 |= value;
     }
     /// Control of rx_trained variable for training SM
-    #[inline]
+    #[inline(always)]
     pub fn rxtrained_ovrd(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rxtrained_ovrd(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -80,11 +80,11 @@ impl TR_OVRD {
         self.0 |= value;
     }
     /// Generate Stat_report_valid pulse (SC)
-    #[inline]
+    #[inline(always)]
     pub fn stat_ovrd_vld(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_stat_ovrd_vld(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

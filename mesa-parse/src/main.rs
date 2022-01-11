@@ -203,7 +203,7 @@ impl Vsc7448 {{"
             1 => write!(
                 &mut file,
                 "
-    #[inline]
+    #[inline(always)]
     pub fn {0}() -> {0} {{
         {0}(0x{1:x})
     }}",
@@ -219,7 +219,7 @@ impl Vsc7448 {{"
                 write!(
                     &mut file,
                     "
-    #[inline]
+    #[inline(always)]
     pub fn {0}(index: u32) -> {0} {{
         assert!(index < {2});
         {0}(0x{1:x} + index * 0x{3:x})
@@ -284,7 +284,7 @@ impl {0} {{",
                 write!(
                     &mut file,
                     "
-    #[inline]
+    #[inline(always)]
     pub fn {1}(&self, index: u32) -> {0}::{1} {{
         assert!(index < {3});
         {0}::{1}(self.0 + 0x{2:x} + index * 0x{4:x})
@@ -299,7 +299,7 @@ impl {0} {{",
                 write!(
                     &mut file,
                     "
-    #[inline]
+    #[inline(always)]
     pub fn {1}(&self) -> {0}::{1} {{
         {0}::{1}(self.0 + 0x{2:x})
     }}",
@@ -323,7 +323,7 @@ impl {0} {{",
                     write!(
                         &mut tfile,
                         "
-    #[inline]
+    #[inline(always)]
     pub fn {0}(&self, index: u32) -> RegisterAddress<{1}::{0}> {{
         assert!(index < {4});
         RegisterAddress::new(self.0 + 0x{2:x} + index * 0x{3:x})
@@ -338,7 +338,7 @@ impl {0} {{",
                     write!(
                         &mut tfile,
                         "
-    #[inline]
+    #[inline(always)]
     pub fn {0}(&self) -> RegisterAddress<{1}::{0}> {{
         RegisterAddress::new(self.0 + 0x{2:x})
     }}",
@@ -417,7 +417,7 @@ impl {pname} {{",
             write!(
                 &mut file,
                 "
-    #[inline]
+    #[inline(always)]
     pub fn {0}() -> PhyRegisterAddress<{1}::{0}> {{
         PhyRegisterAddress::new({2}, {3})
     }}",
@@ -507,11 +507,11 @@ pub struct {}({}{});",
         match (shift, mask) {
             (0, 0xFFFFFFFF) => write!(
                 gfile,
-                "    #[inline]
+                "    #[inline(always)]
     pub fn {get}{field}(&self) -> {t} {{
         self.0
     }}
-    #[inline]
+    #[inline(always)]
     pub fn set_{field}(&mut self, value: {t}) {{
         self.0 = value;
     }}",
@@ -521,11 +521,11 @@ pub struct {}({}{});",
             )?,
             (0, _) => write!(
                 gfile,
-                "    #[inline]
+                "    #[inline(always)]
     pub fn {get}{field}(&self) -> {t} {{
         self.0 & 0x{mask:x}
     }}
-    #[inline]
+    #[inline(always)]
     pub fn set_{field}(&mut self, value: {t}) {{
         assert!(value <= 0x{mask:x});
         self.0 &= !0x{mask:x};
@@ -539,11 +539,11 @@ pub struct {}({}{});",
             (_, 0xFFFFFFFF) => panic!("Cannot have a full mask and non-zero shift"),
             _ => write!(
                 gfile,
-                "    #[inline]
+                "    #[inline(always)]
     pub fn {get}{field}(&self) -> {t} {{
         (self.0 & 0x{mask:x}) >> {shift}
     }}
-    #[inline]
+    #[inline(always)]
     pub fn set_{field}(&mut self, value: {t}) {{
         assert!(value <= 0x{max:x});
         let value = value << {shift};

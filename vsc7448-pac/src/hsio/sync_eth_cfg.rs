@@ -36,11 +36,11 @@ impl SYNC_ETH_CFG {
     /// Set to enable recovered clock pad
     ///
     /// 0: Disable (high-impedance) 1: Enable (output recovered clock)
-    #[inline]
+    #[inline(always)]
     pub fn reco_clk_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_reco_clk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -49,11 +49,11 @@ impl SYNC_ETH_CFG {
     /// Select recovered clock divider.
     ///
     /// 0: No clock dividing 1: Divide clock by 5 2: Divide clock by 4 3: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn sel_reco_clk_div(&self) -> u32 {
         (self.0 & 0x6) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sel_reco_clk_div(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 1;
@@ -63,11 +63,11 @@ impl SYNC_ETH_CFG {
     /// Select recovered clock source.
     ///
     /// 0 through 8: Select SD1G 0 through 8. 9 through 24: Select SD6G 0 through 15. 25 through 28: Select SD10G 0 through 3. 29 through 36: Select SD6G 16 through 23. 37 selects LCPLL2 CPU clock output. Other values are reserved.
-    #[inline]
+    #[inline(always)]
     pub fn sel_reco_clk_src(&self) -> u32 {
         (self.0 & 0x1f8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sel_reco_clk_src(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 3;
@@ -80,11 +80,11 @@ impl SYNC_ETH_CFG {
 pub struct SYNC_ETH_PLL2_CFG(u32);
 impl SYNC_ETH_PLL2_CFG {
     /// This field is used instead of HSIO::PLL5G_CFG0.CPU_CLK_DIV for the PLL number 2.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_clk_div(&self) -> u32 {
         (self.0 & 0xfc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_clk_div(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 2;
@@ -92,11 +92,11 @@ impl SYNC_ETH_PLL2_CFG {
         self.0 |= value;
     }
     /// Enable auto-squelching for sync. ethernet clock output: when set the clock output will stop toggling (keep its last value constantly) when PLL is out of lock.
-    #[inline]
+    #[inline(always)]
     pub fn pll2_auto_squelch_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll2_auto_squelch_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -105,11 +105,11 @@ impl SYNC_ETH_PLL2_CFG {
     /// Divider setting for the PLL number 2's recovered clock output. These settings are applied prior to sending recovered clock to the optional PAD-divder (see HSIO::SYNC_ETH_CFG.SEL_RECO_CLK_DIV.)
     ///
     /// 0: No clock dividing 1: Divide clock by 2
-    #[inline]
+    #[inline(always)]
     pub fn pll2_reco_clk_div(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll2_reco_clk_div(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -121,11 +121,11 @@ impl SYNC_ETH_PLL2_CFG {
 pub struct SYNC_ETH_SD10G_CFG(u32);
 impl SYNC_ETH_SD10G_CFG {
     /// Set to enable auto-squelching for sync. ethernet clock output: when set the clock output will stop toggling (keep its last value constantly) when PCS looses link synchrony.
-    #[inline]
+    #[inline(always)]
     pub fn sd10g_auto_squelch_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sd10g_auto_squelch_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -134,11 +134,11 @@ impl SYNC_ETH_SD10G_CFG {
     /// Divider setting for the SD10G recovered clock output. These settings are applied prior to sending recovered clock to the optional PAD-divder (see HSIO::SYNC_ETH_CFG.SEL_RECO_CLK_DIV.)
     ///
     /// 0: No clock dividing 1: Divide clock by 2 2: Divide clock by (66/32) 3: reserved
-    #[inline]
+    #[inline(always)]
     pub fn sd10g_reco_clk_div(&self) -> u32 {
         (self.0 & 0x6) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sd10g_reco_clk_div(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 1;

@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct ANEG_LP_ADV_ABILITY_0(u32);
 impl ANEG_LP_ADV_ABILITY_0 {
     /// Acknowledge bit (this bit is automatically overwritten by ANEG)
-    #[inline]
+    #[inline(always)]
     pub fn ackn(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ackn(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -48,11 +48,11 @@ impl ANEG_LP_ADV_ABILITY_0 {
     /// Technology Ability advertised by LP (here: 10GBase-KR)
     ///
     /// 0: LP is not 10GB-KR capable 1: LP is 10GB-KR capable
-    #[inline]
+    #[inline(always)]
     pub fn cap_10gkr(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cap_10gkr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
@@ -62,11 +62,11 @@ impl ANEG_LP_ADV_ABILITY_0 {
     /// Technology Ability advertised by LP (here: 10GBase-KX4)
     ///
     /// 0: LP is not 10GB-KX4 capable 1: LP is 10GB-KX4 capable
-    #[inline]
+    #[inline(always)]
     pub fn cap_10gkx4(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cap_10gkx4(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -76,11 +76,11 @@ impl ANEG_LP_ADV_ABILITY_0 {
     /// Technology Ability advertised by LP (here: 1000Base-KX)
     ///
     /// 0: LP is not 1GB-KX capable 1: LP is 1GB-KX capable
-    #[inline]
+    #[inline(always)]
     pub fn cap_1gkx(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cap_1gkx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -88,11 +88,11 @@ impl ANEG_LP_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Echoed nonce field
-    #[inline]
+    #[inline(always)]
     pub fn echoed_nonce(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_echoed_nonce(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 5;
@@ -100,11 +100,11 @@ impl ANEG_LP_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Bits 31 down to 24 of link code word received from link partner.
-    #[inline]
+    #[inline(always)]
     pub fn lp_adv_abil_lsb(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lp_adv_abil_lsb(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
@@ -114,11 +114,11 @@ impl ANEG_LP_ADV_ABILITY_0 {
     /// Next page exchange desired by LP
     ///
     /// 0: No NP exchange desired 1: NP exchange desired
-    #[inline]
+    #[inline(always)]
     pub fn np(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_np(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -126,11 +126,11 @@ impl ANEG_LP_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Pause field
-    #[inline]
+    #[inline(always)]
     pub fn pause(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pause(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 10;
@@ -138,11 +138,11 @@ impl ANEG_LP_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// RF bit
-    #[inline]
+    #[inline(always)]
     pub fn rf(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rf(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -150,22 +150,22 @@ impl ANEG_LP_ADV_ABILITY_0 {
         self.0 |= value;
     }
     /// Selector field
-    #[inline]
+    #[inline(always)]
     pub fn sel_field(&self) -> u32 {
         self.0 & 0x1f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sel_field(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
     /// Transmit-Nonce field (received from LinkPartner)
-    #[inline]
+    #[inline(always)]
     pub fn tx_nonce(&self) -> u32 {
         (self.0 & 0x1f0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_nonce(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 16;
@@ -180,11 +180,11 @@ impl ANEG_LP_ADV_ABILITY_0 {
 pub struct ANEG_LP_ADV_ABILITY_1(u32);
 impl ANEG_LP_ADV_ABILITY_1 {
     /// FEC capability (bit 14: FEC ability, bit 15: FEC requested) - Only used with 10GBase-KR
-    #[inline]
+    #[inline(always)]
     pub fn fec(&self) -> u32 {
         (self.0 & 0xc000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fec(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 14;
@@ -192,11 +192,11 @@ impl ANEG_LP_ADV_ABILITY_1 {
         self.0 |= value;
     }
     /// Bits 45 down to 32 of link code word received from link partner.
-    #[inline]
+    #[inline(always)]
     pub fn lp_adv_abil_msb(&self) -> u32 {
         self.0 & 0x3fff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lp_adv_abil_msb(&mut self, value: u32) {
         assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
@@ -212,11 +212,11 @@ impl ANEG_STATUS {
     /// Error condition indicating an Arbitration state machine error.
     ///
     /// Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn aneg_arb_fsm_err_sticky(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aneg_arb_fsm_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -224,11 +224,11 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Status indicating whether auto-negotiation has completed.
-    #[inline]
+    #[inline(always)]
     pub fn aneg_complete(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aneg_complete(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -237,11 +237,11 @@ impl ANEG_STATUS {
     /// Error condition indicating a Receive state machine error.
     ///
     /// Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn aneg_rx_fsm_err_sticky(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aneg_rx_fsm_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -251,11 +251,11 @@ impl ANEG_STATUS {
     /// Error condition indicating a Transmit state machine error.
     ///
     /// Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn aneg_tx_fsm_err_sticky(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aneg_tx_fsm_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -265,11 +265,11 @@ impl ANEG_STATUS {
     /// Current state of Arbiter State Machine
     ///
     /// 0000: AUTO_NEG_ENA 0001: TX_DISABLE 0010: ABILITY_DETECT 0011: ACKN_DETECT 0100: COMPLETE_ACKN 0101: AN_GOOD_CHECK 0110: AN_GOOD 0111: NEXT_PAGE_WAIT 1000: LINK_STATUS_CHECK 1001: PARALLEL_DET_FAULT 1010: PD_CHECK10GKR 1011: PD_CHECK2G5 1100: PD_CHECK1GKX 1101: PD_CHECK10GKX4
-    #[inline]
+    #[inline(always)]
     pub fn arbiter_state(&self) -> u32 {
         (self.0 & 0xf00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_arbiter_state(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 8;
@@ -277,11 +277,11 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Error condition indicating that no compatible link was found.
-    #[inline]
+    #[inline(always)]
     pub fn incompatible_link(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_incompatible_link(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -291,11 +291,11 @@ impl ANEG_STATUS {
     /// Link control information for 10G quad lane mode
     ///
     /// 00: Disabled 01: Enabled 11: Scan for carrier
-    #[inline]
+    #[inline(always)]
     pub fn link_ctrl_10gkx4(&self) -> u32 {
         (self.0 & 0x30000000) >> 28
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_link_ctrl_10gkx4(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 28;
@@ -305,11 +305,11 @@ impl ANEG_STATUS {
     /// Link control information for 1G single lane mode
     ///
     /// 00: Disabled 01: Enabled 11: Scan for carrier
-    #[inline]
+    #[inline(always)]
     pub fn link_ctrl_1gkx(&self) -> u32 {
         (self.0 & 0xc000000) >> 26
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_link_ctrl_1gkx(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 26;
@@ -319,11 +319,11 @@ impl ANEG_STATUS {
     /// Link control information for 2.5G single lane mode
     ///
     /// 00: Disabled 01: Enabled 11: Scan for carrier
-    #[inline]
+    #[inline(always)]
     pub fn link_ctrl_2g5(&self) -> u32 {
         (self.0 & 0x3000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_link_ctrl_2g5(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 24;
@@ -331,11 +331,11 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Status indicating whether the link partner supports auto-negotiation.
-    #[inline]
+    #[inline(always)]
     pub fn lp_aneg_able(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lp_aneg_able(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -343,11 +343,11 @@ impl ANEG_STATUS {
         self.0 |= value;
     }
     /// Status indicating whether a new page has been received.
-    #[inline]
+    #[inline(always)]
     pub fn page_rx(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_page_rx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -357,11 +357,11 @@ impl ANEG_STATUS {
     /// Error condition indicating errors during parallel detection.
     ///
     /// Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn par_detect_fault_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_par_detect_fault_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;

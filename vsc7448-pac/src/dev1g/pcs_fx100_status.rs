@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct PCS_FX100_STATUS(u32);
 impl PCS_FX100_STATUS {
     /// Data change position in the 10bit words received. Must be used for adjusting PTP ingress delays.
-    #[inline]
+    #[inline(always)]
     pub fn edge_pos_ptp(&self) -> u32 {
         (self.0 & 0xf00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_edge_pos_ptp(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 8;
@@ -48,11 +48,11 @@ impl PCS_FX100_STATUS {
     /// Far-end Fault state has occurred
     ///
     /// 1: A Far-End Fault has been detected 0: No Far-End Fault occurred Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn fef_found_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fef_found_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -62,11 +62,11 @@ impl PCS_FX100_STATUS {
     /// Current status of Far-end Fault detection state
     ///
     /// 1: Link currently in fault state 0: Link is in normal state
-    #[inline]
+    #[inline(always)]
     pub fn fef_status(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fef_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -76,11 +76,11 @@ impl PCS_FX100_STATUS {
     /// PCS error has occurred
     ///
     /// 1: RX_ER was high while RX_DV active 0: No RX_ER indication found while RX_DV active Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn pcs_error_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pcs_error_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -90,11 +90,11 @@ impl PCS_FX100_STATUS {
     /// Current status of selected signal_detect input line
     ///
     /// 1: Proper signal detected 0: No proper signal found
-    #[inline]
+    #[inline(always)]
     pub fn signal_detect(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_signal_detect(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -104,11 +104,11 @@ impl PCS_FX100_STATUS {
     /// Stream Start Delimiter error occurred
     ///
     /// 1: A Start-of-Stream Delimiter error has been detected 0: No SSD error occurred Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ssd_error_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ssd_error_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -118,11 +118,11 @@ impl PCS_FX100_STATUS {
     /// Synchronization lost
     ///
     /// 1: Synchronization lost 0: No sync lost occurred Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn sync_lost_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sync_lost_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -132,11 +132,11 @@ impl PCS_FX100_STATUS {
     /// Status of synchronization
     ///
     /// 1: Link established 0: No link found
-    #[inline]
+    #[inline(always)]
     pub fn sync_status(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sync_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

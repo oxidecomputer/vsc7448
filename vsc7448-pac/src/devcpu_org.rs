@@ -36,59 +36,59 @@ pub mod devcpu_org;
 /// Origin registers
 pub struct DEVCPU_ORG(pub(super) u32);
 impl DEVCPU_ORG {
-    #[inline]
+    #[inline(always)]
     pub fn ERR_CNTS(&self) -> RegisterAddress<devcpu_org::ERR_CNTS> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn GPR(&self) -> RegisterAddress<devcpu_org::GPR> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn IF_CFGSTAT(&self) -> RegisterAddress<devcpu_org::IF_CFGSTAT> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn IF_CTRL(&self) -> RegisterAddress<devcpu_org::IF_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAILBOX(&self) -> RegisterAddress<devcpu_org::MAILBOX> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAILBOX_CLR(&self) -> RegisterAddress<devcpu_org::MAILBOX_CLR> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAILBOX_SET(&self) -> RegisterAddress<devcpu_org::MAILBOX_SET> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn ORG_CFG(&self) -> RegisterAddress<devcpu_org::ORG_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SEMA0(&self) -> RegisterAddress<devcpu_org::SEMA0> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SEMA0_OWNER(&self) -> RegisterAddress<devcpu_org::SEMA0_OWNER> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SEMA1(&self) -> RegisterAddress<devcpu_org::SEMA1> {
         RegisterAddress::new(self.0 + 0x30)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SEMA1_OWNER(&self) -> RegisterAddress<devcpu_org::SEMA1_OWNER> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SEMA_CFG(&self) -> RegisterAddress<devcpu_org::SEMA_CFG> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TIMEOUT_CFG(&self) -> RegisterAddress<devcpu_org::TIMEOUT_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }

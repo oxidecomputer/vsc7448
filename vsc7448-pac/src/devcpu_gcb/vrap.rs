@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct VRAP_ACCESS_STAT(u32);
 impl VRAP_ACCESS_STAT {
     /// This field is set if an invalid command inside a valid VRAP frame has been received. The VRAP engine has ignored the command.
-    #[inline]
+    #[inline(always)]
     pub fn cmd_invalid_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmd_invalid_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -44,11 +44,11 @@ impl VRAP_ACCESS_STAT {
         self.0 |= value;
     }
     /// This field is set if an invalid VRAP frame has been received and discarded by the VRAP-engine. Frames with a VRAP header different from V1 are considered invalid.
-    #[inline]
+    #[inline(always)]
     pub fn frm_invalid_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_invalid_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -56,11 +56,11 @@ impl VRAP_ACCESS_STAT {
         self.0 |= value;
     }
     /// This field is set if a valid VRAP (Vitesse Register Access Protocol) frame has been received.
-    #[inline]
+    #[inline(always)]
     pub fn frm_recv_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_recv_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -68,11 +68,11 @@ impl VRAP_ACCESS_STAT {
         self.0 |= value;
     }
     /// This field is set if a VRAP reply frame has been aborted. This my happen if a protocol violation is detected during VRAP request frame processing.
-    #[inline]
+    #[inline(always)]
     pub fn reply_abort_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_reply_abort_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

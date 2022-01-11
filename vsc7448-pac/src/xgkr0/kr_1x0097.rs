@@ -34,11 +34,11 @@ impl KR_1X0097 {
     /// Frame lock
     ///
     /// 1: Training frame delineation detected, 0: Training frame delineation not detected
-    #[inline]
+    #[inline(always)]
     pub fn frlock(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frlock(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -48,11 +48,11 @@ impl KR_1X0097 {
     /// Receiver status
     ///
     /// 1: Receiver trained and ready to receive data 0: Receiver training
-    #[inline]
+    #[inline(always)]
     pub fn rcvr_rdy(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rcvr_rdy(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -61,11 +61,11 @@ impl KR_1X0097 {
     /// Startup protocol status
     ///
     /// 1: Start-up protocol in progress 0: Start-up protocol complete
-    #[inline]
+    #[inline(always)]
     pub fn stprot(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_stprot(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -75,11 +75,11 @@ impl KR_1X0097 {
     /// Training failure
     ///
     /// 1: Training failure has been detected 0: Training failure has not been detected
-    #[inline]
+    #[inline(always)]
     pub fn tr_fail(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tr_fail(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;

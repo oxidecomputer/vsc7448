@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct PORT_RX_COSID_MAP(u32);
 impl PORT_RX_COSID_MAP {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn port_rx_cosid_map(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_rx_cosid_map(&mut self, value: u32) {
         self.0 = value;
     }
@@ -50,11 +50,11 @@ impl PORT_RX_COSID_MAP {
 pub struct PORT_RX_COSID_MAP1(u32);
 impl PORT_RX_COSID_MAP1 {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn port_rx_cosid_map1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_rx_cosid_map1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -66,11 +66,11 @@ impl PORT_RX_COSID_MAP1 {
 pub struct PORT_TX_COSID_MAP(u32);
 impl PORT_TX_COSID_MAP {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn port_tx_cosid_map(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_tx_cosid_map(&mut self, value: u32) {
         self.0 = value;
     }
@@ -82,11 +82,11 @@ impl PORT_TX_COSID_MAP {
 pub struct PORT_TX_COSID_MAP1(u32);
 impl PORT_TX_COSID_MAP1 {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn port_tx_cosid_map1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_tx_cosid_map1(&mut self, value: u32) {
         self.0 = value;
     }

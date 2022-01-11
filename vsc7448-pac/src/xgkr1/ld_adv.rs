@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct KR_7X0010(u32);
 impl KR_7X0010 {
     /// Local advertised abilities D[15:0]
-    #[inline]
+    #[inline(always)]
     pub fn adv0(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv0(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -48,11 +48,11 @@ impl KR_7X0010 {
 pub struct KR_7X0011(u32);
 impl KR_7X0011 {
     /// Local advertised abilities D[31:16]
-    #[inline]
+    #[inline(always)]
     pub fn adv1(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv1(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -64,11 +64,11 @@ impl KR_7X0011 {
 pub struct KR_7X0012(u32);
 impl KR_7X0012 {
     /// Local advertised abilities D[47:32]
-    #[inline]
+    #[inline(always)]
     pub fn adv2(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv2(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

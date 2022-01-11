@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct PORT_BYTE_CNT_LSB(u32);
 impl PORT_BYTE_CNT_LSB {
     /// See Register Description.
-    #[inline]
+    #[inline(always)]
     pub fn port_byte_cnt_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_byte_cnt_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -50,11 +50,11 @@ impl PORT_BYTE_CNT_LSB {
 pub struct PORT_BYTE_CNT_MSB(u32);
 impl PORT_BYTE_CNT_MSB {
     /// See Register Description.
-    #[inline]
+    #[inline(always)]
     pub fn port_byte_cnt_msb(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_byte_cnt_msb(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -68,11 +68,11 @@ impl PORT_BYTE_CNT_MSB {
 pub struct PORT_FRM_CNT_LSB(u32);
 impl PORT_FRM_CNT_LSB {
     /// See Register Description.
-    #[inline]
+    #[inline(always)]
     pub fn port_frm_cnt_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_frm_cnt_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -84,11 +84,11 @@ impl PORT_FRM_CNT_LSB {
 pub struct PORT_LM_CNT_LSB(u32);
 impl PORT_LM_CNT_LSB {
     /// See Register Description.
-    #[inline]
+    #[inline(always)]
     pub fn port_lm_cnt_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_lm_cnt_lsb(&mut self, value: u32) {
         self.0 = value;
     }

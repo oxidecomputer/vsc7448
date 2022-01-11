@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct MANUAL_CFG(u32);
 impl MANUAL_CFG {
     /// Set to enable manual injection by using FDMA channel number 9. When manual injection is enabled; the FDMA cannot be used for regular FDMA injection operations (on any injection channel).
-    #[inline]
+    #[inline(always)]
     pub fn inj_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_inj_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -44,11 +44,11 @@ impl MANUAL_CFG {
         self.0 |= value;
     }
     /// Set to swap endianess of data injected to the MANUAL_INJ region. The manual injection status word is never swapped.
-    #[inline]
+    #[inline(always)]
     pub fn inj_swap_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_inj_swap_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -56,22 +56,22 @@ impl MANUAL_CFG {
         self.0 |= value;
     }
     /// Set to enable manual extraction by using FDMA channel number 1. When manual extraction is enabled; the FDMA cannot be used for regular FDMA extraction operations (on any extraction channel).
-    #[inline]
+    #[inline(always)]
     pub fn xtr_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_xtr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Set to disable flushing/abort mechanism when manual extraction is enabled via ICPU_CFG::MANUAL_CFG.XTR_ENA. When manually extracting via 8051 SFR registers this field must be set.
-    #[inline]
+    #[inline(always)]
     pub fn xtr_flush_dis(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_xtr_flush_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -79,11 +79,11 @@ impl MANUAL_CFG {
         self.0 |= value;
     }
     /// Set to byte-swap endianess of data extracted from the MANUAL_XTR region. The manual extraction status word is never swapped.
-    #[inline]
+    #[inline(always)]
     pub fn xtr_swap_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_xtr_swap_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -96,11 +96,11 @@ impl MANUAL_CFG {
 pub struct MANUAL_INJ(u32);
 impl MANUAL_INJ {
     /// Manual injection is done by writing to this block of registers. The manual injection status word is located at the first word-address in this block. Manual injection has to be enabled via ICPU_CFG::MANUAL_CFG.INJ_ENA.
-    #[inline]
+    #[inline(always)]
     pub fn inj(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_inj(&mut self, value: u32) {
         self.0 = value;
     }
@@ -110,11 +110,11 @@ impl MANUAL_INJ {
 pub struct MANUAL_INTR(u32);
 impl MANUAL_INTR {
     /// Set when there is room for more injection data-words in injection fifo.
-    #[inline]
+    #[inline(always)]
     pub fn intr_inj_rdy(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_intr_inj_rdy(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -122,11 +122,11 @@ impl MANUAL_INTR {
         self.0 |= value;
     }
     /// Set when any extraction word is ready for extraction.
-    #[inline]
+    #[inline(always)]
     pub fn intr_xtr_any_rdy(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_intr_xtr_any_rdy(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -134,11 +134,11 @@ impl MANUAL_INTR {
         self.0 |= value;
     }
     /// Set when there is an extraction word containing SOF ready for extraction.
-    #[inline]
+    #[inline(always)]
     pub fn intr_xtr_sof_rdy(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_intr_xtr_sof_rdy(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -150,11 +150,11 @@ impl MANUAL_INTR {
 pub struct MANUAL_INTR_ENA(u32);
 impl MANUAL_INTR_ENA {
     /// Set to enable FDMA interrupt while there is room for more injection data. This interrupt is asserted for as long as there is free space in the injection buffers.
-    #[inline]
+    #[inline(always)]
     pub fn intr_inj_rdy_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_intr_inj_rdy_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -162,11 +162,11 @@ impl MANUAL_INTR_ENA {
         self.0 |= value;
     }
     /// Set to enable FDMA interrupt while any data is ready for manual extraction. This interrupt is asserted for as long as there is data ready in the extraction buffer.
-    #[inline]
+    #[inline(always)]
     pub fn intr_xtr_any_rdy_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_intr_xtr_any_rdy_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -174,11 +174,11 @@ impl MANUAL_INTR_ENA {
         self.0 |= value;
     }
     /// Set to enable FDMA interrupt when a new frame is waiting to be extracted. This event is asserted when a frame-word with sof set is waiting to be extracted. If a previous frame is only partially extracted then no interrupt will be generated until the previous frame is completely extracted.
-    #[inline]
+    #[inline(always)]
     pub fn intr_xtr_sof_rdy_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_intr_xtr_sof_rdy_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -190,11 +190,11 @@ impl MANUAL_INTR_ENA {
 pub struct MANUAL_XTR(u32);
 impl MANUAL_XTR {
     /// Manual extraction is done by reading from this block of registers. The manual extraction status word is accessed by reading the last word-address in this block. Manual extraction has to be enabled via ICPU_CFG::MANUAL_CFG.XTR_ENA.
-    #[inline]
+    #[inline(always)]
     pub fn xtr(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_xtr(&mut self, value: u32) {
         self.0 = value;
     }

@@ -36,11 +36,11 @@ impl PCS1G_TSTPAT_MODE_CFG {
     /// Jitter Test Pattern Select: Enables and selects the jitter test pattern to be transmitted. The jitter test patterns are according to the IEEE 802.3, Annex 36A
     ///
     /// 0: Disable transmission of test patterns 1: High frequency test pattern - repeated transmission of D21.5 code group 2: Low frequency test pattern - repeated transmission of K28.7 code group 3: Mixed frequency test pattern - repeated transmission of K28.5 code group 4: Long continuous random test pattern (packet length is 1524 bytes) 5: Short continuous random test pattern (packet length is 360 bytes)
-    #[inline]
+    #[inline(always)]
     pub fn jtp_sel(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_jtp_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -56,11 +56,11 @@ impl PCS1G_TSTPAT_STATUS {
     /// Jitter Test Pattern Error
     ///
     /// 0: Jitter pattern checker has found no error 1: Jitter pattern checker has found an error
-    #[inline]
+    #[inline(always)]
     pub fn jtp_err(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_jtp_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -68,11 +68,11 @@ impl PCS1G_TSTPAT_STATUS {
         self.0 |= value;
     }
     /// Jitter Test Pattern Error Counter. Due to re-sync measures it might happen that single errors are not counted (applies for 2.5gpbs mode). The counter saturates at 255 and is only cleared when writing 0 to the register
-    #[inline]
+    #[inline(always)]
     pub fn jtp_err_cnt(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_jtp_err_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -82,11 +82,11 @@ impl PCS1G_TSTPAT_STATUS {
     /// Jitter Test Pattern Lock
     ///
     /// 0: Jitter pattern checker has not locked 1: Jitter pattern checker has locked
-    #[inline]
+    #[inline(always)]
     pub fn jtp_lock(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_jtp_lock(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

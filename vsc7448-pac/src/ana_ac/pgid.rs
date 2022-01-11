@@ -34,11 +34,11 @@ impl PGID_CFG {
     /// PGID port mask or stack forwarding information, depending on STACK_TYPE_ENA. Related parameters: ANA_AC:PGID:PGID_MISC_CFG.STACK_TYPE_ENA
     ///
     /// PGID_MISC_CFG.STACK_TYPE_ENA=0: Destination port mask. PGID_MISC_CFG.STACK_TYPE_ENA=1: Bit 4:0 VStaX destination UPSPN. Bit 5 VStaX destination port type. 0=Normal UPSPN, 1=Internal port (advanced use). Bit 10:6 VStaX destination UPSID Bit 13:11 VStaX forwarding mode. Only used if PGID origins from multicast index in MAC table. In all other cases bit 13:11 must be 0. Encoding: '001': fwd_logical. Forward to logical front port at specific UPS, using (UPSID, UPSPN). '010': fwd_physical. Forward to physical front port at specific UPS, using (UPSID, UPSPN). '101': fwd_gcpu_ups. Forward to GCPU of specific UPS (identified by UPSID). Other: Reserved. If bit 10:6 is a remote UPSID, then 20:16 must be set to 0. If bit 10:6 is the a UPSID, then 20:16 must be set to same value as bit 4:0.
-    #[inline]
+    #[inline(always)]
     pub fn port_mask(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_mask(&mut self, value: u32) {
         self.0 = value;
     }
@@ -48,11 +48,11 @@ impl PGID_CFG {
 pub struct PGID_CFG1(u32);
 impl PGID_CFG1 {
     /// Refer to PGID_CFG.PORT_MASK description.
-    #[inline]
+    #[inline(always)]
     pub fn port_mask1(&self) -> u32 {
         self.0 & 0x1fffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_mask1(&mut self, value: u32) {
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
@@ -64,11 +64,11 @@ impl PGID_CFG1 {
 pub struct PGID_MISC_CFG(u32);
 impl PGID_MISC_CFG {
     /// Copy frame to CPU. Related parameters: ANA_AC:PGID:PGID_MISC_CFG.PGID_CPU_QU
-    #[inline]
+    #[inline(always)]
     pub fn pgid_cpu_copy_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pgid_cpu_copy_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -77,11 +77,11 @@ impl PGID_MISC_CFG {
     /// CPU queue for frames copied to CPU due to PGID_CPU_COPY_ENA. Related parameters: ANA_AC:PGID:PGID_MISC_CFG.PGID_CPU_COPY_ENA
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... n: CPU queue n.
-    #[inline]
+    #[inline(always)]
     pub fn pgid_cpu_qu(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pgid_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -91,11 +91,11 @@ impl PGID_MISC_CFG {
     /// Encoding of PGID_CFG.PORT_MASK. Related parameters: ANA_AC:PGID[0-1076]:PGID_CFG.PORT_MASK
     ///
     /// 0: Port mask encoding 1: Stack forwarding encoding
-    #[inline]
+    #[inline(always)]
     pub fn stack_type_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_stack_type_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;

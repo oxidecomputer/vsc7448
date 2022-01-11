@@ -36,11 +36,11 @@ impl PCS_XAUI_CFG {
     /// Enable Link control via Backplane Ethernet ANEG
     ///
     /// 0: Disable link control 1: Enable link control
-    #[inline]
+    #[inline(always)]
     pub fn an_link_ctrl_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_link_ctrl_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -50,11 +50,11 @@ impl PCS_XAUI_CFG {
     /// RX FIFO read pointer reset
     ///
     /// 1: Reset RX fifo read pointer
-    #[inline]
+    #[inline(always)]
     pub fn fifo_rpt_res(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fifo_rpt_res(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -64,11 +64,11 @@ impl PCS_XAUI_CFG {
     /// Idle sequencing mode (IPG shrink mode support). When active, the first ||I|| after ||T|| will be alternatingly ||K||, ||A|| or ||R|| instead of ||K|| or ||A|| only in normal mode
     ///
     /// 1: Modified idle sequencing for IPG shrink mode support 0: Normal idle sequencing
-    #[inline]
+    #[inline(always)]
     pub fn idle_seq_mode(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_idle_seq_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -78,11 +78,11 @@ impl PCS_XAUI_CFG {
     /// Disable RX Local Fault generation when no alignment has been reached
     ///
     /// 0: Output Local Fault symbol at XGMII when not aligned 1: Output IDLE symbols at XGMII when not aligned
-    #[inline]
+    #[inline(always)]
     pub fn lf_gen_dis(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lf_gen_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -92,11 +92,11 @@ impl PCS_XAUI_CFG {
     /// PCS enable
     ///
     /// 0: Disable PCS 1: Enable PCS
-    #[inline]
+    #[inline(always)]
     pub fn pcs_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pcs_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -105,11 +105,11 @@ impl PCS_XAUI_CFG {
     /// Disable RX Pad/Truncate Mode
     ///
     /// 0: Normal operation 1: Disable pad/truncate
-    #[inline]
+    #[inline(always)]
     pub fn pt_dis(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pt_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -119,11 +119,11 @@ impl PCS_XAUI_CFG {
     /// RX Minimum Inter Packet Gap (Minimum Idle columns, i.e. 4 /I/ on all four lanes, to occure before Truncate may happen)
     ///
     /// 0: No complete idle column is preserved 1: At least one idle column is preserved ...
-    #[inline]
+    #[inline(always)]
     pub fn pt_ipg_size(&self) -> u32 {
         (self.0 & 0x38) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pt_ipg_size(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 3;
@@ -133,11 +133,11 @@ impl PCS_XAUI_CFG {
     /// Testloop, if enabled (XAUI encoded) data are looped from TX path to RX path just before the SERDES
     ///
     /// 1: Enable loop 0: Disable loop
-    #[inline]
+    #[inline(always)]
     pub fn xaui_loop_ena(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_xaui_loop_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -154,11 +154,11 @@ impl PCS_XAUI_EXT_CFG {
     /// Flip HM-Bus in receive direction, i.e. map lane 0 on 3, lane 1 on 2, lane 2 on 1 and lane 3 on 0
     ///
     /// 0: Normal lane order 1: Flipped lane order
-    #[inline]
+    #[inline(always)]
     pub fn rx_flip_hmbus(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_flip_hmbus(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -168,11 +168,11 @@ impl PCS_XAUI_EXT_CFG {
     /// Invert HM-Bus in receive direction, invert all data signals from SERDES
     ///
     /// 0: Normal operation 1: Invert HM-bus
-    #[inline]
+    #[inline(always)]
     pub fn rx_inv_hmbus(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_inv_hmbus(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -182,11 +182,11 @@ impl PCS_XAUI_EXT_CFG {
     /// Flip HM-Bus in transmit direction, i.e. map lane 0 on 3, lane 1 on 2, lane 2 on 1 and lane 3 on 0
     ///
     /// 0: Normal lane order 1: Flipped lane order
-    #[inline]
+    #[inline(always)]
     pub fn tx_flip_hmbus(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_flip_hmbus(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -195,11 +195,11 @@ impl PCS_XAUI_EXT_CFG {
     /// Invert HM-Bus in transmit direction, invert all data signals to SERDES
     ///
     /// 0: Normal operation 1: Invert HM-bus
-    #[inline]
+    #[inline(always)]
     pub fn tx_inv_hmbus(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_inv_hmbus(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -214,11 +214,11 @@ impl PCS_XAUI_EXT_CFG {
 pub struct PCS_XAUI_INTERLEAVE_MODE_CFG(u32);
 impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Comma replacement. In interleave mode (using /K/ byte orderung) one 20-bit word must have only one comma for proper alignment. Misleading commas are replaced by comma_repl in transmit direction and replaced by K28.5-commas again in receive direction. Comma_repl has to be an unused valid special code-group which does not contain a comma, i.e. K28.2, K28.6 or K23.7 are possible replacements.
-    #[inline]
+    #[inline(always)]
     pub fn comma_repl(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_comma_repl(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -228,11 +228,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Code-group alignment in 20-bit mode
     ///
     /// 0: align comma to lower 10 bits 1: align comma to upper 10 bits
-    #[inline]
+    #[inline(always)]
     pub fn com_align_pos(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_com_align_pos(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -242,11 +242,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Dual column ||A|| alignment (||A|| are inserted on even columns only)
     ///
     /// 0: Normal insertion 1: Even column insertion only
-    #[inline]
+    #[inline(always)]
     pub fn dc_a_align_ena(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dc_a_align_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -256,11 +256,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Interleave mode selection. In interleave mode XAUI data are sent via two 5Gbps lanes
     ///
     /// 0: Interleave mode with /K/ comma based byte re-ordering (using comma replacement) 1: Interleave mode with /A/ alignment symbol based byte re-ordering
-    #[inline]
+    #[inline(always)]
     pub fn ilv_mode(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ilv_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -270,11 +270,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Interleave mode enable. In interleave mode XAUI data are sent via two 5Gbps lanes
     ///
     /// 0: Normal XAUI mode 1: Interleave mode
-    #[inline]
+    #[inline(always)]
     pub fn ilv_mode_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ilv_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -283,11 +283,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Comma synchronization mode
     ///
     /// 0: Synchronize on any 7-bit comma (XAUI compliant) 1: Synchronize on K28.5 only (non XAUI compliant)
-    #[inline]
+    #[inline(always)]
     pub fn k28_5_sync_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_k28_5_sync_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -297,11 +297,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Channel reordering in receive direction (swap lane 0, 1 and lane 2, 3) before 8B/10B decoder
     ///
     /// 1: Enable 0: Disable
-    #[inline]
+    #[inline(always)]
     pub fn rxchan_reord1_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rxchan_reord1_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -311,11 +311,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Channel reordering in receive direction (swap lane 0, 1 and lane 2, 3) after 8B/10B decoder
     ///
     /// 1: Enable 0: Disable
-    #[inline]
+    #[inline(always)]
     pub fn rxchan_reord2_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rxchan_reord2_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -325,11 +325,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Disable 8b10b decoding of interleaved data stream
     ///
     /// 0: Interleaved data stream is 8b10b decoded 1: Each lane is individually 8b10b decoded
-    #[inline]
+    #[inline(always)]
     pub fn rx_8b10b_ilv_dis(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_8b10b_ilv_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -339,11 +339,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Channel reordering in transmit direction (swap lane 0, 1 and lane 2, 3) before comma remapping
     ///
     /// 1: Enable 0: Disable
-    #[inline]
+    #[inline(always)]
     pub fn txchan_reord1_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_txchan_reord1_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -353,11 +353,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Channel reordering in transmit direction (swap lane 0, 1 and lane 2, 3) after comma remapping
     ///
     /// 1: Enable 0: Disable
-    #[inline]
+    #[inline(always)]
     pub fn txchan_reord2_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_txchan_reord2_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -367,11 +367,11 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Disable 8b10b encoding of interleaved data stream
     ///
     /// 0: Interleaved data stream is 8b10b encoded 1: Each lane is individually 8b10b encoded
-    #[inline]
+    #[inline(always)]
     pub fn tx_8b10b_ilv_dis(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_8b10b_ilv_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -388,11 +388,11 @@ impl PCS_XAUI_LPI_CFG {
     /// Max wake-up time before link_fail
     ///
     /// 00: 8 us 01: 11 us 10: 15 us 11: 18 us
-    #[inline]
+    #[inline(always)]
     pub fn lpi_rx_wtim(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lpi_rx_wtim(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -402,11 +402,11 @@ impl PCS_XAUI_LPI_CFG {
     /// LPI-Timer test mode.
     ///
     /// 0: Normal timing constants are used 1: Shortened timing constants are used
-    #[inline]
+    #[inline(always)]
     pub fn lpi_testmode(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lpi_testmode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -416,11 +416,11 @@ impl PCS_XAUI_LPI_CFG {
     /// Disable output of Low-Power Idle in receive direction (to core)
     ///
     /// 0: Enable 1: Disable
-    #[inline]
+    #[inline(always)]
     pub fn rx_lpi_out_dis(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_lpi_out_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -430,11 +430,11 @@ impl PCS_XAUI_LPI_CFG {
     /// Assert Low-Power Idle (LPI) in transmit mode
     ///
     /// 0: Disable LPI transmission 1: Enable LPI transmission
-    #[inline]
+    #[inline(always)]
     pub fn tx_assert_lpidle(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_assert_lpidle(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -450,11 +450,11 @@ impl PCS_XAUI_RX_ERR_CNT_CFG {
     /// Codegroup error counting mask
     ///
     /// 0000: Count errors of all lanes 1110: Count error of lane 0 only ...
-    #[inline]
+    #[inline(always)]
     pub fn cerr_mask(&self) -> u32 {
         (self.0 & 0xf00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cerr_mask(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 8;
@@ -464,11 +464,11 @@ impl PCS_XAUI_RX_ERR_CNT_CFG {
     /// Disparity error counting mask
     ///
     /// 0000: Count errors of all lanes 1110: Count error of lane 0 only ...
-    #[inline]
+    #[inline(always)]
     pub fn derr_mask(&self) -> u32 {
         (self.0 & 0xf000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_derr_mask(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 12;
@@ -478,11 +478,11 @@ impl PCS_XAUI_RX_ERR_CNT_CFG {
     /// Fifo overflow error counting mask
     ///
     /// 0000: Count errors of all lanes 1110: Count error of lane 0 only ...
-    #[inline]
+    #[inline(always)]
     pub fn oferr_mask(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_oferr_mask(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -491,11 +491,11 @@ impl PCS_XAUI_RX_ERR_CNT_CFG {
     /// Fifo underflow error counting mask
     ///
     /// 0000: Count errors of all lanes 1110: Count error of lane 0 only ...
-    #[inline]
+    #[inline(always)]
     pub fn uferr_mask(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_uferr_mask(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -512,11 +512,11 @@ impl PCS_XAUI_SD_CFG {
     /// Signal Detect Enable
     ///
     /// 0: The Signal Detect input pin is ignored. The PCS assumes an active Signal Detect at all times 1: The Signal Detect input pin is used to determine if a signal is detected
-    #[inline]
+    #[inline(always)]
     pub fn sd_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sd_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -525,11 +525,11 @@ impl PCS_XAUI_SD_CFG {
     /// Signal detect polarity: The signal level on signal_detect input pin must be equal to SD_POL to indicate signal detection (SD_ENA must be set)
     ///
     /// 0: Signal Detect input pin must be '0' to indicate a signal detection 1: Signal Detect input pin must be '1' to indicate a signal detection
-    #[inline]
+    #[inline(always)]
     pub fn sd_pol(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sd_pol(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -539,11 +539,11 @@ impl PCS_XAUI_SD_CFG {
     /// Signal detect selection (select input for internal signal_detect line)
     ///
     /// 0: Select signal_detect line from hardmacro 1: Select external signal_detect line
-    #[inline]
+    #[inline(always)]
     pub fn sd_sel(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sd_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -558,11 +558,11 @@ impl PCS_XAUI_SD_CFG {
 pub struct PCS_XAUI_TX_SEQ_CFG(u32);
 impl PCS_XAUI_TX_SEQ_CFG {
     /// Transmit ||Q|| code (Sequence information, i.e. lower 24 bit of a Sequence)
-    #[inline]
+    #[inline(always)]
     pub fn tx_q(&self) -> u32 {
         (self.0 & 0xffffff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_q(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         let value = value << 8;
@@ -572,11 +572,11 @@ impl PCS_XAUI_TX_SEQ_CFG {
     /// Disable Transmit ||Q|| code replacement
     ///
     /// 1: Disable 0: Enable
-    #[inline]
+    #[inline(always)]
     pub fn tx_q_dis(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_q_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;

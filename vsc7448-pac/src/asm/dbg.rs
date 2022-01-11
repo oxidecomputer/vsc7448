@@ -36,11 +36,11 @@ impl DBG_CFG {
     /// This field can be used to configure the ASM not to silently discard frames that are aborted by a device within the first cell of a frame. Note that enabling this feature may cause overflow in the ASM when small fragments are received at the Taxi interface.
     ///
     /// '0': Frames are silently discarded by the ASM if it is aborted within the first cell of the frame. '1': No frames are silently discarded by the ASM
-    #[inline]
+    #[inline(always)]
     pub fn abort_dis(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_abort_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -49,11 +49,11 @@ impl DBG_CFG {
     /// This field can be used to disable the cell bus output of the ASM - i.e. to configure the ASM to replace any data cells with IDLE cells. Data is flushed from the ASM FIFO when the output is disabled.
     ///
     /// '0': Any data cells read from the ASM FIFO are passed to the ANA block. '1': No data cells are passed to the ANA block. Only IDLE and REFRESH cells will be transmitted. Data is still read from the ASM FIFO, even though the cell bus interface has been disabled.
-    #[inline]
+    #[inline(always)]
     pub fn cell_bus_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cell_bus_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -63,11 +63,11 @@ impl DBG_CFG {
     /// This field indicates if a given ASM FIFO must be reset or not. Resetting a FIFO does not affect the device status interface to the DSM.
     ///
     /// '0': The FIFO is NOT reset. '1': The FIFO is reset and it will remain reset until FIFO_RST is de-asserted.
-    #[inline]
+    #[inline(always)]
     pub fn fifo_rst(&self) -> u32 {
         (self.0 & 0xff8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fifo_rst(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         let value = value << 3;
@@ -75,11 +75,11 @@ impl DBG_CFG {
         self.0 |= value;
     }
     /// If this fields is set to 1, cell cycles allocated for front ports, but with no data available, will be given to the virtual device. Otherwise the VD is only given the cycles set by the cell bus calendar.
-    #[inline]
+    #[inline(always)]
     pub fn idle_to_vd(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_idle_to_vd(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -96,11 +96,11 @@ impl ERR_STICKY {
     /// Cell words must only be granted a given Taxi bus every 3rd cell cycle or more. I.e. for Taxi A there must always be two or more cell slots given to another Taxi other than A or idle, before Taxi A is allowed to get the next grant. If the cell bus calendar causes 2 cell slots to be allocated the same Taxi bus within 3 cell cycles, the last cell slot is ignored and a sticky bit is asserted.
     ///
     /// '0': No cell slot calendar error detected. '1': One or more cell slots have been ignored by ASM. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn calendar_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_calendar_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -110,11 +110,11 @@ impl ERR_STICKY {
     /// The ASM must assert a sticky bit if an internal error occurs in the 'complete cell' FIFO.
     ///
     /// '0': No internal error has been detected in the 'complete cell' FIFO. '1': An internal error has been detected in the 'complete cell' FIFO. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn cc_intrn_err_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cc_intrn_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -124,11 +124,11 @@ impl ERR_STICKY {
     /// The ASM must assert a sticky bit if an overflow occurs in the 'complete cell' FIFO.
     ///
     /// '0': No overflow has been detected in the 'complete cell' FIFO. '1': An overflow has been detected in the 'complete cell' FIFO. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn cc_oflw_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cc_oflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -138,11 +138,11 @@ impl ERR_STICKY {
     /// The ASM must assert a sticky bit if an underflow occurs in the 'complete cell' FIFO.
     ///
     /// '0': No underflow has been detected in the 'complete cell' FIFO. '1': An underflow has been detected in the 'complete cell' FIFO. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn cc_uflw_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cc_uflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -152,11 +152,11 @@ impl ERR_STICKY {
     /// The ASM must assert a sticky bit if an overflow occurs in the 'free cell' FIFO.
     ///
     /// '0': No overflow has been detected in the 'free cell' FIFO. '1': An overflow has been detected in the 'free cell' FIFO. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn fc_oflw_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fc_oflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -166,11 +166,11 @@ impl ERR_STICKY {
     /// The ASM must assert a sticky bit if an underflow occurs in the 'free cell' FIFO.
     ///
     /// '0': No underflow has been detected in the 'free cell' FIFO. '1': An underflow has been detected in the 'free cell' FIFO. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn fc_uflw_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fc_uflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -180,11 +180,11 @@ impl ERR_STICKY {
     /// This sticky bit is set if the ASM passes a frame to the cell bus, which is less than 64 bytes (before any padding is done, if enabled) - and has not been aborted or abortion has been disabled. The padding configuration does not affect this sticky bit.
     ///
     /// '0': No error detected. '1': One or more frames have been passed to the cell bus, where the frame size was less than 64 bytes. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn fragment_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fragment_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -194,11 +194,11 @@ impl ERR_STICKY {
     /// This sticky bit is set if the ASM receives a Taxi word where ABORT is asserted but EOF is not asserted.
     ///
     /// '0': No misaligned ABORT/EOF indications detected. '1': Misaligned ABORT/EOF indications detected. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn invld_abort_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_invld_abort_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -208,11 +208,11 @@ impl ERR_STICKY {
     /// The ASM must assert a sticky bit if an overflow occurs in the main statemachine.
     ///
     /// '0': No overflow has been detected in the main statemachine. '1': An overflow has been detected in the main statemachine. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn main_sm_intrn_err_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_main_sm_intrn_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -222,11 +222,11 @@ impl ERR_STICKY {
     /// The ASM must assert a sticky bit if an overflow occurs in the main statemachine.
     ///
     /// '0': No overflow has been detected in the main statemachine. '1': An overflow has been detected in the main statemachine. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn main_sm_oflw_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_main_sm_oflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -235,11 +235,11 @@ impl ERR_STICKY {
     /// This sticky bit is set if the ASM receives a Taxi word where SOF is asserted and the previous valid Taxi word from that port did not hold an EOF.
     ///
     /// '0': No missing EOF detected '1': Missing EOF detected Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn missing_eof_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_missing_eof_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -249,11 +249,11 @@ impl ERR_STICKY {
     /// This sticky bit is set if the ASM receives a Taxi word with SOF=0 and the previous valid Taxi word from that port hold an EOF.
     ///
     /// '0': No missing EOF detected '1': Missing EOF detected Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn missing_sof_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_missing_sof_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -263,11 +263,11 @@ impl ERR_STICKY {
     /// This sticky bit is set if a partial Taxi word (unused_bytes <> 0) is received while EOF = 0.
     ///
     /// '0': No error detected in UNUSED_BYTES field ofTaxi word. '1': One or more Taxi words have been received where the UNUSED_BYTES field was different from 0 and EOP = 0. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn unused_bytes_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unused_bytes_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -284,11 +284,11 @@ impl PRE_CNT_OFLW_STICKY {
     /// Will be set if one of the statistics pause frame pre counters has an overflow.
     ///
     /// '0': An overflow in	pre-counter has not occured '1': An overflow in	pre-counter has occured Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn pause_frm_pre_cnt_oflw_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pause_frm_pre_cnt_oflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -297,11 +297,11 @@ impl PRE_CNT_OFLW_STICKY {
     /// Will be set if one of the statistics pre counters for unsupported control frames has an overflow.
     ///
     /// '0': An overflow in	pre-counter has not occured '1': An overflow in	pre-counter has occured Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn unsup_opcode_pre_cnt_oflw_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unsup_opcode_pre_cnt_oflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;

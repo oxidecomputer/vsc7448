@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct QSHP_CIR_STATE(u32);
 impl QSHP_CIR_STATE {
     /// Current fill level. Unit is 1 bit.
-    #[inline]
+    #[inline(always)]
     pub fn cir_lvl(&self) -> u32 {
         self.0 & 0xffffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cir_lvl(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;

@@ -31,11 +31,11 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MSI_LOWER_32(u32);
 impl MSI_LOWER_32 {
-    #[inline]
+    #[inline(always)]
     pub fn pci_msi_lower_32(&self) -> u32 {
         (self.0 & 0xfffffffc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_msi_lower_32(&mut self, value: u32) {
         assert!(value <= 0x3fffffff);
         let value = value << 2;
@@ -47,11 +47,11 @@ impl MSI_LOWER_32 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MSI_PENDING_BIT(u32);
 impl MSI_PENDING_BIT {
-    #[inline]
+    #[inline(always)]
     pub fn pci_msi_pending_bit(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_msi_pending_bit(&mut self, value: u32) {
         self.0 = value;
     }
@@ -60,11 +60,11 @@ impl MSI_PENDING_BIT {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MSI_UPPER_32(u32);
 impl MSI_UPPER_32 {
-    #[inline]
+    #[inline(always)]
     pub fn pci_msi_upper_32(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_msi_upper_32(&mut self, value: u32) {
         self.0 = value;
     }
@@ -73,76 +73,76 @@ impl MSI_UPPER_32 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct PCI_MSI_CAP_ID_NEXT_CTRL(u32);
 impl PCI_MSI_CAP_ID_NEXT_CTRL {
-    #[inline]
+    #[inline(always)]
     pub fn pci_msi_64_bit_addr_cap(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_msi_64_bit_addr_cap(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pci_msi_cap_id(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_msi_cap_id(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pci_msi_cap_next_offset(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_msi_cap_next_offset(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pci_msi_enable(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_msi_enable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pci_msi_multiple_msg_cap(&self) -> u32 {
         (self.0 & 0xe0000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_msi_multiple_msg_cap(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 17;
         self.0 &= !0xe0000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pci_msi_multiple_msg_en(&self) -> u32 {
         (self.0 & 0x700000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_msi_multiple_msg_en(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 20;
         self.0 &= !0x700000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pci_pvm_support(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pci_pvm_support(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;

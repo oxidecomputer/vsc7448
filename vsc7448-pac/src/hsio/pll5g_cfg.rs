@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct PLL5G_CFG0(u32);
 impl PLL5G_CFG0 {
     /// setting for core clock divider 0:625MHz, 1:312.5MHz, 2:500MHz, 3:277.77MHz, 4:500MHz, 5:250MHz, 6:416.66MHz, 7:227.27MHz, 8:416.66MHz, 9:208.33MHz, 10:357.14MHz, 11:192.3MHz, 12:357.14MHz, 13:178.57MHz, 14:312.5MHz, 15:166.66,MHz, 17:156.25MHz, 33:625MHz
-    #[inline]
+    #[inline(always)]
     pub fn core_clk_div(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_core_clk_div(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -47,11 +47,11 @@ impl PLL5G_CFG0 {
     /// Setting for CPU clock divider
     ///
     /// 2: 500 MHz 5: 250 MHz 6: 416.66 MHz 14: 312.5 MHz 15: 166.66 MHz Others: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn cpu_clk_div(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_clk_div(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 6;
@@ -59,11 +59,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// RCPLL feedback divider setting
-    #[inline]
+    #[inline(always)]
     pub fn div4(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_div4(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 28;
@@ -71,11 +71,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// enable BIAS circuitry incl. Bandgap, voltage regulators, etc.
-    #[inline]
+    #[inline(always)]
     pub fn ena_bias(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_bias(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -83,11 +83,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// RCPLL enable BIAS for clocktree buffer (active low) 0: enable BIAS, 1: disable BIAS
-    #[inline]
+    #[inline(always)]
     pub fn ena_clktree(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_clktree(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -95,11 +95,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// enable current mode chargepump, normal mode
-    #[inline]
+    #[inline(always)]
     pub fn ena_cp1(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_cp1(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -107,11 +107,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// RCPLL Global enable for serdes lane.
-    #[inline]
+    #[inline(always)]
     pub fn ena_lane(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_lane(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -119,11 +119,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// enable fine locking, last stage in startup locking sequence
-    #[inline]
+    #[inline(always)]
     pub fn ena_lock_fine(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_lock_fine(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 27;
@@ -131,11 +131,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// RCPLL feedback divider setting
-    #[inline]
+    #[inline(always)]
     pub fn ena_rot(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_rot(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -143,11 +143,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// enable BIAS for LCPLL VCO output buffer
-    #[inline]
+    #[inline(always)]
     pub fn ena_vco_buf(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_vco_buf(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -155,11 +155,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// enable fine VCO operating point regulator
-    #[inline]
+    #[inline(always)]
     pub fn ena_vco_contrh(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_vco_contrh(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -167,11 +167,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// setting for filter resistor value 0: biggest resistance, 31: lowest resistance
-    #[inline]
+    #[inline(always)]
     pub fn loop_bw_res(&self) -> u32 {
         (self.0 & 0x7c0000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_loop_bw_res(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 18;
@@ -179,11 +179,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// fine tune of bandgap voltage distribution 0: lowest voltage, 15: highest voltage
-    #[inline]
+    #[inline(always)]
     pub fn selbgv820(&self) -> u32 {
         (self.0 & 0x7800000) >> 23
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_selbgv820(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 23;
@@ -191,11 +191,11 @@ impl PLL5G_CFG0 {
         self.0 |= value;
     }
     /// setting for chargepump current 0: lowest current, 3: highest current
-    #[inline]
+    #[inline(always)]
     pub fn selcpi(&self) -> u32 {
         (self.0 & 0x30000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_selcpi(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 16;
@@ -210,11 +210,11 @@ impl PLL5G_CFG0 {
 pub struct PLL5G_CFG1(u32);
 impl PLL5G_CFG1 {
     /// enable for direct data mode (ATPG/JTAG) reference clock input buffer and test output buffer
-    #[inline]
+    #[inline(always)]
     pub fn ena_direct(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_direct(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -222,22 +222,22 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL When set to '1' the value at sx_pll_fsm_ctrl_data_I is not taken as reference value for the FSM, but is directly apllied to the PLL as frequency range setting.
-    #[inline]
+    #[inline(always)]
     pub fn force_set_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_force_set_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// RCPLL Enable for half rate mode
-    #[inline]
+    #[inline(always)]
     pub fn half_rate(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_half_rate(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -245,11 +245,11 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL Enable recalibration of PLL when out of range is detected
-    #[inline]
+    #[inline(always)]
     pub fn out_of_range_recal_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_out_of_range_recal_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -257,11 +257,11 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL Power down for the RX-path
-    #[inline]
+    #[inline(always)]
     pub fn pwd_rx(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pwd_rx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -269,11 +269,11 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL Power down for the TX-path
-    #[inline]
+    #[inline(always)]
     pub fn pwd_tx(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pwd_tx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -281,11 +281,11 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL Enable for quarter rate mode
-    #[inline]
+    #[inline(always)]
     pub fn quarter_rate(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_quarter_rate(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -293,11 +293,11 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL Control input for startup FSM
-    #[inline]
+    #[inline(always)]
     pub fn rc_ctrl_data(&self) -> u32 {
         (self.0 & 0x3fc0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rc_ctrl_data(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 6;
@@ -305,11 +305,11 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL Enable for startup FSM
-    #[inline]
+    #[inline(always)]
     pub fn rc_enable(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rc_enable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -317,11 +317,11 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL Selects whether (when set to '1') the frequency range setting from the FSM can be read back at sx_pll_rb_data_o or (when cleared to '0') the measured period.
-    #[inline]
+    #[inline(always)]
     pub fn readback_data_sel(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_readback_data_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -329,11 +329,11 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL feedback divider setting
-    #[inline]
+    #[inline(always)]
     pub fn rot_dir(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rot_dir(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -341,11 +341,11 @@ impl PLL5G_CFG1 {
         self.0 |= value;
     }
     /// RCPLL feedback divider setting
-    #[inline]
+    #[inline(always)]
     pub fn rot_speed(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rot_speed(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -360,11 +360,11 @@ impl PLL5G_CFG1 {
 pub struct PLL5G_CFG2(u32);
 impl PLL5G_CFG2 {
     /// static VCO amplitude control, active w/ ena_amp_ctrl_force 0: lowest current, 255: highest current
-    #[inline]
+    #[inline(always)]
     pub fn ampc_sel(&self) -> u32 {
         (self.0 & 0xff000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ampc_sel(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 12;
@@ -372,11 +372,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// disable automatic FSM startup frequency stepping
-    #[inline]
+    #[inline(always)]
     pub fn disable_fsm(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_disable_fsm(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -384,11 +384,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// disables the startup FSM to start ramp up the frequency from POR 0: normal,1: disable
-    #[inline]
+    #[inline(always)]
     pub fn disable_fsm_por(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_disable_fsm_por(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -396,11 +396,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable automatic VCO amplitude control
-    #[inline]
+    #[inline(always)]
     pub fn ena_ampctrl(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_ampctrl(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -408,11 +408,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable static VCO amplitude control
-    #[inline]
+    #[inline(always)]
     pub fn ena_amp_ctrl_force(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_amp_ctrl_force(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -420,11 +420,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable clock bypass for all output clocks to come from ref clock pad
-    #[inline]
+    #[inline(always)]
     pub fn ena_clk_bypass(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_clk_bypass(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
@@ -432,11 +432,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable clock bypass for all output clocks to come from extra dividers (125MHz, 250MHz, 312.5MHz)
-    #[inline]
+    #[inline(always)]
     pub fn ena_clk_bypass1(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_clk_bypass1(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -444,11 +444,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable resistor mode chargepump, test mode
-    #[inline]
+    #[inline(always)]
     pub fn ena_cp2(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_cp2(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
@@ -456,11 +456,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable feedback divider output to test output buffer
-    #[inline]
+    #[inline(always)]
     pub fn ena_fbtestout(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_fbtestout(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 27;
@@ -468,22 +468,22 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable static VCO frequency stepping
-    #[inline]
+    #[inline(always)]
     pub fn ena_gain_test(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_gain_test(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// enable flip of refclk and fbclk at PFD, used for 2nd chargepump
-    #[inline]
+    #[inline(always)]
     pub fn ena_pfd_in_flip(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_pfd_in_flip(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -491,11 +491,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable RCPLL clock buffer in LCPLL VCO (sx_ena_vco_buf_i must be set to 0)
-    #[inline]
+    #[inline(always)]
     pub fn ena_rcpll(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_rcpll(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
@@ -503,11 +503,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enables test modes, e.g. fbdivsel
-    #[inline]
+    #[inline(always)]
     pub fn ena_test_mode(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_test_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -515,11 +515,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable VCO frequency control output
-    #[inline]
+    #[inline(always)]
     pub fn ena_vco_nref_testout(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_vco_nref_testout(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 28;
@@ -527,11 +527,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable FSM frequency deviation detection
-    #[inline]
+    #[inline(always)]
     pub fn en_reset_frq_det(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_en_reset_frq_det(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -539,11 +539,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable FSM limiter detection
-    #[inline]
+    #[inline(always)]
     pub fn en_reset_lim_det(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_en_reset_lim_det(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -551,11 +551,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// enable FSM frequency deviation overrun
-    #[inline]
+    #[inline(always)]
     pub fn en_reset_overrun(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_en_reset_overrun(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -563,11 +563,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// forces the startup FSM to start ramp up the frequency by POR 0: no force,1: force
-    #[inline]
+    #[inline(always)]
     pub fn frc_fsm_por(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frc_fsm_por(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -575,11 +575,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// setting for static VCO frequency stepping 0: lowest frequency,31: highest frequency
-    #[inline]
+    #[inline(always)]
     pub fn gain_test(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_gain_test(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 5;
@@ -587,11 +587,11 @@ impl PLL5G_CFG2 {
         self.0 |= value;
     }
     /// force VCO amplitude control output to low (no VCO current) 0:force, 1: no force
-    #[inline]
+    #[inline(always)]
     pub fn pwd_ampctrl_n(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pwd_ampctrl_n(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -606,11 +606,11 @@ impl PLL5G_CFG2 {
 pub struct PLL5G_CFG3(u32);
 impl PLL5G_CFG3 {
     /// Set to 3 to enable CLKOUT2 synchronous Ethernet reference clock output. Applies only to PLL2.
-    #[inline]
+    #[inline(always)]
     pub fn clkout2_sel(&self) -> u32 {
         (self.0 & 0x380000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_clkout2_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 19;
@@ -618,11 +618,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// enable analog test output
-    #[inline]
+    #[inline(always)]
     pub fn ena_ana_test_out(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_ana_test_out(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -630,11 +630,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// enable differential test output
-    #[inline]
+    #[inline(always)]
     pub fn ena_test_out(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_test_out(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -642,22 +642,22 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// setting for feedback divider, divide by 12..255 12..255
-    #[inline]
+    #[inline(always)]
     pub fn fbdivsel(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fbdivsel(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
     /// enable feedback divider testmode
-    #[inline]
+    #[inline(always)]
     pub fn fbdivsel_tst_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fbdivsel_tst_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -665,11 +665,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// force chargepump output to nominal VCO operating point
-    #[inline]
+    #[inline(always)]
     pub fn force_cp(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_force_cp(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -677,11 +677,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// enable force VCO frequency high/low (force_hi/lo)
-    #[inline]
+    #[inline(always)]
     pub fn force_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_force_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -689,11 +689,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// force chargepump output to high, gives highest VCO frequency
-    #[inline]
+    #[inline(always)]
     pub fn force_hi(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_force_hi(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -701,11 +701,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// force chargepump output to low, gives lowest VCO frequency
-    #[inline]
+    #[inline(always)]
     pub fn force_lo(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_force_lo(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -713,11 +713,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// force vco contrh input to mid level (mid CML level)
-    #[inline]
+    #[inline(always)]
     pub fn force_vco_contrh(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_force_vco_contrh(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -725,11 +725,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// reset for feedback divider, active low 0: reset,1:no reset
-    #[inline]
+    #[inline(always)]
     pub fn rst_fb_n(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rst_fb_n(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -737,11 +737,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// select CML or CMOS phase/frequency detector 0: CML, 1: CMOS
-    #[inline]
+    #[inline(always)]
     pub fn sel_cml_cmos_pfd(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sel_cml_cmos_pfd(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -749,11 +749,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// enable symmetric feedback divider clock output 0: fbclk/2, 1: fbclk
-    #[inline]
+    #[inline(always)]
     pub fn sel_fbdclk(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sel_fbdclk(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -761,11 +761,11 @@ impl PLL5G_CFG3 {
         self.0 |= value;
     }
     /// select analog test output input signal
-    #[inline]
+    #[inline(always)]
     pub fn test_ana_out_sel(&self) -> u32 {
         (self.0 & 0xc00000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_test_ana_out_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 22;
@@ -780,11 +780,11 @@ impl PLL5G_CFG3 {
 pub struct PLL5G_CFG4(u32);
 impl PLL5G_CFG4 {
     /// settings for reference clock input buffer BIAS
-    #[inline]
+    #[inline(always)]
     pub fn ib_bias_ctrl(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_bias_ctrl(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -792,11 +792,11 @@ impl PLL5G_CFG4 {
         self.0 |= value;
     }
     /// settings for reference clock input buffer
-    #[inline]
+    #[inline(always)]
     pub fn ib_ctrl(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_ctrl(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -810,11 +810,11 @@ impl PLL5G_CFG4 {
 pub struct PLL5G_CFG5(u32);
 impl PLL5G_CFG5 {
     /// settings for test output buffer BIAS
-    #[inline]
+    #[inline(always)]
     pub fn ob_bias_ctrl(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ob_bias_ctrl(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -822,11 +822,11 @@ impl PLL5G_CFG5 {
         self.0 |= value;
     }
     /// settings for test output buffer
-    #[inline]
+    #[inline(always)]
     pub fn ob_ctrl(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ob_ctrl(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -842,22 +842,22 @@ impl PLL5G_CFG6 {
     /// Setting for DDR clock divider
     ///
     /// 2: 500 MHz 5: 250 MHz 6: 416.66 MHz 14: 312.5 MHz 15: 166.66 MHz Others: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn ddr_clk_div(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ddr_clk_div(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
     /// enable feedback divider CMOS 1/2 clock (for FSM)
-    #[inline]
+    #[inline(always)]
     pub fn ena_fbclkc2(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_fbclkc2(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -865,11 +865,11 @@ impl PLL5G_CFG6 {
         self.0 |= value;
     }
     /// Enable reference CMOS 1/2 clock
-    #[inline]
+    #[inline(always)]
     pub fn ena_refclkc2(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_refclkc2(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;

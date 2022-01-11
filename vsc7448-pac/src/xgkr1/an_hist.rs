@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct AN_HIST(u32);
 impl AN_HIST {
     /// AN state machine history
-    #[inline]
+    #[inline(always)]
     pub fn an_sm_hist(&self) -> u32 {
         self.0 & 0x7fff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_sm_hist(&mut self, value: u32) {
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;

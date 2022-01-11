@@ -36,11 +36,11 @@ impl PCS2X6G_EXT_CFG {
     /// Flip HM-Bus, i.e. map lane 0 on 1 and lane 1 on 0
     ///
     /// 0: Normal operation 1: Flipped lane assignment
-    #[inline]
+    #[inline(always)]
     pub fn flip_hmbus(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_flip_hmbus(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -49,11 +49,11 @@ impl PCS2X6G_EXT_CFG {
     /// Invert HM-Bus, invert all data signals from/to SERDES
     ///
     /// 0: Normal operation 1: Inverted HM-bus
-    #[inline]
+    #[inline(always)]
     pub fn invert_hmbus(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_invert_hmbus(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;

@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct MEMACC(u32);
 impl MEMACC {
     /// Starting 32-bit word address when loading or examining the onchip 8051 memory.
-    #[inline]
+    #[inline(always)]
     pub fn memacc_start(&self) -> u32 {
         (self.0 & 0xfffc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_memacc_start(&mut self, value: u32) {
         assert!(value <= 0x3fff);
         let value = value << 2;
@@ -46,11 +46,11 @@ impl MEMACC {
         self.0 |= value;
     }
     /// Ending 32-bit word address when loading or examining the onchip 8051 memory, the value of this field must be equal to or higher than the MEMACC.MEMACC_START field.
-    #[inline]
+    #[inline(always)]
     pub fn memacc_stop(&self) -> u32 {
         (self.0 & 0xfffc0000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_memacc_stop(&mut self, value: u32) {
         assert!(value <= 0x3fff);
         let value = value << 18;
@@ -63,11 +63,11 @@ impl MEMACC {
 pub struct MEMACC_CTRL(u32);
 impl MEMACC_CTRL {
     /// Set this field to start an access with the parameters specified by MEMACC_CTRL.MEMACC_EXAMINE, MEMACC.MEMACC_START, MEMACC.MEMACC_STOP, and MEMACC_SBA.MEMACC_SBA_START. This field is cleared when the requested number of 32-bit words has been transfered.
-    #[inline]
+    #[inline(always)]
     pub fn memacc_do(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_memacc_do(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -76,11 +76,11 @@ impl MEMACC_CTRL {
     /// This field controls if the onchip 8051 memory is either loaded (written) or examined (read).
     ///
     /// 0: Load data from SBA to onchip memory. 1: Examine data from onchip memory to SBA.
-    #[inline]
+    #[inline(always)]
     pub fn memacc_examine(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_memacc_examine(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -95,11 +95,11 @@ impl MEMACC_CTRL {
 pub struct MEMACC_SBA(u32);
 impl MEMACC_SBA {
     /// This field determines where in the SBA memory space (32-bit alligned) the automatic load/examine mechanims reads/writes data to/from the onchip 8051 memory.
-    #[inline]
+    #[inline(always)]
     pub fn memacc_sba_start(&self) -> u32 {
         (self.0 & 0xfffffffc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_memacc_sba_start(&mut self, value: u32) {
         assert!(value <= 0x3fffffff);
         let value = value << 2;
@@ -112,11 +112,11 @@ impl MEMACC_SBA {
 pub struct MPU8051_CFG(u32);
 impl MPU8051_CFG {
     /// This field controls if the VCore UART or the 8051's internal UART is conencted to the chip IOs. The default, when the UART is always used. By clearing this field the 8051's internal UART will be connected to the chip IOs, this field only applies to an 8051 enabled system - clearing this field has no effect in a MIPS based VCore System.
-    #[inline]
+    #[inline(always)]
     pub fn uart_sys_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_uart_sys_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -128,11 +128,11 @@ impl MPU8051_CFG {
 pub struct MPU8051_IROM(u32);
 impl MPU8051_IROM {
     /// This Field specifies the offset into AHB space from which the 8051 must fetch its IROM code during firmware startup.
-    #[inline]
+    #[inline(always)]
     pub fn rom_offset(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rom_offset(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -147,11 +147,11 @@ impl MPU8051_IROM {
 pub struct MPU8051_MMAP(u32);
 impl MPU8051_MMAP {
     /// Set to map 8051 code-accesses in the high 32KByte memory range to on-chip memory instead of FLASH.
-    #[inline]
+    #[inline(always)]
     pub fn map_code_high(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_map_code_high(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -159,11 +159,11 @@ impl MPU8051_MMAP {
         self.0 |= value;
     }
     /// Set to map 8051 code-accesses in the low 32KByte memory range to on-chip memory instead of FLASH.
-    #[inline]
+    #[inline(always)]
     pub fn map_code_low(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_map_code_low(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -171,11 +171,11 @@ impl MPU8051_MMAP {
         self.0 |= value;
     }
     /// Set to map 8051 data-accesses in the high 32KByte memory range to on-chip memory instead of FLASH.
-    #[inline]
+    #[inline(always)]
     pub fn map_data_high(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_map_data_high(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -183,22 +183,22 @@ impl MPU8051_MMAP {
         self.0 |= value;
     }
     /// Set to map 8051 data-accesses in the low 32KByte memory range to on-chip memory instead of FLASH.
-    #[inline]
+    #[inline(always)]
     pub fn map_data_low(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_map_data_low(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Configure which half of the on-chip memory an 8051 data-accesses in the low 32KByte memory range (when mapped to on-chip memory) actually use. When set to 0, the low half of the on-chip 64KByte is accessed, when set to 1 the high half is accessed.
-    #[inline]
+    #[inline(always)]
     pub fn msaddr_code_high(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_msaddr_code_high(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -206,11 +206,11 @@ impl MPU8051_MMAP {
         self.0 |= value;
     }
     /// Configure which half of the on-chip memory an 8051 code-accesses in the low 32KByte memory range (when mapped to on-chip memory) actually use. When set to 0, the low half of the on-chip 64KByte is accessed, when set to 1 the high half is accessed.
-    #[inline]
+    #[inline(always)]
     pub fn msaddr_code_low(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_msaddr_code_low(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -218,11 +218,11 @@ impl MPU8051_MMAP {
         self.0 |= value;
     }
     /// Configure which half of the on-chip memory an 8051 data-accesses in the high 32KByte memory range (when mapped to on-chip memory) actually use. When set to 0, the low half of the on-chip 64KByte is accessed, when set to 1 the high half is accessed.
-    #[inline]
+    #[inline(always)]
     pub fn msaddr_data_high(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_msaddr_data_high(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -230,11 +230,11 @@ impl MPU8051_MMAP {
         self.0 |= value;
     }
     /// Configure which half of the on-chip memory an 8051 data-accesses in the low 32KByte memory range (when mapped to on-chip memory) actually use. When set to 0, the low half of the on-chip 64KByte is accessed, when set to 1 the high half is accessed.
-    #[inline]
+    #[inline(always)]
     pub fn msaddr_data_low(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_msaddr_data_low(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -249,22 +249,22 @@ impl MPU8051_MMAP {
 pub struct MPU8051_STAT(u32);
 impl MPU8051_STAT {
     /// A read-only copy of the 8051 GPR register at SFR address 0xF0.
-    #[inline]
+    #[inline(always)]
     pub fn mpu8051_gpr(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpu8051_gpr(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
     /// This field is set if the 8051 get a shared bus error while fetching code or data from offchip memory, this field can only be cleared by a reset of the 8051.
-    #[inline]
+    #[inline(always)]
     pub fn mpu8051_sba_err(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpu8051_sba_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -272,11 +272,11 @@ impl MPU8051_STAT {
         self.0 |= value;
     }
     /// Set when the 8051 has stopped itself by setting bit 2 in the PCON SFR register.
-    #[inline]
+    #[inline(always)]
     pub fn mpu8051_stop(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mpu8051_stop(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;

@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct EVMID_MASK_CFG(u32);
 impl EVMID_MASK_CFG {
     /// Bit mask with one bit for each router leg. If bit at position N is set, then a copy has to be sent to router leg N. If the frame has been received on router leg N, then the frame is L2 forwarded to other ports in the ingress VLAN. Else the frame is L3 fowarded to the VLAN that router leg N is attached to (ANA_L3:VMID:RLEG_CTRL.RLEG_EVID).
-    #[inline]
+    #[inline(always)]
     pub fn evmid_mask(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_evmid_mask(&mut self, value: u32) {
         self.0 = value;
     }
@@ -48,11 +48,11 @@ impl EVMID_MASK_CFG {
 pub struct L3MC_CTRL(u32);
 impl L3MC_CTRL {
     /// CPU queue used for frames redirected due to CPU_REDIR_MODE.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_qu(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -62,11 +62,11 @@ impl L3MC_CTRL {
     /// Redirect/copy frame to CPU. CPU queue used is configured in CPU_QU.
     ///
     /// 0b00: No CPU redirection/copy. 0b01: Copy CPU 0b10: Copy to CPU, skip L3 forwarding but preserve L2 forwarding. 0b11: Redirect to CPU, skip L2 and L3 forwarding.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_redir_mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_redir_mode(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -74,22 +74,22 @@ impl L3MC_CTRL {
         self.0 |= value;
     }
     /// Enable CPU copy of frames, which are otherwise candidates for routing, but have TTL/HL<2. Such frames are not L3 forwarded, but may still be subject to L2 forwarding. CPU queue used is configured in ANA_L3:COMMON:CPU_QU_CFG.CPU_IP_TTL_FAIL_QU.
-    #[inline]
+    #[inline(always)]
     pub fn ipmc_ttl_copy_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ipmc_ttl_copy_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Enable reverse path forwarding check, i.e. only allow routing of frames received on a specific router leg (RPF_VMID), i.e. IVMID=RPF_VMID. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.MC_RPF_FILTER_STICKY Note that this check is a different check than SIP RPF check, ref. ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_SIP_RPF_MODE ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_SIP_RPF_MODE
-    #[inline]
+    #[inline(always)]
     pub fn rpf_chk_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rpf_chk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -97,11 +97,11 @@ impl L3MC_CTRL {
         self.0 |= value;
     }
     /// Expected IVMID if RPF check is enabled, ref. RPF_CHK_ENA.
-    #[inline]
+    #[inline(always)]
     pub fn rpf_vmid(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rpf_vmid(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 8;

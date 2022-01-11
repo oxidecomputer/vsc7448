@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct SIO_CFG(u32);
 impl SIO_CFG {
     /// Use this to output repeated bursts interleaved with burst gaps. Must be manually reset again to stop output of bursts.
-    #[inline]
+    #[inline(always)]
     pub fn sio_auto_repeat(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_auto_repeat(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -46,11 +46,11 @@ impl SIO_CFG {
     /// Reset the blink counters. Used to synchronize the blink modes between different chips.
     ///
     /// 0: Blink counter is running 1: Blink counter is reset until sio_blink_reset is unset again
-    #[inline]
+    #[inline(always)]
     pub fn sio_blink_reset(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_blink_reset(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -60,11 +60,11 @@ impl SIO_CFG {
     /// Configuration of blink mode 0. Supports four different blink modes.
     ///
     /// 0 : Blink freq appr. 5Hz. 1 : Blink freq appr. 2.5Hz. 2 : Blink freq appr. 1.25Hz. 3 : Blink freq appr. 0.625Hz.
-    #[inline]
+    #[inline(always)]
     pub fn sio_bmode_0(&self) -> u32 {
         (self.0 & 0x180000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_bmode_0(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 19;
@@ -74,11 +74,11 @@ impl SIO_CFG {
     /// Configuration for blink mode 1. Supports three different blink modes and a "burst toggle" mode in which blink mode 1 will alternate for each burst.
     ///
     /// 0: Blink freq appr. 20Hz 1: Blink freq appr. 10Hz 2: Blink freq appr. 5Hz 3: Burst toggle
-    #[inline]
+    #[inline(always)]
     pub fn sio_bmode_1(&self) -> u32 {
         (self.0 & 0x600000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_bmode_1(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 21;
@@ -88,11 +88,11 @@ impl SIO_CFG {
     /// Configures the length of burst gap in steps of approx. 1 ms. Burst gap can be disabled by setting DEVCPU_GCB::SIO_CFG.SIO_BURST_GAP_DIS.
     ///
     /// 0: 1.05 ms burst gap 1: 2.10 ms burst gap ... 31: 33.55 ms burst gap
-    #[inline]
+    #[inline(always)]
     pub fn sio_burst_gap(&self) -> u32 {
         (self.0 & 0x1f000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_burst_gap(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 12;
@@ -100,11 +100,11 @@ impl SIO_CFG {
         self.0 |= value;
     }
     /// Set to disable burst gap.
-    #[inline]
+    #[inline(always)]
     pub fn sio_burst_gap_dis(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_burst_gap_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -114,11 +114,11 @@ impl SIO_CFG {
     /// Bit interrupt enable. Enables interrupts for the four gpios in a port. Is applied to all ports.
     ///
     /// 0: Interrupt is disabled for bit n for all ports 1: Interrupt is enabled for bit n for all ports
-    #[inline]
+    #[inline(always)]
     pub fn sio_gpio_intr_ena(&self) -> u32 {
         (self.0 & 0x1e) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_gpio_intr_ena(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 1;
@@ -128,11 +128,11 @@ impl SIO_CFG {
     /// Polarity of the "Ld" signal
     ///
     /// 0: load signal is active low 1: load signal is active high
-    #[inline]
+    #[inline(always)]
     pub fn sio_ld_polarity(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_ld_polarity(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -142,11 +142,11 @@ impl SIO_CFG {
     /// Master interrupt enable. Enables interrupts. Is applied to all gpios on all ports. This field only has effect on the interrupt output signal of the sio_ctrl block. It has no effect on the interrupt registers.
     ///
     /// 0: Interrupt is disabled for all bits for all ports 1: Interrupt is enabled for all bits for all ports
-    #[inline]
+    #[inline(always)]
     pub fn sio_master_intr_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_master_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -155,11 +155,11 @@ impl SIO_CFG {
     /// Number of SGPIOs pr. port.
     ///
     /// 0: 1 gpio pr. port 1: 2 gpios pr. port 2: 3 gpios pr. port 3: 4 gpios pr. port
-    #[inline]
+    #[inline(always)]
     pub fn sio_port_width(&self) -> u32 {
         (self.0 & 0x180) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_port_width(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 7;
@@ -169,11 +169,11 @@ impl SIO_CFG {
     /// Reverse the input bitstream. The default order of the input bit stream is (displayed in received order): (port0 bit0, port0 bit1, ...., portN bit2, portN bit3) The reverse order of the input bit stream is (displayed in received order): (portN bit3, portN bit2, ...., port0 bit1, port0 bit0)
     ///
     /// 0: Do not reverse 1: Reverse
-    #[inline]
+    #[inline(always)]
     pub fn sio_reverse_input(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_reverse_input(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -183,11 +183,11 @@ impl SIO_CFG {
     /// Reverse the output bitstream. The default order of the output bit stream is (displayed in transmitted order): (portN bit3, portN bit2, ...., port0 bit1, port0 bit0) The reverse order of the output bit stream is (displayed in transmitted order): (port0 bit0, port0 bit1, ...., portN bit2, portN bit3)
     ///
     /// 0: Do not reverse 1: Reverse
-    #[inline]
+    #[inline(always)]
     pub fn sio_reverse_output(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_reverse_output(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -195,11 +195,11 @@ impl SIO_CFG {
         self.0 |= value;
     }
     /// Use this to output a single burst. Will be cleared by hardware when the burst has finished.
-    #[inline]
+    #[inline(always)]
     pub fn sio_single_shot(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_single_shot(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -214,11 +214,11 @@ impl SIO_CLOCK {
     /// SIO controller clock frequency. Divides the 250 MHz system clk with the value of this field. E.g. field is set to 10, the output frequency will be 25 MHz.
     ///
     /// 0: Disable clock 1: Reserved, do not use Others : Clock divider value.
-    #[inline]
+    #[inline(always)]
     pub fn sio_clk_freq(&self) -> u32 {
         (self.0 & 0xfff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_clk_freq(&mut self, value: u32) {
         assert!(value <= 0xfff);
         let value = value << 8;
@@ -226,11 +226,11 @@ impl SIO_CLOCK {
         self.0 |= value;
     }
     /// The system clock period given in the clock period in PS divided by 100.
-    #[inline]
+    #[inline(always)]
     pub fn sys_clk_period(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sys_clk_period(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -242,11 +242,11 @@ impl SIO_CLOCK {
 pub struct SIO_INPUT_DATA(u32);
 impl SIO_INPUT_DATA {
     /// Serial input data. Each replication, N, holds bit N from all ports - bit N from port M is mapped to replication N bit M. Values of disabled gpios are undefined.
-    #[inline]
+    #[inline(always)]
     pub fn sio_input_data(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_input_data(&mut self, value: u32) {
         self.0 = value;
     }
@@ -258,11 +258,11 @@ impl SIO_INTR {
     /// Interrupt register. These sticky bits are set when an input is received that are triggered by the corresponding SIO_INTR_TRIGGER configuration.
     ///
     /// 0: No interrupt for given gpio 1: Interrupt for given gpio
-    #[inline]
+    #[inline(always)]
     pub fn sio_intr(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_intr(&mut self, value: u32) {
         self.0 = value;
     }
@@ -274,11 +274,11 @@ impl SIO_INTR_ENA {
     /// Interrupt enable vector with one enable bit for each port. Port order: (portN downto port0)
     ///
     /// 0: Interrupt is disabled for the port 1: Interrupt is enabled for the port
-    #[inline]
+    #[inline(always)]
     pub fn sio_intr_ena(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_intr_ena(&mut self, value: u32) {
         self.0 = value;
     }
@@ -290,11 +290,11 @@ impl SIO_INTR_IDENT {
     /// Shows the currently active interrupts. This register is the result of the SIO_INTR interrupts with the disabled interrupts (from SIO_INTR_ENA and SIO_GPIO_INTR_ENA) removed.
     ///
     /// 0: No active interrupt for given gpio 1: Active interrupt for given gpio
-    #[inline]
+    #[inline(always)]
     pub fn sio_intr_ident(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_intr_ident(&mut self, value: u32) {
         self.0 = value;
     }
@@ -306,11 +306,11 @@ impl SIO_INTR_POL {
     /// Interrupt polarity. This register defines at which logic value an interrupt is generated. For bit0 this register is also used to define the polarity of the "loss of signal" output.
     ///
     /// 0: interrupt and "loss of signal" is active high 1: interrupt and "loss of signal" is active low
-    #[inline]
+    #[inline(always)]
     pub fn sio_intr_pol(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_intr_pol(&mut self, value: u32) {
         self.0 = value;
     }
@@ -320,11 +320,11 @@ impl SIO_INTR_POL {
 pub struct SIO_INTR_RAW(u32);
 impl SIO_INTR_RAW {
     /// Shows the current value of individual interrupts. All interrupts are active high (but has been corrected for polarity as configured in SIO_INTR_POL).
-    #[inline]
+    #[inline(always)]
     pub fn sio_intr_raw(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_intr_raw(&mut self, value: u32) {
         self.0 = value;
     }
@@ -336,11 +336,11 @@ impl SIO_INTR_TRIGGER0 {
     /// Configure trigger mode of individual interrupts. The trigger mode determines how the value of the SIO_INTR_RAW register is transfered to the SIO_INTR register. This register is the LSB of the encoding. Register SIO_INTR_TRIGGER1 is the MSB of the encoding. For level-triggered interrupts SIO_INTR is set when an input is received that results in a high corresponding bit in SIO_INTR_RAW. For edge-triggered interrupts SIO_INTR is set when an input is received that results in a change of the corresponding bit in SIO_INTR_RAW. For falling-edge-triggered interrupts SIO_INTR is set when an input is received that results in a change from '1' to '0' of the corresponding bit in SIO_INTR_RAW. For rising-edge-triggered interrupts SIO_INTR is set when an input is received that results in a change from '0' to '1' of the corresponding bit in SIO_INTR_RAW.
     ///
     /// 00: Interrupt is level-activated 01: Interrupt is edge-triggered 10: Interrupt is falling-edge-triggered 11: Interrupt is rising-edge-triggered
-    #[inline]
+    #[inline(always)]
     pub fn sio_intr_trigger0(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_intr_trigger0(&mut self, value: u32) {
         self.0 = value;
     }
@@ -350,11 +350,11 @@ impl SIO_INTR_TRIGGER0 {
 pub struct SIO_INTR_TRIGGER1(u32);
 impl SIO_INTR_TRIGGER1 {
     /// See description of SIO_INTR_TRIGGER0.
-    #[inline]
+    #[inline(always)]
     pub fn sio_intr_trigger1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_intr_trigger1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -366,11 +366,11 @@ impl SIO_PORT_CFG {
     /// Output polarity select for the four outputs from each port.The polarity select is encoded using one bit for each output bit.
     ///
     /// 0: Normal polarity 1: Inversed polarity
-    #[inline]
+    #[inline(always)]
     pub fn bit_polarity(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bit_polarity(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -379,11 +379,11 @@ impl SIO_PORT_CFG {
     /// Output source select for the four outputs from each port.The source select is encoded using three bits for each output bit: Output bit0 is defined by (2 downto 0), output bit1 is defined by (5 downto 3), output bit2 is defined by (8 downto 6), and output bit3 is defined by (11 downto 9).
     ///
     /// 0: Forced 0 1: Forced 1 2: Blink mode 0 3: Blink mode 1 4: Link activity blink mode 0 5: Link activity blink mode 1 6: Reserved 7: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn bit_source(&self) -> u32 {
         (self.0 & 0xfff000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bit_source(&mut self, value: u32) {
         assert!(value <= 0xfff);
         let value = value << 12;
@@ -393,11 +393,11 @@ impl SIO_PORT_CFG {
     /// PWM source select for the four outputs from each port.The PWM source select is encoded using two bits for each output bit: Output bit0 is defined by (1 downto 0), output bit1 is defined by (3 downto 2), output bit2 is defined by (5 downto 4), and output bit3 is defined by (7 downto 6).
     ///
     /// 0: PWM disabled 1: PWM 0 used 2: PWM 1 used 3: PWM 2 used
-    #[inline]
+    #[inline(always)]
     pub fn pwm_source(&self) -> u32 {
         (self.0 & 0xff0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pwm_source(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 4;
@@ -412,11 +412,11 @@ impl SIO_PORT_ENA {
     /// Port enable vector with one enable bit for each port. Port order: (portN downto port0)
     ///
     /// 0: Port is disabled 1: Port is enabled
-    #[inline]
+    #[inline(always)]
     pub fn sio_port_ena(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sio_port_ena(&mut self, value: u32) {
         self.0 = value;
     }
@@ -428,11 +428,11 @@ impl SIO_PWM_CFG {
     /// Define the duty cycle for the PWMs.
     ///
     /// 0x00: Always "off" 0xFF: Always "on"
-    #[inline]
+    #[inline(always)]
     pub fn pwm_duty_cycle(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pwm_duty_cycle(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;

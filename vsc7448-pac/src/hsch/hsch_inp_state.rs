@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct INP_STATE(u32);
 impl INP_STATE {
     /// Returns the 32 input states for se cfg_se_idx, from offset 32*replication
-    #[inline]
+    #[inline(always)]
     pub fn inp_state(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_inp_state(&mut self, value: u32) {
         self.0 = value;
     }

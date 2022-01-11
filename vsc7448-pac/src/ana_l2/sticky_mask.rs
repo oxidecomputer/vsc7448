@@ -34,11 +34,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn auto_lrn_rate_exceed_sticky_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_auto_lrn_rate_exceed_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -48,11 +48,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn drop_unknown_src_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_drop_unknown_src_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -62,11 +62,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn fwd_entry_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fwd_entry_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -76,11 +76,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn fwd_flood_kill_sticky_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fwd_flood_kill_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -90,11 +90,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn fwd_flood_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fwd_flood_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -104,11 +104,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn global_to_global_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_global_to_global_portmove_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -118,11 +118,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn global_to_local_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_global_to_local_portmove_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -132,11 +132,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn learn_known_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_learn_known_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -146,11 +146,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn learn_unknown_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_learn_unknown_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -159,11 +159,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn local_to_global_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_local_to_global_portmove_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -173,11 +173,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn local_to_local_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_local_to_local_portmove_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -187,11 +187,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn local_to_remote_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_local_to_remote_portmove_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -201,11 +201,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn remote_to_local_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_remote_to_local_portmove_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -215,11 +215,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn remote_to_remote_portmove_sticky_mask(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_remote_to_remote_portmove_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -229,11 +229,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn src_ignore_sticky_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_src_ignore_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -243,11 +243,11 @@ impl STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
-    #[inline]
+    #[inline(always)]
     pub fn vlan_ignore_sticky_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vlan_ignore_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;

@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct SD10G65_RCPLL_BIST_CFG0(u32);
 impl SD10G65_RCPLL_BIST_CFG0 {
     /// BIST compare uncertainty
-    #[inline]
+    #[inline(always)]
     pub fn pllb_comp_uncert(&self) -> u32 {
         (self.0 & 0xff0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_comp_uncert(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 4;
@@ -46,11 +46,11 @@ impl SD10G65_RCPLL_BIST_CFG0 {
         self.0 |= value;
     }
     /// BIST frequency deviation limit, correlates to compare dividers
-    #[inline]
+    #[inline(always)]
     pub fn pllb_freq_devi(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_freq_devi(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -58,11 +58,11 @@ impl SD10G65_RCPLL_BIST_CFG0 {
         self.0 |= value;
     }
     /// BIST ramp-up/down mode, 0: ramp up and down, 1: ramp-up only, 2: ramp-down only, 3: reserved
-    #[inline]
+    #[inline(always)]
     pub fn pllb_inc_dec_mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_inc_dec_mode(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -70,11 +70,11 @@ impl SD10G65_RCPLL_BIST_CFG0 {
         self.0 |= value;
     }
     /// BIST start, 0: reset BIST, 1: start/enable BIST
-    #[inline]
+    #[inline(always)]
     pub fn pllb_start_bist(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_start_bist(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -88,22 +88,22 @@ impl SD10G65_RCPLL_BIST_CFG0 {
 pub struct SD10G65_RCPLL_BIST_CFG1(u32);
 impl SD10G65_RCPLL_BIST_CFG1 {
     /// BIST compare pre divider M
-    #[inline]
+    #[inline(always)]
     pub fn pllb_div_factor_pre(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_div_factor_pre(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
     /// BIST compare divider repeat count
-    #[inline]
+    #[inline(always)]
     pub fn pllb_lock_repeat(&self) -> u32 {
         (self.0 & 0xf00000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_lock_repeat(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 20;
@@ -111,11 +111,11 @@ impl SD10G65_RCPLL_BIST_CFG1 {
         self.0 |= value;
     }
     /// BIST compare divider phase uncertainty
-    #[inline]
+    #[inline(always)]
     pub fn pllb_lock_uncert(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_lock_uncert(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 16;
@@ -130,11 +130,11 @@ impl SD10G65_RCPLL_BIST_CFG1 {
 pub struct SD10G65_RCPLL_BIST_CFG2(u32);
 impl SD10G65_RCPLL_BIST_CFG2 {
     /// BIST compare divider M
-    #[inline]
+    #[inline(always)]
     pub fn pllb_div_factor_m(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_div_factor_m(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -148,11 +148,11 @@ impl SD10G65_RCPLL_BIST_CFG2 {
 pub struct SD10G65_RCPLL_BIST_CFG3(u32);
 impl SD10G65_RCPLL_BIST_CFG3 {
     /// BIST compare divider N
-    #[inline]
+    #[inline(always)]
     pub fn pllb_div_factor_n(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_div_factor_n(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -166,11 +166,11 @@ impl SD10G65_RCPLL_BIST_CFG3 {
 pub struct SD10G65_RCPLL_BIST_STAT0(u32);
 impl SD10G65_RCPLL_BIST_STAT0 {
     /// BIST busy, 0: not busy, 1: busy
-    #[inline]
+    #[inline(always)]
     pub fn pllb_busy(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_busy(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -178,11 +178,11 @@ impl SD10G65_RCPLL_BIST_STAT0 {
         self.0 |= value;
     }
     /// BIST done (inverted), 0: done, 1: not done
-    #[inline]
+    #[inline(always)]
     pub fn pllb_done_n(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_done_n(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -190,22 +190,22 @@ impl SD10G65_RCPLL_BIST_STAT0 {
         self.0 |= value;
     }
     /// BIST pass/fail, 0: passed, 1: failed
-    #[inline]
+    #[inline(always)]
     pub fn pllb_fail(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_fail(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// BIST compare divider phase lock
-    #[inline]
+    #[inline(always)]
     pub fn pllb_phase_lock(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_phase_lock(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -213,11 +213,11 @@ impl SD10G65_RCPLL_BIST_STAT0 {
         self.0 |= value;
     }
     /// BIST pll_cnt upper limit at max. frequency
-    #[inline]
+    #[inline(always)]
     pub fn pllb_pll_cnt_high(&self) -> u32 {
         (self.0 & 0x7ff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_pll_cnt_high(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         let value = value << 16;
@@ -225,11 +225,11 @@ impl SD10G65_RCPLL_BIST_STAT0 {
         self.0 |= value;
     }
     /// BIST pll_cnt lower limit at min. frequency
-    #[inline]
+    #[inline(always)]
     pub fn pllb_pll_cnt_low(&self) -> u32 {
         (self.0 & 0xffe0) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_pll_cnt_low(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         let value = value << 5;
@@ -244,11 +244,11 @@ impl SD10G65_RCPLL_BIST_STAT0 {
 pub struct SD10G65_RCPLL_BIST_STAT1(u32);
 impl SD10G65_RCPLL_BIST_STAT1 {
     /// BIST compare divider phase difference
-    #[inline]
+    #[inline(always)]
     pub fn pllb_phase_diff(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_phase_diff(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -262,22 +262,22 @@ impl SD10G65_RCPLL_BIST_STAT1 {
 pub struct SD10G65_RX_RCPLL_BIST_CFG4(u32);
 impl SD10G65_RX_RCPLL_BIST_CFG4 {
     /// BIST macro clock (parallel) clock selection, 0: RX, 1: TX
-    #[inline]
+    #[inline(always)]
     pub fn pllb_clock_sel(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_clock_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// BIST measure mode, 0: frequency, 1: phase
-    #[inline]
+    #[inline(always)]
     pub fn pllb_meas_mode(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_meas_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -285,11 +285,11 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
         self.0 |= value;
     }
     /// BIST select 125MHz feedback clock from synthesizer
-    #[inline]
+    #[inline(always)]
     pub fn pllb_sel125clk(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_sel125clk(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -297,11 +297,11 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
         self.0 |= value;
     }
     /// BIST SPI base address for rcpll10g FSM inside the macro (e.g. RX or TX)
-    #[inline]
+    #[inline(always)]
     pub fn pllb_spi_base_addr(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_spi_base_addr(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -309,11 +309,11 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
         self.0 |= value;
     }
     /// BIST start measure, 1: start
-    #[inline]
+    #[inline(always)]
     pub fn pllb_start_meas(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pllb_start_meas(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;

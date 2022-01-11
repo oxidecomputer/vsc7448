@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_STS1(u32);
 impl TR_STS1 {
     /// Indicates prbs11 checker is active
-    #[inline]
+    #[inline(always)]
     pub fn ber_busy(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ber_busy(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -44,11 +44,11 @@ impl TR_STS1 {
         self.0 |= value;
     }
     /// Indicates a DME violation has occured (LH)
-    #[inline]
+    #[inline(always)]
     pub fn dme_viol(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dme_viol(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -56,11 +56,11 @@ impl TR_STS1 {
         self.0 |= value;
     }
     /// Indicates loss of training frames (LH)
-    #[inline]
+    #[inline(always)]
     pub fn frloss(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frloss(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -68,11 +68,11 @@ impl TR_STS1 {
         self.0 |= value;
     }
     /// Indicates gain_target was not reached during LP training
-    #[inline]
+    #[inline(always)]
     pub fn gain_fail(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_gain_fail(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -80,11 +80,11 @@ impl TR_STS1 {
         self.0 |= value;
     }
     /// LP training state machine
-    #[inline]
+    #[inline(always)]
     pub fn lpt_sm(&self) -> u32 {
         (self.0 & 0x1f0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lpt_sm(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 4;
@@ -92,11 +92,11 @@ impl TR_STS1 {
         self.0 |= value;
     }
     /// training variable from training state machine
-    #[inline]
+    #[inline(always)]
     pub fn training(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_training(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -104,22 +104,22 @@ impl TR_STS1 {
         self.0 |= value;
     }
     /// Indicates that local and remote training has completed
-    #[inline]
+    #[inline(always)]
     pub fn tr_done(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tr_done(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Training state machine
-    #[inline]
+    #[inline(always)]
     pub fn tr_sm(&self) -> u32 {
         (self.0 & 0xe00) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tr_sm(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 9;

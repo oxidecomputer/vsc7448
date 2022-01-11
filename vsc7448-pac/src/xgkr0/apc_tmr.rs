@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct APC_TMR(u32);
 impl APC_TMR {
     /// Delay between LP tap update, and capture of direct-connect apc values
-    #[inline]
+    #[inline(always)]
     pub fn apc_tmr(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_apc_tmr(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

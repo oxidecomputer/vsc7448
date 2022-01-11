@@ -42,15 +42,15 @@ pub mod pcs_fx100_status;
 /// Device 1G Interrupt Configuration and Status Registers
 pub struct DEV1G_INTR_CFG_STATUS(pub(super) u32);
 impl DEV1G_INTR_CFG_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn DEV1G_INTR(&self) -> RegisterAddress<dev1g_intr_cfg_status::DEV1G_INTR> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DEV1G_INTR_CFG(&self) -> RegisterAddress<dev1g_intr_cfg_status::DEV1G_INTR_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DEV1G_INTR_IDENT(&self) -> RegisterAddress<dev1g_intr_cfg_status::DEV1G_INTR_IDENT> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -59,31 +59,31 @@ impl DEV1G_INTR_CFG_STATUS {
 /// Dev1g Configuration and Status Registers
 pub struct DEV_CFG_STATUS(pub(super) u32);
 impl DEV_CFG_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn DEV_DBG_CFG(&self) -> RegisterAddress<dev_cfg_status::DEV_DBG_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DEV_PORT_PROTECT(&self) -> RegisterAddress<dev_cfg_status::DEV_PORT_PROTECT> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DEV_RST_CTRL(&self) -> RegisterAddress<dev_cfg_status::DEV_RST_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DEV_STICKY(&self) -> RegisterAddress<dev_cfg_status::DEV_STICKY> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn EEE_CFG(&self) -> RegisterAddress<dev_cfg_status::EEE_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_CFG(&self) -> RegisterAddress<dev_cfg_status::PTP_CFG> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_EVENTS(&self) -> RegisterAddress<dev_cfg_status::PTP_EVENTS> {
         RegisterAddress::new(self.0 + 0x18)
     }
@@ -92,39 +92,39 @@ impl DEV_CFG_STATUS {
 /// MAC1G Configuration and Status Registers
 pub struct MAC_CFG_STATUS(pub(super) u32);
 impl MAC_CFG_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn MAC_ADV_CHK_CFG(&self) -> RegisterAddress<mac_cfg_status::MAC_ADV_CHK_CFG> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_ENA_CFG(&self) -> RegisterAddress<mac_cfg_status::MAC_ENA_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_HDX_CFG(&self) -> RegisterAddress<mac_cfg_status::MAC_HDX_CFG> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_IFG_CFG(&self) -> RegisterAddress<mac_cfg_status::MAC_IFG_CFG> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_MAXLEN_CFG(&self) -> RegisterAddress<mac_cfg_status::MAC_MAXLEN_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_MODE_CFG(&self) -> RegisterAddress<mac_cfg_status::MAC_MODE_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_STICKY(&self) -> RegisterAddress<mac_cfg_status::MAC_STICKY> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_TAGS_CFG(&self) -> RegisterAddress<mac_cfg_status::MAC_TAGS_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_TAGS_CFG2(&self) -> RegisterAddress<mac_cfg_status::MAC_TAGS_CFG2> {
         RegisterAddress::new(self.0 + 0x10)
     }
@@ -133,73 +133,73 @@ impl MAC_CFG_STATUS {
 /// PCS 1G Configuration Status Registers
 pub struct PCS1G_CFG_STATUS(pub(super) u32);
 impl PCS1G_CFG_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_ANEG_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_ANEG_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_ANEG_NP_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_ANEG_NP_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_ANEG_NP_STATUS(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_ANEG_NP_STATUS> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_ANEG_STATUS(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_ANEG_STATUS> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_CDET_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_CDET_CFG> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_DBG_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_DBG_CFG> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_DEBUG_STATUS(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_DEBUG_STATUS> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_LB_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LB_CFG> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_LINK_DOWN_CNT(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LINK_DOWN_CNT> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_LINK_STATUS(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LINK_STATUS> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_LPI_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LPI_CFG> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_LPI_STATUS(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LPI_STATUS> {
         RegisterAddress::new(self.0 + 0x40)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_LPI_WAKE_ERROR_CNT(
         &self,
     ) -> RegisterAddress<pcs1g_cfg_status::PCS1G_LPI_WAKE_ERROR_CNT> {
         RegisterAddress::new(self.0 + 0x3c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_MODE_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_MODE_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_SD_CFG(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_SD_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_STICKY(&self) -> RegisterAddress<pcs1g_cfg_status::PCS1G_STICKY> {
         RegisterAddress::new(self.0 + 0x30)
     }
@@ -208,13 +208,13 @@ impl PCS1G_CFG_STATUS {
 /// PCS1G Testpattern Configuration and Status Registers
 pub struct PCS1G_TSTPAT_CFG_STATUS(pub(super) u32);
 impl PCS1G_TSTPAT_CFG_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_TSTPAT_MODE_CFG(
         &self,
     ) -> RegisterAddress<pcs1g_tstpat_cfg_status::PCS1G_TSTPAT_MODE_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PCS1G_TSTPAT_STATUS(
         &self,
     ) -> RegisterAddress<pcs1g_tstpat_cfg_status::PCS1G_TSTPAT_STATUS> {
@@ -225,7 +225,7 @@ impl PCS1G_TSTPAT_CFG_STATUS {
 /// PCS FX100 Configuration Registers
 pub struct PCS_FX100_CONFIGURATION(pub(super) u32);
 impl PCS_FX100_CONFIGURATION {
-    #[inline]
+    #[inline(always)]
     pub fn PCS_FX100_CFG(&self) -> RegisterAddress<pcs_fx100_configuration::PCS_FX100_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -234,7 +234,7 @@ impl PCS_FX100_CONFIGURATION {
 /// PCS FX100 Status Registers
 pub struct PCS_FX100_STATUS(pub(super) u32);
 impl PCS_FX100_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn PCS_FX100_STATUS(&self) -> RegisterAddress<pcs_fx100_status::PCS_FX100_STATUS> {
         RegisterAddress::new(self.0 + 0x0)
     }

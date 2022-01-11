@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct QLIMIT_CONG_CNT(u32);
 impl QLIMIT_CONG_CNT {
     /// Number of congested queues on the scheduling element
-    #[inline]
+    #[inline(always)]
     pub fn qlimit_cong_cnt(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_qlimit_cong_cnt(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -48,11 +48,11 @@ impl QLIMIT_CONG_CNT {
 pub struct QLIMIT_SE_USE(u32);
 impl QLIMIT_SE_USE {
     /// Total use for all queues on the schedulling element
-    #[inline]
+    #[inline(always)]
     pub fn qlimit_se_use(&self) -> u32 {
         self.0 & 0x7fff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_qlimit_se_use(&mut self, value: u32) {
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;

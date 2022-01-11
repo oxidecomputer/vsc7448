@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct KR_FEC_CORRECTED(u32);
 impl KR_FEC_CORRECTED {
     /// FEC corrected block count.
-    #[inline]
+    #[inline(always)]
     pub fn fec_corrected_blocks(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fec_corrected_blocks(&mut self, value: u32) {
         self.0 = value;
     }
@@ -46,11 +46,11 @@ impl KR_FEC_CORRECTED {
 pub struct KR_FEC_UNCORRECTED(u32);
 impl KR_FEC_UNCORRECTED {
     /// FEC uncorrectable block count.
-    #[inline]
+    #[inline(always)]
     pub fn fec_uncorrected_blocks(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fec_uncorrected_blocks(&mut self, value: u32) {
         self.0 = value;
     }

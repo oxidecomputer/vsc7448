@@ -49,11 +49,11 @@ pub mod voe_stat;
 /// COSID / Color config in ANA - Service VOEs
 pub struct ANA_COSID_MAP_CONF(pub(super) u32);
 impl ANA_COSID_MAP_CONF {
-    #[inline]
+    #[inline(always)]
     pub fn COSID_MAP_CFG_ANA(&self) -> RegisterAddress<ana_cosid_map_conf::COSID_MAP_CFG_ANA> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn COSID_MAP_TABLE_ANA(&self) -> RegisterAddress<ana_cosid_map_conf::COSID_MAP_TABLE_ANA> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -62,63 +62,63 @@ impl ANA_COSID_MAP_CONF {
 /// Configuration Registers for VOP.
 pub struct COMMON(pub(super) u32);
 impl COMMON {
-    #[inline]
+    #[inline(always)]
     pub fn COMMON_MEP_MC_MAC_LSB(&self) -> RegisterAddress<common::COMMON_MEP_MC_MAC_LSB> {
         RegisterAddress::new(self.0 + 0x128)
     }
-    #[inline]
+    #[inline(always)]
     pub fn COMMON_MEP_MC_MAC_MSB(&self) -> RegisterAddress<common::COMMON_MEP_MC_MAC_MSB> {
         RegisterAddress::new(self.0 + 0x12c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CPU_EXTR_CFG(&self) -> RegisterAddress<common::CPU_EXTR_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CPU_EXTR_CFG_1(&self) -> RegisterAddress<common::CPU_EXTR_CFG_1> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CPU_EXTR_MPLS(&self) -> RegisterAddress<common::CPU_EXTR_MPLS> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn HMO_FORCE_SLOT_CFG(&self, index: u32) -> RegisterAddress<common::HMO_FORCE_SLOT_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x84 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn HMO_PERIOD_CFG(&self, index: u32) -> RegisterAddress<common::HMO_PERIOD_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x7c + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn HMO_TIMER_CFG(&self) -> RegisterAddress<common::HMO_TIMER_CFG> {
         RegisterAddress::new(self.0 + 0x8c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn INTR(&self, index: u32) -> RegisterAddress<common::INTR> {
         assert!(index < 34);
         RegisterAddress::new(self.0 + 0xa0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LOC_CTRL(&self) -> RegisterAddress<common::LOC_CTRL> {
         RegisterAddress::new(self.0 + 0x5c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LOC_PERIOD_CFG(&self, index: u32) -> RegisterAddress<common::LOC_PERIOD_CFG> {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x60 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LOC_SCAN_STICKY(&self) -> RegisterAddress<common::LOC_SCAN_STICKY> {
         RegisterAddress::new(self.0 + 0x90)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MASTER_INTR_CTRL(&self) -> RegisterAddress<common::MASTER_INTR_CTRL> {
         RegisterAddress::new(self.0 + 0x94)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MPLS_GENERIC_CODEPOINT(
         &self,
         index: u32,
@@ -126,29 +126,29 @@ impl COMMON {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x3c + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn OAM_GENERIC_CFG(&self, index: u32) -> RegisterAddress<common::OAM_GENERIC_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x1c + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VERSION_CTRL(&self) -> RegisterAddress<common::VERSION_CTRL> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VERSION_CTRL_2(&self) -> RegisterAddress<common::VERSION_CTRL_2> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VERSION_CTRL_MPLS(&self) -> RegisterAddress<common::VERSION_CTRL_MPLS> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VOE32_INTR(&self, index: u32) -> RegisterAddress<common::VOE32_INTR> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x98 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VOP_CTRL(&self) -> RegisterAddress<common::VOP_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -157,11 +157,11 @@ impl COMMON {
 /// Access core memory
 pub struct COREMEM(pub(super) u32);
 impl COREMEM {
-    #[inline]
+    #[inline(always)]
     pub fn CM_ADDR(&self) -> RegisterAddress<coremem::CM_ADDR> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CM_DATA(&self) -> RegisterAddress<coremem::CM_DATA> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -170,19 +170,19 @@ impl COREMEM {
 /// COSID / Color config - Port VOEs
 pub struct PORT_COSID_MAP_CONF(pub(super) u32);
 impl PORT_COSID_MAP_CONF {
-    #[inline]
+    #[inline(always)]
     pub fn PORT_RX_COSID_MAP(&self) -> RegisterAddress<port_cosid_map_conf::PORT_RX_COSID_MAP> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PORT_RX_COSID_MAP1(&self) -> RegisterAddress<port_cosid_map_conf::PORT_RX_COSID_MAP1> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PORT_TX_COSID_MAP(&self) -> RegisterAddress<port_cosid_map_conf::PORT_TX_COSID_MAP> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PORT_TX_COSID_MAP1(&self) -> RegisterAddress<port_cosid_map_conf::PORT_TX_COSID_MAP1> {
         RegisterAddress::new(self.0 + 0xc)
     }
@@ -191,7 +191,7 @@ impl PORT_COSID_MAP_CONF {
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
-    #[inline]
+    #[inline(always)]
     pub fn RAM_INIT(&self) -> RegisterAddress<ram_ctrl::RAM_INIT> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -200,11 +200,11 @@ impl RAM_CTRL {
 /// COSID / Color config in REW - Service VOEs
 pub struct REW_COSID_MAP_CONF(pub(super) u32);
 impl REW_COSID_MAP_CONF {
-    #[inline]
+    #[inline(always)]
     pub fn COSID_MAP_CFG_REW(&self) -> RegisterAddress<rew_cosid_map_conf::COSID_MAP_CFG_REW> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn COSID_MAP_TABLE_REW(&self) -> RegisterAddress<rew_cosid_map_conf::COSID_MAP_TABLE_REW> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -213,7 +213,7 @@ impl REW_COSID_MAP_CONF {
 /// SAM per COSID sequence counters
 pub struct SAM_COSID_SEQ_CNT(pub(super) u32);
 impl SAM_COSID_SEQ_CNT {
-    #[inline]
+    #[inline(always)]
     pub fn SAM_LBM_TX_TRANSID(
         &self,
         index: u32,
@@ -221,7 +221,7 @@ impl SAM_COSID_SEQ_CNT {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SAM_LBR_RX_FRM_CNT(
         &self,
         index: u32,
@@ -229,7 +229,7 @@ impl SAM_COSID_SEQ_CNT {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x38 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SAM_LBR_RX_TRANSID(
         &self,
         index: u32,
@@ -237,7 +237,7 @@ impl SAM_COSID_SEQ_CNT {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x54 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SAM_LBR_RX_TRANSID_ERR_CNT(
         &self,
         index: u32,
@@ -245,7 +245,7 @@ impl SAM_COSID_SEQ_CNT {
         assert!(index < 7);
         RegisterAddress::new(self.0 + 0x70 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SAM_LBR_TX_FRM_CNT(
         &self,
         index: u32,
@@ -258,11 +258,11 @@ impl SAM_COSID_SEQ_CNT {
 /// VOE CCM-LM samples
 pub struct VOE_CCM_LM(pub(super) u32);
 impl VOE_CCM_LM {
-    #[inline]
+    #[inline(always)]
     pub fn CCM_RX_FCB_CFG(&self) -> RegisterAddress<voe_ccm_lm::CCM_RX_FCB_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_TX_FCB_CFG(&self) -> RegisterAddress<voe_ccm_lm::CCM_TX_FCB_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -271,109 +271,109 @@ impl VOE_CCM_LM {
 /// Configuration per Vitesse OAM MEP Endpoints (VOE) for Y.1731 OAM
 pub struct VOE_CONF(pub(super) u32);
 impl VOE_CONF {
-    #[inline]
+    #[inline(always)]
     pub fn CCM_CFG(&self) -> RegisterAddress<voe_conf::CCM_CFG> {
         RegisterAddress::new(self.0 + 0x40)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_MEGID_CFG(&self, index: u32) -> RegisterAddress<voe_conf::CCM_MEGID_CFG> {
         assert!(index < 12);
         RegisterAddress::new(self.0 + 0x44 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn G_8113_1_CFG(&self) -> RegisterAddress<voe_conf::G_8113_1_CFG> {
         RegisterAddress::new(self.0 + 0x9c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn G_8113_1_REMOTE_MIPID(&self) -> RegisterAddress<voe_conf::G_8113_1_REMOTE_MIPID> {
         RegisterAddress::new(self.0 + 0xa0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn G_8113_1_REMOTE_MIPID1(&self) -> RegisterAddress<voe_conf::G_8113_1_REMOTE_MIPID1> {
         RegisterAddress::new(self.0 + 0xa4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn G_8113_1_REMOTE_MIPID2(&self) -> RegisterAddress<voe_conf::G_8113_1_REMOTE_MIPID2> {
         RegisterAddress::new(self.0 + 0xa8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn G_8113_1_REMOTE_MIPID3(&self) -> RegisterAddress<voe_conf::G_8113_1_REMOTE_MIPID3> {
         RegisterAddress::new(self.0 + 0xac)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LOOPBACK_CFG(&self) -> RegisterAddress<voe_conf::LOOPBACK_CFG> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LOOPBACK_ENA(&self) -> RegisterAddress<voe_conf::LOOPBACK_ENA> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MEP_UC_MAC_LSB(&self) -> RegisterAddress<voe_conf::MEP_UC_MAC_LSB> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MEP_UC_MAC_MSB(&self) -> RegisterAddress<voe_conf::MEP_UC_MAC_MSB> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn OAM_CNT_DATA_CTRL(&self) -> RegisterAddress<voe_conf::OAM_CNT_DATA_CTRL> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn OAM_CNT_OAM_CTRL(&self) -> RegisterAddress<voe_conf::OAM_CNT_OAM_CTRL> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn OAM_CPU_COPY_CTRL(&self) -> RegisterAddress<voe_conf::OAM_CPU_COPY_CTRL> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn OAM_HW_CTRL(&self) -> RegisterAddress<voe_conf::OAM_HW_CTRL> {
         RegisterAddress::new(self.0 + 0x30)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PATH_VOE_CFG(&self) -> RegisterAddress<voe_conf::PATH_VOE_CFG> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PDU_VOE_PASS(&self) -> RegisterAddress<voe_conf::PDU_VOE_PASS> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PEER_MEPID_CFG(&self) -> RegisterAddress<voe_conf::PEER_MEPID_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SAM_COSID_SEQ_CFG(&self) -> RegisterAddress<voe_conf::SAM_COSID_SEQ_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SAM_NON_OAM_SEQ_CFG(&self) -> RegisterAddress<voe_conf::SAM_NON_OAM_SEQ_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SLM_CONFIG(&self) -> RegisterAddress<voe_conf::SLM_CONFIG> {
         RegisterAddress::new(self.0 + 0x74)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SLM_PEER_LIST(&self, index: u32) -> RegisterAddress<voe_conf::SLM_PEER_LIST> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x7c + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SLM_TEST_ID(&self) -> RegisterAddress<voe_conf::SLM_TEST_ID> {
         RegisterAddress::new(self.0 + 0x78)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_TRANSID_UPDATE(&self) -> RegisterAddress<voe_conf::TX_TRANSID_UPDATE> {
         RegisterAddress::new(self.0 + 0x3c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VOE_CTRL(&self) -> RegisterAddress<voe_conf::VOE_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VOE_MEPID_CFG(&self) -> RegisterAddress<voe_conf::VOE_MEPID_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -382,7 +382,7 @@ impl VOE_CONF {
 /// VOE configuration registers
 pub struct VOE_CONF_REG(pub(super) u32);
 impl VOE_CONF_REG {
-    #[inline]
+    #[inline(always)]
     pub fn VOE_MISC_CONFIG(&self) -> RegisterAddress<voe_conf_reg::VOE_MISC_CONFIG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -391,23 +391,23 @@ impl VOE_CONF_REG {
 /// [MCC_DEBUG] Contains the context for the VOE if in REW.
 pub struct VOE_CONTEXT_ANA(pub(super) u32);
 impl VOE_CONTEXT_ANA {
-    #[inline]
+    #[inline(always)]
     pub fn CT_CCM_TLV_INFO_ANA(&self) -> RegisterAddress<voe_context_ana::CT_CCM_TLV_INFO_ANA> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CT_OAM_DATA1_ANA(&self) -> RegisterAddress<voe_context_ana::CT_OAM_DATA1_ANA> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CT_OAM_DATA_ANA(&self) -> RegisterAddress<voe_context_ana::CT_OAM_DATA_ANA> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CT_OAM_INFO_ANA(&self) -> RegisterAddress<voe_context_ana::CT_OAM_INFO_ANA> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CT_OAM_STICKY_ANA(&self) -> RegisterAddress<voe_context_ana::CT_OAM_STICKY_ANA> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -416,23 +416,23 @@ impl VOE_CONTEXT_ANA {
 /// [MCC_DEBUG] Contains the context for the VOE if in REW.
 pub struct VOE_CONTEXT_REW(pub(super) u32);
 impl VOE_CONTEXT_REW {
-    #[inline]
+    #[inline(always)]
     pub fn CT_CCM_TLV_INFO_REW(&self) -> RegisterAddress<voe_context_rew::CT_CCM_TLV_INFO_REW> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CT_OAM_DATA1_REW(&self) -> RegisterAddress<voe_context_rew::CT_OAM_DATA1_REW> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CT_OAM_DATA_REW(&self) -> RegisterAddress<voe_context_rew::CT_OAM_DATA_REW> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CT_OAM_INFO_REW(&self) -> RegisterAddress<voe_context_rew::CT_OAM_INFO_REW> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CT_OAM_STICKY_REW(&self) -> RegisterAddress<voe_context_rew::CT_OAM_STICKY_REW> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -441,7 +441,7 @@ impl VOE_CONTEXT_REW {
 /// Count the number of CRC errors in Rx LBR / TST TLVs
 pub struct VOE_CRC_ERR(pub(super) u32);
 impl VOE_CRC_ERR {
-    #[inline]
+    #[inline(always)]
     pub fn LBR_CRC_ERR_CNT(&self) -> RegisterAddress<voe_crc_err::LBR_CRC_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -450,123 +450,123 @@ impl VOE_CRC_ERR {
 /// Per VOE statistics and counters (Y.1731 OAM)
 pub struct VOE_STAT(pub(super) u32);
 impl VOE_STAT {
-    #[inline]
+    #[inline(always)]
     pub fn AUTO_HIT_ME_ONCE(&self) -> RegisterAddress<voe_stat::AUTO_HIT_ME_ONCE> {
         RegisterAddress::new(self.0 + 0x50)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_ERR(&self) -> RegisterAddress<voe_stat::CCM_ERR> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_RX_ERR_1(&self) -> RegisterAddress<voe_stat::CCM_RX_ERR_1> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_RX_FRM_CNT(&self) -> RegisterAddress<voe_stat::CCM_RX_FRM_CNT> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_RX_LAST(&self) -> RegisterAddress<voe_stat::CCM_RX_LAST> {
         RegisterAddress::new(self.0 + 0x68)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_RX_SEQ_CFG(&self) -> RegisterAddress<voe_stat::CCM_RX_SEQ_CFG> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_RX_WARNING(&self) -> RegisterAddress<voe_stat::CCM_RX_WARNING> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_STAT(&self) -> RegisterAddress<voe_stat::CCM_STAT> {
         RegisterAddress::new(self.0 + 0x64)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_TX_SEQ_CFG(&self) -> RegisterAddress<voe_stat::CCM_TX_SEQ_CFG> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DM_PDU_CNT(&self) -> RegisterAddress<voe_stat::DM_PDU_CNT> {
         RegisterAddress::new(self.0 + 0x3c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn INTR_ENA(&self) -> RegisterAddress<voe_stat::INTR_ENA> {
         RegisterAddress::new(self.0 + 0x70)
     }
-    #[inline]
+    #[inline(always)]
     pub fn INTR_STICKY(&self) -> RegisterAddress<voe_stat::INTR_STICKY> {
         RegisterAddress::new(self.0 + 0x6c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LBM_TX_TRANSID_CFG(&self) -> RegisterAddress<voe_stat::LBM_TX_TRANSID_CFG> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LBR_RX_FRM_CNT(&self) -> RegisterAddress<voe_stat::LBR_RX_FRM_CNT> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LBR_RX_TRANSID_CFG(&self) -> RegisterAddress<voe_stat::LBR_RX_TRANSID_CFG> {
         RegisterAddress::new(self.0 + 0x30)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LBR_RX_TRANSID_ERR_CNT(&self) -> RegisterAddress<voe_stat::LBR_RX_TRANSID_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LBR_TX_FRM_CNT(&self) -> RegisterAddress<voe_stat::LBR_TX_FRM_CNT> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LM_PDU_CNT(&self) -> RegisterAddress<voe_stat::LM_PDU_CNT> {
         RegisterAddress::new(self.0 + 0x40)
     }
-    #[inline]
+    #[inline(always)]
     pub fn OAM_RX_STICKY(&self) -> RegisterAddress<voe_stat::OAM_RX_STICKY> {
         RegisterAddress::new(self.0 + 0x5c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn OAM_RX_STICKY2(&self) -> RegisterAddress<voe_stat::OAM_RX_STICKY2> {
         RegisterAddress::new(self.0 + 0x60)
     }
-    #[inline]
+    #[inline(always)]
     pub fn OAM_TX_STICKY(&self) -> RegisterAddress<voe_stat::OAM_TX_STICKY> {
         RegisterAddress::new(self.0 + 0x58)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PDU_EXTRACT(&self) -> RegisterAddress<voe_stat::PDU_EXTRACT> {
         RegisterAddress::new(self.0 + 0x4c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_OAM_DISCARD(&self) -> RegisterAddress<voe_stat::RX_OAM_DISCARD> {
         RegisterAddress::new(self.0 + 0x48)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_OAM_FRM_CNT(&self) -> RegisterAddress<voe_stat::RX_OAM_FRM_CNT> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SEL_OAM_CNT(&self) -> RegisterAddress<voe_stat::RX_SEL_OAM_CNT> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SLM_TX_FRM_CNT(&self) -> RegisterAddress<voe_stat::SLM_TX_FRM_CNT> {
         RegisterAddress::new(self.0 + 0x74)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SYNLM_EXTRACT(&self) -> RegisterAddress<voe_stat::SYNLM_EXTRACT> {
         RegisterAddress::new(self.0 + 0x54)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_OAM_DISCARD(&self) -> RegisterAddress<voe_stat::TX_OAM_DISCARD> {
         RegisterAddress::new(self.0 + 0x44)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_OAM_FRM_CNT(&self) -> RegisterAddress<voe_stat::TX_OAM_FRM_CNT> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SEL_OAM_CNT(&self) -> RegisterAddress<voe_stat::TX_SEL_OAM_CNT> {
         RegisterAddress::new(self.0 + 0x8)
     }

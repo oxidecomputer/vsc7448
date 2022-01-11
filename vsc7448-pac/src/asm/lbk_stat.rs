@@ -33,11 +33,11 @@ impl LBK_AGING_STICKY {
     /// Frames are dropped due to aging in loopback FIFO.
     ///
     /// bitmask per port.
-    #[inline]
+    #[inline(always)]
     pub fn lbk_aging_sticky(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lbk_aging_sticky(&mut self, value: u32) {
         self.0 = value;
     }
@@ -49,11 +49,11 @@ impl LBK_OVFLW_STICKY {
     /// Frames are dropped due to FIFO overflow.
     ///
     /// bitmask per port.
-    #[inline]
+    #[inline(always)]
     pub fn lbk_ovflw_sticky(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lbk_ovflw_sticky(&mut self, value: u32) {
         self.0 = value;
     }

@@ -36,43 +36,43 @@ pub mod xfi_control;
 /// XFI controls
 pub struct XFI_CONTROL(pub(super) u32);
 impl XFI_CONTROL {
-    #[inline]
+    #[inline(always)]
     pub fn DATA_VALID_DETECT_CTRL(&self) -> RegisterAddress<xfi_control::DATA_VALID_DETECT_CTRL> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn HSS_MASK(&self) -> RegisterAddress<xfi_control::HSS_MASK> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn HSS_STATUS(&self) -> RegisterAddress<xfi_control::HSS_STATUS> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn HSS_STICKY(&self) -> RegisterAddress<xfi_control::HSS_STICKY> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn INT_CTRL(&self) -> RegisterAddress<xfi_control::INT_CTRL> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn KR_CONTROL(&self) -> RegisterAddress<xfi_control::KR_CONTROL> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SSF_HYST_ENA_CTRL(&self) -> RegisterAddress<xfi_control::SSF_HYST_ENA_CTRL> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SSF_HYST_TIMING_CTRL(&self) -> RegisterAddress<xfi_control::SSF_HYST_TIMING_CTRL> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn XFI_MODE(&self) -> RegisterAddress<xfi_control::XFI_MODE> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn XFI_STATUS(&self) -> RegisterAddress<xfi_control::XFI_STATUS> {
         RegisterAddress::new(self.0 + 0x8)
     }

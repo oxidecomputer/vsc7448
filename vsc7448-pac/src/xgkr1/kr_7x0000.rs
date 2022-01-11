@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct KR_7X0000(u32);
 impl KR_7X0000 {
     /// AN enable
-    #[inline]
+    #[inline(always)]
     pub fn an_enable(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_enable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -44,11 +44,11 @@ impl KR_7X0000 {
         self.0 |= value;
     }
     /// AN reset   (SC)
-    #[inline]
+    #[inline(always)]
     pub fn an_reset(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_reset(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -56,11 +56,11 @@ impl KR_7X0000 {
         self.0 |= value;
     }
     /// AN restart (SC)
-    #[inline]
+    #[inline(always)]
     pub fn an_restart(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_restart(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -68,11 +68,11 @@ impl KR_7X0000 {
         self.0 |= value;
     }
     /// Extended next page control
-    #[inline]
+    #[inline(always)]
     pub fn npctl(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_npctl(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;

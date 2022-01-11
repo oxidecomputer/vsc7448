@@ -32,22 +32,22 @@ use derive_more::{From, Into};
 pub struct DWRR_ENTRY(u32);
 impl DWRR_ENTRY {
     /// Current balance of the input
-    #[inline]
+    #[inline(always)]
     pub fn dwrr_balance(&self) -> u32 {
         self.0 & 0xfffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dwrr_balance(&mut self, value: u32) {
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
     }
     /// When a specific input to an element is used, the cost is used when updating the balance.
-    #[inline]
+    #[inline(always)]
     pub fn dwrr_cost(&self) -> u32 {
         (self.0 & 0x1f00000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dwrr_cost(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 20;

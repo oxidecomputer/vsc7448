@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct QMAP_VPORT_TBL(u32);
 impl QMAP_VPORT_TBL {
     /// Maps the indexed (QGRP,DPORT) set into a virtual port number. This number is used by the queue mapping system when determining target queue through QMAP_SE_TBL and QMAP_QOS_TBL.
-    #[inline]
+    #[inline(always)]
     pub fn qmap_vport_val(&self) -> u32 {
         self.0 & 0xfff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_qmap_vport_val(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;

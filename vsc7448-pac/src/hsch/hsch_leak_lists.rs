@@ -32,22 +32,22 @@ use derive_more::{From, Into};
 pub struct HSCH_LEAK_CFG(u32);
 impl HSCH_LEAK_CFG {
     /// The leak group didnt succeed traversing all shapers. Rates will be wrong.
-    #[inline]
+    #[inline(always)]
     pub fn leak_err(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_leak_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// First shaper in the leak group
-    #[inline]
+    #[inline(always)]
     pub fn leak_first(&self) -> u32 {
         (self.0 & 0xfffe) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_leak_first(&mut self, value: u32) {
         assert!(value <= 0x7fff);
         let value = value << 1;
@@ -62,11 +62,11 @@ impl HSCH_TIMER_CFG {
     /// Number of nanoseconds between each traversal of the leak list. A value of 10000 correspond to 10us. Each traversal subtracts the configured rate from the shaper buckets, counting bits. With the value of 10000, a rate of 1 corresponds to 1 bit per 10us, or 100kbps. A leak group can be set up for 16kbps unit by seting the leak_time to 1 bit per 62500 nanoseconds.
     ///
     /// 0: Leaking disabled 62500: 16kbps unit 10000: 100kbps unit 1000:  1Mbps unit (any other)
-    #[inline]
+    #[inline(always)]
     pub fn leak_time(&self) -> u32 {
         self.0 & 0x3ffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_leak_time(&mut self, value: u32) {
         assert!(value <= 0x3ffff);
         self.0 &= !0x3ffff;

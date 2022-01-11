@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct MEMITGR_CTRL(u32);
 impl MEMITGR_CTRL {
     /// Setting this field transitions the integrity monitor between operating modes. Transitioning between modes takes time, this field remains set until the new mode is reached. During this time the monitor also reports busy DEVCPU_GCB::MEMITGR_STAT.MODE_BUSY is set). From IDLE (DEVCPU_GCB::MEMITGR_STAT.MODE_IDLE is set) the monitor can transition into either DETECT or LISTEN mode, the DETECT mode is entered if a memory reports an indication - the LISTEN mode is entered if no indications are reported. The first time after reset the monitor will not detect indications, that is; it will transition directly from IDLE to LISTEN mode. From DETECT (DEVCPU_GCB::MEMITGR_STAT.MODE_DETECT is set) the monitor can transition into either DETECT or LISTEN mode, the DETECT mode is entered if more indications are reported - the LISTEN mode is entered if no more indications are reported. From LISTEN (DEVCPU_GCB::MEMITGR_STAT.MODE_LISTEN is set) the monitor can transition into IDLE mode. Software shall not set this field when the monitor is BUSY (when DEVCPU_GCB::MEMITGR_STAT.MODE_BUSY is set.)
-    #[inline]
+    #[inline(always)]
     pub fn activate(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_activate(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -48,11 +48,11 @@ impl MEMITGR_CTRL {
 pub struct MEMITGR_DBG(u32);
 impl MEMITGR_DBG {
     /// Always shows the (resynced) value of the data-field of the integrity-ring into the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn data_in(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_data_in(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -60,22 +60,22 @@ impl MEMITGR_DBG {
         self.0 |= value;
     }
     /// Set this field to enable detection of parity detections and ecc corrections. The monitor must be initialized before first use (after reset), this is done by making the first transtion from IDLE to LISTEN mode without enabeling detections (this field is cleared) and then setting this field once the monitor reaches the LISTEN mode.
-    #[inline]
+    #[inline(always)]
     pub fn detect_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_detect_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Always shows the (resynced) value of the ena-field of the integrity-ring into the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn ena_in(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_in(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -83,11 +83,11 @@ impl MEMITGR_DBG {
         self.0 |= value;
     }
     /// When DEVCPU_GCB::MEMITGR_DBG.FORCE_ENA is set, this value is driven to ena-field of the intgrity-ring out from the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn ena_out(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_out(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -95,11 +95,11 @@ impl MEMITGR_DBG {
         self.0 |= value;
     }
     /// Set to overtake ena and sync outputs (bit banging on the integrity ring) and drive these by DEVCPU_GCB::MEMITGR_DBG.ENA_OUT and DEVCPU_GCB::MEMITGR_DBG.SYNC_OUT respectively.
-    #[inline]
+    #[inline(always)]
     pub fn force_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_force_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -107,11 +107,11 @@ impl MEMITGR_DBG {
         self.0 |= value;
     }
     /// Set to force the intr-field of the intgrity-ring out from the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn force_intr(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_force_intr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -119,11 +119,11 @@ impl MEMITGR_DBG {
         self.0 |= value;
     }
     /// Always shows the (resynced) value of the intr-field of the integrity-ring into the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn intr_in(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_intr_in(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -131,11 +131,11 @@ impl MEMITGR_DBG {
         self.0 |= value;
     }
     /// This field is used for test purposes.
-    #[inline]
+    #[inline(always)]
     pub fn mem_div_sense(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mem_div_sense(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -143,11 +143,11 @@ impl MEMITGR_DBG {
         self.0 |= value;
     }
     /// Always shows the (resynced) value of the sync-field of the integrity-ring into the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn sync_in(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sync_in(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -155,11 +155,11 @@ impl MEMITGR_DBG {
         self.0 |= value;
     }
     /// When DEVCPU_GCB::MEMITGR_DBG.FORCE_ENA is set, this value is driven to sync-field of the intgrity-ring out from the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn sync_out(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sync_out(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -174,11 +174,11 @@ impl MEMITGR_DIV {
     /// Configure divider for generating the sync-pulse to memories (controls the speed at which the monitor talks to the memories). The lower this is set the faster indications can be read out of the memories.
     ///
     /// See datasheet for appropriate value.
-    #[inline]
+    #[inline(always)]
     pub fn mem_div(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mem_div(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -192,11 +192,11 @@ impl MEMITGR_DIV {
 pub struct MEMITGR_IDX(u32);
 impl MEMITGR_IDX {
     /// This field contains a unique index for the memory for which info is currently provided in DEVCPU_GCB::MEMITGR_INFO. Indexes are counted from 1 (not 0).
-    #[inline]
+    #[inline(always)]
     pub fn mem_idx(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mem_idx(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -210,22 +210,22 @@ impl MEMITGR_IDX {
 pub struct MEMITGR_INFO(u32);
 impl MEMITGR_INFO {
     /// This field is valid only when DEVCPU_GCB::MEMITGR_INFO.MEM_ERR or DEVCPU_GCB::MEMITGR_INFO.MEM_COR is set.
-    #[inline]
+    #[inline(always)]
     pub fn mem_addr(&self) -> u32 {
         self.0 & 0xfffffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mem_addr(&mut self, value: u32) {
         assert!(value <= 0xfffffff);
         self.0 &= !0xfffffff;
         self.0 |= value;
     }
     /// This field is set if the monitor has detected a correction.
-    #[inline]
+    #[inline(always)]
     pub fn mem_cor(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mem_cor(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -233,11 +233,11 @@ impl MEMITGR_INFO {
         self.0 |= value;
     }
     /// This field is set if the monitor has correction indication for which the address has not been recorded. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR is set then there has also been a parity indication (or an unrecoverable correction) which takes priority over correction indications. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR is cleared and DEVCPU_GCB::MEMITGR_INFO.MEM_COR is set then there has been more than one correction indication, then only the address of the newest correction indication has been kept. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR and DEVCPU_GCB::MEMITGR_INFO.MEM_COR is both cleared then a correction indication has occurred for which the address could not be stored, this is a very rare situation that can only happen if an indication is detected just as the memory is talking to the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn mem_cor_ovf(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mem_cor_ovf(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 28;
@@ -245,11 +245,11 @@ impl MEMITGR_INFO {
         self.0 |= value;
     }
     /// This field is set if the monitor has detected a parity indication (or an unrecoverable correction).
-    #[inline]
+    #[inline(always)]
     pub fn mem_err(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mem_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -257,11 +257,11 @@ impl MEMITGR_INFO {
         self.0 |= value;
     }
     /// This field is set if the monitor has detected a parity indication (or an unrecoverable correction) for which the address has not been recorded. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR is set then there has been more than one indication, then only the address of the newest indication has been kept. If DEVCPU_GCB::MEMITGR_INFO.MEM_ERR is cleared then an indication has occurred for which the address could not be stored, this is a very rare situation that can only happen if an indication is detected just as the memory is talking to the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn mem_err_ovf(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mem_err_ovf(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -274,11 +274,11 @@ impl MEMITGR_INFO {
 pub struct MEMITGR_STAT(u32);
 impl MEMITGR_STAT {
     /// If this field is set then there is an indication from one of the memories that needs to be analyzed. An indication is either a parity detection or an error correction. This field is only set when the monitor is in LISTEN mode (DEVCPU_GCB::MEMITGR_STAT.MODE_LISTEN is set), in all other states (including BUSY) this field returns 0.
-    #[inline]
+    #[inline(always)]
     pub fn indication(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_indication(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -286,11 +286,11 @@ impl MEMITGR_STAT {
         self.0 |= value;
     }
     /// This field is set if there is an overflow when recording indications from the memories. If this happens (setting of this field) the value of the DEVCPU_GCB::MEMITGR_DIV.MEM_DIV field is set too low!
-    #[inline]
+    #[inline(always)]
     pub fn indication_ovf(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_indication_ovf(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -298,22 +298,22 @@ impl MEMITGR_STAT {
         self.0 |= value;
     }
     /// The busy signal is a copy of the DEVCPU_GCB::MEMITGR_CTRL.ACTIVATE field, see description of that field for more information about the different states/modes of the monitor.
-    #[inline]
+    #[inline(always)]
     pub fn mode_busy(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mode_busy(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// This field is set when the monitor is in DETECT mode, during detect mode the DEVCPU_GCB::MEMITGR_INFO and DEVCPU_GCB::MEMITGR_IDX registers contains valid information about one indication.
-    #[inline]
+    #[inline(always)]
     pub fn mode_detect(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mode_detect(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -321,11 +321,11 @@ impl MEMITGR_STAT {
         self.0 |= value;
     }
     /// This field is set when the monitor is in IDLE mode.
-    #[inline]
+    #[inline(always)]
     pub fn mode_idle(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mode_idle(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -333,11 +333,11 @@ impl MEMITGR_STAT {
         self.0 |= value;
     }
     /// This field is set when the monitor is in LISTEN mode, during listen mode the monitor continually check for parity/correction indications from the memories.
-    #[inline]
+    #[inline(always)]
     pub fn mode_listen(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mode_listen(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;

@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct VD_FC_WM(u32);
 impl VD_FC_WM {
     /// Flowcontrol to QS is set when the FIFO fill level reaches this watermark.
-    #[inline]
+    #[inline(always)]
     pub fn vd_fc_wm(&self) -> u32 {
         self.0 & 0x1f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vd_fc_wm(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;

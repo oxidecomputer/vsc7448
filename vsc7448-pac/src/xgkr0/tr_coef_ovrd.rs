@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_COEF_OVRD(u32);
 impl TR_COEF_OVRD {
     /// Override Coef_update field to transmit
-    #[inline]
+    #[inline(always)]
     pub fn coef_ovrd(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_coef_ovrd(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

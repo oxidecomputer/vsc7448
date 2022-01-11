@@ -45,17 +45,17 @@ pub mod system;
 /// Shared memory pool monitoring
 pub struct QLIMIT_MON(pub(super) u32);
 impl QLIMIT_MON {
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_CONG_CNT_MAX_STAT(
         &self,
     ) -> RegisterAddress<qlimit_mon::QLIMIT_CONG_CNT_MAX_STAT> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_MON_CFG(&self) -> RegisterAddress<qlimit_mon::QLIMIT_MON_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SHR_FILL_MAX_STAT(
         &self,
     ) -> RegisterAddress<qlimit_mon::QLIMIT_SHR_FILL_MAX_STAT> {
@@ -66,11 +66,11 @@ impl QLIMIT_MON {
 /// Queue Limitation Configuration
 pub struct QLIMIT_PORT(pub(super) u32);
 impl QLIMIT_PORT {
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_DIS_CFG(&self) -> RegisterAddress<qlimit_port::QLIMIT_DIS_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_PORT_CFG(&self) -> RegisterAddress<qlimit_port::QLIMIT_PORT_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -79,7 +79,7 @@ impl QLIMIT_PORT {
 /// Queue Size Table
 pub struct QLIMIT_QUEUE(pub(super) u32);
 impl QLIMIT_QUEUE {
-    #[inline]
+    #[inline(always)]
     pub fn QUEUE_SIZE(&self) -> RegisterAddress<qlimit_queue::QUEUE_SIZE> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -88,11 +88,11 @@ impl QLIMIT_QUEUE {
 /// SE Size Table
 pub struct QLIMIT_SE(pub(super) u32);
 impl QLIMIT_SE {
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_CONG_CNT(&self) -> RegisterAddress<qlimit_se::QLIMIT_CONG_CNT> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SE_USE(&self) -> RegisterAddress<qlimit_se::QLIMIT_SE_USE> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -101,23 +101,23 @@ impl QLIMIT_SE {
 /// Shared memory pool configuration
 pub struct QLIMIT_SHR(pub(super) u32);
 impl QLIMIT_SHR {
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_CONG_CNT_STAT(&self) -> RegisterAddress<qlimit_shr::QLIMIT_CONG_CNT_STAT> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_QUE_ACT_CFG(&self) -> RegisterAddress<qlimit_shr::QLIMIT_QUE_ACT_CFG> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_QUE_CONG_CFG(&self) -> RegisterAddress<qlimit_shr::QLIMIT_QUE_CONG_CFG> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SE_CONG_CFG(&self) -> RegisterAddress<qlimit_shr::QLIMIT_SE_CONG_CFG> {
         RegisterAddress::new(self.0 + 0x30)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SHR_ATOP_CFG(
         &self,
         index: u32,
@@ -125,7 +125,7 @@ impl QLIMIT_SHR {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SHR_CTOP_CFG(
         &self,
         index: u32,
@@ -133,11 +133,11 @@ impl QLIMIT_SHR {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SHR_FILL_STAT(&self) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_FILL_STAT> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SHR_QDIV_CFG(
         &self,
         index: u32,
@@ -145,7 +145,7 @@ impl QLIMIT_SHR {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SHR_QLIM_CFG(
         &self,
         index: u32,
@@ -153,7 +153,7 @@ impl QLIMIT_SHR {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x18 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SHR_TOP_CFG(
         &self,
         index: u32,
@@ -161,7 +161,7 @@ impl QLIMIT_SHR {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QLIMIT_SHR_WM_STAT(
         &self,
         index: u32,
@@ -174,11 +174,11 @@ impl QLIMIT_SHR {
 /// Select scheduling modes
 pub struct QMAP_QOS_TBL(pub(super) u32);
 impl QMAP_QOS_TBL {
-    #[inline]
+    #[inline(always)]
     pub fn DROP_STAT_CTRL(&self) -> RegisterAddress<qmap_qos_tbl::DROP_STAT_CTRL> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QMAP_QOS_TBL(&self) -> RegisterAddress<qmap_qos_tbl::QMAP_QOS_TBL> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -187,7 +187,7 @@ impl QMAP_QOS_TBL {
 /// Select scheduling modes
 pub struct QMAP_SE_TBL(pub(super) u32);
 impl QMAP_SE_TBL {
-    #[inline]
+    #[inline(always)]
     pub fn QMAP_SE_TBL(&self) -> RegisterAddress<qmap_se_tbl::QMAP_SE_TBL> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -196,7 +196,7 @@ impl QMAP_SE_TBL {
 /// Mapping into virtual ports
 pub struct QMAP_VPORT_TBL(pub(super) u32);
 impl QMAP_VPORT_TBL {
-    #[inline]
+    #[inline(always)]
     pub fn QMAP_VPORT_TBL(&self, index: u32) -> RegisterAddress<qmap_vport_tbl::QMAP_VPORT_TBL> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -206,7 +206,7 @@ impl QMAP_VPORT_TBL {
 /// Frame statistics
 pub struct STAT(pub(super) u32);
 impl STAT {
-    #[inline]
+    #[inline(always)]
     pub fn CNT(&self) -> RegisterAddress<stat::CNT> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -215,38 +215,38 @@ impl STAT {
 /// Switch configuration
 pub struct SYSTEM(pub(super) u32);
 impl SYSTEM {
-    #[inline]
+    #[inline(always)]
     pub fn FWD_CPU_DROP_CNT(&self) -> RegisterAddress<system::FWD_CPU_DROP_CNT> {
         RegisterAddress::new(self.0 + 0xfc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn FWD_CTRL(&self) -> RegisterAddress<system::FWD_CTRL> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn FWD_DROP_EVENTS(&self, index: u32) -> RegisterAddress<system::FWD_DROP_EVENTS> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0xc + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn FWD_STAT_CNT(&self, index: u32) -> RegisterAddress<system::FWD_STAT_CNT> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0xf0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAP_CFG_CFG(&self) -> RegisterAddress<system::MAP_CFG_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn QMAP_PORT_MODE(&self, index: u32) -> RegisterAddress<system::QMAP_PORT_MODE> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x100 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn STAT_CFG(&self) -> RegisterAddress<system::STAT_CFG> {
         RegisterAddress::new(self.0 + 0x1d4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn STAT_CNT_CFG(&self) -> RegisterAddress<system::STAT_CNT_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }

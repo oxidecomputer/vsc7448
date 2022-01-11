@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct FIXED_ERROR_COUNT_THRESHOLD(u32);
 impl FIXED_ERROR_COUNT_THRESHOLD {
     /// When fixed error count exceeds or equal to this value, then FEC_FIXED_ERROR_COUNT_STICKY sticky bit is set and interrupt is generated if enabled through FEC_FIXED_ERROR_COUNT_STICKY_MASK
-    #[inline]
+    #[inline(always)]
     pub fn fixed_error_count_threshold(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fixed_error_count_threshold(&mut self, value: u32) {
         self.0 = value;
     }
@@ -46,11 +46,11 @@ impl FIXED_ERROR_COUNT_THRESHOLD {
 pub struct UNFIXABLE_ERROR_COUNT_THRESHOLD(u32);
 impl UNFIXABLE_ERROR_COUNT_THRESHOLD {
     /// When fixed error count exceeds or equal to this value, then FEC_UNFIXABLE_ERROR_COUNT_STICKY sticky bit is set and interrupt is generated if enabled through FEC_UNFIXABLE_ERROR_COUNT_STICKY_MASK
-    #[inline]
+    #[inline(always)]
     pub fn unfixable_error_count_threshold(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unfixable_error_count_threshold(&mut self, value: u32) {
         self.0 = value;
     }

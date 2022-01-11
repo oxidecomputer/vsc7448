@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct ADV_CL_MPLS_STICKY(u32);
 impl ADV_CL_MPLS_STICKY {
     /// This sticky bit signals frame for Default OAM qu seen.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_def_oam_sticky(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_def_oam_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -44,11 +44,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals frame for MPLS err qu seen.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_err_sticky(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
@@ -56,11 +56,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS G8113_1 NON OAM frames.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_g8113_1_non_oam_sticky(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_g8113_1_non_oam_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -68,11 +68,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals IP frame received and handled via IP Control Profile LSR POP (FWD_TYPE=3) with (nxt_type_after_offset = CW) seen.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_ip_profile_sticky(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_ip_profile_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
@@ -80,11 +80,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals IP frame received as LSR POP (FWD_TYPE=3) with (nxt_type_after_offset = CW) seen.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_ip_traffic_sticky(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_ip_traffic_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -92,11 +92,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals frame for PATH OAM MEP seen.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_mep_oam_sticky(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_mep_oam_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -104,11 +104,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS POP err when fwd_mode=3.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_pop_err_sticky(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_pop_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -116,11 +116,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals frame received and handled via Reserved Profile.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_rsvd_profile_sticky(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_rsvd_profile_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
@@ -128,11 +128,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit indicate frame redirected to CPU due to reserved label seen with valid labels.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_rsv_xtr_sticky(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_rsv_xtr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -140,11 +140,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals frame for Segment OAM seen.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_segment_oam_sticky(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_segment_oam_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 27;
@@ -152,11 +152,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS SWAP err.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_swap_err_sticky(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_swap_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -164,11 +164,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS CPU redir of MIP LSP OAM.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_mip_lsp_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_lsp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -176,11 +176,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS CPU redir of MIP VCCv2 and VCCv3 no CW.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_mip_no_hw_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_no_hw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -188,11 +188,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS CPU redir of MIP Segment OAM.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_mip_segment_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_segment_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -200,11 +200,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS CPU redir of MIP VCCv1 OAM.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_mip_vcc1_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_vcc1_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -212,11 +212,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS CPU redir of MIP VCCv2 OAM.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_mip_vcc2_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_vcc2_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -224,11 +224,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS CPU redir of MIP VCCv3 OAM.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_mip_vcc3_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_vcc3_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -236,11 +236,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS CPU redir of MIP VCCv4 OAM.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_mip_vcc4_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_vcc4_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -248,11 +248,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS PW termination of data with Control Word.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_pw_cw_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_cw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -260,11 +260,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS PW termination err (frame is discarded).
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_pw_err_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -272,11 +272,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS PW termination of data.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_pw_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -284,11 +284,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS PW termination of OAM VCCv1.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_pw_vcc1_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_vcc1_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -296,11 +296,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS PW termination of OAM VCCv2.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_pw_vcc2_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_vcc2_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -308,11 +308,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS PW termination of OAM VCCv3.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_pw_vcc3_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_vcc3_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -320,11 +320,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MPLS PW termination of OAM VCCv4.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_term_pw_vcc4_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_vcc4_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -332,11 +332,11 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals vld lables set to less than available.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_too_few_vld_labels_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_too_few_vld_labels_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -344,22 +344,22 @@ impl ADV_CL_MPLS_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals TC value extracted from Label stack.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_use_tc_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_use_tc_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// This sticky bit signals TTL value extracted from Label stack.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_mpls_use_ttl_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_mpls_use_ttl_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -372,11 +372,11 @@ impl ADV_CL_MPLS_STICKY {
 pub struct ADV_CL_STICKY(u32);
 impl ADV_CL_STICKY {
     /// This sticky bit signals COS ID from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_cosid_sticky(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_cosid_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -384,11 +384,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals DEI from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_dei_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_dei_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -396,11 +396,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals DP from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_dp_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_dp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -408,11 +408,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals DSCP value from the VCAPs was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_dscp_sticky(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_dscp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -420,11 +420,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals generic index was changed from the VCAP.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_generic_idx_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_generic_idx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -432,11 +432,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals that a HIH force mode use of map index was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_hih_force_mode_used_sticky(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_hih_force_mode_used_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -444,11 +444,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals that a HIH lookup key was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_hih_key_used_sticky(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_hih_key_used_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -456,11 +456,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals ISDX from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_isdx_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_isdx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -468,11 +468,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MAP table usage from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_map_tbl_idx0_updated_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_map_tbl_idx0_updated_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -480,11 +480,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MAP table usage from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_map_tbl_idx1_updated_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_map_tbl_idx1_updated_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -492,11 +492,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MASQ_INJ was triggered from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_masq_inj_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_masq_inj_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -504,11 +504,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals that a frame ways attempted to normalized beyond what is supported.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_max_w16_offset_fail_sticky(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_max_w16_offset_fail_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -516,11 +516,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals NXT_KEY_TYPE from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_nxt_key_type_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_nxt_key_type_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -528,11 +528,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals NXT_NORMALIZE from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_nxt_normalize_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_nxt_normalize_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -540,22 +540,22 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals NXT_OFFSET_FROM_TYPE > 63 from the VCAP was attempted.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_nxt_offset_too_big_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_nxt_offset_too_big_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// This sticky bit signals NXT_TYPE_AFTER_OFFSET = CW from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_nxt_type_cw_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_nxt_type_cw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -563,11 +563,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals NXT_TYPE_AFTER_OFFSET = ETH from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_nxt_type_eth_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_nxt_type_eth_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -575,11 +575,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals NXT_TYPE_AFTER_OFFSET = MPLS from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_nxt_type_mpls_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_nxt_type_mpls_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -587,11 +587,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals PCP from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_pcp_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_pcp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -599,11 +599,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals QoS class from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_qos_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_qos_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -611,11 +611,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals VID from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_vid_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_vid_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -623,11 +623,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals VLAN pop count from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_vlan_popcnt_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_vlan_popcnt_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -635,11 +635,11 @@ impl ADV_CL_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals was_tagged from the VCAP was used.
-    #[inline]
+    #[inline(always)]
     pub fn adv_cl_vlan_was_tagged_sticky(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_adv_cl_vlan_was_tagged_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -654,11 +654,11 @@ impl CAT_STICKY {
     /// This bit is set if a 802.1ag control frame  (DMAC in the range 01-80-C2-00-00-30 to 01-80-C2-00-00-3F) has been detected.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ag_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ag_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -668,11 +668,11 @@ impl CAT_STICKY {
     /// This bit is set if a BPDU control frame  (DMAC in the range 01-80-C2-00-00-00 to 01-80-C2-00-00-0F) has been detected.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn bpdu_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bpdu_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -682,11 +682,11 @@ impl CAT_STICKY {
     /// Set if a frame has been received with a TPID disabled for CPU forwarding.
     ///
     /// 0: The event has not occured 1: The event did occour Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn capture_tpid_dis_sticky(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_capture_tpid_dis_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -696,11 +696,11 @@ impl CAT_STICKY {
     /// This bit is set if a GxRP frame ( DMAC in the range 01-80-C2-00-00-20 to 01-80-C2-00-00-2F) has been detected.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn gxrp_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_gxrp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -710,11 +710,11 @@ impl CAT_STICKY {
     /// Set if an IGMP frame has been detected.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn igmp_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_igmp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -724,11 +724,11 @@ impl CAT_STICKY {
     /// Set if an IP Multicast control frame has been detected. - DMAC = 0x01005Exxxxxx , Ethernet Type = IP, IP Protocol != IGMP, DIP = 224.0.0.x
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ip4_mc_ctrl_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip4_mc_ctrl_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -738,11 +738,11 @@ impl CAT_STICKY {
     /// Is set if an IPv6 frame with a hop by hop header and ICMPv6 was seen.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ip6_hop_by_hop_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip6_hop_by_hop_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -752,11 +752,11 @@ impl CAT_STICKY {
     /// Indicates that a IPv6 frame with hop by hop options and ICMPv6 was seen.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ip6_icmp_hop_by_hop_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip6_icmp_hop_by_hop_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -766,11 +766,11 @@ impl CAT_STICKY {
     /// Set if an IPv6 Multicast control frame has been detected. - DMAC = 0x3333xxxxxxxx , Ethernet Type = IPv6, DIP = FF02::/16
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ip6_mc_ctrl_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip6_mc_ctrl_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -780,11 +780,11 @@ impl CAT_STICKY {
     /// Set if an MLD frame has been detected.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn mld_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mld_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -794,11 +794,11 @@ impl CAT_STICKY {
     /// Set if a VRAP frame has been detected.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn vrap_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vrap_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -808,11 +808,11 @@ impl CAT_STICKY {
     /// Indicates that a frame with a VStax2 TTL value of 0 was dropped.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn vstax2_ttl_zero_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vstax2_ttl_zero_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -827,11 +827,11 @@ impl CLASS_STICKY {
     /// This sticky bit indicates that the QoS class was used as index into the DSCP_REWR_VAL table to determine the DSCP value.
     ///
     /// 0: No event 1: QoS class has been used to determine the DSCP Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn dscp_qos_rewr_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_qos_rewr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -841,11 +841,11 @@ impl CLASS_STICKY {
     /// Set when the  DSCP value is based on the DSCP_TRANSLATE_VAL.
     ///
     /// 0: No event 1: DSCP_TRANSLATE_VAL has been used. Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn dscp_translate_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_translate_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -855,11 +855,11 @@ impl CLASS_STICKY {
     /// Set when the default port QoS has been used.
     ///
     /// 0: No event 1: Port default has been used for QoS classification Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn qos_default_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_qos_default_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -869,11 +869,11 @@ impl CLASS_STICKY {
     /// Set when the DSCP QoS has been used.
     ///
     /// 0: No event 1: DSCP QoS class has been used for QoS classification Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn qos_dscp_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_qos_dscp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -883,11 +883,11 @@ impl CLASS_STICKY {
     /// Set when the classified PCP and DEI value is used to to determeine the QoS class.
     ///
     /// 0: No event 1: PCP value has been used for QoS classification Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn qos_pcp_dei_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_qos_pcp_dei_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -897,11 +897,11 @@ impl CLASS_STICKY {
     /// Set when the stacking QoS has been used.
     ///
     /// 0: No event 1: Stacking header QoS class has been used for QoS classification Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn qos_stack_tag_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_qos_stack_tag_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -910,11 +910,11 @@ impl CLASS_STICKY {
     /// Set when the port VLAN has been used.
     ///
     /// 0: The event has not occured 1: Port default value has been used for VLAN classification Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn vid_port_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vid_port_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -924,11 +924,11 @@ impl CLASS_STICKY {
     /// Set when the VID information from Stacking TAG has been used.
     ///
     /// 0: The event has not occured 1: Stacking Header VID has been used for VLAN classification Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn vid_stack_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vid_stack_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -938,11 +938,11 @@ impl CLASS_STICKY {
     /// Set when vid from the TAG has been used.
     ///
     /// 0: The event has not occured 1: TCI VID value has been used for VLAN classification Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn vid_tag_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vid_tag_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -957,11 +957,11 @@ impl FILTER_STICKY {
     /// Set if a frame is dropped due to zero MAC addresses filtering or multicast source MAC address filtering.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn bad_macs_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bad_macs_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -970,11 +970,11 @@ impl FILTER_STICKY {
     /// Set if a frame has been filtered due to wrong stacking information (e.g. not expected stacking tag etc.).
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn stacking_filter_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_stacking_filter_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -989,11 +989,11 @@ impl IP_HDR_CHK_STICKY {
     /// Set if an IP checksum error is found.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ip4_chksum_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip4_chksum_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -1002,11 +1002,11 @@ impl IP_HDR_CHK_STICKY {
     /// Set if an IP fragmented frame is found.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ip4_fragment_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip4_fragment_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -1016,11 +1016,11 @@ impl IP_HDR_CHK_STICKY {
     /// Set if IP total length is less that IP header length.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ip4_len_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip4_len_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1030,11 +1030,11 @@ impl IP_HDR_CHK_STICKY {
     /// Set if an IP packet with options is found.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn ip_options_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ip_options_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -1047,22 +1047,22 @@ impl IP_HDR_CHK_STICKY {
 pub struct MIP_STICKY(u32);
 impl MIP_STICKY {
     /// This sticky bit signals CCM copy MIP operation.
-    #[inline]
+    #[inline(always)]
     pub fn mip_ccm_copy_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mip_ccm_copy_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// This sticky bit signals Generic MIP operation.
-    #[inline]
+    #[inline(always)]
     pub fn mip_generic_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mip_generic_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -1070,11 +1070,11 @@ impl MIP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MIP LBM operation failed due to faild MAC address check.
-    #[inline]
+    #[inline(always)]
     pub fn mip_lbm_da_chk_fail_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mip_lbm_da_chk_fail_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -1082,11 +1082,11 @@ impl MIP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals LBM redir MIP operation.
-    #[inline]
+    #[inline(always)]
     pub fn mip_lbm_redir_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mip_lbm_redir_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1094,11 +1094,11 @@ impl MIP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals LTM redir MIP operation.
-    #[inline]
+    #[inline(always)]
     pub fn mip_ltm_redir_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mip_ltm_redir_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -1106,11 +1106,11 @@ impl MIP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MIP operation failed due to MEL check.
-    #[inline]
+    #[inline(always)]
     pub fn mip_mel_chk_fail_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mip_mel_chk_fail_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -1118,11 +1118,11 @@ impl MIP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals  RAPS MIP operation.
-    #[inline]
+    #[inline(always)]
     pub fn mip_raps_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mip_raps_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -1139,11 +1139,11 @@ impl VLAN_FILTER_STICKY {
     /// Set if a frame is dropped due to C-TAG filtering at the given tag position.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn filter_ctag_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_filter_ctag_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -1153,11 +1153,11 @@ impl VLAN_FILTER_STICKY {
     /// Set if a frame is dropped due to priority C-TAG filtering at the given tag position.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn filter_prio_ctag_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_filter_prio_ctag_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -1167,11 +1167,11 @@ impl VLAN_FILTER_STICKY {
     /// Set if a frame is dropped due priority S-TAG filtering at the given tag position.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn filter_prio_stag_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_filter_prio_stag_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1181,11 +1181,11 @@ impl VLAN_FILTER_STICKY {
     /// Set if a frame is dropped due required tag was not found.
     ///
     /// 0: No Event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn filter_required_tag_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_filter_required_tag_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -1195,11 +1195,11 @@ impl VLAN_FILTER_STICKY {
     /// Set if a frame is dropped due to S-TAG filtering at the given tag position.
     ///
     /// 0: No event 1: Event Bit is cleared by writing a 1 to this position.
-    #[inline]
+    #[inline(always)]
     pub fn filter_stag_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_filter_stag_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

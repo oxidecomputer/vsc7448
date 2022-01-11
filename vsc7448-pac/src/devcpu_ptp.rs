@@ -38,33 +38,33 @@ pub mod ptp_status;
 /// PTP controller configuration and status
 pub struct PTP_CFG(pub(super) u32);
 impl PTP_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn CLK_ADJ_CFG(&self, index: u32) -> RegisterAddress<ptp_cfg::CLK_ADJ_CFG> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CLK_ADJ_FRQ(&self, index: u32) -> RegisterAddress<ptp_cfg::CLK_ADJ_FRQ> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_INTR_IDENT(&self) -> RegisterAddress<ptp_cfg::PTP_INTR_IDENT> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_MISC_CFG(&self) -> RegisterAddress<ptp_cfg::PTP_MISC_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_PIN_INTR(&self) -> RegisterAddress<ptp_cfg::PTP_PIN_INTR> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_PIN_INTR_ENA(&self) -> RegisterAddress<ptp_cfg::PTP_PIN_INTR_ENA> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_SYS_CLK_CFG(&self) -> RegisterAddress<ptp_cfg::PTP_SYS_CLK_CFG> {
         RegisterAddress::new(self.0 + 0x28)
     }
@@ -73,31 +73,31 @@ impl PTP_CFG {
 /// Timing synchronization
 pub struct PTP_PINS(pub(super) u32);
 impl PTP_PINS {
-    #[inline]
+    #[inline(always)]
     pub fn PIN_WF_HIGH_PERIOD(&self) -> RegisterAddress<ptp_pins::PIN_WF_HIGH_PERIOD> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PIN_WF_LOW_PERIOD(&self) -> RegisterAddress<ptp_pins::PIN_WF_LOW_PERIOD> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_NSF(&self) -> RegisterAddress<ptp_pins::PTP_NSF> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_PIN_CFG(&self) -> RegisterAddress<ptp_pins::PTP_PIN_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_TOD_NSEC(&self) -> RegisterAddress<ptp_pins::PTP_TOD_NSEC> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_TOD_SEC_LSB(&self) -> RegisterAddress<ptp_pins::PTP_TOD_SEC_LSB> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_TOD_SEC_MSB(&self) -> RegisterAddress<ptp_pins::PTP_TOD_SEC_MSB> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -106,19 +106,19 @@ impl PTP_PINS {
 /// Status of PTP timers
 pub struct PTP_STATUS(pub(super) u32);
 impl PTP_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn PTP_CUR_NSEC(&self) -> RegisterAddress<ptp_status::PTP_CUR_NSEC> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_CUR_NSF(&self) -> RegisterAddress<ptp_status::PTP_CUR_NSF> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_CUR_SEC_LSB(&self) -> RegisterAddress<ptp_status::PTP_CUR_SEC_LSB> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_CUR_SEC_MSB(&self) -> RegisterAddress<ptp_status::PTP_CUR_SEC_MSB> {
         RegisterAddress::new(self.0 + 0xc)
     }

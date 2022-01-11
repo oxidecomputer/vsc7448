@@ -33,11 +33,11 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SRV_LM_CNT_LSB(u32);
 impl SRV_LM_CNT_LSB {
-    #[inline]
+    #[inline(always)]
     pub fn srv_lm_cnt_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_srv_lm_cnt_lsb(&mut self, value: u32) {
         self.0 = value;
     }

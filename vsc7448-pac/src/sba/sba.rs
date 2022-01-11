@@ -36,11 +36,11 @@ impl DFT_MST {
     /// Use this field to configure default master.
     ///
     /// 0: No default master 1: Master 1 2: Master 2 3: Master 3
-    #[inline]
+    #[inline(always)]
     pub fn dft_mst(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dft_mst(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -52,11 +52,11 @@ impl DFT_MST {
 pub struct EBT(u32);
 impl EBT {
     /// Set when an Early Burst Termination takes place. The register is cleared when read.
-    #[inline]
+    #[inline(always)]
     pub fn ebt(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ebt(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -68,11 +68,11 @@ impl EBT {
 pub struct EBT_COUNT(u32);
 impl EBT_COUNT {
     /// Maximum number of cycles a transfer can take before being subject to an early burst termination.
-    #[inline]
+    #[inline(always)]
     pub fn ebt_count(&self) -> u32 {
         self.0 & 0x3ff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ebt_count(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
@@ -86,11 +86,11 @@ impl EBT_EN {
     /// Use this field to enable early burst termination.
     ///
     /// 0: Disabled 1: Enabled
-    #[inline]
+    #[inline(always)]
     pub fn ebt_en(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ebt_en(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -104,11 +104,11 @@ impl PL_CPU {
     /// Arbitration priority for the master. When multiple masters request the bus at the same time, the one with the highest priority is ganted bus access.
     ///
     /// Values 0x1 through 0xF, higher values are prioritized over lower values.
-    #[inline]
+    #[inline(always)]
     pub fn pl1(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pl1(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -120,11 +120,11 @@ impl PL_CPU {
 pub struct PL_CSR(u32);
 impl PL_CSR {
     /// See SBA::PL1 for description.
-    #[inline]
+    #[inline(always)]
     pub fn pl3(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pl3(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -136,11 +136,11 @@ impl PL_CSR {
 pub struct PL_PCIE(u32);
 impl PL_PCIE {
     /// See SBA::PL1 for description.
-    #[inline]
+    #[inline(always)]
     pub fn pl2(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pl2(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -151,11 +151,11 @@ impl PL_PCIE {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct RESERVED1(u32);
 impl RESERVED1 {
-    #[inline]
+    #[inline(always)]
     pub fn reserved1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_reserved1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -165,11 +165,11 @@ impl RESERVED1 {
 pub struct WT_CPU(u32);
 impl WT_CPU {
     /// Number of tokens to grant the master at the start of each refresh period for weighted-token arbitration scheme. If configured with a value of zero, the master is considered to have infinite tokens.
-    #[inline]
+    #[inline(always)]
     pub fn wt_cl1(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt_cl1(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -181,11 +181,11 @@ impl WT_CPU {
 pub struct WT_CSR(u32);
 impl WT_CSR {
     /// See SBA::WT_CL1 for description.
-    #[inline]
+    #[inline(always)]
     pub fn wt_cl3(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt_cl3(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -199,11 +199,11 @@ impl WT_CSR {
 pub struct WT_EN(u32);
 impl WT_EN {
     /// Set this field to enable weighted-token arbitration scheme.
-    #[inline]
+    #[inline(always)]
     pub fn wt_en(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt_en(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -215,11 +215,11 @@ impl WT_EN {
 pub struct WT_PCIE(u32);
 impl WT_PCIE {
     /// See SBA::WT_CL1 for description.
-    #[inline]
+    #[inline(always)]
     pub fn wt_cl2(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt_cl2(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -231,11 +231,11 @@ impl WT_PCIE {
 pub struct WT_TCL(u32);
 impl WT_TCL {
     /// Refresh period length for the weighted-token arbitration scheme.
-    #[inline]
+    #[inline(always)]
     pub fn wt_tcl(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt_tcl(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

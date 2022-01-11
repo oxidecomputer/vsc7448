@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct RX_BER_CNT(u32);
 impl RX_BER_CNT {
     /// ber_count from the BER state machine
-    #[inline]
+    #[inline(always)]
     pub fn rx_ber_cnt(&self) -> u32 {
         self.0 & 0x1f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_ber_cnt(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
@@ -52,11 +52,11 @@ impl RX_BER_CNT {
 pub struct RX_CHARERR_CNT(u32);
 impl RX_CHARERR_CNT {
     /// Count of the number of invalid control characters
-    #[inline]
+    #[inline(always)]
     pub fn rx_charerr_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_charerr_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -68,11 +68,11 @@ impl RX_CHARERR_CNT {
 pub struct RX_ERRBLK_CNT(u32);
 impl RX_ERRBLK_CNT {
     /// Count of the errored Rx blocks
-    #[inline]
+    #[inline(always)]
     pub fn rx_errblk_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_errblk_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -84,11 +84,11 @@ impl RX_ERRBLK_CNT {
 pub struct RX_FSET_FIFO_DATA(u32);
 impl RX_FSET_FIFO_DATA {
     /// Register interface to the FIFO containing captured ordered sets. Each read of this register pops a 24-bit ordered set off the FIFO and increments the FIFO pointer.
-    #[inline]
+    #[inline(always)]
     pub fn rx_fset_fifo_data(&self) -> u32 {
         (self.0 & 0xffffff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_fset_fifo_data(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         let value = value << 8;
@@ -105,11 +105,11 @@ impl RX_FSET_FIFO_STAT {
     /// Indicates if the FIFO is full
     ///
     /// 0: FIFO not full 1: FIFO full
-    #[inline]
+    #[inline(always)]
     pub fn rx_fset_fifo_full(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_fset_fifo_full(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -119,11 +119,11 @@ impl RX_FSET_FIFO_STAT {
     /// Number of valid ordered sets in the FIFO that can be read
     ///
     /// Binary number
-    #[inline]
+    #[inline(always)]
     pub fn rx_fset_fifo_num(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_fset_fifo_num(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -137,11 +137,11 @@ impl RX_FSET_FIFO_STAT {
 pub struct RX_OSET_FIFO_DATA(u32);
 impl RX_OSET_FIFO_DATA {
     /// Register interface to the FIFO containing captured ordered sets. Each read of this register pops a 24-bit ordered set off the FIFO and increments the FIFO pointer.
-    #[inline]
+    #[inline(always)]
     pub fn rx_oset_fifo_data(&self) -> u32 {
         (self.0 & 0xffffff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_oset_fifo_data(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         let value = value << 8;
@@ -158,11 +158,11 @@ impl RX_OSET_FIFO_STAT {
     /// Indicates if the FIFO is full
     ///
     /// 0: FIFO not full 1: FIFO full
-    #[inline]
+    #[inline(always)]
     pub fn rx_oset_fifo_full(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_oset_fifo_full(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -172,11 +172,11 @@ impl RX_OSET_FIFO_STAT {
     /// Number of valid ordered sets in the FIFO that can be read
     ///
     /// Binary number
-    #[inline]
+    #[inline(always)]
     pub fn rx_oset_fifo_num(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_oset_fifo_num(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -190,11 +190,11 @@ impl RX_OSET_FIFO_STAT {
 pub struct TEST_ERR_CNT(u32);
 impl TEST_ERR_CNT {
     /// Count of detected test pattern errors in Rx test pattern checker. Write 0 to clear.
-    #[inline]
+    #[inline(always)]
     pub fn test_err_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_test_err_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -206,11 +206,11 @@ impl TEST_ERR_CNT {
 pub struct TX_CHARERR_CNT(u32);
 impl TX_CHARERR_CNT {
     /// Count of the number of invalid control characters
-    #[inline]
+    #[inline(always)]
     pub fn tx_charerr_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_charerr_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -222,11 +222,11 @@ impl TX_CHARERR_CNT {
 pub struct TX_ERRBLK_CNT(u32);
 impl TX_ERRBLK_CNT {
     /// Count of the errored Tx blocks
-    #[inline]
+    #[inline(always)]
     pub fn tx_errblk_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_errblk_cnt(&mut self, value: u32) {
         self.0 = value;
     }

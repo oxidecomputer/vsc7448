@@ -36,53 +36,53 @@ pub mod uart;
 /// UART
 pub struct UART(pub(super) u32);
 impl UART {
-    #[inline]
+    #[inline(always)]
     pub fn HTX(&self) -> RegisterAddress<uart::HTX> {
         RegisterAddress::new(self.0 + 0xa4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn IER(&self) -> RegisterAddress<uart::IER> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn IIR_FCR(&self) -> RegisterAddress<uart::IIR_FCR> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LCR(&self) -> RegisterAddress<uart::LCR> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LSR(&self) -> RegisterAddress<uart::LSR> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MCR(&self) -> RegisterAddress<uart::MCR> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MSR(&self) -> RegisterAddress<uart::MSR> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RBR_THR(&self) -> RegisterAddress<uart::RBR_THR> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RESERVED1(&self, index: u32) -> RegisterAddress<uart::RESERVED1> {
         assert!(index < 23);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RESERVED2(&self, index: u32) -> RegisterAddress<uart::RESERVED2> {
         assert!(index < 9);
         RegisterAddress::new(self.0 + 0x80 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SCR(&self) -> RegisterAddress<uart::SCR> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn USR(&self) -> RegisterAddress<uart::USR> {
         RegisterAddress::new(self.0 + 0x7c)
     }

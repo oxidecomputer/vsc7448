@@ -32,22 +32,22 @@ use derive_more::{From, Into};
 pub struct KR_7X0030(u32);
 impl KR_7X0030 {
     /// BP AN ability
-    #[inline]
+    #[inline(always)]
     pub fn an_bp_able(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_bp_able(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// 10G CR10   negotiated
-    #[inline]
+    #[inline(always)]
     pub fn an_neg_cr10(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_neg_cr10(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -55,11 +55,11 @@ impl KR_7X0030 {
         self.0 |= value;
     }
     /// 10G CR4    negotiated
-    #[inline]
+    #[inline(always)]
     pub fn an_neg_cr4(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_neg_cr4(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -67,11 +67,11 @@ impl KR_7X0030 {
         self.0 |= value;
     }
     /// 10G KR FEC negotiated
-    #[inline]
+    #[inline(always)]
     pub fn an_neg_fec(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_neg_fec(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -79,11 +79,11 @@ impl KR_7X0030 {
         self.0 |= value;
     }
     /// 10G KR     negotiated
-    #[inline]
+    #[inline(always)]
     pub fn an_neg_kr(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_neg_kr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -91,11 +91,11 @@ impl KR_7X0030 {
         self.0 |= value;
     }
     /// 10G KR4    negotiated
-    #[inline]
+    #[inline(always)]
     pub fn an_neg_kr4(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_neg_kr4(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -103,11 +103,11 @@ impl KR_7X0030 {
         self.0 |= value;
     }
     /// 1G  KX     negotiated
-    #[inline]
+    #[inline(always)]
     pub fn an_neg_kx(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_neg_kx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -115,11 +115,11 @@ impl KR_7X0030 {
         self.0 |= value;
     }
     /// 10G KX4    negotiated
-    #[inline]
+    #[inline(always)]
     pub fn an_neg_kx4(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_neg_kx4(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;

@@ -36,11 +36,11 @@ impl FRM_ENTRY_PART0 {
     /// Configuration of frame or delay entry in Frame Table. Delay entries are only used for DTI. Delay entry fields: DELAY: Delay between injection of start of frames. Unit: One system clock cycle. Frame entry fields: INJ_CNT: Injection count. Number times to inject frame. Frame is ignored if INJ_CNT=0 or FRM_RM=1. Only applicable for DTI. FRM_RM: When set, next frame injection causes frame to be removed from buffer memory. This injection will not be transmitted on the destination port. Once removed, HW sets FRM_GONE=1. FRM_GONE: Set by AFI when frame has been removed from buffer memory. FRM_INFO: Frame information, ref. AFI:MISC:NEW_FRM_INFO.FRM_INFO.
     ///
     /// Delay entry type: Bit 0-29: DELAY Frame entry type: Bit 0-7: INJ_CNT Bit 8-10: Reserved, must be set to 0 Bit 11: FRM_RM Bit 12: FRM_GONE Bit 13-29: FRM_INFO
-    #[inline]
+    #[inline(always)]
     pub fn part0(&self) -> u32 {
         self.0 & 0x3fffffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_part0(&mut self, value: u32) {
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
@@ -56,11 +56,11 @@ impl FRM_NEXT_AND_TYPE {
     /// Entry Type. Delay entries are only applicable to DTI. The Entry Type controls the use of FRM_ENTRY_PART0.PART0.
     ///
     /// 0: Frame 1: Delay
-    #[inline]
+    #[inline(always)]
     pub fn entry_type(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_entry_type(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -68,11 +68,11 @@ impl FRM_NEXT_AND_TYPE {
         self.0 |= value;
     }
     /// Pointer to next Frame Table entry. Only applicable for frames used for DTI.
-    #[inline]
+    #[inline(always)]
     pub fn next_ptr(&self) -> u32 {
         self.0 & 0xfff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_next_ptr(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;

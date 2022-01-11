@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_BER_OFS(u32);
 impl TR_BER_OFS {
     /// Signed value to adjust final c0 tap position from calculated optimal setting.
-    #[inline]
+    #[inline(always)]
     pub fn c0_ber_ofs(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_c0_ber_ofs(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 5;
@@ -44,22 +44,22 @@ impl TR_BER_OFS {
         self.0 |= value;
     }
     /// Signed value to adjust final cm tap position from calculated optimal setting.
-    #[inline]
+    #[inline(always)]
     pub fn cm_ber_ofs(&self) -> u32 {
         self.0 & 0x1f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cm_ber_ofs(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
     /// Signed value to adjust final cp tap position from calculated optimal setting.
-    #[inline]
+    #[inline(always)]
     pub fn cp_ber_ofs(&self) -> u32 {
         (self.0 & 0x7c00) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cp_ber_ofs(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 10;

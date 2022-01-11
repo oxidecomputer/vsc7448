@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct SERDES1G_DFT_CFG0(u32);
 impl SERDES1G_DFT_CFG0 {
     /// Disable output inverter of BIST PRBS generator
-    #[inline]
+    #[inline(always)]
     pub fn inv_dis(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_inv_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
@@ -46,11 +46,11 @@ impl SERDES1G_DFT_CFG0 {
         self.0 |= value;
     }
     /// Lazy designers spare bit
-    #[inline]
+    #[inline(always)]
     pub fn lazybit(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lazybit(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -60,11 +60,11 @@ impl SERDES1G_DFT_CFG0 {
     /// Select PRBS pattern for BIST
     ///
     /// 0: G(x) = x^7 + x^6 + 1 1: G(x) = x^15 + x^14 + 1 2: G(x) = x^23 + x^18 + 1 3: G(x) = x^31 + x^28 + 1
-    #[inline]
+    #[inline(always)]
     pub fn prbs_sel(&self) -> u32 {
         (self.0 & 0x300000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_prbs_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 20;
@@ -74,11 +74,11 @@ impl SERDES1G_DFT_CFG0 {
     /// General enable for Jitter-Injection/Frequency-Offset-Generation Block (RX-Path)
     ///
     /// 0: Off 1: On
-    #[inline]
+    #[inline(always)]
     pub fn rx_dft_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_dft_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -88,11 +88,11 @@ impl SERDES1G_DFT_CFG0 {
     /// Enable sensitivity for phasedetector CP/MD (RX-Path)
     ///
     /// 0: Off 1: On
-    #[inline]
+    #[inline(always)]
     pub fn rx_pdsens_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_pdsens_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -102,11 +102,11 @@ impl SERDES1G_DFT_CFG0 {
     /// Disable influence of external phase correction on step controller
     ///
     /// 0: Enable 1: Disable
-    #[inline]
+    #[inline(always)]
     pub fn rx_phs_corr_dis(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_phs_corr_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -116,11 +116,11 @@ impl SERDES1G_DFT_CFG0 {
     /// Selection of test mode
     ///
     /// 0: Normal operation 1: BIST 2: Fixed pattern 3: Random pattern 4-7: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn test_mode(&self) -> u32 {
         (self.0 & 0x70000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_test_mode(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 16;
@@ -130,11 +130,11 @@ impl SERDES1G_DFT_CFG0 {
     /// General enable for Jitter-Injection/Frequency-Offset-Generation Block (TX-Path)
     ///
     /// 0: Off 1: On
-    #[inline]
+    #[inline(always)]
     pub fn tx_dft_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_dft_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -150,11 +150,11 @@ impl SERDES1G_DFT_CFG1 {
     /// Direction of Frequency-Offset (TX-Path)
     ///
     /// 0: Down 1: Up
-    #[inline]
+    #[inline(always)]
     pub fn tx_freqoff_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_freqoff_dir(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -164,22 +164,22 @@ impl SERDES1G_DFT_CFG1 {
     /// Enable Frequency-Offset-Generation (TX-Path)
     ///
     /// 0: Off 1: On
-    #[inline]
+    #[inline(always)]
     pub fn tx_freqoff_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_freqoff_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Amplitude of jitter for Jitter-Injection (TX-Path)
-    #[inline]
+    #[inline(always)]
     pub fn tx_jitter_ampl(&self) -> u32 {
         (self.0 & 0x3ff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_jitter_ampl(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         let value = value << 8;
@@ -189,11 +189,11 @@ impl SERDES1G_DFT_CFG1 {
     /// Enable TX jitter intertion
     ///
     /// 0: Off 1:On
-    #[inline]
+    #[inline(always)]
     pub fn tx_ji_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_ji_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -201,11 +201,11 @@ impl SERDES1G_DFT_CFG1 {
         self.0 |= value;
     }
     /// Stepping frequency for Jitter-Injection/Frequency-Offset-Generation (1/2^n) (TX-Path)
-    #[inline]
+    #[inline(always)]
     pub fn tx_step_freq(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_step_freq(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -215,11 +215,11 @@ impl SERDES1G_DFT_CFG1 {
     /// Select waveform for Jitter-Injection (TX-Path)
     ///
     /// 0: Triangular 1: Flattened (sinusoidal)
-    #[inline]
+    #[inline(always)]
     pub fn tx_waveform_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_waveform_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -236,11 +236,11 @@ impl SERDES1G_DFT_CFG2 {
     /// Direction of Frequency-Offset (RX-Path)
     ///
     /// 0: Down 1: Up
-    #[inline]
+    #[inline(always)]
     pub fn rx_freqoff_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_freqoff_dir(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -250,22 +250,22 @@ impl SERDES1G_DFT_CFG2 {
     /// Enable Frequency-Offset-Generation (RX-Path)
     ///
     /// 0: Off 1: On
-    #[inline]
+    #[inline(always)]
     pub fn rx_freqoff_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_freqoff_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Amplitude of jitter for Link-Quality-Evaluation/Jitter-Injection (RX-Path)
-    #[inline]
+    #[inline(always)]
     pub fn rx_jitter_ampl(&self) -> u32 {
         (self.0 & 0x3ff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_jitter_ampl(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         let value = value << 8;
@@ -275,11 +275,11 @@ impl SERDES1G_DFT_CFG2 {
     /// Enable RX jitter intertion
     ///
     /// 0: Off 1:On
-    #[inline]
+    #[inline(always)]
     pub fn rx_ji_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_ji_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -287,11 +287,11 @@ impl SERDES1G_DFT_CFG2 {
         self.0 |= value;
     }
     /// Stepping frequency for Jitter-Injection/Frequency-Offset-Generation (1/2^n) (RX-Path)
-    #[inline]
+    #[inline(always)]
     pub fn rx_step_freq(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_step_freq(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -301,11 +301,11 @@ impl SERDES1G_DFT_CFG2 {
     /// Select waveform for Jitter-Injection (RX-Path)
     ///
     /// 0: Triangular 1: Flattened
-    #[inline]
+    #[inline(always)]
     pub fn rx_waveform_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_waveform_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -322,11 +322,11 @@ impl SERDES1G_MISC_CFG {
     /// Enable deserializer cp/md handling for 100fx mode
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn des_100fx_cpmd_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_100fx_cpmd_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -336,11 +336,11 @@ impl SERDES1G_MISC_CFG {
     /// Select simple 100fx mode
     ///
     /// 0: Normal mode 1: Simple mode
-    #[inline]
+    #[inline(always)]
     pub fn des_100fx_cpmd_mode(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_100fx_cpmd_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -350,11 +350,11 @@ impl SERDES1G_MISC_CFG {
     /// Swap cp/md signals in 100fx mode
     ///
     /// 0: No swapping of cp and md 1: Swap cp and md
-    #[inline]
+    #[inline(always)]
     pub fn des_100fx_cpmd_swap(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_100fx_cpmd_swap(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -362,11 +362,11 @@ impl SERDES1G_MISC_CFG {
         self.0 |= value;
     }
     /// Select mode of kick-out-of-180-degree functionality
-    #[inline]
+    #[inline(always)]
     pub fn des_100fx_kick_mode(&self) -> u32 {
         (self.0 & 0x1800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_100fx_kick_mode(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 11;
@@ -376,11 +376,11 @@ impl SERDES1G_MISC_CFG {
     /// Lane Reset
     ///
     /// 0: No reset 1: Reset (not self-clearing)
-    #[inline]
+    #[inline(always)]
     pub fn lane_rst(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lane_rst(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -389,11 +389,11 @@ impl SERDES1G_MISC_CFG {
     /// Enable data inversion received from Deserializer
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn rx_data_inv_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_data_inv_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -403,11 +403,11 @@ impl SERDES1G_MISC_CFG {
     /// Enable RX-Low-Power feature (Power control by LPI-FSM in connected PCS)
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn rx_lpi_mode_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_lpi_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -417,11 +417,11 @@ impl SERDES1G_MISC_CFG {
     /// Enable data inversion sent to Serializer
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn tx_data_inv_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_data_inv_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -431,11 +431,11 @@ impl SERDES1G_MISC_CFG {
     /// Enable TX-Low-Power feature (Power control by LPI-FSM in connected PCS)
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn tx_lpi_mode_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_lpi_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -450,11 +450,11 @@ impl SERDES1G_MISC_CFG {
 pub struct SERDES1G_RC_PLL_BIST_CFG(u32);
 impl SERDES1G_RC_PLL_BIST_CFG {
     /// Enables the BIST for the RC-PLL
-    #[inline]
+    #[inline(always)]
     pub fn pll_bist_ena(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_bist_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -462,11 +462,11 @@ impl SERDES1G_RC_PLL_BIST_CFG {
         self.0 |= value;
     }
     /// Feedback divider setting for closed loop test at high frequency. B1: Rc_div2, B0: Fb_div2.
-    #[inline]
+    #[inline(always)]
     pub fn pll_bist_fbs_high(&self) -> u32 {
         (self.0 & 0x30000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_bist_fbs_high(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 16;
@@ -474,11 +474,11 @@ impl SERDES1G_RC_PLL_BIST_CFG {
         self.0 |= value;
     }
     /// Higher frequnecy for the RC-PLL BIST
-    #[inline]
+    #[inline(always)]
     pub fn pll_bist_high(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_bist_high(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -486,11 +486,11 @@ impl SERDES1G_RC_PLL_BIST_CFG {
         self.0 |= value;
     }
     /// Lower frequnecy for the RC-PLL BIST
-    #[inline]
+    #[inline(always)]
     pub fn pll_bist_low(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_bist_low(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -504,11 +504,11 @@ impl SERDES1G_RC_PLL_BIST_CFG {
 pub struct SERDES1G_TP_CFG(u32);
 impl SERDES1G_TP_CFG {
     /// Static pattern tranferred in fixed pattern test mode, LSB is transferred first
-    #[inline]
+    #[inline(always)]
     pub fn static_pattern(&self) -> u32 {
         self.0 & 0xfffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_static_pattern(&mut self, value: u32) {
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;

@@ -32,22 +32,22 @@ use derive_more::{From, Into};
 pub struct CM_ADDR(u32);
 impl CM_ADDR {
     /// Address selection within selected core memory (CMID register). Address is automatically advanced at every data access.
-    #[inline]
+    #[inline(always)]
     pub fn cm_addr(&self) -> u32 {
         self.0 & 0x3fffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cm_addr(&mut self, value: u32) {
         assert!(value <= 0x3fffff);
         self.0 &= !0x3fffff;
         self.0 |= value;
     }
     /// Please refer to cmid.xls in the AS1000, misc_docs folder.
-    #[inline]
+    #[inline(always)]
     pub fn cm_id(&self) -> u32 {
         (self.0 & 0x3fc00000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cm_id(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 22;
@@ -60,11 +60,11 @@ impl CM_ADDR {
 pub struct CM_DATA(u32);
 impl CM_DATA {
     /// Data register for core memory access. Wider memories are big endian mapped into the 32 BIT inspection space.
-    #[inline]
+    #[inline(always)]
     pub fn cm_data(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cm_data(&mut self, value: u32) {
         self.0 = value;
     }

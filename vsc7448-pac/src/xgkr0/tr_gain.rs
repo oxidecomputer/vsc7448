@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_GAIN(u32);
 impl TR_GAIN {
     /// LP C(0) optimized when GAIN is gain_targ +/- 2*gain_marg
-    #[inline]
+    #[inline(always)]
     pub fn gain_marg(&self) -> u32 {
         (self.0 & 0xfc00) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_gain_marg(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 10;
@@ -44,11 +44,11 @@ impl TR_GAIN {
         self.0 |= value;
     }
     /// Target value of GAIN setting during LP C(0) optimization.
-    #[inline]
+    #[inline(always)]
     pub fn gain_targ(&self) -> u32 {
         self.0 & 0x3ff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_gain_targ(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;

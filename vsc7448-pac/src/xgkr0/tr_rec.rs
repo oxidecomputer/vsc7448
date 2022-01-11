@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_C0_DME_REC(u32);
 impl TR_C0_DME_REC {
     /// Recorded position of DME_viol event for C0
-    #[inline]
+    #[inline(always)]
     pub fn c0_dme_rec(&self) -> u32 {
         self.0 & 0x7f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_c0_dme_rec(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -48,11 +48,11 @@ impl TR_C0_DME_REC {
 pub struct TR_C0_LIM_REC(u32);
 impl TR_C0_LIM_REC {
     /// Recorded position of MAX event for C0
-    #[inline]
+    #[inline(always)]
     pub fn c0_max_rec(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_c0_max_rec(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 8;
@@ -60,11 +60,11 @@ impl TR_C0_LIM_REC {
         self.0 |= value;
     }
     /// Recorded position of MIN event for C0
-    #[inline]
+    #[inline(always)]
     pub fn c0_min_rec(&self) -> u32 {
         self.0 & 0x7f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_c0_min_rec(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -76,11 +76,11 @@ impl TR_C0_LIM_REC {
 pub struct TR_CM_DME_REC(u32);
 impl TR_CM_DME_REC {
     /// Recorded position of DME_viol event for CM
-    #[inline]
+    #[inline(always)]
     pub fn cm_dme_rec(&self) -> u32 {
         self.0 & 0x7f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cm_dme_rec(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -92,11 +92,11 @@ impl TR_CM_DME_REC {
 pub struct TR_CM_LIM_REC(u32);
 impl TR_CM_LIM_REC {
     /// Recorded position of MAX event for CM
-    #[inline]
+    #[inline(always)]
     pub fn cm_max_rec(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cm_max_rec(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 8;
@@ -104,11 +104,11 @@ impl TR_CM_LIM_REC {
         self.0 |= value;
     }
     /// Recorded position of MIN event for CM
-    #[inline]
+    #[inline(always)]
     pub fn cm_min_rec(&self) -> u32 {
         self.0 & 0x7f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cm_min_rec(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -120,11 +120,11 @@ impl TR_CM_LIM_REC {
 pub struct TR_CP_DME_REC(u32);
 impl TR_CP_DME_REC {
     /// Recorded position of DME_viol event for CP
-    #[inline]
+    #[inline(always)]
     pub fn cp_dme_rec(&self) -> u32 {
         self.0 & 0x7f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cp_dme_rec(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -136,11 +136,11 @@ impl TR_CP_DME_REC {
 pub struct TR_CP_LIM_REC(u32);
 impl TR_CP_LIM_REC {
     /// Recorded position of MAX event for CP
-    #[inline]
+    #[inline(always)]
     pub fn cp_max_rec(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cp_max_rec(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 8;
@@ -148,11 +148,11 @@ impl TR_CP_LIM_REC {
         self.0 |= value;
     }
     /// Recorded position of MIN event for CP
-    #[inline]
+    #[inline(always)]
     pub fn cp_min_rec(&self) -> u32 {
         self.0 & 0x7f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cp_min_rec(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;

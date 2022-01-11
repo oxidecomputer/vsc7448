@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct DTI_DURATION_TICK_LEN(u32);
 impl DTI_DURATION_TICK_LEN {
     /// Lenght of DTI Duration Tick in clock cycles. Default value corresponds to 0.1ms.
-    #[inline]
+    #[inline(always)]
     pub fn dti_duration_tick_len(&self) -> u32 {
         self.0 & 0x3ffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dti_duration_tick_len(&mut self, value: u32) {
         assert!(value <= 0x3ffff);
         self.0 &= !0x3ffff;
@@ -50,11 +50,11 @@ impl DTI_DURATION_TICK_LEN {
 pub struct ERR(u32);
 impl ERR {
     /// FRM_OUT_CNT for a port was zero while an ack from FRD was received. If enabled in STICKY_INFO_ENA.FRM_OUT_NEG_INFO_ENA, the corresponding port number is stored in STICKY_INFO.PORT_NUM.
-    #[inline]
+    #[inline(always)]
     pub fn err_frm_out_neg_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_err_frm_out_neg_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -66,11 +66,11 @@ impl ERR {
 pub struct MISC_CTRL(u32);
 impl MISC_CTRL {
     /// Enable AFI. Must be set to 1 before any use of AFI.
-    #[inline]
+    #[inline(always)]
     pub fn afi_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_afi_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -82,11 +82,11 @@ impl MISC_CTRL {
 pub struct NEW_FRM_CTRL(u32);
 impl NEW_FRM_CTRL {
     /// Valid bit for NEW_FRM_INFO.FRM_INFO.
-    #[inline]
+    #[inline(always)]
     pub fn vld(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vld(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -98,11 +98,11 @@ impl NEW_FRM_CTRL {
 pub struct NEW_FRM_INFO(u32);
 impl NEW_FRM_INFO {
     /// Frame information for new frame received by AFI. The inforrmation must be copied to FRM_INFO bits in AFI:FRM_TBL:FRM_ENTRY_PART0.PART0. Once FRM_INFO has been copied to FRM_TBL, then NEW_FRM_CTRL.VLD must be cleared.
-    #[inline]
+    #[inline(always)]
     pub fn frm_info(&self) -> u32 {
         self.0 & 0x7ffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_info(&mut self, value: u32) {
         assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
@@ -116,11 +116,11 @@ impl NEW_FRM_INFO {
 pub struct STICKY_INFO(u32);
 impl STICKY_INFO {
     /// Port number corresponding to sticky bit event.
-    #[inline]
+    #[inline(always)]
     pub fn port_num(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_num(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -129,11 +129,11 @@ impl STICKY_INFO {
     /// Number of times STICKY_INFO.PORT_NUM and  STICKY_INFO.TTI_PTR is allowed to be updated.
     ///
     /// 0: Illegal 1: Max one update of STICKY_INFO allowed (decremented for each update). 2: Max two updates of STICKY_INFO allowed (decremented for each update). ... 15: Any number of updates of STICKY_INFO allowed (not decremented).
-    #[inline]
+    #[inline(always)]
     pub fn sticky_info_wr_cnt(&self) -> u32 {
         (self.0 & 0xf0000000) >> 28
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sticky_info_wr_cnt(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 28;
@@ -141,11 +141,11 @@ impl STICKY_INFO {
         self.0 |= value;
     }
     /// TTI pointer corresponding to sticky bit event.
-    #[inline]
+    #[inline(always)]
     pub fn tti_ptr(&self) -> u32 {
         (self.0 & 0xfff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tti_ptr(&mut self, value: u32) {
         assert!(value <= 0xfff);
         let value = value << 8;
@@ -158,11 +158,11 @@ impl STICKY_INFO {
 pub struct STICKY_INFO_ENA(u32);
 impl STICKY_INFO_ENA {
     /// Enable updating of STICKY_INFO.PORT_NUM for WARN_ENQ_STOP_STICKY.
-    #[inline]
+    #[inline(always)]
     pub fn enq_stop_info_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_enq_stop_info_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -170,11 +170,11 @@ impl STICKY_INFO_ENA {
         self.0 |= value;
     }
     /// Enable updating of STICKY_INFO.PORT_NUM for WARN_FRM_OUT_MAX_STICKY.
-    #[inline]
+    #[inline(always)]
     pub fn frm_out_max_info_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_out_max_info_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -182,22 +182,22 @@ impl STICKY_INFO_ENA {
         self.0 |= value;
     }
     /// Enable updating of STICKY_INFO.PORT_NUM for ERR_FRM_OUT_NEG_STICKY.
-    #[inline]
+    #[inline(always)]
     pub fn frm_out_neg_info_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_out_neg_info_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Enable updating of STICKY_INFO.TTI_PTR for WARN_TTI_BUSY_STICKY.
-    #[inline]
+    #[inline(always)]
     pub fn tti_busy_info_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tti_busy_info_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -212,11 +212,11 @@ impl STICKY_INFO_ENA {
 pub struct WARN(u32);
 impl WARN {
     /// DTI_CNT_DOWN has reached its maximum negative value.
-    #[inline]
+    #[inline(always)]
     pub fn warn_dti_cnt_down_max_neg_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_warn_dti_cnt_down_max_neg_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -224,11 +224,11 @@ impl WARN {
         self.0 |= value;
     }
     /// QSYS has asserted enq_stop. i.e. requested AFI to stop injecting frames. This should normally not occur. If enabled in STICKY_INFO_ENA.ENQ_STOP_INFO_ENA, the affected port number is stored in STICKY_INFO.PORT_NUM.
-    #[inline]
+    #[inline(always)]
     pub fn warn_enq_stop_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_warn_enq_stop_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -236,11 +236,11 @@ impl WARN {
         self.0 |= value;
     }
     /// FRM_OUT_MAX has been reached for port. This is unusual, but may occur when a large number of frames are successively injected to queues of the same port or if the port flow controlled or is shaped to a low bandwidth. The number of injections that can be outstanding (i.e. waiting to be transmitted out of QSYS) for a port	at a time is configured in AFI:PORT_TBL:PORT_CFG.FRM_OUT_MAX. If enabled in STICKY_INFO_ENA.FRM_OUT_MAX_INFO_ENA, the corresponding port number is stored in STICKY_INFO.PORT_NUM.
-    #[inline]
+    #[inline(always)]
     pub fn warn_frm_out_max_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_warn_frm_out_max_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -248,22 +248,22 @@ impl WARN {
         self.0 |= value;
     }
     /// A new frame for injection was received by AFI, but NEW_FRM_CTRL.VLD was still 1. Check that NEW_FRM_CTRL.VLD is cleared upon copying NEW_FRM_INFO.FRM_INFO to FRM_TBL.
-    #[inline]
+    #[inline(always)]
     pub fn warn_new_frm_vld_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_warn_new_frm_vld_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// A TTI in TTI_TBL was elected to be processed, but was already being processed. This may indicate that the length of a calendar slot is too short (ref. AFI:TTI_MISC:TTI_CAL_SLOT_PTRS). If enabled in STICKY_INFO_ENA.TTI_BUSY_INFO_ENA, the corresponding TTI pointer is stored in STICKY_INFO.TTI_PTR.
-    #[inline]
+    #[inline(always)]
     pub fn warn_tti_busy_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_warn_tti_busy_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;

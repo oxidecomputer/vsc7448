@@ -36,11 +36,11 @@ impl RCOMP_STATUS {
     /// Resistor comparison activity
     ///
     /// 0: resistor measurement finished or inactive 1: resistor measurement in progress
-    #[inline]
+    #[inline(always)]
     pub fn busy(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_busy(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -50,11 +50,11 @@ impl RCOMP_STATUS {
     /// Alarm signal if rcomp isn't best choice anymore
     ///
     /// 0: inactive 1: active
-    #[inline]
+    #[inline(always)]
     pub fn delta_alert(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_delta_alert(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -64,11 +64,11 @@ impl RCOMP_STATUS {
     /// Measured resistor value
     ///
     /// 0: maximum resistance value 15: minimum resistance value
-    #[inline]
+    #[inline(always)]
     pub fn rcomp(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rcomp(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;

@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct MAP_ENTRY(u32);
 impl MAP_ENTRY {
     /// COS ID. The classified COS ID is set to COSID_VAL if SET_CTRL.COSID_ENA is set.
-    #[inline]
+    #[inline(always)]
     pub fn cosid_val(&self) -> u32 {
         (self.0 & 0xe000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cosid_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 13;
@@ -44,11 +44,11 @@ impl MAP_ENTRY {
         self.0 |= value;
     }
     /// DEI value. The classified DEI is set to DEI_VAL if SET_CTRL.DEI_ENA is set.
-    #[inline]
+    #[inline(always)]
     pub fn dei_val(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dei_val(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -56,11 +56,11 @@ impl MAP_ENTRY {
         self.0 |= value;
     }
     /// Drop precedence level. The classified DP level is set to DP_VAL if SET_CTRL.DP_ENA is set.
-    #[inline]
+    #[inline(always)]
     pub fn dp_val(&self) -> u32 {
         (self.0 & 0x30000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dp_val(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 16;
@@ -68,22 +68,22 @@ impl MAP_ENTRY {
         self.0 |= value;
     }
     /// DSCP value. The classified DSCP is set to DSCP_VAL if SET_CTRL.DSCP_ENA is set.
-    #[inline]
+    #[inline(always)]
     pub fn dscp_val(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_val(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
     /// Disable forwarding for frames hitting this entry.
-    #[inline]
+    #[inline(always)]
     pub fn fwd_dis(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fwd_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
@@ -91,11 +91,11 @@ impl MAP_ENTRY {
         self.0 |= value;
     }
     /// Path color value used by OAM MEP.
-    #[inline]
+    #[inline(always)]
     pub fn path_color_val(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_path_color_val(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -103,11 +103,11 @@ impl MAP_ENTRY {
         self.0 |= value;
     }
     /// Path COS ID used by OAM MEP.
-    #[inline]
+    #[inline(always)]
     pub fn path_cosid_val(&self) -> u32 {
         (self.0 & 0xe00000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_path_cosid_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 21;
@@ -115,11 +115,11 @@ impl MAP_ENTRY {
         self.0 |= value;
     }
     /// PCP value. The classified PCP is set to PCP_VAL if SET_CTRL.PCP_ENA is set.
-    #[inline]
+    #[inline(always)]
     pub fn pcp_val(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pcp_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -127,11 +127,11 @@ impl MAP_ENTRY {
         self.0 |= value;
     }
     /// QoS class. The classified QoS class is set to QOS_VAL if SET_CTRL.QOS_ENA is set.
-    #[inline]
+    #[inline(always)]
     pub fn qos_val(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_qos_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 10;
@@ -139,11 +139,11 @@ impl MAP_ENTRY {
         self.0 |= value;
     }
     /// TC bits. The classified TC bits are set to TC_VAL if SET_CTRL.TC_ENA is set.
-    #[inline]
+    #[inline(always)]
     pub fn tc_val(&self) -> u32 {
         (self.0 & 0x1c0000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tc_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 18;
@@ -156,11 +156,11 @@ impl MAP_ENTRY {
 pub struct SET_CTRL(u32);
 impl SET_CTRL {
     /// If set, COSID_VAL replaces the classified COS ID if the entry is matched.
-    #[inline]
+    #[inline(always)]
     pub fn cosid_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cosid_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -168,11 +168,11 @@ impl SET_CTRL {
         self.0 |= value;
     }
     /// If set, DEI_VAL replaces the classified DEI value if the entry is matched.
-    #[inline]
+    #[inline(always)]
     pub fn dei_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dei_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -180,11 +180,11 @@ impl SET_CTRL {
         self.0 |= value;
     }
     /// If set, DP_VAL replaces the classified DP level if the entry is matched.
-    #[inline]
+    #[inline(always)]
     pub fn dp_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dp_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -192,22 +192,22 @@ impl SET_CTRL {
         self.0 |= value;
     }
     /// If set, DSCP_VAL replaces the classified DSCP value if the entry is matched.
-    #[inline]
+    #[inline(always)]
     pub fn dscp_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dscp_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// If set, PATH_COSID_VAL and PATH_COLOR_VAL are used if the entry is matched.
-    #[inline]
+    #[inline(always)]
     pub fn path_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_path_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -215,11 +215,11 @@ impl SET_CTRL {
         self.0 |= value;
     }
     /// If set, PCP_VAL replaces the classified PCP value if the entry is matched.
-    #[inline]
+    #[inline(always)]
     pub fn pcp_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pcp_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -227,11 +227,11 @@ impl SET_CTRL {
         self.0 |= value;
     }
     /// If set, QOS_VAL replaces the classified QoS class if the entry is matched.
-    #[inline]
+    #[inline(always)]
     pub fn qos_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_qos_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -239,11 +239,11 @@ impl SET_CTRL {
         self.0 |= value;
     }
     /// If set, TC_VAL replaces the classified TC bits if the entry is matched.
-    #[inline]
+    #[inline(always)]
     pub fn tc_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tc_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;

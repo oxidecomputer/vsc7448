@@ -36,22 +36,22 @@ impl PORT_STICKY {
     /// This field indicates if one or more Ethernet frames have been discarded due to aging.
     ///
     /// '0': No Ethernet frames have been discarded due to aging. '1': One or more Ethernet frames have been discarded due to aging. Bit is cleared by writing a '1' to this position.
-    #[inline]
+    #[inline(always)]
     pub fn frm_aging_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_aging_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// This field is set if the PORT_CFG.INJ_FORMAT_CFG field is set to one of the IFH modes and the incoming frame's format does not comply with the configured prefix.
-    #[inline]
+    #[inline(always)]
     pub fn ifh_prefix_err_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ifh_prefix_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;

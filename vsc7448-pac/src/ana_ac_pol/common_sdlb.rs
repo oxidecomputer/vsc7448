@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct DLB_CTRL(u32);
 impl DLB_CTRL {
     /// TIMESCALE_VAL and BASE_TICK_CNT controls the the rate interval as well as the rate granularity available for LB rate configuration Refer to TIMESCALE_VAL for details.
-    #[inline]
+    #[inline(always)]
     pub fn base_tick_cnt(&self) -> u32 {
         (self.0 & 0x7fff0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_base_tick_cnt(&mut self, value: u32) {
         assert!(value <= 0x7fff);
         let value = value << 4;
@@ -46,11 +46,11 @@ impl DLB_CTRL {
     /// Specifies the clock period in unit of 0.1ns.
     ///
     /// 40: 4ns (250MHz) 64: 6,4ns (156.25MHz) 192: 19,2 ns (52.08MHz)
-    #[inline]
+    #[inline(always)]
     pub fn clk_period_01ns(&self) -> u32 {
         (self.0 & 0x7f80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_clk_period_01ns(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 19;
@@ -60,11 +60,11 @@ impl DLB_CTRL {
     /// Enables adding of frame bytes to the leaky buckets.
     ///
     /// 0: Disable bucket addition 1: Enable bucket addition
-    #[inline]
+    #[inline(always)]
     pub fn dlb_add_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dlb_add_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -73,11 +73,11 @@ impl DLB_CTRL {
     /// Enables leaking from the leaky buckets.
     ///
     /// 0: Disable bucket leaking 1: Enable bucket leaking
-    #[inline]
+    #[inline(always)]
     pub fn leak_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_leak_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -92,11 +92,11 @@ impl DLB_STICKY {
     /// Set when the frame rate is exceeding the Committed Information Rate. Bit is cleared by writing a 1 to this position.
     ///
     /// 0: No event has occured 1: CIR exceeded
-    #[inline]
+    #[inline(always)]
     pub fn cir_exceeded_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cir_exceeded_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -106,11 +106,11 @@ impl DLB_STICKY {
     /// Set when the frame rate is below both the Committed Information Rate and the Peak Information Rate. Bit is cleared by writing a 1 to this position.
     ///
     /// 0: No event has occured 1: Traffic received without triggering CIR and PIR policing
-    #[inline]
+    #[inline(always)]
     pub fn cir_pir_open_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cir_pir_open_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -119,11 +119,11 @@ impl DLB_STICKY {
     /// Set when a LB scan completes. Bit is cleared by writing a 1.
     ///
     /// 0: No event has occured 1: Leak scan completes
-    #[inline]
+    #[inline(always)]
     pub fn leak_scan_completed_sticky(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_leak_scan_completed_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -133,11 +133,11 @@ impl DLB_STICKY {
     /// Set when a LB scan starts. Bit is cleared by writing a 1 to this position.
     ///
     /// 0: No event has occured 1: Leak scan started
-    #[inline]
+    #[inline(always)]
     pub fn leak_scan_started_sticky(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_leak_scan_started_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -147,11 +147,11 @@ impl DLB_STICKY {
     /// Set when a LB scan could not start because a scan is already ongoing. If this occur, BASE_TICK_CNT is set too low and must be increased. Bit is cleared by writing a 1 to this position.
     ///
     /// 0: No event has occured 1: Leak scan could not start at time
-    #[inline]
+    #[inline(always)]
     pub fn leak_start_delayed_sticky(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_leak_start_delayed_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -161,11 +161,11 @@ impl DLB_STICKY {
     /// Set when the frame rate is exceeding the Peak Information Rate. Bit is cleared by writing a 1 to this position.
     ///
     /// 0: No event has occured 1: PIR exceeded
-    #[inline]
+    #[inline(always)]
     pub fn pir_exceeded_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pir_exceeded_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;

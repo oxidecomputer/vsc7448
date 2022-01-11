@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct MMGT_IQ_STAT(u32);
 impl MMGT_IQ_STAT {
     /// Number of frame copies pending in the ingress queue
-    #[inline]
+    #[inline(always)]
     pub fn mmgt_iq_size(&self) -> u32 {
         self.0 & 0xfffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mmgt_iq_size(&mut self, value: u32) {
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
@@ -48,11 +48,11 @@ impl MMGT_IQ_STAT {
 pub struct MMGT_PORT_USE(u32);
 impl MMGT_PORT_USE {
     /// Total consumption per port in the memory manager. Unit is one cell (176 bytes).
-    #[inline]
+    #[inline(always)]
     pub fn mmgt_port_use(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mmgt_port_use(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -64,11 +64,11 @@ impl MMGT_PORT_USE {
 pub struct MMGT_PORT_VIEW(u32);
 impl MMGT_PORT_VIEW {
     /// Select port to see consumption values for
-    #[inline]
+    #[inline(always)]
     pub fn mmgt_port_view(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mmgt_port_view(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -79,11 +79,11 @@ impl MMGT_PORT_VIEW {
 pub struct MMGT_TAILDROP_CNT(u32);
 impl MMGT_TAILDROP_CNT {
     /// Returns the number of buffer drops due to ATOP reached, or lack of free memory. Values returned for the port mapped in MMGT_PORT_VIEW. Counter wraps when maximum is reached reached.
-    #[inline]
+    #[inline(always)]
     pub fn mmgt_taildrop_cnt(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mmgt_taildrop_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

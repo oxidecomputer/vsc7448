@@ -34,11 +34,11 @@ impl DP_MAP {
     /// Drop precedence N uses mapping table given by bit N in this field.
     ///
     /// xxx0: Map DP value 0 to DE value 0 xxx1: Map DP value 0 to DE value 1 ... 0xxx: Map DP value 3 to DE value 0 1xxx: Map DP value 3 to DE value 1
-    #[inline]
+    #[inline(always)]
     pub fn dp(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dp(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -50,11 +50,11 @@ impl DP_MAP {
 pub struct EEE_CFG(u32);
 impl EEE_CFG {
     /// Queues set in this mask activate the egress port immediately when any of the queues have data available.
-    #[inline]
+    #[inline(always)]
     pub fn eee_fast_queues(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_eee_fast_queues(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -66,11 +66,11 @@ impl EEE_CFG {
 pub struct EEE_THRES(u32);
 impl EEE_THRES {
     /// Maximum number of bytes in a queue before egress port is activated. Unit is 60 bytes.
-    #[inline]
+    #[inline(always)]
     pub fn eee_high_bytes(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_eee_high_bytes(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -78,11 +78,11 @@ impl EEE_THRES {
         self.0 |= value;
     }
     /// Maximum number of frames in a queue before the egress port is activated. Unit is 1 frame.
-    #[inline]
+    #[inline(always)]
     pub fn eee_high_frames(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_eee_high_frames(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -96,11 +96,11 @@ impl FRM_AGING {
     /// Frames are aged and removed from the queue system when the frame's age timer becomes two. The frame age timer is increased for all frames whenever the configured time, MAX_AGE,  has passed. Effectively, this means that a frame is aged when the frame has waited in the queue system between one or two times the period specified by MAX_AGE. The periodd configured by MAX_AGE is also termed an "age era". A value of zero disables frame aging. Frame aging related parameters: QSYS:SYSTEM:FRM_AGING.MAX_AGE HSCH:HSCH_MISC:PORT_MODE.AGE_DIS DSM:CFG:BUF_CFG.AGING_ENA
     ///
     /// 0: Disable frame aging. >=1: Era length in unit of 4us.
-    #[inline]
+    #[inline(always)]
     pub fn max_age(&self) -> u32 {
         self.0 & 0xfffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_max_age(&mut self, value: u32) {
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
@@ -112,11 +112,11 @@ impl FRM_AGING {
 pub struct PMEM_SIZE(u32);
 impl PMEM_SIZE {
     /// Must be set before core reset is released. Unit is  bytes.
-    #[inline]
+    #[inline(always)]
     pub fn pmem_size(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pmem_size(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -130,11 +130,11 @@ impl PMEM_SIZE {
 pub struct RESET_CFG(u32);
 impl RESET_CFG {
     /// Switch core is enabled when this field is set.
-    #[inline]
+    #[inline(always)]
     pub fn core_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_core_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -146,11 +146,11 @@ impl RESET_CFG {
 pub struct STAT_CFG(u32);
 impl STAT_CFG {
     /// Set to disable counting buffer drops (tail) in the designated tail drop counter. When disabled, the per priority buffer drop counter is used instead.
-    #[inline]
+    #[inline(always)]
     pub fn stat_rx_taildrop_dis(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_stat_rx_taildrop_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

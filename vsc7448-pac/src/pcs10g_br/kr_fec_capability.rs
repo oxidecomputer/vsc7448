@@ -34,11 +34,11 @@ impl KR_FEC_CAPABILITY {
     /// This is a status bit indicating whether PHY supports FEC or not.
     ///
     /// 0: This PHY device does not support FEC. 1: This PHY device supports FEC.
-    #[inline]
+    #[inline(always)]
     pub fn fec_capable(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fec_capable(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

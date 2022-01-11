@@ -43,16 +43,16 @@ pub mod system;
 /// Not documented
 pub struct CALCFG(pub(super) u32);
 impl CALCFG {
-    #[inline]
+    #[inline(always)]
     pub fn CAL_AUTO(&self, index: u32) -> RegisterAddress<calcfg::CAL_AUTO> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CAL_CTRL(&self) -> RegisterAddress<calcfg::CAL_CTRL> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CAL_SEQ(&self) -> RegisterAddress<calcfg::CAL_SEQ> {
         RegisterAddress::new(self.0 + 0x10)
     }
@@ -61,11 +61,11 @@ impl CALCFG {
 /// Access core memory
 pub struct COREMEM(pub(super) u32);
 impl COREMEM {
-    #[inline]
+    #[inline(always)]
     pub fn CM_ADDR(&self) -> RegisterAddress<coremem::CM_ADDR> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CM_DATA(&self) -> RegisterAddress<coremem::CM_DATA> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -74,7 +74,7 @@ impl COREMEM {
 /// Miscellaneous
 pub struct MISC(pub(super) u32);
 impl MISC {
-    #[inline]
+    #[inline(always)]
     pub fn EVENTS_CORE(&self) -> RegisterAddress<misc::EVENTS_CORE> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -83,11 +83,11 @@ impl MISC {
 /// Memory manager status
 pub struct MMGT(pub(super) u32);
 impl MMGT {
-    #[inline]
+    #[inline(always)]
     pub fn MMGT(&self) -> RegisterAddress<mmgt::MMGT> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MMGT_FAST(&self) -> RegisterAddress<mmgt::MMGT_FAST> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -96,19 +96,19 @@ impl MMGT {
 /// Memory manager status
 pub struct MMGT_PORT(pub(super) u32);
 impl MMGT_PORT {
-    #[inline]
+    #[inline(always)]
     pub fn MMGT_IQ_STAT(&self) -> RegisterAddress<mmgt_port::MMGT_IQ_STAT> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MMGT_PORT_USE(&self) -> RegisterAddress<mmgt_port::MMGT_PORT_USE> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MMGT_PORT_VIEW(&self) -> RegisterAddress<mmgt_port::MMGT_PORT_VIEW> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MMGT_TAILDROP_CNT(&self) -> RegisterAddress<mmgt_port::MMGT_TAILDROP_CNT> {
         RegisterAddress::new(self.0 + 0xc)
     }
@@ -117,26 +117,26 @@ impl MMGT_PORT {
 /// Watermarks for egress queue system
 pub struct PAUSE_CFG(pub(super) u32);
 impl PAUSE_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn ATOP(&self, index: u32) -> RegisterAddress<pause_cfg::ATOP> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0xe8 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn ATOP_TOT_CFG(&self) -> RegisterAddress<pause_cfg::ATOP_TOT_CFG> {
         RegisterAddress::new(self.0 + 0x2b0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn FWD_PRESSURE(&self, index: u32) -> RegisterAddress<pause_cfg::FWD_PRESSURE> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0x1cc + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PAUSE_CFG(&self, index: u32) -> RegisterAddress<pause_cfg::PAUSE_CFG> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PAUSE_TOT_CFG(&self) -> RegisterAddress<pause_cfg::PAUSE_TOT_CFG> {
         RegisterAddress::new(self.0 + 0xe4)
     }
@@ -145,7 +145,7 @@ impl PAUSE_CFG {
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
-    #[inline]
+    #[inline(always)]
     pub fn RAM_INIT(&self) -> RegisterAddress<ram_ctrl::RAM_INIT> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -154,32 +154,32 @@ impl RAM_CTRL {
 /// Switch configuration
 pub struct SYSTEM(pub(super) u32);
 impl SYSTEM {
-    #[inline]
+    #[inline(always)]
     pub fn DP_MAP(&self) -> RegisterAddress<system::DP_MAP> {
         RegisterAddress::new(self.0 + 0xf8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn EEE_CFG(&self, index: u32) -> RegisterAddress<system::EEE_CFG> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn EEE_THRES(&self) -> RegisterAddress<system::EEE_THRES> {
         RegisterAddress::new(self.0 + 0xe4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn FRM_AGING(&self) -> RegisterAddress<system::FRM_AGING> {
         RegisterAddress::new(self.0 + 0xf0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PMEM_SIZE(&self) -> RegisterAddress<system::PMEM_SIZE> {
         RegisterAddress::new(self.0 + 0xec)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RESET_CFG(&self) -> RegisterAddress<system::RESET_CFG> {
         RegisterAddress::new(self.0 + 0xe8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn STAT_CFG(&self) -> RegisterAddress<system::STAT_CFG> {
         RegisterAddress::new(self.0 + 0xf4)
     }

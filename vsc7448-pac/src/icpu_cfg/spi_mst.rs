@@ -34,11 +34,11 @@ impl SPI_MST_CFG {
     /// Set to enable 32bit address mode. In 32bit addressing mode only CS0 is used, the SPI address region is limited to 256MByte reserved for the SI interface.
     ///
     /// 0: Use 24bit addressing with 4 different CS. 1: Use 32bit addressing on CS0, max 256MByte
-    #[inline]
+    #[inline(always)]
     pub fn a32b_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_a32b_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -48,22 +48,22 @@ impl SPI_MST_CFG {
     /// Controls the clock frequency for the SPI interface (SI_Clk). The clock frequency is VCore system clock divided by the value of this field. Setting this field to 0 or 1 value is illegal.
     ///
     /// The SPI interface frequency is: 250MHz/CLK_DIV.
-    #[inline]
+    #[inline(always)]
     pub fn clk_div(&self) -> u32 {
         self.0 & 0x1f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_clk_div(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
     /// The minimum number of SPI clock cycles for which the SPI chip select (SI_nEn) must be deasserted in between transfers. Typical value of this is 100 ns. Setting this field to 0 is illegal.
-    #[inline]
+    #[inline(always)]
     pub fn cs_deselect_time(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cs_deselect_time(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 5;
@@ -73,11 +73,11 @@ impl SPI_MST_CFG {
     /// The type of read-instruction that the SPI Controller generates for reads.
     ///
     /// 0: READ (slow read - Instruction code - 0x03) 1: FAST READ (fast read - Instruction code - 0x0B)
-    #[inline]
+    #[inline(always)]
     pub fn fast_read_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fast_read_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -92,11 +92,11 @@ impl SPI_MST_CFG {
 pub struct SPI_MST_STATUS(u32);
 impl SPI_MST_STATUS {
     /// Upsupported operation has been performed on the SPI master from AHB slave.
-    #[inline]
+    #[inline(always)]
     pub fn unsup_err(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unsup_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -110,11 +110,11 @@ impl SPI_MST_STATUS {
 pub struct SW_MODE(u32);
 impl SW_MODE {
     /// Set to enable software pin control mode (Bit banging), when set software has direct control of the SPI interface. This mode is used for writing into flash.
-    #[inline]
+    #[inline(always)]
     pub fn sw_pin_ctrl_mode(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sw_pin_ctrl_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -122,11 +122,11 @@ impl SW_MODE {
         self.0 |= value;
     }
     /// Value to drive on SI_nEn outputs, each bit in this field maps to a corresponding chip-select (0 though 3). This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set. Note: Chip selects 1 though 3 are available as alternate GPIO functions.
-    #[inline]
+    #[inline(always)]
     pub fn sw_spi_cs(&self) -> u32 {
         (self.0 & 0x1e0) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sw_spi_cs(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 5;
@@ -134,11 +134,11 @@ impl SW_MODE {
         self.0 |= value;
     }
     /// This field has not effect, chip selects are always driven.
-    #[inline]
+    #[inline(always)]
     pub fn sw_spi_cs_oe(&self) -> u32 {
         (self.0 & 0x1e) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sw_spi_cs_oe(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 1;
@@ -146,11 +146,11 @@ impl SW_MODE {
         self.0 |= value;
     }
     /// Value to drive on SI_Clk output. This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set.
-    #[inline]
+    #[inline(always)]
     pub fn sw_spi_sck(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sw_spi_sck(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -158,11 +158,11 @@ impl SW_MODE {
         self.0 |= value;
     }
     /// Set to enable drive of SI_Clk output. This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set.
-    #[inline]
+    #[inline(always)]
     pub fn sw_spi_sck_oe(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sw_spi_sck_oe(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -170,22 +170,22 @@ impl SW_MODE {
         self.0 |= value;
     }
     /// Current value of the SI_DI input.
-    #[inline]
+    #[inline(always)]
     pub fn sw_spi_sdi(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sw_spi_sdi(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Value to drive on SI_DO output. This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set.
-    #[inline]
+    #[inline(always)]
     pub fn sw_spi_sdo(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sw_spi_sdo(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -193,11 +193,11 @@ impl SW_MODE {
         self.0 |= value;
     }
     /// Set to enable drive of SI_DO output. This field is only used if SW_MODE.SW_PIN_CTRL_MODE is set.
-    #[inline]
+    #[inline(always)]
     pub fn sw_spi_sdo_oe(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sw_spi_sdo_oe(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;

@@ -39,23 +39,23 @@ pub mod voe_srv_lm_cnt;
 /// VOE additional information
 pub struct OAM_PDU_MOD_CONT(pub(super) u32);
 impl OAM_PDU_MOD_CONT {
-    #[inline]
+    #[inline(always)]
     pub fn CCM_LM_INFO_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::CCM_LM_INFO_REG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_LM_RX_B_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::CCM_LM_RX_B_REG> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CCM_LM_TX_B_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::CCM_LM_TX_B_REG> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LM_CNT_FRAME(&self) -> RegisterAddress<oam_pdu_mod_cont::LM_CNT_FRAME> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TEMP_CNT_REG(&self) -> RegisterAddress<oam_pdu_mod_cont::TEMP_CNT_REG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -64,30 +64,30 @@ impl OAM_PDU_MOD_CONT {
 /// OAM_PDU_MOD misc. configuration
 pub struct PDU_MOD_CFG(pub(super) u32);
 impl PDU_MOD_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn DM_PTP_DOMAIN_CFG(&self, index: u32) -> RegisterAddress<pdu_mod_cfg::DM_PTP_DOMAIN_CFG> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RD_LAST_PORT_BYTE_CNT_LSB(
         &self,
     ) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_BYTE_CNT_LSB> {
         RegisterAddress::new(self.0 + 0xe0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RD_LAST_PORT_BYTE_CNT_MSB(
         &self,
     ) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_BYTE_CNT_MSB> {
         RegisterAddress::new(self.0 + 0xdc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RD_LAST_PORT_FRM_CNT_LSB(
         &self,
     ) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_FRM_CNT_LSB> {
         RegisterAddress::new(self.0 + 0xd8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RD_LAST_PORT_LM_CNT_LSB(&self) -> RegisterAddress<pdu_mod_cfg::RD_LAST_PORT_LM_CNT_LSB> {
         RegisterAddress::new(self.0 + 0xd4)
     }
@@ -96,19 +96,19 @@ impl PDU_MOD_CFG {
 /// OAM LM port counters pr. priority
 pub struct VOE_PORT_LM_CNT(pub(super) u32);
 impl VOE_PORT_LM_CNT {
-    #[inline]
+    #[inline(always)]
     pub fn PORT_BYTE_CNT_LSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_BYTE_CNT_LSB> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PORT_BYTE_CNT_MSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_BYTE_CNT_MSB> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PORT_FRM_CNT_LSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_FRM_CNT_LSB> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PORT_LM_CNT_LSB(&self) -> RegisterAddress<voe_port_lm_cnt::PORT_LM_CNT_LSB> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -117,7 +117,7 @@ impl VOE_PORT_LM_CNT {
 /// OAM Service LM counters pr. priority
 pub struct VOE_SRV_LM_CNT(pub(super) u32);
 impl VOE_SRV_LM_CNT {
-    #[inline]
+    #[inline(always)]
     pub fn SRV_LM_CNT_LSB(&self) -> RegisterAddress<voe_srv_lm_cnt::SRV_LM_CNT_LSB> {
         RegisterAddress::new(self.0 + 0x0)
     }

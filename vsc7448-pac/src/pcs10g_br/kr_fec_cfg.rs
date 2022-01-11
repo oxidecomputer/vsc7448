@@ -34,11 +34,11 @@ impl KR_FEC_CFG {
     /// Enables enabling/disabling FEC using backplane Ethernet ANEG (Auto-Negotiation)
     ///
     /// 0: ANEG doesn't control Enable/Disable of FEC 1: ANEG controls Enable/Diable of FEC
-    #[inline]
+    #[inline(always)]
     pub fn an_fec_ctrl_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_fec_ctrl_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -48,11 +48,11 @@ impl KR_FEC_CFG {
     /// Enables FEC decoder to indicate errors to PCS by sync bits
     ///
     /// 0: FEC Decoding errors have no effect on PCS sync bits 1: Enable FEC decoder to indicate errors to PCS sync bits
-    #[inline]
+    #[inline(always)]
     pub fn enable_error_indication(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_enable_error_indication(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -62,11 +62,11 @@ impl KR_FEC_CFG {
     /// Global FEC Enable/Disable configuration bit.
     ///
     /// 0 = Disable FEC 1 = Enable FEC
-    #[inline]
+    #[inline(always)]
     pub fn fec_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fec_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -75,11 +75,11 @@ impl KR_FEC_CFG {
     /// When set FEC counters are reset.
     ///
     /// 0: no effect 1: reset FEC counters
-    #[inline]
+    #[inline(always)]
     pub fn reset_monitor_counters(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_reset_monitor_counters(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -89,11 +89,11 @@ impl KR_FEC_CFG {
     /// Flip the data bus bits at PCS interface such that bit 65 is mapped to bit 0 and bit 0 to 65. i.e. the output bus (65 downto 0) is remapped to (0 to 65) and bit 65 is the first bit.
     ///
     /// 0 = No flip (LSB first) 1 = Flip bus (MSB first)
-    #[inline]
+    #[inline(always)]
     pub fn rx_data_flip(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_data_flip(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -103,11 +103,11 @@ impl KR_FEC_CFG {
     /// Flip the data bus bits at PCS interface such that bit 65 is mapped to bit 0 and bit 0 to 65. i.e. the output bus (65 downto 0) is remapped to (0 to 65) and bit 65 is the first bit.
     ///
     /// 0 = No flip (LSB first) 1 = Flip bus (MSB first)
-    #[inline]
+    #[inline(always)]
     pub fn tx_data_flip(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_data_flip(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;

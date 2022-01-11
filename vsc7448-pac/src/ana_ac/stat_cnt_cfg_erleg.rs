@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct STAT_LSB_CNT(u32);
 impl STAT_LSB_CNT {
     /// This register contains the least significant 32 bits of a counter.
-    #[inline]
+    #[inline(always)]
     pub fn lsb_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lsb_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -46,11 +46,11 @@ impl STAT_LSB_CNT {
 pub struct STAT_MSB_CNT(u32);
 impl STAT_MSB_CNT {
     /// The counter's most significant 8 bits. The field stores the value in the counters of a flow from bit 32 to the most significant bit. Reading: The MSB part of the counter is latched to a shadow register, when the LSB part is read. As a result, the LSB part must always be read first, and the MSB part must be read immediately after the LSB part is read. Writing: The procedure for writing differs depending on counter group: ANA_AC:STAT_CNT_CFG_PORT: LSB part must be written first, followed by MSB part. All other counter groups: MSB part must be written first, followed by LSB part.
-    #[inline]
+    #[inline(always)]
     pub fn msb_cnt(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_msb_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;

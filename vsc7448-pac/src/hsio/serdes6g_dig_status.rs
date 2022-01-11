@@ -36,11 +36,11 @@ impl SERDES6G_DFT_STATUS {
     /// BIST activity
     ///
     /// 0: BIST inactive 1: BIST active
-    #[inline]
+    #[inline(always)]
     pub fn bist_active(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bist_active(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -50,11 +50,11 @@ impl SERDES6G_DFT_STATUS {
     /// BIST completion state (low-active)
     ///
     /// 0: BIST completed 1: not completed
-    #[inline]
+    #[inline(always)]
     pub fn bist_complete_n(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bist_complete_n(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -64,11 +64,11 @@ impl SERDES6G_DFT_STATUS {
     /// BIST result
     ///
     /// 0: No error found 1: Errors during BIST found
-    #[inline]
+    #[inline(always)]
     pub fn bist_error(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bist_error(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -77,11 +77,11 @@ impl SERDES6G_DFT_STATUS {
     /// BIST sync result
     ///
     /// 0: Synchronization successful 1: Synchronization on BIST data failed
-    #[inline]
+    #[inline(always)]
     pub fn bist_nosync(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bist_nosync(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -91,11 +91,11 @@ impl SERDES6G_DFT_STATUS {
     /// RC-PLL BIST result
     ///
     /// 0: No error found 1: Errors during BIST found
-    #[inline]
+    #[inline(always)]
     pub fn pll_bist_failed(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_bist_failed(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -105,11 +105,11 @@ impl SERDES6G_DFT_STATUS {
     /// RC-PLL BIST not done flag
     ///
     /// 0: BIST done 1: BIST not started or active
-    #[inline]
+    #[inline(always)]
     pub fn pll_bist_not_done(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_bist_not_done(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -119,11 +119,11 @@ impl SERDES6G_DFT_STATUS {
     /// RC-PLL BIST timeout error flag
     ///
     /// 0: No timeout occured 1: Timeout occured
-    #[inline]
+    #[inline(always)]
     pub fn pll_bist_timeout_err(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_bist_timeout_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -133,11 +133,11 @@ impl SERDES6G_DFT_STATUS {
     /// PRBS synchronization status
     ///
     /// 0: PRBS checker not synchronized 1: PRBS checker synchronized
-    #[inline]
+    #[inline(always)]
     pub fn prbs_sync_stat(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_prbs_sync_stat(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -152,11 +152,11 @@ impl SERDES6G_DFT_STATUS {
 pub struct SERDES6G_ERR_CNT(u32);
 impl SERDES6G_ERR_CNT {
     /// PRBS error counter
-    #[inline]
+    #[inline(always)]
     pub fn prbs_err_cnt(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_prbs_err_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -172,11 +172,11 @@ impl SERDES6G_MISC_STATUS {
     /// Phase selection of DES in 100fx mode
     ///
     /// 0: CDR locked at bit 9 1: CDR locked at bit 4
-    #[inline]
+    #[inline(always)]
     pub fn des_100fx_phase_sel(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_100fx_phase_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

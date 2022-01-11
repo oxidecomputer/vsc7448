@@ -36,11 +36,11 @@ impl STAT_CFG {
     /// Configure whether to count frames or bytes.
     ///
     /// '0': Count frames. '1': Count bytes.
-    #[inline]
+    #[inline(always)]
     pub fn cfg_cnt_byte(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cfg_cnt_byte(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -49,11 +49,11 @@ impl STAT_CFG {
     /// Selects which frames to count.
     ///
     /// "000": The frames without any event signal or frame error signal asserted are counted. "001": The frames with unmasked (enabled) events asserted but with no error indications are counted. "010": The frames with both event signal and the error signal asserted are counted. "011": The frames with event signal asserted are counted in spite of the error indications. "100": The frames with the error signal asserted, but with no event signal are counted. "101": The frames with error signal asserted are counted in spite of the accompied event indications. | Error | Event -----+-------+------ 000 |   N	|   N -----+-------+------ 001 |   N	|   Y -----+-------+------ 010 |   Y	|   Y -----+-------+------ 011 |   -	|   Y -----+-------+------ 100 |   Y	|   N -----+-------+------ 101 |   Y	|   - -----+-------+------
-    #[inline]
+    #[inline(always)]
     pub fn cfg_cnt_frm_type(&self) -> u32 {
         (self.0 & 0xe) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cfg_cnt_frm_type(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 1;
@@ -63,11 +63,11 @@ impl STAT_CFG {
     /// This field is to configure the counters of a flow to count frames with certain priorities. The field contains one bit per priority. Note that with the default value of this field, counting is disabled for all priorities.
     ///
     /// 0: Do not count frames with this priority. 1: Count frames with this priority.
-    #[inline]
+    #[inline(always)]
     pub fn cfg_prio_mask(&self) -> u32 {
         (self.0 & 0xff0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cfg_prio_mask(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 4;
@@ -84,11 +84,11 @@ impl STAT_EVENTS_STICKY {
     /// These are the sticky bits of events. There is a sticky bit for an event for each flow.
     ///
     /// '1': The corresponding event is triggered since it is cleared last time. '0': No such event is triggered since it is cleared last time.
-    #[inline]
+    #[inline(always)]
     pub fn sticky_bits(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sticky_bits(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -100,11 +100,11 @@ impl STAT_EVENTS_STICKY {
 pub struct STAT_LSB_CNT(u32);
 impl STAT_LSB_CNT {
     /// This register contains the least significant 32 bits of a counter.
-    #[inline]
+    #[inline(always)]
     pub fn lsb_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lsb_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -114,11 +114,11 @@ impl STAT_LSB_CNT {
 pub struct STAT_MSB_CNT(u32);
 impl STAT_MSB_CNT {
     /// The counter's most significant 8 bits. The field stores the value in the counters of a flow from bit 32 to the most significant bit. Reading: The MSB part of the counter is latched to a shadow register, when the LSB part is read. As a result, the LSB part must always be read first, and the MSB part must be read immediately after the LSB part is read. Writing: The procedure for writing differs depending on counter group: ANA_AC:STAT_CNT_CFG_PORT: LSB part must be written first, followed by MSB part. All other counter groups: MSB part must be written first, followed by LSB part.
-    #[inline]
+    #[inline(always)]
     pub fn msb_cnt(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_msb_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;

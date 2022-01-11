@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_CFG8(u32);
 impl TR_CFG8 {
     /// Weighted average calculation of DFE tap 1
-    #[inline]
+    #[inline(always)]
     pub fn wt1(&self) -> u32 {
         (self.0 & 0xc0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt1(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 6;
@@ -44,11 +44,11 @@ impl TR_CFG8 {
         self.0 |= value;
     }
     /// Weighted average calculation of DFE tap 2
-    #[inline]
+    #[inline(always)]
     pub fn wt2(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt2(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -56,11 +56,11 @@ impl TR_CFG8 {
         self.0 |= value;
     }
     /// Weighted average calculation of DFE tap 3
-    #[inline]
+    #[inline(always)]
     pub fn wt3(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt3(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -68,11 +68,11 @@ impl TR_CFG8 {
         self.0 |= value;
     }
     /// Weighted average calculation of DFE tap 4
-    #[inline]
+    #[inline(always)]
     pub fn wt4(&self) -> u32 {
         self.0 & 0x3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wt4(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;

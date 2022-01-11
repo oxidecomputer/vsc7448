@@ -36,11 +36,11 @@ impl VAUI_CHANNEL_CFG {
     /// Enable alignment of lane to a common clock (e.g. XAUI mode) and dock lane with ANEG of lane 0 (Master-ANEG)
     ///
     /// 0: Off 1: On
-    #[inline]
+    #[inline(always)]
     pub fn lane_sync_ena(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lane_sync_ena(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -50,11 +50,11 @@ impl VAUI_CHANNEL_CFG {
     /// Combine signal_detect information for all 4 lanes.
     ///
     /// 0: Each lane provides own signal_detect 1: Signal_detect of all four lanes are ANDed
-    #[inline]
+    #[inline(always)]
     pub fn sigdet_mode(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sigdet_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -63,11 +63,11 @@ impl VAUI_CHANNEL_CFG {
     /// Combine signal_detect information for lanes 0 and 2.
     ///
     /// 0: Lane 0 and 2 provides own signal_detect 1: Signal_detect of lanes 0 and 2 are ANDed
-    #[inline]
+    #[inline(always)]
     pub fn sigdet_mode_r(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sigdet_mode_r(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;

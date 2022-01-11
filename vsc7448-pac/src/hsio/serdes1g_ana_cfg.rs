@@ -36,11 +36,11 @@ impl SERDES1G_COMMON_CFG {
     /// Enable direct line
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn ena_direct(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_direct(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -50,11 +50,11 @@ impl SERDES1G_COMMON_CFG {
     /// Enable equipment loop
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn ena_eloop(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_eloop(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -64,11 +64,11 @@ impl SERDES1G_COMMON_CFG {
     /// Enable facility loop
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn ena_floop(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_floop(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -78,11 +78,11 @@ impl SERDES1G_COMMON_CFG {
     /// Enable input loop
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn ena_iloop(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_iloop(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -92,11 +92,11 @@ impl SERDES1G_COMMON_CFG {
     /// Enable lane
     ///
     /// 0: Disable lane 1: Enable line
-    #[inline]
+    #[inline(always)]
     pub fn ena_lane(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_lane(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -106,11 +106,11 @@ impl SERDES1G_COMMON_CFG {
     /// Enable pad loop
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn ena_ploop(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ena_ploop(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -120,11 +120,11 @@ impl SERDES1G_COMMON_CFG {
     /// Enable half rate
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn hrate(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_hrate(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -134,22 +134,22 @@ impl SERDES1G_COMMON_CFG {
     /// Interface mode
     ///
     /// 0: 8-bit mode 1: 10-bit mode
-    #[inline]
+    #[inline(always)]
     pub fn if_mode(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_if_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Hidden spare bits (not connected internally yet)
-    #[inline]
+    #[inline(always)]
     pub fn lane_ctrl(&self) -> u32 {
         (self.0 & 0xe000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lane_ctrl(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 13;
@@ -159,11 +159,11 @@ impl SERDES1G_COMMON_CFG {
     /// Power-down RX-path
     ///
     /// 0: Normal mode 1: Power down mode
-    #[inline]
+    #[inline(always)]
     pub fn pwd_rx(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pwd_rx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -173,11 +173,11 @@ impl SERDES1G_COMMON_CFG {
     /// Power-down TX-path
     ///
     /// 0: Normal mode 1: Power down mode
-    #[inline]
+    #[inline(always)]
     pub fn pwd_tx(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pwd_tx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -187,11 +187,11 @@ impl SERDES1G_COMMON_CFG {
     /// Enable auto-squelching for sync. ethernet clock output: when set the clock output will stop toggling (keep its last value constantly) when PCS looses link synchrony.
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn se_auto_squelch_ena(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_se_auto_squelch_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -201,11 +201,11 @@ impl SERDES1G_COMMON_CFG {
     /// System reset (low active)
     ///
     /// 0: Apply reset (not self-clearing) 1: Reset released
-    #[inline]
+    #[inline(always)]
     pub fn sys_rst(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sys_rst(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -222,11 +222,11 @@ impl SERDES1G_DES_CFG {
     /// Bandwidth selection for proportional path of CDR loop.
     ///
     /// 0: No division 1: Divide by 2 2: Divide by 4 3: Divide by 8 4: Divide by 16 5: Divide by 32 6: Divide by 64 7: Divide by 128
-    #[inline]
+    #[inline(always)]
     pub fn des_bw_ana(&self) -> u32 {
         (self.0 & 0xe0) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_bw_ana(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 5;
@@ -236,11 +236,11 @@ impl SERDES1G_DES_CFG {
     /// Selection of time constant for integrative path of CDR loop.
     ///
     /// 0: Divide by 2 1: Divide by 4 2: Divide by 8 3: Divide by 16 4: Divide by 32 5: Divide by 64 6: Divide by 128 7: Divide by 256
-    #[inline]
+    #[inline(always)]
     pub fn des_bw_hyst(&self) -> u32 {
         (self.0 & 0xe) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_bw_hyst(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 1;
@@ -250,11 +250,11 @@ impl SERDES1G_DES_CFG {
     /// Deserializer phase control, main CP/MD select
     ///
     /// 0: Directly from DES 1: Through hysteresis stage from DES 2: From core 3: Disabled
-    #[inline]
+    #[inline(always)]
     pub fn des_cpmd_sel(&self) -> u32 {
         (self.0 & 0x1800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_cpmd_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 11;
@@ -264,11 +264,11 @@ impl SERDES1G_DES_CFG {
     /// Des phase control for 180 degrees deadlock block mode of operation
     ///
     /// 0: Depending on density of input pattern 1: Active until PCS has synchronized 2: Depending on density of input pattern until PCS has synchronized 3: Never 4: Always 5-7: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn des_mbtr_ctrl(&self) -> u32 {
         (self.0 & 0x700) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_mbtr_ctrl(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 8;
@@ -278,11 +278,11 @@ impl SERDES1G_DES_CFG {
     /// Control of phase regulator logic. Bit 3 must be set to 0.
     ///
     /// 0: Disabled 1: Enabled with 99 ppm limit 2: Enabled with 202 ppm limit 3: Enabled with 485 ppm limit 4: Enabled if corresponding PCS is in sync with 50 ppm limit 5: Enabled if corresponding PCS is in sync with 99 ppm limit 6: Enabled if corresponding PCS is in sync with 202 ppm limit 7: Enabled if corresponding PCS is in sync with 485 ppm limit
-    #[inline]
+    #[inline(always)]
     pub fn des_phs_ctrl(&self) -> u32 {
         (self.0 & 0x1e000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_phs_ctrl(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 13;
@@ -292,11 +292,11 @@ impl SERDES1G_DES_CFG {
     /// Swap non-hysteresis CP/MD signals.
     ///
     /// 0: No swapping 1: Swapping
-    #[inline]
+    #[inline(always)]
     pub fn des_swap_ana(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_swap_ana(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -306,11 +306,11 @@ impl SERDES1G_DES_CFG {
     /// Swap hysteresis CP/MD signals.
     ///
     /// 0: No swapping 1: Swapping
-    #[inline]
+    #[inline(always)]
     pub fn des_swap_hyst(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_des_swap_hyst(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -326,11 +326,11 @@ impl SERDES1G_IB_CFG {
     /// Hysteresis level for AC-JTAG Input
     ///
     /// 0: low 7: high
-    #[inline]
+    #[inline(always)]
     pub fn acjtag_hyst(&self) -> u32 {
         (self.0 & 0x7000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_acjtag_hyst(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 24;
@@ -340,11 +340,11 @@ impl SERDES1G_IB_CFG {
     /// Detect thresholds:
     ///
     /// 0: 159-189mVppd 1: 138-164mVppd 2: 109-124mVppd 3: 74-89mVppd
-    #[inline]
+    #[inline(always)]
     pub fn ib_det_lev(&self) -> u32 {
         (self.0 & 0x380000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_det_lev(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 19;
@@ -354,11 +354,11 @@ impl SERDES1G_IB_CFG {
     /// Enable common mode voltage termination
     ///
     /// 0: Low termination (VDD_A x 0.7) 1: High termination (VDD_A)
-    #[inline]
+    #[inline(always)]
     pub fn ib_ena_cmv_term(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_ena_cmv_term(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -368,11 +368,11 @@ impl SERDES1G_IB_CFG {
     /// Enable dc-coupling of input signal
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn ib_ena_dc_coupling(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_ena_dc_coupling(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -382,11 +382,11 @@ impl SERDES1G_IB_CFG {
     /// Enable detect level circuit
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn ib_ena_detlev(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_ena_detlev(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -396,11 +396,11 @@ impl SERDES1G_IB_CFG {
     /// Enable hysteresis for input signal. Hystesis can only be enabled if DC offset compensation is disabled.
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn ib_ena_hyst(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_ena_hyst(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -410,11 +410,11 @@ impl SERDES1G_IB_CFG {
     /// Enable offset compensation of input stage. This bit must be disabled to enable hysteresis (IB_ENA_HYST).
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn ib_ena_offset_comp(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_ena_offset_comp(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -424,11 +424,11 @@ impl SERDES1G_IB_CFG {
     /// Selects weighting between AC and DC input path:
     ///
     /// 0: Reserved 1: Reserved 2: 0dB (recommended value) 3: 1.5dB 4: 3dB 5: 6dB 6: 9dB 12.5dB
-    #[inline]
+    #[inline(always)]
     pub fn ib_eq_gain(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_eq_gain(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -436,11 +436,11 @@ impl SERDES1G_IB_CFG {
         self.0 |= value;
     }
     /// Switches signal detect circuit into low frequency mode, must be used in FX100 mode
-    #[inline]
+    #[inline(always)]
     pub fn ib_fx100_ena(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_fx100_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 27;
@@ -450,11 +450,11 @@ impl SERDES1G_IB_CFG {
     /// Input buffer hysteresis levels:
     ///
     /// 0: 59-79mV 1: 81-124mV
-    #[inline]
+    #[inline(always)]
     pub fn ib_hyst_lev(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_hyst_lev(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -462,11 +462,11 @@ impl SERDES1G_IB_CFG {
         self.0 |= value;
     }
     /// Resistor control. Value must be taken from RCOMP_STATUS.RCOMP. (default: -3)
-    #[inline]
+    #[inline(always)]
     pub fn ib_resistor_ctrl(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_resistor_ctrl(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -475,11 +475,11 @@ impl SERDES1G_IB_CFG {
     /// Corner frequencies of AC path:
     ///
     /// 0: 1.3GHz 1: 1.5GHz 2: 1.6GHz 3: 1.8GHz
-    #[inline]
+    #[inline(always)]
     pub fn ib_sel_corner_freq(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ib_sel_corner_freq(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -496,11 +496,11 @@ impl SERDES1G_OB_CFG {
     /// Amplitude control in steps of 50mVppd.
     ///
     /// 0: 0.4Vppd 15: 1.1Vppd
-    #[inline]
+    #[inline(always)]
     pub fn ob_amp_ctrl(&self) -> u32 {
         (self.0 & 0x1e000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ob_amp_ctrl(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 13;
@@ -508,11 +508,11 @@ impl SERDES1G_OB_CFG {
         self.0 |= value;
     }
     /// CMM bias control
-    #[inline]
+    #[inline(always)]
     pub fn ob_cmm_bias_ctrl(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ob_cmm_bias_ctrl(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 10;
@@ -520,11 +520,11 @@ impl SERDES1G_OB_CFG {
         self.0 |= value;
     }
     /// Disable VCM control
-    #[inline]
+    #[inline(always)]
     pub fn ob_dis_vcm_ctrl(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ob_dis_vcm_ctrl(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -532,11 +532,11 @@ impl SERDES1G_OB_CFG {
         self.0 |= value;
     }
     /// Enable measure vreg
-    #[inline]
+    #[inline(always)]
     pub fn ob_en_meas_vreg(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ob_en_meas_vreg(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -544,11 +544,11 @@ impl SERDES1G_OB_CFG {
         self.0 |= value;
     }
     /// Resistor control. Value must be taken from RCOMP_STATUS.RCOMP. (default: +1)
-    #[inline]
+    #[inline(always)]
     pub fn ob_resistor_ctrl(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ob_resistor_ctrl(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -557,11 +557,11 @@ impl SERDES1G_OB_CFG {
     /// Slope / slew rate control:
     ///
     /// 0: 45ps 1: 85ps 2: 105ps 3: 115ps
-    #[inline]
+    #[inline(always)]
     pub fn ob_slp(&self) -> u32 {
         (self.0 & 0x60000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ob_slp(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 17;
@@ -571,11 +571,11 @@ impl SERDES1G_OB_CFG {
     /// Common mode voltage control:
     ///
     /// 0: Reserved 1: 440mV 2: 480mV 3: 460mV 4: 530mV 5: 500mV 6: 570mV 7: 550mV
-    #[inline]
+    #[inline(always)]
     pub fn ob_vcm_ctrl(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ob_vcm_ctrl(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -592,11 +592,11 @@ impl SERDES1G_PLL_CFG {
     /// Enable feedback divider (divide by two)
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn pll_ena_fb_div2(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_ena_fb_div2(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -606,11 +606,11 @@ impl SERDES1G_PLL_CFG {
     /// Enable reference clock divider (divide by two)
     ///
     /// 0: Disable 1: Enable
-    #[inline]
+    #[inline(always)]
     pub fn pll_ena_rc_div2(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_ena_rc_div2(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -618,11 +618,11 @@ impl SERDES1G_PLL_CFG {
         self.0 |= value;
     }
     /// Control data for FSM
-    #[inline]
+    #[inline(always)]
     pub fn pll_fsm_ctrl_data(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_fsm_ctrl_data(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -630,11 +630,11 @@ impl SERDES1G_PLL_CFG {
         self.0 |= value;
     }
     /// Enable FSM
-    #[inline]
+    #[inline(always)]
     pub fn pll_fsm_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_fsm_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -642,11 +642,11 @@ impl SERDES1G_PLL_CFG {
         self.0 |= value;
     }
     /// Enable FSM forcing
-    #[inline]
+    #[inline(always)]
     pub fn pll_fsm_force_set_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_fsm_force_set_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -654,11 +654,11 @@ impl SERDES1G_PLL_CFG {
         self.0 |= value;
     }
     /// Enable FSM recalibration
-    #[inline]
+    #[inline(always)]
     pub fn pll_fsm_oor_recal_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_fsm_oor_recal_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -666,11 +666,11 @@ impl SERDES1G_PLL_CFG {
         self.0 |= value;
     }
     /// Select RB data
-    #[inline]
+    #[inline(always)]
     pub fn pll_rb_data_sel(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pll_rb_data_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -687,11 +687,11 @@ impl SERDES1G_SER_CFG {
     /// Select reference clock source for phase alignment
     ///
     /// 0: RXCLKP 1: RefClk15MHz 2: RXCLKN 3: ext. ALICLK
-    #[inline]
+    #[inline(always)]
     pub fn ser_alisel(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ser_alisel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -701,11 +701,11 @@ impl SERDES1G_SER_CFG {
     /// Use wider window for phase alignment
     ///
     /// 0: Use small window for low jitter (100 to 200ps) 1: Use wide window for higher jitter (150 to 300 ps)
-    #[inline]
+    #[inline(always)]
     pub fn ser_big_win(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ser_big_win(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -715,11 +715,11 @@ impl SERDES1G_SER_CFG {
     /// Select source of CP/MD signals
     ///
     /// 0: Phase alignment block 1: Core
-    #[inline]
+    #[inline(always)]
     pub fn ser_cpmd_sel(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ser_cpmd_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -729,11 +729,11 @@ impl SERDES1G_SER_CFG {
     /// Invert and delays (one clk cycle) output D1 for de-emphasis of OB
     ///
     /// 0: Non-inverting and non-delaying 1: Inverting and delaying
-    #[inline]
+    #[inline(always)]
     pub fn ser_deemph(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ser_deemph(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -743,11 +743,11 @@ impl SERDES1G_SER_CFG {
     /// Enable phase alignment
     ///
     /// 0: Disable phase alignment 1: Enable phase alignment
-    #[inline]
+    #[inline(always)]
     pub fn ser_enali(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ser_enali(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -756,11 +756,11 @@ impl SERDES1G_SER_CFG {
     /// Enable hysteresis for phase alignment
     ///
     /// 0: Disable hysteresis 1: Enable hysteresis
-    #[inline]
+    #[inline(always)]
     pub fn ser_enhys(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ser_enhys(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -770,11 +770,11 @@ impl SERDES1G_SER_CFG {
     /// Enable window for phase alignment
     ///
     /// 0: Disable window 1: Enable window
-    #[inline]
+    #[inline(always)]
     pub fn ser_en_win(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ser_en_win(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -784,11 +784,11 @@ impl SERDES1G_SER_CFG {
     /// Invert output D0b for idle-mode of OB
     ///
     /// 0: Non-inverting 1. Inverting
-    #[inline]
+    #[inline(always)]
     pub fn ser_idle(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ser_idle(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -798,11 +798,11 @@ impl SERDES1G_SER_CFG {
     /// Swap CP/MD signals of phase alignment circuit
     ///
     /// 0: Disable swapping 1: Enable swapping
-    #[inline]
+    #[inline(always)]
     pub fn ser_swap_cpmd(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ser_swap_cpmd(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;

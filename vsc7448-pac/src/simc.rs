@@ -36,84 +36,84 @@ pub mod simc;
 /// SI Master Controller
 pub struct SIMC(pub(super) u32);
 impl SIMC {
-    #[inline]
+    #[inline(always)]
     pub fn BAUDR(&self) -> RegisterAddress<simc::BAUDR> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CTRLR0(&self) -> RegisterAddress<simc::CTRLR0> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CTRLR1(&self) -> RegisterAddress<simc::CTRLR1> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn DR(&self, index: u32) -> RegisterAddress<simc::DR> {
         assert!(index < 36);
         RegisterAddress::new(self.0 + 0x60 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn ICR(&self) -> RegisterAddress<simc::ICR> {
         RegisterAddress::new(self.0 + 0x48)
     }
-    #[inline]
+    #[inline(always)]
     pub fn IMR(&self) -> RegisterAddress<simc::IMR> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn ISR(&self) -> RegisterAddress<simc::ISR> {
         RegisterAddress::new(self.0 + 0x30)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MSTICR(&self) -> RegisterAddress<simc::MSTICR> {
         RegisterAddress::new(self.0 + 0x44)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MWCR(&self) -> RegisterAddress<simc::MWCR> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RISR(&self) -> RegisterAddress<simc::RISR> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RXFLR(&self) -> RegisterAddress<simc::RXFLR> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RXFTLR(&self) -> RegisterAddress<simc::RXFTLR> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RXOICR(&self) -> RegisterAddress<simc::RXOICR> {
         RegisterAddress::new(self.0 + 0x3c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RXUICR(&self) -> RegisterAddress<simc::RXUICR> {
         RegisterAddress::new(self.0 + 0x40)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SER(&self) -> RegisterAddress<simc::SER> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SIMCEN(&self) -> RegisterAddress<simc::SIMCEN> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SR(&self) -> RegisterAddress<simc::SR> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TXFLR(&self) -> RegisterAddress<simc::TXFLR> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TXFTLR(&self) -> RegisterAddress<simc::TXFTLR> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TXOICR(&self) -> RegisterAddress<simc::TXOICR> {
         RegisterAddress::new(self.0 + 0x38)
     }

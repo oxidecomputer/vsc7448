@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_MTHD(u32);
 impl TR_MTHD {
     /// Training method for remote C(0)
-    #[inline]
+    #[inline(always)]
     pub fn mthd_c0(&self) -> u32 {
         (self.0 & 0x300) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mthd_c0(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 8;
@@ -44,11 +44,11 @@ impl TR_MTHD {
         self.0 |= value;
     }
     /// Training method for remote C(-1)
-    #[inline]
+    #[inline(always)]
     pub fn mthd_cm(&self) -> u32 {
         (self.0 & 0xc0) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mthd_cm(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 6;
@@ -58,11 +58,11 @@ impl TR_MTHD {
     /// Training method for remote C(+1)
     ///
     /// 0 : BER method 1 : Gain method 2 : DFE method
-    #[inline]
+    #[inline(always)]
     pub fn mthd_cp(&self) -> u32 {
         (self.0 & 0xc00) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mthd_cp(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 10;
@@ -72,11 +72,11 @@ impl TR_MTHD {
     /// remote tap to optimize first
     ///
     /// 0 : C(-1) 1 : C(0) 2 : C(+1)
-    #[inline]
+    #[inline(always)]
     pub fn ord1(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ord1(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -84,11 +84,11 @@ impl TR_MTHD {
         self.0 |= value;
     }
     /// remote tap to optimize second
-    #[inline]
+    #[inline(always)]
     pub fn ord2(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ord2(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -96,11 +96,11 @@ impl TR_MTHD {
         self.0 |= value;
     }
     /// remote tap to optimize third
-    #[inline]
+    #[inline(always)]
     pub fn ord3(&self) -> u32 {
         self.0 & 0x3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ord3(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;

@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct TUPE_ADDR(u32);
 impl TUPE_ADDR {
     /// Last address in TTI Table for TUPE to process. Must be >= TUPE_START_ADDR.
-    #[inline]
+    #[inline(always)]
     pub fn tupe_end_addr(&self) -> u32 {
         (self.0 & 0xfff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tupe_end_addr(&mut self, value: u32) {
         assert!(value <= 0xfff);
         let value = value << 16;
@@ -44,11 +44,11 @@ impl TUPE_ADDR {
         self.0 |= value;
     }
     /// First address in TTI Table for TUPE to process. Must be <= TUPE_START_ADDR.
-    #[inline]
+    #[inline(always)]
     pub fn tupe_start_addr(&self) -> u32 {
         self.0 & 0xfff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tupe_start_addr(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
@@ -60,22 +60,22 @@ impl TUPE_ADDR {
 pub struct TUPE_CMD1(u32);
 impl TUPE_CMD1 {
     /// New value for PORT_NUM for any TTIs matching TUPE criterias. Must be enabled by AFI:TUPE:TUPE_MISC.CMD_PORT_NUM_ENA.
-    #[inline]
+    #[inline(always)]
     pub fn cmd_port_num_val(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmd_port_num_val(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
     /// New value for QU_NUM for any TTIs matching TUPE criterias. Must be enabled by AFI:TUPE:TUPE_MISC.CMD_QU_NUM_ENA.
-    #[inline]
+    #[inline(always)]
     pub fn cmd_qu_num_val(&self) -> u32 {
         (self.0 & 0xffff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmd_qu_num_val(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 8;
@@ -88,22 +88,22 @@ impl TUPE_CMD1 {
 pub struct TUPE_CRIT1(u32);
 impl TUPE_CRIT1 {
     /// If enabled by AFI:TUPE:TUPE_MISC.CRIT_PORT_NUM_ENA, then PORT_NUM in TTIs must match this value in order to be processed by TUPE.
-    #[inline]
+    #[inline(always)]
     pub fn crit_port_num_val(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_crit_port_num_val(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
     /// If enabled by AFI:TUPE:TUPE_MISC.CRIT_QU_NUM_ENA, then QU_NUM in TTIs must match this value in order to be processed by TUPE.
-    #[inline]
+    #[inline(always)]
     pub fn crit_qu_num_val(&self) -> u32 {
         (self.0 & 0xffff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_crit_qu_num_val(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 8;
@@ -116,11 +116,11 @@ impl TUPE_CRIT1 {
 pub struct TUPE_CRIT2(u32);
 impl TUPE_CRIT2 {
     /// Refer to AFI:TUPE:TUPE_CRIT3.CRIT_TUPE_CTRL_VAL.
-    #[inline]
+    #[inline(always)]
     pub fn crit_tupe_ctrl_mask(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_crit_tupe_ctrl_mask(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -132,11 +132,11 @@ impl TUPE_CRIT2 {
 pub struct TUPE_CRIT3(u32);
 impl TUPE_CRIT3 {
     /// For one or more of the configured CRIT_TUPE_CTRL_VALs, TUPE_CTRL in TTIs must match the following criterias in order to be processed by TUPE: (TTI.TUPE_CTRL & CRIT_TUPE_CTRL_MASK) == CRIT_TUPE_CTRL_VAL[i]
-    #[inline]
+    #[inline(always)]
     pub fn crit_tupe_ctrl_val(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_crit_tupe_ctrl_val(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -148,11 +148,11 @@ impl TUPE_CRIT3 {
 pub struct TUPE_MISC(u32);
 impl TUPE_MISC {
     /// Enable use of CMD_PORT_NUM_VAL. For further information refer to AFI:TUPE:TUPE_CMD1.CMD_PORT_NUM_VAL
-    #[inline]
+    #[inline(always)]
     pub fn cmd_port_num_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmd_port_num_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -160,11 +160,11 @@ impl TUPE_MISC {
         self.0 |= value;
     }
     /// Enable use of CMD_QU_NUM_VAL. For further information refer to AFI:TUPE:TUPE_CMD1.CMD_QU_NUM_VAL
-    #[inline]
+    #[inline(always)]
     pub fn cmd_qu_num_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmd_qu_num_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -172,11 +172,11 @@ impl TUPE_MISC {
         self.0 |= value;
     }
     /// Enable use of CMD_TIMER_ENA_VAL. For further information refer to AFI:TUPE:TUPE_MISC.CMD_TIMER_ENA_VAL
-    #[inline]
+    #[inline(always)]
     pub fn cmd_timer_ena_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmd_timer_ena_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -184,11 +184,11 @@ impl TUPE_MISC {
         self.0 |= value;
     }
     /// New value for TIMER_ENA for any TTIs matching TUPE criterias. Must be enabled by AFI:TUPE:TUPE_MISC.CMD_TIMER_ENA_ENA.
-    #[inline]
+    #[inline(always)]
     pub fn cmd_timer_ena_val(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmd_timer_ena_val(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -196,11 +196,11 @@ impl TUPE_MISC {
         self.0 |= value;
     }
     /// Enable use of CRIT_PORT_NUM_VAL. For further information refer to AFI:TUPE:TUPE_CRIT1.CRIT_PORT_NUM_VAL
-    #[inline]
+    #[inline(always)]
     pub fn crit_port_num_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_crit_port_num_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -208,11 +208,11 @@ impl TUPE_MISC {
         self.0 |= value;
     }
     /// Enable use of CRIT_QU_NUM_ENA. For further information refer to AFI:TUPE:TUPE_CRIT1.CRIT_QU_NUM_VAL
-    #[inline]
+    #[inline(always)]
     pub fn crit_qu_num_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_crit_qu_num_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -220,11 +220,11 @@ impl TUPE_MISC {
         self.0 |= value;
     }
     /// Start TUPE. Write 1 to start TUPE. Set to 0 by TUPE when done. Before running TUPE, AFI::MISC_CTRL.AFI_ENA must be set to 1. Note: While TUPE is running (i.e. TUPE_START=1) CPU must not write to TTI Table.
-    #[inline]
+    #[inline(always)]
     pub fn tupe_start(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tupe_start(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

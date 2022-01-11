@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct INJ_CTRL(u32);
 impl INJ_CTRL {
     /// Set to abort the current frame.
-    #[inline]
+    #[inline(always)]
     pub fn abort(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_abort(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -44,11 +44,11 @@ impl INJ_CTRL {
         self.0 |= value;
     }
     /// Set to indicate that the next data written to DEVCPU_Qs::INJ_WR is end-of-frame. At the same time as setting this field, also set DEVCPU_QS::INJ_CTRL.VLD_BYTES to indicate the number of valid data bytes in the end-of-frame word.
-    #[inline]
+    #[inline(always)]
     pub fn eof(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_eof(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -56,11 +56,11 @@ impl INJ_CTRL {
         self.0 |= value;
     }
     /// Controls the min-spacing from EOF to SOF on injected frames, the default value emulates the delay of standard preamble/IFG setting on a front-port. Set this field to zero when injecting with IFH.
-    #[inline]
+    #[inline(always)]
     pub fn gap_size(&self) -> u32 {
         (self.0 & 0x1e00000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_gap_size(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 21;
@@ -68,11 +68,11 @@ impl INJ_CTRL {
         self.0 |= value;
     }
     /// Set to indicate that the next data written to DEVCPU_QS::INJ_WR is start-of-frame.
-    #[inline]
+    #[inline(always)]
     pub fn sof(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sof(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -82,11 +82,11 @@ impl INJ_CTRL {
     /// Set to indicate how many bytes of the next data written to DEVCPU_QS::INJ_WR which are valid. This field is only used during end-of-frame words (see DEVCPU_QS::INJ_CTRL.EOF for more information). The position of the valid bytes follows the endianness encoding and swapping.
     ///
     /// 0: All bytes are valid n: 'n' byte are valid
-    #[inline]
+    #[inline(always)]
     pub fn vld_bytes(&self) -> u32 {
         (self.0 & 0x30000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_vld_bytes(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 16;
@@ -99,11 +99,11 @@ impl INJ_CTRL {
 pub struct INJ_ERR(u32);
 impl INJ_ERR {
     /// Set if a frame has been aborted because of double-SOF injection (missing EOF).
-    #[inline]
+    #[inline(always)]
     pub fn abort_err_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_abort_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -111,11 +111,11 @@ impl INJ_ERR {
         self.0 |= value;
     }
     /// Set in case of overflow as a result of not obeying FIFO-ready
-    #[inline]
+    #[inline(always)]
     pub fn wr_err_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wr_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -129,11 +129,11 @@ impl INJ_GRP_CFG {
     /// This field allows swapping the endianess of the DEVCPU_QS::INJ_WR register. Most software will want to write injection data in network order (big-endian mode), i.e. the first byte of the destiantion MAC address to be placed on byte-address 0 of DEVCPU_QS::INJ_WR. In order to do this a little endian CPU must set this field, a big endian CPU must clear this field. This field only applies to manual extraction mode (see DEVCPU_QS::INJ_GRP_CFG.MODE).
     ///
     /// 0: Same endianess as CPU 1: Swap endianness
-    #[inline]
+    #[inline(always)]
     pub fn byte_swap(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_byte_swap(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -142,11 +142,11 @@ impl INJ_GRP_CFG {
     /// Configures mode of the injection group. Each injection group can be assigned to one of three owners. Note: The VRAP block support only one context, if more than one injection group is assigned the lowest group-number will be used.
     ///
     /// 0: VRAP block 1: Manual injection (via DEVCPU_QS registers) 2: FDMA injection and manual injection via SBA registers
-    #[inline]
+    #[inline(always)]
     pub fn mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_mode(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -161,11 +161,11 @@ impl INJ_STATUS {
     /// When '1' the injector group's FIFO is ready for additional data written through the DEVCPU_QS::INJ_WR register.
     ///
     /// 0: The injector group cannot accept additional data 1: The injector group is able to accept additional data
-    #[inline]
+    #[inline(always)]
     pub fn fifo_rdy(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fifo_rdy(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -175,11 +175,11 @@ impl INJ_STATUS {
     /// When '1' the injector group is in the process of receiving a frame, and at least one write to INJ_WR remains before the frame is forwarded to the front ports. When '0' the injector group is waiting for an initiation of a frame injection.
     ///
     /// 0: A frame injection is not in progress 1: A frame injection is in progress
-    #[inline]
+    #[inline(always)]
     pub fn inj_in_progress(&self) -> u32 {
         self.0 & 0x3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_inj_in_progress(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -188,11 +188,11 @@ impl INJ_STATUS {
     /// Before the CPU injects a frame, software may check if the input queue has reached high watermark. If wathermark in the IQS has been reached this bit will be set.
     ///
     /// 0: Input queue has not reached high watermark 1: Input queue has reached high watermark, and frames injected may be dropped due to buffer overflow
-    #[inline]
+    #[inline(always)]
     pub fn wmark_reached(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wmark_reached(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -205,11 +205,11 @@ impl INJ_STATUS {
 pub struct INJ_WR(u32);
 impl INJ_WR {
     /// Frame Write. Write to this register inject  the next 32 bits of the frame data currently injected into the chip. Reading from this register returns 0.
-    #[inline]
+    #[inline(always)]
     pub fn data(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_data(&mut self, value: u32) {
         self.0 = value;
     }
@@ -221,11 +221,11 @@ impl VTSS_DBG {
     /// For debugging purpose, frames injected are counted with a small wrapping counter.
     ///
     /// 0: No frames has been injected 1: 1 frame has been injected ... 15: 15 frames have been injected
-    #[inline]
+    #[inline(always)]
     pub fn frm_cnt(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_cnt(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;

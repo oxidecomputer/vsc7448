@@ -34,22 +34,22 @@ use derive_more::{From, Into};
 pub struct L3_LPM_REMAP_STICKY(u32);
 impl L3_LPM_REMAP_STICKY {
     /// Set if an IPv4 multicast longest prefix match has been found and the returned L3MC_IDX is less than the number of L3MC table entries.
-    #[inline]
+    #[inline(always)]
     pub fn lpm_ip4mc_found_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lpm_ip4mc_found_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Set if routing lookup found an IPv4 unicast longest prefix match.
-    #[inline]
+    #[inline(always)]
     pub fn lpm_ip4uc_found_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lpm_ip4uc_found_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -57,11 +57,11 @@ impl L3_LPM_REMAP_STICKY {
         self.0 |= value;
     }
     /// Set if an IPv6 multicast longest prefix match has been found and the returned L3MC_IDX is less than the number of L3MC table entries.
-    #[inline]
+    #[inline(always)]
     pub fn lpm_ip6mc_found_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lpm_ip6mc_found_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -69,11 +69,11 @@ impl L3_LPM_REMAP_STICKY {
         self.0 |= value;
     }
     /// Set if routing lookup found an IPv6 unicast longest prefix match.
-    #[inline]
+    #[inline(always)]
     pub fn lpm_ip6uc_found_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lpm_ip6uc_found_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -81,11 +81,11 @@ impl L3_LPM_REMAP_STICKY {
         self.0 |= value;
     }
     /// Set if an IPv4 SIP security lookup has found a match in LPM lookup. Note that this bit is not set for DIP security LPM lookups
-    #[inline]
+    #[inline(always)]
     pub fn secur_ip4_lpm_found_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_secur_ip4_lpm_found_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -93,11 +93,11 @@ impl L3_LPM_REMAP_STICKY {
         self.0 |= value;
     }
     /// Set if an IPv6 SIP security lookup has found a match in LPM lookup. Note that this bit is not set for DIP security LPM lookups
-    #[inline]
+    #[inline(always)]
     pub fn secur_ip6_lpm_found_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_secur_ip6_lpm_found_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;

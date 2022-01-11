@@ -31,98 +31,98 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CAP_ID_NXT_PTR(u32);
 impl CAP_ID_NXT_PTR {
-    #[inline]
+    #[inline(always)]
     pub fn aux_curr(&self) -> u32 {
         (self.0 & 0x1c00000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_aux_curr(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 22;
         self.0 &= !0x1c00000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn d1_support(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_d1_support(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn d2_support(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_d2_support(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn dsi(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dsi(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pme_clk(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pme_clk(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pme_support(&self) -> u32 {
         (self.0 & 0xf8000000) >> 27
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pme_support(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 27;
         self.0 &= !0xf8000000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pm_cap_id(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pm_cap_id(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pm_next_pointer(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pm_next_pointer(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pm_spec_ver(&self) -> u32 {
         (self.0 & 0x70000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pm_spec_ver(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 16;
@@ -134,99 +134,99 @@ impl CAP_ID_NXT_PTR {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CON_STATUS(u32);
 impl CON_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn b2_b3_support(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_b2_b3_support(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn bus_pwr_clk_con_en(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bus_pwr_clk_con_en(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn data_reg_add_info(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_data_reg_add_info(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn data_scale(&self) -> u32 {
         (self.0 & 0x6000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_data_scale(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 13;
         self.0 &= !0x6000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn data_select(&self) -> u32 {
         (self.0 & 0x1e00) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_data_select(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 9;
         self.0 &= !0x1e00;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn no_soft_rst(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_no_soft_rst(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pme_enable(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pme_enable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn pme_status(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_pme_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn power_state(&self) -> u32 {
         self.0 & 0x3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_power_state(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;

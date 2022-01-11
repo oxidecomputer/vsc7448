@@ -34,11 +34,11 @@ impl CW_VAL {
     /// Control Word value. The control word is always placed after the last MPLS label.
     ///
     /// x: Control Word
-    #[inline]
+    #[inline(always)]
     pub fn cw_val(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cw_val(&mut self, value: u32) {
         self.0 = value;
     }
@@ -52,11 +52,11 @@ impl LABEL_VAL {
     /// Label field value in MPLS  label N
     ///
     /// x: Label field value
-    #[inline]
+    #[inline(always)]
     pub fn label_val(&self) -> u32 {
         (self.0 & 0xfffff000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_label_val(&mut self, value: u32) {
         assert!(value <= 0xfffff);
         let value = value << 12;
@@ -66,11 +66,11 @@ impl LABEL_VAL {
     /// SBIT value in MPLS label N
     ///
     /// x: SBIT field value
-    #[inline]
+    #[inline(always)]
     pub fn sbit_val(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sbit_val(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -80,11 +80,11 @@ impl LABEL_VAL {
     /// TC value in MPLS label N
     ///
     /// x: TC field value
-    #[inline]
+    #[inline(always)]
     pub fn tc_val(&self) -> u32 {
         (self.0 & 0xe00) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tc_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 9;
@@ -94,11 +94,11 @@ impl LABEL_VAL {
     /// TTL value in MPLS label N
     ///
     /// x: TTL field value
-    #[inline]
+    #[inline(always)]
     pub fn ttl_val(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ttl_val(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -112,11 +112,11 @@ impl LL_DMAC_LSB {
     /// DMAC in Link layer. 32 LSB
     ///
     /// n: DMAC LSB
-    #[inline]
+    #[inline(always)]
     pub fn dmac_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dmac_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -128,11 +128,11 @@ impl LL_DMAC_MSB {
     /// DMAC in Link layer. 16 MSB
     ///
     /// n: DMAC MSB
-    #[inline]
+    #[inline(always)]
     pub fn dmac_msb(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dmac_msb(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -146,11 +146,11 @@ impl LL_ETYPE {
     /// Ethertype in Link layer
     ///
     /// n: Ethertype
-    #[inline]
+    #[inline(always)]
     pub fn etype(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_etype(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -164,11 +164,11 @@ impl LL_SMAC_LSB {
     /// SMAC in Link layer. 32 LSB
     ///
     /// n: SMAC LSB
-    #[inline]
+    #[inline(always)]
     pub fn smac_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_smac_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -180,11 +180,11 @@ impl LL_SMAC_MSB {
     /// SMAC in Link layer. 16 MSB
     ///
     /// n: SMAC MSB
-    #[inline]
+    #[inline(always)]
     pub fn smac_msb(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_smac_msb(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -198,11 +198,11 @@ impl LL_TAG_CFG {
     /// Enable IFH encapsulation mode for this entry. The frame link layer format is changed to: [LL_DMAC][LL_SMAC][0x8880][0x0009] Optionally one VLAN tag can be added if LL_TAG_CFG.TAG_CFG = 1 [LL_DMAC][LL_SMAC][LL_TAG:0][0x8880][0x0009] None of the other encapsulation fields are used in this mode
     ///
     /// 0: Normal encapsulation mode 1: IFH encapsulation mode
-    #[inline]
+    #[inline(always)]
     pub fn ifh_encap_mode(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ifh_encap_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -212,11 +212,11 @@ impl LL_TAG_CFG {
     /// Control VLAN tags in MPLS link layer
     ///
     /// 0: No tags in link layer 1: One tag after SMAC 2: Two tags after SMAC 3: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn tag_cfg(&self) -> u32 {
         self.0 & 0x3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tag_cfg(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -230,11 +230,11 @@ impl LL_TAG_REMARK_CFG {
     /// Selects DEI for MPLS encapsulation tag Idx0:  TAG_A, Idx1:	TAG_B
     ///
     /// 0: Classified DEI 1: Encapsulation TAG_DEI_VAL:n 2: DP: REW::DP_MAP.DP 3: Reserved 4: Mapped using mapping table 0, otherwise use LL_TAG_VAL[N].TAG_DEI_VAL 5: Mapped using mapping table 1, otherwise use mapping table 0 6: Mapped using mapping table 2, otherwise use LL_TAG_VAL[N].TAG_DEI_VAL 7: Mapped using mapping table 3, otherwise use mapping table 2
-    #[inline]
+    #[inline(always)]
     pub fn tag_dei_sel(&self) -> u32 {
         (self.0 & 0xe) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tag_dei_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 1;
@@ -244,11 +244,11 @@ impl LL_TAG_REMARK_CFG {
     /// Selects PCP for MPLS encapsulation tag Idx0:  TAG_A, Idx1:	TAG_B
     ///
     /// 0: Classified PCP 1: Encapsulation TAG_PCP_VAL:n 2-3: Reserved 4: Mapped using mapping table 0, otherwise use LL_TAG_VAL[N].TAG_PCP_VAL 5: Mapped using mapping table 1, otherwise use mapping table 0 6: Mapped using mapping table 2, otherwise use LL_TAG_VAL[N].TAG_PCP_VAL 7: Mapped using mapping table 3, otherwise use mapping table 2
-    #[inline]
+    #[inline(always)]
     pub fn tag_pcp_sel(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tag_pcp_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -258,11 +258,11 @@ impl LL_TAG_REMARK_CFG {
     /// Selects TPID for MPLS encapsulation tag Idx0:  TAG_A, Idx1:	TAG_B
     ///
     /// 0: Encapsulation LL_TAG_VAL[N].TAG_TPID 1: Classified.  ANA controls via IFH: If ifh.encap.tag_tipd = STD_TPID: If ifh.vstax.tag_type = 0 then 0x8100 else LL_TAG_VAL[N].TAG_TPID if ifh.encap.tag_tipd > 0: Custom TPID 1 to 3 configured by  REW::TPID_CFG[N].TPID_VAL
-    #[inline]
+    #[inline(always)]
     pub fn tag_tpid_sel(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tag_tpid_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -271,11 +271,11 @@ impl LL_TAG_REMARK_CFG {
     /// Selects VID for MPLS encapsulation tag Idx0:  TAG_A, Idx1:	TAG_B
     ///
     /// 0: Classified VID + TAG_VID_VAL:n 1: TAG_VID_VAL:n
-    #[inline]
+    #[inline(always)]
     pub fn tag_vid_sel(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tag_vid_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -292,11 +292,11 @@ impl LL_TAG_VAL {
     /// DEI value in link layer tags
     ///
     /// x: DEI value
-    #[inline]
+    #[inline(always)]
     pub fn tag_dei_val(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tag_dei_val(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -305,11 +305,11 @@ impl LL_TAG_VAL {
     /// PCP value in link layer tags
     ///
     /// x: PCP value
-    #[inline]
+    #[inline(always)]
     pub fn tag_pcp_val(&self) -> u32 {
         (self.0 & 0xe) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tag_pcp_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 1;
@@ -319,11 +319,11 @@ impl LL_TAG_VAL {
     /// TPID of link layer VLAN tags
     ///
     /// x: TPID value
-    #[inline]
+    #[inline(always)]
     pub fn tag_tpid(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tag_tpid(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -333,11 +333,11 @@ impl LL_TAG_VAL {
     /// VID value in link layer tags
     ///
     /// x: VID value
-    #[inline]
+    #[inline(always)]
     pub fn tag_vid_val(&self) -> u32 {
         (self.0 & 0xfff0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tag_vid_val(&mut self, value: u32) {
         assert!(value <= 0xfff);
         let value = value << 4;
@@ -352,11 +352,11 @@ impl MPLS_LABEL_CFG {
     /// Configure Control Word (CW) in label stack
     ///
     /// 0: No Control Word 1: Add Control Word
-    #[inline]
+    #[inline(always)]
     pub fn cw_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cw_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -366,11 +366,11 @@ impl MPLS_LABEL_CFG {
     /// Select innermost label. Source can be ES0 or encapsulation RAM
     ///
     /// 0: Use label from encapsulation table 1: Use label from ES0
-    #[inline]
+    #[inline(always)]
     pub fn inner_lbl_sel(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_inner_lbl_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -379,11 +379,11 @@ impl MPLS_LABEL_CFG {
     /// Configure the number of MPLS labels to use for this encapsulation entry
     ///
     /// 0: No Labels in encapsulation 1: One MPLS label 2: Two MPLS labels 3: Three MPLS labels
-    #[inline]
+    #[inline(always)]
     pub fn label_cnt(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_label_cnt(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -400,11 +400,11 @@ impl MPLS_REMARK_CFG {
     /// Configure the Label-field used in label N.
     ///
     /// 0 : LABEL_VAL[N].LABEL_VAL 1-3: Reserved 4 : Mapped using mapping table 0 5 : Mapped using mapping table 1 6 : Mapped using mapping table 2 7 : Mapped using mapping table 3
-    #[inline]
+    #[inline(always)]
     pub fn lbl_sel(&self) -> u32 {
         (self.0 & 0x380) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lbl_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 7;
@@ -414,11 +414,11 @@ impl MPLS_REMARK_CFG {
     /// Configure the S-bit used in label N.
     ///
     /// 0: Classified SBIT (ISBIT) 1: Fixed: LABEL_VAL[N].SBIT_VAL 2: Mixed: Use Classified SBIT if IFH.DST.ENCAP.PDU_TYPE = OAM_MPLS_TP else LABEL_VAL[N].SBIT_VAL 3: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn sbit_sel(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_sbit_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -428,11 +428,11 @@ impl MPLS_REMARK_CFG {
     /// Configure the TC-field used in label N.
     ///
     /// 0 : Classified TC 1 : LABEL_VAL[N].TC_VAL 2-3: Reserved 4: Mapped using mapping table 0, otherwise use LABEL_VAL[N].TC_VAL 5: Mapped using mapping table 1, otherwise use mapping table 0 6: Mapped using mapping table 2, otherwise use LABEL_VAL[N].TC_VAL 7: Mapped using mapping table 3, otherwise use mapping table 2
-    #[inline]
+    #[inline(always)]
     pub fn tc_sel(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tc_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -442,11 +442,11 @@ impl MPLS_REMARK_CFG {
     /// Configure the TTL-field used in label N.
     ///
     /// 0: Classified TTL (ITTL) 1: Fixed: LABEL_VAL[N].TTL_VAL 2: Mixed: Use Classified TTL if IFH.DST.ENCAP.PDU_TYPE = OAM_MPLS_TP else LABEL_VAL[N].TTL_VAL 3: Reserved
-    #[inline]
+    #[inline(always)]
     pub fn ttl_sel(&self) -> u32 {
         self.0 & 0x3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ttl_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -460,11 +460,11 @@ impl RSV_LABEL_CFG {
     /// Enable reserved MPLS label insertion for MPLS-OAM frames. When this bit is set, an additional MPLS label is inserted if CW insertion is disabled and IFH.DST.ENCAP.PDU_TYPE=OAM_MPLS_TP or IFH.DST.ENCAP.PDU_TYPE=Y1731 and IFH.DST.ENCAP.TYPE_AFTER_POP=CW Note: The reserved label can only be inserted if a CW is not inserted for the frame.
     ///
     /// 0: Disabled 1: Add reserved label if allowed
-    #[inline]
+    #[inline(always)]
     pub fn rsv_lbl_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rsv_lbl_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -473,11 +473,11 @@ impl RSV_LABEL_CFG {
     /// Select position of the reserved label. It can be added before or after the last MPLS label
     ///
     /// 0: Add before last label 1: Add after last label like the CW
-    #[inline]
+    #[inline(always)]
     pub fn rsv_lbl_pos(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rsv_lbl_pos(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -487,11 +487,11 @@ impl RSV_LABEL_CFG {
     /// Configure TC-field used in the reserved label
     ///
     /// 0 : Classified TC 1 : RSV_LABEL_VAL.RSV_TC_VAL 2-3: Reserved 4: Mapped using mapping table 0, otherwise use RSV_LABEL_VAL.RSV_TC_VAL 5: Mapped using mapping table 1, otherwise use mapping table 0 6: Mapped using mapping table 2, otherwise use RSV_LABEL_VAL.RSV_TC_VAL 7: Mapped using mapping table 3, otherwise use mapping table 2
-    #[inline]
+    #[inline(always)]
     pub fn rsv_tc_sel(&self) -> u32 {
         (self.0 & 0x1c) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rsv_tc_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 2;
@@ -508,11 +508,11 @@ impl RSV_LABEL_VAL {
     /// Label field value in the reserved MPLS label
     ///
     /// x: Label field value
-    #[inline]
+    #[inline(always)]
     pub fn rsv_lbl_val(&self) -> u32 {
         (self.0 & 0xfffff000) >> 12
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rsv_lbl_val(&mut self, value: u32) {
         assert!(value <= 0xfffff);
         let value = value << 12;
@@ -522,11 +522,11 @@ impl RSV_LABEL_VAL {
     /// SBIT value in reserved the MPLS label
     ///
     /// x: SBIT field value
-    #[inline]
+    #[inline(always)]
     pub fn rsv_sbit_val(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rsv_sbit_val(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -536,11 +536,11 @@ impl RSV_LABEL_VAL {
     /// TC value in reserved the MPLS label
     ///
     /// x: TC field value
-    #[inline]
+    #[inline(always)]
     pub fn rsv_tc_val(&self) -> u32 {
         (self.0 & 0xe00) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rsv_tc_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 9;
@@ -550,11 +550,11 @@ impl RSV_LABEL_VAL {
     /// TTL value in reserved the MPLS label
     ///
     /// x: TTL field value
-    #[inline]
+    #[inline(always)]
     pub fn rsv_ttl_val(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rsv_ttl_val(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;

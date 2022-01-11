@@ -34,11 +34,11 @@ impl GPIO_ALT {
     /// Configures alternate functions for individual GPIOs. See datasheet for information on possible alternate functions. The LSB of the GPIO encoding is placed in replication 0, MSB is placed in replication 1. For example; to encode Alternate mode 2 for GPIO[n] write DEVCPU_GCB::GPIO_ALT[0][n] = 0, and DEVCPU_GCB::GPIO_ALT[1][n] = 1. Note: This register is only reset by the device's reset input, i.e. it is not affected by soft reset!
     ///
     /// 00: GPIO mode 01: Alternate mode 1 10: Alternate mode 2 11: Alternate mode 3
-    #[inline]
+    #[inline(always)]
     pub fn g_alt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_alt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -50,11 +50,11 @@ impl GPIO_ALT1 {
     /// Bit 32-63 of field G_ALT.
     ///
     /// 00: GPIO mode 01: Alternate mode 1 10: Alternate mode 2 11: Alternate mode 3
-    #[inline]
+    #[inline(always)]
     pub fn g_alt1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_alt1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -64,11 +64,11 @@ impl GPIO_ALT1 {
 pub struct GPIO_IN(u32);
 impl GPIO_IN {
     /// GPIO input register. Reflects the current state of the corresponding GPIO pins.
-    #[inline]
+    #[inline(always)]
     pub fn g_in(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_in(&mut self, value: u32) {
         self.0 = value;
     }
@@ -78,11 +78,11 @@ impl GPIO_IN {
 pub struct GPIO_IN1(u32);
 impl GPIO_IN1 {
     /// Bit 32-63 of field G_IN.
-    #[inline]
+    #[inline(always)]
     pub fn g_in1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_in1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -94,11 +94,11 @@ impl GPIO_INTR {
     /// Indicates whether a GPIO input has changed since last clear.
     ///
     /// '0': No change '1': GPIO has changed
-    #[inline]
+    #[inline(always)]
     pub fn g_intr(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_intr(&mut self, value: u32) {
         self.0 = value;
     }
@@ -110,11 +110,11 @@ impl GPIO_INTR1 {
     /// Bit 32-63 of field G_INTR.
     ///
     /// '0': No change '1': GPIO has changed
-    #[inline]
+    #[inline(always)]
     pub fn g_intr1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_intr1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -124,11 +124,11 @@ impl GPIO_INTR1 {
 pub struct GPIO_INTR_ENA(u32);
 impl GPIO_INTR_ENA {
     /// Enables individual GPIO pins for interrupt.
-    #[inline]
+    #[inline(always)]
     pub fn g_intr_ena(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_intr_ena(&mut self, value: u32) {
         self.0 = value;
     }
@@ -138,11 +138,11 @@ impl GPIO_INTR_ENA {
 pub struct GPIO_INTR_ENA1(u32);
 impl GPIO_INTR_ENA1 {
     /// Bit 32-63 of field G_INTR_ENA.
-    #[inline]
+    #[inline(always)]
     pub fn g_intr_ena1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_intr_ena1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -152,11 +152,11 @@ impl GPIO_INTR_ENA1 {
 pub struct GPIO_INTR_IDENT(u32);
 impl GPIO_INTR_IDENT {
     /// Shows which GPIO sources that are currently interrupting. This field is the result of an AND-operation between the GPIO_INTR and the GPIO_INTR_ENA registers.
-    #[inline]
+    #[inline(always)]
     pub fn g_intr_ident(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_intr_ident(&mut self, value: u32) {
         self.0 = value;
     }
@@ -166,11 +166,11 @@ impl GPIO_INTR_IDENT {
 pub struct GPIO_INTR_IDENT1(u32);
 impl GPIO_INTR_IDENT1 {
     /// Bit 32-63 of field G_INTR_IDENT.
-    #[inline]
+    #[inline(always)]
     pub fn g_intr_ident1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_intr_ident1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -182,11 +182,11 @@ impl GPIO_OE {
     /// Configures the direction of the GPIO pins.
     ///
     /// '0': Input '1': Output
-    #[inline]
+    #[inline(always)]
     pub fn g_oe(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_oe(&mut self, value: u32) {
         self.0 = value;
     }
@@ -198,11 +198,11 @@ impl GPIO_OE1 {
     /// Bit 32-63 of field G_OE.
     ///
     /// '0': Input '1': Output
-    #[inline]
+    #[inline(always)]
     pub fn g_oe1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_oe1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -214,11 +214,11 @@ impl GPIO_OE1 {
 pub struct GPIO_OUT(u32);
 impl GPIO_OUT {
     /// Controls the value on the GPIO pins enabled for output (via the GPIO_OE register). This field can be modified directly or by using the GPIO_O_SET and GPIO_O_CLR registers.
-    #[inline]
+    #[inline(always)]
     pub fn g_out(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_out(&mut self, value: u32) {
         self.0 = value;
     }
@@ -230,11 +230,11 @@ impl GPIO_OUT {
 pub struct GPIO_OUT1(u32);
 impl GPIO_OUT1 {
     /// Bit 32-63 of field G_OUT.
-    #[inline]
+    #[inline(always)]
     pub fn g_out1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_out1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -246,11 +246,11 @@ impl GPIO_OUT_CLR {
     /// Setting a bit in this field will immediately clear the corresponding bit in GPIO_OUT.G_OUT. Reading this register always return 0.
     ///
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is cleared.
-    #[inline]
+    #[inline(always)]
     pub fn g_out_clr(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_out_clr(&mut self, value: u32) {
         self.0 = value;
     }
@@ -262,11 +262,11 @@ impl GPIO_OUT_CLR1 {
     /// Bit 32-63 of field G_OUT_CLR.
     ///
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is cleared.
-    #[inline]
+    #[inline(always)]
     pub fn g_out_clr1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_out_clr1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -278,11 +278,11 @@ impl GPIO_OUT_SET {
     /// Setting a bit in this field will immediately set the corresponding bit in GPIO_OUT.G_OUT. Reading this register always return 0.
     ///
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is set.
-    #[inline]
+    #[inline(always)]
     pub fn g_out_set(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_out_set(&mut self, value: u32) {
         self.0 = value;
     }
@@ -294,11 +294,11 @@ impl GPIO_OUT_SET1 {
     /// Bit 32-63 of field G_OUT_SET.
     ///
     /// '0': No change '1': Corresponding bit in GPIO_OUT.G_OUT is set.
-    #[inline]
+    #[inline(always)]
     pub fn g_out_set1(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_out_set1(&mut self, value: u32) {
         self.0 = value;
     }
@@ -308,11 +308,11 @@ impl GPIO_OUT_SET1 {
 pub struct GPIO_SD_MAP(u32);
 impl GPIO_SD_MAP {
     /// Set to map a specific GPIO mapped signal detect input to specific front-port index. There is one replication for each GPIO mapped signal detect input. If multiple signal detects are enabled and map to same front-port index, then the higher replication index will take priority. For example to map 3'rd signal detect input asif it was provided by 2'nd SERDES; set DEVCPU_GCB::GPIO_SD_MAP[2].G_SD_MAP = 1 and enable SD2 via DEVCPU_GCB::GPIO_ALT registers.
-    #[inline]
+    #[inline(always)]
     pub fn g_sd_map(&self) -> u32 {
         self.0 & 0x3f
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_g_sd_map(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;

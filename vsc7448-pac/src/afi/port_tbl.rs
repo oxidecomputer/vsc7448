@@ -34,11 +34,11 @@ impl PORT_CFG {
     /// Controls what action to take if TTI injection cannot be performed due to FRM_OUT_MAX reached or injection stop from QSYS. FC_SKIP_TTI_INJ should be set when disabling a port using FRM_OUT_MAX. See PORT_CFG.FRM_OUT_MAX.
     ///
     /// 0: Postpone injection until injection is again allowed. 1: Skip this injection.
-    #[inline]
+    #[inline(always)]
     pub fn fc_skip_tti_inj(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fc_skip_tti_inj(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -48,11 +48,11 @@ impl PORT_CFG {
     /// Maximum number of injections that can be outstanding at a time per port. DTI injections are held back if FRM_OUT_MAX is exceeded. TTI injections are held back if FRM_OUT_MAX+TTI_FRM_OUT_MAX is exceeded. TTI_FRM_OUT_MAX ensures that TTI injections are still possible when a DTI flow is configured slightly above port speed. If FRM_OUT_MAX is set to 0 to disable injections for port, then it is recommended to first set FC_SKIP_TTI_INJ=1 to avoid a burst of injections when injections are later enabled. Upon setting FRM_OUT_MAX back to non-zero value, then FC_SKIP_TTI_INJ must be set back to its orginal value. Note that FRM_OUT_MAX must also be >0 when performing "removal injections" (for removing frames from buffer memory).
     ///
     /// 0: Injection disabled for port (both TTI and DTI injections, regardless of TTI_FRM_OUT_MAX value) 1: Maximum 1 outstanding injection. 2: Maximum 2 outstanding injections. ... 1022: Maximum 1022 outstanding injections. 1023: Illegal.
-    #[inline]
+    #[inline(always)]
     pub fn frm_out_max(&self) -> u32 {
         self.0 & 0x3ff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_out_max(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
@@ -61,11 +61,11 @@ impl PORT_CFG {
     /// Only allow frame removal injections, i.e. normal injections are disallowed. If FRM_RM_ONLY is set, then it is recommended to first set FC_SKIP_TTI_INJ=1 to avoid a burst of injections when normal injections are later re-enabled. Upon setting FRM_RM_ONLY back to zero, then FC_SKIP_TTI_INJ must be set back to its orginal value.
     ///
     /// 0: Allow both normal and removal injections. 1: Only allow removal injections.
-    #[inline]
+    #[inline(always)]
     pub fn frm_rm_only(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_rm_only(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -78,11 +78,11 @@ impl PORT_CFG {
 pub struct PORT_FRM_OUT(u32);
 impl PORT_FRM_OUT {
     /// Current number of injections (TTI or DTI) outstanding per port. This parameter should not be written to. If the parameter is written to and a TTI injection occurs concurrently, then the written value may get overwritten by the AFI block.
-    #[inline]
+    #[inline(always)]
     pub fn frm_out_cnt(&self) -> u32 {
         (self.0 & 0x7ff0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_frm_out_cnt(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         let value = value << 16;

@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct CNT(u32);
 impl CNT {
     /// Counter value, ref. QSYS:STAT.
-    #[inline]
+    #[inline(always)]
     pub fn cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cnt(&mut self, value: u32) {
         self.0 = value;
     }

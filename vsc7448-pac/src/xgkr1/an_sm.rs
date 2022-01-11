@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct AN_SM(u32);
 impl AN_SM {
     /// ABILITY_DETECT state counter
-    #[inline]
+    #[inline(always)]
     pub fn abdet_cnt(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_abdet_cnt(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -44,11 +44,11 @@ impl AN_SM {
         self.0 |= value;
     }
     /// AN state machine
-    #[inline]
+    #[inline(always)]
     pub fn an_sm(&self) -> u32 {
         self.0 & 0xf
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_an_sm(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;

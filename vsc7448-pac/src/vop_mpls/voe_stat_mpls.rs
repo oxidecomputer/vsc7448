@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct BFD_CC_RX_INVLD_CNT_REG(u32);
 impl BFD_CC_RX_INVLD_CNT_REG {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cc_rx_invld_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cc_rx_invld_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -50,11 +50,11 @@ impl BFD_CC_RX_INVLD_CNT_REG {
 pub struct BFD_CC_RX_VLD_CNT_REG(u32);
 impl BFD_CC_RX_VLD_CNT_REG {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cc_rx_vld_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cc_rx_vld_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -66,11 +66,11 @@ impl BFD_CC_RX_VLD_CNT_REG {
 pub struct BFD_CC_TX_CNT_REG(u32);
 impl BFD_CC_TX_CNT_REG {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cc_tx_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cc_tx_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -82,11 +82,11 @@ impl BFD_CC_TX_CNT_REG {
 pub struct BFD_CV_RX_INVLD_CNT_REG(u32);
 impl BFD_CV_RX_INVLD_CNT_REG {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cv_rx_invld_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cv_rx_invld_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -98,11 +98,11 @@ impl BFD_CV_RX_INVLD_CNT_REG {
 pub struct BFD_CV_RX_VLD_CNT_REG(u32);
 impl BFD_CV_RX_VLD_CNT_REG {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cv_rx_vld_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cv_rx_vld_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -114,11 +114,11 @@ impl BFD_CV_RX_VLD_CNT_REG {
 pub struct BFD_CV_TX_CNT_REG(u32);
 impl BFD_CV_TX_CNT_REG {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cv_tx_cnt(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cv_tx_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -130,11 +130,11 @@ impl BFD_CV_TX_CNT_REG {
 pub struct BFD_RX_LAST(u32);
 impl BFD_RX_LAST {
     /// Contains the current LOC state. When this value is changed (by LOC timer or Rx of valid BFD CC/CV) a sticky bit is asserted: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_LOC_CHANGE_STICKY An interrupt may optionally be generated: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_LOC_CHANGE_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_loc_defect(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_loc_defect(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -148,11 +148,11 @@ impl BFD_RX_LAST {
 pub struct BFD_RX_STICKY(u32);
 impl BFD_RX_STICKY {
     /// Sticky bit asserted if an incoming BFD PDU fails the AUTH_MISMATCH test. The VOE is configured with the expected value of the incoming BFD PDUs: BFD CC: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_CC_AUTH_ENA BFD CV: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_CV_AUTH_ENA The AUTH_MISMATCH test will fail if the incoming BFD PDUs AUTH bit does not match the configured value.
-    #[inline]
+    #[inline(always)]
     pub fn auth_mismatch_err_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_auth_mismatch_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -160,11 +160,11 @@ impl BFD_RX_STICKY {
         self.0 |= value;
     }
     /// Sticky bit asserted if an incoming Rx BFD PDU fails the DM_ZERO test: Incoming Rx BFD PDUs are discarded if the Detect Mult field is ZERO.
-    #[inline]
+    #[inline(always)]
     pub fn dm_zero_err_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_dm_zero_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -172,11 +172,11 @@ impl BFD_RX_STICKY {
         self.0 |= value;
     }
     /// Sticky bit is asserted if an Rx BFD PDU fails the D_BIT_SET test. Frames failing this test are discarded. The D_BIT_SET test will fail if a BFD PDU is received with the D bit = 1.
-    #[inline]
+    #[inline(always)]
     pub fn d_bit_set_err_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_d_bit_set_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -184,11 +184,11 @@ impl BFD_RX_STICKY {
         self.0 |= value;
     }
     /// Sticky bit asserted if an incoming BFD frame fails the MAX_LEN test. The MAX_LEN will discard incoming BFD PDUs if the LENGTH field in the BFD PDU is larger than the configured MAX_LEN: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_MAX_LEN
-    #[inline]
+    #[inline(always)]
     pub fn max_len_err_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_max_len_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -196,11 +196,11 @@ impl BFD_RX_STICKY {
         self.0 |= value;
     }
     /// Sticky bit asserted if an incoming BFD frame fails the MIN_LEN test. MIN_LEN test will discard incoming BFD frames based on the value of the AUTH bit and the LENGTH field in the BFD PDU: AUTH = 0: Discard PDU if LENGTH < 24 bytes AUTH = 1: Discard PDU if LENGTH < 26 bytes
-    #[inline]
+    #[inline(always)]
     pub fn min_len_err_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_min_len_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -208,11 +208,11 @@ impl BFD_RX_STICKY {
         self.0 |= value;
     }
     /// Sticky bit asserted if an incoming Rx BFD PDU is discarded because it fails the MY_DISCR verification. The MY_DISCR test will match the My Discriminator field in the Rx BFD PDU, based on which session the BFD PDU belongs to. Coordinated or NEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_REMOTE_DISCR_SRC.BFD_REMOTE_DISCR_SRC FEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_REMOTE_DISCR_SINK.BFD_REMOTE_DISCR_SINK The session is determined based on matching the BFD PDU Your Discriminator against the following values: * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SRC.BFD_LOCAL_DISCR_SRC * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SINK.BFD_LOCAL_DISCR_SINK
-    #[inline]
+    #[inline(always)]
     pub fn my_discr_err_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_my_discr_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -220,11 +220,11 @@ impl BFD_RX_STICKY {
         self.0 |= value;
     }
     /// Sticky bit asserted if an incoming BFD PDU fails the M_BIT_SET test. Incoming Rx BFD PDUs are discarded if the M bit is set.
-    #[inline]
+    #[inline(always)]
     pub fn m_bit_set_err_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_m_bit_set_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -232,22 +232,22 @@ impl BFD_RX_STICKY {
         self.0 |= value;
     }
     /// Sticky bit is asserted if an Rx BFD PDU fails the P_AND_F_BIT_SET test. Frames failing this test are discarded. The P_AND_F_BIT_SET fails if a BFD PDU is received with both the Poll Flag = 1 and the Final flag = 1
-    #[inline]
+    #[inline(always)]
     pub fn p_and_f_bit_set_err_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_p_and_f_bit_set_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Sticky bit is asserted when a frame is discarded because the BFD_CC/CV.VERSION field does not match the value configured in the following register: * VOP::VERSION_CTRL_MPLS.BFD_VERSION
-    #[inline]
+    #[inline(always)]
     pub fn version_err_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_version_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -255,11 +255,11 @@ impl BFD_RX_STICKY {
         self.0 |= value;
     }
     /// Sticky bit asserted if an incoming BFD PDU fails the YOUR_DISCR test. The YOUR_DISCR test will match the Your Discriminator field of the Rx BFD PDU against the values configured in the following registers, to determine which session the BFD PDU belongs to: Coordinated or NEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SRC.BFD_LOCAL_DISCR_SRC FEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SINK.BFD_LOCAL_DISCR_SINK The match will depend on the configuration of the following bit field: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_COORDINATED_MODE_ENA
-    #[inline]
+    #[inline(always)]
     pub fn your_discr_err_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_your_discr_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -276,11 +276,11 @@ impl BFD_SINK_INFO {
     /// BFD diagnostic code of the Local BFD_SINK. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs DIAG field transmitted by the BFD_SINK. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
     ///
     /// See RFC6428
-    #[inline]
+    #[inline(always)]
     pub fn bfd_local_diag_sink(&self) -> u32 {
         (self.0 & 0x3e00000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_local_diag_sink(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 21;
@@ -288,11 +288,11 @@ impl BFD_SINK_INFO {
         self.0 |= value;
     }
     /// BFD Detect Mult of the Local BFD_SINK. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs DETECT MULT field transmitted by the BFD_SINK. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_local_dm_sink(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_local_dm_sink(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -302,11 +302,11 @@ impl BFD_SINK_INFO {
     /// BFD State of the Local BFD_SINK. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs STATE field of all PDUs transmitted by the BFD_SINK. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
     ///
     /// 00 - AdminDown 01 - Down 10 - Init 11 - Up
-    #[inline]
+    #[inline(always)]
     pub fn bfd_local_state_sink(&self) -> u32 {
         (self.0 & 0x30000000) >> 28
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_local_state_sink(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 28;
@@ -316,11 +316,11 @@ impl BFD_SINK_INFO {
     /// BFD diagnostic code of the remote BFD entity communicating with the Local BFD_SINK. If configured to do so, the VOE HW will update this bit field with the DIAG CODE value of the last valid BFD CC PDU received by the BFD_SINK. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
     ///
     /// See RFC6428
-    #[inline]
+    #[inline(always)]
     pub fn bfd_remote_diag_sink(&self) -> u32 {
         (self.0 & 0x1f0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_remote_diag_sink(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 16;
@@ -328,11 +328,11 @@ impl BFD_SINK_INFO {
         self.0 |= value;
     }
     /// BFD Detect Mult of the remote BFD entity communicating with the Local BFD_SINK. If configured to do so, the VOE HW will update this bit field with the Detect Mult value of the last valid BFD CC PDU received by the BFD_SINK. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_remote_dm_sink(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_remote_dm_sink(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -341,11 +341,11 @@ impl BFD_SINK_INFO {
     /// BFD State of the remote BFD entity communicating with the Local BFD_SINK If configured to do so, the VOE HW will update this bit field with the value of the last valid BFD CC PDU received by the BFD_SINK. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
     ///
     /// 00 - AdminDown 01 - Down 10 - Init 11 - Up
-    #[inline]
+    #[inline(always)]
     pub fn bfd_remote_state_sink(&self) -> u32 {
         (self.0 & 0xc000000) >> 26
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_remote_state_sink(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 26;
@@ -362,11 +362,11 @@ impl BFD_SRC_INFO {
     /// BFD diagnostic code of the Local BFD_SRC. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs DIAG field transmitted by the BFD_SRC. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
     ///
     /// See RFC6428
-    #[inline]
+    #[inline(always)]
     pub fn bfd_local_diag_src(&self) -> u32 {
         (self.0 & 0x3e00000) >> 21
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_local_diag_src(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 21;
@@ -374,11 +374,11 @@ impl BFD_SRC_INFO {
         self.0 |= value;
     }
     /// BFD Detect Mult of the Local BFD_SRC. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs DETECT MULT field transmitted by the BFD_SRC. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_local_dm_src(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_local_dm_src(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -388,11 +388,11 @@ impl BFD_SRC_INFO {
     /// BFD State of the Local BFD_SRC. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs STATE field transmitted by the BFD_SRC. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
     ///
     /// 00 - AdminDown 01 - Down 10 - Init 11 - Up
-    #[inline]
+    #[inline(always)]
     pub fn bfd_local_state_src(&self) -> u32 {
         (self.0 & 0x30000000) >> 28
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_local_state_src(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 28;
@@ -402,11 +402,11 @@ impl BFD_SRC_INFO {
     /// BFD diagnostic code of the remote BFD entity communicating with the Local BFD_SRC. If configured to do so, the VOE HW will update this bit field with the DIAG CODE value of the last valid BFD CC PDU received by the BFD_SRC. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
     ///
     /// See RFC6428
-    #[inline]
+    #[inline(always)]
     pub fn bfd_remote_diag_src(&self) -> u32 {
         (self.0 & 0x1f0000) >> 16
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_remote_diag_src(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 16;
@@ -414,11 +414,11 @@ impl BFD_SRC_INFO {
         self.0 |= value;
     }
     /// BFD Detect Mult of the remote BFD entity communicating with the Local BFD_SRC. If configured to do so, the VOE HW will update this bit field with the Detect Mult value of the last valid BFD CC PDU received by the BFD_SRC. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_remote_dm_src(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_remote_dm_src(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -427,11 +427,11 @@ impl BFD_SRC_INFO {
     /// BFD State of the remote BFD entity communicating with the Local BFD_SRC. If configured to do so, the VOE HW will update this bit field with the value of the last valid BFD CC PDU received by the BFD_SRC. Updating this bit field is enabled by the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_SAMPLE_ENA
     ///
     /// 00 - AdminDown 01 - Down 10 - Init 11 - Up
-    #[inline]
+    #[inline(always)]
     pub fn bfd_remote_state_src(&self) -> u32 {
         (self.0 & 0xc000000) >> 26
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_remote_state_src(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 26;
@@ -446,11 +446,11 @@ impl BFD_SRC_INFO {
 pub struct BFD_STAT(u32);
 impl BFD_STAT {
     /// BFD Loss of Continuity (LOC) Counter. This counter is incremented by the LOC SCAN timer programmed in the following bit field: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_SCAN_PERIOD The LOC counter is cleared every time a valid BFD CC/CV PDU is received. The VOE will generate a LOC event when the BFD_MISS_CNT is equal to the value in the relevant Detect Multiplier. Which Detect Multiplier is used depends on whether the BFD session is configured for "Coordinated Mode" or "Independent Mode".
-    #[inline]
+    #[inline(always)]
     pub fn bfd_miss_cnt(&self) -> u32 {
         self.0 & 0x1ff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_miss_cnt(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
@@ -464,11 +464,11 @@ impl BFD_STAT {
 pub struct BFD_TX_STICKY(u32);
 impl BFD_TX_STICKY {
     /// Sticky bit asserted if a BFD PDU is transmitted by a VOE and the VOE is configured to update the BFD PDU: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA and the Tx BFD PDU My Discriminator value does not match any of the configured BFD Discriminator Values: Coordinated or NEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SRC.BFD_LOCAL_DISCR_SRC FEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SINK.BFD_LOCAL_DISCR_SINK The type of sesssion must be configured using the following bit field: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_COORDINATED_MODE_ENA
-    #[inline]
+    #[inline(always)]
     pub fn tx_my_discr_mismatch(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_my_discr_mismatch(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -484,11 +484,11 @@ impl CPT_RX_STICKY_MPLS {
     /// Asserted when the VOE receives a valid BFD CC PDU.
     ///
     /// '0': No Valid BFD CC PDU received '1': Valid BFD CC received
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cc_rx_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cc_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -498,11 +498,11 @@ impl CPT_RX_STICKY_MPLS {
     /// Asserted when the VOE receives a valid BFD CV PDU
     ///
     /// '0': No Valid BFD CV PDU received '1': Valid BFD CV received
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cv_rx_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cv_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -511,11 +511,11 @@ impl CPT_RX_STICKY_MPLS {
     /// Asserted when VOE receives a valid OAM PDU with an G-ACH Channel Type which is configured as a Generic G-ACH Channel Type in the following register: * VOP::MPLS_GENERIC_CODEPOINT.GENERIC_CODEPOINT_VAL There is a separate bit to indicate the reception of each of the configured Generic G-ACH Channel Types.
     ///
     /// x0x: No CPU copy x1x: Copy to CPU
-    #[inline]
+    #[inline(always)]
     pub fn generic_cpt_rx_sticky_mask(&self) -> u32 {
         (self.0 & 0x7f8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_generic_cpt_rx_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 3;
@@ -525,11 +525,11 @@ impl CPT_RX_STICKY_MPLS {
     /// Asserted when VOE receives a valid MPLS-TP OAM PDU with an G-ACH Channel Type which is detected as UNKNOWN. UNKNOWN G-ACH Channel Type is used for OAM PDU types which do not have dedicated HW support and which is not encoded as a Generic G-ACH Channel Type.
     ///
     /// '0': No UNKNOWN PDU received. '1': PDU with UNKNOWN Channel Type received.
-    #[inline]
+    #[inline(always)]
     pub fn unk_cpt_rx_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_unk_cpt_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -544,11 +544,11 @@ impl CPT_RX_STICKY_MPLS {
 pub struct INTR_ENA_MPLS(u32);
 impl INTR_ENA_MPLS {
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_LOC_CHANGE_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_loc_change_int_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_loc_change_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -556,11 +556,11 @@ impl INTR_ENA_MPLS {
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_DIAG_CHANGE_SINK_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_diag_change_sink_int_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_diag_change_sink_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -568,11 +568,11 @@ impl INTR_ENA_MPLS {
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_DIAG_CHANGE_SRC_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_diag_change_src_int_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_diag_change_src_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -580,11 +580,11 @@ impl INTR_ENA_MPLS {
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_DM_CHANGE_SINK_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_dm_change_sink_int_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_dm_change_sink_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -592,11 +592,11 @@ impl INTR_ENA_MPLS {
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_DM_CHANGE_SRC_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_dm_change_src_int_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_dm_change_src_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -604,22 +604,22 @@ impl INTR_ENA_MPLS {
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_F_SET_SINK_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_f_set_sink_int_ena(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_f_set_sink_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_F_SET_SRC_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_f_set_src_int_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_f_set_src_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -627,11 +627,11 @@ impl INTR_ENA_MPLS {
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_P_SET_SINK_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_p_set_sink_int_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_p_set_sink_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -639,11 +639,11 @@ impl INTR_ENA_MPLS {
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_P_SET_SRC_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_p_set_src_int_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_p_set_src_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -651,11 +651,11 @@ impl INTR_ENA_MPLS {
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_STATE_CHANGE_SINK_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_state_change_sink_int_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_state_change_sink_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -663,11 +663,11 @@ impl INTR_ENA_MPLS {
         self.0 |= value;
     }
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_RX_STATE_CHANGE_SRC_STICKY
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_state_change_src_int_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_state_change_src_int_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -682,11 +682,11 @@ impl INTR_ENA_MPLS {
 pub struct INTR_STICKY_MPLS(u32);
 impl INTR_STICKY_MPLS {
     /// This sticky bit is asserted when the VOE Loss of Continuity (LOC) detect state changes. The following two events will cause the assertion of this sticky bit: * The BFD_MISS_CNT is increased to 2 x the session Detect Mult (LOC detection). * A valid BFD CC/CV PDU is received by the VOE which is in LOC state.
-    #[inline]
+    #[inline(always)]
     pub fn bfd_loc_change_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_loc_change_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -694,11 +694,11 @@ impl INTR_STICKY_MPLS {
         self.0 |= value;
     }
     /// When the BFD Sink receives a valid BFD CC PDU, this sticky bit is asserted if the 'Diag' value in the Rx BFD CC PDU is different from the previous value received. The previous value is stored in: * VOP_MPLS:VOE_STAT_MPLS:BFD_SINK_INFO.BFD_REMOTE_DIAG_SINK This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_DIAG_CHANGE_SINK_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_diag_change_sink_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_diag_change_sink_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -706,11 +706,11 @@ impl INTR_STICKY_MPLS {
         self.0 |= value;
     }
     /// When the BFD Source receives a valid BFD CC PDU, this sticky bit is asserted if the 'Diag' value in the Rx BFD CC PDU is different from the previous value received. The previous value is stored in: * VOP_MPLS:VOE_STAT_MPLS:BFD_SRC_INFO.BFD_REMOTE_DIAG_SRC This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_DIAG_CHANGE_SRC_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_diag_change_src_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_diag_change_src_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -718,11 +718,11 @@ impl INTR_STICKY_MPLS {
         self.0 |= value;
     }
     /// When the BFD Sink receives a valid BFD CC PDU, this sticky bit is asserted if the 'Detect Mult' value in the Rx BFD CC PDU is different from the previous value received. The previous value is stored in: * VOP_MPLS:VOE_STAT_MPLS:BFD_SINK_INFO.BFD_REMOTE_DM_SINK This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_DM_CHANGE_SINK_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_dm_change_sink_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_dm_change_sink_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -730,11 +730,11 @@ impl INTR_STICKY_MPLS {
         self.0 |= value;
     }
     /// When the BFD Source receives a valid BFD CC PDU, this sticky bit is asserted if the 'Detect Mult' value in the Rx BFD CC PDU is different from the previous value received. The previous value is stored in: * VOP_MPLS:VOE_STAT_MPLS:BFD_SRC_INFO.BFD_REMOTE_DM_SRC This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_DM_CHANGE_SRC_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_dm_change_src_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_dm_change_src_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -742,22 +742,22 @@ impl INTR_STICKY_MPLS {
         self.0 |= value;
     }
     /// When the BFD Sink receives a valid BFD CC PDU, this sticky bit is asserted if the Final Flag is asserted in the Rx BFD CC PDU. This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_F_SET_SINK_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_f_set_sink_sticky(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_f_set_sink_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// When the BFD Source receives a valid BFD CC PDU, this sticky bit is asserted if the Final Flag is asserted in the Rx BFD CC PDU. This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_F_SET_SRC_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_f_set_src_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_f_set_src_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -765,11 +765,11 @@ impl INTR_STICKY_MPLS {
         self.0 |= value;
     }
     /// When the BFD Sink receives a valid BFD CC PDU, this sticky bit is asserted if the Poll Flag is asserted in the Rx BFD CC PDU. This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_P_SET_SINK_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_p_set_sink_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_p_set_sink_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -777,11 +777,11 @@ impl INTR_STICKY_MPLS {
         self.0 |= value;
     }
     /// When the BFD Source receives a valid BFD CC PDU, this sticky bit is asserted if the Poll Flag is asserted in the Rx BFD CC PDU. This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_P_SET_SRC_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_p_set_src_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_p_set_src_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -789,11 +789,11 @@ impl INTR_STICKY_MPLS {
         self.0 |= value;
     }
     /// When the BFD Sink receives a valid BFD CC PDU, this sticky bit is asserted if the 'State' value in the Rx BFD CC PDU is different from the previous value received. The previous value is stored in: * VOP_MPLS:VOE_STAT_MPLS:BFD_SINK_INFO.BFD_REMOTE_STATE_SINK This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_STATE_CHANGE_SINK_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_state_change_sink_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_state_change_sink_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -801,11 +801,11 @@ impl INTR_STICKY_MPLS {
         self.0 |= value;
     }
     /// When the BFD Source receives a valid BFD CC PDU, this sticky bit is asserted if the 'State' value in the Rx BFD CC PDU is different from the previous value received. The previous value is stored in: * VOP_MPLS:VOE_STAT_MPLS:BFD_SRC_INFO.BFD_REMOTE_STATE_SRC This event will generate an interrupt if so enabled in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_RX_STATE_CHANGE_SRC_INT_ENA
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_state_change_src_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_state_change_src_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -820,11 +820,11 @@ impl INTR_STICKY_MPLS {
 pub struct PDU_EXTRACT_MPLS(u32);
 impl PDU_EXTRACT_MPLS {
     /// Extract the next valid BFD CC PDU received by the VOE.
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cc_rx_next_good_extr(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cc_rx_next_good_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -832,11 +832,11 @@ impl PDU_EXTRACT_MPLS {
         self.0 |= value;
     }
     /// Extract the next valid BFD CV PDU received by the VOE.
-    #[inline]
+    #[inline(always)]
     pub fn bfd_cv_rx_next_good_extr(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_cv_rx_next_good_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -844,11 +844,11 @@ impl PDU_EXTRACT_MPLS {
         self.0 |= value;
     }
     /// Asserting this bit will extract BFD PDUs which fail the Rx verification test. Extraction will be done Hit Me Once or all frames depending on the following bit field: * EXTRACT_HIT_ME_ONCE
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_err_extr(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -856,11 +856,11 @@ impl PDU_EXTRACT_MPLS {
         self.0 |= value;
     }
     /// Asserting this bit will extract frames with the Final flag set. Extraction will be done Hit Me Once or all frames depending on the following bit field: * EXTRACT_HIT_ME_ONCE
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_f_set_extr(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_f_set_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -868,11 +868,11 @@ impl PDU_EXTRACT_MPLS {
         self.0 |= value;
     }
     /// Will extract the next valid Rx BFD PDU if one of the following parameters changed since the last BFD PDU belonging to the same session (Coordinated / NEIS / FEIS): * BFD.DM * BFD.DIAG * BFD.STATE Extraction will be done Hit Me Once or all frames depending on the following bit field: * EXTRACT_HIT_ME_ONCE
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_param_change_extr(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_param_change_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -880,11 +880,11 @@ impl PDU_EXTRACT_MPLS {
         self.0 |= value;
     }
     /// Asserting this bit will extract frames with the Poll flag set. Extraction will be done Hit Me Once or all frames depending on the following bit field: * EXTRACT_HIT_ME_ONCE
-    #[inline]
+    #[inline(always)]
     pub fn bfd_rx_p_set_extr(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_rx_p_set_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -892,22 +892,22 @@ impl PDU_EXTRACT_MPLS {
         self.0 |= value;
     }
     /// Asserting this bit will extract BFD PDUs which fail the Tx verification test. Extraction will be done Hit Me Once or all frames depending on the following bit field: * EXTRACT_HIT_ME_ONCE
-    #[inline]
+    #[inline(always)]
     pub fn bfd_tx_err_extr(&self) -> u32 {
         self.0 & 0x1
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_bfd_tx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// The configuration of this bit field determines whether the following configuration bits cause extraction of the Next Frame Only (Hit Me Once) or all the Frames matching a given criteria: * BFD_RX_PARAM_CHANGE_EXTR * BFD_RX_P_SET_EXTR * BFD_RX_F_SET_EXTR * BFD_RX_ERR_EXTR * BFD_TX_ERR_EXTR
-    #[inline]
+    #[inline(always)]
     pub fn extract_hit_me_once(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_extract_hit_me_once(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -922,11 +922,11 @@ impl PDU_EXTRACT_MPLS {
 pub struct RX_CNT_NON_SEL_OAM_MPLS(u32);
 impl RX_CNT_NON_SEL_OAM_MPLS {
     /// See register description
-    #[inline]
+    #[inline(always)]
     pub fn rx_cnt_non_sel_oam_mpls(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_cnt_non_sel_oam_mpls(&mut self, value: u32) {
         self.0 = value;
     }
@@ -938,11 +938,11 @@ impl RX_CNT_NON_SEL_OAM_MPLS {
 pub struct RX_CNT_SEL_OAM_MPLS(u32);
 impl RX_CNT_SEL_OAM_MPLS {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn rx_cnt_sel_oam_mpls(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rx_cnt_sel_oam_mpls(&mut self, value: u32) {
         self.0 = value;
     }
@@ -954,11 +954,11 @@ impl RX_CNT_SEL_OAM_MPLS {
 pub struct TX_CNT_NON_SEL_OAM_MPLS(u32);
 impl TX_CNT_NON_SEL_OAM_MPLS {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn tx_cnt_non_sel_oam_mpls(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_cnt_non_sel_oam_mpls(&mut self, value: u32) {
         self.0 = value;
     }
@@ -970,11 +970,11 @@ impl TX_CNT_NON_SEL_OAM_MPLS {
 pub struct TX_CNT_SEL_OAM_MPLS(u32);
 impl TX_CNT_SEL_OAM_MPLS {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn tx_cnt_sel_oam_mpls(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_tx_cnt_sel_oam_mpls(&mut self, value: u32) {
         self.0 = value;
     }

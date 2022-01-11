@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct PROFILE_CFG(u32);
 impl PROFILE_CFG {
     /// If the frame is forwarded to the CPU (via PROFILE_CFG.FWD_SEL), it will be forwarded to the CPU queue configured in this field.
-    #[inline]
+    #[inline(always)]
     pub fn cpu_qu(&self) -> u32 {
         self.0 & 0x7
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -47,11 +47,11 @@ impl PROFILE_CFG {
     /// Controls S2 custom rule selection.
     ///
     /// Bit 0: Selects custom key to use (0: CUSTOM_1, 1: CUSTOM_2) Bit 1: Enables custom key for first lookup Bit 2: Enables custom key for second lookup
-    #[inline]
+    #[inline(always)]
     pub fn custom_ace_ena(&self) -> u32 {
         (self.0 & 0x38000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_custom_ace_ena(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 15;
@@ -61,11 +61,11 @@ impl PROFILE_CFG {
     /// CPU forward configuration per profile.
     ///
     /// 0: Normal forward 1: Enable redirection to CPU queue: PROFILE_CFG.CPU_QU 2: Enable copy to CPU queue: PROFILE_CFG.CPU_QU 3: Discard the frame
-    #[inline]
+    #[inline(always)]
     pub fn fwd_sel(&self) -> u32 {
         (self.0 & 0x18) >> 3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_fwd_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 3;
@@ -73,11 +73,11 @@ impl PROFILE_CFG {
         self.0 |= value;
     }
     /// Controls if profile traffic should be part of OAM LM count.
-    #[inline]
+    #[inline(always)]
     pub fn lm_cnt_dis(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lm_cnt_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -85,11 +85,11 @@ impl PROFILE_CFG {
         self.0 |= value;
     }
     /// Controls if profile traffic should be normalized according to normal action handling: nxt_normalize.
-    #[inline]
+    #[inline(always)]
     pub fn normalize_dis(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_normalize_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -99,11 +99,11 @@ impl PROFILE_CFG {
     /// Determines the next CLM lookup. Could also specify no further CLM lookups
     ///
     /// 0: no overrule 2: SGL_MLBS 3: DBL_MLBS 4: TRI_MLBS 12: CUSTOM1 13: CUSTOM2 14: CUSTOM4 15: No Lookup other: reserved
-    #[inline]
+    #[inline(always)]
     pub fn nxt_key_type(&self) -> u32 {
         (self.0 & 0x1e0) >> 5
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_nxt_key_type(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 5;
@@ -111,11 +111,11 @@ impl PROFILE_CFG {
         self.0 |= value;
     }
     /// Determines frame pointer movement.
-    #[inline]
+    #[inline(always)]
     pub fn nxt_norm_w16_offset(&self) -> u32 {
         (self.0 & 0x1e00) >> 9
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_nxt_norm_w16_offset(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 9;
@@ -125,11 +125,11 @@ impl PROFILE_CFG {
     /// Controls Protocol layer (frame_type) at frame pointer position after update PROFILE_CFG.NXT_NORM_W16_OFFSET.
     ///
     /// 0: ETH  - Frame pointer points to start of DMAC. 1: CW (IP / MPLS PW CW / MPLS ACH) - Frame pointer points to MPLS CW/ACH or IP version. 2: MPLS - Frame pointer points to MPLS label. 3: DATA -"Raw" data, i.e. unknown protocol type.
-    #[inline]
+    #[inline(always)]
     pub fn nxt_type_after_offset(&self) -> u32 {
         (self.0 & 0x6000) >> 13
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_nxt_type_after_offset(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 13;

@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct AGGR_CFG(u32);
 impl AGGR_CFG {
     /// Aggregation port mask.
-    #[inline]
+    #[inline(always)]
     pub fn port_mask(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_mask(&mut self, value: u32) {
         self.0 = value;
     }
@@ -50,11 +50,11 @@ impl AGGR_CFG {
 pub struct AGGR_CFG1(u32);
 impl AGGR_CFG1 {
     /// Refer to AGGR_CFG.PORT_MASK description.
-    #[inline]
+    #[inline(always)]
     pub fn port_mask1(&self) -> u32 {
         self.0 & 0x1fffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_port_mask1(&mut self, value: u32) {
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;

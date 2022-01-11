@@ -34,11 +34,11 @@ use derive_more::{From, Into};
 pub struct PTP_CUR_NSEC(u32);
 impl PTP_CUR_NSEC {
     /// Time of day naoseconds, latched when NSF was read.
-    #[inline]
+    #[inline(always)]
     pub fn ptp_cur_nsec(&self) -> u32 {
         self.0 & 0x3fffffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ptp_cur_nsec(&mut self, value: u32) {
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
@@ -50,11 +50,11 @@ impl PTP_CUR_NSEC {
 pub struct PTP_CUR_NSF(u32);
 impl PTP_CUR_NSF {
     /// Returns the current value of the timestamping clock. The time of day registers will be latched when this register is read.
-    #[inline]
+    #[inline(always)]
     pub fn ptp_cur_nsf(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ptp_cur_nsf(&mut self, value: u32) {
         self.0 = value;
     }
@@ -64,11 +64,11 @@ impl PTP_CUR_NSF {
 pub struct PTP_CUR_SEC_LSB(u32);
 impl PTP_CUR_SEC_LSB {
     /// Value of current tod secs, latched when NSF was read.
-    #[inline]
+    #[inline(always)]
     pub fn ptp_cur_sec_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ptp_cur_sec_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -78,11 +78,11 @@ impl PTP_CUR_SEC_LSB {
 pub struct PTP_CUR_SEC_MSB(u32);
 impl PTP_CUR_SEC_MSB {
     /// Current time of day, seconds part, latched when NSF was read
-    #[inline]
+    #[inline(always)]
     pub fn ptp_cur_sec_msb(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ptp_cur_sec_msb(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

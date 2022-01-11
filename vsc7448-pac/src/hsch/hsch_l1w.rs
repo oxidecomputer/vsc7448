@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct HSCH_L1W(u32);
 impl HSCH_L1W {
     /// Contains the layer 0 scheduling history descriptor for a frames passing through layer-1 element A, input B. Group replication index is A and register replication is B.
-    #[inline]
+    #[inline(always)]
     pub fn win_shist(&self) -> u32 {
         self.0 & 0x7fffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_win_shist(&mut self, value: u32) {
         assert!(value <= 0x7fffff);
         self.0 &= !0x7fffff;

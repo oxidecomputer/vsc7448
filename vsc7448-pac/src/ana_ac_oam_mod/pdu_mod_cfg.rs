@@ -33,11 +33,11 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DM_PTP_DOMAIN_CFG(u32);
 impl DM_PTP_DOMAIN_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn ptp_domain(&self) -> u32 {
         self.0 & 0x3
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_ptp_domain(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -51,11 +51,11 @@ impl DM_PTP_DOMAIN_CFG {
 pub struct RD_LAST_PORT_BYTE_CNT_LSB(u32);
 impl RD_LAST_PORT_BYTE_CNT_LSB {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn rd_last_port_byte_cnt_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rd_last_port_byte_cnt_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -67,11 +67,11 @@ impl RD_LAST_PORT_BYTE_CNT_LSB {
 pub struct RD_LAST_PORT_BYTE_CNT_MSB(u32);
 impl RD_LAST_PORT_BYTE_CNT_MSB {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn rd_last_port_byte_cnt_msb(&self) -> u32 {
         self.0 & 0xff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rd_last_port_byte_cnt_msb(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -85,11 +85,11 @@ impl RD_LAST_PORT_BYTE_CNT_MSB {
 pub struct RD_LAST_PORT_FRM_CNT_LSB(u32);
 impl RD_LAST_PORT_FRM_CNT_LSB {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn rd_last_port_frm_cnt_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rd_last_port_frm_cnt_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -101,11 +101,11 @@ impl RD_LAST_PORT_FRM_CNT_LSB {
 pub struct RD_LAST_PORT_LM_CNT_LSB(u32);
 impl RD_LAST_PORT_LM_CNT_LSB {
     /// See register description.
-    #[inline]
+    #[inline(always)]
     pub fn rd_last_port_lm_cnt_lsb(&self) -> u32 {
         self.0
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_rd_last_port_lm_cnt_lsb(&mut self, value: u32) {
         self.0 = value;
     }

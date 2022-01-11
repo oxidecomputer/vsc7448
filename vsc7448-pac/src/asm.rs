@@ -45,35 +45,35 @@ pub mod ram_ctrl;
 /// Assembler Configuration Registers
 pub struct CFG(pub(super) u32);
 impl CFG {
-    #[inline]
+    #[inline(always)]
     pub fn CPU_FC_CFG(&self) -> RegisterAddress<cfg::CPU_FC_CFG> {
         RegisterAddress::new(self.0 + 0x298)
     }
-    #[inline]
+    #[inline(always)]
     pub fn INJ_VLAN_CFG(&self) -> RegisterAddress<cfg::INJ_VLAN_CFG> {
         RegisterAddress::new(self.0 + 0x378)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_ADDR_HIGH_CFG(&self, index: u32) -> RegisterAddress<cfg::MAC_ADDR_HIGH_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn MAC_ADDR_LOW_CFG(&self, index: u32) -> RegisterAddress<cfg::MAC_ADDR_LOW_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0xe0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PAUSE_CFG(&self, index: u32) -> RegisterAddress<cfg::PAUSE_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x29c + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PORT_CFG(&self, index: u32) -> RegisterAddress<cfg::PORT_CFG> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x1bc + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn STAT_CFG(&self) -> RegisterAddress<cfg::STAT_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -82,11 +82,11 @@ impl CFG {
 /// Access core memory
 pub struct COREMEM(pub(super) u32);
 impl COREMEM {
-    #[inline]
+    #[inline(always)]
     pub fn CM_ADDR(&self) -> RegisterAddress<coremem::CM_ADDR> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn CM_DATA(&self) -> RegisterAddress<coremem::CM_DATA> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -95,16 +95,16 @@ impl COREMEM {
 /// Assembler Debug Registers
 pub struct DBG(pub(super) u32);
 impl DBG {
-    #[inline]
+    #[inline(always)]
     pub fn DBG_CFG(&self) -> RegisterAddress<dbg::DBG_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn ERR_STICKY(&self, index: u32) -> RegisterAddress<dbg::ERR_STICKY> {
         assert!(index < 9);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PRE_CNT_OFLW_STICKY(&self) -> RegisterAddress<dbg::PRE_CNT_OFLW_STICKY> {
         RegisterAddress::new(self.0 + 0x28)
     }
@@ -113,227 +113,227 @@ impl DBG {
 /// Not documented
 pub struct DEV_STATISTICS(pub(super) u32);
 impl DEV_STATISTICS {
-    #[inline]
+    #[inline(always)]
     pub fn RX_ALIGNMENT_LOST_CNT(&self) -> RegisterAddress<dev_statistics::RX_ALIGNMENT_LOST_CNT> {
         RegisterAddress::new(self.0 + 0x94)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_BAD_BYTES_CNT(&self) -> RegisterAddress<dev_statistics::RX_BAD_BYTES_CNT> {
         RegisterAddress::new(self.0 + 0x14)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_BAD_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics::RX_BAD_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0xcc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_BC_CNT(&self) -> RegisterAddress<dev_statistics::RX_BC_CNT> {
         RegisterAddress::new(self.0 + 0x20)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_CRC_ERR_CNT(&self) -> RegisterAddress<dev_statistics::RX_CRC_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x24)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_FRAGMENTS_CNT(&self) -> RegisterAddress<dev_statistics::RX_FRAGMENTS_CNT> {
         RegisterAddress::new(self.0 + 0x2c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_IN_BYTES_CNT(&self) -> RegisterAddress<dev_statistics::RX_IN_BYTES_CNT> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_IN_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics::RX_IN_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0xc4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_IN_RANGE_LEN_ERR_CNT(
         &self,
     ) -> RegisterAddress<dev_statistics::RX_IN_RANGE_LEN_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x30)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_IPG_SHRINK_CNT(&self) -> RegisterAddress<dev_statistics::RX_IPG_SHRINK_CNT> {
         RegisterAddress::new(self.0 + 0x5c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_JABBERS_CNT(&self) -> RegisterAddress<dev_statistics::RX_JABBERS_CNT> {
         RegisterAddress::new(self.0 + 0x3c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_MC_CNT(&self) -> RegisterAddress<dev_statistics::RX_MC_CNT> {
         RegisterAddress::new(self.0 + 0x1c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_OK_BYTES_CNT(&self) -> RegisterAddress<dev_statistics::RX_OK_BYTES_CNT> {
         RegisterAddress::new(self.0 + 0x10)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_OK_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics::RX_OK_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0xc8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_OUT_OF_RANGE_LEN_ERR_CNT(
         &self,
     ) -> RegisterAddress<dev_statistics::RX_OUT_OF_RANGE_LEN_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x34)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_OVERSIZE_CNT(&self) -> RegisterAddress<dev_statistics::RX_OVERSIZE_CNT> {
         RegisterAddress::new(self.0 + 0x38)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_PAUSE_CNT(&self) -> RegisterAddress<dev_statistics::RX_PAUSE_CNT> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SIZE1024TO1518_CNT(&self) -> RegisterAddress<dev_statistics::RX_SIZE1024TO1518_CNT> {
         RegisterAddress::new(self.0 + 0x54)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SIZE128TO255_CNT(&self) -> RegisterAddress<dev_statistics::RX_SIZE128TO255_CNT> {
         RegisterAddress::new(self.0 + 0x48)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SIZE1519TOMAX_CNT(&self) -> RegisterAddress<dev_statistics::RX_SIZE1519TOMAX_CNT> {
         RegisterAddress::new(self.0 + 0x58)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SIZE256TO511_CNT(&self) -> RegisterAddress<dev_statistics::RX_SIZE256TO511_CNT> {
         RegisterAddress::new(self.0 + 0x4c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SIZE512TO1023_CNT(&self) -> RegisterAddress<dev_statistics::RX_SIZE512TO1023_CNT> {
         RegisterAddress::new(self.0 + 0x50)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SIZE64_CNT(&self) -> RegisterAddress<dev_statistics::RX_SIZE64_CNT> {
         RegisterAddress::new(self.0 + 0x40)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SIZE65TO127_CNT(&self) -> RegisterAddress<dev_statistics::RX_SIZE65TO127_CNT> {
         RegisterAddress::new(self.0 + 0x44)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SYMBOL_ERR_CNT(&self) -> RegisterAddress<dev_statistics::RX_SYMBOL_ERR_CNT> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_SYNC_LOST_ERR_CNT(&self) -> RegisterAddress<dev_statistics::RX_SYNC_LOST_ERR_CNT> {
         RegisterAddress::new(self.0 + 0xd8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_TAGGED_FRMS_CNT(&self) -> RegisterAddress<dev_statistics::RX_TAGGED_FRMS_CNT> {
         RegisterAddress::new(self.0 + 0x98)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_UC_CNT(&self) -> RegisterAddress<dev_statistics::RX_UC_CNT> {
         RegisterAddress::new(self.0 + 0x18)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_UNDERSIZE_CNT(&self) -> RegisterAddress<dev_statistics::RX_UNDERSIZE_CNT> {
         RegisterAddress::new(self.0 + 0x28)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_UNSUP_OPCODE_CNT(&self) -> RegisterAddress<dev_statistics::RX_UNSUP_OPCODE_CNT> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn RX_UNTAGGED_FRMS_CNT(&self) -> RegisterAddress<dev_statistics::RX_UNTAGGED_FRMS_CNT> {
         RegisterAddress::new(self.0 + 0x9c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_BACKOFF1_CNT(&self) -> RegisterAddress<dev_statistics::TX_BACKOFF1_CNT> {
         RegisterAddress::new(self.0 + 0xbc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_BC_CNT(&self) -> RegisterAddress<dev_statistics::TX_BC_CNT> {
         RegisterAddress::new(self.0 + 0x74)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_CSENSE_CNT(&self) -> RegisterAddress<dev_statistics::TX_CSENSE_CNT> {
         RegisterAddress::new(self.0 + 0xc0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_DEFER_CNT(&self) -> RegisterAddress<dev_statistics::TX_DEFER_CNT> {
         RegisterAddress::new(self.0 + 0xb4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_LATE_COLL_CNT(&self) -> RegisterAddress<dev_statistics::TX_LATE_COLL_CNT> {
         RegisterAddress::new(self.0 + 0xac)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_MC_CNT(&self) -> RegisterAddress<dev_statistics::TX_MC_CNT> {
         RegisterAddress::new(self.0 + 0x70)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_MULTI_COLL_CNT(&self) -> RegisterAddress<dev_statistics::TX_MULTI_COLL_CNT> {
         RegisterAddress::new(self.0 + 0xa8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_OK_BYTES_CNT(&self) -> RegisterAddress<dev_statistics::TX_OK_BYTES_CNT> {
         RegisterAddress::new(self.0 + 0x68)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_OK_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics::TX_OK_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0xd4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_OUT_BYTES_CNT(&self) -> RegisterAddress<dev_statistics::TX_OUT_BYTES_CNT> {
         RegisterAddress::new(self.0 + 0x60)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_OUT_BYTES_MSB_CNT(&self) -> RegisterAddress<dev_statistics::TX_OUT_BYTES_MSB_CNT> {
         RegisterAddress::new(self.0 + 0xd0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_PAUSE_CNT(&self) -> RegisterAddress<dev_statistics::TX_PAUSE_CNT> {
         RegisterAddress::new(self.0 + 0x64)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SIZE1024TO1518_CNT(&self) -> RegisterAddress<dev_statistics::TX_SIZE1024TO1518_CNT> {
         RegisterAddress::new(self.0 + 0x8c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SIZE128TO255_CNT(&self) -> RegisterAddress<dev_statistics::TX_SIZE128TO255_CNT> {
         RegisterAddress::new(self.0 + 0x80)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SIZE1519TOMAX_CNT(&self) -> RegisterAddress<dev_statistics::TX_SIZE1519TOMAX_CNT> {
         RegisterAddress::new(self.0 + 0x90)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SIZE256TO511_CNT(&self) -> RegisterAddress<dev_statistics::TX_SIZE256TO511_CNT> {
         RegisterAddress::new(self.0 + 0x84)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SIZE512TO1023_CNT(&self) -> RegisterAddress<dev_statistics::TX_SIZE512TO1023_CNT> {
         RegisterAddress::new(self.0 + 0x88)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SIZE64_CNT(&self) -> RegisterAddress<dev_statistics::TX_SIZE64_CNT> {
         RegisterAddress::new(self.0 + 0x78)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_SIZE65TO127_CNT(&self) -> RegisterAddress<dev_statistics::TX_SIZE65TO127_CNT> {
         RegisterAddress::new(self.0 + 0x7c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_TAGGED_FRMS_CNT(&self) -> RegisterAddress<dev_statistics::TX_TAGGED_FRMS_CNT> {
         RegisterAddress::new(self.0 + 0xa0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_UC_CNT(&self) -> RegisterAddress<dev_statistics::TX_UC_CNT> {
         RegisterAddress::new(self.0 + 0x6c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_UNTAGGED_FRMS_CNT(&self) -> RegisterAddress<dev_statistics::TX_UNTAGGED_FRMS_CNT> {
         RegisterAddress::new(self.0 + 0xa4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_XCOLL_CNT(&self) -> RegisterAddress<dev_statistics::TX_XCOLL_CNT> {
         RegisterAddress::new(self.0 + 0xb0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn TX_XDEFER_CNT(&self) -> RegisterAddress<dev_statistics::TX_XDEFER_CNT> {
         RegisterAddress::new(self.0 + 0xb8)
     }
@@ -342,12 +342,12 @@ impl DEV_STATISTICS {
 /// Not documented
 pub struct LBK_MISC_CFG(pub(super) u32);
 impl LBK_MISC_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn LBK_AGING_DIS(&self, index: u32) -> RegisterAddress<lbk_misc_cfg::LBK_AGING_DIS> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LBK_FIFO_CFG(&self, index: u32) -> RegisterAddress<lbk_misc_cfg::LBK_FIFO_CFG> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
@@ -357,12 +357,12 @@ impl LBK_MISC_CFG {
 /// Loopback Block Status registers
 pub struct LBK_STAT(pub(super) u32);
 impl LBK_STAT {
-    #[inline]
+    #[inline(always)]
     pub fn LBK_AGING_STICKY(&self, index: u32) -> RegisterAddress<lbk_stat::LBK_AGING_STICKY> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn LBK_OVFLW_STICKY(&self, index: u32) -> RegisterAddress<lbk_stat::LBK_OVFLW_STICKY> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -372,7 +372,7 @@ impl LBK_STAT {
 /// Loopback Watermark Configuration
 pub struct LBK_WM_CFG(pub(super) u32);
 impl LBK_WM_CFG {
-    #[inline]
+    #[inline(always)]
     pub fn VD_FC_WM(&self, index: u32) -> RegisterAddress<lbk_wm_cfg::VD_FC_WM> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -382,11 +382,11 @@ impl LBK_WM_CFG {
 /// Priority-based flow control configuration
 pub struct PFC(pub(super) u32);
 impl PFC {
-    #[inline]
+    #[inline(always)]
     pub fn PFC_CFG(&self) -> RegisterAddress<pfc::PFC_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PFC_TIMER(&self, index: u32) -> RegisterAddress<pfc::PFC_TIMER> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
@@ -396,7 +396,7 @@ impl PFC {
 /// Status for ASM ingress ports
 pub struct PORT_STATUS(pub(super) u32);
 impl PORT_STATUS {
-    #[inline]
+    #[inline(always)]
     pub fn PORT_STICKY(&self, index: u32) -> RegisterAddress<port_status::PORT_STICKY> {
         assert!(index < 55);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -406,7 +406,7 @@ impl PORT_STATUS {
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
-    #[inline]
+    #[inline(always)]
     pub fn RAM_INIT(&self) -> RegisterAddress<ram_ctrl::RAM_INIT> {
         RegisterAddress::new(self.0 + 0x0)
     }

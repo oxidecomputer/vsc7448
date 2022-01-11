@@ -34,22 +34,22 @@ use derive_more::{From, Into};
 pub struct WRED_PROFILE(u32);
 impl WRED_PROFILE {
     /// See WM_RED_LOW. Unit is 2816 bytes.
-    #[inline]
+    #[inline(always)]
     pub fn wm_red_high(&self) -> u32 {
         self.0 & 0x7ff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wm_red_high(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
     }
     /// When enqueuing a frame, RED is active if the egress memory consumption for the applicaple profile is above WM_RED_LEVEL. The probability of random early discarding is calculated as: (Memory consumption - WM_RED_LOW)/(WM_RED_HIGH - WM_RED_LOW). Unit is 2816 bytes.
-    #[inline]
+    #[inline(always)]
     pub fn wm_red_low(&self) -> u32 {
         (self.0 & 0x3ff800) >> 11
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_wm_red_low(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         let value = value << 11;

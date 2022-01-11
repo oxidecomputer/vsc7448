@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct KR_1X0099(u32);
 impl KR_1X0099 {
     /// Received status report field
-    #[inline]
+    #[inline(always)]
     pub fn lpstat(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_lpstat(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

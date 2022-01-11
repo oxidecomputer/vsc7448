@@ -30,22 +30,22 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct REG_1588_16(u16);
 impl REG_1588_16 {
-    #[inline]
+    #[inline(always)]
     pub fn cmd_bit(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_cmd_bit(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
-    #[inline]
+    #[inline(always)]
     pub fn read(&self) -> u16 {
         (self.0 & 0x4000) >> 14
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_read(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 14;

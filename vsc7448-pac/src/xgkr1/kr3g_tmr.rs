@@ -32,11 +32,11 @@ use derive_more::{From, Into};
 pub struct KR3G_LSW(u32);
 impl KR3G_LSW {
     /// rate_detect_3g_timer setting
-    #[inline]
+    #[inline(always)]
     pub fn kr3g_tmr_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_kr3g_tmr_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -48,11 +48,11 @@ impl KR3G_LSW {
 pub struct KR3G_MSW(u32);
 impl KR3G_MSW {
     /// rate_detect_3g_timer setting
-    #[inline]
+    #[inline(always)]
     pub fn kr3g_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
-    #[inline]
+    #[inline(always)]
     pub fn set_kr3g_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

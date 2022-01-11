@@ -40,7 +40,7 @@ pub mod vcap_s2;
 /// VCAP_IS2 counter table
 pub struct CNT_TBL(pub(super) u32);
 impl CNT_TBL {
-    #[inline]
+    #[inline(always)]
     pub fn CNT(&self) -> RegisterAddress<cnt_tbl::CNT> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -49,11 +49,11 @@ impl CNT_TBL {
 /// VCAP_IS2 configuration per port
 pub struct PORT(pub(super) u32);
 impl PORT {
-    #[inline]
+    #[inline(always)]
     pub fn PTP_CFG(&self) -> RegisterAddress<port::PTP_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VCAP_S2_KEY_SEL(&self, index: u32) -> RegisterAddress<port::VCAP_S2_KEY_SEL> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -63,19 +63,19 @@ impl PORT {
 /// PTP domain configuration
 pub struct PTP_DOM(pub(super) u32);
 impl PTP_DOM {
-    #[inline]
+    #[inline(always)]
     pub fn PTP_CLOCK_ID_LSB(&self) -> RegisterAddress<ptp_dom::PTP_CLOCK_ID_LSB> {
         RegisterAddress::new(self.0 + 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_CLOCK_ID_MSB(&self) -> RegisterAddress<ptp_dom::PTP_CLOCK_ID_MSB> {
         RegisterAddress::new(self.0 + 0x0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_MISC_CFG(&self) -> RegisterAddress<ptp_dom::PTP_MISC_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
-    #[inline]
+    #[inline(always)]
     pub fn PTP_SRC_PORT_CFG(&self) -> RegisterAddress<ptp_dom::PTP_SRC_PORT_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -84,7 +84,7 @@ impl PTP_DOM {
 /// Sticky diagnostic status
 pub struct STICKY(pub(super) u32);
 impl STICKY {
-    #[inline]
+    #[inline(always)]
     pub fn SEC_LOOKUP_STICKY(&self, index: u32) -> RegisterAddress<sticky::SEC_LOOKUP_STICKY> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -94,38 +94,38 @@ impl STICKY {
 /// Common configurations used by VCAP_IS2
 pub struct VCAP_S2(pub(super) u32);
 impl VCAP_S2 {
-    #[inline]
+    #[inline(always)]
     pub fn PTP_MISC_CTRL(&self) -> RegisterAddress<vcap_s2::PTP_MISC_CTRL> {
         RegisterAddress::new(self.0 + 0x164)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SWAP_IP_CTRL(&self) -> RegisterAddress<vcap_s2::SWAP_IP_CTRL> {
         RegisterAddress::new(self.0 + 0x168)
     }
-    #[inline]
+    #[inline(always)]
     pub fn SWAP_SIP(&self, index: u32) -> RegisterAddress<vcap_s2::SWAP_SIP> {
         assert!(index < 32);
         RegisterAddress::new(self.0 + 0xe4 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VCAP_S2_CFG(&self, index: u32) -> RegisterAddress<vcap_s2::VCAP_S2_CFG> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VCAP_S2_MISC_CTRL(&self) -> RegisterAddress<vcap_s2::VCAP_S2_MISC_CTRL> {
         RegisterAddress::new(self.0 + 0x16c)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VCAP_S2_RNG_CTRL(&self, index: u32) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_CTRL> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x170 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VCAP_S2_RNG_OFFSET_CFG(&self) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_OFFSET_CFG> {
         RegisterAddress::new(self.0 + 0x1b0)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VCAP_S2_RNG_VALUE_CFG(
         &self,
         index: u32,
@@ -133,7 +133,7 @@ impl VCAP_S2 {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x190 + index * 0x4)
     }
-    #[inline]
+    #[inline(always)]
     pub fn VOE_LOOPBACK_CFG(&self) -> RegisterAddress<vcap_s2::VOE_LOOPBACK_CFG> {
         RegisterAddress::new(self.0 + 0x1b4)
     }
