@@ -36,9 +36,11 @@ impl RCOMP_CFG0 {
     /// Overwrite measured resistor value with value programmed in rcomp_val
     ///
     /// 0: normal mode 1: overwrite mode
+    #[inline]
     pub fn force_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_force_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -48,9 +50,11 @@ impl RCOMP_CFG0 {
     /// RCOMP operation mode
     ///
     /// 0: inactive 1: perform calibration permanently 2: perform calibration once 3: perform calibration once and generate alarm if necessary
+    #[inline]
     pub fn mode_sel(&self) -> u32 {
         (self.0 & 0x300) >> 8
     }
+    #[inline]
     pub fn set_mode_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 8;
@@ -60,9 +64,11 @@ impl RCOMP_CFG0 {
     /// Enable power-down after calibration was done
     ///
     /// 0: disable power-down 1: enable power-down
+    #[inline]
     pub fn pwd_ena(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_pwd_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -72,9 +78,11 @@ impl RCOMP_CFG0 {
     /// Resistor comparator value
     ///
     /// 0: maximum resistance value 15: minimum resistance value
+    #[inline]
     pub fn rcomp_val(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_rcomp_val(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -83,9 +91,11 @@ impl RCOMP_CFG0 {
     /// Start calibration
     ///
     /// 0: idle/inactive 1: start (activate)
+    #[inline]
     pub fn run_cal(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_run_cal(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -95,9 +105,11 @@ impl RCOMP_CFG0 {
     /// Speed selection. Setting time for analog circuit after changing resistor settings.
     ///
     /// 0: max period 1: max period/2 2: max period/4 3: max period/8
+    #[inline]
     pub fn speed_sel(&self) -> u32 {
         (self.0 & 0xc00) >> 10
     }
+    #[inline]
     pub fn set_speed_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 10;

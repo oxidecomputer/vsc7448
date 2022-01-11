@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct CNT(u32);
 impl CNT {
     /// VCAP_IS2 counter value.
+    #[inline]
     pub fn cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_cnt(&mut self, value: u32) {
         self.0 = value;
     }

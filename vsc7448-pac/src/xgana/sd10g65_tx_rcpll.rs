@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct SD10G65_TX_RCPLL_CFG0(u32);
 impl SD10G65_TX_RCPLL_CFG0 {
     /// Enable RCPLL FSM
+    #[inline]
     pub fn pllf_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_pllf_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -45,9 +47,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
     /// Enable predivider for feedback clock to allow for faster clocks,
     ///
     /// 0: disable 1: enable
+    #[inline]
     pub fn pllf_fbdiv_pre(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_pllf_fbdiv_pre(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -57,9 +61,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
     /// Enable PLL loop ctrl by pllf_loop_ena,
     ///
     /// 0: enable loop ctrl by FSM 1: enable loop ctrl by pllf_loop_ena
+    #[inline]
     pub fn pllf_loop_ctrl_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_pllf_loop_ctrl_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -67,9 +73,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
         self.0 |= value;
     }
     /// Enable closed loop, selected with pllf_loop_ctrl_ena=1
+    #[inline]
     pub fn pllf_loop_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_pllf_loop_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -77,9 +85,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
         self.0 |= value;
     }
     /// Enable VCO control signal out of range recalibration
+    #[inline]
     pub fn pllf_oor_recal_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_pllf_oor_recal_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -89,9 +99,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
     /// Sets the ramp characteristic of the FSM, higher values give faster ramp up but less accuracy,
     ///
     /// 0: normal (default) ramping 1: faster ramping 2: fastest ramping 3: slow ramping uses all possible values of r_ctrl
+    #[inline]
     pub fn pllf_ramp_mode_sel(&self) -> u32 {
         (self.0 & 0x380) >> 7
     }
+    #[inline]
     pub fn set_pllf_ramp_mode_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 7;
@@ -101,9 +113,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
     /// Select output on pllf_ref_cnt_stat,
     ///
     /// 0: ref_cnt 1: pll_cnt_diff 2: syn_cnt 3: pll_cnt
+    #[inline]
     pub fn pllf_ref_cnt_sel(&self) -> u32 {
         (self.0 & 0x3000) >> 12
     }
+    #[inline]
     pub fn set_pllf_ref_cnt_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 12;
@@ -111,9 +125,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
         self.0 |= value;
     }
     /// Enable restart of FSM from frequency deviation/unlock condition
+    #[inline]
     pub fn pllf_rst_frqdet_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_pllf_rst_frqdet_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -121,9 +137,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
         self.0 |= value;
     }
     /// Enable restart of FSM from overrun
+    #[inline]
     pub fn pllf_rst_overrun_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_pllf_rst_overrun_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -131,9 +149,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
         self.0 |= value;
     }
     /// Preload value of the ramp up counter, reduces ramp up time for higher frequencies
+    #[inline]
     pub fn pllf_start_cnt(&self) -> u32 {
         (self.0 & 0x3ff0000) >> 16
     }
+    #[inline]
     pub fn set_pllf_start_cnt(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         let value = value << 16;
@@ -143,9 +163,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
     /// Enable feedback clock usage instead of DES/SER par. clock,
     ///
     /// 0: disable 1: enable
+    #[inline]
     pub fn pllf_syn_clk_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_pllf_syn_clk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -155,9 +177,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
     /// Enable vco load by pllf_vco_fast,
     ///
     /// 0: enable vco fast by FSM 1: enable vco load by pllf_vco_fast
+    #[inline]
     pub fn pllf_vco_fast_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_pllf_vco_fast_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -167,9 +191,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
     /// Enable vco load by pllf_vco_load,
     ///
     /// 0: enable vco load by FSM 1: enable vco load by pllf_vco_load
+    #[inline]
     pub fn pllf_vco_load_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_pllf_vco_load_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -179,9 +205,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
     /// Enable vco load by pllf_vco_slow,
     ///
     /// 0: enable vco slow by FSM 1: enable vco load by pllf_vco_slow
+    #[inline]
     pub fn pllf_vco_slow_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_pllf_vco_slow_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -196,9 +224,11 @@ impl SD10G65_TX_RCPLL_CFG0 {
 pub struct SD10G65_TX_RCPLL_CFG1(u32);
 impl SD10G65_TX_RCPLL_CFG1 {
     /// enable special BIST settings
+    #[inline]
     pub fn pllf_bist_ena(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_pllf_bist_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -206,9 +236,11 @@ impl SD10G65_TX_RCPLL_CFG1 {
         self.0 |= value;
     }
     /// Target value: 1/vco_frq * par.bit.width * 512 * ref_clk_frq
+    #[inline]
     pub fn pllf_ref_cnt_end(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_pllf_ref_cnt_end(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -218,9 +250,11 @@ impl SD10G65_TX_RCPLL_CFG1 {
     /// Select vco static frequency by feedforward (higher freq.),
     ///
     /// 0: min. freq 3: max. freq.
+    #[inline]
     pub fn pllf_vco_fast(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
+    #[inline]
     pub fn set_pllf_vco_fast(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -230,9 +264,11 @@ impl SD10G65_TX_RCPLL_CFG1 {
     /// Select vco static frequency by load,
     ///
     /// 0: VCO off
+    #[inline]
     pub fn pllf_vco_load(&self) -> u32 {
         (self.0 & 0x3ff0) >> 4
     }
+    #[inline]
     pub fn set_pllf_vco_load(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         let value = value << 4;
@@ -242,9 +278,11 @@ impl SD10G65_TX_RCPLL_CFG1 {
     /// Select vco static frequency by feedback (lower freq.),
     ///
     /// 0: max. freq 3: min. freq.
+    #[inline]
     pub fn pllf_vco_slow(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_pllf_vco_slow(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -258,9 +296,11 @@ impl SD10G65_TX_RCPLL_CFG1 {
 pub struct SD10G65_TX_RCPLL_CFG2(u32);
 impl SD10G65_TX_RCPLL_CFG2 {
     /// Not used
+    #[inline]
     pub fn pll_cal_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_pll_cal_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -268,9 +308,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
         self.0 |= value;
     }
     /// Enable analog RCPLL part
+    #[inline]
     pub fn pll_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_pll_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -279,9 +321,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
     /// Select VCO regulated supply (820mV),
     ///
     /// 0: 820mv 4: 860mV 6: 950mV 7: short to VDDA all others reserved
+    #[inline]
     pub fn pll_fbsel820(&self) -> u32 {
         (self.0 & 0x7000000) >> 24
     }
+    #[inline]
     pub fn set_pll_fbsel820(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 24;
@@ -291,9 +335,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
     /// Select chargepump current,
     ///
     /// 0: 50uA 1: 100uA 2: 150uA 3: 200uA
+    #[inline]
     pub fn pll_lpf_cur(&self) -> u32 {
         (self.0 & 0x1800) >> 11
     }
+    #[inline]
     pub fn set_pll_lpf_cur(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 11;
@@ -303,9 +349,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
     /// Select loop filter resistor value,
     ///
     /// 0: not allowed 1: 2400 2: 1600 3: 960 4: 1200 5: 800 6: 685 7: 533 8: 800 9: 600 10: 533 11: 436 12: 480 13: 400 14: 369 15: 320
+    #[inline]
     pub fn pll_lpf_res(&self) -> u32 {
         (self.0 & 0x780) >> 7
     }
+    #[inline]
     pub fn set_pll_lpf_res(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 7;
@@ -315,9 +363,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
     /// Debug, short N bulk voltage of OpAmps,
     ///
     /// 0: N bulk unequal 0 1: short to VSSA
+    #[inline]
     pub fn pll_short_bulkhn_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_pll_short_bulkhn_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -327,9 +377,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
     /// Debug, short P bulk voltage of OpAmps,
     ///
     /// 0: P bulk unequal supply 1: short to supply
+    #[inline]
     pub fn pll_short_bulkhp_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_pll_short_bulkhp_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -339,9 +391,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
     /// Debug, short N bulk voltage of VCO,
     ///
     /// 0: N bulk unequal 0 1: short to VSSA
+    #[inline]
     pub fn pll_short_bulkn_ena(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_pll_short_bulkn_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -351,9 +405,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
     /// Debug, short P bulk voltage of VCO,
     ///
     /// 0: P bulk unequal supply 1: short to supply
+    #[inline]
     pub fn pll_short_bulkp_ena(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_pll_short_bulkp_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -363,9 +419,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
     /// Select vco current,
     ///
     /// 0: lowest current 31: highest current
+    #[inline]
     pub fn pll_vco_cur(&self) -> u32 {
         (self.0 & 0x7c) >> 2
     }
+    #[inline]
     pub fn set_pll_vco_cur(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 2;
@@ -375,9 +433,11 @@ impl SD10G65_TX_RCPLL_CFG2 {
     /// Select VCO load switch gate voltage,
     ///
     /// 0: 1.4V 1: 1.5V 2: 1.6V 3: 1.7V 15: max.
+    #[inline]
     pub fn pll_vreg18(&self) -> u32 {
         (self.0 & 0xf00000) >> 20
     }
+    #[inline]
     pub fn set_pll_vreg18(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 20;
@@ -394,9 +454,11 @@ impl SD10G65_TX_RCPLL_STAT0 {
     /// PLL lock status,
     ///
     /// 0: not locked 1: locked
+    #[inline]
     pub fn pllf_lock_stat(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_pllf_lock_stat(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -404,9 +466,11 @@ impl SD10G65_TX_RCPLL_STAT0 {
         self.0 |= value;
     }
     /// Actual value of VCO fast portion, set by FSM
+    #[inline]
     pub fn pllf_vco_fast_stat(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
+    #[inline]
     pub fn set_pllf_vco_fast_stat(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -414,9 +478,11 @@ impl SD10G65_TX_RCPLL_STAT0 {
         self.0 |= value;
     }
     /// Actual value of VCO load, set by FSM
+    #[inline]
     pub fn pllf_vco_load_stat(&self) -> u32 {
         (self.0 & 0x3ff0) >> 4
     }
+    #[inline]
     pub fn set_pllf_vco_load_stat(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         let value = value << 4;
@@ -424,9 +490,11 @@ impl SD10G65_TX_RCPLL_STAT0 {
         self.0 |= value;
     }
     /// Actual value of VCO slow portion, set by FSM
+    #[inline]
     pub fn pllf_vco_slow_stat(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_pllf_vco_slow_stat(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -435,9 +503,11 @@ impl SD10G65_TX_RCPLL_STAT0 {
     /// Out of range status bit,
     ///
     /// 0: within range 1: out of range
+    #[inline]
     pub fn pll_range_limit(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_pll_range_limit(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -447,9 +517,11 @@ impl SD10G65_TX_RCPLL_STAT0 {
     /// Out of range status bit, sticky bit,
     ///
     /// 0: within range 1: out of range
+    #[inline]
     pub fn pll_range_limit_sty(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_pll_range_limit_sty(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -464,9 +536,11 @@ impl SD10G65_TX_RCPLL_STAT0 {
 pub struct SD10G65_TX_RCPLL_STAT1(u32);
 impl SD10G65_TX_RCPLL_STAT1 {
     /// Actual value of step up counter
+    #[inline]
     pub fn pllf_fsm_cnt_stat(&self) -> u32 {
         (self.0 & 0x7ff0) >> 4
     }
+    #[inline]
     pub fn set_pllf_fsm_cnt_stat(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         let value = value << 4;
@@ -476,18 +550,22 @@ impl SD10G65_TX_RCPLL_STAT1 {
     /// Actual value of the FSM stage,
     ///
     /// 0: reset state 1: init state after reset 3: ramp up state checks for the counters and ramps up the frequency 6: additional wait state for internal BIAS settling 8: additional wait state 1 9: additional wait state 2 10; additional wait state 3 11: additional wait state 4 12: 1st locking state enables dynamic locking 13: final locking state checks for out of lock and overrun condition 14: error state low frequency 15: error state high frequency
+    #[inline]
     pub fn pllf_fsm_stat(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_pllf_fsm_stat(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
     /// Internal FSM values selected by pllf_ref_cnt_sel
+    #[inline]
     pub fn pllf_ref_cnt_stat(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_pllf_ref_cnt_stat(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;

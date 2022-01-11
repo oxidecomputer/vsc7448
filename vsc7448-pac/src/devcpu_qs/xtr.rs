@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct XTR_CFG(u32);
 impl XTR_CFG {
     /// Watermark, when filling of extraction FIFO exceeds this (or EOF is present in the xtraction buffer) the DEVCPU_QS::XTR_DATA_PRESENT register will indicate that data is available.
+    #[inline]
     pub fn dp_wm(&self) -> u32 {
         (self.0 & 0x1c) >> 2
     }
+    #[inline]
     pub fn set_dp_wm(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 2;
@@ -44,9 +46,11 @@ impl XTR_CFG {
     /// Overflow in extraction FIFO. If this happens, SCH_WM must be decreased.
     ///
     /// 0: No buffer overruns detected 1: Buffer has overrruned at least once
+    #[inline]
     pub fn oflw_err_sticky(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_oflw_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -60,9 +64,11 @@ impl XTR_DATA_PRESENT {
     /// Shows if data is available for a specific group. It remains set until all frame data have been extracted. This field is only set if the mode of the group is set to manual extraction via DEVCPU_QS registers.
     ///
     /// 0: No frames available for this CPU queue group 1: At least one frame is available for this CPU queue group
+    #[inline]
     pub fn data_present(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_data_present(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -76,9 +82,11 @@ impl XTR_FLUSH {
     /// Enable software flushing of a CPU queue. Note the queue will continue to be flushed until this field is cleared by SW. The flushing will automatically stop on frame boundary so OQS is allowed to transmit to the CPU queue during flushing.
     ///
     /// 0: No action 1: Do CPU queue flushing
+    #[inline]
     pub fn flush(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_flush(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -92,9 +100,11 @@ impl XTR_FRM_PRUNING {
     /// Extracted frames for the corresponding queue are pruned to (PRUNE_SIZE+1) 32-bit words. Note :  PRUNE_SIZE includes the IFH when this present in the frame.
     ///
     /// 0 : No pruning 1:  Frames extracted are pruned to 8 bytes 2:  Frames extracted are pruned to 12 bytes ... 255:  Frames extracted are pruned to 1024 bytes
+    #[inline]
     pub fn prune_size(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_prune_size(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -108,9 +118,11 @@ impl XTR_GRP_CFG {
     /// This field allows swapping the endianess of DEVCPU_QS::XTR_RD. Most software will want to read extraction data in network order (big-endian mode), i.e. the first byte of the destiantion MAC address to be placed on byte-address 0 of DEVCPU_QS::XTR_RD. In order to do this a little endian CPU must set this field, a big endian CPU must clear this field. This field only applies to manual extraction mode (see DEVCPU_QS::XTR_GRP_CFG.MODE).
     ///
     /// 0: Same endianess 1: Swap endianness
+    #[inline]
     pub fn byte_swap(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_byte_swap(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -119,9 +131,11 @@ impl XTR_GRP_CFG {
     /// Configures mode of the extraction group. Each extraction group can be assigned to one of three owners. Note: The VRAP block support only one context, if more than one extraction group is assigned the lowest group-number will be used.
     ///
     /// 0: VRAP block 1: Manual extraction (via DEVCPU_QS registers) 2: FDMA extraction and manual extraction via SBA registers
+    #[inline]
     pub fn mode(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
+    #[inline]
     pub fn set_mode(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -131,9 +145,11 @@ impl XTR_GRP_CFG {
     /// Select order of last data and status words. This field only applies to manual extraction mode (see DEVCPU_QS::XTR_GRP_CFG.MODE).
     ///
     /// 0: Status just before last data 1: Status just after last data
+    #[inline]
     pub fn status_word_pos(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_status_word_pos(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -148,9 +164,11 @@ impl XTR_RD {
     /// Frame Data. Read from this register to obtain the next 32 bits of the frame data currently stored in the CPU queue system. Each read must check for the special values "0x8000000n", 0<=n<=7, as described by the encoding. Note: The encoding is presented in little endian format, if swapping is used (see DEVCPU_QS::XTR_GRP_CFG.BYTE_SWAP), then the special values are swapped as well. I.e. a little endian CPU using BYTE_SWAP=1 has to look for "0x0n000080" instead of "0x8000000n". The position of the unused/valid bytes follows the endianness encoding and swapping.
     ///
     /// n=0-3: EOF. Unused bytes in end-of-frame word is 'n' n=4	 : EOF, but truncated n=5	 : EOF Aborted. Frame invalid n=6	 : Escape. Next read is packet data n=7	 : Data not ready for reading out
+    #[inline]
     pub fn data(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_data(&mut self, value: u32) {
         self.0 = value;
     }

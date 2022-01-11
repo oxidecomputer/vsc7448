@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_ERRCNT(u32);
 impl TR_ERRCNT {
     /// bit error count of prbs11 checker
+    #[inline]
     pub fn errcnt(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_errcnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

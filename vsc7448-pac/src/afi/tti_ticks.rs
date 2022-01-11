@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct TTI_TICK_BASE(u32);
 impl TTI_TICK_BASE {
     /// Current value of Base Tick counter.
+    #[inline]
     pub fn base_cnt(&self) -> u32 {
         (self.0 & 0x3fff0000) >> 16
     }
+    #[inline]
     pub fn set_base_cnt(&mut self, value: u32) {
         assert!(value <= 0x3fff);
         let value = value << 16;
@@ -42,9 +44,11 @@ impl TTI_TICK_BASE {
         self.0 |= value;
     }
     /// Length of TTI Base Tick. Unit: One system clock cycle. In default configuration and a clock cycle of 6.4 ns, the tick length corresponds to 52us. If the device is uses a longer clock cycle, then the value of BASE_LEN must be reconfigured accordingly.
+    #[inline]
     pub fn base_len(&self) -> u32 {
         self.0 & 0x3fff
     }
+    #[inline]
     pub fn set_base_len(&mut self, value: u32) {
         assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
@@ -56,18 +60,22 @@ impl TTI_TICK_BASE {
 pub struct TTI_TICK_LEN_0_3(u32);
 impl TTI_TICK_LEN_0_3 {
     /// Length of TTI Tick 0. Unit: Base Ticks, as configured in TTI_TICK_BASE.BASE_LEN. In default configuration the tick length corresponds to 52us.
+    #[inline]
     pub fn len0(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_len0(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
     /// Length of TTI Tick 1. Unit: TTI Tick 0, as configured in TTI_TICK_LEN_0_3.LEN0. In default configuration the tick length corresponds to 416us.
+    #[inline]
     pub fn len1(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
+    #[inline]
     pub fn set_len1(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -75,9 +83,11 @@ impl TTI_TICK_LEN_0_3 {
         self.0 |= value;
     }
     /// Length of TTI Tick 2. Unit: TTI Tick 1, as configured in TTI_TICK_LEN_0_3.LEN1. In default configuration the tick length corresponds to 3.3ms.
+    #[inline]
     pub fn len2(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
+    #[inline]
     pub fn set_len2(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -85,9 +95,11 @@ impl TTI_TICK_LEN_0_3 {
         self.0 |= value;
     }
     /// Length of TTI Tick 3. Unit: TTI Tick 2, as configured in TTI_TICK_LEN_0_3.LEN2. In default configuration the tick length corresponds to 10ms.
+    #[inline]
     pub fn len3(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
+    #[inline]
     pub fn set_len3(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
@@ -100,18 +112,22 @@ impl TTI_TICK_LEN_0_3 {
 pub struct TTI_TICK_LEN_4_7(u32);
 impl TTI_TICK_LEN_4_7 {
     /// Length of TTI Tick 4. Unit: TTI Tick 3, as configured in TTI_TICK_LEN_0_3.LEN3. In default configuration the tick length corresponds to 100ms.
+    #[inline]
     pub fn len4(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_len4(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
     /// Length of TTI Tick 5. Unit: TTI Tick 4, as configured in TTI_TICK_LEN_4_7.LEN4. In default configuration the tick length corresponds to 1s.
+    #[inline]
     pub fn len5(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
+    #[inline]
     pub fn set_len5(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -119,9 +135,11 @@ impl TTI_TICK_LEN_4_7 {
         self.0 |= value;
     }
     /// Length of TTI Tick 6. Unit: TTI Tick 5, as configured in TTI_TICK_LEN_4_7.LEN5. In default configuration the tick length corresponds to 10s.
+    #[inline]
     pub fn len6(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
+    #[inline]
     pub fn set_len6(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -129,9 +147,11 @@ impl TTI_TICK_LEN_4_7 {
         self.0 |= value;
     }
     /// Length of TTI Tick 7. Unit: TTI Tick 6, as configured in TTI_TICK_LEN_4_7.LEN6. In default configuration the tick length corresponds to 1min.
+    #[inline]
     pub fn len7(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
+    #[inline]
     pub fn set_len7(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
@@ -146,18 +166,22 @@ impl TTI_TICK_LEN_4_7 {
 pub struct TTI_TICK_STATE(u32);
 impl TTI_TICK_STATE {
     /// Tick's current counter value.
+    #[inline]
     pub fn tick_cnt(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_tick_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
     /// Tick's current era. Each tick counts up to its configured LEN. When LEN is reached TICK_ERA toggles and the tick restarts counting from 0. When a TTI in TTI_TBL is processed, then the LAST_TICK_ERA of the TTI is compared with the TICK_ERA of the tick used by the TTI and if they differ the TTI's TICK_CNT is decremented.
+    #[inline]
     pub fn tick_era(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_tick_era(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;

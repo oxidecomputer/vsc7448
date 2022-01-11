@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_C0VAL(u32);
 impl TR_C0VAL {
     /// C0 value
+    #[inline]
     pub fn c0_val(&self) -> u32 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_c0_val(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -46,9 +48,11 @@ impl TR_C0VAL {
 pub struct TR_CMVAL(u32);
 impl TR_CMVAL {
     /// CM value
+    #[inline]
     pub fn cm_val(&self) -> u32 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_cm_val(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -60,9 +64,11 @@ impl TR_CMVAL {
 pub struct TR_CPVAL(u32);
 impl TR_CPVAL {
     /// CP value
+    #[inline]
     pub fn cp_val(&self) -> u32 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_cp_val(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;

@@ -32,18 +32,22 @@ use derive_more::{From, Into};
 pub struct QUEUE_SIZE(u32);
 impl QUEUE_SIZE {
     /// This queue was have had one or more discards due to the queue limitation algorithm
+    #[inline]
     pub fn queue_killed(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_queue_killed(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Current size of queue used for queue size limitation
+    #[inline]
     pub fn queue_size(&self) -> u32 {
         (self.0 & 0xffe) >> 1
     }
+    #[inline]
     pub fn set_queue_size(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         let value = value << 1;

@@ -34,9 +34,11 @@ impl VCAP_MV_CFG {
     /// Specifies the distance during move operations. I.e. if this field is set to 4 for a move-down operation, then source address n is moved to destination address n+5.
     ///
     /// 0: Distance is one position 1: Distance is two positions n: Distance is n+1 positions
+    #[inline]
     pub fn mv_num_pos(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_mv_num_pos(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -46,9 +48,11 @@ impl VCAP_MV_CFG {
     /// Specifies the number of addresses to move/initialize during	move/init operations.
     ///
     /// 0: Address VCAP_UPDATE_CTRL.UPDATE_ADDR is moved/initialized n: Addresses VCAP_UPDATE_CTRL.UPDATE_ADDR through VCAP_UPDATE_CTRL.UPDATE_ADDR+n are moved/initialized
+    #[inline]
     pub fn mv_size(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_mv_size(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -62,9 +66,11 @@ impl VCAP_MV_CFG {
 pub struct VCAP_UPDATE_CTRL(u32);
 impl VCAP_UPDATE_CTRL {
     /// Set to clear the cache. This field is cleared immediately by hardware (at the same time as clearing the cache). The contents of the cache will be set to disabled/empty.
+    #[inline]
     pub fn clear_cache(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_clear_cache(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -72,18 +78,22 @@ impl VCAP_UPDATE_CTRL {
         self.0 |= value;
     }
     /// For version 1 VCAPs: Set to ignore interrupting traffic during move operations, this will increase speed of the move operations but counter-events may be lost for the VCAP addresses that are moved. When this field is cleared, then interrupting traffic will cause a restart of the move operation (to ensure consistent counter values) and becasue of this, move operations on a heavily loaded device may take a long time to finish. This field is not used for version 2 VCAPs, moving of counters are safe.
+    #[inline]
     pub fn mv_traffic_ign(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_mv_traffic_ign(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Set to disable update of actions for VCAP operations: For read-operations action-cache will remain unchanged. For write/move/init operations the VCAP-action will remain unchanged.
+    #[inline]
     pub fn update_action_dis(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_update_action_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -93,9 +103,11 @@ impl VCAP_UPDATE_CTRL {
     /// The address to access for VCAP operations.
     ///
     /// ES0 defaults at 0x1000-0x1034
+    #[inline]
     pub fn update_addr(&self) -> u32 {
         (self.0 & 0x7fff8) >> 3
     }
+    #[inline]
     pub fn set_update_addr(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 3;
@@ -105,9 +117,11 @@ impl VCAP_UPDATE_CTRL {
     /// Write and read operations access VCAP memory at address specified by UPDATE_ADDR. Move up opeation moves one or more VCAP addresses from a high address to a lower address, this is equivalent to decreasing priority of a rule. The starting address is specified by UPDATE_ADDR, the number of addresses (the range) that is moved is defined by VCAP_MV_CFG.MV_SIZE, the distance to move is defined by VCAP_MV_CFG. MV_NUM_POS. Move down opeation moves one or more VCAP addresses from a low address to a higer address, this is equivalent to increasing priority of a rule. This operation is equivalent to "Move up" except for the direction that it moves addresses, see "Move up" for more details. Init operation writes the contents of the cache to one or more VCAP addresses. The starting address is specified by UPDATE_ADDR, the number of addresses (the range) that is written is defined by VCAP_MV_CFG.MV_SIZE. Setting CLEAR_CACHE at the same time as starting the operation will clear the cache and cause the init operation to initialize the range of addresses.
     ///
     /// 000: Write from cache to VCAP 001: Read from VCAP to cache 010: Move entry and/or action up (decreasing addresses) 011: Move entry and/or action down (increasing addresses) 100: Initialize VCAP with the cache-value
+    #[inline]
     pub fn update_cmd(&self) -> u32 {
         (self.0 & 0x1c00000) >> 22
     }
+    #[inline]
     pub fn set_update_cmd(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 22;
@@ -115,9 +129,11 @@ impl VCAP_UPDATE_CTRL {
         self.0 |= value;
     }
     /// Set to disable update of counter for VCAP operations: For read-operations counter-cache will remain unchanged. For write/init operations the VCAP-counter will remain unchanged. For move operations the destination VCAP-counters will be set to zeros.
+    #[inline]
     pub fn update_cnt_dis(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
+    #[inline]
     pub fn set_update_cnt_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -125,9 +141,11 @@ impl VCAP_UPDATE_CTRL {
         self.0 |= value;
     }
     /// Set to disable update of entries for VCAP operations: For read-operations entry-cache will remain unchanged. For write/move/init operations the VCAP-entry will remain unchanged.
+    #[inline]
     pub fn update_entry_dis(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
+    #[inline]
     pub fn set_update_entry_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -135,9 +153,11 @@ impl VCAP_UPDATE_CTRL {
         self.0 |= value;
     }
     /// Set to initiate the opeation specified in UPDATE_CMD. This bit is automatically cleared by hardware when the operation is finished. Software must not change write fields in the VCAP target while this field is set (while operation is active.)
+    #[inline]
     pub fn update_shot(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_update_shot(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;

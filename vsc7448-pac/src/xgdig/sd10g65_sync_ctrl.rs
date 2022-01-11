@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct RX_SYNC_CTRL_CFG(u32);
 impl RX_SYNC_CTRL_CFG {
     /// Clear RX I2 value
+    #[inline]
     pub fn rx_i2_clr(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_rx_i2_clr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -44,9 +46,11 @@ impl RX_SYNC_CTRL_CFG {
         self.0 |= value;
     }
     /// Keep current RX I2 value constant
+    #[inline]
     pub fn rx_i2_hold(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_rx_i2_hold(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -56,9 +60,11 @@ impl RX_SYNC_CTRL_CFG {
     /// Source selection for RX lane synchronization
     ///
     /// 0: Do not use external sync_ctrl info 1: Select sync_ctrl info from external DES
+    #[inline]
     pub fn rx_lane_sync_src(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_rx_lane_sync_src(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -72,9 +78,11 @@ impl RX_SYNC_CTRL_CFG {
 pub struct RX_SYNC_CTRL_STAT(u32);
 impl RX_SYNC_CTRL_STAT {
     /// RX Lane synchronization fifo overflow
+    #[inline]
     pub fn rx_lane_sync_fifo_of_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_rx_lane_sync_fifo_of_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -90,9 +98,11 @@ impl SYNC_CTRL_CFG {
     /// Source selection for lane synchronization
     ///
     /// 0: Select external DES 1: Select F2DF 2: Select local DES 3: Disable sync_ctrl
+    #[inline]
     pub fn lane_sync_src(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_lane_sync_src(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -106,9 +116,11 @@ impl SYNC_CTRL_CFG {
 pub struct SYNC_CTRL_STAT(u32);
 impl SYNC_CTRL_STAT {
     /// Lane synchronization fifo overflow
+    #[inline]
     pub fn lane_sync_fifo_of_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_lane_sync_fifo_of_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

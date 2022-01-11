@@ -41,71 +41,93 @@ pub mod sticky_mask;
 /// Common configurations for all ports
 pub struct COMMON(pub(super) u32);
 impl COMMON {
+    #[inline]
     pub fn AUTO_LRN_CFG(&self) -> RegisterAddress<common::AUTO_LRN_CFG> {
         RegisterAddress::new(self.0 + 0x14)
     }
+    #[inline]
     pub fn AUTO_LRN_CFG1(&self) -> RegisterAddress<common::AUTO_LRN_CFG1> {
         RegisterAddress::new(self.0 + 0x18)
     }
+    #[inline]
     pub fn FILTER_LOCAL_CTRL(&self) -> RegisterAddress<common::FILTER_LOCAL_CTRL> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    #[inline]
     pub fn FILTER_LOCAL_CTRL1(&self) -> RegisterAddress<common::FILTER_LOCAL_CTRL1> {
         RegisterAddress::new(self.0 + 0x10)
     }
+    #[inline]
     pub fn FILTER_OTHER_CTRL(&self) -> RegisterAddress<common::FILTER_OTHER_CTRL> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    #[inline]
     pub fn FWD_CFG(&self) -> RegisterAddress<common::FWD_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn INTR(&self) -> RegisterAddress<common::INTR> {
         RegisterAddress::new(self.0 + 0x158)
     }
+    #[inline]
     pub fn INTR_ENA(&self) -> RegisterAddress<common::INTR_ENA> {
         RegisterAddress::new(self.0 + 0x15c)
     }
+    #[inline]
     pub fn INTR_IDENT(&self) -> RegisterAddress<common::INTR_IDENT> {
         RegisterAddress::new(self.0 + 0x160)
     }
+    #[inline]
     pub fn LRN_CFG(&self) -> RegisterAddress<common::LRN_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn LRN_COPY_CFG(&self) -> RegisterAddress<common::LRN_COPY_CFG> {
         RegisterAddress::new(self.0 + 0x2c)
     }
+    #[inline]
     pub fn LRN_COPY_CFG1(&self) -> RegisterAddress<common::LRN_COPY_CFG1> {
         RegisterAddress::new(self.0 + 0x30)
     }
+    #[inline]
     pub fn LRN_SECUR_CFG(&self) -> RegisterAddress<common::LRN_SECUR_CFG> {
         RegisterAddress::new(self.0 + 0x1c)
     }
+    #[inline]
     pub fn LRN_SECUR_CFG1(&self) -> RegisterAddress<common::LRN_SECUR_CFG1> {
         RegisterAddress::new(self.0 + 0x20)
     }
+    #[inline]
     pub fn LRN_SECUR_LOCKED_CFG(&self) -> RegisterAddress<common::LRN_SECUR_LOCKED_CFG> {
         RegisterAddress::new(self.0 + 0x24)
     }
+    #[inline]
     pub fn LRN_SECUR_LOCKED_CFG1(&self) -> RegisterAddress<common::LRN_SECUR_LOCKED_CFG1> {
         RegisterAddress::new(self.0 + 0x28)
     }
+    #[inline]
     pub fn MOVELOG_STICKY(&self) -> RegisterAddress<common::MOVELOG_STICKY> {
         RegisterAddress::new(self.0 + 0x14c)
     }
+    #[inline]
     pub fn MOVELOG_STICKY1(&self) -> RegisterAddress<common::MOVELOG_STICKY1> {
         RegisterAddress::new(self.0 + 0x150)
     }
+    #[inline]
     pub fn PORT_DLB_CFG(&self, index: u32) -> RegisterAddress<common::PORT_DLB_CFG> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x34 + index * 0x4)
     }
+    #[inline]
     pub fn SCAN_FID_CFG(&self, index: u32) -> RegisterAddress<common::SCAN_FID_CFG> {
         assert!(index < 16);
         RegisterAddress::new(self.0 + 0x10c + index * 0x4)
     }
+    #[inline]
     pub fn SCAN_FID_CTRL(&self) -> RegisterAddress<common::SCAN_FID_CTRL> {
         RegisterAddress::new(self.0 + 0x108)
     }
+    #[inline]
     pub fn VSTAX_CTRL(&self) -> RegisterAddress<common::VSTAX_CTRL> {
         RegisterAddress::new(self.0 + 0x154)
     }
@@ -114,32 +136,41 @@ impl COMMON {
 /// Ingress service table configuration
 pub struct ISDX(pub(super) u32);
 impl ISDX {
+    #[inline]
     pub fn DLB_CFG(&self) -> RegisterAddress<isdx::DLB_CFG> {
         RegisterAddress::new(self.0 + 0x14)
     }
+    #[inline]
     pub fn DLB_COS_CFG(&self, index: u32) -> RegisterAddress<isdx::DLB_COS_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x18 + index * 0x4)
     }
+    #[inline]
     pub fn ISDX_BASE_CFG(&self) -> RegisterAddress<isdx::ISDX_BASE_CFG> {
         RegisterAddress::new(self.0 + 0x38)
     }
+    #[inline]
     pub fn ISDX_COS_CFG(&self, index: u32) -> RegisterAddress<isdx::ISDX_COS_CFG> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x3c + index * 0x4)
     }
+    #[inline]
     pub fn MISC_CFG(&self) -> RegisterAddress<isdx::MISC_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
+    #[inline]
     pub fn PORT_MASK_CFG(&self) -> RegisterAddress<isdx::PORT_MASK_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn PORT_MASK_CFG1(&self) -> RegisterAddress<isdx::PORT_MASK_CFG1> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn QGRP_CFG(&self) -> RegisterAddress<isdx::QGRP_CFG> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    #[inline]
     pub fn SERVICE_CTRL(&self) -> RegisterAddress<isdx::SERVICE_CTRL> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -148,9 +179,11 @@ impl ISDX {
 /// Learn limits per FID
 pub struct LRN_LIMIT(pub(super) u32);
 impl LRN_LIMIT {
+    #[inline]
     pub fn FID_LIMIT_CTRL(&self) -> RegisterAddress<lrn_limit::FID_LIMIT_CTRL> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn FID_LIMIT_STATUS(&self) -> RegisterAddress<lrn_limit::FID_LIMIT_STATUS> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -159,9 +192,11 @@ impl LRN_LIMIT {
 /// Learn limits per PORT and GLAG
 pub struct PORT_LIMIT(pub(super) u32);
 impl PORT_LIMIT {
+    #[inline]
     pub fn PORT_LIMIT_CTRL(&self) -> RegisterAddress<port_limit::PORT_LIMIT_CTRL> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn PORT_LIMIT_STATUS(&self) -> RegisterAddress<port_limit::PORT_LIMIT_STATUS> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -170,6 +205,7 @@ impl PORT_LIMIT {
 /// Sticky diagnostic status
 pub struct STICKY(pub(super) u32);
 impl STICKY {
+    #[inline]
     pub fn STICKY(&self) -> RegisterAddress<sticky::STICKY> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -178,6 +214,7 @@ impl STICKY {
 /// Sticky diagnostic global port counter event configuration
 pub struct STICKY_MASK(pub(super) u32);
 impl STICKY_MASK {
+    #[inline]
     pub fn STICKY_MASK(&self) -> RegisterAddress<sticky_mask::STICKY_MASK> {
         RegisterAddress::new(self.0 + 0x0)
     }

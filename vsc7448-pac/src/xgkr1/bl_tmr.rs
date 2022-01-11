@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct BL_LSW(u32);
 impl BL_LSW {
     /// break_link_timer setting
+    #[inline]
     pub fn bl_tmr_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_bl_tmr_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -46,9 +48,11 @@ impl BL_LSW {
 pub struct BL_MSW(u32);
 impl BL_MSW {
     /// break_link_timer setting
+    #[inline]
     pub fn bl_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_bl_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

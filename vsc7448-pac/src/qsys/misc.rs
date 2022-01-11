@@ -34,18 +34,22 @@ use derive_more::{From, Into};
 pub struct EVENTS_CORE(u32);
 impl EVENTS_CORE {
     /// Look in the RTL!
+    #[inline]
     pub fn ev_fdc(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_ev_fdc(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
     /// Look in the RTL!
+    #[inline]
     pub fn ev_fwr(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ev_fwr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;

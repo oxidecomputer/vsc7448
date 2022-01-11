@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct PFC_CFG(u32);
 impl PFC_CFG {
     /// When set the MAC sends PRIO pause control frames in the Tx direction when congested.
+    #[inline]
     pub fn tx_pfc_ena(&self) -> u32 {
         (self.0 & 0x1fe) >> 1
     }
+    #[inline]
     pub fn set_tx_pfc_ena(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 1;
@@ -42,9 +44,11 @@ impl PFC_CFG {
         self.0 |= value;
     }
     /// When set, a congested priority request pause of all lower priorities as well.
+    #[inline]
     pub fn tx_pfc_mode(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_tx_pfc_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -56,9 +60,11 @@ impl PFC_CFG {
 pub struct RES_DLB_OFFSET(u32);
 impl RES_DLB_OFFSET {
     /// The watermarks for enabling DLB rate will be offset this value compared to the sensed resource. Ie. if shared priority 0 watermark is set to 40000 cells, the default value will allow higher rate shaping when 39950 cells has been used.
+    #[inline]
     pub fn res_dlb_offs_val(&self) -> u32 {
         self.0 & 0x3ff
     }
+    #[inline]
     pub fn set_res_dlb_offs_val(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
@@ -70,9 +76,11 @@ impl RES_DLB_OFFSET {
 pub struct RES_QOS_MODE(u32);
 impl RES_QOS_MODE {
     /// When a qos class is enabled in this mask, the class will have guaranteed shared space. The watermarks found in RES_CFG are used for setting the amount of space set aside.
+    #[inline]
     pub fn res_qos_rsrvd(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_res_qos_rsrvd(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -86,9 +94,11 @@ impl RES_QOS_MODE {
 pub struct WRED_GROUP(u32);
 impl WRED_GROUP {
     /// Frames towards a port is WRED discarded by the profiles for the group configured.
+    #[inline]
     pub fn wred_group(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_wred_group(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;

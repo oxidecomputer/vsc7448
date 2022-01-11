@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct TWI_SPIKE_FILTER_CFG(u32);
 impl TWI_SPIKE_FILTER_CFG {
     /// Configuration of the spike filter width on the SCL and SDA inputs. Filters spikes with a width of (SPIKE_FILTER_CFG+1)*SYSTEM_CLK or less.
+    #[inline]
     pub fn spike_filter_cfg(&self) -> u32 {
         self.0 & 0x1f
     }
+    #[inline]
     pub fn set_spike_filter_cfg(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;

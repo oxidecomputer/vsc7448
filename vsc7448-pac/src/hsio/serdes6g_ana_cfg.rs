@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct SERDES6G_ACJTAG_CFG(u32);
 impl SERDES6G_ACJTAG_CFG {
     /// ACJTAG enable (ac_mode)
+    #[inline]
     pub fn acjtag_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_acjtag_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -44,9 +46,11 @@ impl SERDES6G_ACJTAG_CFG {
         self.0 |= value;
     }
     /// ACJTAG clock line
+    #[inline]
     pub fn acjtag_init_clk(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_acjtag_init_clk(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -54,9 +58,11 @@ impl SERDES6G_ACJTAG_CFG {
         self.0 |= value;
     }
     /// ACJTAG init data for n leg
+    #[inline]
     pub fn acjtag_init_data_n(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_acjtag_init_data_n(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -64,9 +70,11 @@ impl SERDES6G_ACJTAG_CFG {
         self.0 |= value;
     }
     /// ACJTAG init data for p leg
+    #[inline]
     pub fn acjtag_init_data_p(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_acjtag_init_data_p(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -76,18 +84,22 @@ impl SERDES6G_ACJTAG_CFG {
     /// Enable JTAG control via CSR
     ///
     /// 0: External controlled 1: CSR controlled
+    #[inline]
     pub fn jtag_ctrl_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_jtag_ctrl_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// JTAG direct output (directly driven)
+    #[inline]
     pub fn ob_direct(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ob_direct(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -104,9 +116,11 @@ impl SERDES6G_COMMON_CFG {
     /// Enable direct line
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn ena_direct(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_ena_direct(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -116,9 +130,11 @@ impl SERDES6G_COMMON_CFG {
     /// Enable equipment loop
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn ena_eloop(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_ena_eloop(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -128,9 +144,11 @@ impl SERDES6G_COMMON_CFG {
     /// Enable facility loop SERDES6G_SER_CFG.SER_ENALI must be set to 1 SERDES6G_SER_CFG.SER_ALISEL must be set to 0
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn ena_floop(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ena_floop(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -140,9 +158,11 @@ impl SERDES6G_COMMON_CFG {
     /// Enable input loop
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn ena_iloop(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_ena_iloop(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -152,9 +172,11 @@ impl SERDES6G_COMMON_CFG {
     /// Enable lane
     ///
     /// 0: Disable lane 1: Enable line
+    #[inline]
     pub fn ena_lane(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_ena_lane(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -164,9 +186,11 @@ impl SERDES6G_COMMON_CFG {
     /// Enable pad loop
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn ena_ploop(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ena_ploop(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -176,9 +200,11 @@ impl SERDES6G_COMMON_CFG {
     /// Enable half rate Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn hrate(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_hrate(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -188,18 +214,22 @@ impl SERDES6G_COMMON_CFG {
     /// Interface mode Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
     ///
     /// 0: 8-bit mode 1: 10-bit mode 2: 16-bit mode 3: 20-bit mode
+    #[inline]
     pub fn if_mode(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_if_mode(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
     /// Hidden spare bits (not connected internally yet)
+    #[inline]
     pub fn lane_ctrl(&self) -> u32 {
         (self.0 & 0xe00) >> 9
     }
+    #[inline]
     pub fn set_lane_ctrl(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 9;
@@ -209,9 +239,11 @@ impl SERDES6G_COMMON_CFG {
     /// Power-down RX-path
     ///
     /// 0: Normal mode 1: Power down mode
+    #[inline]
     pub fn pwd_rx(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_pwd_rx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -221,9 +253,11 @@ impl SERDES6G_COMMON_CFG {
     /// Power-down TX-path
     ///
     /// 0: Normal mode 1: Power down mode
+    #[inline]
     pub fn pwd_tx(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_pwd_tx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -233,9 +267,11 @@ impl SERDES6G_COMMON_CFG {
     /// Enable quarter rate Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn qrate(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_qrate(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -245,9 +281,11 @@ impl SERDES6G_COMMON_CFG {
     /// Enable auto-squelching for sync. ethernet clock output: when set the clock output will stop toggling (keep its last value constantly) when PCS looses link synchrony.
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn se_auto_squelch_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_se_auto_squelch_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -257,9 +295,11 @@ impl SERDES6G_COMMON_CFG {
     /// System reset (low active) Should be set after SERDES6G_COMMON_CFG.ENA_LANE was set to 1.
     ///
     /// 0: Apply reset (not self-clearing) 1: Reset released (mission mode)
+    #[inline]
     pub fn sys_rst(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_sys_rst(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -276,9 +316,11 @@ impl SERDES6G_DES_CFG {
     /// Bandwidth selection. Selects dividing factor for non-hysteresis CP/MD outputs.
     ///
     /// 0: No division 1: Divide by 2 2: Divide by 4 3: Divide by 8 4: Divide by 16 5: Divide by 32 6: Divide by 64 7: Divide by 128
+    #[inline]
     pub fn des_bw_ana(&self) -> u32 {
         (self.0 & 0xe) >> 1
     }
+    #[inline]
     pub fn set_des_bw_ana(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 1;
@@ -288,9 +330,11 @@ impl SERDES6G_DES_CFG {
     /// Bandwidth selection. Selects dividing factor for hysteresis CP/MD outputs.
     ///
     /// 0: Divide by 2 1: Divide by 4 2: Divide by 8 3: Divide by 16 4: Divide by 32 5: Divide by 64 6: Divide by 128 7: Divide by 256
+    #[inline]
     pub fn des_bw_hyst(&self) -> u32 {
         (self.0 & 0xe0) >> 5
     }
+    #[inline]
     pub fn set_des_bw_hyst(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 5;
@@ -300,9 +344,11 @@ impl SERDES6G_DES_CFG {
     /// DES phase control, main cp/md select
     ///
     /// 00: Directly from DES 01: Through hysteresis stage from DES 10: From core 11: Disabled
+    #[inline]
     pub fn des_cpmd_sel(&self) -> u32 {
         (self.0 & 0x300) >> 8
     }
+    #[inline]
     pub fn set_des_cpmd_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 8;
@@ -312,9 +358,11 @@ impl SERDES6G_DES_CFG {
     /// Des phase control for 180 degrees deadlock block mode of operation
     ///
     /// 000: Depending on density of input pattern 001: Active until PCS has synchronized 010: Depending on density of input pattern until PCS has synchronized 011: Never 100: Always 111: Debug feature: Add cp/md of DES and cp/md from core
+    #[inline]
     pub fn des_mbtr_ctrl(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
     }
+    #[inline]
     pub fn set_des_mbtr_ctrl(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 10;
@@ -324,9 +372,11 @@ impl SERDES6G_DES_CFG {
     /// Control of phase regulator logic (bit 3 selects input to integrator block - 0: cp/md from DES, 1: cp/md from core)
     ///
     /// 0: Disabled 1: Enabled with 99 ppm limit 2: Enabled with 202 ppm limit 3: Enabled with 485 ppm limit 4: Enabled if corresponding PCS is in sync with 50 ppm limit 5: Enabled if corresponding PCS is in sync with 99 ppm limit 6: Enabled if corresponding PCS is in sync with 202 ppm limit 7: Enabled if corresponding PCS is in sync with 485 ppm limit
+    #[inline]
     pub fn des_phs_ctrl(&self) -> u32 {
         (self.0 & 0x1e000) >> 13
     }
+    #[inline]
     pub fn set_des_phs_ctrl(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 13;
@@ -336,9 +386,11 @@ impl SERDES6G_DES_CFG {
     /// Swap non-hysteresis cp/md signals.
     ///
     /// 0: No swapping 1: Swapping
+    #[inline]
     pub fn des_swap_ana(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_des_swap_ana(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -347,9 +399,11 @@ impl SERDES6G_DES_CFG {
     /// Swap hysteresis cp/md signals.
     ///
     /// 0: No swapping 1: Swapping
+    #[inline]
     pub fn des_swap_hyst(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_des_swap_hyst(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -364,18 +418,22 @@ impl SERDES6G_DES_CFG {
 pub struct SERDES6G_GP_CFG(u32);
 impl SERDES6G_GP_CFG {
     /// Bit 9: SNFBC Select negative feedback center - enable for hysteresis suppression in main sampler FFs Bit 8: SNFBV Select negative feedback Vscope - enable for hysteresis suppression in vscope sampler FFs Bit 1: ERLS (used for debug only, allows for manual stepping through calibration procedure) Bit 0: CRLS (used for debug only, allows for manual stepping through calibration procedure)
+    #[inline]
     pub fn gp_lsb(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_gp_lsb(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
     /// To be defined
+    #[inline]
     pub fn gp_msb(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_gp_msb(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -392,9 +450,11 @@ impl SERDES6G_IB_CFG {
     /// Enable analog test output.
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn ib_ana_test_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ib_ana_test_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -404,9 +464,11 @@ impl SERDES6G_IB_CFG {
     /// Enable calibration IB calibration should be started after SERDES6G_COMMON_CFG.ENA_LANE was set to '1'. Calibration procedure takes up to 1sec depending on configuration of SERDES6G_IB_CFG0.IB_SIG_DET_CLK_SEL. Max.- calibration time is for SERDES6G_IB_CFG0.IB_SIG_DET_CLK_SEL set to 7.
     ///
     /// 0: Disable 1: Enable (mission mode)
+    #[inline]
     pub fn ib_cal_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ib_cal_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -416,9 +478,11 @@ impl SERDES6G_IB_CFG {
     /// Selection between constant current and constant resistor mode for CML cells
     ///
     /// 0: Constant resistor mode 1: Constant current mode
+    #[inline]
     pub fn ib_concur(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ib_concur(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -428,9 +492,11 @@ impl SERDES6G_IB_CFG {
     /// Enable EQualiZation-Stage
     ///
     /// 0: Disable 1: Enable (mission mode)
+    #[inline]
     pub fn ib_eqz_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ib_eqz_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -440,9 +506,11 @@ impl SERDES6G_IB_CFG {
     /// Current adjustment for CML cells
     ///
     /// 0: low current 1: high current
+    #[inline]
     pub fn ib_icml_adj(&self) -> u32 {
         (self.0 & 0xf00000) >> 20
     }
+    #[inline]
     pub fn set_ib_icml_adj(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 20;
@@ -452,9 +520,11 @@ impl SERDES6G_IB_CFG {
     /// Enable equalizer REGulation stage
     ///
     /// 0: Disable 1: Enable (mission mode)
+    #[inline]
     pub fn ib_reg_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ib_reg_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -463,9 +533,11 @@ impl SERDES6G_IB_CFG {
     /// Selects pattern detection for regulation of high-pass-gain
     ///
     /// 0: Only regulation assessment if basic pattern is detected 1: Regulation assessment if basic and simplified pattern are detected 2: Regulation assessment if basic and critical pattern are detected 3: Regulation assessment if simplified basic and critical pattern are detected.
+    #[inline]
     pub fn ib_reg_pat_sel_hp(&self) -> u32 {
         (self.0 & 0x6000) >> 13
     }
+    #[inline]
     pub fn set_ib_reg_pat_sel_hp(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 13;
@@ -475,9 +547,11 @@ impl SERDES6G_IB_CFG {
     /// Selects pattern detection for regulation of low-pass-gain
     ///
     /// 0: Only regulation assessment if basic pattern is detected 1: Regulation assessment if basic and simplified pattern are detected 2: Regulation assessment if basic and critical pattern are detected 3: Regulation assessment if simplified basic and critical pattern are detected.
+    #[inline]
     pub fn ib_reg_pat_sel_lp(&self) -> u32 {
         (self.0 & 0x600) >> 9
     }
+    #[inline]
     pub fn set_ib_reg_pat_sel_lp(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 9;
@@ -487,9 +561,11 @@ impl SERDES6G_IB_CFG {
     /// Selects pattern detection for regulation of mid-pass-gain
     ///
     /// 0: Only regulation assessment if basic pattern is detected 1: Regulation assessment if basic and simplified pattern are detected 2: Regulation assessment if basic and critical pattern are detected 3: Regulation assessment if simplified basic and critical pattern are detected.
+    #[inline]
     pub fn ib_reg_pat_sel_mid(&self) -> u32 {
         (self.0 & 0x1800) >> 11
     }
+    #[inline]
     pub fn set_ib_reg_pat_sel_mid(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 11;
@@ -499,9 +575,11 @@ impl SERDES6G_IB_CFG {
     /// Selects pattern detection for regulation of offset
     ///
     /// 0: Only regulation assessment if basic pattern is detected 1: Regulation assessment if basic and simplified pattern are detected 2: Regulation assessment if basic and critical pattern are detected 3: Regulation assessment if simplified basic and critical pattern are detected.
+    #[inline]
     pub fn ib_reg_pat_sel_offset(&self) -> u32 {
         (self.0 & 0x180) >> 7
     }
+    #[inline]
     pub fn set_ib_reg_pat_sel_offset(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 7;
@@ -511,9 +589,11 @@ impl SERDES6G_IB_CFG {
     /// Resistance adjustment for termination and CML cell regulation. This configuration defines an offset (2-complement) to the RCOMP value. The effective value is limited between 0 to 15.
     ///
     /// 7: RCOMP+7 1: RCOMP+1 0: RCOMP 15: RCOMP-1 8: RCOMP -8
+    #[inline]
     pub fn ib_rtrm_adj(&self) -> u32 {
         (self.0 & 0xf000000) >> 24
     }
+    #[inline]
     pub fn set_ib_rtrm_adj(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 24;
@@ -523,9 +603,11 @@ impl SERDES6G_IB_CFG {
     /// Enable SAMpling stage
     ///
     /// 0: Disable 1: Enable (mission mode)
+    #[inline]
     pub fn ib_sam_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ib_sam_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -533,9 +615,11 @@ impl SERDES6G_IB_CFG {
         self.0 |= value;
     }
     /// Select signal detect clock: Frequency = 125 MHz / 2**n Set to 0 for ATE testing (reduces test-time) Set to 7 for optimized performance in mission mode
+    #[inline]
     pub fn ib_sig_det_clk_sel(&self) -> u32 {
         (self.0 & 0x38000) >> 15
     }
+    #[inline]
     pub fn set_ib_sig_det_clk_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 15;
@@ -545,9 +629,11 @@ impl SERDES6G_IB_CFG {
     /// Enable signal detection.
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn ib_sig_det_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_ib_sig_det_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -557,9 +643,11 @@ impl SERDES6G_IB_CFG {
     /// Select location of offset correction inside equalizer
     ///
     /// 0: No offset correction 1: First stage (preferred) 2: Last stage 3: First and last stage
+    #[inline]
     pub fn ib_sofsi(&self) -> u32 {
         (self.0 & 0x60000000) >> 29
     }
+    #[inline]
     pub fn set_ib_sofsi(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 29;
@@ -569,9 +657,11 @@ impl SERDES6G_IB_CFG {
     /// Select common mode termination voltage.
     ///
     /// 0: Open - recommended mission mode for DC-coupling 1: VCM ref - recommended mission mode for AC-coupling 2: VDD - used to increase amplitude in certain DC-coupled modes 3: capacitance only - Reserved for debug test purpose
+    #[inline]
     pub fn ib_term_mode_sel(&self) -> u32 {
         (self.0 & 0xc0000) >> 18
     }
+    #[inline]
     pub fn set_ib_term_mode_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 18;
@@ -581,9 +671,11 @@ impl SERDES6G_IB_CFG {
     /// Controls Bulk Voltage of High Speed Cells
     ///
     /// 0: Reserved 1: Low (mission mode)
+    #[inline]
     pub fn ib_vbulk_sel(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
     }
+    #[inline]
     pub fn set_ib_vbulk_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 28;
@@ -598,9 +690,11 @@ impl SERDES6G_IB_CFG {
 pub struct SERDES6G_IB_CFG1(u32);
 impl SERDES6G_IB_CFG1 {
     /// Selects doubled filtering of high-pass-gain regulation or set it to hold if ib_frc_hp = 1
+    #[inline]
     pub fn ib_filt_hp(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_ib_filt_hp(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -608,9 +702,11 @@ impl SERDES6G_IB_CFG1 {
         self.0 |= value;
     }
     /// Selects doubled filtering of low-pass-gain regulation or set it to hold if ib_frc_lp = 1
+    #[inline]
     pub fn ib_filt_lp(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_ib_filt_lp(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -618,9 +714,11 @@ impl SERDES6G_IB_CFG1 {
         self.0 |= value;
     }
     /// Selects doubled filtering of mid-pass-gain regulation or set it to hold if ib_frc_mid = 1
+    #[inline]
     pub fn ib_filt_mid(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ib_filt_mid(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -628,9 +726,11 @@ impl SERDES6G_IB_CFG1 {
         self.0 |= value;
     }
     /// Selects doubled filtering of offset regulation or set it to hold if ib_frc_offset = 1
+    #[inline]
     pub fn ib_filt_offset(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ib_filt_offset(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -638,9 +738,11 @@ impl SERDES6G_IB_CFG1 {
         self.0 |= value;
     }
     /// Selects manual control for high-pass-gain regulation if enabled
+    #[inline]
     pub fn ib_frc_hp(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ib_frc_hp(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -648,9 +750,11 @@ impl SERDES6G_IB_CFG1 {
         self.0 |= value;
     }
     /// Selects manual control for low-pass-gain regulation if enabled
+    #[inline]
     pub fn ib_frc_lp(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ib_frc_lp(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -658,9 +762,11 @@ impl SERDES6G_IB_CFG1 {
         self.0 |= value;
     }
     /// Selects manual control for mid-pass-gain regulaltion if enabled
+    #[inline]
     pub fn ib_frc_mid(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ib_frc_mid(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -668,18 +774,22 @@ impl SERDES6G_IB_CFG1 {
         self.0 |= value;
     }
     /// Selects manual control for offset regulation if enabled
+    #[inline]
     pub fn ib_frc_offset(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ib_frc_offset(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Selects number of calibration cycles for equalizer, sampling stage, signal-detect and AC-JTAG comparator, BIAS. 0: no calibration --> neutral values are used.
+    #[inline]
     pub fn ib_scaly(&self) -> u32 {
         (self.0 & 0xf00) >> 8
     }
+    #[inline]
     pub fn set_ib_scaly(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 8;
@@ -687,9 +797,11 @@ impl SERDES6G_IB_CFG1 {
         self.0 |= value;
     }
     /// Selects threshold voltage for ac-jtag. Voltage = (n + 1) * 20 mV.
+    #[inline]
     pub fn ib_tjtag(&self) -> u32 {
         (self.0 & 0x3e0000) >> 17
     }
+    #[inline]
     pub fn set_ib_tjtag(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 17;
@@ -697,9 +809,11 @@ impl SERDES6G_IB_CFG1 {
         self.0 |= value;
     }
     /// Selects threshold voltage for signal detect. Voltage = (n + 1) * 20 mV.
+    #[inline]
     pub fn ib_tsdet(&self) -> u32 {
         (self.0 & 0x1f000) >> 12
     }
+    #[inline]
     pub fn set_ib_tsdet(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 12;
@@ -716,9 +830,11 @@ impl SERDES6G_IB_CFG2 {
     /// Selects offset voltage for main sampler calibration.
     ///
     /// 0: -70mV ... 31: -0mV 32: +0mV ... 63: 70mV
+    #[inline]
     pub fn ib_ocals(&self) -> u32 {
         (self.0 & 0xfc00) >> 10
     }
+    #[inline]
     pub fn set_ib_ocals(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 10;
@@ -728,9 +844,11 @@ impl SERDES6G_IB_CFG2 {
     /// Selects maximum offset influence for offset regulation.
     ///
     /// 0: 10mV 1: 20mV ...
+    #[inline]
     pub fn ib_oinfi(&self) -> u32 {
         (self.0 & 0x7c00000) >> 22
     }
+    #[inline]
     pub fn set_ib_oinfi(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 22;
@@ -740,9 +858,11 @@ impl SERDES6G_IB_CFG2 {
     /// Selects maximum offset influence for offset calibration of main samplers.
     ///
     /// 0: 40mV 1: 80mV ...
+    #[inline]
     pub fn ib_oinfs(&self) -> u32 {
         (self.0 & 0x70000) >> 16
     }
+    #[inline]
     pub fn set_ib_oinfs(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 16;
@@ -750,9 +870,11 @@ impl SERDES6G_IB_CFG2 {
         self.0 |= value;
     }
     /// Reserved
+    #[inline]
     pub fn ib_taux(&self) -> u32 {
         (self.0 & 0x380000) >> 19
     }
+    #[inline]
     pub fn set_ib_taux(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 19;
@@ -762,9 +884,11 @@ impl SERDES6G_IB_CFG2 {
     /// Selects threshold voltage for VScope sampler calibration.
     ///
     /// 0: 10mV 1: 20mV ...
+    #[inline]
     pub fn ib_tcalv(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
     }
+    #[inline]
     pub fn set_ib_tcalv(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 5;
@@ -774,9 +898,11 @@ impl SERDES6G_IB_CFG2 {
     /// Selects maximum threshold influence for threshold calibration of vscope samplers.
     ///
     /// 0: 40mV 1: 80mV ...
+    #[inline]
     pub fn ib_tinfv(&self) -> u32 {
         (self.0 & 0x38000000) >> 27
     }
+    #[inline]
     pub fn set_ib_tinfv(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 27;
@@ -786,9 +912,11 @@ impl SERDES6G_IB_CFG2 {
     /// Tunes common mode voltage to adapt to max. voltage of input signal.
     ///
     /// 0: 320mVppd 1: 480mVppd 2: 640mVppd (recommended for mission mode) 3: 800mVppd
+    #[inline]
     pub fn ib_umax(&self) -> u32 {
         (self.0 & 0x18) >> 3
     }
+    #[inline]
     pub fn set_ib_umax(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 3;
@@ -798,9 +926,11 @@ impl SERDES6G_IB_CFG2 {
     /// 0dB regulation voltage for high-speed-cells.
     ///
     /// 0: 160mV 1: 180mV 2: 200mV 3: 220mV 4: 240mV (recommended for mission mode) 5: 260mV 6: 280mV 7: 300mV
+    #[inline]
     pub fn ib_ureg(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_ib_ureg(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -814,9 +944,11 @@ impl SERDES6G_IB_CFG2 {
 pub struct SERDES6G_IB_CFG3(u32);
 impl SERDES6G_IB_CFG3 {
     /// Init force value for high-pass gain regulation
+    #[inline]
     pub fn ib_ini_hp(&self) -> u32 {
         (self.0 & 0xfc0000) >> 18
     }
+    #[inline]
     pub fn set_ib_ini_hp(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 18;
@@ -824,9 +956,11 @@ impl SERDES6G_IB_CFG3 {
         self.0 |= value;
     }
     /// Init force value for low-pass gain regulation
+    #[inline]
     pub fn ib_ini_lp(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
     }
+    #[inline]
     pub fn set_ib_ini_lp(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 6;
@@ -834,9 +968,11 @@ impl SERDES6G_IB_CFG3 {
         self.0 |= value;
     }
     /// Init force value for mid-pass gain regulation
+    #[inline]
     pub fn ib_ini_mid(&self) -> u32 {
         (self.0 & 0x3f000) >> 12
     }
+    #[inline]
     pub fn set_ib_ini_mid(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 12;
@@ -844,9 +980,11 @@ impl SERDES6G_IB_CFG3 {
         self.0 |= value;
     }
     /// Init force value for offset gain regulation
+    #[inline]
     pub fn ib_ini_offset(&self) -> u32 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_ib_ini_offset(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -860,9 +998,11 @@ impl SERDES6G_IB_CFG3 {
 pub struct SERDES6G_IB_CFG4(u32);
 impl SERDES6G_IB_CFG4 {
     /// Max value for high-pass gain regulation
+    #[inline]
     pub fn ib_max_hp(&self) -> u32 {
         (self.0 & 0xfc0000) >> 18
     }
+    #[inline]
     pub fn set_ib_max_hp(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 18;
@@ -870,9 +1010,11 @@ impl SERDES6G_IB_CFG4 {
         self.0 |= value;
     }
     /// Max value for low-pass gain regulation
+    #[inline]
     pub fn ib_max_lp(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
     }
+    #[inline]
     pub fn set_ib_max_lp(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 6;
@@ -880,9 +1022,11 @@ impl SERDES6G_IB_CFG4 {
         self.0 |= value;
     }
     /// Max value for mid-pass gain regulation
+    #[inline]
     pub fn ib_max_mid(&self) -> u32 {
         (self.0 & 0x3f000) >> 12
     }
+    #[inline]
     pub fn set_ib_max_mid(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 12;
@@ -890,9 +1034,11 @@ impl SERDES6G_IB_CFG4 {
         self.0 |= value;
     }
     /// Max value for offset gain regulation
+    #[inline]
     pub fn ib_max_offset(&self) -> u32 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_ib_max_offset(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -906,9 +1052,11 @@ impl SERDES6G_IB_CFG4 {
 pub struct SERDES6G_IB_CFG5(u32);
 impl SERDES6G_IB_CFG5 {
     /// Min value for high-pass gain regulation
+    #[inline]
     pub fn ib_min_hp(&self) -> u32 {
         (self.0 & 0xfc0000) >> 18
     }
+    #[inline]
     pub fn set_ib_min_hp(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 18;
@@ -916,9 +1064,11 @@ impl SERDES6G_IB_CFG5 {
         self.0 |= value;
     }
     /// Min value for low-pass gain regulation
+    #[inline]
     pub fn ib_min_lp(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
     }
+    #[inline]
     pub fn set_ib_min_lp(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 6;
@@ -926,9 +1076,11 @@ impl SERDES6G_IB_CFG5 {
         self.0 |= value;
     }
     /// Min value for mid-pass gain regulation
+    #[inline]
     pub fn ib_min_mid(&self) -> u32 {
         (self.0 & 0x3f000) >> 12
     }
+    #[inline]
     pub fn set_ib_min_mid(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 12;
@@ -936,9 +1088,11 @@ impl SERDES6G_IB_CFG5 {
         self.0 |= value;
     }
     /// Min value for offset gain regulation
+    #[inline]
     pub fn ib_min_offset(&self) -> u32 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_ib_min_offset(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -954,9 +1108,11 @@ impl SERDES6G_OB_CFG {
     /// Output buffer supply voltage
     ///
     /// 1: Set to nominal 1V 0: Set to higher voltage
+    #[inline]
     pub fn ob_ena1v_mode(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
+    #[inline]
     pub fn set_ob_ena1v_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -966,9 +1122,11 @@ impl SERDES6G_OB_CFG {
     /// PCIe support
     ///
     /// 1: idle - force to 0V differential 0: Normal mode
+    #[inline]
     pub fn ob_idle(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_ob_idle(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -978,9 +1136,11 @@ impl SERDES6G_OB_CFG {
     /// Polarity of output signal
     ///
     /// 0: Normal 1: Inverted
+    #[inline]
     pub fn ob_pol(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
+    #[inline]
     pub fn set_ob_pol(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -988,9 +1148,11 @@ impl SERDES6G_OB_CFG {
         self.0 |= value;
     }
     /// Coefficients for 1st Post Cursor (MSB is sign)
+    #[inline]
     pub fn ob_post0(&self) -> u32 {
         (self.0 & 0x1f800000) >> 23
     }
+    #[inline]
     pub fn set_ob_post0(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 23;
@@ -998,9 +1160,11 @@ impl SERDES6G_OB_CFG {
         self.0 |= value;
     }
     /// Coefficients for 2nd Post Cursor (MSB is sign)
+    #[inline]
     pub fn ob_post1(&self) -> u32 {
         (self.0 & 0xf800) >> 11
     }
+    #[inline]
     pub fn set_ob_post1(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 11;
@@ -1008,9 +1172,11 @@ impl SERDES6G_OB_CFG {
         self.0 |= value;
     }
     /// Coefficients for Pre Cursor (MSB is sign)
+    #[inline]
     pub fn ob_prec(&self) -> u32 {
         (self.0 & 0x7c0000) >> 18
     }
+    #[inline]
     pub fn set_ob_prec(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 18;
@@ -1020,9 +1186,11 @@ impl SERDES6G_OB_CFG {
     /// Resistance adjustment for termination and CML cell regulation. This configuration defines an offset (2-complement) to the RCOMP value. The effective value is limited between 0 to 15.
     ///
     /// 7: RCOMP+7 1: RCOMP+1 0: RCOMP 15: RCOMP-1 8: RCOMP -8
+    #[inline]
     pub fn ob_resistor_ctrl(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_ob_resistor_ctrl(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -1031,9 +1199,11 @@ impl SERDES6G_OB_CFG {
     /// Resistor adjust mux, driving strength selection of mux
     ///
     /// 1: Reduced 0: Normal
+    #[inline]
     pub fn ob_r_adj_mux(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_ob_r_adj_mux(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -1043,9 +1213,11 @@ impl SERDES6G_OB_CFG {
     /// Resistor adjust predriver, driving strength selection of predriver
     ///
     /// 1: Reduced 0: Normal
+    #[inline]
     pub fn ob_r_adj_pdr(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_ob_r_adj_pdr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -1055,9 +1227,11 @@ impl SERDES6G_OB_CFG {
     /// Reduce the impedance by 3%
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn ob_r_cor(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_ob_r_cor(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -1067,9 +1241,11 @@ impl SERDES6G_OB_CFG {
     /// Select resistor control
     ///
     /// 0: Automatic mode 1: Manual mode - use ob_r_adj_mux and ob_r_adj_pdr for driving strength control
+    #[inline]
     pub fn ob_sel_rctrl(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_ob_sel_rctrl(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -1079,9 +1255,11 @@ impl SERDES6G_OB_CFG {
     /// Driver speed, fine adjustment of slew rate 30-60ps (if OB_SR_H = 0), 60-140ps (if OB_SR_H = 1). LSB is not used.
     ///
     /// 000x: ~30ps/60ps ... 111x: ~60ps/140ps
+    #[inline]
     pub fn ob_sr(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
+    #[inline]
     pub fn set_ob_sr(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -1091,9 +1269,11 @@ impl SERDES6G_OB_CFG {
     /// Half the predriver speed, use for slew rate control
     ///
     /// 0: Disable - slew rate < 60 ps 1: Enable - slew rate > 60 ps
+    #[inline]
     pub fn ob_sr_h(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_ob_sr_h(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -1110,9 +1290,11 @@ impl SERDES6G_OB_CFG1 {
     /// Output skew, used for skew adjustment in SGMII mode - 1bit-hot-coded
     ///
     /// 000: Non-SGMII/1Gbps modes 001: Lowest skew 010: SGMII/1Gbps mode 100: Highest skew All other settings: Reserved
+    #[inline]
     pub fn ob_ena_cas(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
+    #[inline]
     pub fn set_ob_ena_cas(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -1122,9 +1304,11 @@ impl SERDES6G_OB_CFG1 {
     /// Level of output amplitude for 1V mode: max: ~48 for 1.2V mode: max: 63
     ///
     /// 0: lowest level 63: highest level
+    #[inline]
     pub fn ob_lev(&self) -> u32 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_ob_lev(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -1138,9 +1322,11 @@ impl SERDES6G_OB_CFG1 {
 pub struct SERDES6G_PLL_CFG(u32);
 impl SERDES6G_PLL_CFG {
     /// Enable div4 mode Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
+    #[inline]
     pub fn pll_div4(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_pll_div4(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -1148,9 +1334,11 @@ impl SERDES6G_PLL_CFG {
         self.0 |= value;
     }
     /// Enable offset compensation B1: Feedback path; B0: VCO.
+    #[inline]
     pub fn pll_ena_offs(&self) -> u32 {
         (self.0 & 0x30000) >> 16
     }
+    #[inline]
     pub fn set_pll_ena_offs(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 16;
@@ -1158,9 +1346,11 @@ impl SERDES6G_PLL_CFG {
         self.0 |= value;
     }
     /// Enable rotation Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
+    #[inline]
     pub fn pll_ena_rot(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_pll_ena_rot(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -1170,9 +1360,11 @@ impl SERDES6G_PLL_CFG {
     /// Control data for PLL-FSM Encoding below are only examples for some modes. Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
     ///
     /// 60: SGMII/1G-Modes 48: XAUI/2.5Gbps 96: RXAUI 120: QSGMII
+    #[inline]
     pub fn pll_fsm_ctrl_data(&self) -> u32 {
         (self.0 & 0x3fc0) >> 6
     }
+    #[inline]
     pub fn set_pll_fsm_ctrl_data(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 6;
@@ -1180,9 +1372,11 @@ impl SERDES6G_PLL_CFG {
         self.0 |= value;
     }
     /// Enable FSM
+    #[inline]
     pub fn pll_fsm_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_pll_fsm_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -1190,9 +1384,11 @@ impl SERDES6G_PLL_CFG {
         self.0 |= value;
     }
     /// Enable FSM forcing
+    #[inline]
     pub fn pll_fsm_force_set_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_pll_fsm_force_set_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -1200,9 +1396,11 @@ impl SERDES6G_PLL_CFG {
         self.0 |= value;
     }
     /// Enable FSM recalibration
+    #[inline]
     pub fn pll_fsm_oor_recal_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_pll_fsm_oor_recal_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -1210,9 +1408,11 @@ impl SERDES6G_PLL_CFG {
         self.0 |= value;
     }
     /// Select RB data
+    #[inline]
     pub fn pll_rb_data_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_pll_rb_data_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -1220,9 +1420,11 @@ impl SERDES6G_PLL_CFG {
         self.0 |= value;
     }
     /// Select rotation direction Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
+    #[inline]
     pub fn pll_rot_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_pll_rot_dir(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1230,9 +1432,11 @@ impl SERDES6G_PLL_CFG {
         self.0 |= value;
     }
     /// Select rotation frequency Baudrate configuration is controlled by: SERDES6G_COMMON_CFG.PLL_DIV4 SERDES6G_COMMON_CFG.PLL_ROT_FRQ SERDES6G_COMMON_CFG.PLL_ROT_DIR SERDES6G_COMMON_CFG.PLL_ENA_ROT SERDES6G_COMMON_CFG.IF_MODE SERDES6G_COMMON_CFG.HRATE SERDES6G_COMMON_CFG.QRATE
+    #[inline]
     pub fn pll_rot_frq(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_pll_rot_frq(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -1248,9 +1452,11 @@ impl SERDES6G_SER_CFG {
     /// Enable the fourth cml output Q3 for POST1 input of OB8G
     ///
     /// 0: Disable 4th output 1: Enable 4th output
+    #[inline]
     pub fn ser_4tap_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_ser_4tap_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -1260,9 +1466,11 @@ impl SERDES6G_SER_CFG {
     /// Select reference clock source for phase alignment
     ///
     /// 00: RXCLKP (for facility loop mode) 01: RefClk15MHz (for XAUI/RXAUI) 10: RXCLKN (debug) 11: ext. ALICLK (debug)
+    #[inline]
     pub fn ser_alisel(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
+    #[inline]
     pub fn set_ser_alisel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -1272,9 +1480,11 @@ impl SERDES6G_SER_CFG {
     /// Use wider window for phase alignment
     ///
     /// 0: Use small-window 1: Use wide window
+    #[inline]
     pub fn ser_big_win(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ser_big_win(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -1284,9 +1494,11 @@ impl SERDES6G_SER_CFG {
     /// Select source of cp/md signals
     ///
     /// 0: Phase alignment block 1: Core
+    #[inline]
     pub fn ser_cpmd_sel(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_ser_cpmd_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -1296,9 +1508,11 @@ impl SERDES6G_SER_CFG {
     /// Enable phase alignment
     ///
     /// 0: Disable phase alignment 1: Enable phase alignment (required for MLD-modes - XAUI/RXAUI - and facility loop mode)
+    #[inline]
     pub fn ser_enali(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ser_enali(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -1307,9 +1521,11 @@ impl SERDES6G_SER_CFG {
     /// Enable hysteresis for phase alignment
     ///
     /// 0: Disable hysteresis 1: Enable hysteresis
+    #[inline]
     pub fn ser_enhys(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ser_enhys(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -1319,9 +1535,11 @@ impl SERDES6G_SER_CFG {
     /// Enable window for phase alignment
     ///
     /// 0: Disable window 1: Enable window
+    #[inline]
     pub fn ser_en_win(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ser_en_win(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1331,9 +1549,11 @@ impl SERDES6G_SER_CFG {
     /// Swap cp/md signals
     ///
     /// 0: Disable swapping 1: Enable swapping
+    #[inline]
     pub fn ser_swap_cpmd(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ser_swap_cpmd(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;

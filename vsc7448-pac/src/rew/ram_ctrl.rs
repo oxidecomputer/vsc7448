@@ -34,18 +34,22 @@ use derive_more::{From, Into};
 pub struct RAM_INIT(u32);
 impl RAM_INIT {
     /// Core memory controllers are enabled when this field is set.
+    #[inline]
     pub fn ram_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ram_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Initialize core memories. Field is automatically cleared when operation is complete ( approx. 40 us).
+    #[inline]
     pub fn ram_init(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ram_init(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;

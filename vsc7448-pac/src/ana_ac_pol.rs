@@ -45,17 +45,21 @@ pub mod sdlb;
 /// Leaky bucket configuration & status
 pub struct BDLB(pub(super) u32);
 impl BDLB {
+    #[inline]
     pub fn DLB_CFG(&self) -> RegisterAddress<bdlb::DLB_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn LB_BUCKET_VAL(&self, index: u32) -> RegisterAddress<bdlb::LB_BUCKET_VAL> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
+    #[inline]
     pub fn LB_CFG(&self, index: u32) -> RegisterAddress<bdlb::LB_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
+    #[inline]
     pub fn MISC_CFG(&self) -> RegisterAddress<bdlb::MISC_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -64,17 +68,21 @@ impl BDLB {
 /// Leaky bucket configuration & status
 pub struct BUM_SLB(pub(super) u32);
 impl BUM_SLB {
+    #[inline]
     pub fn LB_BUCKET_VAL(&self, index: u32) -> RegisterAddress<bum_slb::LB_BUCKET_VAL> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x14 + index * 0x4)
     }
+    #[inline]
     pub fn LB_CFG(&self, index: u32) -> RegisterAddress<bum_slb::LB_CFG> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
+    #[inline]
     pub fn MISC_CFG(&self) -> RegisterAddress<bum_slb::MISC_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn SLB_CFG(&self) -> RegisterAddress<bum_slb::SLB_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -83,9 +91,11 @@ impl BUM_SLB {
 /// Common LB configuration and status registers
 pub struct COMMON_BDLB(pub(super) u32);
 impl COMMON_BDLB {
+    #[inline]
     pub fn DLB_CTRL(&self) -> RegisterAddress<common_bdlb::DLB_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn DLB_STICKY(&self) -> RegisterAddress<common_bdlb::DLB_STICKY> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -94,12 +104,15 @@ impl COMMON_BDLB {
 /// Common LB configuration and status registers
 pub struct COMMON_BUM_SLB(pub(super) u32);
 impl COMMON_BUM_SLB {
+    #[inline]
     pub fn DLB_CTRL(&self) -> RegisterAddress<common_bum_slb::DLB_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn SLB_STICKY(&self) -> RegisterAddress<common_bum_slb::SLB_STICKY> {
         RegisterAddress::new(self.0 + 0x10)
     }
+    #[inline]
     pub fn TRAFFIC_MASK_CFG(
         &self,
         index: u32,
@@ -112,9 +125,11 @@ impl COMMON_BUM_SLB {
 /// Common LB configuration and status registers
 pub struct COMMON_SDLB(pub(super) u32);
 impl COMMON_SDLB {
+    #[inline]
     pub fn DLB_CTRL(&self) -> RegisterAddress<common_sdlb::DLB_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn DLB_STICKY(&self) -> RegisterAddress<common_sdlb::DLB_STICKY> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -123,35 +138,44 @@ impl COMMON_SDLB {
 /// Various policer controls
 pub struct POL_ALL_CFG(pub(super) u32);
 impl POL_ALL_CFG {
+    #[inline]
     pub fn POL_ACL_CTRL(&self, index: u32) -> RegisterAddress<pol_all_cfg::POL_ACL_CTRL> {
         assert!(index < 32);
         RegisterAddress::new(self.0 + 0x160 + index * 0x4)
     }
+    #[inline]
     pub fn POL_ACL_RATE_CFG(&self, index: u32) -> RegisterAddress<pol_all_cfg::POL_ACL_RATE_CFG> {
         assert!(index < 32);
         RegisterAddress::new(self.0 + 0x60 + index * 0x4)
     }
+    #[inline]
     pub fn POL_ACL_THRES_CFG(&self, index: u32) -> RegisterAddress<pol_all_cfg::POL_ACL_THRES_CFG> {
         assert!(index < 32);
         RegisterAddress::new(self.0 + 0xe0 + index * 0x4)
     }
+    #[inline]
     pub fn POL_ALL_CFG(&self) -> RegisterAddress<pol_all_cfg::POL_ALL_CFG> {
         RegisterAddress::new(self.0 + 0x2c4)
     }
+    #[inline]
     pub fn POL_PORT_FC_CFG(&self, index: u32) -> RegisterAddress<pol_all_cfg::POL_PORT_FC_CFG> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0x1e0 + index * 0x4)
     }
+    #[inline]
     pub fn POL_STICKY(&self) -> RegisterAddress<pol_all_cfg::POL_STICKY> {
         RegisterAddress::new(self.0 + 0x2cc)
     }
+    #[inline]
     pub fn POL_STICKY1(&self) -> RegisterAddress<pol_all_cfg::POL_STICKY1> {
         RegisterAddress::new(self.0 + 0x2d0)
     }
+    #[inline]
     pub fn POL_STORM_CTRL(&self, index: u32) -> RegisterAddress<pol_all_cfg::POL_STORM_CTRL> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x40 + index * 0x4)
     }
+    #[inline]
     pub fn POL_STORM_RATE_CFG(
         &self,
         index: u32,
@@ -159,6 +183,7 @@ impl POL_ALL_CFG {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn POL_STORM_THRES_CFG(
         &self,
         index: u32,
@@ -166,6 +191,7 @@ impl POL_ALL_CFG {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
+    #[inline]
     pub fn POL_UPD_INT_CFG(&self) -> RegisterAddress<pol_all_cfg::POL_UPD_INT_CFG> {
         RegisterAddress::new(self.0 + 0x2c8)
     }
@@ -174,6 +200,7 @@ impl POL_ALL_CFG {
 /// Rate and threshold configuration for port policers.
 pub struct POL_PORT_CFG(pub(super) u32);
 impl POL_PORT_CFG {
+    #[inline]
     pub fn POL_PORT_RATE_CFG(
         &self,
         index: u32,
@@ -181,6 +208,7 @@ impl POL_PORT_CFG {
         assert!(index < 228);
         RegisterAddress::new(self.0 + 0x800 + index * 0x4)
     }
+    #[inline]
     pub fn POL_PORT_THRES_CFG_0(
         &self,
         index: u32,
@@ -188,6 +216,7 @@ impl POL_PORT_CFG {
         assert!(index < 228);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn POL_PORT_THRES_CFG_1(
         &self,
         index: u32,
@@ -200,10 +229,12 @@ impl POL_PORT_CFG {
 /// Port policer configuration and status per port
 pub struct POL_PORT_CTRL(pub(super) u32);
 impl POL_PORT_CTRL {
+    #[inline]
     pub fn POL_PORT_CFG(&self, index: u32) -> RegisterAddress<pol_port_ctrl::POL_PORT_CFG> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
+    #[inline]
     pub fn POL_PORT_GAP(&self) -> RegisterAddress<pol_port_ctrl::POL_PORT_GAP> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -212,6 +243,7 @@ impl POL_PORT_CTRL {
 /// Pipeline configuration indexed per port.
 pub struct PORT_PT_CTRL(pub(super) u32);
 impl PORT_PT_CTRL {
+    #[inline]
     pub fn ACTION_CTRL(&self, index: u32) -> RegisterAddress<port_pt_ctrl::ACTION_CTRL> {
         assert!(index < 5);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -221,17 +253,21 @@ impl PORT_PT_CTRL {
 /// Leaky bucket configuration & status
 pub struct SDLB(pub(super) u32);
 impl SDLB {
+    #[inline]
     pub fn DLB_CFG(&self) -> RegisterAddress<sdlb::DLB_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn LB_BUCKET_VAL(&self, index: u32) -> RegisterAddress<sdlb::LB_BUCKET_VAL> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + index * 0x4)
     }
+    #[inline]
     pub fn LB_CFG(&self, index: u32) -> RegisterAddress<sdlb::LB_CFG> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
+    #[inline]
     pub fn MISC_CFG(&self) -> RegisterAddress<sdlb::MISC_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }

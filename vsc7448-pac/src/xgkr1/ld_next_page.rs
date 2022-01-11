@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct KR_7X0016(u32);
 impl KR_7X0016 {
     /// Next page to transmit D[15:0]
+    #[inline]
     pub fn np_tx0(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_np_tx0(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -46,9 +48,11 @@ impl KR_7X0016 {
 pub struct KR_7X0017(u32);
 impl KR_7X0017 {
     /// Next page to transmit D[31:16]
+    #[inline]
     pub fn np_tx1(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_np_tx1(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -60,9 +64,11 @@ impl KR_7X0017 {
 pub struct KR_7X0018(u32);
 impl KR_7X0018 {
     /// Next page to transmit D[47:32]
+    #[inline]
     pub fn np_tx2(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_np_tx2(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_CFG7(u32);
 impl TR_CFG7 {
     /// initialize settings for local transmitter.
+    #[inline]
     pub fn cm_init(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
     }
+    #[inline]
     pub fn set_cm_init(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 6;
@@ -42,9 +44,11 @@ impl TR_CFG7 {
         self.0 |= value;
     }
     /// Signed value to adjust final LP C(+1) tap position from calculated optimal setting.
+    #[inline]
     pub fn dfe_ofs(&self) -> u32 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_dfe_ofs(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;

@@ -37,36 +37,47 @@ pub mod voe_stat_mpls;
 /// Configuration per Vitesse OAM MEP Endpoints (VOE) for MPLS-TP OAM
 pub struct VOE_CONF_MPLS(pub(super) u32);
 impl VOE_CONF_MPLS {
+    #[inline]
     pub fn BFD_CONFIG(&self) -> RegisterAddress<voe_conf_mpls::BFD_CONFIG> {
         RegisterAddress::new(self.0 + 0x18)
     }
+    #[inline]
     pub fn BFD_LOCAL_DISCR_SINK(&self) -> RegisterAddress<voe_conf_mpls::BFD_LOCAL_DISCR_SINK> {
         RegisterAddress::new(self.0 + 0x24)
     }
+    #[inline]
     pub fn BFD_LOCAL_DISCR_SRC(&self) -> RegisterAddress<voe_conf_mpls::BFD_LOCAL_DISCR_SRC> {
         RegisterAddress::new(self.0 + 0x1c)
     }
+    #[inline]
     pub fn BFD_REMOTE_DISCR_SINK(&self) -> RegisterAddress<voe_conf_mpls::BFD_REMOTE_DISCR_SINK> {
         RegisterAddress::new(self.0 + 0x28)
     }
+    #[inline]
     pub fn BFD_REMOTE_DISCR_SRC(&self) -> RegisterAddress<voe_conf_mpls::BFD_REMOTE_DISCR_SRC> {
         RegisterAddress::new(self.0 + 0x20)
     }
+    #[inline]
     pub fn CPU_COPY_CTRL_MPLS(&self) -> RegisterAddress<voe_conf_mpls::CPU_COPY_CTRL_MPLS> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn OAM_CNT_DATA_MPLS(&self) -> RegisterAddress<voe_conf_mpls::OAM_CNT_DATA_MPLS> {
         RegisterAddress::new(self.0 + 0x10)
     }
+    #[inline]
     pub fn OAM_CNT_SEL_MPLS(&self) -> RegisterAddress<voe_conf_mpls::OAM_CNT_SEL_MPLS> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    #[inline]
     pub fn OAM_HW_CTRL_MPLS(&self) -> RegisterAddress<voe_conf_mpls::OAM_HW_CTRL_MPLS> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    #[inline]
     pub fn PATH_VOE_MPLS(&self) -> RegisterAddress<voe_conf_mpls::PATH_VOE_MPLS> {
         RegisterAddress::new(self.0 + 0x14)
     }
+    #[inline]
     pub fn VOE_CTRL_MPLS(&self) -> RegisterAddress<voe_conf_mpls::VOE_CTRL_MPLS> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -75,71 +86,91 @@ impl VOE_CONF_MPLS {
 /// Per VOE statistics and counters (MPLS-TP OAM)
 pub struct VOE_STAT_MPLS(pub(super) u32);
 impl VOE_STAT_MPLS {
+    #[inline]
     pub fn BFD_CC_RX_INVLD_CNT_REG(
         &self,
     ) -> RegisterAddress<voe_stat_mpls::BFD_CC_RX_INVLD_CNT_REG> {
         RegisterAddress::new(self.0 + 0x48)
     }
+    #[inline]
     pub fn BFD_CC_RX_VLD_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CC_RX_VLD_CNT_REG> {
         RegisterAddress::new(self.0 + 0x40)
     }
+    #[inline]
     pub fn BFD_CC_TX_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CC_TX_CNT_REG> {
         RegisterAddress::new(self.0 + 0x38)
     }
+    #[inline]
     pub fn BFD_CV_RX_INVLD_CNT_REG(
         &self,
     ) -> RegisterAddress<voe_stat_mpls::BFD_CV_RX_INVLD_CNT_REG> {
         RegisterAddress::new(self.0 + 0x4c)
     }
+    #[inline]
     pub fn BFD_CV_RX_VLD_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CV_RX_VLD_CNT_REG> {
         RegisterAddress::new(self.0 + 0x44)
     }
+    #[inline]
     pub fn BFD_CV_TX_CNT_REG(&self) -> RegisterAddress<voe_stat_mpls::BFD_CV_TX_CNT_REG> {
         RegisterAddress::new(self.0 + 0x3c)
     }
+    #[inline]
     pub fn BFD_RX_LAST(&self) -> RegisterAddress<voe_stat_mpls::BFD_RX_LAST> {
         RegisterAddress::new(self.0 + 0x1c)
     }
+    #[inline]
     pub fn BFD_RX_STICKY(&self) -> RegisterAddress<voe_stat_mpls::BFD_RX_STICKY> {
         RegisterAddress::new(self.0 + 0x30)
     }
+    #[inline]
     pub fn BFD_SINK_INFO(&self) -> RegisterAddress<voe_stat_mpls::BFD_SINK_INFO> {
         RegisterAddress::new(self.0 + 0x14)
     }
+    #[inline]
     pub fn BFD_SRC_INFO(&self) -> RegisterAddress<voe_stat_mpls::BFD_SRC_INFO> {
         RegisterAddress::new(self.0 + 0x10)
     }
+    #[inline]
     pub fn BFD_STAT(&self) -> RegisterAddress<voe_stat_mpls::BFD_STAT> {
         RegisterAddress::new(self.0 + 0x18)
     }
+    #[inline]
     pub fn BFD_TX_STICKY(&self) -> RegisterAddress<voe_stat_mpls::BFD_TX_STICKY> {
         RegisterAddress::new(self.0 + 0x34)
     }
+    #[inline]
     pub fn CPT_RX_STICKY_MPLS(&self) -> RegisterAddress<voe_stat_mpls::CPT_RX_STICKY_MPLS> {
         RegisterAddress::new(self.0 + 0x28)
     }
+    #[inline]
     pub fn INTR_ENA_MPLS(&self) -> RegisterAddress<voe_stat_mpls::INTR_ENA_MPLS> {
         RegisterAddress::new(self.0 + 0x24)
     }
+    #[inline]
     pub fn INTR_STICKY_MPLS(&self) -> RegisterAddress<voe_stat_mpls::INTR_STICKY_MPLS> {
         RegisterAddress::new(self.0 + 0x20)
     }
+    #[inline]
     pub fn PDU_EXTRACT_MPLS(&self) -> RegisterAddress<voe_stat_mpls::PDU_EXTRACT_MPLS> {
         RegisterAddress::new(self.0 + 0x2c)
     }
+    #[inline]
     pub fn RX_CNT_NON_SEL_OAM_MPLS(
         &self,
     ) -> RegisterAddress<voe_stat_mpls::RX_CNT_NON_SEL_OAM_MPLS> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn RX_CNT_SEL_OAM_MPLS(&self) -> RegisterAddress<voe_stat_mpls::RX_CNT_SEL_OAM_MPLS> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn TX_CNT_NON_SEL_OAM_MPLS(
         &self,
     ) -> RegisterAddress<voe_stat_mpls::TX_CNT_NON_SEL_OAM_MPLS> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    #[inline]
     pub fn TX_CNT_SEL_OAM_MPLS(&self) -> RegisterAddress<voe_stat_mpls::TX_CNT_SEL_OAM_MPLS> {
         RegisterAddress::new(self.0 + 0x8)
     }

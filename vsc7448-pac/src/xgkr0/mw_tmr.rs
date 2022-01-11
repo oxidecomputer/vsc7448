@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct MW_TMR_LSW(u32);
 impl MW_TMR_LSW {
     /// maxwait_timer, when training expires and failure declared. 500ms
+    #[inline]
     pub fn mw_tmr_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_mw_tmr_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -46,9 +48,11 @@ impl MW_TMR_LSW {
 pub struct MW_TMR_MSW(u32);
 impl MW_TMR_MSW {
     /// maxwait_timer, when training expires and failure declared. 500ms
+    #[inline]
     pub fn mw_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_mw_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

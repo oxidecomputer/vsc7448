@@ -36,9 +36,11 @@ impl COS_CTRL {
     /// The auto updated COSID value is determined according to the following algorithm: mask = IFH.TS.INJ_LBK.COS_MASK[7:0] isdx = IFH.VSTAX.MISC.ISDX cos_nxt_sel = IFH.TS.INJ_LBK.COS_NXT_SEL if (cos_nxt_sel > 0 and isdx > 0 and mask > 0) { cos_nxt = REW:ISDX_TBL:COS_CTRL[IFH.VSTAX.MISC.ISDX].COS_NXT[cos_nxt_sel-1] # Use cos_nxt to find next bit in cos_mask for idx in 0:7 { if (mask[(idx+cos_nxt) mod 8] = '1') { cosid_new = idx break } } # Update next pointer REW:ISDX_TBL:COS_CTRL[IFH.VSTAX.MISC.ISDX].COS_NXT[cos_nxt_sel-1] = ((cosid_new+1) mod 8) }
     ///
     /// 0-7: Next COS value to use
+    #[inline]
     pub fn cos_nxt(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_cos_nxt(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;

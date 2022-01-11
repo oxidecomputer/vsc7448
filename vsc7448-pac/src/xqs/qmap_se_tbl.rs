@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct QMAP_SE_TBL(u32);
 impl QMAP_SE_TBL {
     /// Scheduling element to use for frames going to the specific port with the specific lookup index
+    #[inline]
     pub fn qmap_se_val(&self) -> u32 {
         self.0 & 0xfff
     }
+    #[inline]
     pub fn set_qmap_se_val(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;

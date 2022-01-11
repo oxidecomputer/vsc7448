@@ -34,9 +34,11 @@ impl MAC_ADV_CHK_CFG {
     /// Length Drop Enable:\nConfigures the Receive Module to drop frames in reference to in-range and out-of-range errors:
     ///
     /// '0': Length Drop Disabled '1': Length Drop Enabled.
+    #[inline]
     pub fn len_drop_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_len_drop_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -50,9 +52,11 @@ impl MAC_ENA_CFG {
     /// Receiver Module Enable.
     ///
     /// '0': Receiver Module Disabled '1': Receiver Module Enabled
+    #[inline]
     pub fn rx_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_rx_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -62,9 +66,11 @@ impl MAC_ENA_CFG {
     /// Transmitter Module Enable.
     ///
     /// '0': Transmitter Module Disabled '1': Transmitter Module Enabled
+    #[inline]
     pub fn tx_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_tx_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -78,9 +84,11 @@ impl MAC_HDX_CFG {
     /// Bypass 2-step synchronization of collision signal gmii_col in defer and backoff logic to allow for optimized collision handling in half duplex modes
     ///
     /// '0': Do not bypass gmii_col sync stage '1': Bypass gmii_col sync stage
+    #[inline]
     pub fn bypass_col_sync(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
+    #[inline]
     pub fn set_bypass_col_sync(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
@@ -88,9 +96,11 @@ impl MAC_HDX_CFG {
         self.0 |= value;
     }
     /// Adjustment of early/late collision boundary:\nThis bitgroup is used to adjust the MAC so that a collision on a shared transmission medium before bit 512 is handled as an early collision, whereas a collision after bit 512 is handled as a late collision, i.e. no retransmission is performed.
+    #[inline]
     pub fn late_col_pos(&self) -> u32 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_late_col_pos(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -99,9 +109,11 @@ impl MAC_HDX_CFG {
     /// This bit is used to setup the MAC to retransmit a frame after an early collision even though 16 (or more) early collisions have occurred. This feature violates the IEEE 802.3 standard and should only be used when running in HDX flow control, which is not defined in the IEEE standard anyway.
     ///
     /// '0': A frame will be discarded and counted as an excessive collision if 16 collisions occur for this frame. '1': The MAC will retransmit a frame after an early collision, regardless of the number of previous early collisions. The backoff sequence will be reset after every 16 collisions.
+    #[inline]
     pub fn retry_after_exc_col_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_retry_after_exc_col_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -111,9 +123,11 @@ impl MAC_HDX_CFG {
     /// Seed value loaded into the PRBS of the MAC.
     ///
     /// Used to prevent excessive collision events.
+    #[inline]
     pub fn seed(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
+    #[inline]
     pub fn set_seed(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -123,9 +137,11 @@ impl MAC_HDX_CFG {
     /// Load SEED value into PRNG register. A SEED value is loaded into the PRNG register of the MAC, when SEED_LOAD is asserted. After a load, the SEED_LOAD must be deasserted.
     ///
     /// '0': Do not load SEED value '1': Load SEED value.
+    #[inline]
     pub fn seed_load(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_seed_load(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -140,9 +156,11 @@ impl MAC_IFG_CFG {
     /// This configuration bit allows to relax the minimum IPG check to 11 symbols instead of 12. If the IPG is below 12 (or 11 if relaxed mode is enabled) the IPG_SHRINK statistics counter is incremented.
     ///
     /// '0' Normal mode (check for minimum IPG of 12 symbols) '1' Relaxed mode (check for minimum IPG of 11 symbols)
+    #[inline]
     pub fn restore_old_ipg_check(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_restore_old_ipg_check(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -152,9 +170,11 @@ impl MAC_IFG_CFG {
     /// Used to adjust the duration of the first part of the inter-frame gap in the Rx direction and must be set according to the speed settings.
     ///
     /// TBA: Add correct values found by validation. 10/100 Mbps: 0xXX 1000 Mbps: 0xXX.
+    #[inline]
     pub fn rx_ifg1(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_rx_ifg1(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -163,9 +183,11 @@ impl MAC_IFG_CFG {
     /// Used to adjust the duration of the second part of the inter-frame gap in the Rx direction and must be set according to the speed and duplex settings.
     ///
     /// TBA: Add correct values found by validation. 10/100 Mbps, HDX, FDX: 0xXX, 0xXX 1000 Mbps: 0xXX.
+    #[inline]
     pub fn rx_ifg2(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
+    #[inline]
     pub fn set_rx_ifg2(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -175,9 +197,11 @@ impl MAC_IFG_CFG {
     /// Used to adjust the duration of the inter-frame gap in the Tx direction and must be set according to the speed and duplex settings.
     ///
     /// TBA: Add correct values found by validation. 10/100 Mbps, HDX, FDX 0xXX, 0xXX 1000 Mbps: 0xXX.
+    #[inline]
     pub fn tx_ifg(&self) -> u32 {
         (self.0 & 0x1f00) >> 8
     }
+    #[inline]
     pub fn set_tx_ifg(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 8;
@@ -190,9 +214,11 @@ impl MAC_IFG_CFG {
 pub struct MAC_MAXLEN_CFG(u32);
 impl MAC_MAXLEN_CFG {
     /// The maximum frame length accepted by the Receive Module of the MAC. If the length is exceeded, this is indicated in the Statistics Engine (RX_OVERSIZE). The maximum length is automatically adjusted to accommodate maximum sized frames containing single/double VLAN tag(s) - given that the MAC is configured to be single/double VLAN aware.
+    #[inline]
     pub fn max_len(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_max_len(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -206,9 +232,11 @@ impl MAC_MODE_CFG {
     /// This bit enables synchronization of Flow Control Jamming to currently used word boundaries (10/100 Mbps mode).
     ///
     /// '0' Normal mode, Flow Control Jamming is output as soon as possible '1' Word sync mode, Flow Control Jamming is synchronized 10/100 Mbps word boundaries
+    #[inline]
     pub fn fc_word_sync_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_fc_word_sync_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -218,9 +246,11 @@ impl MAC_MODE_CFG {
     /// Enables Full Duplex:
     ///
     /// '0': Half Duplex '1': Full duplex. \nNote: Full duplex MUST be selected if GIGA_MODE is enabled.
+    #[inline]
     pub fn fdx_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_fdx_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -229,9 +259,11 @@ impl MAC_MODE_CFG {
     /// Enables 1 Gbps mode.
     ///
     /// '0': 10/100 Mbps mode '1': 1 Gbps mode. Note: FDX MUST be asserted.
+    #[inline]
     pub fn giga_mode_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_giga_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -244,9 +276,11 @@ impl MAC_MODE_CFG {
 pub struct MAC_STICKY(u32);
 impl MAC_STICKY {
     /// Sticky bit indicating that an inter packet gap shrink was detected (IPG < 12 bytes).
+    #[inline]
     pub fn rx_ipg_shrink_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_rx_ipg_shrink_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -256,9 +290,11 @@ impl MAC_STICKY {
     /// Sticky bit indicating that junk was received (bytes not recognized as a frame).
     ///
     /// '0': no junk was received '1': junk was received one or more times Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_junk_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rx_junk_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -268,9 +304,11 @@ impl MAC_STICKY {
     /// Sticky bit indicating that a preamble shrink was detected (preamble < 8 bytes).
     ///
     /// '0': no preamble shrink was detected '1': a preamble shrink was detected one or more times Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_pream_shrink_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_rx_pream_shrink_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -278,18 +316,22 @@ impl MAC_STICKY {
         self.0 |= value;
     }
     /// Sticky bit indicating that the transmit host initiated abort was executed.
+    #[inline]
     pub fn tx_abort_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_tx_abort_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Sticky bit indicating that the MAC transmit FIFO has overrun.
+    #[inline]
     pub fn tx_fifo_oflw_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_tx_fifo_oflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -299,9 +341,11 @@ impl MAC_STICKY {
     /// Sticky bit indicating that the transmit host issued a jamming signal.
     ///
     /// '0': the transmit host issued no jamming signal '1': the transmit host issued one or morejamming signals Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn tx_jam_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_tx_jam_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -311,9 +355,11 @@ impl MAC_STICKY {
     /// Sticky bit indicating that the transmit MAC asked the host for a frame retransmission.
     ///
     /// '0': no tx retransmission was initiated '1': one or more tx retransmissions were initiated Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn tx_retransmit_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_tx_retransmit_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -330,9 +376,11 @@ impl MAC_TAGS_CFG {
     /// Provider Bridge Enable (multiple VLAN awareness)
     ///
     /// 0: The MAC operates in a single VLAN aware mode. 1: The MAC operates in a double VLAN aware mode. 2: The MAC operates in a triple VLAN aware mode. 3: Reserved. For VLAN awareness to take effect VLAN_AWR_ENA must be set to '1'.
+    #[inline]
     pub fn pb_ena(&self) -> u32 {
         (self.0 & 0x6) >> 1
     }
+    #[inline]
     pub fn set_pb_ena(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 1;
@@ -340,9 +388,11 @@ impl MAC_TAGS_CFG {
         self.0 |= value;
     }
     /// This field defines a 1st programmable VLAN/Service tag (custom TPID 1).\nThis field together with the TAG_ID2 and TAG_ID3 - as well as the default tags 0x8100 and 0x88A8 - are used for ALL possible tag positions (up to 3). Any order of known VLAN/Service tags (0x8100, 0x88A8, TAG_ID, TAG_ID2, TAG_ID3) is found. VLAN/Service tag awareness depends on VLAN_AWR_ENA and PB_ENA.
+    #[inline]
     pub fn tag_id(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_tag_id(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -352,18 +402,22 @@ impl MAC_TAGS_CFG {
     /// VLAN Awareness: Enables the MAC to work in a VLAN aware environment.
     ///
     /// '0': VLAN awareness disabled. '1': VLAN awareness enabled.
+    #[inline]
     pub fn vlan_awr_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_vlan_awr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// When set, single, double and triple tagged frames are allowed to be 4/8/12 bytes longer than the MAXLEN configuration.
+    #[inline]
     pub fn vlan_len_awr_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_vlan_len_awr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -380,9 +434,11 @@ impl MAC_TAGS_CFG2 {
     /// This field defines a 2nd programmable VLAN/Service tag (custom TPID 2).
     ///
     /// tbd
+    #[inline]
     pub fn tag_id2(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_tag_id2(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -391,9 +447,11 @@ impl MAC_TAGS_CFG2 {
     /// This field defines a 3rd programmable VLAN/Service tag (custom TPID 3).
     ///
     /// tbd
+    #[inline]
     pub fn tag_id3(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_tag_id3(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;

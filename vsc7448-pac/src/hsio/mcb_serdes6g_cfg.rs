@@ -36,9 +36,11 @@ impl MCB_SERDES6G_ADDR_CFG {
     /// Activation vector for SERDES6G-Slaves, one-hot coded, each bit is related to one macro, e.g. bit 0 enables/disables access to macro no. 0.
     ///
     /// 0: Disable macro access via MCB 1: Enable macro access via MCB
+    #[inline]
     pub fn serdes6g_addr(&self) -> u32 {
         self.0 & 0x1ffffff
     }
+    #[inline]
     pub fn set_serdes6g_addr(&mut self, value: u32) {
         assert!(value <= 0x1ffffff);
         self.0 &= !0x1ffffff;
@@ -47,9 +49,11 @@ impl MCB_SERDES6G_ADDR_CFG {
     /// Initiate a read access to marked SERDES6G Slaves
     ///
     /// 0: No read operation pending (read op finished after bit has been set) 1: Initiate a read access (kept 1 until read operation has finished)
+    #[inline]
     pub fn serdes6g_rd_one_shot(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
+    #[inline]
     pub fn set_serdes6g_rd_one_shot(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -59,9 +63,11 @@ impl MCB_SERDES6G_ADDR_CFG {
     /// Initiate a write access to marked SERDES6G Slaves
     ///
     /// 0: No write operation pending 1: Initiate write to slaves (kept 1 until write operation has finished)
+    #[inline]
     pub fn serdes6g_wr_one_shot(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_serdes6g_wr_one_shot(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;

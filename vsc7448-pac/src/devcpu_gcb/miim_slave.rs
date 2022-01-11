@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct MIIM_SLAVE_CFG(u32);
 impl MIIM_SLAVE_CFG {
     /// Configuration of the spike filter width on the MDC and MDIO inputs. Filters spikes with a width of (SPIKE_FILTER_CFG+1)*SYSTEM_CLK or less.
+    #[inline]
     pub fn spike_filter_cfg(&self) -> u32 {
         (self.0 & 0x3e) >> 1
     }
+    #[inline]
     pub fn set_spike_filter_cfg(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 1;
@@ -42,9 +44,11 @@ impl MIIM_SLAVE_CFG {
         self.0 |= value;
     }
     /// Set this field to enable the spike filter on the MDC and MDIO inputs. When enabled the MIIM_SLAVE_CFG.SPIKE_FILTER_CFG field determines the width of the spike filter.
+    #[inline]
     pub fn spike_filter_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_spike_filter_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

@@ -36,25 +36,32 @@ pub mod system;
 /// Switch configuration
 pub struct SYSTEM(pub(super) u32);
 impl SYSTEM {
+    #[inline]
     pub fn CPUQ_DISCARD(&self) -> RegisterAddress<system::CPUQ_DISCARD> {
         RegisterAddress::new(self.0 + 0x124)
     }
+    #[inline]
     pub fn FRAME_COPY_CFG(&self, index: u32) -> RegisterAddress<system::FRAME_COPY_CFG> {
         assert!(index < 12);
         RegisterAddress::new(self.0 + 0xe8 + index * 0x4)
     }
+    #[inline]
     pub fn FRAME_COPY_LRNA_CFG(&self) -> RegisterAddress<system::FRAME_COPY_LRNA_CFG> {
         RegisterAddress::new(self.0 + 0x118)
     }
+    #[inline]
     pub fn FWD_CTRL(&self) -> RegisterAddress<system::FWD_CTRL> {
         RegisterAddress::new(self.0 + 0xe4)
     }
+    #[inline]
     pub fn FWD_PRESS_DROP_CNT(&self) -> RegisterAddress<system::FWD_PRESS_DROP_CNT> {
         RegisterAddress::new(self.0 + 0x11c)
     }
+    #[inline]
     pub fn MIRROR_CFG(&self) -> RegisterAddress<system::MIRROR_CFG> {
         RegisterAddress::new(self.0 + 0x120)
     }
+    #[inline]
     pub fn SWITCH_PORT_MODE(&self, index: u32) -> RegisterAddress<system::SWITCH_PORT_MODE> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)

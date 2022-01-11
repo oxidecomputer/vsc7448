@@ -34,9 +34,11 @@ impl STAT_GLOBAL_EVENT_MASK {
     /// This value stores the event mask which indicates the counter of all flows to count certain events. If set to '1' the respective event is not filtered and can trigger the counter. If set to '0' the respective event is filtered and the counter will treat the frame as if no event has occurred. Which type of frame is counted is defined in: STAT_CFG, CFG_CNT_FRM_TYPE. The following events apply to port stat: bit0: Count events allowed by *_sticky_mask:0 bit1: Count events allowed by *_sticky_mask:1 ... bit3: Count events allowed by *_sticky_mask:n where n is number of counter event masks bit4: Count port policer:0 drop events bit4+1: Count port policer:1 drop events ... bit4+m: Count port policer:0 pass/active events bit4+m+1: Count port policer:1 pass/active events ... where m is number of per port policers bit4+2*m: Count storm policer drop events bit4+2*m+1: Count policer drop events bit4+2*m+3: Count lbk frame.
     ///
     /// 0: This event will not trigger counting. 1: Enable counting for frames with this event.
+    #[inline]
     pub fn global_event_mask(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_global_event_mask(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -48,9 +50,11 @@ impl STAT_GLOBAL_EVENT_MASK {
 pub struct STAT_RESET(u32);
 impl STAT_RESET {
     /// Write '1' to this field to reset all counters and configuration for this stat group. The device will set the bit back to '0' when reset has completed.
+    #[inline]
     pub fn reset(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_reset(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

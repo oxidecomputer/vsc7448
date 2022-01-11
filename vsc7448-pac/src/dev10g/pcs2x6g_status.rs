@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct PCS2X6G_ERR_CNT_STAT(u32);
 impl PCS2X6G_ERR_CNT_STAT {
     /// Number of errors detected in 64B/66B decoder.
+    #[inline]
     pub fn err_64b66bdec(&self) -> u32 {
         self.0 & 0xffffff
     }
+    #[inline]
     pub fn set_err_64b66bdec(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
@@ -52,9 +54,11 @@ impl PCS2X6G_ERR_STATUS {
     /// Alignment lost in deskew logic
     ///
     /// 0: No misalignment occured 1: A (temporary) misalignment has been detected Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn alignment_lost_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_alignment_lost_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -64,9 +68,11 @@ impl PCS2X6G_ERR_STATUS {
     /// Coding error detected in received 64B/66B encoded data
     ///
     /// 0: No error found 1: Coding error detected Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn c64b66b_err_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_c64b66b_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -76,9 +82,11 @@ impl PCS2X6G_ERR_STATUS {
     /// Synchronization lost in lane i (i = 0...3, one bit per lane)
     ///
     /// 0: No sync lost occured 1: Synchronization lost in lane i (temporarily) Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn sync_lost_sticky(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_sync_lost_sticky(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -87,9 +95,11 @@ impl PCS2X6G_ERR_STATUS {
     /// Coding error detected in xgmii data to be transmitted
     ///
     /// 0: No error found 1: Coding error detected Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn xgmii_err_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_xgmii_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -106,9 +116,11 @@ impl PCS2X6G_STATUS {
     /// Status of deskew logic
     ///
     /// 0: Lanes not aligned 1: All lanes are aligned
+    #[inline]
     pub fn rx_alignment_status(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_rx_alignment_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -118,18 +130,22 @@ impl PCS2X6G_STATUS {
     /// Status of synchronization in lane i (i = 0...3, one bit per lane)
     ///
     /// 0: Lane i out of sync 1: Lane i is in sync
+    #[inline]
     pub fn rx_sync_status(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_rx_sync_status(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
     /// Current status of selected signal_detect input lines
+    #[inline]
     pub fn signal_detect(&self) -> u32 {
         (self.0 & 0xf000) >> 12
     }
+    #[inline]
     pub fn set_signal_detect(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 12;

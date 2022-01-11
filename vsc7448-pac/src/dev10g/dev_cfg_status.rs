@@ -36,9 +36,11 @@ impl DEV_LB_CFG {
     /// An internal loopback from the egress Taxi bus to the ingress Taxi bus can be enabled.
     ///
     /// '0': Loopback from Taxi egress to Taxi ingress is disabled '1': Loopback from Taxi egress to Taxi ingress is enabled
+    #[inline]
     pub fn taxi_host_lb_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_taxi_host_lb_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -47,9 +49,11 @@ impl DEV_LB_CFG {
     /// An internal loopback from the igress Taxi bus to the egress Taxi bus can be enabled.
     ///
     /// '0': Loopback from Taxi ingress bus to Taxi egress bus disabled '1': Loopback from Taxi ingress bus to Taxi egress bus enabled
+    #[inline]
     pub fn taxi_phy_lb_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_taxi_phy_lb_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -64,9 +68,11 @@ impl DEV_MISC_CFG {
     /// Clears RX_RESYNC_MAX_FILL_LVL that holds the max. fill level of RX RESYNC FIFO. This is a on shot bit automatically cleared by HW.
     ///
     /// '0': No action '1': clears RX_RESYNC_MAX_FILL_LVL (Bit is automatically cleared)
+    #[inline]
     pub fn rx_resync_max_fill_lvl_clr(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_rx_resync_max_fill_lvl_clr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -76,9 +82,11 @@ impl DEV_MISC_CFG {
     /// The device can be configured to disregard the fcs_update indication from the DSM and not update the FCS of any transmitted frames.
     ///
     /// 0: The FCS of transmitted frames is updated according to the fcs_update indication from the DSM. 1: The FCS of transmitted frames is never updated. 2: The FCS of transmitted frames is always updated.
+    #[inline]
     pub fn tx_fcs_update_sel(&self) -> u32 {
         (self.0 & 0x30000) >> 16
     }
+    #[inline]
     pub fn set_tx_fcs_update_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 16;
@@ -95,9 +103,11 @@ impl DEV_PORT_PROTECT {
     /// Enables snooping of egress data from another port. The port from which egress data is copied and transmitted at the Ethernet port is determined by the PORT_PROTECT_ID configuration.
     ///
     /// '0': Port protection is disabled. '1': Port protection is enabled.
+    #[inline]
     pub fn port_protect_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_port_protect_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -106,9 +116,11 @@ impl DEV_PORT_PROTECT {
     /// Indicates from which port egress data must be copied and transmitted at this Ethernet port. The port from which egress data is copied must always be a port that is closer to the ASM. I.e. DEV(X) may be configured to snoop egress data destined for DEV(X+n), where DEV(X+n) is closer to the ASM - but NOT vice versa.
     ///
     /// 0: Reserved 1: Egress data destined for DEV(1) is also transmitted by this device. 2: Egress data destined for DEV(2) is also transmitted by this device. ..
+    #[inline]
     pub fn port_protect_id(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
+    #[inline]
     pub fn set_port_protect_id(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -123,9 +135,11 @@ impl DEV_RST_CTRL {
     /// Reset MAC Rx clock domains of the device.
     ///
     /// '0': The MAC Rx clock domain is NOT reset '1': The MAC Rx clock domain is reset Note: MAC_RX_RST is NOT a one-shot operation. The MAC Rx clock domain remains reset until a '0' is written to MAC_RX_RST.
+    #[inline]
     pub fn mac_rx_rst(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_mac_rx_rst(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -134,9 +148,11 @@ impl DEV_RST_CTRL {
     /// Reset MAC Tx clock domain of device.
     ///
     /// '0': The MAC Tx clock domain is not reset. '1': The MAC Tx clock domain is reset. Note: The MAC Tx clock domain remains reset until 0 is written to this register field.
+    #[inline]
     pub fn mac_tx_rst(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_mac_tx_rst(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -146,9 +162,11 @@ impl DEV_RST_CTRL {
     /// Backplane Ethernet: Enable parallel detection mode for autonegotiation
     ///
     /// '0':  Parallel detection mode disabled '1': Parallel detection mode enabled
+    #[inline]
     pub fn pardet_mode_ena(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
+    #[inline]
     pub fn set_pardet_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
@@ -158,9 +176,11 @@ impl DEV_RST_CTRL {
     /// Reset PCS Rx clock domains of the device.
     ///
     /// '0': The PCS Rx clock domain is NOT reset '1': The PCS Rx clock domain is reset Note: PCS_RX_RST is NOT a one-shot operation. The PCS Rx clock domain remains reset until a '0' is written to PCS_RX_RST.
+    #[inline]
     pub fn pcs_rx_rst(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_pcs_rx_rst(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -170,9 +190,11 @@ impl DEV_RST_CTRL {
     /// Reset PCS Tx clock domains of the device.
     ///
     /// '0': The PCS Tx clock domain is NOT reset '1': The PCS Tx clock domain is reset Note: PCS_TX_RST is NOT a one-shot operation. The PCS Tx clock domain remains reset until a '0' is written to PCS_TX_RST.
+    #[inline]
     pub fn pcs_tx_rst(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_pcs_tx_rst(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -182,9 +204,11 @@ impl DEV_RST_CTRL {
     /// This field is used to configure the MAC and PCS Rx/Tx clock frequencies.
     ///
     /// '100':  XAUI/RXAUI 10 Gbps or 12Gbps OXAUI '110':  Both MAC and PCS Rx/Tx clocks are disabled '111':  XFI 10 Gbps Unused values are reserved.
+    #[inline]
     pub fn speed_sel(&self) -> u32 {
         (self.0 & 0x700000) >> 20
     }
+    #[inline]
     pub fn set_speed_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 20;
@@ -197,9 +221,11 @@ impl DEV_RST_CTRL {
 pub struct DEV_RX_STATUS(u32);
 impl DEV_RX_STATUS {
     /// Maximum fill level of Rx resync FIFO. Fill level can be cleared by writing to RX_RESYNC_MAX_FILL_LVL_CLR bit.
+    #[inline]
     pub fn rx_resync_max_fill_lvl(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_rx_resync_max_fill_lvl(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -215,9 +241,11 @@ impl DEV_STICKY {
     /// Indicates that a missing EOF has been detected. Writing a '1' clears the sticky bit.
     ///
     /// '0': No EOF error detected '1': Missing EOF indication detected in Rx path of DEV10G.
+    #[inline]
     pub fn rx_eof_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_rx_eof_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -227,9 +255,11 @@ impl DEV_STICKY {
     /// Indicates if an overflow has occured in the ingress resynchronization FIFO. Writing a '1' clears the sticky bit.
     ///
     /// '0': No overflow has occurred in the ingress resynchronization FIFO. '1': An overflow has occurred in the ingress resynchronization FIFO.
+    #[inline]
     pub fn rx_resync_fifo_oflw_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_rx_resync_fifo_oflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -239,9 +269,11 @@ impl DEV_STICKY {
     /// Indicates that a missing SOF has been detected in the Rx path of the DEV10G. Writing a '1' clears the sticky bit.
     ///
     /// '0': No missing SOF detected '1': Missing SOF indication detected in Rx path of DEV10G.
+    #[inline]
     pub fn rx_sof_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_rx_sof_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -251,9 +283,11 @@ impl DEV_STICKY {
     /// Indicates that a missing EOF has been detected. Writing a '1' clears the sticky bit.
     ///
     /// '0': No EOF error detected '1': Missing EOF indication detected in Tx path of DEV10G.
+    #[inline]
     pub fn tx_eof_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_tx_eof_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -263,9 +297,11 @@ impl DEV_STICKY {
     /// Indicates that a missing SOF has been detected in the Tx path of the DEV10G. Writing a '1' clears the sticky bit.
     ///
     /// '0': No missing SOF detected '1': Missing SOF indication detected in Tx path of DEV10G.
+    #[inline]
     pub fn tx_sof_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_tx_sof_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -278,9 +314,11 @@ impl DEV_STICKY {
 pub struct EEE_CFG(u32);
 impl EEE_CFG {
     /// Enable EEE operation on the port. A port enters the low power mode when no egress queues have data ready. The port is activated when one of the following conditions is true: - A queue has been non-empty for EEE_TIMER_AGE. - A queue has more than EEE_HIGH_FRAMES frames pending. - A queue has more than EEE_HIGH_BYTES bytes pending. - A queue is marked as a fast queue, and has data pending.
+    #[inline]
     pub fn eee_ena(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
+    #[inline]
     pub fn set_eee_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -290,9 +328,11 @@ impl EEE_CFG {
     /// Maximum time frames in any queue must wait before the port is activated. The default value corresponds to 48 us.
     ///
     /// Time = 4**(EEE_TIMER_AGE/16) * (EEE_TIMER_AGE mod 16) microseconds
+    #[inline]
     pub fn eee_timer_age(&self) -> u32 {
         (self.0 & 0x3f8000) >> 15
     }
+    #[inline]
     pub fn set_eee_timer_age(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 15;
@@ -302,9 +342,11 @@ impl EEE_CFG {
     /// When all queues are empty, the port is kept active until this time has passed. Default value corresponds to 5 us.
     ///
     /// Time = 4**(EEE_TIMER_HOLDOFF/16) * (EEE_TIMER_HOLDOFF mod 16) microseconds
+    #[inline]
     pub fn eee_timer_holdoff(&self) -> u32 {
         (self.0 & 0xfe) >> 1
     }
+    #[inline]
     pub fn set_eee_timer_holdoff(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 1;
@@ -314,9 +356,11 @@ impl EEE_CFG {
     /// Time from the egress port is activated until frame transmission is restarted. Default value corresponds to 16 us.
     ///
     /// Time = 4**(EEE_TIMER_WAKEUP/16) * (EEE_TIMER_WAKEUP mod 16) microseconds
+    #[inline]
     pub fn eee_timer_wakeup(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
     }
+    #[inline]
     pub fn set_eee_timer_wakeup(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 8;
@@ -324,9 +368,11 @@ impl EEE_CFG {
         self.0 |= value;
     }
     /// Status bit indicating whether port is in low-power-idle due to the LPI algorithm (EEE_CFG). If set, transmissions are held back.
+    #[inline]
     pub fn port_lpi(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_port_lpi(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -342,9 +388,11 @@ impl INTR {
     /// Link status is down (source: PCS1G, PCS10G or PCS2x6G depending on current DEV10G mode)
     ///
     /// 0 = no indication 1 = active indication
+    #[inline]
     pub fn link_dwn_intr(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_link_dwn_intr(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -353,9 +401,11 @@ impl INTR {
     /// Link status is up (source: PCS1G, PCS10G or PCS2x6G depending on current DEV10G mode)
     ///
     /// 0 = no indication 1 = active indication
+    #[inline]
     pub fn link_up_intr(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_link_up_intr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -363,9 +413,11 @@ impl INTR {
         self.0 |= value;
     }
     /// Aggregate of BaseR PCS indications, see PCS_10GBASE_R::PCS_INTR_STAT and PSC_10GBASE_R::PCS_INTR_MASK for more information. This field is set when any BaseR PCS interrupt indication is active and enabled.
+    #[inline]
     pub fn pcs_br_intr(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_pcs_br_intr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -375,9 +427,11 @@ impl INTR {
     /// PCS10G, PCS1G: RX Low Power Idle mode has changed
     ///
     /// 0 = no indication 1 = active indication
+    #[inline]
     pub fn rx_lpi_intr(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_rx_lpi_intr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -387,9 +441,11 @@ impl INTR {
     /// PCS10G, PCS1G: TX Low Power Idle mode has changed
     ///
     /// 0 = no indication 1 = active indication
+    #[inline]
     pub fn tx_lpi_intr(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_tx_lpi_intr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -404,18 +460,22 @@ impl INTR {
 pub struct INTR_ENA(u32);
 impl INTR_ENA {
     /// Set to enable propagation of LINK_DWN interrupt.
+    #[inline]
     pub fn link_dwn_intr_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_link_dwn_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Set to enable propagation of LINK_UP interrupt.
+    #[inline]
     pub fn link_up_intr_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_link_up_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -423,9 +483,11 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Set to enable propagation of PCS_BR interrupt.
+    #[inline]
     pub fn pcs_br_intr_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_pcs_br_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -433,9 +495,11 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Set to enable propagation of RX_LPI interrupt.
+    #[inline]
     pub fn rx_lpi_intr_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_rx_lpi_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -443,9 +507,11 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Set to enable propagation of TX_LPI interrupt.
+    #[inline]
     pub fn tx_lpi_intr_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_tx_lpi_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -460,18 +526,22 @@ impl INTR_ENA {
 pub struct INTR_IDENT(u32);
 impl INTR_IDENT {
     /// Set if LINK_DWN interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
+    #[inline]
     pub fn link_dwn_intr_ident(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_link_dwn_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Set if LINK_UP interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
+    #[inline]
     pub fn link_up_intr_ident(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_link_up_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -479,9 +549,11 @@ impl INTR_IDENT {
         self.0 |= value;
     }
     /// Set if PCS_BR interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
+    #[inline]
     pub fn pcs_br_intr_ident(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_pcs_br_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -489,9 +561,11 @@ impl INTR_IDENT {
         self.0 |= value;
     }
     /// Set if RX_LPI interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
+    #[inline]
     pub fn rx_lpi_intr_ident(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_rx_lpi_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -499,9 +573,11 @@ impl INTR_IDENT {
         self.0 |= value;
     }
     /// Set if TX_LPI interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
+    #[inline]
     pub fn tx_lpi_intr_ident(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_tx_lpi_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -514,9 +590,11 @@ impl INTR_IDENT {
 pub struct PFC_PAUSE_MODE_CTRL(u32);
 impl PFC_PAUSE_MODE_CTRL {
     /// '0' : counters will be having number of pause frame received/transmitted '1' : counters will be having number of PFC frame received/transmitted
+    #[inline]
     pub fn pfc_pause_mode_select(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_pfc_pause_mode_select(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -528,9 +606,11 @@ impl PFC_PAUSE_MODE_CTRL {
 pub struct PTP_CFG(u32);
 impl PTP_CFG {
     /// Configures the time domain this port is assigned to. This domain assignment must be made before the central counters in DEVCPU block is enabled.
+    #[inline]
     pub fn ptp_dom(&self) -> u32 {
         (self.0 & 0xc0000) >> 18
     }
+    #[inline]
     pub fn set_ptp_dom(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 18;
@@ -538,9 +618,11 @@ impl PTP_CFG {
         self.0 |= value;
     }
     /// Enable PTP on the port
+    #[inline]
     pub fn ptp_ena(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_ptp_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -548,9 +630,11 @@ impl PTP_CFG {
         self.0 |= value;
     }
     /// Time in ns to subtract from timestamper in the ingress direction to compensate for static delay through the physical encoding layers.
+    #[inline]
     pub fn ptp_rx_io_dly(&self) -> u32 {
         (self.0 & 0x3fe00) >> 9
     }
+    #[inline]
     pub fn set_ptp_rx_io_dly(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         let value = value << 9;
@@ -558,9 +642,11 @@ impl PTP_CFG {
         self.0 |= value;
     }
     /// Time in ns to add to timestamper in the egress direction to compensate for static delay through the physical encoding layers.
+    #[inline]
     pub fn ptp_tx_io_dly(&self) -> u32 {
         self.0 & 0x1ff
     }
+    #[inline]
     pub fn set_ptp_tx_io_dly(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
@@ -572,9 +658,11 @@ impl PTP_CFG {
 pub struct PTP_CFG_BTDLY(u32);
 impl PTP_CFG_BTDLY {
     /// Time in 100ps to subtract from timestamper in the ingress direction to compensate for static delay through the physical encoding layers.
+    #[inline]
     pub fn ptp_rx_bt_dly(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
     }
+    #[inline]
     pub fn set_ptp_rx_bt_dly(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 16;
@@ -582,9 +670,11 @@ impl PTP_CFG_BTDLY {
         self.0 |= value;
     }
     /// Gearbox starting value when 6466b fifo is suspened in the ingress direction.
+    #[inline]
     pub fn ptp_rx_gearbox_ofs(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
     }
+    #[inline]
     pub fn set_ptp_rx_gearbox_ofs(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 6;
@@ -592,9 +682,11 @@ impl PTP_CFG_BTDLY {
         self.0 |= value;
     }
     /// Time in 100ps to subtract from timestamper in the egress direction to compensate for static delay through the physical encoding layers.
+    #[inline]
     pub fn ptp_tx_bt_dly(&self) -> u32 {
         (self.0 & 0xf000) >> 12
     }
+    #[inline]
     pub fn set_ptp_tx_bt_dly(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 12;
@@ -602,9 +694,11 @@ impl PTP_CFG_BTDLY {
         self.0 |= value;
     }
     /// Gearbox starting value when 6466b fifo is suspended in the egress direction.
+    #[inline]
     pub fn ptp_tx_gearbox_ofs(&self) -> u32 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_ptp_tx_gearbox_ofs(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -616,9 +710,11 @@ impl PTP_CFG_BTDLY {
 pub struct PTP_EVENTS(u32);
 impl PTP_EVENTS {
     /// The correction field update went out of range. Valid range is -2^47 to 2^48-1. The frame CF will be changed to the maximum value. This range check is bypassed if ADDS48 mode is in use on the ingress or egress port.
+    #[inline]
     pub fn cf_too_big_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_cf_too_big_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

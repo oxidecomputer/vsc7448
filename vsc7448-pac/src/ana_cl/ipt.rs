@@ -34,9 +34,11 @@ impl IPT {
     /// ISDX protection configuration.
     ///
     /// 0: No protection Value applicable for forwarding from UNI to a protected NNI: 1: Set PROT_ACTIVE=1 to REW if the ISDX's protection group uses the protection entity. Values applicable for forwarding from a protected NNI to UNI: 2: Working entity. Discard received frame if the ISDX's protection group uses the protection entity, i.e. ANA_CL:PPT:PP_CFG.STATE=1 3: Protection entity: Discard received frame if the ISDX's protection group uses the working entity, i.e. ANA_CL:PPT:PP_CFG.STATE=0
+    #[inline]
     pub fn ipt_cfg(&self) -> u32 {
         (self.0 & 0x1800) >> 11
     }
+    #[inline]
     pub fn set_ipt_cfg(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 11;
@@ -44,9 +46,11 @@ impl IPT {
         self.0 |= value;
     }
     /// Pointer to protection state in ANA_CL:PPT for the protection group, which this ISDX is a member of.
+    #[inline]
     pub fn ppt_idx(&self) -> u32 {
         self.0 & 0x1ff
     }
+    #[inline]
     pub fn set_ppt_idx(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
@@ -55,9 +59,11 @@ impl IPT {
     /// Configures the protection pipeline point where ISDX protection operates at.
     ///
     /// 0: ANA_IPT_PROT 1: ANA_OU_PROT 2: ANA_MID_PROT 3: ANA_IN_PROT
+    #[inline]
     pub fn prot_pipeline_pt(&self) -> u32 {
         (self.0 & 0x600) >> 9
     }
+    #[inline]
     pub fn set_prot_pipeline_pt(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 9;
@@ -72,18 +78,22 @@ impl ISDX_CFG {
     /// The index selects which profile in the Layer-2 control protocol table to use (ANA_CL:L2CP_TBL).
     ///
     /// 0: Disable use of L2CP_IDX. Default port-based index used instead. >0: L2CP_IDX selects the L2CP profile to use.
+    #[inline]
     pub fn l2cp_idx(&self) -> u32 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_l2cp_idx(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
     /// MIP table index. The index is used when enabled by VCAP_CLM action MIP_SEL and selects which MIP table entry to use (ANA_CL:MIP_TBL).
+    #[inline]
     pub fn mip_idx(&self) -> u32 {
         (self.0 & 0xffc0) >> 6
     }
+    #[inline]
     pub fn set_mip_idx(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         let value = value << 6;
@@ -96,18 +106,22 @@ impl ISDX_CFG {
 pub struct OAM_MEP_CFG(u32);
 impl OAM_MEP_CFG {
     /// Force selected VOE to handle all frames as data.
+    #[inline]
     pub fn independent_mel_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_independent_mel_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// VOE index.
+    #[inline]
     pub fn mep_idx(&self) -> u32 {
         (self.0 & 0xffc) >> 2
     }
+    #[inline]
     pub fn set_mep_idx(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         let value = value << 2;
@@ -115,9 +129,11 @@ impl OAM_MEP_CFG {
         self.0 |= value;
     }
     /// Enable use of MEP_IDX for selecting which VOE to use for EVC OAM processing.
+    #[inline]
     pub fn mep_idx_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_mep_idx_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -132,18 +148,22 @@ impl VSI_CFG {
     /// Configures if learning and forwarding is based on VLAN or Virtual Switching Instance. If VSI_ENA=1, then the following entry is used for lookup in ANA_L3:VLAN: ANA_L3:VLAN[vsi_val + 4096] i.e. the upper 1K entries in ANA_L3:VLAN are "VSI entries".
     ///
     /// 0: Use classified VID for lookup in VLAN table 1: Use VSI for lookup in VLAN table
+    #[inline]
     pub fn vsi_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_vsi_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Virtual Switching Instance used if VSI_ENA is set.
+    #[inline]
     pub fn vsi_val(&self) -> u32 {
         (self.0 & 0x7fe) >> 1
     }
+    #[inline]
     pub fn set_vsi_val(&mut self, value: u32) {
         assert!(value <= 0x3ff);
         let value = value << 1;

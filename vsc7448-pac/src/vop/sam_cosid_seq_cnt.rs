@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct SAM_LBM_TX_TRANSID(u32);
 impl SAM_LBM_TX_TRANSID {
     /// See register description
+    #[inline]
     pub fn sam_lbm_tx_transid(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_sam_lbm_tx_transid(&mut self, value: u32) {
         self.0 = value;
     }
@@ -48,9 +50,11 @@ impl SAM_LBM_TX_TRANSID {
 pub struct SAM_LBR_RX_FRM_CNT(u32);
 impl SAM_LBR_RX_FRM_CNT {
     /// See register description.
+    #[inline]
     pub fn sam_lbr_rx_frm_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_sam_lbr_rx_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -62,9 +66,11 @@ impl SAM_LBR_RX_FRM_CNT {
 pub struct SAM_LBR_RX_TRANSID(u32);
 impl SAM_LBR_RX_TRANSID {
     /// See register description.
+    #[inline]
     pub fn sam_lbr_rx_transid(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_sam_lbr_rx_transid(&mut self, value: u32) {
         self.0 = value;
     }
@@ -76,9 +82,11 @@ impl SAM_LBR_RX_TRANSID {
 pub struct SAM_LBR_RX_TRANSID_ERR_CNT(u32);
 impl SAM_LBR_RX_TRANSID_ERR_CNT {
     /// See register description.
+    #[inline]
     pub fn sam_lbr_rx_transid_err_cnt(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_sam_lbr_rx_transid_err_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -92,9 +100,11 @@ impl SAM_LBR_RX_TRANSID_ERR_CNT {
 pub struct SAM_LBR_TX_FRM_CNT(u32);
 impl SAM_LBR_TX_FRM_CNT {
     /// See register description.
+    #[inline]
     pub fn sam_lbr_tx_frm_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_sam_lbr_tx_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }

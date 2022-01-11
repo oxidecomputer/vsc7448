@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct HIST_LSW(u32);
 impl HIST_LSW {
     /// lptrain state machine history
+    #[inline]
     pub fn lptsm_hist_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_lptsm_hist_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -46,18 +48,22 @@ impl HIST_LSW {
 pub struct HIST_MSW(u32);
 impl HIST_MSW {
     /// lptrain state machine history
+    #[inline]
     pub fn lptsm_hist_msw(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_lptsm_hist_msw(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
     /// training state machine history
+    #[inline]
     pub fn sm_hist(&self) -> u32 {
         (self.0 & 0x7f0) >> 4
     }
+    #[inline]
     pub fn set_sm_hist(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 4;

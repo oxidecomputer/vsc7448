@@ -36,9 +36,11 @@ impl COSID_MAP_CFG_ANA {
     /// Determines if the VOE LM counters counts all frames or only GREEN frames.
     ///
     /// '0': do not include yellow frames in the LM count. '1': include yellow frames in the LM count.
+    #[inline]
     pub fn cnt_yellow_ana(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_cnt_yellow_ana(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -47,9 +49,11 @@ impl COSID_MAP_CFG_ANA {
     /// Determines which internal signal carries color for the current VOE. This configuration is only used in ANA, the corresponding configuration in the REW is not used.
     ///
     /// "00": ifh.dp_color "01": ifh.cl_dei "10": ANA_CL:MAP_TBL:MAP_ENTRY.PATH_COLOR_VAL (Output from mapping table. Do not use for Up-MEP) "11": reserved for future use (do not use)
+    #[inline]
     pub fn color_src_sel_ana(&self) -> u32 {
         (self.0 & 0x6) >> 1
     }
+    #[inline]
     pub fn set_color_src_sel_ana(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 1;
@@ -59,9 +63,11 @@ impl COSID_MAP_CFG_ANA {
     /// Selects the source of the COSID mapping.
     ///
     /// "00": ifh.cosid "01": ifh.tc "10": ifh_iprio "11": ANA_CL:MAP_TBL:MAP_ENTRY.PATH_COSID_VAL (Output from mapping table. Do not use for Up-MEP)
+    #[inline]
     pub fn cosid_src_sel_ana(&self) -> u32 {
         (self.0 & 0x18) >> 3
     }
+    #[inline]
     pub fn set_cosid_src_sel_ana(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 3;
@@ -76,9 +82,11 @@ impl COSID_MAP_CFG_ANA {
 pub struct COSID_MAP_TABLE_ANA(u32);
 impl COSID_MAP_TABLE_ANA {
     /// The table is used to map the choosen COSID in the ANA. bit(2:0) will be used to map COSID = 0 bit(5:3) will be used to map COSID = 1 ... bit(23:21) will be used to map COSID = 7 When mapping a COSID, the following procedure is followed: 1) Use COSID_SRC_SEL_ANA to select the source of the COSID mapping. I.e. if COSID_SRC_SEL_ANA = 1 (TC) the input to the mapping table is set to the IFH.TC. 2) Map the selected value. If IFH.TC = 3, the mapped COSID will be set to COSID_MAP_TABLE_ANA[11:9]
+    #[inline]
     pub fn cosid_map_table_ana(&self) -> u32 {
         self.0 & 0xffffff
     }
+    #[inline]
     pub fn set_cosid_map_table_ana(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;

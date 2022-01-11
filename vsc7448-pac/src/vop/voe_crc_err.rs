@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct LBR_CRC_ERR_CNT(u32);
 impl LBR_CRC_ERR_CNT {
     /// See Register Description.
+    #[inline]
     pub fn lbr_crc_err_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_lbr_crc_err_cnt(&mut self, value: u32) {
         self.0 = value;
     }

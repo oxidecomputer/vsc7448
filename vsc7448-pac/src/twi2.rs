@@ -36,134 +36,177 @@ pub mod twi;
 /// Two-Wire Interface controller
 pub struct TWI(pub(super) u32);
 impl TWI {
+    #[inline]
     pub fn ACK_GEN_CALL(&self) -> RegisterAddress<twi::ACK_GEN_CALL> {
         RegisterAddress::new(self.0 + 0x98)
     }
+    #[inline]
     pub fn CFG(&self) -> RegisterAddress<twi::CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn CLR_ACTIVITY(&self) -> RegisterAddress<twi::CLR_ACTIVITY> {
         RegisterAddress::new(self.0 + 0x5c)
     }
+    #[inline]
     pub fn CLR_GEN_CALL(&self) -> RegisterAddress<twi::CLR_GEN_CALL> {
         RegisterAddress::new(self.0 + 0x68)
     }
+    #[inline]
     pub fn CLR_INTR(&self) -> RegisterAddress<twi::CLR_INTR> {
         RegisterAddress::new(self.0 + 0x40)
     }
+    #[inline]
     pub fn CLR_RD_REQ(&self) -> RegisterAddress<twi::CLR_RD_REQ> {
         RegisterAddress::new(self.0 + 0x50)
     }
+    #[inline]
     pub fn CLR_RX_DONE(&self) -> RegisterAddress<twi::CLR_RX_DONE> {
         RegisterAddress::new(self.0 + 0x58)
     }
+    #[inline]
     pub fn CLR_RX_OVER(&self) -> RegisterAddress<twi::CLR_RX_OVER> {
         RegisterAddress::new(self.0 + 0x48)
     }
+    #[inline]
     pub fn CLR_RX_UNDER(&self) -> RegisterAddress<twi::CLR_RX_UNDER> {
         RegisterAddress::new(self.0 + 0x44)
     }
+    #[inline]
     pub fn CLR_START_DET(&self) -> RegisterAddress<twi::CLR_START_DET> {
         RegisterAddress::new(self.0 + 0x64)
     }
+    #[inline]
     pub fn CLR_STOP_DET(&self) -> RegisterAddress<twi::CLR_STOP_DET> {
         RegisterAddress::new(self.0 + 0x60)
     }
+    #[inline]
     pub fn CLR_TX_ABRT(&self) -> RegisterAddress<twi::CLR_TX_ABRT> {
         RegisterAddress::new(self.0 + 0x54)
     }
+    #[inline]
     pub fn CLR_TX_OVER(&self) -> RegisterAddress<twi::CLR_TX_OVER> {
         RegisterAddress::new(self.0 + 0x4c)
     }
+    #[inline]
     pub fn COMP_PARAM_1(&self) -> RegisterAddress<twi::COMP_PARAM_1> {
         RegisterAddress::new(self.0 + 0xf4)
     }
+    #[inline]
     pub fn COMP_TYPE(&self) -> RegisterAddress<twi::COMP_TYPE> {
         RegisterAddress::new(self.0 + 0xfc)
     }
+    #[inline]
     pub fn COMP_VERSION(&self) -> RegisterAddress<twi::COMP_VERSION> {
         RegisterAddress::new(self.0 + 0xf8)
     }
+    #[inline]
     pub fn CTRL(&self) -> RegisterAddress<twi::CTRL> {
         RegisterAddress::new(self.0 + 0x6c)
     }
+    #[inline]
     pub fn DATA_CMD(&self) -> RegisterAddress<twi::DATA_CMD> {
         RegisterAddress::new(self.0 + 0x10)
     }
+    #[inline]
     pub fn ENABLE_STATUS(&self) -> RegisterAddress<twi::ENABLE_STATUS> {
         RegisterAddress::new(self.0 + 0x9c)
     }
+    #[inline]
     pub fn FS_SCL_HCNT(&self) -> RegisterAddress<twi::FS_SCL_HCNT> {
         RegisterAddress::new(self.0 + 0x1c)
     }
+    #[inline]
     pub fn FS_SCL_LCNT(&self) -> RegisterAddress<twi::FS_SCL_LCNT> {
         RegisterAddress::new(self.0 + 0x20)
     }
+    #[inline]
     pub fn INTR_MASK(&self) -> RegisterAddress<twi::INTR_MASK> {
         RegisterAddress::new(self.0 + 0x30)
     }
+    #[inline]
     pub fn INTR_STAT(&self) -> RegisterAddress<twi::INTR_STAT> {
         RegisterAddress::new(self.0 + 0x2c)
     }
+    #[inline]
     pub fn RAW_INTR_STAT(&self) -> RegisterAddress<twi::RAW_INTR_STAT> {
         RegisterAddress::new(self.0 + 0x34)
     }
+    #[inline]
     pub fn RESERVED1(&self) -> RegisterAddress<twi::RESERVED1> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    #[inline]
     pub fn RESERVED2(&self, index: u32) -> RegisterAddress<twi::RESERVED2> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x24 + index * 0x4)
     }
+    #[inline]
     pub fn RESERVED3(&self) -> RegisterAddress<twi::RESERVED3> {
         RegisterAddress::new(self.0 + 0x7c)
     }
+    #[inline]
     pub fn RESERVED4(&self) -> RegisterAddress<twi::RESERVED4> {
         RegisterAddress::new(self.0 + 0x88)
     }
+    #[inline]
     pub fn RESERVED5(&self) -> RegisterAddress<twi::RESERVED5> {
         RegisterAddress::new(self.0 + 0x8c)
     }
+    #[inline]
     pub fn RESERVED6(&self) -> RegisterAddress<twi::RESERVED6> {
         RegisterAddress::new(self.0 + 0x90)
     }
+    #[inline]
     pub fn RESERVED7(&self, index: u32) -> RegisterAddress<twi::RESERVED7> {
         assert!(index < 21);
         RegisterAddress::new(self.0 + 0xa0 + index * 0x4)
     }
+    #[inline]
     pub fn RESERVED8(&self) -> RegisterAddress<twi::RESERVED8> {
         RegisterAddress::new(self.0 + 0x84)
     }
+    #[inline]
     pub fn RXFLR(&self) -> RegisterAddress<twi::RXFLR> {
         RegisterAddress::new(self.0 + 0x78)
     }
+    #[inline]
     pub fn RX_TL(&self) -> RegisterAddress<twi::RX_TL> {
         RegisterAddress::new(self.0 + 0x38)
     }
+    #[inline]
     pub fn SAR(&self) -> RegisterAddress<twi::SAR> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    #[inline]
     pub fn SDA_SETUP(&self) -> RegisterAddress<twi::SDA_SETUP> {
         RegisterAddress::new(self.0 + 0x94)
     }
+    #[inline]
     pub fn SS_SCL_HCNT(&self) -> RegisterAddress<twi::SS_SCL_HCNT> {
         RegisterAddress::new(self.0 + 0x14)
     }
+    #[inline]
     pub fn SS_SCL_LCNT(&self) -> RegisterAddress<twi::SS_SCL_LCNT> {
         RegisterAddress::new(self.0 + 0x18)
     }
+    #[inline]
     pub fn STAT(&self) -> RegisterAddress<twi::STAT> {
         RegisterAddress::new(self.0 + 0x70)
     }
+    #[inline]
     pub fn TAR(&self) -> RegisterAddress<twi::TAR> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn TXFLR(&self) -> RegisterAddress<twi::TXFLR> {
         RegisterAddress::new(self.0 + 0x74)
     }
+    #[inline]
     pub fn TX_ABRT_SOURCE(&self) -> RegisterAddress<twi::TX_ABRT_SOURCE> {
         RegisterAddress::new(self.0 + 0x80)
     }
+    #[inline]
     pub fn TX_TL(&self) -> RegisterAddress<twi::TX_TL> {
         RegisterAddress::new(self.0 + 0x3c)
     }

@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct KR_7X0001(u32);
 impl KR_7X0001 {
     /// AN ability
+    #[inline]
     pub fn an_able(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_an_able(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -42,9 +44,11 @@ impl KR_7X0001 {
         self.0 |= value;
     }
     /// AN complete
+    #[inline]
     pub fn an_complete(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_an_complete(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -52,18 +56,22 @@ impl KR_7X0001 {
         self.0 |= value;
     }
     /// LP AN ability
+    #[inline]
     pub fn an_lp_able(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_an_lp_able(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Link status (LL)
+    #[inline]
     pub fn linkstat(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_linkstat(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -71,9 +79,11 @@ impl KR_7X0001 {
         self.0 |= value;
     }
     /// Extended next page status
+    #[inline]
     pub fn npstat(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_npstat(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -81,9 +91,11 @@ impl KR_7X0001 {
         self.0 |= value;
     }
     /// Parallel detection fault (LH)
+    #[inline]
     pub fn pardetflt(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_pardetflt(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -91,9 +103,11 @@ impl KR_7X0001 {
         self.0 |= value;
     }
     /// Page received (LH)
+    #[inline]
     pub fn pg_rcvd(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_pg_rcvd(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -101,9 +115,11 @@ impl KR_7X0001 {
         self.0 |= value;
     }
     /// Remote fault (LH)
+    #[inline]
     pub fn rem_flt(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_rem_flt(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;

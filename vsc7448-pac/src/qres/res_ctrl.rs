@@ -36,9 +36,11 @@ impl RES_CFG {
     /// Watermark for resource. Note, the default value depends on the index. Refer to the congestion scheme documentation for details.
     ///
     /// Bit 10:   Unit; 0:1, 1:16 Bits 9-0: Value to be multiplied with unit
+    #[inline]
     pub fn wm_high(&self) -> u32 {
         self.0 & 0xfff
     }
+    #[inline]
     pub fn set_wm_high(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
@@ -50,9 +52,11 @@ impl RES_CFG {
 pub struct RES_STAT(u32);
 impl RES_STAT {
     /// Maximum consumption since last read for corresponding watermark in RES_CFG.
+    #[inline]
     pub fn maxuse(&self) -> u32 {
         self.0 & 0x1fffff
     }
+    #[inline]
     pub fn set_maxuse(&mut self, value: u32) {
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
@@ -64,9 +68,11 @@ impl RES_STAT {
 pub struct RES_STAT_CUR(u32);
 impl RES_STAT_CUR {
     /// Current consumption for corresponding watermark in RES_CFG.
+    #[inline]
     pub fn inuse(&self) -> u32 {
         self.0 & 0x1fffff
     }
+    #[inline]
     pub fn set_inuse(&mut self, value: u32) {
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;

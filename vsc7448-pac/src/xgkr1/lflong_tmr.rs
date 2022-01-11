@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct LFLONG_LSW(u32);
 impl LFLONG_LSW {
     /// 10g link_fail_inhibit_timer setting
+    #[inline]
     pub fn lflong_tmr_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_lflong_tmr_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -46,9 +48,11 @@ impl LFLONG_LSW {
 pub struct LFLONG_MSW(u32);
 impl LFLONG_MSW {
     /// 10g link_fail_inhibit_timer setting
+    #[inline]
     pub fn lflong_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_lflong_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

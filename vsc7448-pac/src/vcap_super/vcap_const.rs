@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct ACTION_DEF_CNT(u32);
 impl ACTION_DEF_CNT {
     /// The number of default actions. For VCAPs with more than one interface (see VCAP_SUPER::IF_CNT); this field returns the total number of defaults for all interfaces.
+    #[inline]
     pub fn action_def_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_action_def_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -44,9 +46,11 @@ impl ACTION_DEF_CNT {
 pub struct ACTION_WIDTH(u32);
 impl ACTION_WIDTH {
     /// Width of action. For version 1 VCAPs this is full word width. For version 2 VCAPs this is the width of one action suboword.
+    #[inline]
     pub fn action_width(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_action_width(&mut self, value: u32) {
         self.0 = value;
     }
@@ -56,9 +60,11 @@ impl ACTION_WIDTH {
 pub struct CNT_WIDTH(u32);
 impl CNT_WIDTH {
     /// The width of the counter memory, this is the complete width of all counter-fields associated with one full-word entry. There is one counter per entry sub-word (see VCAP_SUPER::ENTRY_SWCNT for number of subwords.)
+    #[inline]
     pub fn cnt_width(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_cnt_width(&mut self, value: u32) {
         self.0 = value;
     }
@@ -68,9 +74,11 @@ impl CNT_WIDTH {
 pub struct CORE_CNT(u32);
 impl CORE_CNT {
     /// The number of parallel entry/action cores.
+    #[inline]
     pub fn core_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_core_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -80,9 +88,11 @@ impl CORE_CNT {
 pub struct ENTRY_CNT(u32);
 impl ENTRY_CNT {
     /// Number of full-word entries (and actions) per core, see VCAP_SUPER::CORE_CNT for number of cores.
+    #[inline]
     pub fn entry_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_entry_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -92,9 +102,11 @@ impl ENTRY_CNT {
 pub struct ENTRY_SWCNT(u32);
 impl ENTRY_SWCNT {
     /// The number of supported subwords per full-word entry.
+    #[inline]
     pub fn entry_swcnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_entry_swcnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -104,9 +116,11 @@ impl ENTRY_SWCNT {
 pub struct ENTRY_TG_WIDTH(u32);
 impl ENTRY_TG_WIDTH {
     /// The width of a single TypeGroup id. For version 2 VCAPs this field return 0, the subword-encoding is configured directly via VCAP_SUPER::VCAP_ENTRY_DAT and VCAP_SUPER::VCAP_MASK_DAT.
+    #[inline]
     pub fn entry_tg_width(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_entry_tg_width(&mut self, value: u32) {
         self.0 = value;
     }
@@ -116,9 +130,11 @@ impl ENTRY_TG_WIDTH {
 pub struct ENTRY_WIDTH(u32);
 impl ENTRY_WIDTH {
     /// Width of entry. For version 1 VCAPs this is full word width including bits for the TypeGroup id(s). For version 2 VCAPs this is the width of one entry suboword.
+    #[inline]
     pub fn entry_width(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_entry_width(&mut self, value: u32) {
         self.0 = value;
     }
@@ -128,9 +144,11 @@ impl ENTRY_WIDTH {
 pub struct IF_CNT(u32);
 impl IF_CNT {
     /// The number of VCAP interfaces.
+    #[inline]
     pub fn if_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_if_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -142,9 +160,11 @@ impl VCAP_VER {
     /// Version of the VCAP control logic.
     ///
     /// 0: Version 1 1: Version 2
+    #[inline]
     pub fn vcap_ver(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_vcap_ver(&mut self, value: u32) {
         self.0 = value;
     }

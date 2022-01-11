@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct AN_CFG0(u32);
 impl AN_CFG0 {
     /// Clear ABILITY_DETECT state counter
+    #[inline]
     pub fn abdet_clr(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_abdet_clr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -42,9 +44,11 @@ impl AN_CFG0 {
         self.0 |= value;
     }
     /// Clear AN state machine history
+    #[inline]
     pub fn an_sm_hist_clr(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_an_sm_hist_clr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -52,9 +56,11 @@ impl AN_CFG0 {
         self.0 |= value;
     }
     /// Disable clock gating
+    #[inline]
     pub fn clkg_disable(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_clkg_disable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -64,9 +70,11 @@ impl AN_CFG0 {
     /// Select source of 10G sync signal
     ///
     /// 0: KR internal 1: External
+    #[inline]
     pub fn sync10g_sel(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_sync10g_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -76,9 +84,11 @@ impl AN_CFG0 {
     /// Select source of 3G and 1G sync signal
     ///
     /// 0: KR internal 1: External
+    #[inline]
     pub fn sync8b10b_sel(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_sync8b10b_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -86,9 +96,11 @@ impl AN_CFG0 {
         self.0 |= value;
     }
     /// Bypass training if 10G negotiated
+    #[inline]
     pub fn tr_disable(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_tr_disable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;

@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_LUTSEL(u32);
 impl TR_LUTSEL {
     /// Clears LUT table
+    #[inline]
     pub fn lut_clr(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_lut_clr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -42,9 +44,11 @@ impl TR_LUTSEL {
         self.0 |= value;
     }
     /// Selects LUT table entry (0 to 63).
+    #[inline]
     pub fn lut_row(&self) -> u32 {
         (self.0 & 0x1f8) >> 3
     }
+    #[inline]
     pub fn set_lut_row(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 3;
@@ -54,9 +58,11 @@ impl TR_LUTSEL {
     /// Selects LUT for lut_o
     ///
     /// 0: Gain 1: DFE_1 2: DFE_2 3: DFE_avg_1 4: DFE_avg_2 5: BER_1 6: BER_2 7: BER_3
+    #[inline]
     pub fn lut_sel(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_lut_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;

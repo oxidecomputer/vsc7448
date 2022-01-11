@@ -36,9 +36,11 @@ impl PCS_CFG {
     /// Enable link control using backplane Ethernet ANEG (Auto-Negotiation)
     ///
     /// 0: Disable link control 1: Enable link control
+    #[inline]
     pub fn an_link_ctrl_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_an_link_ctrl_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -48,9 +50,11 @@ impl PCS_CFG {
     /// Disable RX local fault generation when no alignment has been reached
     ///
     /// 0: Output local fault symbol at XGMII when not aligned 1: Output IDLE symbols at XGMII when not aligned
+    #[inline]
     pub fn lf_gen_dis(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_lf_gen_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -60,9 +64,11 @@ impl PCS_CFG {
     /// Global PCS Enable/Disable configuration bit.
     ///
     /// 0 = Disable PCS 1 = Enable PCS
+    #[inline]
     pub fn pcs_ena(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_pcs_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -72,9 +78,11 @@ impl PCS_CFG {
     /// Enable PMA loopback operation. When set, Transmit PMA data is loopbacked to Receive PMA data.
     ///
     /// 0 = Normal mode 1 = Loopback Tx PMA to Rx PMA
+    #[inline]
     pub fn pma_loopback_ena(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
+    #[inline]
     pub fn set_pma_loopback_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -84,9 +92,11 @@ impl PCS_CFG {
     /// Force re-synchronization of receive logic. When asserted, the receive sync state machine is forced into the LOCK_INIT state and block_lock is lost.
     ///
     /// 0: Normal operation 1: Reset synchronization
+    #[inline]
     pub fn resync_ena(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_resync_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -96,9 +106,11 @@ impl PCS_CFG {
     /// Flip the data bus bits at the WIS/PMA interface such that bit 63 is mapped to bit 0 and bit 0 to 63. i.e. the output bus (63 down to 0) is remapped to (0 to 63) and bit 63 is the first bit.
     ///
     /// 0: No flip (LSB first) 1: Flip bus (MSB first)
+    #[inline]
     pub fn rx_data_flip(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
+    #[inline]
     pub fn set_rx_data_flip(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -108,9 +120,11 @@ impl PCS_CFG {
     /// Disable the descrambler. When disabled, the data is passed through without being descrambled.
     ///
     /// 0: Decrambler active 1: Decrambler disabled
+    #[inline]
     pub fn rx_scr_disable(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_rx_scr_disable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -120,9 +134,11 @@ impl PCS_CFG {
     /// Enable test pattern checking mode.
     ///
     /// 0: Normal operation 1: Test pattern mode
+    #[inline]
     pub fn rx_test_mode(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_rx_test_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -132,9 +148,11 @@ impl PCS_CFG {
     /// Number of sync headers required for block lock. The actual number used is this number plus 1. i.e. entering 63 implies a value of 64.
     ///
     /// Binary number
+    #[inline]
     pub fn sh_cnt_max(&self) -> u32 {
         (self.0 & 0x3f000000) >> 24
     }
+    #[inline]
     pub fn set_sh_cnt_max(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 24;
@@ -144,9 +162,11 @@ impl PCS_CFG {
     /// Flip the data bus bits at the WIS/PMA interface such that bit 63 is mapped to bit 0 and bit 0 to 63. i.e. the output bus (63 downto 0) is remapped to (0 to 63) and bit 63 is the first bit.
     ///
     /// 0 = No flip (LSB first) 1 = Flip bus (MSB first)
+    #[inline]
     pub fn tx_data_flip(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_tx_data_flip(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -156,9 +176,11 @@ impl PCS_CFG {
     /// Disable the scrambler. When disabled, the data is passed through without being scrambled.
     ///
     /// 0: Scrambler active 1: Scrambler disabled
+    #[inline]
     pub fn tx_scr_disable(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_tx_scr_disable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -168,9 +190,11 @@ impl PCS_CFG {
     /// Enable test pattern generation mode
     ///
     /// 0: Normal operation 1: Test pattern mode
+    #[inline]
     pub fn tx_test_mode(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_tx_test_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -187,9 +211,11 @@ impl PCS_INTR_MASK {
     /// Mask for the C64B66B_ERR_STICKY bit
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn c64b66b_err_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_c64b66b_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -199,9 +225,11 @@ impl PCS_INTR_MASK {
     /// Mask for the LOCK_CHANGED_STICKY bit
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn lock_changed_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_lock_changed_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -211,9 +239,11 @@ impl PCS_INTR_MASK {
     /// Mask for the RX_FSET_FIFO_FULL_STICKY bit
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn rx_fset_fifo_full_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_rx_fset_fifo_full_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -223,9 +253,11 @@ impl PCS_INTR_MASK {
     /// Mask for the RX_FSET_STICKY bit
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn rx_fset_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_rx_fset_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -235,9 +267,11 @@ impl PCS_INTR_MASK {
     /// Mask for the RX_HI_BER_STICKY bit
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn rx_hi_ber_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_rx_hi_ber_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -246,9 +280,11 @@ impl PCS_INTR_MASK {
     /// Mask for RX_OSET_FIFO_FULL_STICKY
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn rx_oset_fifo_full_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_rx_oset_fifo_full_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -258,9 +294,11 @@ impl PCS_INTR_MASK {
     /// Mask for the RX_OSET_STICKY bit
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn rx_oset_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rx_oset_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -270,9 +308,11 @@ impl PCS_INTR_MASK {
     /// Mask for the XGMII_ERR_STICKY bit
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn xgmii_err_mask(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_xgmii_err_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -289,9 +329,11 @@ impl PCS_SD_CFG {
     /// Signal Detect Enable
     ///
     /// 0: The Signal Detect input pin is ignored. The PCS assumes an active Signal Detect at all times 1: The Signal Detect input pin is used to determine if a signal is detected
+    #[inline]
     pub fn sd_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_sd_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -300,9 +342,11 @@ impl PCS_SD_CFG {
     /// Signal detect polarity: The signal level on signal_detect input pin must be equal to SD_POL to indicate signal detection (SD_ENA must be set)
     ///
     /// 0: Signal Detect input pin must be '0' to indicate a signal detection 1: Signal Detect input pin must be '1' to indicate a signal detection
+    #[inline]
     pub fn sd_pol(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_sd_pol(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -312,9 +356,11 @@ impl PCS_SD_CFG {
     /// Signal detect selection (select input for internal signal_detect line)
     ///
     /// 0: Select signal_detect line from hardmacro 1: Select external signal_detect line
+    #[inline]
     pub fn sd_sel(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_sd_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -329,9 +375,11 @@ impl PCS_SD_CFG {
 pub struct RX_DATAPAT_LSB(u32);
 impl RX_DATAPAT_LSB {
     /// Least significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
+    #[inline]
     pub fn rx_datapat_lsb(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_datapat_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -343,9 +391,11 @@ impl RX_DATAPAT_LSB {
 pub struct RX_DATAPAT_MSB(u32);
 impl RX_DATAPAT_MSB {
     /// Most significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
+    #[inline]
     pub fn rx_datapat_msb(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_datapat_msb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -357,9 +407,11 @@ impl RX_DATAPAT_MSB {
 pub struct RX_PRBS31_INIT(u32);
 impl RX_PRBS31_INIT {
     /// PRBS31 initial value.
+    #[inline]
     pub fn rx_prbs31_init(&self) -> u32 {
         self.0 & 0x7fffffff
     }
+    #[inline]
     pub fn set_rx_prbs31_init(&mut self, value: u32) {
         assert!(value <= 0x7fffffff);
         self.0 &= !0x7fffffff;
@@ -375,9 +427,11 @@ impl TEST_CFG {
     /// Disables inversion of seeds and data in the pseudo-random test pattern
     ///
     /// 0: Inversion enabled 1: Inversion disabled
+    #[inline]
     pub fn rx_dsbl_inv(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
+    #[inline]
     pub fn set_rx_dsbl_inv(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -387,9 +441,11 @@ impl TEST_CFG {
     /// Select the test pattern used by the test pattern checker. This register is only used if RX_TEST_MODE is active.
     ///
     /// 0: unused 1: Pseudo random 2: PRBS31 3: User defined
+    #[inline]
     pub fn rx_testpat_sel(&self) -> u32 {
         (self.0 & 0x30000) >> 16
     }
+    #[inline]
     pub fn set_rx_testpat_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 16;
@@ -399,9 +455,11 @@ impl TEST_CFG {
     /// Disables inversion of seeds and data in the pseudo-random test pattern
     ///
     /// 0: Inversion enabled 1: Inversion disabled
+    #[inline]
     pub fn tx_dsbl_inv(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_tx_dsbl_inv(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -411,9 +469,11 @@ impl TEST_CFG {
     /// Period of square wave. Value in the register is (Period-4). Valid values of period are 4 to 11.
     ///
     /// Period = (TX_SQPW_4B+4)
+    #[inline]
     pub fn tx_sqpw_4b(&self) -> u32 {
         (self.0 & 0x1c) >> 2
     }
+    #[inline]
     pub fn set_tx_sqpw_4b(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 2;
@@ -423,9 +483,11 @@ impl TEST_CFG {
     /// Select the test pattern used by the test pattern generator. This register is only used if TX_TEST_MODE is active.
     ///
     /// 0: Square wave 1: Pseudo random 2: PRBS31 3: User defined
+    #[inline]
     pub fn tx_testpat_sel(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_tx_testpat_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -441,9 +503,11 @@ impl TIMER_125 {
     /// Sets the maximum count for the 125 microsecond counter. Counts input clocks.
     ///
     /// 16-bit binary number
+    #[inline]
     pub fn timer_125(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_timer_125(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -457,9 +521,11 @@ impl TIMER_125 {
 pub struct TX_DATAPAT_LSB(u32);
 impl TX_DATAPAT_LSB {
     /// Least significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
+    #[inline]
     pub fn tx_datapat_lsb(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_datapat_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -471,9 +537,11 @@ impl TX_DATAPAT_LSB {
 pub struct TX_DATAPAT_MSB(u32);
 impl TX_DATAPAT_MSB {
     /// Most significant 32 bits of 64-bit data pattern used in pseudo-random and user-defined test pattern mode
+    #[inline]
     pub fn tx_datapat_msb(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_datapat_msb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -485,9 +553,11 @@ impl TX_DATAPAT_MSB {
 pub struct TX_SEEDA_LSB(u32);
 impl TX_SEEDA_LSB {
     /// Least significant bits of scrambler used to initialize it during test mode
+    #[inline]
     pub fn tx_seeda_lsb(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_seeda_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -499,9 +569,11 @@ impl TX_SEEDA_LSB {
 pub struct TX_SEEDA_MSB(u32);
 impl TX_SEEDA_MSB {
     /// Most significant bits of scrambler used to initialize it during test mode
+    #[inline]
     pub fn tx_seeda_msb(&self) -> u32 {
         self.0 & 0x3ffffff
     }
+    #[inline]
     pub fn set_tx_seeda_msb(&mut self, value: u32) {
         assert!(value <= 0x3ffffff);
         self.0 &= !0x3ffffff;
@@ -515,9 +587,11 @@ impl TX_SEEDA_MSB {
 pub struct TX_SEEDB_LSB(u32);
 impl TX_SEEDB_LSB {
     /// Least significant bits of scrambler used to initialize it during test mode
+    #[inline]
     pub fn tx_seedb_lsb(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_seedb_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -529,9 +603,11 @@ impl TX_SEEDB_LSB {
 pub struct TX_SEEDB_MSB(u32);
 impl TX_SEEDB_MSB {
     /// Most significant bits of scrambler used to initialize it during test mode
+    #[inline]
     pub fn tx_seedb_msb(&self) -> u32 {
         self.0 & 0x3ffffff
     }
+    #[inline]
     pub fn set_tx_seedb_msb(&mut self, value: u32) {
         assert!(value <= 0x3ffffff);
         self.0 &= !0x3ffffff;

@@ -36,9 +36,11 @@ impl STICKY {
     /// Set if frame is redirected due to VCAP IS2. Write 1 to clear this field.
     ///
     /// 0: No redir event 1: A frame was redirected.
+    #[inline]
     pub fn acl_redir_sticky(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
+    #[inline]
     pub fn set_acl_redir_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -48,9 +50,11 @@ impl STICKY {
     /// Set if a frame has been forwarded with a non-zero destination set. Write 1 to clear this field.
     ///
     /// 0: No frames forwarded 1: Frame forward event
+    #[inline]
     pub fn frame_fwd_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_frame_fwd_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -58,9 +62,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if the GLAG source mask has been used. Write 1 to clear this field.
+    #[inline]
     pub fn glag_contrib_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_glag_contrib_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -68,9 +74,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if ip4_mc_ctrl_flood_mask has been used. Write 1 to clear this field.
+    #[inline]
     pub fn ip4_mc_ctrl_flood_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ip4_mc_ctrl_flood_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -78,9 +86,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if ip4_mc_data_flood_mask has been used. Write 1 to clear this field.
+    #[inline]
     pub fn ip4_mc_data_flood_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ip4_mc_data_flood_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -88,9 +98,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if ip6_mc_ctrl_flood_mask has been used. Write 1 to clear this field.
+    #[inline]
     pub fn ip6_mc_ctrl_flood_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_ip6_mc_ctrl_flood_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -98,9 +110,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if ip6_mc_data_flood_mask has been used. Write 1 to clear this field.
+    #[inline]
     pub fn ip6_mc_data_flood_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ip6_mc_data_flood_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -108,9 +122,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if l2_mc_flood_mask has been used. Write 1 to clear this field.
+    #[inline]
     pub fn l2_mc_flood_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_l2_mc_flood_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -118,9 +134,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if the previous blocks in the Analyzer have signaled that a frame must not be forwarded. This may be done for CPU move or discard operations. Write 1 to clear this field.
+    #[inline]
     pub fn no_l2_l3_fwd_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_no_l2_l3_fwd_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -128,9 +146,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a CPU copy operation from the PGID lookup has been done. Write 1 to clear this field.
+    #[inline]
     pub fn pgid_cpu_mask_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_pgid_cpu_mask_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -140,9 +160,11 @@ impl STICKY {
     /// Set if a mirror probe has been triggered. Write 1 to clear this field.
     ///
     /// 0: Mirror probe not triggered 1: Mirror probe triggered
+    #[inline]
     pub fn probe_sticky(&self) -> u32 {
         (self.0 & 0x700000) >> 20
     }
+    #[inline]
     pub fn set_probe_sticky(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 20;
@@ -150,9 +172,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if a frame, candidate for sFlow sampling, was found. Write 1 to clear this field.
+    #[inline]
     pub fn sflow_cand_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_sflow_cand_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -162,9 +186,11 @@ impl STICKY {
     /// Set if a sFlow destination sample event has taken place. Write 1 to clear this field.
     ///
     /// 0: No event 1: A sample event has occured
+    #[inline]
     pub fn sflow_dst_sample_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_sflow_dst_sample_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -174,9 +200,11 @@ impl STICKY {
     /// Set if a sFlow sample event has taken place. Write 1 to clear this field.
     ///
     /// 0: No event 1: A sample event has occured
+    #[inline]
     pub fn sflow_sample_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_sflow_sample_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -186,9 +214,11 @@ impl STICKY {
     /// Set if a sFlow source sample event has taken place. Write 1 to clear this field.
     ///
     /// 0: No event 1: A sample event has occured
+    #[inline]
     pub fn sflow_src_sample_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_sflow_src_sample_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -196,9 +226,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if the source mask has been used. Write 1 to clear this field.
+    #[inline]
     pub fn src_contrib_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_src_contrib_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -206,18 +238,22 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if the unicast flood mask has been used. Write 1 to clear this field.
+    #[inline]
     pub fn uc_flood_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_uc_flood_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Set if VLAN mask has been used. Write 1 to clear this field.
+    #[inline]
     pub fn vlan_contrib_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_vlan_contrib_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -225,9 +261,11 @@ impl STICKY {
         self.0 |= value;
     }
     /// Set if the egress port mask for a frame was zero and the frame was not sent to the CPU. Write 1 to clear this field.
+    #[inline]
     pub fn zero_dst_sticky(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_zero_dst_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;

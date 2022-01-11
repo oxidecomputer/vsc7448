@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct PD_LSW(u32);
 impl PD_LSW {
     /// page_detect_timer setting
+    #[inline]
     pub fn pd_tmr_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_pd_tmr_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -46,9 +48,11 @@ impl PD_LSW {
 pub struct PD_MSW(u32);
 impl PD_MSW {
     /// page_detect_timer setting
+    #[inline]
     pub fn pd_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_pd_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

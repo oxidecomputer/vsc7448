@@ -36,9 +36,11 @@ impl PCS_FX100_CFG {
     /// Far-End Fault (FEF) detection enable
     ///
     /// 0: Disable FEF detection 1 Enable FEF detection
+    #[inline]
     pub fn fefchk_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_fefchk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -48,9 +50,11 @@ impl PCS_FX100_CFG {
     /// Far-End Fault (FEF) generation enable
     ///
     /// 0: Disable FEF generation 1 Enable FEF generation
+    #[inline]
     pub fn fefgen_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_fefgen_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -58,9 +62,11 @@ impl PCS_FX100_CFG {
         self.0 |= value;
     }
     /// Link hysteresis timer configuration. The hysteresis time lasts [linkhysttimer] * 65536 ns + 2320 ns. If linkhysttime is set to 5, the hysteresis lasts the minimum time of 330 us as specified in IEEE802.3 - 24.3.3.4.
+    #[inline]
     pub fn linkhysttimer(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
+    #[inline]
     pub fn set_linkhysttimer(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -70,9 +76,11 @@ impl PCS_FX100_CFG {
     /// Link hysteresis timer test mode. When enabled, [linkhysttimer] steps are reduced from 65536 ns to 2048 ns.
     ///
     /// 1: Enable test mode 0: Disable test mode
+    #[inline]
     pub fn linkhyst_tm_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_linkhyst_tm_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -82,9 +90,11 @@ impl PCS_FX100_CFG {
     /// Testloop, if enabled 4B5B encoded data are looped from TX path to RX path just before the SERDES
     ///
     /// 1: Enable loop 0: Disable loop
+    #[inline]
     pub fn loopback_ena(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_loopback_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -94,18 +104,22 @@ impl PCS_FX100_CFG {
     /// PCS enable
     ///
     /// 0: Disable PCS 1: Enable PCS
+    #[inline]
     pub fn pcs_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_pcs_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Select single bit from incomming 10-bit Deserializer value. Change is only required in case CP/MD handling incorrect in Clock and Data Recovery logic
+    #[inline]
     pub fn rxbitsel(&self) -> u32 {
         (self.0 & 0xf000) >> 12
     }
+    #[inline]
     pub fn set_rxbitsel(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 12;
@@ -115,9 +129,11 @@ impl PCS_FX100_CFG {
     /// Signal Detect Enable
     ///
     /// 0: The Signal Detect input pin is ignored. The PCS assumes an active Signal Detect at all times 1: The Signal Detect input pin is used to determine if a signal is detected
+    #[inline]
     pub fn sd_ena(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
+    #[inline]
     pub fn set_sd_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -127,9 +143,11 @@ impl PCS_FX100_CFG {
     /// Signal detect polarity: The signal level on signal_detect input pin must be equal to SD_POL to indicate signal detection (SD_ENA must be set). Use '1' when SD_SEL is set to hardmacro.
     ///
     /// 0: Signal Detect input pin must be '0' to indicate a signal detection 1: Signal Detect input pin must be '1' to indicate a signal detection
+    #[inline]
     pub fn sd_pol(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
+    #[inline]
     pub fn set_sd_pol(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
@@ -139,9 +157,11 @@ impl PCS_FX100_CFG {
     /// Signal detect selection (select input for internal signal_detect line)
     ///
     /// 0: Select signal_detect line from hardmacro 1: Select external signal_detect line
+    #[inline]
     pub fn sd_sel(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
+    #[inline]
     pub fn set_sd_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
@@ -151,9 +171,11 @@ impl PCS_FX100_CFG {
     /// Influence of rx toggle-rate on signal_detect. Signal detect is forced to 0 after a programable number of missing edges on rx bit-stream
     ///
     /// 0: No influence 1: Force to 0 after 50 cycles without edge 2: Force to 0 after 10 cycles without edge 3: Force to 0 after 5 cycles without edge
+    #[inline]
     pub fn sigdet_cfg(&self) -> u32 {
         (self.0 & 0x600) >> 9
     }
+    #[inline]
     pub fn set_sigdet_cfg(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 9;
@@ -163,9 +185,11 @@ impl PCS_FX100_CFG {
     /// Swap transmission/receive order of MII nibbles
     ///
     /// 0: Lower nibble of GMII byte is transferred/received first 1: Upper nibble of GMII byte is transferred/received first
+    #[inline]
     pub fn swap_mii_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_swap_mii_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -175,9 +199,11 @@ impl PCS_FX100_CFG {
     /// Unidirectional mode enable. Implementation 0f 802.3 clause 66. When asserted, this enables MAC to transmit data independent of the state of the receive link.
     ///
     /// 0: Unidirectional mode disabled 1: Unidirectional mode enabled
+    #[inline]
     pub fn unidir_mode_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_unidir_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;

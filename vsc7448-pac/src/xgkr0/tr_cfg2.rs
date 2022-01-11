@@ -32,18 +32,22 @@ use derive_more::{From, Into};
 pub struct TR_CFG2(u32);
 impl TR_CFG2 {
     /// min	settings for v2 sum.
+    #[inline]
     pub fn v2_min(&self) -> u32 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_v2_min(&mut self, value: u32) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
     /// max	settings for vp sum.
+    #[inline]
     pub fn vp_max(&self) -> u32 {
         (self.0 & 0xfc0) >> 6
     }
+    #[inline]
     pub fn set_vp_max(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 6;

@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct SRC_CFG(u32);
 impl SRC_CFG {
     /// Refer to description for ANA_AC:SRC.
+    #[inline]
     pub fn port_mask(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_port_mask(&mut self, value: u32) {
         self.0 = value;
     }
@@ -48,9 +50,11 @@ impl SRC_CFG {
 pub struct SRC_CFG1(u32);
 impl SRC_CFG1 {
     /// Refer to description for ANA_AC:SRC.
+    #[inline]
     pub fn port_mask1(&self) -> u32 {
         self.0 & 0x1fffff
     }
+    #[inline]
     pub fn set_port_mask1(&mut self, value: u32) {
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;

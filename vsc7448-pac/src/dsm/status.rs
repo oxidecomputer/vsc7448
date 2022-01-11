@@ -36,9 +36,11 @@ impl AGED_FRMS {
     /// Count number of aged frames for each port.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn aged_frms_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_aged_frms_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -52,9 +54,11 @@ impl BUF_OFLW_STICKY {
     /// Sticky bits for detecting buffer overflow in any of the cell buffers in the DSM.
     ///
     /// '0': No buffer overflow detected. '1': Buffer overflow detected. Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn buf_oflw_sticky(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_buf_oflw_sticky(&mut self, value: u32) {
         self.0 = value;
     }
@@ -68,9 +72,11 @@ impl BUF_UFLW_STICKY {
     /// Sticky bits for detecting buffer underflow in any of the cell buffers in the DSM.
     ///
     /// '0': No buffer underflow detected. '1': Buffer underflow detected. Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn buf_uflw_sticky(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_buf_uflw_sticky(&mut self, value: u32) {
         self.0 = value;
     }
@@ -84,9 +90,11 @@ impl CELL_BUS_STICKY {
     /// This bit is set if data marked as SOF is received without the current frame has been terminated with EOF. The current frame will be terminated by setting the abort bit and the next frame will be discarded.
     ///
     /// '0': Missing EOF has not been detected. '1': Missing EOF has been detected. Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn cell_bus_missing_eof_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_cell_bus_missing_eof_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -95,9 +103,11 @@ impl CELL_BUS_STICKY {
     /// This bit is set if cells are received after an EOF and before the following SOF.
     ///
     /// '0': Missing SOF has not been detected. '1': Missing SOF has been detected. Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn cell_bus_missing_sof_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_cell_bus_missing_sof_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -114,9 +124,11 @@ impl PRE_CNT_OFLW_STICKY {
     /// Will be set if one of the statistics pre counter have an overflow.
     ///
     /// '0': Pre counter overflow has not occurred '1': Pre counter overflow has occurred Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn pre_cnt_oflw_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_pre_cnt_oflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;

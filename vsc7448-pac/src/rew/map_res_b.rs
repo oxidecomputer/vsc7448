@@ -36,9 +36,11 @@ impl MAP_LBL_B {
     /// Mapped MPLS label value
     ///
     /// n: Label value
+    #[inline]
     pub fn label_val(&self) -> u32 {
         self.0 & 0xfffff
     }
+    #[inline]
     pub fn set_label_val(&mut self, value: u32) {
         assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
@@ -54,9 +56,11 @@ impl MAP_VAL_B {
     /// Mapped DEI value
     ///
     /// n: New DEI value
+    #[inline]
     pub fn dei_val(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_dei_val(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -66,9 +70,11 @@ impl MAP_VAL_B {
     /// Mapped DSCP value
     ///
     /// n: New DSCP value
+    #[inline]
     pub fn dscp_val(&self) -> u32 {
         (self.0 & 0x3f0) >> 4
     }
+    #[inline]
     pub fn set_dscp_val(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 4;
@@ -78,9 +84,11 @@ impl MAP_VAL_B {
     /// Mapped OAM COLOR value
     ///
     /// n: New OAM COLOR value
+    #[inline]
     pub fn oam_color(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_oam_color(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -90,9 +98,11 @@ impl MAP_VAL_B {
     /// Mapped OAM COSID value
     ///
     /// n: New OAM COSID value
+    #[inline]
     pub fn oam_cosid(&self) -> u32 {
         (self.0 & 0xe000) >> 13
     }
+    #[inline]
     pub fn set_oam_cosid(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 13;
@@ -102,9 +112,11 @@ impl MAP_VAL_B {
     /// Mapped PCP value
     ///
     /// n: New PCP value
+    #[inline]
     pub fn pcp_val(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_pcp_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -113,9 +125,11 @@ impl MAP_VAL_B {
     /// Mapped TC value
     ///
     /// n: New TC value
+    #[inline]
     pub fn tc_val(&self) -> u32 {
         (self.0 & 0x1c00) >> 10
     }
+    #[inline]
     pub fn set_tc_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 10;

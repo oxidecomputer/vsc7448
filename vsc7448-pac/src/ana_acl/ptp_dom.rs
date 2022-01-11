@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct PTP_CLOCK_ID_LSB(u32);
 impl PTP_CLOCK_ID_LSB {
     /// Bits 31:0 of clockIdentifier used in portIdentity.
+    #[inline]
     pub fn clock_id_lsb(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_clock_id_lsb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -44,9 +46,11 @@ impl PTP_CLOCK_ID_LSB {
 pub struct PTP_CLOCK_ID_MSB(u32);
 impl PTP_CLOCK_ID_MSB {
     /// Bits 63:32 of clockIdentifier used in portIdentity.
+    #[inline]
     pub fn clock_id_msb(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_clock_id_msb(&mut self, value: u32) {
         self.0 = value;
     }
@@ -56,9 +60,11 @@ impl PTP_CLOCK_ID_MSB {
 pub struct PTP_MISC_CFG(u32);
 impl PTP_MISC_CFG {
     /// New values for byte 0 in flagField. Only bits with the corresponding bits set in FLAG_FIELD_MASK, are used.
+    #[inline]
     pub fn flag_field(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_flag_field(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -67,9 +73,11 @@ impl PTP_MISC_CFG {
     /// Mask used to configure which bits in flagField, byte 0, are overwriteen with value configured in PTP_MISC_CFG.FLAG_FIELD.
     ///
     /// Bit x=0: Do not overwrite bit x in flagField, byte 0. Bit x=1: Overwrite bit x in flagField, byte 0, with FLAG_FIELD, bit x.
+    #[inline]
     pub fn flag_field_mask(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
+    #[inline]
     pub fn set_flag_field_mask(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -82,18 +90,22 @@ impl PTP_MISC_CFG {
 pub struct PTP_SRC_PORT_CFG(u32);
 impl PTP_SRC_PORT_CFG {
     /// Port number used in portIdentity.
+    #[inline]
     pub fn port_num(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_port_num(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
     /// If set, lowest 6 bits in portIdentity is taken from ANA_ACL:PORT:PTP_CFG.PTP_PORT_NUM. Otherwise, portIdentity is taken from PTP_SRC_PORT_CFG.PORT_NUM.
+    #[inline]
     pub fn port_num_sel(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_port_num_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;

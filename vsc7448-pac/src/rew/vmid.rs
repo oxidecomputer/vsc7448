@@ -34,9 +34,11 @@ impl RLEG_CTRL {
     /// VID for egress router leg. This must be configured consistently in ANA_L3:VMID:RLEG_CTRL.RLEG_EVID.
     ///
     /// n: VID
+    #[inline]
     pub fn rleg_evid(&self) -> u32 {
         self.0 & 0xfff
     }
+    #[inline]
     pub fn set_rleg_evid(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
@@ -45,9 +47,11 @@ impl RLEG_CTRL {
     /// Control the value of VSTAX.TAG.WAS_TAGGED field in the stack header for frames that are L3 forwarded to a stack port.
     ///
     /// 0: VSTAX.TAG.WAS_TAGGED = 0 1: VSTAX.TAG.WAS_TAGGED = 1
+    #[inline]
     pub fn rleg_vstax2_was_tagged(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_rleg_vstax2_was_tagged(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;

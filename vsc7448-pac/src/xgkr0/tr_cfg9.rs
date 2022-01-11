@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_CFG9(u32);
 impl TR_CFG9 {
     /// Number of training frames used for BER calculation.
+    #[inline]
     pub fn frcnt_ber(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_frcnt_ber(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

@@ -32,9 +32,11 @@ pub struct REG_17E(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct CU_MEDIA_CRC_GOOD_COUNTER(u16);
 impl CU_MEDIA_CRC_GOOD_COUNTER {
+    #[inline]
     pub fn contents(&self) -> u16 {
         self.0 & 0x3fff
     }
+    #[inline]
     pub fn set_contents(&mut self, value: u16) {
         assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
@@ -44,35 +46,41 @@ impl CU_MEDIA_CRC_GOOD_COUNTER {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EXTENDED_MODE_CONTROL(u16);
 impl EXTENDED_MODE_CONTROL {
+    #[inline]
     pub fn fast_link_failure(&self) -> u16 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_fast_link_failure(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
     }
+    #[inline]
     pub fn force_mdi_crossover(&self) -> u16 {
-        (self.0 & 0x0) >> 2
+        (self.0 & 0xc) >> 2
     }
+    #[inline]
     pub fn set_force_mdi_crossover(&mut self, value: u16) {
-        assert!(value <= 0x0);
+        assert!(value <= 0x3);
         let value = value << 2;
-        self.0 &= !0x0;
+        self.0 &= !0xc;
         self.0 |= value;
     }
 }
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EXTENDED_PHY_CONTROL_3(u16);
 impl EXTENDED_PHY_CONTROL_3 {
+    #[inline]
     pub fn media_mode_status(&self) -> u16 {
-        (self.0 & 0x3c) >> 6
+        (self.0 & 0xc0) >> 6
     }
+    #[inline]
     pub fn set_media_mode_status(&mut self, value: u16) {
-        assert!(value <= 0xfffffff);
+        assert!(value <= 0x3);
         let value = value << 6;
-        self.0 &= !0x3c;
+        self.0 &= !0xc0;
         self.0 |= value;
     }
 }
@@ -85,35 +93,43 @@ pub struct EXTENDED_PHY_CONTROL_4(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VERIPHY_CTRL_REG1(u16);
 impl VERIPHY_CTRL_REG1 {
+    #[inline]
     pub fn pair_a_distance(&self) -> u16 {
-        (self.0 & 0xc0) >> 8
+        (self.0 & 0x3f00) >> 8
     }
+    #[inline]
     pub fn set_pair_a_distance(&mut self, value: u16) {
-        assert!(value <= 0x3fffffff);
+        assert!(value <= 0x3f);
         let value = value << 8;
-        self.0 &= !0xc0;
+        self.0 &= !0x3f00;
         self.0 |= value;
     }
+    #[inline]
     pub fn pair_b_distance(&self) -> u16 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_pair_b_distance(&mut self, value: u16) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
+    #[inline]
     pub fn trigger(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_trigger(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
+    #[inline]
     pub fn valid(&self) -> u16 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_valid(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -124,18 +140,22 @@ impl VERIPHY_CTRL_REG1 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VERIPHY_CTRL_REG2(u16);
 impl VERIPHY_CTRL_REG2 {
+    #[inline]
     pub fn pair_c_distance(&self) -> u16 {
-        (self.0 & 0xc0) >> 8
+        (self.0 & 0x3f00) >> 8
     }
+    #[inline]
     pub fn set_pair_c_distance(&mut self, value: u16) {
-        assert!(value <= 0x3fffffff);
+        assert!(value <= 0x3f);
         let value = value << 8;
-        self.0 &= !0xc0;
+        self.0 &= !0x3f00;
         self.0 |= value;
     }
+    #[inline]
     pub fn pair_d_distance(&self) -> u16 {
         self.0 & 0x3f
     }
+    #[inline]
     pub fn set_pair_d_distance(&mut self, value: u16) {
         assert!(value <= 0x3f);
         self.0 &= !0x3f;
@@ -145,36 +165,44 @@ impl VERIPHY_CTRL_REG2 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct VERIPHY_CTRL_REG3(u16);
 impl VERIPHY_CTRL_REG3 {
+    #[inline]
     pub fn pair_a_termination_status(&self) -> u16 {
-        (self.0 & 0xff0) >> 12
+        (self.0 & 0xf000) >> 12
     }
+    #[inline]
     pub fn set_pair_a_termination_status(&mut self, value: u16) {
-        assert!(value <= 0xffffff);
+        assert!(value <= 0xf);
         let value = value << 12;
-        self.0 &= !0xff0;
+        self.0 &= !0xf000;
         self.0 |= value;
     }
+    #[inline]
     pub fn pair_b_termination_status(&self) -> u16 {
-        (self.0 & 0xf0) >> 8
+        (self.0 & 0xf00) >> 8
     }
+    #[inline]
     pub fn set_pair_b_termination_status(&mut self, value: u16) {
-        assert!(value <= 0xfffffff);
+        assert!(value <= 0xf);
         let value = value << 8;
+        self.0 &= !0xf00;
+        self.0 |= value;
+    }
+    #[inline]
+    pub fn pair_c_termination_status(&self) -> u16 {
+        (self.0 & 0xf0) >> 4
+    }
+    #[inline]
+    pub fn set_pair_c_termination_status(&mut self, value: u16) {
+        assert!(value <= 0xf);
+        let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
     }
-    pub fn pair_c_termination_status(&self) -> u16 {
-        (self.0 & 0x0) >> 4
-    }
-    pub fn set_pair_c_termination_status(&mut self, value: u16) {
-        assert!(value <= 0x0);
-        let value = value << 4;
-        self.0 &= !0x0;
-        self.0 |= value;
-    }
+    #[inline]
     pub fn pair_d_termination_status(&self) -> u16 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_pair_d_termination_status(&mut self, value: u16) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -184,44 +212,54 @@ impl VERIPHY_CTRL_REG3 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EXT_28(u16);
 impl EXT_28 {
+    #[inline]
     pub fn epg_data_reg_idx(&self) -> u16 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_epg_data_reg_idx(&mut self, value: u16) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
+    #[inline]
     pub fn etype_udpdest_ov_ena(&self) -> u16 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_etype_udpdest_ov_ena(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
     }
+    #[inline]
     pub fn ipg_ov_ena(&self) -> u16 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ipg_ov_ena(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
     }
+    #[inline]
     pub fn pkt_sz_ov_ena(&self) -> u16 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_pkt_sz_ov_ena(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
     }
+    #[inline]
     pub fn sig_ctr_ena(&self) -> u16 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_sig_ctr_ena(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 5;

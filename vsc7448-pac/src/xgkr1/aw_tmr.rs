@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct AW_LSW(u32);
 impl AW_LSW {
     /// an_wait_timer setting
+    #[inline]
     pub fn aw_tmr_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_aw_tmr_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -46,9 +48,11 @@ impl AW_LSW {
 pub struct AW_MSW(u32);
 impl AW_MSW {
     /// an_wait_timer setting
+    #[inline]
     pub fn aw_tmr_msw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_aw_tmr_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

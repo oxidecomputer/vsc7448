@@ -36,18 +36,22 @@ impl PTP_CFG {
     /// Selects the PTP time domain to use when updating receiveTimestamp in Delay_Resp frames.
     ///
     /// 0: Use time domain 0 1: Use time domain 1 2: Use time domain 2 3: Reserved.
+    #[inline]
     pub fn ptp_domain(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_ptp_domain(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
     /// Part of portNumber used in portIdentity when ANA_ACL:PTP_DOM:PTP_SRC_PORT_CFG.PORT_NUM_SEL is set. PTP_PORT_NUM specifies bits 5:0 in portNumber. Remaining bits 15:6 in portNumber are taken from ANA_ACL:PTP_DOM:PTP_SRC_PORT_CFG.PORT_NUM
+    #[inline]
     pub fn ptp_port_num(&self) -> u32 {
         (self.0 & 0xfc) >> 2
     }
+    #[inline]
     pub fn set_ptp_port_num(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 2;
@@ -64,9 +68,11 @@ impl VCAP_S2_KEY_SEL {
     /// Applies to ARP/RARP frames.
     ///
     /// 0: Match against MAC_ETYPE entries. 1: Match against ARP entries.
+    #[inline]
     pub fn arp_key_sel(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_arp_key_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -75,9 +81,11 @@ impl VCAP_S2_KEY_SEL {
     /// Applies to IPv4 multicast frames.
     ///
     /// 0: Match against MAC_ETYPE entries. 1: Match against IP4_TCP_UDP for IPv4 TCP/UDP frames and against IP4_OTHER entries for other IPv4 frames. 2: Match against IP_7TUPLE entries. 3: Match against IP4_VID entries.
+    #[inline]
     pub fn ip4_mc_key_sel(&self) -> u32 {
         (self.0 & 0xc0) >> 6
     }
+    #[inline]
     pub fn set_ip4_mc_key_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 6;
@@ -87,9 +95,11 @@ impl VCAP_S2_KEY_SEL {
     /// Applies to IPv4 unicast frames.
     ///
     /// 0: Match against MAC_ETYPE entries. 1: Match against IP4_TCP_UDP for IPv4 TCP/UDP frames and against IP4_OTHER entries for other IPv4 frames. 2: Match against IP_7TUPLE entries.
+    #[inline]
     pub fn ip4_uc_key_sel(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
+    #[inline]
     pub fn set_ip4_uc_key_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -99,9 +109,11 @@ impl VCAP_S2_KEY_SEL {
     /// Applies to IPv6 multicast frames.
     ///
     /// 0: Match against MAC_ETYPE entries. 1: Match against IP_7TUPLE entries. 2: Match against IP6_VID entries.
+    #[inline]
     pub fn ip6_mc_key_sel(&self) -> u32 {
         (self.0 & 0xc) >> 2
     }
+    #[inline]
     pub fn set_ip6_mc_key_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 2;
@@ -111,9 +123,11 @@ impl VCAP_S2_KEY_SEL {
     /// Applies to IPv6 unicast frames.
     ///
     /// 0: Match against MAC_ETYPE entries. 1: Match against IP_7TUPLE entries.
+    #[inline]
     pub fn ip6_uc_key_sel(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ip6_uc_key_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -123,9 +137,11 @@ impl VCAP_S2_KEY_SEL {
     /// Applies to frames where frame_type is set to non Ethernet (CW or MPLS).
     ///
     /// 0: Match against MAC_ETYPE entries. 1: match against CUSTOM_1 entries. 2: match against CUSTOM_2 entries. 3: No lookup.
+    #[inline]
     pub fn non_eth_key_sel(&self) -> u32 {
         (self.0 & 0x300) >> 8
     }
+    #[inline]
     pub fn set_non_eth_key_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 8;

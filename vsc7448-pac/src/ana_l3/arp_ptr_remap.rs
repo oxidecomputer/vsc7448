@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct ARP_PTR_REMAP_CFG(u32);
 impl ARP_PTR_REMAP_CFG {
     /// Address of ARP entry in ARP Table (ANA_L3:ARP).
+    #[inline]
     pub fn arp_ptr(&self) -> u32 {
         self.0 & 0x7ff
     }
+    #[inline]
     pub fn set_arp_ptr(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
@@ -45,9 +47,11 @@ impl ARP_PTR_REMAP_CFG {
     /// Number of Equal Cost Multiple Paths. Overrules any value in LPM VCAP action.
     ///
     /// 0: 1 path 1: 2 paths 2: 3 paths ...
+    #[inline]
     pub fn ecmp_cnt(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
     }
+    #[inline]
     pub fn set_ecmp_cnt(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 16;

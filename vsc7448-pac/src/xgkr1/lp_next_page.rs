@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct KR_7X0019(u32);
 impl KR_7X0019 {
     /// LP next page  ability D[15:0]
+    #[inline]
     pub fn lp_np_adv0(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_lp_np_adv0(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -46,9 +48,11 @@ impl KR_7X0019 {
 pub struct KR_7X001A(u32);
 impl KR_7X001A {
     /// LP next page ability D[31:16]
+    #[inline]
     pub fn lp_np_adv1(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_lp_np_adv1(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -60,9 +64,11 @@ impl KR_7X001A {
 pub struct KR_7X001B(u32);
 impl KR_7X001B {
     /// LP next page ability D[47:32]
+    #[inline]
     pub fn lp_np_adv2(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_lp_np_adv2(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

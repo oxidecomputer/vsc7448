@@ -34,9 +34,11 @@ impl KR_1X0096 {
     /// Training enable
     ///
     /// 1: Enable KR start-up protocol 0: Disable KR start-up protocol
+    #[inline]
     pub fn tr_enable(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_tr_enable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -46,9 +48,11 @@ impl KR_1X0096 {
     /// Restart training (SC)
     ///
     /// 1: Reset KR start-up protocol 0: Normal operation
+    #[inline]
     pub fn tr_restart(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_tr_restart(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

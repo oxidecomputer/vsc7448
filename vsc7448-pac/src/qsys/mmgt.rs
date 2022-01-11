@@ -32,18 +32,22 @@ use derive_more::{From, Into};
 pub struct MMGT(u32);
 impl MMGT {
     /// Number of 6 free memory words.
+    #[inline]
     pub fn freecnt(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_freecnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
     /// Number of 6 frames awaiting releasing.
+    #[inline]
     pub fn relcnt(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_relcnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -56,9 +60,11 @@ impl MMGT {
 pub struct MMGT_FAST(u32);
 impl MMGT_FAST {
     /// Number of words in the fast pool
+    #[inline]
     pub fn freevld(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
+    #[inline]
     pub fn set_freevld(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -66,9 +72,11 @@ impl MMGT_FAST {
         self.0 |= value;
     }
     /// Number of frames awaiting release in the fast pool
+    #[inline]
     pub fn relvld(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_relvld(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;

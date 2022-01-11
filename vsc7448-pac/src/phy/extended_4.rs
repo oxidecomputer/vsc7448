@@ -30,9 +30,11 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct REG_1588_PPS_0_MUX_CTRL(u16);
 impl REG_1588_PPS_0_MUX_CTRL {
+    #[inline]
     pub fn get_1588_soft_reset(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_1588_soft_reset(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -43,18 +45,22 @@ impl REG_1588_PPS_0_MUX_CTRL {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SPI_DAISY_CHAIN_CTRL(u16);
 impl SPI_DAISY_CHAIN_CTRL {
+    #[inline]
     pub fn enable_input_port(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_enable_input_port(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
+    #[inline]
     pub fn enable_output_port(&self) -> u16 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_enable_output_port(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -64,14 +70,4 @@ impl SPI_DAISY_CHAIN_CTRL {
 }
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct SPI_DAISY_CHAIN_CNTR(u16);
-impl SPI_DAISY_CHAIN_CNTR {
-    pub fn select_daisy_chain_cntr(&self) -> u16 {
-        (self.0 & 0x4000) >> 15
-    }
-    pub fn set_select_daisy_chain_cntr(&mut self, value: u16) {
-        assert!(value <= 0x7fffffff);
-        let value = value << 15;
-        self.0 &= !0x4000;
-        self.0 |= value;
-    }
-}
+impl SPI_DAISY_CHAIN_CNTR {}

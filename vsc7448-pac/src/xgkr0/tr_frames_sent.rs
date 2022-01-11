@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct FRSENT_LSW(u32);
 impl FRSENT_LSW {
     /// Number of training frames sent to complete training.
+    #[inline]
     pub fn frsent_lsw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_frsent_lsw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -46,9 +48,11 @@ impl FRSENT_LSW {
 pub struct FRSENT_MSW(u32);
 impl FRSENT_MSW {
     /// Number of training frames sent to complete training.
+    #[inline]
     pub fn frsent_msw(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_frsent_msw(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

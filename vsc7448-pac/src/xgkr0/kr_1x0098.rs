@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct KR_1X0098(u32);
 impl KR_1X0098 {
     /// Received coefficient update field
+    #[inline]
     pub fn lpcoef(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_lpcoef(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

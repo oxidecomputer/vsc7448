@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct PLL5G_BIST_STAT0(u32);
 impl PLL5G_BIST_STAT0 {
     /// BIST busy, 0: not busy, 1: busy
+    #[inline]
     pub fn pllb_busy(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_pllb_busy(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -44,9 +46,11 @@ impl PLL5G_BIST_STAT0 {
         self.0 |= value;
     }
     /// BIST done, 0: done, 1: not done
+    #[inline]
     pub fn pllb_done_n(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_pllb_done_n(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -54,18 +58,22 @@ impl PLL5G_BIST_STAT0 {
         self.0 |= value;
     }
     /// BIST pass/fail, 0: passed, 1: failed
+    #[inline]
     pub fn pllb_fail(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_pllb_fail(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// BIST pll_cnt upper limit at max. frequency
+    #[inline]
     pub fn pllb_fsm_stat(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
+    #[inline]
     pub fn set_pllb_fsm_stat(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -80,9 +88,11 @@ impl PLL5G_BIST_STAT0 {
 pub struct PLL5G_BIST_STAT1A(u32);
 impl PLL5G_BIST_STAT1A {
     /// BIST compare divider phase difference
+    #[inline]
     pub fn pllb_cnt_ref_diff(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_pllb_cnt_ref_diff(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -96,9 +106,11 @@ impl PLL5G_BIST_STAT1A {
 pub struct PLL5G_BIST_STAT1B(u32);
 impl PLL5G_BIST_STAT1B {
     /// BIST compare divider phase difference
+    #[inline]
     pub fn pllb_cnt_out(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_pllb_cnt_out(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

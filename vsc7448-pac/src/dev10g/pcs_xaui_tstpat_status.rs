@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS(u32);
 impl PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS {
     /// Random sequence master counter
+    #[inline]
     pub fn rnd_seq_timer(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rnd_seq_timer(&mut self, value: u32) {
         self.0 = value;
     }
@@ -48,9 +50,11 @@ impl PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS {
 pub struct PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS(u32);
 impl PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS {
     /// Jitter pattern transmit counter
+    #[inline]
     pub fn jp_tx_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_jp_tx_cnt(&mut self, value: u32) {
         self.0 = value;
     }

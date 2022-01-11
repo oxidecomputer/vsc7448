@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct SEC_LOOKUP_STICKY(u32);
 impl SEC_LOOKUP_STICKY {
     /// This sticky bit signals an ARP lookup was performed.
+    #[inline]
     pub fn sec_type_arp_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_sec_type_arp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -42,9 +44,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals a CUSTOM1 lookup was performed.
+    #[inline]
     pub fn sec_type_custom1_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_sec_type_custom1_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -52,9 +56,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals a CUSTOM2 lookup was performed.
+    #[inline]
     pub fn sec_type_custom2_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_sec_type_custom2_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -62,9 +68,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals an IP4_OTHER lookup was performed.
+    #[inline]
     pub fn sec_type_ip4_other_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_sec_type_ip4_other_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -72,9 +80,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals an IP4_TCPUDP lookup was performed.
+    #[inline]
     pub fn sec_type_ip4_tcpudp_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_sec_type_ip4_tcpudp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -82,9 +92,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals an IP4_VID lookup was performed.
+    #[inline]
     pub fn sec_type_ip4_vid_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_sec_type_ip4_vid_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -92,9 +104,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals IP6_STD lookup was performed.
+    #[inline]
     pub fn sec_type_ip6_std_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_sec_type_ip6_std_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -102,9 +116,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals IP6_TCPUDP lookup was performed.
+    #[inline]
     pub fn sec_type_ip6_tcpudp_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_sec_type_ip6_tcpudp_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -112,9 +128,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals an IP6_VID lookup was performed.
+    #[inline]
     pub fn sec_type_ip6_vid_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_sec_type_ip6_vid_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -122,9 +140,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals an IP_7TUPLE lookup was performed.
+    #[inline]
     pub fn sec_type_ip_7tuple_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_sec_type_ip_7tuple_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -132,18 +152,22 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals a MAC_ETYPE lookup was performed.
+    #[inline]
     pub fn sec_type_mac_etype_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_sec_type_mac_etype_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// This sticky bit signals MAC_LLC lookup was performed.
+    #[inline]
     pub fn sec_type_mac_llc_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_sec_type_mac_llc_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -151,9 +175,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals MAC_SNAP lookup was performed.
+    #[inline]
     pub fn sec_type_mac_snap_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_sec_type_mac_snap_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -161,9 +187,11 @@ impl SEC_LOOKUP_STICKY {
         self.0 |= value;
     }
     /// This sticky bit signals OAM lookup was performed.
+    #[inline]
     pub fn sec_type_oam_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_sec_type_oam_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;

@@ -36,9 +36,11 @@ impl TX_RATE_LIMIT_STICKY {
     /// Sticky bit set when one of the three tx rate limitation modes has increased the IPG. I.e. when a tx rate limit mode was enabled an DSM has requested the device to use a IPG different from 12 byte.
     ///
     /// '0': Tx Rate Limitation has not occurred. '1': Tx Rate Limitation has occurred. Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn tx_rate_limit_sticky(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_rate_limit_sticky(&mut self, value: u32) {
         self.0 = value;
     }

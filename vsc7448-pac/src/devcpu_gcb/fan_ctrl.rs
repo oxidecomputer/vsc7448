@@ -34,9 +34,11 @@ impl FAN_CFG {
     /// The system clock period given in the clock period in PS divided by 100.
     ///
     /// Values below 40 are reserved.
+    #[inline]
     pub fn clk_period(&self) -> u32 {
         (self.0 & 0x7f80) >> 7
     }
+    #[inline]
     pub fn set_clk_period(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 7;
@@ -46,9 +48,11 @@ impl FAN_CFG {
     /// Define the duty cycle
     ///
     /// 0x00: Always "off" 0xFF: Always "on"
+    #[inline]
     pub fn duty_cycle(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
+    #[inline]
     pub fn set_duty_cycle(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -56,9 +60,11 @@ impl FAN_CFG {
         self.0 |= value;
     }
     /// Configure behavior of TACH input tick counter, see DEVCPU_GCB::FAN_CNT for more infromation.
+    #[inline]
     pub fn fan_stat_cfg(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_fan_stat_cfg(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -67,9 +73,11 @@ impl FAN_CFG {
     /// Enable gating of the TACH input by the PWM output so that only TACH pulses received when PWM is "on" are counted.
     ///
     /// 0: Disabled 1: Enabled
+    #[inline]
     pub fn gate_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_gate_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -79,9 +87,11 @@ impl FAN_CFG {
     /// Define the polarity of the PWM output.
     ///
     /// 0: PWM is logic 1 when "on" 1: PWM is logic 0 when "on"
+    #[inline]
     pub fn inv_pol(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_inv_pol(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -91,9 +101,11 @@ impl FAN_CFG {
     /// Set the frequency of the PWM output
     ///
     /// 0: 25 kHz 1: 120 Hz 2: 100 Hz 3: 80 Hz 4: 60 Hz 5: 40 Hz 6: 20 Hz 7: 10 Hz
+    #[inline]
     pub fn pwm_freq(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
+    #[inline]
     pub fn set_pwm_freq(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -101,9 +113,11 @@ impl FAN_CFG {
         self.0 |= value;
     }
     /// Configure the PWM output to be open collector
+    #[inline]
     pub fn pwm_open_col_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_pwm_open_col_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -116,9 +130,11 @@ impl FAN_CFG {
 pub struct FAN_CNT(u32);
 impl FAN_CNT {
     /// Counts the number of TACH input ticks. If DEVCPU_GCB::FAN_CFG.FAN_STAT_CFG is set then this is a wrapping counter that shows the total number of registered TACH ticks. If DEVCPU_GCB::FAN_CFG.FAN_STAT_CFG is cleared then this counter is updated once every second with the number of TACH ticks registered during the last second.
+    #[inline]
     pub fn fan_cnt(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_fan_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

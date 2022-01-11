@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct DTI_CNT_DOWN(u32);
 impl DTI_CNT_DOWN {
     /// Remaining number of clock cycles before next injection. May become negative while waiting for table/injection access. Two's complement encoded. Should be set to 0 when (re)starting DTI (unless an initial delay is desirable).
+    #[inline]
     pub fn cnt_down(&self) -> u32 {
         self.0 & 0x7fffffff
     }
+    #[inline]
     pub fn set_cnt_down(&mut self, value: u32) {
         assert!(value <= 0x7fffffff);
         self.0 &= !0x7fffffff;
@@ -48,9 +50,11 @@ impl DTI_CTRL {
     /// DTI bandwidth. Used to give arbitration precedence to high bandwidth DTIs.
     ///
     /// 0: <5Gbps 1: >=5Gbps
+    #[inline]
     pub fn bw(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_bw(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -58,9 +62,11 @@ impl DTI_CTRL {
         self.0 |= value;
     }
     /// Enable DTI. If MODE=0 or MODE=2, then ENA is cleared by AFI when configured number of sequences have been injected. Before (re)starting a DTI the following initialization should be done: DURATION must be set to 0. NEXT_FRM_PTR should be set to FIRST_FRM_PTR. DTI_CNT_DOWN.CNT_DOWN should be set to 0. FRM_INJ_CNT should be set to 0 AFI::MISC_CTRL.AFI_ENA must be set to 1. If MODE=2, then the AFI will set ENA=1 for the DTI pointed to by DTI_NEXT once the DTI with MODE=2 completes.
+    #[inline]
     pub fn ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -74,9 +80,11 @@ impl DTI_CTRL {
 pub struct DTI_FC_CNT_DOWN(u32);
 impl DTI_FC_CNT_DOWN {
     /// Remaining number of clock cycles before DTI is allowed to attempt injection again after experiencing FC from FRD. This field is set to FC_POSTPONE_LEN when FC from FRD is experienced. Note: Unlike CNT_DOWN, FC_CNT_DOWN is always >=0 (so no two's complement encoding).
+    #[inline]
     pub fn fc_cnt_down(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_fc_cnt_down(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;

@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct PTP_CPUVD_MODE_CFG(u32);
 impl PTP_CPUVD_MODE_CFG {
     /// Sets the time domain this port belongs to.
+    #[inline]
     pub fn ptp_dom_val(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_ptp_dom_val(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -45,9 +47,11 @@ impl PTP_CPUVD_MODE_CFG {
     /// PTP operation mode for frames.
     ///
     /// 0: Front port 1: Backplane port using RSRV field 30 bit TS transfer 2: Backplane port using RSRV field 32 bit TS transfer 3: Backplane port using CF field for 44 bit TS transfer 4: Backplane port using CF field for 48 bit TS transfer 5: Monitor port. Frame updated to arrival stamper. 6: PTP Disabled port
+    #[inline]
     pub fn ptp_mode_val(&self) -> u32 {
         (self.0 & 0x1c) >> 2
     }
+    #[inline]
     pub fn set_ptp_mode_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 2;
@@ -60,9 +64,11 @@ impl PTP_CPUVD_MODE_CFG {
 pub struct PTP_RSRV_NOT_ZERO(u32);
 impl PTP_RSRV_NOT_ZERO {
     /// Register contains one bit per port being set when the port has received a frame with non-zero reserved bytes field This register covers ports 0-31
+    #[inline]
     pub fn ptp_rsrv_not_zero(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_ptp_rsrv_not_zero(&mut self, value: u32) {
         self.0 = value;
     }
@@ -72,9 +78,11 @@ impl PTP_RSRV_NOT_ZERO {
 pub struct PTP_RSRV_NOT_ZERO_1(u32);
 impl PTP_RSRV_NOT_ZERO_1 {
     /// This register covers ports 32-56. See PTP_RSRV_NOT_ZERO for description.
+    #[inline]
     pub fn ptp_rsrv_not_zero_1(&self) -> u32 {
         self.0 & 0x1ffffff
     }
+    #[inline]
     pub fn set_ptp_rsrv_not_zero_1(&mut self, value: u32) {
         assert!(value <= 0x1ffffff);
         self.0 &= !0x1ffffff;
@@ -86,9 +94,11 @@ impl PTP_RSRV_NOT_ZERO_1 {
 pub struct PTP_TWOSTEP_CTRL(u32);
 impl PTP_TWOSTEP_CTRL {
     /// Write one to advance the stamp queue to the next available.
+    #[inline]
     pub fn ptp_nxt(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_ptp_nxt(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -96,18 +106,22 @@ impl PTP_TWOSTEP_CTRL {
         self.0 |= value;
     }
     /// The stamp is overflown, and some stamps are lost.
+    #[inline]
     pub fn ptp_ovfl(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ptp_ovfl(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// If the fifo is overflown, additional stamps will overwrite older.
+    #[inline]
     pub fn ptp_ovwr_ena(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_ptp_ovwr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -115,9 +129,11 @@ impl PTP_TWOSTEP_CTRL {
         self.0 |= value;
     }
     /// The stamp queue is non empty
+    #[inline]
     pub fn ptp_vld(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_ptp_vld(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -125,9 +141,11 @@ impl PTP_TWOSTEP_CTRL {
         self.0 |= value;
     }
     /// Field contains the port number the stamp was made on
+    #[inline]
     pub fn stamp_port(&self) -> u32 {
         (self.0 & 0x1fe) >> 1
     }
+    #[inline]
     pub fn set_stamp_port(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 1;
@@ -135,9 +153,11 @@ impl PTP_TWOSTEP_CTRL {
         self.0 |= value;
     }
     /// Current stamp is an egress stamp
+    #[inline]
     pub fn stamp_tx(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_stamp_tx(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -150,9 +170,11 @@ impl PTP_TWOSTEP_CTRL {
 pub struct PTP_TWOSTEP_STAMP(u32);
 impl PTP_TWOSTEP_STAMP {
     /// Contains the 32 bit timestamp.
+    #[inline]
     pub fn stamp_nsec(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_stamp_nsec(&mut self, value: u32) {
         self.0 = value;
     }

@@ -34,9 +34,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn ag_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_ag_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -46,9 +48,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn bpdu_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_bpdu_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -58,9 +62,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn capture_tpid_dis_sticky_mask(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_capture_tpid_dis_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -70,9 +76,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn gxrp_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_gxrp_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -82,9 +90,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn igmp_sticky_mask(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_igmp_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -94,9 +104,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn ip4_mc_ctrl_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ip4_mc_ctrl_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -106,9 +118,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn ip6_hop_by_hop_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ip6_hop_by_hop_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -118,9 +132,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn ip6_icmp_hop_by_hop_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ip6_icmp_hop_by_hop_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -130,9 +146,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn ip6_mc_ctrl_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_ip6_mc_ctrl_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -142,9 +160,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn mld_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_mld_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -154,9 +174,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn vrap_sticky_mask(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_vrap_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -166,9 +188,11 @@ impl CAT_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn vstax2_ttl_zero_sticky_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_vstax2_ttl_zero_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -183,9 +207,11 @@ impl CLASS_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn dscp_qos_rewr_sticky_mask(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_dscp_qos_rewr_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -195,9 +221,11 @@ impl CLASS_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn dscp_translate_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_dscp_translate_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -207,9 +235,11 @@ impl CLASS_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn qos_default_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_qos_default_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -219,9 +249,11 @@ impl CLASS_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn qos_dscp_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_qos_dscp_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -231,9 +263,11 @@ impl CLASS_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn qos_pcp_dei_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_qos_pcp_dei_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -243,9 +277,11 @@ impl CLASS_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn qos_stack_tag_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_qos_stack_tag_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -254,9 +290,11 @@ impl CLASS_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn vid_port_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_vid_port_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -266,9 +304,11 @@ impl CLASS_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn vid_stack_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_vid_stack_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -278,9 +318,11 @@ impl CLASS_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn vid_tag_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_vid_tag_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -295,9 +337,11 @@ impl FILTER_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn bad_macs_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_bad_macs_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -306,9 +350,11 @@ impl FILTER_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn stacking_filter_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_stacking_filter_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -323,9 +369,11 @@ impl IP_HDR_CHK_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn ip4_chksum_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ip4_chksum_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -334,9 +382,11 @@ impl IP_HDR_CHK_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn ip4_fragment_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ip4_fragment_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -346,9 +396,11 @@ impl IP_HDR_CHK_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn ip4_len_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ip4_len_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -358,9 +410,11 @@ impl IP_HDR_CHK_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn ip_options_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ip_options_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -375,9 +429,11 @@ impl MIP_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn mip_ccm_copy_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_mip_ccm_copy_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -386,9 +442,11 @@ impl MIP_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn mip_generic_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_mip_generic_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -398,9 +456,11 @@ impl MIP_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn mip_lbm_da_chk_fail_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_mip_lbm_da_chk_fail_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -410,9 +470,11 @@ impl MIP_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn mip_lbm_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_mip_lbm_redir_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -422,9 +484,11 @@ impl MIP_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn mip_ltm_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_mip_ltm_redir_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -434,9 +498,11 @@ impl MIP_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn mip_mel_chk_fail_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_mip_mel_chk_fail_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -446,9 +512,11 @@ impl MIP_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn mip_raps_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_mip_raps_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -463,9 +531,11 @@ impl VLAN_FILTER_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn filter_ctag_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_filter_ctag_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -475,9 +545,11 @@ impl VLAN_FILTER_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn filter_prio_ctag_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_filter_prio_ctag_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -487,9 +559,11 @@ impl VLAN_FILTER_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enabale event count
+    #[inline]
     pub fn filter_prio_stag_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_filter_prio_stag_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -499,9 +573,11 @@ impl VLAN_FILTER_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enable event count
+    #[inline]
     pub fn filter_required_tag_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_filter_required_tag_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -511,9 +587,11 @@ impl VLAN_FILTER_STICKY_MASK {
     /// Mask count of sticky event.
     ///
     /// 0: Disable event count 1: Enabale event count
+    #[inline]
     pub fn filter_stag_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_filter_stag_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

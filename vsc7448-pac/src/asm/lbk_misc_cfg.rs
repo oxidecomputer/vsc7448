@@ -34,9 +34,11 @@ impl LBK_AGING_DIS {
     /// Disable aging in loopback path.
     ///
     /// bitmask per port.
+    #[inline]
     pub fn lbk_aging_dis(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_lbk_aging_dis(&mut self, value: u32) {
         self.0 = value;
     }
@@ -45,9 +47,11 @@ impl LBK_AGING_DIS {
 pub struct LBK_FIFO_CFG(u32);
 impl LBK_FIFO_CFG {
     /// Flush all data in the FIFO
+    #[inline]
     pub fn fifo_flush(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_fifo_flush(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

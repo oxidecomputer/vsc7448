@@ -63,9 +63,11 @@ pub mod upsid;
 /// Aggregation port masks
 pub struct AGGR(pub(super) u32);
 impl AGGR {
+    #[inline]
     pub fn AGGR_CFG(&self) -> RegisterAddress<aggr::AGGR_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn AGGR_CFG1(&self) -> RegisterAddress<aggr::AGGR_CFG1> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -74,9 +76,11 @@ impl AGGR {
 /// Access core memory
 pub struct COREMEM(pub(super) u32);
 impl COREMEM {
+    #[inline]
     pub fn CM_ADDR(&self) -> RegisterAddress<coremem::CM_ADDR> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn CM_DATA(&self) -> RegisterAddress<coremem::CM_DATA> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -85,6 +89,7 @@ impl COREMEM {
 /// Configuration for Global Link Aggregation Groups
 pub struct GLAG(pub(super) u32);
 impl GLAG {
+    #[inline]
     pub fn MBR_CNT_CFG(&self) -> RegisterAddress<glag::MBR_CNT_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -93,12 +98,15 @@ impl GLAG {
 /// Mirror probe configuration
 pub struct MIRROR_PROBE(pub(super) u32);
 impl MIRROR_PROBE {
+    #[inline]
     pub fn PROBE_CFG(&self) -> RegisterAddress<mirror_probe::PROBE_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn PROBE_PORT_CFG(&self) -> RegisterAddress<mirror_probe::PROBE_PORT_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn PROBE_PORT_CFG1(&self) -> RegisterAddress<mirror_probe::PROBE_PORT_CFG1> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -107,12 +115,15 @@ impl MIRROR_PROBE {
 /// Port group ID table configurations
 pub struct PGID(pub(super) u32);
 impl PGID {
+    #[inline]
     pub fn PGID_CFG(&self) -> RegisterAddress<pgid::PGID_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn PGID_CFG1(&self) -> RegisterAddress<pgid::PGID_CFG1> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn PGID_MISC_CFG(&self) -> RegisterAddress<pgid::PGID_MISC_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -121,57 +132,74 @@ impl PGID {
 /// Common configurations for all ports
 pub struct PS_COMMON(pub(super) u32);
 impl PS_COMMON {
+    #[inline]
     pub fn COMMON_EQUAL_STACK_LINK_TTL_CFG(
         &self,
     ) -> RegisterAddress<ps_common::COMMON_EQUAL_STACK_LINK_TTL_CFG> {
         RegisterAddress::new(self.0 + 0x2c)
     }
+    #[inline]
     pub fn COMMON_VSTAX_CFG(&self) -> RegisterAddress<ps_common::COMMON_VSTAX_CFG> {
         RegisterAddress::new(self.0 + 0x28)
     }
+    #[inline]
     pub fn CPU_CFG(&self) -> RegisterAddress<ps_common::CPU_CFG> {
         RegisterAddress::new(self.0 + 0x10c)
     }
+    #[inline]
     pub fn MISC_CTRL(&self) -> RegisterAddress<ps_common::MISC_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn PHYS_SRC_AGGR_CFG(&self) -> RegisterAddress<ps_common::PHYS_SRC_AGGR_CFG> {
         RegisterAddress::new(self.0 + 0x10)
     }
+    #[inline]
     pub fn PHYS_SRC_AGGR_CFG1(&self) -> RegisterAddress<ps_common::PHYS_SRC_AGGR_CFG1> {
         RegisterAddress::new(self.0 + 0x14)
     }
+    #[inline]
     pub fn PS_COMMON_CFG(&self) -> RegisterAddress<ps_common::PS_COMMON_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn PS_DBG_CTRL(&self) -> RegisterAddress<ps_common::PS_DBG_CTRL> {
         RegisterAddress::new(self.0 + 0x110)
     }
+    #[inline]
     pub fn SFLOW_CFG(&self) -> RegisterAddress<ps_common::SFLOW_CFG> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    #[inline]
     pub fn SFLOW_RESET_CTRL(&self) -> RegisterAddress<ps_common::SFLOW_RESET_CTRL> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    #[inline]
     pub fn STACK_A_CFG(&self) -> RegisterAddress<ps_common::STACK_A_CFG> {
         RegisterAddress::new(self.0 + 0x20)
     }
+    #[inline]
     pub fn STACK_A_CFG1(&self) -> RegisterAddress<ps_common::STACK_A_CFG1> {
         RegisterAddress::new(self.0 + 0x24)
     }
+    #[inline]
     pub fn STACK_CFG(&self) -> RegisterAddress<ps_common::STACK_CFG> {
         RegisterAddress::new(self.0 + 0x18)
     }
+    #[inline]
     pub fn STACK_CFG1(&self) -> RegisterAddress<ps_common::STACK_CFG1> {
         RegisterAddress::new(self.0 + 0x1c)
     }
+    #[inline]
     pub fn VSTAX_CTRL(&self, index: u32) -> RegisterAddress<ps_common::VSTAX_CTRL> {
         assert!(index < 53);
         RegisterAddress::new(self.0 + 0x30 + index * 0x4)
     }
+    #[inline]
     pub fn VSTAX_GMIRROR_CFG(&self) -> RegisterAddress<ps_common::VSTAX_GMIRROR_CFG> {
         RegisterAddress::new(self.0 + 0x104)
     }
+    #[inline]
     pub fn VSTAX_GMIRROR_CFG1(&self) -> RegisterAddress<ps_common::VSTAX_GMIRROR_CFG1> {
         RegisterAddress::new(self.0 + 0x108)
     }
@@ -180,6 +208,7 @@ impl PS_COMMON {
 /// Diagnostic information
 pub struct PS_STICKY(pub(super) u32);
 impl PS_STICKY {
+    #[inline]
     pub fn STICKY(&self) -> RegisterAddress<ps_sticky::STICKY> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -188,6 +217,7 @@ impl PS_STICKY {
 /// Counter configuration for diagnostic information
 pub struct PS_STICKY_MASK(pub(super) u32);
 impl PS_STICKY_MASK {
+    #[inline]
     pub fn STICKY_MASK(&self) -> RegisterAddress<ps_sticky_mask::STICKY_MASK> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -196,6 +226,7 @@ impl PS_STICKY_MASK {
 /// Access core memory
 pub struct RAM_CTRL(pub(super) u32);
 impl RAM_CTRL {
+    #[inline]
     pub fn RAM_INIT(&self) -> RegisterAddress<ram_ctrl::RAM_INIT> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -204,9 +235,11 @@ impl RAM_CTRL {
 /// sFlow sampler configuration & status per port
 pub struct SFLOW(pub(super) u32);
 impl SFLOW {
+    #[inline]
     pub fn SFLOW_CNT(&self) -> RegisterAddress<sflow::SFLOW_CNT> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn SFLOW_CTRL(&self) -> RegisterAddress<sflow::SFLOW_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -215,9 +248,11 @@ impl SFLOW {
 /// Source port masks
 pub struct SRC(pub(super) u32);
 impl SRC {
+    #[inline]
     pub fn SRC_CFG(&self) -> RegisterAddress<src::SRC_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn SRC_CFG1(&self) -> RegisterAddress<src::SRC_CFG1> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -226,10 +261,12 @@ impl SRC {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_ACL(pub(super) u32);
 impl STAT_CNT_CFG_ACL {
+    #[inline]
     pub fn STAT_LSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_acl::STAT_LSB_CNT> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_MSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_acl::STAT_MSB_CNT> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
@@ -239,10 +276,12 @@ impl STAT_CNT_CFG_ACL {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_BDLB(pub(super) u32);
 impl STAT_CNT_CFG_BDLB {
+    #[inline]
     pub fn STAT_LSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_bdlb::STAT_LSB_CNT> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_MSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_bdlb::STAT_MSB_CNT> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
@@ -252,10 +291,12 @@ impl STAT_CNT_CFG_BDLB {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_BUM(pub(super) u32);
 impl STAT_CNT_CFG_BUM {
+    #[inline]
     pub fn STAT_LSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_bum::STAT_LSB_CNT> {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_MSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_bum::STAT_MSB_CNT> {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x18 + index * 0x4)
@@ -265,10 +306,12 @@ impl STAT_CNT_CFG_BUM {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_ERLEG(pub(super) u32);
 impl STAT_CNT_CFG_ERLEG {
+    #[inline]
     pub fn STAT_LSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_erleg::STAT_LSB_CNT> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_MSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_erleg::STAT_MSB_CNT> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
@@ -278,10 +321,12 @@ impl STAT_CNT_CFG_ERLEG {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_IRLEG(pub(super) u32);
 impl STAT_CNT_CFG_IRLEG {
+    #[inline]
     pub fn STAT_LSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_irleg::STAT_LSB_CNT> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_MSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_irleg::STAT_MSB_CNT> {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
@@ -291,10 +336,12 @@ impl STAT_CNT_CFG_IRLEG {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_ISDX(pub(super) u32);
 impl STAT_CNT_CFG_ISDX {
+    #[inline]
     pub fn STAT_LSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_isdx::STAT_LSB_CNT> {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_MSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_isdx::STAT_MSB_CNT> {
         assert!(index < 3);
         RegisterAddress::new(self.0 + 0x18 + index * 0x4)
@@ -304,17 +351,21 @@ impl STAT_CNT_CFG_ISDX {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_PORT(pub(super) u32);
 impl STAT_CNT_CFG_PORT {
+    #[inline]
     pub fn STAT_CFG(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_port::STAT_CFG> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x4 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_EVENTS_STICKY(&self) -> RegisterAddress<stat_cnt_cfg_port::STAT_EVENTS_STICKY> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn STAT_LSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_port::STAT_LSB_CNT> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x14 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_MSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_port::STAT_MSB_CNT> {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x24 + index * 0x4)
@@ -324,10 +375,12 @@ impl STAT_CNT_CFG_PORT {
 /// Individual configuration.
 pub struct STAT_CNT_CFG_QUEUE(pub(super) u32);
 impl STAT_CNT_CFG_QUEUE {
+    #[inline]
     pub fn STAT_LSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_queue::STAT_LSB_CNT> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_MSB_CNT(&self, index: u32) -> RegisterAddress<stat_cnt_cfg_queue::STAT_MSB_CNT> {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
@@ -337,6 +390,7 @@ impl STAT_CNT_CFG_QUEUE {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_ACL(pub(super) u32);
 impl STAT_GLOBAL_CFG_ACL {
+    #[inline]
     pub fn GLOBAL_CNT_FRM_TYPE_CFG(
         &self,
         index: u32,
@@ -344,6 +398,7 @@ impl STAT_GLOBAL_CFG_ACL {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_CFG(
         &self,
         index: u32,
@@ -351,6 +406,7 @@ impl STAT_GLOBAL_CFG_ACL {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_EVENT_MASK(
         &self,
         index: u32,
@@ -363,6 +419,7 @@ impl STAT_GLOBAL_CFG_ACL {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_BDLB(pub(super) u32);
 impl STAT_GLOBAL_CFG_BDLB {
+    #[inline]
     pub fn GLOBAL_CNT_FRM_TYPE_CFG(
         &self,
         index: u32,
@@ -370,6 +427,7 @@ impl STAT_GLOBAL_CFG_BDLB {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_CFG(
         &self,
         index: u32,
@@ -377,6 +435,7 @@ impl STAT_GLOBAL_CFG_BDLB {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_EVENT_MASK(
         &self,
         index: u32,
@@ -389,6 +448,7 @@ impl STAT_GLOBAL_CFG_BDLB {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_BUM(pub(super) u32);
 impl STAT_GLOBAL_CFG_BUM {
+    #[inline]
     pub fn GLOBAL_CNT_FRM_TYPE_CFG(
         &self,
         index: u32,
@@ -396,6 +456,7 @@ impl STAT_GLOBAL_CFG_BUM {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_CFG(
         &self,
         index: u32,
@@ -403,6 +464,7 @@ impl STAT_GLOBAL_CFG_BUM {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x18 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_EVENT_MASK(
         &self,
         index: u32,
@@ -415,6 +477,7 @@ impl STAT_GLOBAL_CFG_BUM {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_ERLEG(pub(super) u32);
 impl STAT_GLOBAL_CFG_ERLEG {
+    #[inline]
     pub fn GLOBAL_CNT_FRM_TYPE_CFG(
         &self,
         index: u32,
@@ -422,6 +485,7 @@ impl STAT_GLOBAL_CFG_ERLEG {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_CFG(
         &self,
         index: u32,
@@ -429,6 +493,7 @@ impl STAT_GLOBAL_CFG_ERLEG {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_EVENT_MASK(
         &self,
         index: u32,
@@ -441,6 +506,7 @@ impl STAT_GLOBAL_CFG_ERLEG {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_IRLEG(pub(super) u32);
 impl STAT_GLOBAL_CFG_IRLEG {
+    #[inline]
     pub fn GLOBAL_CNT_FRM_TYPE_CFG(
         &self,
         index: u32,
@@ -448,6 +514,7 @@ impl STAT_GLOBAL_CFG_IRLEG {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_CFG(
         &self,
         index: u32,
@@ -455,6 +522,7 @@ impl STAT_GLOBAL_CFG_IRLEG {
         assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_EVENT_MASK(
         &self,
         index: u32,
@@ -467,6 +535,7 @@ impl STAT_GLOBAL_CFG_IRLEG {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_ISDX(pub(super) u32);
 impl STAT_GLOBAL_CFG_ISDX {
+    #[inline]
     pub fn GLOBAL_CNT_FRM_TYPE_CFG(
         &self,
         index: u32,
@@ -474,6 +543,7 @@ impl STAT_GLOBAL_CFG_ISDX {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_CFG(
         &self,
         index: u32,
@@ -481,6 +551,7 @@ impl STAT_GLOBAL_CFG_ISDX {
         assert!(index < 6);
         RegisterAddress::new(self.0 + 0x18 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_EVENT_MASK(
         &self,
         index: u32,
@@ -493,6 +564,7 @@ impl STAT_GLOBAL_CFG_ISDX {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_PORT(pub(super) u32);
 impl STAT_GLOBAL_CFG_PORT {
+    #[inline]
     pub fn STAT_GLOBAL_EVENT_MASK(
         &self,
         index: u32,
@@ -500,6 +572,7 @@ impl STAT_GLOBAL_CFG_PORT {
         assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_RESET(&self) -> RegisterAddress<stat_global_cfg_port::STAT_RESET> {
         RegisterAddress::new(self.0 + 0x10)
     }
@@ -508,6 +581,7 @@ impl STAT_GLOBAL_CFG_PORT {
 /// Common counter configuration.
 pub struct STAT_GLOBAL_CFG_QUEUE(pub(super) u32);
 impl STAT_GLOBAL_CFG_QUEUE {
+    #[inline]
     pub fn GLOBAL_CNT_FRM_TYPE_CFG(
         &self,
         index: u32,
@@ -515,6 +589,7 @@ impl STAT_GLOBAL_CFG_QUEUE {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_CFG(
         &self,
         index: u32,
@@ -522,6 +597,7 @@ impl STAT_GLOBAL_CFG_QUEUE {
         assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + index * 0x4)
     }
+    #[inline]
     pub fn STAT_GLOBAL_EVENT_MASK(
         &self,
         index: u32,
@@ -534,12 +610,15 @@ impl STAT_GLOBAL_CFG_QUEUE {
 /// UPSID table (one entry per UPS)
 pub struct UPSID(pub(super) u32);
 impl UPSID {
+    #[inline]
     pub fn STACK_LINK_EQUAL_COST_CFG(&self) -> RegisterAddress<upsid::STACK_LINK_EQUAL_COST_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn UPSID_CFG(&self) -> RegisterAddress<upsid::UPSID_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn UPSID_CFG1(&self) -> RegisterAddress<upsid::UPSID_CFG1> {
         RegisterAddress::new(self.0 + 0x8)
     }

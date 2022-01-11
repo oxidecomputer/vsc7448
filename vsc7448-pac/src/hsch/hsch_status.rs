@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct CIR_STATE(u32);
 impl CIR_STATE {
     /// Current fill level. Unit is 1 bit.
+    #[inline]
     pub fn cir_lvl(&self) -> u32 {
         self.0 & 0xffffff
     }
+    #[inline]
     pub fn set_cir_lvl(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
@@ -46,9 +48,11 @@ impl CIR_STATE {
 pub struct EIR_STATE(u32);
 impl EIR_STATE {
     /// Current fill level. Unit is 1 bit.
+    #[inline]
     pub fn eir_lvl(&self) -> u32 {
         self.0 & 0xffffff
     }
+    #[inline]
     pub fn set_eir_lvl(&mut self, value: u32) {
         assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
@@ -60,9 +64,11 @@ impl EIR_STATE {
 pub struct SE_STATE(u32);
 impl SE_STATE {
     /// The queue selector must be updated about the state of this element
+    #[inline]
     pub fn force_upd(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_force_upd(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

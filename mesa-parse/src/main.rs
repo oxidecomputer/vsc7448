@@ -203,6 +203,7 @@ impl Vsc7448 {{"
             1 => write!(
                 &mut file,
                 "
+    #[inline]
     pub fn {0}() -> {0} {{
         {0}(0x{1:x})
     }}",
@@ -218,6 +219,7 @@ impl Vsc7448 {{"
                 write!(
                     &mut file,
                     "
+    #[inline]
     pub fn {0}(index: u32) -> {0} {{
         assert!(index < {2});
         {0}(0x{1:x} + index * 0x{3:x})
@@ -282,6 +284,7 @@ impl {0} {{",
                 write!(
                     &mut file,
                     "
+    #[inline]
     pub fn {1}(&self, index: u32) -> {0}::{1} {{
         assert!(index < {3});
         {0}::{1}(self.0 + 0x{2:x} + index * 0x{4:x})
@@ -296,6 +299,7 @@ impl {0} {{",
                 write!(
                     &mut file,
                     "
+    #[inline]
     pub fn {1}(&self) -> {0}::{1} {{
         {0}::{1}(self.0 + 0x{2:x})
     }}",
@@ -319,6 +323,7 @@ impl {0} {{",
                     write!(
                         &mut tfile,
                         "
+    #[inline]
     pub fn {0}(&self, index: u32) -> RegisterAddress<{1}::{0}> {{
         assert!(index < {4});
         RegisterAddress::new(self.0 + 0x{2:x} + index * 0x{3:x})
@@ -333,6 +338,7 @@ impl {0} {{",
                     write!(
                         &mut tfile,
                         "
+    #[inline]
     pub fn {0}(&self) -> RegisterAddress<{1}::{0}> {{
         RegisterAddress::new(self.0 + 0x{2:x})
     }}",
@@ -411,6 +417,7 @@ impl {pname} {{",
             write!(
                 &mut file,
                 "
+    #[inline]
     pub fn {0}() -> PhyRegisterAddress<{1}::{0}> {{
         PhyRegisterAddress::new({2}, {3})
     }}",
@@ -466,6 +473,14 @@ pub struct {}({}{});",
         write!(gfile, "\nimpl {0} {{", rname)?;
     }
     for (fname, field) in reg.fields.iter() {
+        if inttype == "u16" && (field.lo >= 16 || field.hi > 16) {
+            eprintln!(
+                "Invalid field for PHY {}:{}: {:?}; skipping",
+                rname, fname, field
+            );
+            continue;
+        }
+
         writeln!(gfile)?;
         if let Some(brief) = &field.brief {
             writeln!(gfile, "    /// {}", brief.replace("\n", "\n    /// "))?;
@@ -492,9 +507,11 @@ pub struct {}({}{});",
         match (shift, mask) {
             (0, 0xFFFFFFFF) => write!(
                 gfile,
-                "    pub fn {get}{field}(&self) -> {t} {{
+                "    #[inline]
+    pub fn {get}{field}(&self) -> {t} {{
         self.0
     }}
+    #[inline]
     pub fn set_{field}(&mut self, value: {t}) {{
         self.0 = value;
     }}",
@@ -504,9 +521,11 @@ pub struct {}({}{});",
             )?,
             (0, _) => write!(
                 gfile,
-                "    pub fn {get}{field}(&self) -> {t} {{
+                "    #[inline]
+    pub fn {get}{field}(&self) -> {t} {{
         self.0 & 0x{mask:x}
     }}
+    #[inline]
     pub fn set_{field}(&mut self, value: {t}) {{
         assert!(value <= 0x{mask:x});
         self.0 &= !0x{mask:x};
@@ -520,9 +539,11 @@ pub struct {}({}{});",
             (_, 0xFFFFFFFF) => panic!("Cannot have a full mask and non-zero shift"),
             _ => write!(
                 gfile,
-                "    pub fn {get}{field}(&self) -> {t} {{
+                "    #[inline]
+    pub fn {get}{field}(&self) -> {t} {{
         (self.0 & 0x{mask:x}) >> {shift}
     }}
+    #[inline]
     pub fn set_{field}(&mut self, value: {t}) {{
         assert!(value <= 0x{max:x});
         let value = value << {shift};

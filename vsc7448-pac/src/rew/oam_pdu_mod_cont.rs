@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct CCM_LM_INFO_REG(u32);
 impl CCM_LM_INFO_REG {
     /// Indicates whether this entry in the RAM contains valid CCM-LM sample values.
+    #[inline]
     pub fn ccm_lm_info_vld(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_ccm_lm_info_vld(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -42,9 +44,11 @@ impl CCM_LM_INFO_REG {
         self.0 |= value;
     }
     /// The number of the VOE for which the LM information was received.
+    #[inline]
     pub fn ccm_lm_voe_idx(&self) -> u32 {
         self.0 & 0x7ff
     }
+    #[inline]
     pub fn set_ccm_lm_voe_idx(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
@@ -58,9 +62,11 @@ impl CCM_LM_INFO_REG {
 pub struct CCM_LM_RX_B_REG(u32);
 impl CCM_LM_RX_B_REG {
     /// Contains the sampled value of CCM_LM.rx_fc_b from the last valid CCM_LM frame.
+    #[inline]
     pub fn ccm_lm_rx_b(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_ccm_lm_rx_b(&mut self, value: u32) {
         self.0 = value;
     }
@@ -72,9 +78,11 @@ impl CCM_LM_RX_B_REG {
 pub struct CCM_LM_TX_B_REG(u32);
 impl CCM_LM_TX_B_REG {
     /// Contains the sampled value of CCM_LM.tx_fc_b from the last valid CCM_LM frame.
+    #[inline]
     pub fn ccm_lm_tx_b(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_ccm_lm_tx_b(&mut self, value: u32) {
         self.0 = value;
     }
@@ -84,18 +92,22 @@ impl CCM_LM_TX_B_REG {
 pub struct LM_CNT_FRAME(u32);
 impl LM_CNT_FRAME {
     /// Determines if the current frame should be counted by the Path LM counter, based on the color / mapping and possibly being killed in the ingress DLB.
+    #[inline]
     pub fn path_cnt_frm(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_path_cnt_frm(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Determines if the current frame should be counted by the Service LM counter, based on the color / mapping and possibly being killed in the ingress DLB.
+    #[inline]
     pub fn srv_cnt_frm(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_srv_cnt_frm(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -107,9 +119,11 @@ impl LM_CNT_FRAME {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct TEMP_CNT_REG(u32);
 impl TEMP_CNT_REG {
+    #[inline]
     pub fn temp_cnt_val(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_temp_cnt_val(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

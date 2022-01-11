@@ -34,9 +34,11 @@ impl RX_ALIGNMENT_LOST_CNT {
     /// The number of frames received with Alignment (dribble-nibble) error.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_alignment_lost_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_alignment_lost_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -48,9 +50,11 @@ impl RX_BAD_BYTES_CNT {
     /// The number of received bytes in bad frames.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_bad_bytes_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_bad_bytes_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -64,9 +68,11 @@ impl RX_BAD_BYTES_MSB_CNT {
     /// Upper 4 bits of RX_BAD_BYTES_CNT.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_bad_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_rx_bad_bytes_msb_cnt(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -80,9 +86,11 @@ impl RX_BC_CNT {
     /// The number of good broadcast frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_bc_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_bc_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -94,9 +102,11 @@ impl RX_CRC_ERR_CNT {
     /// The number of frames received with CRC error only.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_crc_err_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_crc_err_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -108,9 +118,11 @@ impl RX_FRAGMENTS_CNT {
     /// The number of undersize frames with CRC error received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_fragments_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_fragments_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -122,9 +134,11 @@ impl RX_IN_BYTES_CNT {
     /// The number of bytes received (good, bad, and framing).
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_in_bytes_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_in_bytes_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -138,9 +152,11 @@ impl RX_IN_BYTES_MSB_CNT {
     /// Upper 4 bits of RX_IN_BYTES_CNT.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_in_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_rx_in_bytes_msb_cnt(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -154,9 +170,11 @@ impl RX_IN_RANGE_LEN_ERR_CNT {
     /// The number of frames with legal length field that doesn't match length of MAC client data.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_in_range_len_err_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_in_range_len_err_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -168,9 +186,11 @@ impl RX_IPG_SHRINK_CNT {
     /// Number of inter packet gap shrinks detected (IPG < 12 bytes).
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_ipg_shrink_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_ipg_shrink_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -182,9 +202,11 @@ impl RX_JABBERS_CNT {
     /// The number of oversize frames with CRC error received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_jabbers_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_jabbers_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -196,9 +218,11 @@ impl RX_MC_CNT {
     /// The number of good multicast frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_mc_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_mc_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -210,9 +234,11 @@ impl RX_OK_BYTES_CNT {
     /// The number of received bytes in good frames.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_ok_bytes_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_ok_bytes_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -226,9 +252,11 @@ impl RX_OK_BYTES_MSB_CNT {
     /// Upper 4 bits of RX_OK_BYTES_CNT.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_ok_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_rx_ok_bytes_msb_cnt(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -242,9 +270,11 @@ impl RX_OUT_OF_RANGE_LEN_ERR_CNT {
     /// The number of frames with illegal length field (frames using type field are not counted here).
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_out_of_range_len_err_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_out_of_range_len_err_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -256,9 +286,11 @@ impl RX_OVERSIZE_CNT {
     /// The number of oversize well-formed frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_oversize_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_oversize_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -270,9 +302,11 @@ impl RX_PAUSE_CNT {
     /// Number of pause control frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_pause_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_pause_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -284,9 +318,11 @@ impl RX_SIZE1024TO1518_CNT {
     /// The number of 1024 to 1518 bytes frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_size1024to1518_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_size1024to1518_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -298,9 +334,11 @@ impl RX_SIZE128TO255_CNT {
     /// The number of 128 to 255 bytes frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_size128to255_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_size128to255_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -312,9 +350,11 @@ impl RX_SIZE1519TOMAX_CNT {
     /// The number of frames received longer than 1518 bytes and not longer than Maximum Length Register (Maximum Length Register + 4 if the frame is VLAN tagged).
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_size1519tomax_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_size1519tomax_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -326,9 +366,11 @@ impl RX_SIZE256TO511_CNT {
     /// The number of 256 to 511 bytes frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_size256to511_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_size256to511_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -340,9 +382,11 @@ impl RX_SIZE512TO1023_CNT {
     /// The number of 512 to 1023 bytes frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_size512to1023_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_size512to1023_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -354,9 +398,11 @@ impl RX_SIZE64_CNT {
     /// The number of 64 bytes frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_size64_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_size64_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -368,9 +414,11 @@ impl RX_SIZE65TO127_CNT {
     /// The number of 65 to 127 bytes frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_size65to127_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_size65to127_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -382,9 +430,11 @@ impl RX_SYMBOL_ERR_CNT {
     /// The number of frames received with one or more symbol errors.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_symbol_err_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_symbol_err_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -396,9 +446,11 @@ impl RX_SYNC_LOST_ERR_CNT {
     /// Counter to track the PCS's Sync-lost error
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_sync_lost_err_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_sync_lost_err_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -410,9 +462,11 @@ impl RX_TAGGED_FRMS_CNT {
     /// The number of frames received with C-Tag or S-Tag information
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_tagged_frms_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_tagged_frms_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -424,9 +478,11 @@ impl RX_UC_CNT {
     /// The number of good unicast frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_uc_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_uc_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -438,9 +494,11 @@ impl RX_UNDERSIZE_CNT {
     /// The number of undersize well-formed frames received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_undersize_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_undersize_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -452,9 +510,11 @@ impl RX_UNSUP_OPCODE_CNT {
     /// Number of control frames with unsupported opcode received.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_unsup_opcode_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_unsup_opcode_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -466,9 +526,11 @@ impl RX_UNTAGGED_FRMS_CNT {
     /// The number of frames received without C-Tag and S-Tag information.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn rx_untagged_frms_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_untagged_frms_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -482,9 +544,11 @@ impl TX_BACKOFF1_CNT {
     /// Number of frames sent successfully after 1 backoff/collision.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_backoff1_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_backoff1_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -496,9 +560,11 @@ impl TX_BC_CNT {
     /// The number of broadcast frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_bc_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_bc_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -512,9 +578,11 @@ impl TX_CSENSE_CNT {
     /// The number of times CarrierSenseError is true at the end of a frame transmission.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_csense_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_csense_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -528,9 +596,11 @@ impl TX_DEFER_CNT {
     /// The number of frames being deferred on first transmission attempt. Note: This counter always counts when a defer event is present, even when it is an excessive defer (TX_XDEFER_CNT).
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_defer_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_defer_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -544,9 +614,11 @@ impl TX_LATE_COLL_CNT {
     /// The number of late collisions detected.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_late_coll_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_late_coll_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -558,9 +630,11 @@ impl TX_MC_CNT {
     /// The number of multicast frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_mc_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_mc_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -574,9 +648,11 @@ impl TX_MULTI_COLL_CNT {
     /// The number of frames transmitted without errors after multiple collisions.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_multi_coll_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_multi_coll_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -588,9 +664,11 @@ impl TX_OK_BYTES_CNT {
     /// The number of bytes transmitted successfully.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_ok_bytes_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_ok_bytes_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -604,9 +682,11 @@ impl TX_OK_BYTES_MSB_CNT {
     /// Upper 4 bits of TX_OK_BYTES_CNT.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_ok_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_tx_ok_bytes_msb_cnt(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -620,9 +700,11 @@ impl TX_OUT_BYTES_CNT {
     /// The number of bytes transmitted (good, bad and framing).
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_out_bytes_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_out_bytes_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -636,9 +718,11 @@ impl TX_OUT_BYTES_MSB_CNT {
     /// Upper 4 bits of TX_OUT_BYTES_CNT.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_out_bytes_msb_cnt(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_tx_out_bytes_msb_cnt(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -652,9 +736,11 @@ impl TX_PAUSE_CNT {
     /// The number of pause control frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_pause_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_pause_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -666,9 +752,11 @@ impl TX_SIZE1024TO1518_CNT {
     /// The number of 1024 to 1518 bytes frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_size1024to1518_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_size1024to1518_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -680,9 +768,11 @@ impl TX_SIZE128TO255_CNT {
     /// The number of 128 to 255 bytes frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_size128to255_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_size128to255_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -694,9 +784,11 @@ impl TX_SIZE1519TOMAX_CNT {
     /// The number of frames transmitted longer than 1518 bytes and not longer than Maximum Length Register (Maximum Length Register + 4 if the frame is VLAN tagged).
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_size1519tomax_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_size1519tomax_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -708,9 +800,11 @@ impl TX_SIZE256TO511_CNT {
     /// The number of 256 to 511 bytes frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_size256to511_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_size256to511_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -722,9 +816,11 @@ impl TX_SIZE512TO1023_CNT {
     /// The number of 512 to 1023 bytes frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_size512to1023_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_size512to1023_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -736,9 +832,11 @@ impl TX_SIZE64_CNT {
     /// The number of 64 bytes frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_size64_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_size64_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -750,9 +848,11 @@ impl TX_SIZE65TO127_CNT {
     /// The number of 65 to 127 bytes frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_size65to127_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_size65to127_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -762,9 +862,11 @@ impl TX_SIZE65TO127_CNT {
 pub struct TX_TAGGED_FRMS_CNT(u32);
 impl TX_TAGGED_FRMS_CNT {
     /// The number of frames transmitted with C-Tag or S-Tag information
+    #[inline]
     pub fn tx_tagged_frms_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_tagged_frms_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -776,9 +878,11 @@ impl TX_UC_CNT {
     /// The number of unicast frames transmitted.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_uc_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_uc_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -788,9 +892,11 @@ impl TX_UC_CNT {
 pub struct TX_UNTAGGED_FRMS_CNT(u32);
 impl TX_UNTAGGED_FRMS_CNT {
     /// The number of frames transmitted without C-Tag and S-Tag information.
+    #[inline]
     pub fn tx_untagged_frms_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_untagged_frms_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -804,9 +910,11 @@ impl TX_XCOLL_CNT {
     /// The number of frames lost due to excessive collisions.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_xcoll_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_xcoll_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -820,9 +928,11 @@ impl TX_XDEFER_CNT {
     /// The number of frames sent with excessive deferral.
     ///
     /// Counter can be written by SW.
+    #[inline]
     pub fn tx_xdefer_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_xdefer_cnt(&mut self, value: u32) {
         self.0 = value;
     }

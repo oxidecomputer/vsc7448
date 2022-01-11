@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct VCAP_CORE_IDX(u32);
 impl VCAP_CORE_IDX {
     /// Set to index of specific core to access the mapping of that core via VCAP_SUPER::VCAP_CORE_MAP.
+    #[inline]
     pub fn core_idx(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_core_idx(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
@@ -48,9 +50,11 @@ impl VCAP_CORE_MAP {
     /// Configure ownership of core n (defined by VCAP_SUPER::VCAP_CORE_IDX). When a core is mapped to a specific VCAP; lookups for that VCAP will be applied to the core. VCAP priority is still observed, a match in two cores will only cause the most significant rule to be "hit" (highest address.) After reset all cores are in power-save mode.
     ///
     /// Applies only to the Super VCAP.
+    #[inline]
     pub fn core_map(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_core_map(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;

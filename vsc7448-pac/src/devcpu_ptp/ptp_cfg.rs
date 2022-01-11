@@ -36,9 +36,11 @@ impl CLK_ADJ_CFG {
     /// Clock frequency adjustment direction.
     ///
     /// 0: Positive adjustment. Every adjustment adds 1ns to the counter. => clock period is decreased, clock frequency is increased 1: Negative adjustment. Every adjustment subtracts 1ns from the counter. => clock period is increased, clock frequency is decreased
+    #[inline]
     pub fn clk_adj_dir(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_clk_adj_dir(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -48,9 +50,11 @@ impl CLK_ADJ_CFG {
     /// Clock frequency adjust enable.
     ///
     /// 0: Adjustment Disabled 1: Adjustment Enabled
+    #[inline]
     pub fn clk_adj_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_clk_adj_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -66,9 +70,11 @@ impl CLK_ADJ_FRQ {
     /// Clock frequency adjust./
     ///
     /// N: Number of unadjusted CLK_ADJ_UNIT after which the counter for the clock must be adjusted.
+    #[inline]
     pub fn clk_adj(&self) -> u32 {
         self.0 & 0x3fffffff
     }
+    #[inline]
     pub fn set_clk_adj(&mut self, value: u32) {
         assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
@@ -77,9 +83,11 @@ impl CLK_ADJ_FRQ {
     /// Clock frequency adjust unit./
     ///
     /// 0: Adjustment made every CLK_ADJ picoseconds. 1: Adjustment made every CLK_ADJ nanoseconds.
+    #[inline]
     pub fn clk_adj_unit(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
+    #[inline]
     pub fn set_clk_adj_unit(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -92,9 +100,11 @@ impl CLK_ADJ_FRQ {
 pub struct PTP_INTR_IDENT(u32);
 impl PTP_INTR_IDENT {
     /// Bit n will be high if an interrupt is currently pending for pin <n>.
+    #[inline]
     pub fn intr_ptp_ident(&self) -> u32 {
         self.0 & 0x1f
     }
+    #[inline]
     pub fn set_intr_ptp_ident(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
@@ -108,9 +118,11 @@ impl PTP_MISC_CFG {
     /// Enable master counter.
     ///
     /// 0: Master counter disabled and reset 1: Master counter enabled
+    #[inline]
     pub fn ptp_ena(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
+    #[inline]
     pub fn set_ptp_ena(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -120,9 +132,11 @@ impl PTP_MISC_CFG {
     /// Hold master counter.
     ///
     /// 0: Master counter counts if enabled 1: Master counter will stay at the reached value
+    #[inline]
     pub fn ptp_hold(&self) -> u32 {
         (self.0 & 0x38) >> 3
     }
+    #[inline]
     pub fn set_ptp_hold(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 3;
@@ -130,9 +144,11 @@ impl PTP_MISC_CFG {
         self.0 |= value;
     }
     /// The PTP_CUR timers will be frozen when this field is set for a domain, in order to return concurrent values.
+    #[inline]
     pub fn ptp_tod_freeze(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_ptp_tod_freeze(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -144,9 +160,11 @@ impl PTP_MISC_CFG {
 pub struct PTP_PIN_INTR(u32);
 impl PTP_PIN_INTR {
     /// One bit per pin set when an active edge is seen.
+    #[inline]
     pub fn intr_ptp(&self) -> u32 {
         self.0 & 0x1f
     }
+    #[inline]
     pub fn set_intr_ptp(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
@@ -158,9 +176,11 @@ impl PTP_PIN_INTR {
 pub struct PTP_PIN_INTR_ENA(u32);
 impl PTP_PIN_INTR_ENA {
     /// Enable interrupt per ptp pin.
+    #[inline]
     pub fn intr_ptp_ena(&self) -> u32 {
         self.0 & 0x1f
     }
+    #[inline]
     pub fn set_intr_ptp_ena(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
@@ -172,9 +192,11 @@ impl PTP_PIN_INTR_ENA {
 pub struct PTP_SYS_CLK_CFG(u32);
 impl PTP_SYS_CLK_CFG {
     /// Must be configured to running system clock period, rounded down to closest interger nanoseconds value.
+    #[inline]
     pub fn ptp_sys_clk_per_ns(&self) -> u32 {
         (self.0 & 0x1f0) >> 4
     }
+    #[inline]
     pub fn set_ptp_sys_clk_per_ns(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 4;
@@ -182,9 +204,11 @@ impl PTP_SYS_CLK_CFG {
         self.0 |= value;
     }
     /// Must be configured to number of 100ps to add on top of the PTP_SYS_CLK_PER_NS value to get to the correct clock period.
+    #[inline]
     pub fn ptp_sys_clk_per_ps100(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_ptp_sys_clk_per_ps100(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;

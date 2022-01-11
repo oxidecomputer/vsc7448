@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_STEP(u32);
 impl TR_STEP {
     /// Step to next lptrain state (if at breakpoint) (SC)
+    #[inline]
     pub fn step(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_step(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

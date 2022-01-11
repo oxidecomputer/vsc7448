@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct RLEG_STICKY_MASK(u32);
 impl RLEG_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn rleg_mc_hdr_err_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_rleg_mc_hdr_err_redir_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -44,9 +46,11 @@ impl RLEG_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn rleg_mc_hit_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_rleg_mc_hit_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -54,9 +58,11 @@ impl RLEG_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn rleg_mc_ip_opt_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_rleg_mc_ip_opt_redir_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -64,9 +70,11 @@ impl RLEG_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn rleg_mc_ttl_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_rleg_mc_ttl_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -74,18 +82,22 @@ impl RLEG_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn rleg_nonip_uc_redir_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_rleg_nonip_uc_redir_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn rleg_uc_hdr_err_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rleg_uc_hdr_err_redir_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -93,9 +105,11 @@ impl RLEG_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn rleg_uc_hit_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_rleg_uc_hit_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -103,9 +117,11 @@ impl RLEG_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn rleg_uc_ip_opt_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_rleg_uc_ip_opt_redir_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -120,9 +136,11 @@ impl RLEG_STICKY_MASK {
 pub struct ROUT_STICKY_MASK(u32);
 impl ROUT_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn entry_not_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_entry_not_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -130,9 +148,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn ip4_sip_rpf_filter_sticky_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_ip4_sip_rpf_filter_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -140,9 +160,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn ip6_sip_rpf_filter_sticky_mask(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_ip6_sip_rpf_filter_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -150,9 +172,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn ip_max_len_exceeded_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ip_max_len_exceeded_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -160,9 +184,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn l2_mc_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_l2_mc_fwd_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -170,9 +196,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn l3_mc_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_l3_mc_fwd_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -180,18 +208,22 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn lpm_ip4mc_found_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_lpm_ip4mc_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn lpm_ip4uc_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_lpm_ip4uc_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -199,9 +231,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn lpm_ip6mc_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_lpm_ip6mc_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -209,9 +243,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn lpm_ip6uc_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_lpm_ip6uc_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -219,9 +255,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn mc_looped_cp_sticky_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_mc_looped_cp_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -229,9 +267,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn mc_rpf_filter_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_mc_rpf_filter_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -239,9 +279,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn no_mc_fwd_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_no_mc_fwd_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -249,9 +291,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn no_mc_vmid_avail_sticky_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_no_mc_vmid_avail_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -259,9 +303,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn uc_entry_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_uc_entry_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -269,9 +315,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn uc_icmp_redir_sticky_mask(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_uc_icmp_redir_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -279,9 +327,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn uc_ttl_filtering_sticky_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_uc_ttl_filtering_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -289,9 +339,11 @@ impl ROUT_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn uc_zero_dmac_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_uc_zero_dmac_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -306,18 +358,22 @@ impl ROUT_STICKY_MASK {
 pub struct SECUR_STICKY_MASK(u32);
 impl SECUR_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn secur_dip_fail_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_secur_dip_fail_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn secur_ip4_dip_match_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_secur_ip4_dip_match_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -325,9 +381,11 @@ impl SECUR_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn secur_ip4_lpm_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_secur_ip4_lpm_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -335,9 +393,11 @@ impl SECUR_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn secur_ip4_sip_match_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_secur_ip4_sip_match_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -345,9 +405,11 @@ impl SECUR_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn secur_ip6_dip_match_sticky_mask(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_secur_ip6_dip_match_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -355,9 +417,11 @@ impl SECUR_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn secur_ip6_lpm_found_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_secur_ip6_lpm_found_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -365,9 +429,11 @@ impl SECUR_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn secur_ip6_sip_match_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_secur_ip6_sip_match_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -375,9 +441,11 @@ impl SECUR_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn secur_sip_fail_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_secur_sip_fail_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -392,9 +460,11 @@ impl SECUR_STICKY_MASK {
 pub struct VLAN_MSTP_STICKY_MASK(u32);
 impl VLAN_MSTP_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn mstp_discard_sticky_mask(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_mstp_discard_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -402,9 +472,11 @@ impl VLAN_MSTP_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn mstp_fwd_allowed_sticky_mask(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_mstp_fwd_allowed_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -412,9 +484,11 @@ impl VLAN_MSTP_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn mstp_lrn_allowed_sticky_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_mstp_lrn_allowed_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -422,9 +496,11 @@ impl VLAN_MSTP_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn mstp_lrn_deny_sticky_mask(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_mstp_lrn_deny_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -432,9 +508,11 @@ impl VLAN_MSTP_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn port_fwd_deny_sticky_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_port_fwd_deny_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -442,9 +520,11 @@ impl VLAN_MSTP_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn port_lrn_deny_sticky_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_port_lrn_deny_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -452,18 +532,22 @@ impl VLAN_MSTP_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn vlan_igr_filter_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_vlan_igr_filter_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn vlan_lookup_invld_sticky_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_vlan_lookup_invld_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -471,9 +555,11 @@ impl VLAN_MSTP_STICKY_MASK {
         self.0 |= value;
     }
     /// Enable counting of sticky event per concurrent counter.
+    #[inline]
     pub fn vlan_lrn_deny_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_vlan_lrn_deny_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;

@@ -38,12 +38,15 @@ pub mod res_wred;
 /// Watermarks and status for egress queue system
 pub struct RES_CTRL(pub(super) u32);
 impl RES_CTRL {
+    #[inline]
     pub fn RES_CFG(&self) -> RegisterAddress<res_ctrl::RES_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn RES_STAT(&self) -> RegisterAddress<res_ctrl::RES_STAT> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn RES_STAT_CUR(&self) -> RegisterAddress<res_ctrl::RES_STAT_CUR> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -52,16 +55,20 @@ impl RES_CTRL {
 /// Not documented
 pub struct RES_QOS_ADV(pub(super) u32);
 impl RES_QOS_ADV {
+    #[inline]
     pub fn PFC_CFG(&self, index: u32) -> RegisterAddress<res_qos_adv::PFC_CFG> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0xe8 + index * 0x4)
     }
+    #[inline]
     pub fn RES_DLB_OFFSET(&self) -> RegisterAddress<res_qos_adv::RES_DLB_OFFSET> {
         RegisterAddress::new(self.0 + 0x1cc)
     }
+    #[inline]
     pub fn RES_QOS_MODE(&self) -> RegisterAddress<res_qos_adv::RES_QOS_MODE> {
         RegisterAddress::new(self.0 + 0xe4)
     }
+    #[inline]
     pub fn WRED_GROUP(&self, index: u32) -> RegisterAddress<res_qos_adv::WRED_GROUP> {
         assert!(index < 57);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
@@ -71,6 +78,7 @@ impl RES_QOS_ADV {
 /// Not documented
 pub struct RES_WRED(pub(super) u32);
 impl RES_WRED {
+    #[inline]
     pub fn WRED_PROFILE(&self) -> RegisterAddress<res_wred::WRED_PROFILE> {
         RegisterAddress::new(self.0 + 0x0)
     }

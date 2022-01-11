@@ -30,63 +30,77 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct MODE_CONTROL(u16);
 impl MODE_CONTROL {
+    #[inline]
     pub fn auto_neg_ena(&self) -> u16 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_auto_neg_ena(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
+    #[inline]
     pub fn isolate(&self) -> u16 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_isolate(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
     }
+    #[inline]
     pub fn get_loop(&self) -> u16 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_loop(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
     }
+    #[inline]
     pub fn power_down(&self) -> u16 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_power_down(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
     }
+    #[inline]
     pub fn restart_auto_neg(&self) -> u16 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_restart_auto_neg(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
     }
+    #[inline]
     pub fn sw_reset(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_sw_reset(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
+    #[inline]
     pub fn unidirectional(&self) -> u16 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_unidirectional(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -103,36 +117,44 @@ pub struct IDENTIFIER_2(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct DEVICE_AUTONEG_ADVERTISEMENT(u16);
 impl DEVICE_AUTONEG_ADVERTISEMENT {
+    #[inline]
     pub fn get_100basetx_fdx(&self) -> u16 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_100basetx_fdx(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
     }
+    #[inline]
     pub fn get_100basetx_hdx(&self) -> u16 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_100basetx_hdx(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
     }
+    #[inline]
     pub fn get_10baset_fdx(&self) -> u16 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_10baset_fdx(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
     }
+    #[inline]
     pub fn get_10baset_hdx(&self) -> u16 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_10baset_hdx(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -145,18 +167,22 @@ pub struct AUTONEGOTIATION_LINK_PARTNER_ABILITY(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct REG_1000BASE_T_CONTROL(u16);
 impl REG_1000BASE_T_CONTROL {
+    #[inline]
     pub fn get_1000base_t_fdx_capability(&self) -> u16 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_1000base_t_fdx_capability(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
     }
+    #[inline]
     pub fn get_1000base_t_hdx_capability(&self) -> u16 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_1000base_t_hdx_capability(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -173,18 +199,22 @@ pub struct MMD_ADDR_OR_DATA(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct BYPASS_CONTROL(u16);
 impl BYPASS_CONTROL {
+    #[inline]
     pub fn disable_pari_swap_correction(&self) -> u16 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_disable_pari_swap_correction(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
     }
+    #[inline]
     pub fn hp_auto_mdix_at_force(&self) -> u16 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_hp_auto_mdix_at_force(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -195,9 +225,11 @@ impl BYPASS_CONTROL {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ERROR_COUNTER_1(u16);
 impl ERROR_COUNTER_1 {
+    #[inline]
     pub fn get_100_1000basetx_rx_err_cnt(&self) -> u16 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_100_1000basetx_rx_err_cnt(&mut self, value: u16) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -209,9 +241,11 @@ pub struct EXTENDED_CONTROL_AND_STATUS_20(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct ERROR_COUNTER_3(u16);
 impl ERROR_COUNTER_3 {
+    #[inline]
     pub fn cu_media_link_disconn_err_cnt(&self) -> u16 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_cu_media_link_disconn_err_cnt(&mut self, value: u16) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -221,9 +255,11 @@ impl ERROR_COUNTER_3 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EXTENDED_CONTROL_AND_STATUS(u16);
 impl EXTENDED_CONTROL_AND_STATUS {
+    #[inline]
     pub fn force_10base_t_high(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_force_10base_t_high(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -234,63 +270,77 @@ impl EXTENDED_CONTROL_AND_STATUS {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EXTENDED_PHY_CONTROL(u16);
 impl EXTENDED_PHY_CONTROL {
+    #[inline]
     pub fn ams_enabled(&self) -> u16 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_ams_enabled(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
     }
+    #[inline]
     pub fn ams_override(&self) -> u16 {
-        (self.0 & 0x3c) >> 6
+        (self.0 & 0xc0) >> 6
     }
+    #[inline]
     pub fn set_ams_override(&mut self, value: u16) {
-        assert!(value <= 0xfffffff);
+        assert!(value <= 0x3);
         let value = value << 6;
-        self.0 &= !0x3c;
+        self.0 &= !0xc0;
         self.0 |= value;
     }
+    #[inline]
     pub fn ams_preference(&self) -> u16 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_ams_preference(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
     }
+    #[inline]
     pub fn far_end_loopback_mode(&self) -> u16 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_far_end_loopback_mode(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
     }
+    #[inline]
     pub fn mac_interface_mode(&self) -> u16 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_mac_interface_mode(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
+    #[inline]
     pub fn media_operating_mode(&self) -> u16 {
-        (self.0 & 0xf8) >> 8
+        (self.0 & 0x700) >> 8
     }
+    #[inline]
     pub fn set_media_operating_mode(&mut self, value: u16) {
-        assert!(value <= 0x7ffffff);
+        assert!(value <= 0x7);
         let value = value << 8;
-        self.0 &= !0xf8;
+        self.0 &= !0x700;
         self.0 |= value;
     }
+    #[inline]
     pub fn rxclk_bug_15388(&self) -> u16 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_rxclk_bug_15388(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -301,9 +351,11 @@ impl EXTENDED_PHY_CONTROL {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct EXTENDED_PHY_CONTROL_2(u16);
 impl EXTENDED_PHY_CONTROL_2 {
+    #[inline]
     pub fn connector_loopback_mode(&self) -> u16 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_connector_loopback_mode(&mut self, value: u16) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -313,161 +365,197 @@ impl EXTENDED_PHY_CONTROL_2 {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct INTERRUPT_MASK(u16);
 impl INTERRUPT_MASK {
+    #[inline]
     pub fn ams_media_change_mask(&self) -> u16 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ams_media_change_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
     }
+    #[inline]
     pub fn auto_neg_complete_mask(&self) -> u16 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_auto_neg_complete_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
     }
+    #[inline]
     pub fn auto_neg_error_mask(&self) -> u16 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_auto_neg_error_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
     }
+    #[inline]
     pub fn extended_int_mask(&self) -> u16 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_extended_int_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
     }
+    #[inline]
     pub fn false_carrier_int_mask(&self) -> u16 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_false_carrier_int_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
     }
+    #[inline]
     pub fn fast_link_mask(&self) -> u16 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_fast_link_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
     }
+    #[inline]
     pub fn fdx_state_change_mask(&self) -> u16 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_fdx_state_change_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
     }
+    #[inline]
     pub fn inline_pow_dev_detect_mask(&self) -> u16 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_inline_pow_dev_detect_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
     }
+    #[inline]
     pub fn int_mask(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_int_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
+    #[inline]
     pub fn link_mask(&self) -> u16 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_link_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
     }
+    #[inline]
     pub fn link_speed_ds_detect_mask(&self) -> u16 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_link_speed_ds_detect_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
     }
+    #[inline]
     pub fn master_slave_res_err_mask(&self) -> u16 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_master_slave_res_err_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
     }
+    #[inline]
     pub fn rx_er_int_mask(&self) -> u16 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_rx_er_int_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
+    #[inline]
     pub fn rx_fifo_overflow_int_mask(&self) -> u16 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rx_fifo_overflow_int_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
     }
+    #[inline]
     pub fn speed_state_change_mask(&self) -> u16 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_speed_state_change_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
     }
+    #[inline]
     pub fn symbol_err_int_mask(&self) -> u16 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_symbol_err_int_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
     }
+    #[inline]
     pub fn tx_fifo_overflow_int_mask(&self) -> u16 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_tx_fifo_overflow_int_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
     }
+    #[inline]
     pub fn wake_on_lan_mask(&self) -> u16 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_wake_on_lan_mask(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -484,36 +572,44 @@ pub struct STD_27(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct AUXILIARY_CONTROL_AND_STATUS(u16);
 impl AUXILIARY_CONTROL_AND_STATUS {
+    #[inline]
     pub fn actiphy_mode_enable(&self) -> u16 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_actiphy_mode_enable(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
     }
+    #[inline]
     pub fn aneg_complete(&self) -> u16 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_aneg_complete(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
     }
+    #[inline]
     pub fn aneg_disabled(&self) -> u16 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_aneg_disabled(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
     }
+    #[inline]
     pub fn hp_auto_mdix_crossover_indication(&self) -> u16 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_hp_auto_mdix_crossover_indication(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -526,9 +622,11 @@ pub struct LED_MODE_SELECT(pub u16);
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct LED_BEHAVIOR(u16);
 impl LED_BEHAVIOR {
+    #[inline]
     pub fn led_pulsing_enable(&self) -> u16 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_led_pulsing_enable(&mut self, value: u16) {
         assert!(value <= 0x1);
         let value = value << 12;

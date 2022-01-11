@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct SD10G65_DES_CFG0(u32);
 impl SD10G65_DES_CFG0 {
     /// Deserializer disable.
+    #[inline]
     pub fn des_dis(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_des_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -45,9 +47,11 @@ impl SD10G65_DES_CFG0 {
     /// Interface width
     ///
     /// 0: 8 1: 10 2: 16 (energy efficient) 3: 20 (energy efficient) 4: 32 5: 40 6: 16 bit (fast) 7: 20 bit (fast)
+    #[inline]
     pub fn des_if_mode_sel(&self) -> u32 {
         (self.0 & 0x1c) >> 2
     }
+    #[inline]
     pub fn set_des_if_mode_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 2;
@@ -55,9 +59,11 @@ impl SD10G65_DES_CFG0 {
         self.0 |= value;
     }
     /// Invert output of high auxillary deserializer
+    #[inline]
     pub fn des_inv_h(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_des_inv_h(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -65,9 +71,11 @@ impl SD10G65_DES_CFG0 {
         self.0 |= value;
     }
     /// Invert output of low auxillary deserializer
+    #[inline]
     pub fn des_inv_l(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_des_inv_l(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -75,9 +83,11 @@ impl SD10G65_DES_CFG0 {
         self.0 |= value;
     }
     /// Invert output of main deserializer
+    #[inline]
     pub fn des_inv_m(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_des_inv_m(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -85,9 +95,11 @@ impl SD10G65_DES_CFG0 {
         self.0 |= value;
     }
     /// Auxillary deserializer channels disable.
+    #[inline]
     pub fn des_vsc_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_des_vsc_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -102,9 +114,11 @@ impl SD10G65_DES_CFG0 {
 pub struct SD10G65_MOEBDIV_CFG0(u32);
 impl SD10G65_MOEBDIV_CFG0 {
     /// Bandwidth selection for cp/md of cdr loop when core NOT flags valid data detected
+    #[inline]
     pub fn moebdiv_bw_cdr_sel_a(&self) -> u32 {
         (self.0 & 0xe00) >> 9
     }
+    #[inline]
     pub fn set_moebdiv_bw_cdr_sel_a(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 9;
@@ -112,9 +126,11 @@ impl SD10G65_MOEBDIV_CFG0 {
         self.0 |= value;
     }
     /// Bandwidth selection for cp/md of cdr loop when core flags valid data detected
+    #[inline]
     pub fn moebdiv_bw_cdr_sel_b(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
+    #[inline]
     pub fn set_moebdiv_bw_cdr_sel_b(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -122,9 +138,11 @@ impl SD10G65_MOEBDIV_CFG0 {
         self.0 |= value;
     }
     /// Bandwidth selection for cp/md signals towards core
+    #[inline]
     pub fn moebdiv_bw_core_sel(&self) -> u32 {
         (self.0 & 0x38) >> 3
     }
+    #[inline]
     pub fn set_moebdiv_bw_core_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 3;
@@ -132,9 +150,11 @@ impl SD10G65_MOEBDIV_CFG0 {
         self.0 |= value;
     }
     /// CP/MD swapping
+    #[inline]
     pub fn moebdiv_cpmd_swap(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_moebdiv_cpmd_swap(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -142,18 +162,22 @@ impl SD10G65_MOEBDIV_CFG0 {
         self.0 |= value;
     }
     /// Divider disable
+    #[inline]
     pub fn moebdiv_dis(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_moebdiv_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// MD divider enable
+    #[inline]
     pub fn moebdiv_div32_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_moebdiv_div32_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;

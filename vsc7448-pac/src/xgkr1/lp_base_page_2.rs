@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct KR_7X0015(u32);
 impl KR_7X0015 {
     /// LP advertised abilities D[47:32]
+    #[inline]
     pub fn lp_bp_adv2(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_lp_bp_adv2(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

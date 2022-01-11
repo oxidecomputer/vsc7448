@@ -36,9 +36,11 @@ impl PORT_LIMIT_CTRL {
     /// Allow setting PORT_LIMIT_INTR when exceeding limit on learning (happens when MAC address are supposed to be installed in the MAC table.
     ///
     /// 0: Disable 1: allow PORT_LIMIT_INTR to be set upon trying to learn a MAC address that causes learn limit to be exeeded
+    #[inline]
     pub fn port_limit_exceed_irq_ena(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_port_limit_exceed_irq_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -48,9 +50,11 @@ impl PORT_LIMIT_CTRL {
     /// Action for traffic when learn limit is exceeded.
     ///
     /// 00: Normal forward 01: Enable redirection to CPU queue 10: Enable copy to CPU queue 11: Discard the frame
+    #[inline]
     pub fn port_limit_exceed_sel(&self) -> u32 {
         (self.0 & 0x18000) >> 15
     }
+    #[inline]
     pub fn set_port_limit_exceed_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 15;
@@ -60,9 +64,11 @@ impl PORT_LIMIT_CTRL {
     /// Configures the number of MAC table entries that can be used for a given PORT (through Automatic learning and CPU based learning with LOCK bit cleared and not multicast).
     ///
     /// 0: Disable i.e. no learn limit for the PORT 1: Only learning of one MAC address allowed for this logical port ... n: Learning of n MAC address allowed for this port
+    #[inline]
     pub fn port_lrn_cnt_limit(&self) -> u32 {
         self.0 & 0x7fff
     }
+    #[inline]
     pub fn set_port_lrn_cnt_limit(&mut self, value: u32) {
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
@@ -78,9 +84,11 @@ impl PORT_LIMIT_STATUS {
     /// Contains the number of MAC table entries currently learned associated with a given logical PORT or GLAG.
     ///
     /// 0 : no entries
+    #[inline]
     pub fn port_lrn_cnt(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_port_lrn_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -89,9 +97,11 @@ impl PORT_LIMIT_STATUS {
     /// Set if specified MAX learn cnt limit is exceeded and max learn cnt was enabled. Write '1' to clear this field.
     ///
     /// 0: Learn cnt not exceeded. 1: Learning operation has failed due to PORT max learn cnt exceeded. Write '1' to clear this field.
+    #[inline]
     pub fn port_lrn_limit_exceeded_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_port_lrn_limit_exceeded_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;

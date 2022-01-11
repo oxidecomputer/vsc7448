@@ -34,18 +34,22 @@ use derive_more::{From, Into};
 pub struct ARP_CFG_0(u32);
 impl ARP_CFG_0 {
     /// Enable entry for address resolution usage.
+    #[inline]
     pub fn arp_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_arp_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Routing lookup: Egress router leg (EVMID). Security lookup: Expected Ingress mapped VLAN ID for security lookup when SECUR_MATCH_VMID_ENA is enabled. SIP RPF: Expected ingress VMID if SIP_RPF_ENA==1 and IPv4: ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_SIP_RPF_MODE==Rleg Mode IPv6: ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_SIP_RPF_MODE==Rleg Mode
+    #[inline]
     pub fn arp_vmid(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
     }
+    #[inline]
     pub fn set_arp_vmid(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 8;
@@ -55,9 +59,11 @@ impl ARP_CFG_0 {
     /// 16 most significant bits of MAC address. Used for ARP entry and/or (SMAC,SIP)/(DMAC,DIP) check. Least significant bits are configured in ARP_CFG_1.MAC_LSB. If MAC address for ARP entry is all-zeros, then the frame is redirected to CPU. CPU queue used for such frames is configured in ZERO_DMAC_CPU_QU.
     ///
     /// Bit 0: MAC address bit 32 ... Bit 15: MAC address bit 47
+    #[inline]
     pub fn mac_msb(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_mac_msb(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -65,9 +71,11 @@ impl ARP_CFG_0 {
         self.0 |= value;
     }
     /// Enable Security MAC check. SIP check: If SECUR_MATCH_MAC_ENA=1 and the frame's SMAC is not equal to the MAC in the ARP table (ARP_MAC) when looking up SIP then the L3_SMAC_SIP_MATCH input to ANA_ACL is deasserted. DIP check: If SECUR_MATCH_MAC_ENA=1 and the frame's DMAC is not equal to the MAC in the ARP table (ARP_MAC) when looking up DIP then the L3_SMAC_DIP_MATCH input to ANA_ACL is deasserted. DIP check is only performed for L2 forwarded IP unicast frames. Related parameters: ANA_L3:COMMON:SIP_SECURE_ENA ANA_L3:COMMON:DIP_SECURE_ENA
+    #[inline]
     pub fn secur_match_mac_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_secur_match_mac_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -75,9 +83,11 @@ impl ARP_CFG_0 {
         self.0 |= value;
     }
     /// Enable Security VMID check. SIP check: If SECUR_MATCH_VMID_ENA=1 and the IVMID is not equal to the VMID in the ARP table (ARP_VMID) when looking up SIP, then the L3_SMAC_SIP_MATCH input to ANA_ACL is deasserted. DIP check: If SECUR_MATCH_VMID_ENA=1 and the IVMID is not equal to the VMID in the ARP table (ARP_VMID) when looking up DIP, then the L3_SMAC_DIP_MATCH input to ANA_ACL is deasserted. DIP check is only performed for L2 forwarded IP unicast frames. Related parameters: ANA_L3:COMMON:SIP_SECURE_ENA ANA_L3:COMMON:DIP_SECURE_ENA
+    #[inline]
     pub fn secur_match_vmid_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_secur_match_vmid_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -85,9 +95,11 @@ impl ARP_CFG_0 {
         self.0 |= value;
     }
     /// Enable use for SIP RPF check. Ref. ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_SIP_RPF_MODE ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_SIP_RPF_MODE
+    #[inline]
     pub fn sip_rpf_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_sip_rpf_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -95,9 +107,11 @@ impl ARP_CFG_0 {
         self.0 |= value;
     }
     /// CPU queue used for CPU redirect if MAC address in ARP entry is all-zeros.
+    #[inline]
     pub fn zero_dmac_cpu_qu(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
+    #[inline]
     pub fn set_zero_dmac_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -114,9 +128,11 @@ impl ARP_CFG_1 {
     /// 32 least significant bits of MAC address. Used for ARP entry and/or (SMAC,SIP)/(DMAC,DIP) check. Most significant bits are configured in ARP_CFG_0.MAC_MSB. If MAC address for ARP entry is all-zeros, then the frame is redirected to CPU. CPU queue used for such frames is configured in ZERO_DMAC_CPU_QU.
     ///
     /// Bit 0: MAC bit 0 ... Bit 31: MAC bit 31
+    #[inline]
     pub fn mac_lsb(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_mac_lsb(&mut self, value: u32) {
         self.0 = value;
     }

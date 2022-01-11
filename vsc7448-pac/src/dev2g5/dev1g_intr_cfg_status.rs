@@ -36,9 +36,11 @@ impl DEV1G_INTR {
     /// ANEG Link down interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn an_link_down_intr_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_an_link_down_intr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -48,9 +50,11 @@ impl DEV1G_INTR {
     /// ANEG Link up interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn an_link_up_intr_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_an_link_up_intr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -60,9 +64,11 @@ impl DEV1G_INTR {
     /// ANEG next page receive interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn an_page_rx_intr_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_an_page_rx_intr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -72,9 +78,11 @@ impl DEV1G_INTR {
     /// Far-end-fault indication found interrupt (only PCS_fx100)
     ///
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn fef_found_intr_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_fef_found_intr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -84,9 +92,11 @@ impl DEV1G_INTR {
     /// Link down interrupt
     ///
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn link_down_intr_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_link_down_intr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -95,9 +105,11 @@ impl DEV1G_INTR {
     /// Link up interrupt
     ///
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn link_up_intr_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_link_up_intr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -107,9 +119,11 @@ impl DEV1G_INTR {
     /// Low Power Idle Receive interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn rx_lpi_intr_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rx_lpi_intr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -119,9 +133,11 @@ impl DEV1G_INTR {
     /// Low Power Idle Transmit interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt occured Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn tx_lpi_intr_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_tx_lpi_intr_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -138,9 +154,11 @@ impl DEV1G_INTR_CFG {
     /// ANEG Link down interrupt enable (only PCS1g)
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn an_link_down_intr_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_an_link_down_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -150,9 +168,11 @@ impl DEV1G_INTR_CFG {
     /// ANEG Link up interrupt enable (only PCS1g)
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn an_link_up_intr_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_an_link_up_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -162,9 +182,11 @@ impl DEV1G_INTR_CFG {
     /// ANEG next page receive interrupt enable (only PCS1g)
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn an_page_rx_intr_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_an_page_rx_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -174,9 +196,11 @@ impl DEV1G_INTR_CFG {
     /// Far-end-fault indication found interrupt enable (only PCS_fx100)
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn fef_found_intr_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_fef_found_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -186,9 +210,11 @@ impl DEV1G_INTR_CFG {
     /// Link down interrupt enable
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn link_down_intr_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_link_down_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -197,9 +223,11 @@ impl DEV1G_INTR_CFG {
     /// Link up interrupt enable
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn link_up_intr_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_link_up_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -209,9 +237,11 @@ impl DEV1G_INTR_CFG {
     /// Low Power Idle Receive interrupt enable (only PCS1g)
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn rx_lpi_intr_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rx_lpi_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -221,9 +251,11 @@ impl DEV1G_INTR_CFG {
     /// Low Power Idle Transmit interrupt enable (only PCS1g)
     ///
     /// 0: Interrupt disabled 1: Interrupt enabled
+    #[inline]
     pub fn tx_lpi_intr_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_tx_lpi_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -240,9 +272,11 @@ impl DEV1G_INTR_IDENT {
     /// ANEG Link down interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt pending
+    #[inline]
     pub fn an_link_down_intr_ident(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_an_link_down_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -252,9 +286,11 @@ impl DEV1G_INTR_IDENT {
     /// ANEG Link up interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt pending
+    #[inline]
     pub fn an_link_up_intr_ident(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_an_link_up_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -264,9 +300,11 @@ impl DEV1G_INTR_IDENT {
     /// ANEG next page receive interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt pending
+    #[inline]
     pub fn an_page_rx_intr_ident(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_an_page_rx_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -276,9 +314,11 @@ impl DEV1G_INTR_IDENT {
     /// Far-end-fault indication found interrupt (only PCS_fx100)
     ///
     /// 0: No interrupt 1: Interrupt pending
+    #[inline]
     pub fn fef_found_intr_ident(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_fef_found_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -288,9 +328,11 @@ impl DEV1G_INTR_IDENT {
     /// Link down interrupt
     ///
     /// 0: No interrupt 1: Interrupt pending
+    #[inline]
     pub fn link_down_intr_ident(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_link_down_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -299,9 +341,11 @@ impl DEV1G_INTR_IDENT {
     /// Link up interrupt
     ///
     /// 0: No interrupt 1: Interrupt pending
+    #[inline]
     pub fn link_up_intr_ident(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_link_up_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -311,9 +355,11 @@ impl DEV1G_INTR_IDENT {
     /// Low Power Idle Receive interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt pending
+    #[inline]
     pub fn rx_lpi_intr_ident(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rx_lpi_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -323,9 +369,11 @@ impl DEV1G_INTR_IDENT {
     /// Low Power Idle Transmit interrupt (only PCS1g)
     ///
     /// 0: No interrupt 1: Interrupt pending
+    #[inline]
     pub fn tx_lpi_intr_ident(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_tx_lpi_intr_ident(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;

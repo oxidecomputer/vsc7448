@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct OBCFG_ADDR(u32);
 impl OBCFG_ADDR {
     /// Address of OB tap configuration settings
+    #[inline]
     pub fn obcfg_addr(&self) -> u32 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_obcfg_addr(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;

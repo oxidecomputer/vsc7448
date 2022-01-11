@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct AUTO_HIT_ME_ONCE(u32);
 impl AUTO_HIT_ME_ONCE {
     /// If asserted the following 6 bitfields will be asserted every time the VOE matches the current HMO scan: * VOP:VOE_STAT:PDU_EXTRACT.CCM_ZERO_PERIOD_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.RX_MEL_LOW_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEGID_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEPID_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_PERIOD_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_PRIO_RX_ERR_EXTR
+    #[inline]
     pub fn hmo_ccm_rx_bad_nxt(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_hmo_ccm_rx_bad_nxt(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -44,9 +46,11 @@ impl AUTO_HIT_ME_ONCE {
         self.0 |= value;
     }
     /// If asserted the following bit will be asserted every time the VOE matches the current HMO scan: * VOP:VOE_STAT:PDU_EXTRACT.CCM_RX_CCM_NXT_EXTR
+    #[inline]
     pub fn hmo_ccm_rx_ccm_nxt(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_hmo_ccm_rx_ccm_nxt(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -54,9 +58,11 @@ impl AUTO_HIT_ME_ONCE {
         self.0 |= value;
     }
     /// If asserted the following bit will be asserted every time the VOE matches the current HMO scan: * VOP:VOE_STAT:PDU_EXTRACT.CCM_RX_TLV_NON_ZERO_EXTR
+    #[inline]
     pub fn hmo_ccm_rx_tlv_non_zero(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_hmo_ccm_rx_tlv_non_zero(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -64,18 +70,22 @@ impl AUTO_HIT_ME_ONCE {
         self.0 |= value;
     }
     /// This value will be written to the following register every time the VOE matches the current HMO scan: * VOP:VOE_STAT:SYNLM_EXTRACT.EXTRACT_PEER_RX
+    #[inline]
     pub fn hmo_extract_peer_rx(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_hmo_extract_peer_rx(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
     /// If asserted the following bit will be asserted every time the VOE matches the current HMO scan: * VOP:VOE_STAT:PDU_EXTRACT.RX_TEST_FRM_NXT_EXTR
+    #[inline]
     pub fn hmo_rx_test_frm_nxt(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_hmo_rx_test_frm_nxt(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -83,9 +93,11 @@ impl AUTO_HIT_ME_ONCE {
         self.0 |= value;
     }
     /// Determines which of the HMO scan timers that is active for this VOE
+    #[inline]
     pub fn hmo_slot(&self) -> u32 {
         (self.0 & 0x7000) >> 12
     }
+    #[inline]
     pub fn set_hmo_slot(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 12;
@@ -100,9 +112,11 @@ impl AUTO_HIT_ME_ONCE {
 pub struct CCM_ERR(u32);
 impl CCM_ERR {
     /// Number of CCM(-LM) PDUs received with MEL lower than the MEL configured for the VOE. This counter is updated regardless of the value of: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA
+    #[inline]
     pub fn ccm_rx_mel_err_cnt(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_ccm_rx_mel_err_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -116,9 +130,11 @@ impl CCM_ERR {
 pub struct CCM_RX_ERR_1(u32);
 impl CCM_RX_ERR_1 {
     /// Number of CCM(-LM) PDUs received at the correct MEL, but failing the MEGID verification.
+    #[inline]
     pub fn ccm_rx_megid_err_cnt(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_ccm_rx_megid_err_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -126,9 +142,11 @@ impl CCM_RX_ERR_1 {
         self.0 |= value;
     }
     /// Number of CCM(-LM) PDUs received at the correct MEL, but failing the MEPID verification.
+    #[inline]
     pub fn ccm_rx_mepid_err_cnt(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_ccm_rx_mepid_err_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -142,18 +160,22 @@ impl CCM_RX_ERR_1 {
 pub struct CCM_RX_FRM_CNT(u32);
 impl CCM_RX_FRM_CNT {
     /// Counts number of Rx invalid CCM(-LM) PDUs received by the VOE. Invalid CCM(-LM) PDUs will not clear the CCM_MISS_CNT. Invalid CCM(-LM) PDUs are defined as the CCM(-LM) PDUs which do not pass VOE Rx validation.
+    #[inline]
     pub fn ccm_rx_invld_fc_cnt(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_ccm_rx_invld_fc_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
     /// Counts the number of valid Rx OAM CCM PDUs received by the VOE. Valid CCM(-LM) PDUs will clear the CCM_MISS counter.
+    #[inline]
     pub fn ccm_rx_vld_fc_cnt(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_ccm_rx_vld_fc_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -170,9 +192,11 @@ impl CCM_RX_LAST {
     /// Status of current Loss Of Continuity interrupt. This bitfield is asserted by the LOC Controller and deasserted upon reception of a valid CCM(-LM) frame. When the value of this bit field changes, the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_LOC_STICKY Optionally the interrupt is asserted.
     ///
     /// 0: No LOC condition exists in VOE. 1: LOC condition exists in VOE.
+    #[inline]
     pub fn ccm_loc_defect(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ccm_loc_defect(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -182,9 +206,11 @@ impl CCM_RX_LAST {
     /// If the value of the MEGID field in a CCM(-LM) payload received is different from the MEGID value configured for the VOE, the CCM(-LM) frame is invalid. The MEG ID is configured in: * VOP:VOE_CONF:CCM_MEGID_CFG.CCM_MEGID This register holds the value of the latest MEG ID check performed by the VOE. If the result of the MEG ID check changes, the corresponding sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_MEGID_RX_ERR_STICKY This allows interrupt generation when result of the incoming CCM_MEGID check changes. This check will be done for CCM(-LM) frames only. MEGID checking is enabled by: * VOP:VOE_CONF:CCM_CFG.CCM_MEGID_CHK_ENA = 1 CCM PDUs received by the VOE, which fail the MEG ID verification can optionally be extracted to the CPU using the following bit field: * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEGID_RX_ERR_EXTR Extracted CCM PDUs are extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU
     ///
     /// 0: No MEGID error detected in the last valid CCM(-LM) frame received. 1: Detected MEGID error in the last valid CCM(-LM) frame received.
+    #[inline]
     pub fn ccm_megid_err(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ccm_megid_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -194,9 +220,11 @@ impl CCM_RX_LAST {
     /// If the value of the MEPID field in a CCM(-LM) payload received is different from the MEPID value configured for the VOE, the CCM(-LM) frame is invalid. The MEP ID is configured in: * VOP:VOE_CONF:PEER_MEPID_CFG.PEER_MEPID This register holds the value of the latest MEP ID check performed by the VOE. If the result of the MEP ID check changes, the corresponding sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_MEPID_RX_ERR_STICKY This allows interrupt generation when result of the incoming CCM_MEPID check changes. This check will be done for CCM(-LM) frames only. MEP ID check is enabled by setting: VOP:VOE_CONF:CCM_CFG.CCM_MEPID_CHK_ENA = 1 CCM PDUs received by the VOE, which fail the MEP ID verification can optionally be extracted to the CPU using the following bit field: * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEPID_RX_ERR_EXTR Extracted CCM PDUs are extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU
     ///
     /// 0: No MEPID error detected in the last valid CCM(-LM) frame received. 1: Detected MEPID error in the last valid CCM(-LM) frame received.
+    #[inline]
     pub fn ccm_mepid_err(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ccm_mepid_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -206,9 +234,11 @@ impl CCM_RX_LAST {
     /// For all valid CCM(-LM) frames received by the VOE, the value of the CCM(-LM) PERIOD field is validated against the CCM_PERIOD configured for the VOE: * VOP:VOE_CONF:CCM_CFG.CCM_PERIOD This bit fields reflects the result of this check for the last CCM(-LM) frame received by the VOE. If the value of the CCM_PERIOD check changes, the corresponding STICKY bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_PERIOD_RX_ERR_STICKY This allows interrupt generation when result of the incoming CCM_PERIOD check changes. CCM(-LM) PDUs received by the VOE, which fail the CCM PERIOD verification can optionally be extracted to the CPU using the following bit field: * VOP:VOE_STAT:PDU_EXTRACT.CCM_PERIOD_RX_ERR_EXTR Extracted CCM PDUs are extracted to the following CPU queue: CCM: ----------------------------------- * VOP::CPU_EXTR_CFG_1.CCM_CPU_QU CCM-LM: ----------------------------------- * VOP::CPU_EXTR_CFG_1.CCM_LM_CPU_QU
     ///
     /// 0: No PERIOD error detected in the last valid CCM(-LM) frame received. 1: Detected PERIOD error in the last valid CCM(-LM) frame received.
+    #[inline]
     pub fn ccm_period_err(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_ccm_period_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -218,9 +248,11 @@ impl CCM_RX_LAST {
     /// For all valid CCM(-LM) frames received by the VOE, the value of the CCM(-LM) frame priority is validated against the CCM_PRIO configured for the VOE: * VOP:VOE_CONF:CCM_CFG.CCM_PRIO This bit fields reflects the result of this check for the last CCM(-LM) frame received by the VOE. If the value of the CCM_PRIO check changes, the corresponding STICKY bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_PRIO_RX_ERR_STICKY CCM(-LM) PDUs received by the VOE, which fail the CCM PRIORITY verification can optionally be extracted to the CPU using the following bit field: * VOP:VOE_STAT:PDU_EXTRACT.CCM_PRIO_RX_ERR_EXTR CCM: ----------------------------------- * VOP::CPU_EXTR_CFG_1.CCM_CPU_QU CCM-LM: ----------------------------------- * VOP::CPU_EXTR_CFG_1.CCM_LM_CPU_QU
     ///
     /// 0: No PRIO error detected in the last valid CCM(-LM) frame received. 1: Detected PRIO error in the last valid CCM(-LM) frame received.
+    #[inline]
     pub fn ccm_prio_err(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ccm_prio_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -230,9 +262,11 @@ impl CCM_RX_LAST {
     /// If the MEL value of an Rx OAM PDU is lower than the MEL configured for the VOE, this is an RX_MEL_LOW error. This register holds the result of the latest RX_MEL_LOW verification performed by the VOE for a valid CCM(-LM) PDU. If the RX_MEL_LOW verification fails for a CCM(-LM) PDU, the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_RX_MEL_LOW_ERR_STICKY This allows interrupt generation when the result of the incoming RX_MEL_LOW check changes for CCM(-LM) frames. OAM PDUs received by the VOE, which fail the RX_MEL_LOW verification can optionally be extracted to the CPU using the following bit field: * VOP:VOE_STAT:PDU_EXTRACT.RX_MEL_LOW_ERR_EXTR Extracted CCM PDUs are extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU
     ///
     /// 0: No Rx MEL LOW error detected in the last valid CCM(-LM) frame received. 1: Detected Rx MEL LOW error in the last valid CCM(-LM) frame received.
+    #[inline]
     pub fn ccm_rx_mel_low_err(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ccm_rx_mel_low_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -241,9 +275,11 @@ impl CCM_RX_LAST {
     /// The value of RDI bit received with the last valid CCM(-LM) frame. When this status changes, the following sticky bit will be asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_RX_RDI_STICKY This allows interrupt generation when the incoming RDI stat changes.
     ///
     /// 0: RDI bit was '0' in the last valid CCM(-LM) frame. 1: RDI bit was '1' in the last valid CCM(-LM) frame.
+    #[inline]
     pub fn ccm_rx_rdi(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ccm_rx_rdi(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -253,9 +289,11 @@ impl CCM_RX_LAST {
     /// The source port on which the last CCM(-LM) PDU was received. Can be used for implementing E-Line services over networks using Ethernet Ring protection, without learning the MAC addresses. When the CPU flushes the MAC table, it can instruct the VOE to detect when CCM(-LM) PDUs are received a number of times on the same front port. This register contains the latest front port on which a valid CCM(-LM) PDU was received. The number of consecutive frames recieved on the same port (not counting the first one) are counted by the following counter: * VOP:VOE_STAT:CCM_STAT.CCM_RX_SRC_PORT_CNT When a number of consecutive CCM(-LM) PDUs have been received on the same front port, the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_RX_SRC_PORT_DETECT_STICKY This can optionally generate an interrupt. The number of consecutive CCM(-LM) PDUs which must be received on the same front port before asserting the sticky bit is configured in the following bitfield: * VOP::VOP_CTRL.CCM_RX_SRC_PORT_DETECT_CNT
     ///
     /// Port number of the last port on which a valid Rx CCM(-LM) PDU was received.
+    #[inline]
     pub fn ccm_rx_src_port(&self) -> u32 {
         (self.0 & 0x7e000) >> 13
     }
+    #[inline]
     pub fn set_ccm_rx_src_port(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 13;
@@ -265,9 +303,11 @@ impl CCM_RX_LAST {
     /// If the value of the PERIOD field in a CCM(-LM) payload received is ZERO, the CCM(-LM) frame is invalid. The value of the period of all Rx CCM(-LM)  frames, is checked for a non ZERO value. This register holds the value of the latest check performed by the VOE. If the result of the ZERO period check changes, the corresponding sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_ZERO_PERIOD_RX_ERR_STICKY This allows interrupt generation when result of the incoming CCM_ZERO_PERIOD check changes. This check will be done for CCM(-LM) frames only. CCM PDUs received by the VOE, which fail the CCM_ZERO_PERIOD verification can optionally be extracted to the CPU using the following bit field: * VOP:VOE_STAT:PDU_EXTRACT.CCM_ZERO_PERIOD_RX_ERR_EXTR Extracted CCM PDUs are extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU
     ///
     /// 0: No ZERO period error detected in the last valid CCM(-LM) frame received. 1: Detected ZERO period error in the last valid CCM(-LM) frame received.
+    #[inline]
     pub fn ccm_zero_period_err(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_ccm_zero_period_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -275,9 +315,11 @@ impl CCM_RX_LAST {
         self.0 |= value;
     }
     /// If a (CCM-LM) frame carries a "Interface Status TLV" the value of this TLV is sampled and stored in this  register. When this status changes, the following sticky bit will be asserted: * VOP:VOE_STAT:INTR_STICKY.TLV_INTERFACE_STATUS_STICKY This allows interrupt generation when the value of the incoming "Interface Status TLV" changes.
+    #[inline]
     pub fn tlv_interface_status(&self) -> u32 {
         (self.0 & 0x700) >> 8
     }
+    #[inline]
     pub fn set_tlv_interface_status(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 8;
@@ -285,9 +327,11 @@ impl CCM_RX_LAST {
         self.0 |= value;
     }
     /// If a (CCM-LM) frame carries a "Port Status TLV" the value of this TLV is sampled and stored in this  register. When this status changes, the following sticky bit will be asserted: * VOP:VOE_STAT:INTR_STICKY.TLV_PORT_STATUS_STICKY This allows interrupt generation when the value of the incoming "Port Status TLV" changes.
+    #[inline]
     pub fn tlv_port_status(&self) -> u32 {
         (self.0 & 0x1800) >> 11
     }
+    #[inline]
     pub fn set_tlv_port_status(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 11;
@@ -302,9 +346,11 @@ impl CCM_RX_LAST {
 pub struct CCM_RX_SEQ_CFG(u32);
 impl CCM_RX_SEQ_CFG {
     /// See register description.
+    #[inline]
     pub fn ccm_rx_seq(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_ccm_rx_seq(&mut self, value: u32) {
         self.0 = value;
     }
@@ -316,18 +362,22 @@ impl CCM_RX_SEQ_CFG {
 pub struct CCM_RX_WARNING(u32);
 impl CCM_RX_WARNING {
     /// Number of valid CCM(-LM) received with Period error. The Period of the incoming CCM(-LM) PDUs is checked against the following value: * VOP:VOE_CONF:CCM_CFG.CCM_PERIOD
+    #[inline]
     pub fn ccm_rx_period_err_cnt(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_ccm_rx_period_err_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
     /// Number of valid CCM received with sequence number error. Sequence numbers are counted when the CCM.SequenceNumber of a valid CCM PDU is not equal to the previously received sequence number + 1. The previously received CCM_PDU.SequenceNumber is stored in: * VOP:VOE_STAT:CCM_RX_SEQ_CFG.CCM_RX_SEQ
+    #[inline]
     pub fn ccm_rx_seqno_err_cnt(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_ccm_rx_seqno_err_cnt(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -342,9 +392,11 @@ impl CCM_RX_WARNING {
 pub struct CCM_STAT(u32);
 impl CCM_STAT {
     /// If this bitfield is asserted, CCM-LM info will be inserted into next CCM frame transmitted by the VOE. (Note: VOP:VOE_CONF:OAM_HW_CTRL.CCM_LM_ENA must be asserted prior to asserting this register.) Upon transmission of CCM-LM information, the bit is cleared by the VOE. If the VOE is configured for automatic LM insertion, this bitfield is automatically asserted by the VOE every time CCM_LM_PERIOD has occured. Automatic LM insertion is configured: * VOP:VOE_CONF:CCM_CFG.CCM_LM_PERIOD LM Insertion can also be forced by SW writing a '1' to this register. This function can be used to implement Dual Ended LM flow, by inserting LM information into the CCM frames with a given period.
+    #[inline]
     pub fn ccm_lm_insert_nxt(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_ccm_lm_insert_nxt(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -354,9 +406,11 @@ impl CCM_STAT {
     /// Specifies the number of CCM half periods has passed without CCM messages received from the peer MEP. Cleared when the VOE receives a valid CCM PDU from the peer associated with MEP. It will be periodically incremented by the LOC timer configured by the following register: * VOP:VOE_CONF:CCM_CFG.CCM_PERIOD When the CCM_MISS counter is incremented to 7, an interrupt is generated if so configured in the following bit field: * VOP:VOE_STAT:INTR_ENA.CCM_LOC_INTR_ENA
     ///
     /// <7: No Loss of continuity ==7: Loss of continuity
+    #[inline]
     pub fn ccm_miss_cnt(&self) -> u32 {
         (self.0 & 0x38) >> 3
     }
+    #[inline]
     pub fn set_ccm_miss_cnt(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 3;
@@ -364,18 +418,22 @@ impl CCM_STAT {
         self.0 |= value;
     }
     /// The VOE will count the number of consecutive CCM(-LM) PDUs received on a front port. This can be used for implementing E-Line services over networks using Ethernet Ring protection. The number of consecutive frames recieved on the same port (not counting the first one) are counted by this counter (CCM_RX_SRC_PORT_CNT). The front port on which the last valid CCM(-LM) PDU was received is stored in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_RX_SRC_PORT When the CPU flushes the MAC table, it can instruct the VOE to detect when CCM(-LM) PDUs are received a number of times on the same front port. When a number of consecutive CCM(-LM) PDUs have been received on the same front port, the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_RX_SRC_PORT_DETECT_STICKY This can optionally generate an interrupt. The number of consecutive CCM(-LM) PDUs which must be received on the same front port before asserting the sticky bit is configured in the following bitfield: * VOP::VOP_CTRL.CCM_RX_SRC_PORT_DETECT_CNT This field is updated by the VOE and should never be altered by the CPU.
+    #[inline]
     pub fn ccm_rx_src_port_cnt(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_ccm_rx_src_port_cnt(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
     /// This configures the value to be inserted in the RDI field in the next valid CCM(-LM) PDU being transmitted by the VOE.
+    #[inline]
     pub fn ccm_tx_rdi(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ccm_tx_rdi(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -390,9 +448,11 @@ impl CCM_STAT {
 pub struct CCM_TX_SEQ_CFG(u32);
 impl CCM_TX_SEQ_CFG {
     /// See Register Description
+    #[inline]
     pub fn ccm_tx_seq(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_ccm_tx_seq(&mut self, value: u32) {
         self.0 = value;
     }
@@ -404,9 +464,11 @@ impl CCM_TX_SEQ_CFG {
 pub struct DM_PDU_CNT(u32);
 impl DM_PDU_CNT {
     /// Counts the number of valid Rx DMM PDUs received by the VOE.
+    #[inline]
     pub fn dmm_rx_pdu_cnt(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
+    #[inline]
     pub fn set_dmm_rx_pdu_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -414,9 +476,11 @@ impl DM_PDU_CNT {
         self.0 |= value;
     }
     /// Counts the number of valid Tx DMM/1DM PDUs transmitted by the VOE.
+    #[inline]
     pub fn dmm_tx_pdu_cnt(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
+    #[inline]
     pub fn set_dmm_tx_pdu_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
@@ -424,18 +488,22 @@ impl DM_PDU_CNT {
         self.0 |= value;
     }
     /// Counts the number of valid Rx DMR/1DM PDUs received by the VOE.
+    #[inline]
     pub fn dmr_rx_pdu_cnt(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_dmr_rx_pdu_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
     /// Counts the number of valid Tx DMR PDUs transmitted by the VOE.
+    #[inline]
     pub fn dmr_tx_pdu_cnt(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
+    #[inline]
     pub fn set_dmr_tx_pdu_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -452,9 +520,11 @@ impl INTR_ENA {
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_LOC_STICKY
     ///
     /// 0: Disable interrupt 1: Enable interrupt
+    #[inline]
     pub fn ccm_loc_intr_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ccm_loc_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -464,9 +534,11 @@ impl INTR_ENA {
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_MEGID_RX_ERR_STICKY
     ///
     /// 0: Disable interrupt 1: Enable interrupt
+    #[inline]
     pub fn ccm_megid_intr_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ccm_megid_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -476,9 +548,11 @@ impl INTR_ENA {
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_MEPID_RX_ERR_STICKY
     ///
     /// 0: Disable interrupt 1: Enable interrupt
+    #[inline]
     pub fn ccm_mepid_intr_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ccm_mepid_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -488,9 +562,11 @@ impl INTR_ENA {
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_PERIOD_RX_ERR_STICKY
     ///
     /// 0: Disable interrupt 1: Enable interrupt
+    #[inline]
     pub fn ccm_period_intr_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_ccm_period_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -500,9 +576,11 @@ impl INTR_ENA {
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_PRIO_RX_ERR_STICKY
     ///
     /// 0: Disable interrupt 1: Enable interrupt
+    #[inline]
     pub fn ccm_prio_intr_ena(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ccm_prio_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -512,9 +590,11 @@ impl INTR_ENA {
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_RX_MEL_LOW_ERR_STICKY
     ///
     /// 0: Disable interrupt 1: Enable interrupt
+    #[inline]
     pub fn ccm_rx_mel_low_intr_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ccm_rx_mel_low_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -523,9 +603,11 @@ impl INTR_ENA {
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_RX_RDI_STICKY
     ///
     /// 0: Disable interrupt 1: Enable interrupt
+    #[inline]
     pub fn ccm_rx_rdi_intr_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ccm_rx_rdi_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -533,9 +615,11 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_RX_SRC_PORT_DETECT_STICKY
+    #[inline]
     pub fn ccm_rx_src_port_detect_intr_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_ccm_rx_src_port_detect_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -545,9 +629,11 @@ impl INTR_ENA {
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_ZERO_PERIOD_RX_ERR_STICKY
     ///
     /// 0: Disable interrupt 1: Enable interrupt
+    #[inline]
     pub fn ccm_zero_period_intr_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_ccm_zero_period_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -555,9 +641,11 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.TLV_INTERFACE_STATUS_STICKY
+    #[inline]
     pub fn tlv_interface_status_intr_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_tlv_interface_status_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -565,9 +653,11 @@ impl INTR_ENA {
         self.0 |= value;
     }
     /// Enables interrupt generation when the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.TLV_PORT_STATUS_STICKY
+    #[inline]
     pub fn tlv_port_status_intr_ena(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_tlv_port_status_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -584,9 +674,11 @@ impl INTR_STICKY {
     /// Indicates when the Loss Of Continuity (LOC) status of this VOE changes. The current LOC status is contained in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_LOC_DEFECT The sticky bit can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.CCM_LOC_INTR_ENA
     ///
     /// 0: No change in the LOC status. 1: LOC status changed.
+    #[inline]
     pub fn ccm_loc_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ccm_loc_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -596,9 +688,11 @@ impl INTR_STICKY {
     /// Indicate a change in the status of the MEG ID check of incoming CCM(-LM) frames. When a CCM(-LM) frame is received by the VOE, the result of the MEG ID check is compared to the value stored in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_MEGID_ERR If the value changes, the sticky bit is asserted. This can optionally be configured to generate an interrupt:: * VOP:VOE_STAT:INTR_ENA.CCM_MEGID_INTR_ENA
     ///
     /// 0: No change in the result of the MEG ID check. 1: The result of the MEG ID check changed.
+    #[inline]
     pub fn ccm_megid_rx_err_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_ccm_megid_rx_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -608,9 +702,11 @@ impl INTR_STICKY {
     /// Indicate a change in the status of the MEP ID check of incoming CCM(-LM) frames. When a CCM(-LM) frame is received by the VOE, the result of the MEP ID check is compared to the value stored in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_MEPID_ERR If the value changes, the sticky bit is asserted. This can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.CCM_MEPID_INTR_ENA Sticky bit is only asserted when: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA = 1
     ///
     /// 0: No change in the result of the MEP ID check. 1: The result of the MEP ID check changed.
+    #[inline]
     pub fn ccm_mepid_rx_err_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_ccm_mepid_rx_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -620,9 +716,11 @@ impl INTR_STICKY {
     /// Indicate a change in the status of the PERIOD check of incoming CCM(-LM) frames. When a CCM(-LM) frame is received by the VOE, the result of the PERIOD check is compared to the value stored in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_PERIOD_ERR If the value changes, the sticky bit is asserted. This can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.CCM_PERIOD_INTR_ENA
     ///
     /// 0: No change in the result of the PERIOD check. 1: The result of the PERIOD check changed.
+    #[inline]
     pub fn ccm_period_rx_err_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ccm_period_rx_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -632,9 +730,11 @@ impl INTR_STICKY {
     /// Indicate a change in the status of the PRIO check of incoming CCM(-LM) frames. When a CCM(-LM) frame is received by the VOE, the result of the PRIO check is compared to the value stored in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_PRIO_ERR If the value changes, the sticky bit is asserted. This can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.CCM_PRIO_INTR_ENA
     ///
     /// 0: No change in the result of the PRIO check. 1: The result of the PRIO check changed.
+    #[inline]
     pub fn ccm_prio_rx_err_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ccm_prio_rx_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -644,9 +744,11 @@ impl INTR_STICKY {
     /// Indicate a change in the status of the MEL low check of incoming CCM(-LM) frames. When a CCM(-LM) frame is received by the VOE, the result of the MEL low check is compared to the value stored in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_RX_MEL_LOW_ERR If the value changes, the sticky bit is asserted. This can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.CCM_RX_MEL_LOW_INTR_ENA
     ///
     /// 0: No change in the result of the Rx MEL low check. 1: The result of the Rx MEL low check changed.
+    #[inline]
     pub fn ccm_rx_mel_low_err_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ccm_rx_mel_low_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -656,9 +758,11 @@ impl INTR_STICKY {
     /// Indicate a change in the status of the RDI of incoming CCM(-LM) frames. When a CCM(-LM) frame is received by the VOE, the result of the RDI is compared to the value stored in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_RX_RDI If the value changes, the sticky bit is asserted. This can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.CCM_RX_RDI_INTR_ENA
     ///
     /// 0: No change in the Rx RDI value. 1: The value of the Rx RDI value changed.
+    #[inline]
     pub fn ccm_rx_rdi_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ccm_rx_rdi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -667,9 +771,11 @@ impl INTR_STICKY {
     /// The number of succesive OAM PDUs received on the same port are counted in the following register: * VOP:VOE_STAT:CCM_STAT.CCM_RX_SRC_PORT_CNT When this value reaches the value configured in: * VOP::VOP_CTRL.CCM_RX_SRC_PORT_DETECT_CNT This sticky bit is asserted. This sticky bit can optionally generate an interrupt depending on the following bit field: * VOP:VOE_STAT:INTR_ENA.CCM_RX_SRC_PORT_DETECT_INTR_ENA
     ///
     /// 0: CCM(-LM) Rx port is not stable. 1: CCM(-LM) Rx port is considered stable.
+    #[inline]
     pub fn ccm_rx_src_port_detect_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_ccm_rx_src_port_detect_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -679,9 +785,11 @@ impl INTR_STICKY {
     /// Indicate a change in the status of the ZERO period check of incoming CCM(-LM) frames. When a CCM(-LM) frame is received by the VOE, the result of the ZERO period check is compared to the value stored in: * VOP:VOE_STAT:CCM_RX_LAST.CCM_ZERO_PERIOD_ERR If the value changes, the sticky bit is asserted. This can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.CCM_ZERO_PERIOD_INTR_ENA (According to G.8021 CCM(-LM) frames with PERIOD = 0 is an illegal value.)The sticky bit can optionally be configured to generate an interrupt:
     ///
     /// 0: No change in the result of the ZERO period check. 1: The result of the ZERO period check changed.
+    #[inline]
     pub fn ccm_zero_period_rx_err_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_ccm_zero_period_rx_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -689,9 +797,11 @@ impl INTR_STICKY {
         self.0 |= value;
     }
     /// Indicate a change in the value of the "Interface Status TLV" of incoming CCM(-LM) frames. When a CCM(-LM) frame which includes a "Interface Status TLV" is received by the VOE, the value of the "Interface Status TLV" is compared to the value stored in: * VOP:VOE_STAT:CCM_RX_LAST.TLV_INTERFACE_STATUS If the value changes, the sticky bit is asserted. This can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.TLV_INTERFACE_STATUS_INTR_ENA
+    #[inline]
     pub fn tlv_interface_status_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_tlv_interface_status_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -699,9 +809,11 @@ impl INTR_STICKY {
         self.0 |= value;
     }
     /// Indicate a change in the value of the "Port Status TLV" of incoming CCM(-LM) frames. When a CCM(-LM) frame which includes a "Port Status TLV" is received by the VOE, the value of the "Port Status TLV" is compared to the value stored in: * VOP:VOE_STAT:CCM_RX_LAST.TLV_PORT_STATUS If the value changes, the sticky bit is asserted. This can optionally be configured to generate an interrupt: * VOP:VOE_STAT:INTR_ENA.TLV_PORT_STATUS_INTR_ENA
+    #[inline]
     pub fn tlv_port_status_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_tlv_port_status_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -716,9 +828,11 @@ impl INTR_STICKY {
 pub struct LBM_TX_TRANSID_CFG(u32);
 impl LBM_TX_TRANSID_CFG {
     /// See register description.
+    #[inline]
     pub fn lbm_tx_transid(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_lbm_tx_transid(&mut self, value: u32) {
         self.0 = value;
     }
@@ -730,9 +844,11 @@ impl LBM_TX_TRANSID_CFG {
 pub struct LBR_RX_FRM_CNT(u32);
 impl LBR_RX_FRM_CNT {
     /// See register description.
+    #[inline]
     pub fn lbr_rx_frm_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_lbr_rx_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -744,9 +860,11 @@ impl LBR_RX_FRM_CNT {
 pub struct LBR_RX_TRANSID_CFG(u32);
 impl LBR_RX_TRANSID_CFG {
     /// See bit group description.
+    #[inline]
     pub fn lbr_rx_transid(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_lbr_rx_transid(&mut self, value: u32) {
         self.0 = value;
     }
@@ -758,9 +876,11 @@ impl LBR_RX_TRANSID_CFG {
 pub struct LBR_RX_TRANSID_ERR_CNT(u32);
 impl LBR_RX_TRANSID_ERR_CNT {
     /// See register description
+    #[inline]
     pub fn lbr_rx_transid_err_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_lbr_rx_transid_err_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -772,9 +892,11 @@ impl LBR_RX_TRANSID_ERR_CNT {
 pub struct LBR_TX_FRM_CNT(u32);
 impl LBR_TX_FRM_CNT {
     /// See register description.
+    #[inline]
     pub fn lbr_tx_frm_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_lbr_tx_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -786,9 +908,11 @@ impl LBR_TX_FRM_CNT {
 pub struct LM_PDU_CNT(u32);
 impl LM_PDU_CNT {
     /// Counts the number of valid Rx LMM PDUs received by the VOE.
+    #[inline]
     pub fn lmm_rx_pdu_cnt(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
+    #[inline]
     pub fn set_lmm_rx_pdu_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -796,9 +920,11 @@ impl LM_PDU_CNT {
         self.0 |= value;
     }
     /// Counts the number of valid Tx LMM / CCM-LM PDUs transmitted by the VOE.
+    #[inline]
     pub fn lmm_tx_pdu_cnt(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
+    #[inline]
     pub fn set_lmm_tx_pdu_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
@@ -806,18 +932,22 @@ impl LM_PDU_CNT {
         self.0 |= value;
     }
     /// Counts the number of valid Rx LMR / CCM-LM PDUs received by the VOE.
+    #[inline]
     pub fn lmr_rx_pdu_cnt(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_lmr_rx_pdu_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
     /// Counts the number of valid Tx LMR PDUs transmitted by the VOE.
+    #[inline]
     pub fn lmr_tx_pdu_cnt(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
+    #[inline]
     pub fn set_lmr_tx_pdu_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -834,9 +964,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid CCM-LM PDU
     ///
     /// '0': No valid CCM-LM PDU received '1': Valid CCM-LM PDU received
+    #[inline]
     pub fn ccm_lm_rx_sticky(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_ccm_lm_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -846,9 +978,11 @@ impl OAM_RX_STICKY {
     /// Valid CCM(-LM) PDU with sequence error received by VOE. Only updated when updating the CCM sequence number is enable: * VOP:VOE_CONF:CCM_CFG.CCM_SEQ_UPD_ENA Only updated when: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_ENA = 1
     ///
     /// 0: No errors detected in the incoming CCM Seq Number. 1: Detected error in the incoming CCM Seq Number.
+    #[inline]
     pub fn ccm_rx_seq_err_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_ccm_rx_seq_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -858,9 +992,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid CCM PDU.
     ///
     /// '0': No valid CCM PDU received '1': Valid CCM PDU received
+    #[inline]
     pub fn ccm_rx_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_ccm_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -870,9 +1006,11 @@ impl OAM_RX_STICKY {
     /// The VOE supports the following two (CCM-LM) TLVs in HW, provided that they are located as the first TLVs after the CCM(-LM) payload. - "Port Status TLV" (see VOP:VOE_STAT:CCM_RX_LAST.TLV_PORT_STATUS) - "Interface Status" (see VOP:VOE_STAT:CCM_RX_LAST.TLV_INTERFACE_STATUS) Indicates that an OAM PDU was received by the VOE with an End TLV which is NON ZERO. In this context the "End TLV" denotes the first TLV after the CCM(-LM) PDU bypassing the "Port Status TLV" and the "Interface Status TLV" is these are present. This is a valid option according to 802.1ag. The additional TLV following the CCM PDU cannot be processed by the VOE, but frames including such a TLV can be extracted to the CPU, using the following register: * VOP:VOE_STAT:PDU_EXTRACT.CCM_RX_TLV_NON_ZERO_EXTR Frames are extracted to one of the following queues depending on whether the PDU is CCM or CCM-LM * VOP::CPU_EXTR_CFG_1.CCM_CPU_QU * VOP::CPU_EXTR_CFG_1.CCM_LM_CPU_QU
     ///
     /// 0: No CCM PDU with NON ZERO TLV received by the VOE. 1: CCM PDU with NON ZERO TLV was received by the VOE.
+    #[inline]
     pub fn ccm_rx_tlv_non_zero_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_ccm_rx_tlv_non_zero_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -882,9 +1020,11 @@ impl OAM_RX_STICKY {
     /// The VOE discarded an Rx OAM PDU with correct MEL, which failed the DMAC check configured in: * VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL OAM PDUs failing DMAC check can optionally be extracted using: * VOP:VOE_STAT:PDU_EXTRACT.DMAC_RX_ERR_EXTR Frames failing the DMAC validation can optionally be extracted to the CPU error queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU The DMAC check is performed for all PDU types. It is configureble if all PDU types or only for CCM(-LM) PDUs are extracted and cause the assertion of a sticky bit: * VOP:VOE_CONF:OAM_CPU_COPY_CTRL.PDU_ERR_EXTRACT_CCM_ONLY
     ///
     /// 0: No DMAC errors detected. 1: An OAM PDU failed the DMAC check.
+    #[inline]
     pub fn dmac_rx_err_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_dmac_rx_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -894,9 +1034,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid DMM PDU
     ///
     /// '0': No valid DMM PDU received '1': Valid DMM PDU received
+    #[inline]
     pub fn dmm_rx_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_dmm_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -906,9 +1048,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid DMR PDU
     ///
     /// '0': No valid DMR PDU received '1': Valid DMR PDU received
+    #[inline]
     pub fn dmr_rx_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_dmr_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -916,9 +1060,11 @@ impl OAM_RX_STICKY {
         self.0 |= value;
     }
     /// Asserted when the VOE receives a valid OAM PDU with an OpCode which is configured as a GENERIC OPCODE in the following register: * VOP::OAM_GENERIC_CFG.* There is a separate bit to indicate the reception of each of the configured GENERIC OpCodes.
+    #[inline]
     pub fn generic_rx_sticky_mask(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
+    #[inline]
     pub fn set_generic_rx_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
@@ -928,9 +1074,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid LBM PDU
     ///
     /// '0': No valid LBM PDU received '1': Valid LBM PDU received
+    #[inline]
     pub fn lbm_rx_sticky(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_lbm_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -940,9 +1088,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid LBR PDU
     ///
     /// '0': No valid LBR PDU received '1': Valid LBR PDU received
+    #[inline]
     pub fn lbr_rx_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_lbr_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -952,9 +1102,11 @@ impl OAM_RX_STICKY {
     /// Standard LBM/LBR: -------------------------------- Valid LBR frame was received with Transaction ID which did not match the expected value of: * VOP:VOE_STAT:LBR_RX_TRANSID_CFG.LBR_RX_TRANSID + 1 SAM_SEQ (Non OAM sequence numbering) -------------------------------- The assertion of this bit will depend on the following configuration: * VOP:VOE_CONF:SAM_NON_OAM_SEQ_CFG.SAM_SEQ_RX_ERR_CNT_ENA
     ///
     /// 0: No LBR / SAM_SEQ with sequence error was received VOE. 1: LBR / SAM_SEQ with sequence error was received by VOE.
+    #[inline]
     pub fn lbr_transid_err_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_lbr_transid_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -964,9 +1116,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid LMM PDU
     ///
     /// '0': No valid LMM PDU received '1': Valid LMM PDU received
+    #[inline]
     pub fn lmm_rx_sticky(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_lmm_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -976,9 +1130,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid LMR PDU
     ///
     /// '0': No valid LMR PDU received '1': Valid LMR PDU received
+    #[inline]
     pub fn lmr_rx_sticky(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
+    #[inline]
     pub fn set_lmr_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -988,9 +1144,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid LTM PDU.
     ///
     /// '0': No valid LTM PDU received '1': Valid LTM PDU received
+    #[inline]
     pub fn ltm_rx_sticky(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
+    #[inline]
     pub fn set_ltm_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -1000,9 +1158,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid LTR PDU
     ///
     /// '0': No valid LTR PDU received '1': Valid LTR PDU received
+    #[inline]
     pub fn ltr_rx_sticky(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
+    #[inline]
     pub fn set_ltr_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -1012,9 +1172,11 @@ impl OAM_RX_STICKY {
     /// Sticky bit is asserted when the VOE receives a non OAM frame with sequence number. This requires that the VOE is configured as either SAM_SEQ Initiator: * VOP:VOE_CONF:SAM_NON_OAM_SEQ_CFG.SAM_SEQ_INIT or as SAM_SEQ Responder: * VOP:VOE_CONF:SAM_NON_OAM_SEQ_CFG.SAM_SEQ_RESP When configured for "SAM_SEQ Initiator" this bit indicates reception of NON_OAM_RSP. When configured for "SAM_SEQ Responder" this bit indicates reception of NON_OAM_MSG.
     ///
     /// '0': No valid SAM_SEQ frame received '1': Valid SAM_SEQ frame received
+    #[inline]
     pub fn non_oam_seq_rx_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_non_oam_seq_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -1024,9 +1186,11 @@ impl OAM_RX_STICKY {
     /// Indicates that a OAM PDU was received by the VOE with a Y.1731 version code which is not configured as valid: * VOP::VERSION_CTRL.* * VOP::VERSION_CTRL_2.* Frames with version error are discarded and can optionally be extracted to the CPU using: * VOP:VOE_STAT:PDU_EXTRACT.PDU_VERSION_RX_ERR_EXTR Frames extracted to the CPU due to Y.1731 version error are extracted to the CPU error queue: VOP::CPU_EXTR_CFG.CPU_ERR_QU It is configurable if the VERSION check is performed for all PDU types or only for CCM(-LM) PDUs using the following bit field: * VOP:VOE_CONF:OAM_CPU_COPY_CTRL.PDU_ERR_EXTRACT_CCM_ONLY
     ///
     /// 0: No PDU with VERSION error received by VOE. 1: PDU with VERSION error received by VOE.
+    #[inline]
     pub fn pdu_version_rx_err_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_pdu_version_rx_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -1034,18 +1198,22 @@ impl OAM_RX_STICKY {
         self.0 |= value;
     }
     /// This sticky bit is asserted when a frame is discarded because the following option is enabled: * VOP:VOE_CONF:VOE_CTRL.BLOCK_MEL_HIGH_RX
+    #[inline]
     pub fn rx_mel_high_block_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_rx_mel_high_block_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// An OAM PDU was discarded because it was received by the VOE with MEL which is lower than the MEL value configure for the MEL. All Rx frames are subjected to the MEL verification, however it is configurable if the Rx MEL LOW extraction is done for all PDU types or only for CCM(-LM) PDUs using the following bit field: * VOP:VOE_CONF:OAM_CPU_COPY_CTRL.PDU_ERR_EXTRACT_CCM_ONLY
+    #[inline]
     pub fn rx_mel_low_block_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_rx_mel_low_block_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1055,9 +1223,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid 1DM PDU
     ///
     /// '0': No valid 1DM PDU received '1': Valid 1DM PDU received
+    #[inline]
     pub fn sdm_rx_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_sdm_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -1067,9 +1237,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid 1SL PDU.
     ///
     /// '0': No valid 1SL PDU received '1': Valid 1SL PDU received
+    #[inline]
     pub fn sl1_rx_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_sl1_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -1079,9 +1251,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid SLM PDU.
     ///
     /// '0': No valid SLM PDU received '1': Valid SLM PDU received
+    #[inline]
     pub fn slm_rx_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_slm_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -1091,9 +1265,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid SLR PDU.
     ///
     /// '0': No valid SLR PDU received '1': Valid SLR PDU received
+    #[inline]
     pub fn slr_rx_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_slr_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -1103,9 +1279,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid TST PDU
     ///
     /// '0': No valid TST PDU received '1': Valid TST PDU received
+    #[inline]
     pub fn tst_rx_sticky(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
+    #[inline]
     pub fn set_tst_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -1115,9 +1293,11 @@ impl OAM_RX_STICKY {
     /// Asserted when the VOE receives a valid OAM PDU with an OpCode which is detected as UNKNOWN. UNKNOWN OpCode is used for OAM PDU types which do not have dedicated HW support and which is not encoded as a GENERIC PDU.
     ///
     /// '0': No PDU received '1': PDU with UNKNOWN OpCode received
+    #[inline]
     pub fn unk_opcode_rx_sticky(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
+    #[inline]
     pub fn set_unk_opcode_rx_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
@@ -1132,18 +1312,22 @@ impl OAM_RX_STICKY {
 pub struct OAM_RX_STICKY2(u32);
 impl OAM_RX_STICKY2 {
     /// Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA The 'Initiator VOE' will verify the value of the incoming 'Loopback Indicator' in the 'Requesting MEP ID TLV' (if present). If the value is != 1 this sticky bit is asserted and the PDU is marked invalid. The frame can optionally be extracted to the CPU error queue: LBR: ----------- * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBR_RX_ERR_EXTR
+    #[inline]
     pub fn g_8113_1_lbr_rx_ill_lbk_ind_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_g_8113_1_lbr_rx_ill_lbk_ind_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA If MIP / MEP / MEG ID verification is enabled: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_LBX_MEXID_CHK_ENA The VOE will validate the MIP / MEP / MEG ID of incoming LBM or LBR PDUs: * Rx LBM: -------------------- - Validate LBM.TargetTLV.MEP_ID (Mandatory TLV) - Validate LBM.Requesting.MEP_ID (Optional TLV) - Validate LBM.Requesting.MEG_ID (Optional TLV) For LBR PDUs the validation is depending on configured 'Initiator VOE' configuration: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_INITIATOR_FUNCTION For LBR PDUs the following fields are configured. * Rx LBR (CV - MIP): ---------------------------------- - Validate LBR.ReplyingTLV.CarrierCode + NodeID + IfNum (Mandatory TLV) - Validate LBR.Requesting.MEP_ID (Optional TLV) - Validate LBR.Requesting.MEG_ID (Optional TLV) * Rx LBR (CV - MEP): ---------------------------------- - Validate LBR.TargetTLV.MEP_ID (Mandatory TLV) - Validate LBR.Requesting.MEP_ID (Optional TLV) - Validate LBR.Requesting.MEG_ID (Optional TLV) If the verification fails, this sticky bit is asserted and the frame is marked as invalid. The frame can optionally be extracted to the CPU error queue depending on the PDU type: LBM: ----------- * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBM_RX_ERR_EXTR LBR: ----------- * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBR_RX_ERR_EXTR
+    #[inline]
     pub fn g_8113_1_lbx_rx_illegal_mexid_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_g_8113_1_lbx_rx_illegal_mexid_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1151,9 +1335,11 @@ impl OAM_RX_STICKY2 {
         self.0 |= value;
     }
     /// Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA If an LBM or LBR PDU is received with an illegal ID Sub-Type in the mandatory TLV: * LBM mandatory TLV: 'Target MEP/MIP TLV' (TLV type 33) * LBR mandatory TLV: 'Replying MEP/MIP TLV' (TLV type 34) This sticky bit is asserted and the frame is marked as invalid. The frame can optionally be extracted to the CPU error queue depending on the PDU type: LBM: ----------- * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBM_RX_ERR_EXTR LBR: ----------- * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBR_RX_ERR_EXTR
+    #[inline]
     pub fn g_8113_1_lbx_rx_illegal_subtype_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_g_8113_1_lbx_rx_illegal_subtype_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -1161,9 +1347,11 @@ impl OAM_RX_STICKY2 {
         self.0 |= value;
     }
     /// Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA If an LBM or LBR PDU is received without the mandatory TLV: * LBM mandatory TLV: 'Target MEP/MIP TLV' (TLV type 33) * LBR mandatory TLV: 'Replying MEP/MIP TLV' (TLV type 34) This sticky bit is asserted and the frame is marked as invalid. The frame can optionally be extracted to the CPU error queue depending on the PDU type: LBM: ----------- * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBM_RX_ERR_EXTR LBR: ----------- * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBR_RX_ERR_EXTR
+    #[inline]
     pub fn g_8113_1_lbx_rx_missing_tlv_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_g_8113_1_lbx_rx_missing_tlv_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -1171,9 +1359,11 @@ impl OAM_RX_STICKY2 {
         self.0 |= value;
     }
     /// When an SLR PDU is received by an Initiator MEP, the VOE will verify that the SLR.SRC_MEPID of the incoming frame matches the Initiator's own MEPID: * VOP:VOE_CONF:VOE_MEPID_CFG.VOE_MEPID If the SLR.SRC_MEPID does not match the above value, this sticky bit is asserted and the frame is considered invalid. Frames which fail the SynLM Initiator MEP MEPID check can optionally be extracted to the CPU error queue: * VOP:VOE_STAT:PDU_EXTRACT.SL_ERR_EXTR
+    #[inline]
     pub fn rx_ini_illegal_mepid_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_rx_ini_illegal_mepid_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -1181,9 +1371,11 @@ impl OAM_RX_STICKY2 {
         self.0 |= value;
     }
     /// When SynLM frames are received from a SynLM peer MEP, the VOE will verify the MEPID of the incoming PDU against the list of valid peer MEPIDs programmed in the VOE: * VOP:VOE_CONF:SLM_PEER_LIST.SLM_PEER_MEPID If no match is found, this sticky bit is asserted and the frame is considered invalid. Whether the VOE matches the SRC_MEPID or the RCV_MEPID depends on the PDU type and the direction of the PDU (RX/TX). Frames which fail the SynLM peer MEPID check can optionally be extracted to the CPU error queue: * VOP:VOE_STAT:PDU_EXTRACT.SL_ERR_EXTR
+    #[inline]
     pub fn rx_slm_mepid_err_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rx_slm_mepid_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -1191,9 +1383,11 @@ impl OAM_RX_STICKY2 {
         self.0 |= value;
     }
     /// The VOE received an SLM/SLR/1SL frame with a priority which is different from the value programmed for the VOE in the following register: * VOP:VOE_CONF:SLM_CONFIG.SLM_PRIO Frames which fail the SynLM PRIO check can optionally be extracted to the CPU error queue: * VOP:VOE_STAT:PDU_EXTRACT.SL_ERR_EXTR
+    #[inline]
     pub fn rx_slm_prio_err_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_rx_slm_prio_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -1201,9 +1395,11 @@ impl OAM_RX_STICKY2 {
         self.0 |= value;
     }
     /// The VOE received an SLR frame with a TEST ID which is different from the value programmed for the VOE in the following register: * VOP:VOE_CONF:SLM_TEST_ID.SLM_TEST_ID If the SLR.TEST_ID does not match the above value, this sticky bit is asserted and the frame is considered invalid. Frames which fail the TEST_ID check can optionally be extracted to the CPU error queue: * VOP:VOE_STAT:PDU_EXTRACT.SL_ERR_EXTR
+    #[inline]
     pub fn rx_slm_testid_err_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_rx_slm_testid_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -1218,9 +1414,11 @@ impl OAM_RX_STICKY2 {
 pub struct OAM_TX_STICKY(u32);
 impl OAM_TX_STICKY {
     /// This register is asserted if a frame is blocked in the Tx direction due to a MEL value which is too low. A low MEL value will result as one of two conditions: ------------------------------------------------------------------------ ------------ 1) Injection Tx PDU If an OAM PDU is injected by the CPU in the Tx direction with a MEL different from the MEL configured for the VOE. 2) Forwarding Tx PDU If a frame from a front port (non CPU inject) is forwarded in the Tx direction with a MEL which is equal to or lower that the MEL configured for the VOE. The MEL for the VOE is configured in the following bit field: * VOP:VOE_CONF:VOE_CTRL.MEL_VAL The assertion of this sticky bit depends on the setting of the following bit field: * VOP:VOE_CONF:OAM_CPU_COPY_CTRL.PDU_ERR_EXTRACT_CCM_ONLY
+    #[inline]
     pub fn tx_block_err_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_tx_block_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1228,9 +1426,11 @@ impl OAM_TX_STICKY {
         self.0 |= value;
     }
     /// If a SynLM PDU is transmitted with a priority (COSID) which is different from the SynLM PRIO configured for the VOE, * VOP:VOE_CONF:SLM_CONFIG.SLM_PRIO the frame will be marked as invalid and this sticky bit is asserted. Frames which fail the tx prio test can optionally be extracted to the CPU error queue: * VOP:VOE_STAT:PDU_EXTRACT.SL_ERR_EXTR
+    #[inline]
     pub fn tx_slm_prio_err_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_tx_slm_prio_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -1246,9 +1446,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following status bit will be extracted to the CPU: * VOP:VOE_STAT:CCM_RX_LAST.CCM_MEGID_ERR PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn ccm_megid_rx_err_extr(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_ccm_megid_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -1258,9 +1460,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following status bit will be extracted to the CPU: * VOP:VOE_STAT:CCM_RX_LAST.CCM_MEPID_ERR PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn ccm_mepid_rx_err_extr(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_ccm_mepid_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -1270,9 +1474,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following status bit will be extracted to the CPU: * VOP:VOE_STAT:CCM_RX_LAST.CCM_PERIOD_ERR PDUs will be extracted to the following CPU queue: CCM: --------------- * VOP::CPU_EXTR_CFG_1.CCM_CPU_QU. CCM-LM: --------------- * VOP::CPU_EXTR_CFG_1.CCM_LM_CPU_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn ccm_period_rx_err_extr(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_ccm_period_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -1282,9 +1488,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following status bit will be extracted to the CPU: * VOP:VOE_STAT:CCM_RX_LAST.CCM_PRIO_ERR PDUs will be extracted to the following CPU queue: CCM: --------------- * VOP::CPU_EXTR_CFG_1.CCM_CPU_QU. CCM-LM: --------------- * VOP::CPU_EXTR_CFG_1.CCM_LM_CPU_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn ccm_prio_rx_err_extr(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_ccm_prio_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -1294,9 +1502,11 @@ impl PDU_EXTRACT {
     /// If asserted the next valid CCM(-LM) frame will be extracted to the CPU. Frames are extracted to one of the following queues depending on whether the PDU is CCM or CCM-LM CCM: ------------- * VOP::CPU_EXTR_CFG_1.CCM_CPU_QU CCM-LM: ------------- * VOP::CPU_EXTR_CFG_1.CCM_LM_CPU_QU This extraction is always implemented as: "Hit Me Once"
     ///
     /// 0: Do not extract to CPU. 1: Extract next valid CCM PDU to CPU.
+    #[inline]
     pub fn ccm_rx_ccm_nxt_extr(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_ccm_rx_ccm_nxt_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -1306,9 +1516,11 @@ impl PDU_EXTRACT {
     /// If asserted, all CCM(-LM) PDUs which assert the following sticky bit will be extracted to the CPU: * VOP:VOE_STAT:OAM_RX_STICKY.CCM_RX_TLV_NON_ZERO_STICKY Frames are extracted to one of the following queues depending on whether the PDU is CCM or CCM-LM CCM: ------------ * VOP::CPU_EXTR_CFG_1.CCM_CPU_QU CCM-LM: ----------------- * VOP::CPU_EXTR_CFG_1.CCM_LM_CPU_QU The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE This bit field allows the next CCM frame with Second TLV to CPU. (IEEE802.1AG relevant only).
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn ccm_rx_tlv_non_zero_extr(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_ccm_rx_tlv_non_zero_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -1318,9 +1530,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following status bit will be extracted to the CPU: * VOP:VOE_STAT:CCM_RX_LAST.CCM_ZERO_PERIOD_ERR PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn ccm_zero_period_rx_err_extr(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_ccm_zero_period_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -1330,9 +1544,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following sticky bit will be extracted to the CPU: * VOP:VOE_STAT:OAM_RX_STICKY.DMAC_RX_ERR_STICKY PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn dmac_rx_err_extr(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_dmac_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -1342,9 +1558,11 @@ impl PDU_EXTRACT {
     /// Is used to configure whether the following extract bits are implemented as "Hit Me Once" or "Extract all": * CCM_ZERO_PERIOD_RX_ERR_EXTR * RX_MEL_LOW_ERR_EXTR * RX_MEL_HIGH_BLOCK_EXTR * DMAC_RX_ERR_EXTR * PDU_VERSION_RX_ERR_EXTR * CCM_MEGID_RX_ERR_EXTR * CCM_MEPID_RX_ERR_EXTR * CCM_PERIOD_RX_ERR_EXTR * CCM_PRIO_RX_ERR_EXTR * CCM_RX_TLV_NON_ZERO_EXTR * RX_TEST_FRM_NXT_EXTR * TX_BLOCK_ERR_EXTR * SAM_RX_SEQ_ERR_EXTR * SL_ERR_EXTR * G_8113_1_LBM_RX_ERR_EXTR * G_8113_1_LBR_RX_ERR_EXTR This configuration bit has no effect on the following extraction bit: "CCM_RX_CCM_NXT_EXTR" The above extraction bits can be enabled for 'auto HMO'. When 'auto HMO' is enabled, the extraction is always done 'Hit-Me-Once' regardless of the configuration of the 'EXTRACT_HIT_ME_ONCE' bit field. For information on 'auto HMO' see register group: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.*
     ///
     /// 0: Extract all frames meeting the condition of the extract bits (Extract all). 1: Extract only the next frame which meets the condition of the extract bits (Hit Me once).
+    #[inline]
     pub fn extract_hit_me_once(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_extract_hit_me_once(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -1352,9 +1570,11 @@ impl PDU_EXTRACT {
         self.0 |= value;
     }
     /// Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA If this bit is asserted any LBM Rx PDU which asserts either of the following sticky bits will be extracted to the CPU error queue. * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_MISSING_TLV_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_ILLEGAL_SUBTYPE_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_ILLEGAL_MEXID_STICKY
+    #[inline]
     pub fn g_8113_1_lbm_rx_err_extr(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_g_8113_1_lbm_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1362,9 +1582,11 @@ impl PDU_EXTRACT {
         self.0 |= value;
     }
     /// Only valid if the VOE is configured for G.8113.1 OAM: * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA If this bit is asserted any LBR Rx PDU which asserts either of the following sticky bits will be extracted to the CPU error queue. * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_MISSING_TLV_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_ILLEGAL_SUBTYPE_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_ILLEGAL_MEXID_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBR_RX_ILL_LBK_IND_STICKY
+    #[inline]
     pub fn g_8113_1_lbr_rx_err_extr(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_g_8113_1_lbr_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -1373,9 +1595,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following sticky bit will be extracted to the CPU: * VOP:VOE_STAT:OAM_RX_STICKY.PDU_VERSION_RX_ERR_STICKY PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn pdu_version_rx_err_extr(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_pdu_version_rx_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -1385,9 +1609,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following status bit will be extracted to the CPU: * VOP:VOE_STAT:OAM_RX_STICKY.RX_MEL_HIGH_BLOCK_STICKY PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn rx_mel_high_block_extr(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_rx_mel_high_block_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -1397,9 +1623,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following sticky bit will be extracted to the CPU: * VOP:VOE_STAT:OAM_RX_STICKY.RX_MEL_LOW_BLOCK_STICKY PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn rx_mel_low_err_extr(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_rx_mel_low_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -1409,9 +1637,11 @@ impl PDU_EXTRACT {
     /// If asserted by SW, the next valid OAM PDU received of one of the following PDU types will be extracted: * TST * LBR * NON_OAM_MSG Only the first PDU is extracted, regardless of which of the three PDU types it is. When a PDU has been extracted, the bit will be cleared by the VOE, regardless of the value of: * EXTRACT_HIT_ME_ONCE The PDU is extracted to the queue assigned to the relevant PDU type in the CPU extract queues.
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn rx_test_frm_nxt_extr(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rx_test_frm_nxt_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -1421,9 +1651,11 @@ impl PDU_EXTRACT {
     /// Extract non OAM sequence numbered frames in the SAM_SEQ Initiator. Out of sequence non OAM frames is further indicated by asserting the following sticky bit: * VOP:VOE_STAT:OAM_RX_STICKY.LBR_TRANSID_ERR_STICKY The frames which are extracted due to this bit will depend on the config following configuration: * VOP:VOE_CONF:SAM_NON_OAM_SEQ_CFG.SAM_SEQ_RX_ERR_CNT_ENA PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG_1.LBR_CPU_QU The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn sam_rx_seq_err_extr(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_sam_rx_seq_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -1433,9 +1665,11 @@ impl PDU_EXTRACT {
     /// If asserted the VOE will extract frames asserting one of the following sticky bits: * VOP:VOE_STAT:OAM_RX_STICKY2.RX_SLM_TESTID_ERR_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.RX_SLM_PRIO_ERR_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.RX_SLM_MEPID_ERR_STICKY * VOP:VOE_STAT:OAM_RX_STICKY2.RX_INI_ILLEGAL_MEPID_STICKY * VOP:VOE_STAT:OAM_TX_STICKY.TX_SLM_PRIO_ERR_STICKY The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn sl_err_extr(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_sl_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -1445,9 +1679,11 @@ impl PDU_EXTRACT {
     /// If asserted, all OAM PDUs which assert the following sticky bit will be extracted to the CPU: * VOP:VOE_STAT:OAM_TX_STICKY.TX_BLOCK_ERR_STICKY PDUs will be extracted to the following CPU queue: * VOP::CPU_EXTR_CFG.CPU_ERR_QU. The extraction will be "Hit Me Once" or "Extract All" depending on the configuration of: * EXTRACT_HIT_ME_ONCE
     ///
     /// 0: Do not extract to CPU. 1: Extract frames to CPU.
+    #[inline]
     pub fn tx_block_err_extr(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_tx_block_err_extr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -1462,9 +1698,11 @@ impl PDU_EXTRACT {
 pub struct RX_OAM_DISCARD(u32);
 impl RX_OAM_DISCARD {
     /// See register description.
+    #[inline]
     pub fn rx_frm_discard_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_frm_discard_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -1476,9 +1714,11 @@ impl RX_OAM_DISCARD {
 pub struct RX_OAM_FRM_CNT(u32);
 impl RX_OAM_FRM_CNT {
     /// See register description
+    #[inline]
     pub fn rx_oam_frm_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_oam_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -1490,9 +1730,11 @@ impl RX_OAM_FRM_CNT {
 pub struct RX_SEL_OAM_CNT(u32);
 impl RX_SEL_OAM_CNT {
     /// See register description.
+    #[inline]
     pub fn rx_sel_oam_frm_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_rx_sel_oam_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -1504,9 +1746,11 @@ impl RX_SEL_OAM_CNT {
 pub struct SLM_TX_FRM_CNT(u32);
 impl SLM_TX_FRM_CNT {
     /// See register description.
+    #[inline]
     pub fn slm_tx_frm_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_slm_tx_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -1518,9 +1762,11 @@ impl SLM_TX_FRM_CNT {
 pub struct SYNLM_EXTRACT(u32);
 impl SYNLM_EXTRACT {
     /// If asserted, the frame extraction due to a match in the following register: * VOP:VOE_STAT:SYNLM_EXTRACT.EXTRACT_PEER_RX will be done "Hit Me Once" If not asserted all frames matching the above will be extracted to CPU.
+    #[inline]
     pub fn extract_hmo(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_extract_hmo(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -1528,9 +1774,11 @@ impl SYNLM_EXTRACT {
         self.0 |= value;
     }
     /// When the Initiator MEP enabled for SynLM processes Rx SLR / 1SL PDUs, they are extracted if so configured in this register. Configuring this register allows for extracting only Rx frames from selected SynLM peer MEPs. The register width is 8. Each bit represents a SynLM peer MEP. The SynLM peer MEP associated with an Rx PDU is determined from matching the MEPID of the Rx SynLM PDU against the configured list of SynLM peer MEPIDs: * VOP:VOE_CONF:SLM_PEER_LIST.SLM_PEER_MEPID If the bit (in the current register) representing the SynLM peer index of the Rx frame, the frame is extracted to the CPU. The extraction will be done either extract ALL or extract "Hit Me Once" depending on the value of the the following bit field: * VOP:VOE_STAT:SYNLM_EXTRACT.EXTRACT_HMO
+    #[inline]
     pub fn extract_peer_rx(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_extract_peer_rx(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -1544,9 +1792,11 @@ impl SYNLM_EXTRACT {
 pub struct TX_OAM_DISCARD(u32);
 impl TX_OAM_DISCARD {
     /// See register description.
+    #[inline]
     pub fn tx_frm_discard_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_frm_discard_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -1558,9 +1808,11 @@ impl TX_OAM_DISCARD {
 pub struct TX_OAM_FRM_CNT(u32);
 impl TX_OAM_FRM_CNT {
     /// See register description.
+    #[inline]
     pub fn tx_oam_frm_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_oam_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -1572,9 +1824,11 @@ impl TX_OAM_FRM_CNT {
 pub struct TX_SEL_OAM_CNT(u32);
 impl TX_SEL_OAM_CNT {
     /// See register description.
+    #[inline]
     pub fn tx_sel_oam_frm_cnt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_tx_sel_oam_frm_cnt(&mut self, value: u32) {
         self.0 = value;
     }

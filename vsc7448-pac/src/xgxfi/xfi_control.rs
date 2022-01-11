@@ -36,9 +36,11 @@ impl DATA_VALID_DETECT_CTRL {
     /// Enable eWIS LOF to control signal detect.
     ///
     /// 0: Inhibit eWIS LOF to control signal detect. 1: Enable eWIS LOF to control signal detect.
+    #[inline]
     pub fn ewis_detect_mask(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_ewis_detect_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -48,9 +50,11 @@ impl DATA_VALID_DETECT_CTRL {
     /// Enable OTN LOF to control signal detect.
     ///
     /// 0: Inhibit OTN LOF to control signal detect. 1: Enable OTN LOF to control signal detect.
+    #[inline]
     pub fn otn_detect_mask(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_otn_detect_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -60,9 +64,11 @@ impl DATA_VALID_DETECT_CTRL {
     /// Enable PCS lock to control signal detect.
     ///
     /// 0: Inhibit PCS lock to control signal detect. 1: Enable PCS lock to control signal detect.
+    #[inline]
     pub fn pcs_detect_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_pcs_detect_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -76,9 +82,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if DFT_ACTIVE is asserted
     ///
     /// 0: Inhibit dft_active from generating a XFI_INT 1: Enable dft_active to generate a XFI_INT
+    #[inline]
     pub fn dft_active_hi_mask(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
+    #[inline]
     pub fn set_dft_active_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
@@ -88,9 +96,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if DFT_ACTIVE is not asserted
     ///
     /// 0: Inhibit dft_active from generating a XFI_INT 1: Enable dft_active to generate a XFI_INT
+    #[inline]
     pub fn dft_active_lo_mask(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
+    #[inline]
     pub fn set_dft_active_lo_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -100,9 +110,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if dft_incomplete is asserted
     ///
     /// 0: Inhibit dft_incomplete from generating a XFI_INT 1: Enable dft_incomplete to generate a XFI_INT
+    #[inline]
     pub fn dft_incomplete_hi_mask(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
     }
+    #[inline]
     pub fn set_dft_incomplete_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 27;
@@ -112,9 +124,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if dft_incomplete is not asserted
     ///
     /// 0: Inhibit dft_incomplete from generating a XFI_INT 1: Enable dft_incomplete to generate a XFI_INT
+    #[inline]
     pub fn dft_incomplete_lo_mask(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
+    #[inline]
     pub fn set_dft_incomplete_lo_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
@@ -124,9 +138,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if dft_instable is asserted
     ///
     /// 0: Inhibit dft_instable from generating a XFI_INT 1: Enable dft_instable to generate a XFI_INT
+    #[inline]
     pub fn dft_instable_hi_mask(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
+    #[inline]
     pub fn set_dft_instable_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -136,9 +152,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if dft_instable is not asserted
     ///
     /// 0: Inhibit dft_instable from generating a XFI_INT 1: Enable dft_instable to generate a XFI_INT
+    #[inline]
     pub fn dft_instable_lo_mask(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
     }
+    #[inline]
     pub fn set_dft_instable_lo_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 28;
@@ -148,9 +166,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if dft_no_sync is asserted
     ///
     /// 0: Inhibit dft_no_sync from generating a XFI_INT 1: Enable dft_no_sync to generate a XFI_INT
+    #[inline]
     pub fn dft_no_sync_hi_mask(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_dft_no_sync_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -160,9 +180,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if dft_no_sync is not asserted
     ///
     /// 0: Inhibit dft_no_sync from generating a XFI_INT 1: Enable dft_no_sync to generate a XFI_INT
+    #[inline]
     pub fn dft_no_sync_lo_mask(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
+    #[inline]
     pub fn set_dft_no_sync_lo_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -172,9 +194,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if dft_stuck_at_01 is asserted
     ///
     /// 0: Inhibit dft_stuck_at_01 from generating a XFI_INT 1: Enable dft_stuck_at_01 to generate a XFI_INT
+    #[inline]
     pub fn dft_stuck_at_01_hi_mask(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
+    #[inline]
     pub fn set_dft_stuck_at_01_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -184,9 +208,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if dft_stuck_at_par is asserted
     ///
     /// 0: Inhibit dft_stuck_at_par from generating a XFI_INT 1: Enable dft_stuck_at_par to generate a XFI_INT
+    #[inline]
     pub fn dft_stuck_at_par_hi_mask(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
+    #[inline]
     pub fn set_dft_stuck_at_par_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
@@ -196,9 +222,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if RXSIGDET_HI_STICKY is asserted
     ///
     /// 0: Inhibit RXSIGDET_HI_STICKY from generating a XFI_INT 1: Enable the RXSIGDET_HI_STICKY to generate a XFI_INT
+    #[inline]
     pub fn rxsigdet_hi_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_rxsigdet_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -208,9 +236,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if RXSIGDET_LO_STICKY is asserted
     ///
     /// 0: Inhibit RXSIGDET_LO_STICKY from generating a XFI_INT 1: Enable RXSIGDET_LO_STICKY to generate a XFI_INT
+    #[inline]
     pub fn rxsigdet_lo_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_rxsigdet_lo_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -220,9 +250,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if RX_LOS_HI_STICKY is asserted
     ///
     /// 0: Inhibit RX_LOS_HI_STICKY from generating a XFI_INT 1: Enable RX_LOS_HI_STICKY to generate a XFI_INT
+    #[inline]
     pub fn rx_los_hi_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_rx_los_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -232,9 +264,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if RX_LOS_LO_STICKY is asserted
     ///
     /// 0: Inhibit RX_LOS_LO_STICKY from generating a XFI_INT 1: Enable RX_LOS_LO_STICKY to generate a XFI_INT
+    #[inline]
     pub fn rx_los_lo_mask(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_rx_los_lo_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -244,9 +278,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if RX_PLL_LOCK_HI_STICKY is asserted
     ///
     /// 0: Inhibit RX_PLL_LOCK_HI_STICKY from generating a XFI_INT 1: Enable RX_PLL_LOCK_HI_STICKY to generate a XFI_INT
+    #[inline]
     pub fn rx_pll_lock_hi_mask(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_rx_pll_lock_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -256,9 +292,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if RX_PLL_LOCK_LO_STICKY is asserted
     ///
     /// 0: Inhibit RX_PLL_LOCK_LO_STICKY from generating a XFI_INT 1: Enable RX_PLL_LOCK_LO_STICKY to generate a XFI_INT
+    #[inline]
     pub fn rx_pll_lock_lo_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_rx_pll_lock_lo_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -268,9 +306,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if IF_PLL_LOCK_HI_STICKY is asserted
     ///
     /// 0: Inhibit TX_FIFO_LOS_HI_STICKY from generating a XFI_INT 1: Enable TX_FIFO_LOSss_HI_STICKY to generate a XFI_INT
+    #[inline]
     pub fn tx_fifo_los_hi_mask(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
+    #[inline]
     pub fn set_tx_fifo_los_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -280,9 +320,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if TX_PLL_LOCK_HI_STICKY is asserted
     ///
     /// 0: Inhibit TX_PLL_LOCK_HI_STICKY from generating a XFI_INT 1: Enable TX_PLL_LOCK_HI_STICKY to generate a XFI_INT
+    #[inline]
     pub fn tx_pll_lock_hi_mask(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
+    #[inline]
     pub fn set_tx_pll_lock_hi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -292,9 +334,11 @@ impl HSS_MASK {
     /// Mask (enable) a XFI_INT if TX_PLL_LOCK_LO_STICKY is asserted
     ///
     /// 0: Inhibit TX_PLL_LOCK_LO_STICKY from generating a XFI_INT 1: Enable TX_PLL_LOCK_LO_STICKY to generate a XFI_INT
+    #[inline]
     pub fn tx_pll_lock_lo_mask(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
+    #[inline]
     pub fn set_tx_pll_lock_lo_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -309,9 +353,11 @@ impl HSS_STATUS {
     /// Signal detect indicator
     ///
     /// 0: No signal 1: Active signal detected on the serial input
+    #[inline]
     pub fn rxsigdet_status(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_rxsigdet_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -321,9 +367,11 @@ impl HSS_STATUS {
     /// Current value of XFI LOS pin driven by HSS XFP/SFP+
     ///
     /// 0: Pin is driven low 1: Pin is driven high
+    #[inline]
     pub fn rx_los_status(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_rx_los_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -333,9 +381,11 @@ impl HSS_STATUS {
     /// RC-PLL lock status of Deserializer
     ///
     /// 0: RC-PLL is not locked 1: RC-PLL is locked
+    #[inline]
     pub fn rx_pll_lock_status(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_rx_pll_lock_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -345,9 +395,11 @@ impl HSS_STATUS {
     /// TX_FIFO loss of sync This can occur if the core clock sourcing the Tx port of the XFI is out of phase with the XFI Tx clock, or if the core clock glitches.
     ///
     /// 0: TX_FIFO is not out of sync 1: TX_FIFO is out of sync
+    #[inline]
     pub fn tx_fifo_los_status(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_tx_fifo_los_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -357,9 +409,11 @@ impl HSS_STATUS {
     /// RC-PLL lock status of Serializer
     ///
     /// 0: RC-PLL is not locked 1: RC-PLL is locked
+    #[inline]
     pub fn tx_pll_lock_status(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
+    #[inline]
     pub fn set_tx_pll_lock_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -374,9 +428,11 @@ impl HSS_STICKY {
     /// The DFT_ACTIVE signal was detected asserted (since this bit was last cleared)
     ///
     /// 0: DFT_ACTIVE was not detected asserted (since this bit was last cleared) 1: DFT_ACTIVE was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_active_hi_sticky(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
+    #[inline]
     pub fn set_dft_active_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
@@ -386,9 +442,11 @@ impl HSS_STICKY {
     /// The DFT_ACTIVE signal was detected deasserted (since this bit was last cleared)
     ///
     /// 0: DFT_ACTIVE was not detected deasserted (since this bit was last cleared) 1: DFT_ACTIVE was detected deasserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_active_lo_sticky(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
+    #[inline]
     pub fn set_dft_active_lo_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -398,9 +456,11 @@ impl HSS_STICKY {
     /// The DFT_INCOMPLETE signal was detected asserted (since this bit was last cleared)
     ///
     /// 0: DFT_INCOMPLETE was not detected asserted (since this bit was last cleared) 1: DFT_INCOMPLETE was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_incomplete_hi_sticky(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
     }
+    #[inline]
     pub fn set_dft_incomplete_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 27;
@@ -410,9 +470,11 @@ impl HSS_STICKY {
     /// The DFT_INCOMPLETE signal was detected deasserted (since this bit was last cleared)
     ///
     /// 0: DFT_INCOMPLETE was not detected deasserted (since this bit was last cleared) 1: DFT_INCOMPLETE was detected deasserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_incomplete_lo_sticky(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
+    #[inline]
     pub fn set_dft_incomplete_lo_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
@@ -422,9 +484,11 @@ impl HSS_STICKY {
     /// The DFT_INSTABLE signal was detected asserted (since this bit was last cleared)
     ///
     /// 0: DFT_INSTABLE was not detected asserted (since this bit was last cleared) 1: DFT_INSTABLE was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_instable_hi_sticky(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
+    #[inline]
     pub fn set_dft_instable_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -434,9 +498,11 @@ impl HSS_STICKY {
     /// The DFT_INSTABLE signal was detected deasserted (since this bit was last cleared)
     ///
     /// 0: DFT_INSTABLE was not detected deasserted (since this bit was last cleared) 1: DFT_INSTABLE was detected deasserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_instable_lo_sticky(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
     }
+    #[inline]
     pub fn set_dft_instable_lo_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 28;
@@ -446,9 +512,11 @@ impl HSS_STICKY {
     /// The DFT_NO_SYNC signal was detected asserted (since this bit was last cleared)
     ///
     /// 0: DFT_NO_SYNC was not detected asserted (since this bit was last cleared) 1: DFT_NO_SYNC was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_no_sync_hi_sticky(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_dft_no_sync_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -458,9 +526,11 @@ impl HSS_STICKY {
     /// The DFT_NO_SYNC signal was detected deasserted (since this bit was last cleared)
     ///
     /// 0: DFT_NO_SYNC was not detected deasserted (since this bit was last cleared) 1: DFT_NO_SYNC was detected deasserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_no_sync_lo_sticky(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
+    #[inline]
     pub fn set_dft_no_sync_lo_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -470,9 +540,11 @@ impl HSS_STICKY {
     /// The DFT_STUCK_AT_01 signal was detected asserted (since this bit was last cleared)
     ///
     /// 0: DFT_STUCK_AT_01 was not detected asserted (since this bit was last cleared) 1: DFT_STUCK_AT_01 was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_stuck_at_01_hi_sticky(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
+    #[inline]
     pub fn set_dft_stuck_at_01_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -482,9 +554,11 @@ impl HSS_STICKY {
     /// The DFT_STUCK_AT_PAR signal was detected asserted (since this bit was last cleared)
     ///
     /// 0: DFT_STUCK_AT_PAR was not detected asserted (since this bit was last cleared) 1: DFT_STUCK_AT_PAR was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn dft_stuck_at_par_hi_sticky(&self) -> u32 {
         (self.0 & 0x800000) >> 23
     }
+    #[inline]
     pub fn set_dft_stuck_at_par_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 23;
@@ -494,9 +568,11 @@ impl HSS_STICKY {
     /// HSS11G macro RXSIGDET output port was detected asserted (since this bit was last cleared)
     ///
     /// 0: RXSIGDET was not detected asserted (since this bit was last cleared) 1: RXSIGDET was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn rxsigdet_hi_sticky(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_rxsigdet_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -506,9 +582,11 @@ impl HSS_STICKY {
     /// HSS11G macro RXSIGDET output port was detected deasserted (since this bit was last cleared)
     ///
     /// 0: RXSIGDET was not detected deasserted (since this bit was last cleared) 1: RXSIGDET was detected deasserted (since this bit was last cleared)
+    #[inline]
     pub fn rxsigdet_lo_sticky(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_rxsigdet_lo_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -518,9 +596,11 @@ impl HSS_STICKY {
     /// XFI RX_LOS input pin was detected asserted (since this bit was last cleared).
     ///
     /// 0: RX_LOS was not detected asserted (since this bit was last cleared) 1: RX_LOS was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn rx_los_hi_sticky(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_rx_los_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -530,9 +610,11 @@ impl HSS_STICKY {
     /// XFI RX_LOS input pin was detected deasserted (since this bit was last cleared)
     ///
     /// 0: RX_LOS was not detected deasserted (since this bit was last cleared) 1: RX_LOS was detected deasserted (since this bit was last cleared)
+    #[inline]
     pub fn rx_los_lo_sticky(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_rx_los_lo_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -542,9 +624,11 @@ impl HSS_STICKY {
     /// RX_PLL_LOCK input pin was detected asserted (since this bit was last cleared)
     ///
     /// 0: RX_PLL_LOCK was not detected asserted (since this bit was last cleared) 1: RX_PLL_LOCK was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn rx_pll_lock_hi_sticky(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_rx_pll_lock_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -554,9 +638,11 @@ impl HSS_STICKY {
     /// RX_PLL_LOCK input pin was detected deasserted (since this bit was last cleared).
     ///
     /// 0: RX_PLL_LOCK was not detected deasserted (since this bit was last cleared) 1: RX_PLL_LOCK was detected deasserted (since this bit was last cleared)
+    #[inline]
     pub fn rx_pll_lock_lo_sticky(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_rx_pll_lock_lo_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -566,9 +652,11 @@ impl HSS_STICKY {
     /// The TX_FIFO was detected asserted (since this bit was last cleared)
     ///
     /// 0: TX_FIFO_LOS was not detected asserted (since this bit was last cleared) 1: TX_FIFO_LOS was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn tx_fifo_los_hi_sticky(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
+    #[inline]
     pub fn set_tx_fifo_los_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -578,9 +666,11 @@ impl HSS_STICKY {
     /// TX_PLL_LOCK input pin was detected asserted (since this bit was last cleared)
     ///
     /// 0: TX_PLL_LOCK was not detected asserted (since this bit was last cleared) 1: TX_PLL_LOCK was detected asserted (since this bit was last cleared)
+    #[inline]
     pub fn tx_pll_lock_hi_sticky(&self) -> u32 {
         (self.0 & 0x80000) >> 19
     }
+    #[inline]
     pub fn set_tx_pll_lock_hi_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 19;
@@ -590,9 +680,11 @@ impl HSS_STICKY {
     /// TX_PLL_LOCK input pin was detected deasserted (since this bit was last cleared).
     ///
     /// 0: TX_PLL_LOCK was not detected deasserted (since this bit was last cleared) 1: TX_PLL_LOCK was detected deasserted (since this bit was last cleared)
+    #[inline]
     pub fn tx_pll_lock_lo_sticky(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
+    #[inline]
     pub fn set_tx_pll_lock_lo_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -609,9 +701,11 @@ impl INT_CTRL {
     /// Global mask (enable) the ANEG_ACTIVE status as a source of the XFI_INT.
     ///
     /// 0: Disable ANEG_ACTIVE status from setting XFI_INT (default) 1: Enable ANEG_ACTIVE status to set XFI_INT
+    #[inline]
     pub fn aneg_active_mask(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_aneg_active_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -621,9 +715,11 @@ impl INT_CTRL {
     /// Global mask (enable) the ANEG_INT status as a source of the XFI_INT.
     ///
     /// 0: Disable ANEG_KR_INT status from setting XFI_INT (default) 1: Enable ANEG_KR_INT status to set XFI_INT
+    #[inline]
     pub fn aneg_kr_int_mask(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
+    #[inline]
     pub fn set_aneg_kr_int_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -633,9 +729,11 @@ impl INT_CTRL {
     /// Invert polarity of rx_sigdet_i prior to summing it with rx_los_i to generate xfi_ssf_o. See SSF_MASK Encoding field. Note: The "good" case for RX_SIGDET is when the SERDES delivers a '1'. Therefor the signal is per default inverted.
     ///
     /// 0: Do not invert the RX_SIGDET before summing it to generate the XFI_SSF output (default) 1: Invert the RX_SIGDET before summing it to generate the XFI_SSF output
+    #[inline]
     pub fn rxsigdet_inv(&self) -> u32 {
         (self.0 & 0x8000000) >> 27
     }
+    #[inline]
     pub fn set_rxsigdet_inv(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 27;
@@ -645,9 +743,11 @@ impl INT_CTRL {
     /// Enable rx_sigdet_i prior to summing it with rx_los_i to generate xfi_ssf_o. See SSF_MASK Encoding field.
     ///
     /// 0: Inhibit the RX_SIGDET (either polarity) from the XFI_SSF output 1: Enable the RX_SIGDET (either polarity) to the XFI_SSF output
+    #[inline]
     pub fn rxsigdet_mask(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
+    #[inline]
     pub fn set_rxsigdet_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
@@ -657,9 +757,11 @@ impl INT_CTRL {
     /// Invert polarity of rx_los_i prior to summing it with rx_sigdet_i to generate xfi_ssf_o. See SSF_MASK Encoding field.
     ///
     /// 0: Do not invert the RX_LOS before summing it to generate the XFI_SSF output (default) 1: Invert the RX_LOS before summing it to generate the XFI_SSF output
+    #[inline]
     pub fn rx_los_inv(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
+    #[inline]
     pub fn set_rx_los_inv(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
@@ -669,9 +771,11 @@ impl INT_CTRL {
     /// Enable rx_los_i prior to summing it with rx_sigdet_i to generate xfi_ssf_o. See SSF_MASK Encoding field.
     ///
     /// 0: Inhibit the RX_LOS (either polarity) from the XFI_SSF output 1: Enable the RX_LOS (either polarity) to the XFI_SSF output
+    #[inline]
     pub fn rx_los_mask(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
+    #[inline]
     pub fn set_rx_los_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -681,9 +785,11 @@ impl INT_CTRL {
     /// Invert polarity of rx_pll_lock_i prior to summing it with rxsigdet_i and rx_los_i to generate xfi_ssf_o. See SSF_MASK Encoding field. Note: The "good" case for RX_PLL_LOCK is when the SERDES delivers a '1'. Therefor the signal is per default inverted.
     ///
     /// 0: Do not invert the RX_PLL_LOCK before summing it to generate the XFI_SSF output (default) 1: Invert the RX_PLL_LOCK before summing it to generate the XFI_SSF output
+    #[inline]
     pub fn rx_pll_lock_inv(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
+    #[inline]
     pub fn set_rx_pll_lock_inv(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -693,9 +799,11 @@ impl INT_CTRL {
     /// Enable rx_pll_lock_i prior to summing it with rxsigdet_i and rx_los_i to generate xfi_ssf_o. See SSF_MASK Encoding field.
     ///
     /// 0: Inhibit the RX_PLL_LOCK (either polarity) from the XFI_SSF output 1: Enable the RX_PLL_LOCK (either polarity) to the XFI_SSF output
+    #[inline]
     pub fn rx_pll_lock_mask(&self) -> u32 {
         (self.0 & 0x10000000) >> 28
     }
+    #[inline]
     pub fn set_rx_pll_lock_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 28;
@@ -705,9 +813,11 @@ impl INT_CTRL {
     /// Global mask (enable) the XFI_SSF output. xfi_ssf_o =	SSF_MASK & ( rx_los_mask & (rx_los_inv ^ rx_los_i) | rx_sigdet_mask & (rx_sigdet_inv ^ rx_sigdet_i) | rx_pll_lock_mask & rx_pll_lock_ssf_r | tx_pll_lock_mask  & tx_pll_lock_ssf_r
     ///
     /// 0: Inhibit XFI_SSF from being asserted 1: Enable the XFI_SSF to use the RX_LOS and the RX_SIGDET states, polarities, and masks
+    #[inline]
     pub fn ssf_mask(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_ssf_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -717,9 +827,11 @@ impl INT_CTRL {
     /// Invert polarity of tx_pll_lock_i prior to summing it with rxsigdet_i and rx_los_i to generate xfi_ssf_o. See SSF_MASK Encoding field. Note: The "good" case for TX_PLL_LOCK is when the SERDES delivers a '1'. Therefor the signal is per default inverted.
     ///
     /// 0: Do not invert the TX_PLL_LOCK before summing it to generate the XFI_SSF output (default) 1: Invert the TX_PLL_LOCK before summing it to generate the XFI_SSF output
+    #[inline]
     pub fn tx_pll_lock_inv(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_tx_pll_lock_inv(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -729,9 +841,11 @@ impl INT_CTRL {
     /// Enable tx_pll_lock_i prior to summing it with rxsigdet_i and rx_los_i to generate xfi_ssf_o. See SSF_MASK Encoding field.
     ///
     /// 0: Inhibit the TX_PLL_LOCK (either polarity) from the XFI_SSF output 1: Enable the TX_PLL_LOCK (either polarity) to the XFI_SSF output
+    #[inline]
     pub fn tx_pll_lock_mask(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
+    #[inline]
     pub fn set_tx_pll_lock_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -741,9 +855,11 @@ impl INT_CTRL {
     /// Global mask (enable) the XFI_INT output.
     ///
     /// 0: Disable XFI_INT output, regardless of the STICKY and corresponding MASK states 1: Enable XFI_INT, using STICKY and corresponding MASK states
+    #[inline]
     pub fn xfi_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_xfi_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -759,9 +875,11 @@ impl KR_CONTROL {
     /// ANEG requires SD10G65-macro (RX+TX) be setup to 10.3125G mode
     ///
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_10g_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_kr_aneg_10g_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -771,9 +889,11 @@ impl KR_CONTROL {
     /// ANEG requires SD10G65-macro (RX+TX) be setup to 1.25G mode
     ///
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_1g_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_kr_aneg_1g_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -783,9 +903,11 @@ impl KR_CONTROL {
     /// ANEG requires SD10G65_-macro (RX+TX) be setup to 3.125G mode
     ///
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_3g_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_kr_aneg_3g_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -795,9 +917,11 @@ impl KR_CONTROL {
     /// ANEG requires KR_FEC state be changed (required state see KR_FEC_ENABLE)
     ///
     /// 0: No action required 1: KR_FEC must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_fec_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_kr_aneg_fec_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -807,9 +931,11 @@ impl KR_CONTROL {
     /// ANEG requires KR rate selection be changed (required state see KR_FEC_ENABLE)
     ///
     /// 0: No action required 1: KR rate must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_rate_sticky(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_kr_aneg_rate_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -819,9 +945,11 @@ impl KR_CONTROL {
     /// ANEG requires SD10G65_RX-macro be setup to 10.3125G mode
     ///
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_rx10g_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_kr_aneg_rx10g_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -831,9 +959,11 @@ impl KR_CONTROL {
     /// ANEG requires SD10G65_RX-macro be setup to 1.25G mode
     ///
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_rx1g_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_kr_aneg_rx1g_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -842,9 +972,11 @@ impl KR_CONTROL {
     /// ANEG requires SD10G65_RX-macro be setup to 3.125G mode
     ///
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_rx3g_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_kr_aneg_rx3g_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -854,9 +986,11 @@ impl KR_CONTROL {
     /// ANEG requires SD10G65_TX-macro be setup to 10.3125G mode
     ///
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_tx10g_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_kr_aneg_tx10g_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -866,9 +1000,11 @@ impl KR_CONTROL {
     /// ANEG requires SD10G65_TX-macro be setup to 1.25G mode
     ///
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_tx1g_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_kr_aneg_tx1g_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -878,9 +1014,11 @@ impl KR_CONTROL {
     /// ANEG requires SD10G65_TX-macro be setup to 3.125G mode
     ///
     /// 0: No action required 1: Macro must be reconfigured, SW has to clear this bit after reconfiguration (by writing a 1 to this bit-group)!
+    #[inline]
     pub fn kr_aneg_tx3g_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_kr_aneg_tx3g_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -890,9 +1028,11 @@ impl KR_CONTROL {
     /// KR-ANEG FEC negotiation result
     ///
     /// 0: KR_FEC shall be disabled 1: KR_FEC shall be enabled
+    #[inline]
     pub fn kr_fec_enable(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_kr_fec_enable(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -902,9 +1042,11 @@ impl KR_CONTROL {
     /// Masking of KR FEC interrupt
     ///
     /// 0: Inhibit KR_FEC interrupt propagation 1: Enable KR_FEC interrupt
+    #[inline]
     pub fn kr_fec_int_mask(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_kr_fec_int_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -914,9 +1056,11 @@ impl KR_CONTROL {
     /// Global Masking of KR interrupt
     ///
     /// 0: Inhibit KR interrupt propagation 1: Enable KR interrupt
+    #[inline]
     pub fn kr_int_mask(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_kr_int_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -926,9 +1070,11 @@ impl KR_CONTROL {
     /// Polarity of KR interrupt
     ///
     /// 0: High-active (0 is inactive level) 1: Low-active (1 is inactive level)
+    #[inline]
     pub fn kr_int_pol(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_kr_int_pol(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -938,9 +1084,11 @@ impl KR_CONTROL {
     /// Masking of KR MODE interrupt
     ///
     /// 0: Inhibit KR_MODE interrupt propagation 1: Enable KR_MODE interrupt
+    #[inline]
     pub fn kr_mode_int_mask(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_kr_mode_int_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -950,9 +1098,11 @@ impl KR_CONTROL {
     /// ANEG link partner rate negotiation result (link-HCD)
     ///
     /// 0: 10G 1: 1G 2: 3G
+    #[inline]
     pub fn kr_rate(&self) -> u32 {
         (self.0 & 0x60000) >> 17
     }
+    #[inline]
     pub fn set_kr_rate(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 17;
@@ -962,9 +1112,11 @@ impl KR_CONTROL {
     /// Masking of KR RATE interrupt
     ///
     /// 0: Inhibit KR_RATE select interrupt propagation 1: Enable KR_RATE select interrupt
+    #[inline]
     pub fn kr_rate_int_mask(&self) -> u32 {
         (self.0 & 0x2000) >> 13
     }
+    #[inline]
     pub fn set_kr_rate_int_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 13;
@@ -981,9 +1133,11 @@ impl SSF_HYST_ENA_CTRL {
     /// Enable timing and hysteresis as defined in SSF_HYST_TIMING_CTRL.
     ///
     /// 0: SSF is immediately asserted to the core. 1: SSF signal to core is timed as defined by SSF_HYST_TIMING_CTRL.
+    #[inline]
     pub fn ssf_hyst_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ssf_hyst_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -999,9 +1153,11 @@ impl SSF_HYST_TIMING_CTRL {
     /// Time a SSF must be active before it is forwarded to the core. Resolution: One tick is 102.4 ns.
     ///
     /// Number of ticks SSF must be constantly active before it is reported to the core. E.g. a value of 23 would result in a wait time of 2.3552 us.
+    #[inline]
     pub fn ssf_assert_timing(&self) -> u32 {
         self.0 & 0xfff
     }
+    #[inline]
     pub fn set_ssf_assert_timing(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
@@ -1010,9 +1166,11 @@ impl SSF_HYST_TIMING_CTRL {
     /// Time a SSF must be inactive before it is forwarded to the core. Resolution: One tick is 102.4 ns.
     ///
     /// Number of ticks SSF must be constantly inactive before it is reported to the core.
+    #[inline]
     pub fn ssf_deassert_timing(&self) -> u32 {
         (self.0 & 0xfff0000) >> 16
     }
+    #[inline]
     pub fn set_ssf_deassert_timing(&mut self, value: u32) {
         assert!(value <= 0xfff);
         let value = value << 16;
@@ -1029,9 +1187,11 @@ impl XFI_MODE {
     /// Phase selection of DES in 100fx mode
     ///
     /// 0: CDR locked at bit 9 1: CDR locked at bit 4
+    #[inline]
     pub fn des_100fx_phase_sel(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_des_100fx_phase_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -1041,9 +1201,11 @@ impl XFI_MODE {
     /// Set the data-type/endian mode of the core to HSS interface
     ///
     /// 0: Core 64/66 data: bit 63 first, followed by the remaining bits leading to bit 0 (default) 1: Core 64/66 data: bit 0 first, followed by the remaining bits leading to bit 63
+    #[inline]
     pub fn endian(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_endian(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -1053,9 +1215,11 @@ impl XFI_MODE {
     /// Select external macro for sync_ctrl information for DES.
     ///
     /// 0: Select macro 0 1: Select macro 1 2: Select macro 2 3: Select macro 3
+    #[inline]
     pub fn ext_rx_sync_ctrl_sel(&self) -> u32 {
         (self.0 & 0xf000) >> 12
     }
+    #[inline]
     pub fn set_ext_rx_sync_ctrl_sel(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 12;
@@ -1065,9 +1229,11 @@ impl XFI_MODE {
     /// Select external macro for sync_ctrl information.
     ///
     /// 0: Select macro 0 1: Select macro 1 2: Select macro 2 3: Select macro 3
+    #[inline]
     pub fn ext_sync_ctrl_sel(&self) -> u32 {
         (self.0 & 0x78000000) >> 27
     }
+    #[inline]
     pub fn set_ext_sync_ctrl_sel(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 27;
@@ -1077,9 +1243,11 @@ impl XFI_MODE {
     /// Enable 100Base-FX mode. Enables specific deserializer cp/md handling (requires enabling external cp/md sourceing in the SerDes macro. PORT_SEL must be set to 1 (40-bit mode) for 100Base-FX mode.
     ///
     /// 0: Disable 1: Enable
+    #[inline]
     pub fn fx100_ena(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
+    #[inline]
     pub fn set_fx100_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
@@ -1089,9 +1257,11 @@ impl XFI_MODE {
     /// Enable kick-out-of-180-degree functionality.
     ///
     /// 0: Enable PCS controlled kicking (kicking allowed in case of no sync) 1: Disable kicking 2: Enable kicking at any time 3: Reserved
+    #[inline]
     pub fn fx100_kick_mode(&self) -> u32 {
         (self.0 & 0x1800000) >> 23
     }
+    #[inline]
     pub fn set_fx100_kick_mode(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 23;
@@ -1101,9 +1271,11 @@ impl XFI_MODE {
     /// Select 100Base-FX operation mode.
     ///
     /// 0: Normal mode (optimal bit is copied to all bits) 1: Simple mode (received data not modified)
+    #[inline]
     pub fn fx100_mode(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
+    #[inline]
     pub fn set_fx100_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
@@ -1113,9 +1285,11 @@ impl XFI_MODE {
     /// Swap cp/md signals in 100Base-FX mode.
     ///
     /// 0: No swapping of cp and md 1: Swap cp and md
+    #[inline]
     pub fn fx100_swap_cp_md(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
+    #[inline]
     pub fn set_fx100_swap_cp_md(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -1125,9 +1299,11 @@ impl XFI_MODE {
     /// Active port selection. Only one port can be active at a time.
     ///
     /// 0: 64-bit port is active. 1: 40-bit port is active.
+    #[inline]
     pub fn port_sel(&self) -> u32 {
         (self.0 & 0x200000) >> 21
     }
+    #[inline]
     pub fn set_port_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 21;
@@ -1137,9 +1313,11 @@ impl XFI_MODE {
     /// Invert data received from the HSS Rx data port
     ///
     /// 0: Non-inverted data from the Rx data port 1: Inverted data from the Rx data port
+    #[inline]
     pub fn rx_invert(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_rx_invert(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -1149,9 +1327,11 @@ impl XFI_MODE {
     /// Select the line Rx data loopback path instead of the core Tx data as the source of the internal Tx data path.
     ///
     /// 0: Core Tx data selected (default) 1: Line Rx data (loopback) selected
+    #[inline]
     pub fn sel_linelb(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_sel_linelb(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -1161,9 +1341,11 @@ impl XFI_MODE {
     /// Clock divider for SPI Master
     ///
     /// f(spi_clk) = f(system_clk)/(SPI_CLK_DIV+2)
+    #[inline]
     pub fn spi_clk_div(&self) -> u32 {
         (self.0 & 0xf0000) >> 16
     }
+    #[inline]
     pub fn set_spi_clk_div(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 16;
@@ -1173,9 +1355,11 @@ impl XFI_MODE {
     /// SW_ENA input to XFI clk_rst_sync modules (internal Tx-clock, core Tx clock-input, internal Rx-clock)
     ///
     /// 0: SW_ENA deasserted (default) 1: SW_ENA asserted
+    #[inline]
     pub fn sw_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_sw_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -1185,9 +1369,11 @@ impl XFI_MODE {
     /// SW_RST input to XFI clk_rst_sync modules (internal Tx-clock, core Tx clock-input, internal Rx-clock)
     ///
     /// 0: SW_RST deasserted 1: SW_RST asserted (default)
+    #[inline]
     pub fn sw_rst(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_sw_rst(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -1196,9 +1382,11 @@ impl XFI_MODE {
     /// TX_FIFO error mode control When deasserted (default), if single Tx-data word is read outside the 'safe' zone (where a full-cycle of setup and hold are guaranteed), the TX_LOS status will be asserted. Due to synchronization uncertainties it is possible to be 'on-edge' and still make timing, having a whole cycle plus something less than a cycle for setup and hold timing. When this field is asserted, two concecutive read cycles outside the 'safe' zone must occur to generate the TX_LOS status. This allows a known (slew-rate limited) drift rate to dither 'on-edge' out of the 'safe' zone for a cycle and not generate the TX_LOS if read timing returns to the 'safe' zone on the following cycle.
     ///
     /// 0: A single read outside the 'safe' zone generates a TX_LOS condition (default) 1: Monitor for two concecutive out of 'safe' zone cycles to generate TX_LOS
+    #[inline]
     pub fn txf_err_mode(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_txf_err_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -1208,9 +1396,11 @@ impl XFI_MODE {
     /// Automatically assert a hardware TX_RESYNC when TX_FIFO_LOS is detected
     ///
     /// 0: TX_FIFO will not resync when an LOS event is detected 1: TX_FIFO will resync when an LOS event is detected
+    #[inline]
     pub fn tx_autoresync(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_tx_autoresync(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -1220,9 +1410,11 @@ impl XFI_MODE {
     /// Invert data driven into the HSS Tx data port (txad)
     ///
     /// 0: Non-inverted data to the Tx data port 1: Inverted data to the Tx data port
+    #[inline]
     pub fn tx_invert(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_tx_invert(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -1232,9 +1424,11 @@ impl XFI_MODE {
     /// Resynchronize the core/XFI data phase crossing logic Must always be asserted after SW_RST or SW_ENA
     ///
     /// 0: No action 1: Set TX_RESYNC, HW will clear this bit when sync has completed
+    #[inline]
     pub fn tx_resync_shot(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_tx_resync_shot(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -1244,9 +1438,11 @@ impl XFI_MODE {
     /// The 64-bit port can be equipped with a FIFO to ease 64/66-bit originated clock variations.
     ///
     /// 0: TX-FIFO is bypassed. 1: TX-FIFO is enabled.
+    #[inline]
     pub fn tx_use_fifo(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_tx_use_fifo(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -1263,9 +1459,11 @@ impl XFI_STATUS {
     /// Unmasked status of the ANEG_ACTIVE status output When the ANEG_ACTIVE_MASK is set, this status is a source of the XFI_INT.
     ///
     /// 0: The ANEG_ACTIVE status is deasserted (low) 1: The ANEG_ACTIVE status is asserted (high)
+    #[inline]
     pub fn aneg_active_status(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_aneg_active_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -1275,9 +1473,11 @@ impl XFI_STATUS {
     /// Unmasked status of the ANEG_KR_INT status output When the ANEG_KR_INT_MASK is set, this status is a source of the XFI_INT.
     ///
     /// 0: The ANEG_KR_INT status is deasserted (low) 1: The ANEG_KR_INT status is asserted (high)
+    #[inline]
     pub fn aneg_kr_int_status(&self) -> u32 {
         (self.0 & 0x40000) >> 18
     }
+    #[inline]
     pub fn set_aneg_kr_int_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 18;
@@ -1287,9 +1487,11 @@ impl XFI_STATUS {
     /// Status from macro: Receiver detected.
     ///
     /// 0: XFI has no receiver detected 1: XFI has a receiver detected
+    #[inline]
     pub fn receiver_detect_status(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
+    #[inline]
     pub fn set_receiver_detect_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -1299,9 +1501,11 @@ impl XFI_STATUS {
     /// Status of the XFI_SSF output port
     ///
     /// 0: XFI_SSF deasserted 1: XFI_SSF asserted
+    #[inline]
     pub fn ssf_status(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_ssf_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -1311,9 +1515,11 @@ impl XFI_STATUS {
     /// Status of XFI_INT output port XFI_INT = XFI_MASK & (RXINT_STATUS | TXINT_STATUS)
     ///
     /// 0: XFI_INT deasserted 1: XFI_INT asserted
+    #[inline]
     pub fn xfiint_status(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_xfiint_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

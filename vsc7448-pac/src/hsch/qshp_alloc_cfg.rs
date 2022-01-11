@@ -32,18 +32,22 @@ use derive_more::{From, Into};
 pub struct QSHP_ALLOC_CFG(u32);
 impl QSHP_ALLOC_CFG {
     /// First input using queue shapers are using this queue shaper index.
+    #[inline]
     pub fn qshp_base(&self) -> u32 {
         self.0 & 0x1fff
     }
+    #[inline]
     pub fn set_qshp_base(&mut self, value: u32) {
         assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
     }
     /// Last input using queue shapers. A value lower than the SHP_MIN input disables queue shaping.
+    #[inline]
     pub fn qshp_max(&self) -> u32 {
         (self.0 & 0x7e000) >> 13
     }
+    #[inline]
     pub fn set_qshp_max(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 13;
@@ -51,9 +55,11 @@ impl QSHP_ALLOC_CFG {
         self.0 |= value;
     }
     /// First input using queue shapers.
+    #[inline]
     pub fn qshp_min(&self) -> u32 {
         (self.0 & 0x1f80000) >> 19
     }
+    #[inline]
     pub fn set_qshp_min(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 19;
@@ -66,9 +72,11 @@ impl QSHP_ALLOC_CFG {
 pub struct QSHP_CONNECT(u32);
 impl QSHP_CONNECT {
     /// Forms the leak chains.
+    #[inline]
     pub fn se_leak_link(&self) -> u32 {
         self.0 & 0xfff
     }
+    #[inline]
     pub fn set_se_leak_link(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;

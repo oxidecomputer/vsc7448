@@ -41,12 +41,15 @@ pub mod vcap_core_sticky;
 /// Build in test for TCAM
 pub struct TCAM_BIST(pub(super) u32);
 impl TCAM_BIST {
+    #[inline]
     pub fn TCAM_CFG(&self) -> RegisterAddress<tcam_bist::TCAM_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn TCAM_CTRL(&self) -> RegisterAddress<tcam_bist::TCAM_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn TCAM_STAT(&self) -> RegisterAddress<tcam_bist::TCAM_STAT> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -55,33 +58,43 @@ impl TCAM_BIST {
 /// VCAP constants
 pub struct VCAP_CONST(pub(super) u32);
 impl VCAP_CONST {
+    #[inline]
     pub fn ACTION_DEF_CNT(&self) -> RegisterAddress<vcap_const::ACTION_DEF_CNT> {
         RegisterAddress::new(self.0 + 0x14)
     }
+    #[inline]
     pub fn ACTION_WIDTH(&self) -> RegisterAddress<vcap_const::ACTION_WIDTH> {
         RegisterAddress::new(self.0 + 0x18)
     }
+    #[inline]
     pub fn CNT_WIDTH(&self) -> RegisterAddress<vcap_const::CNT_WIDTH> {
         RegisterAddress::new(self.0 + 0x1c)
     }
+    #[inline]
     pub fn CORE_CNT(&self) -> RegisterAddress<vcap_const::CORE_CNT> {
         RegisterAddress::new(self.0 + 0x20)
     }
+    #[inline]
     pub fn ENTRY_CNT(&self) -> RegisterAddress<vcap_const::ENTRY_CNT> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    #[inline]
     pub fn ENTRY_SWCNT(&self) -> RegisterAddress<vcap_const::ENTRY_SWCNT> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    #[inline]
     pub fn ENTRY_TG_WIDTH(&self) -> RegisterAddress<vcap_const::ENTRY_TG_WIDTH> {
         RegisterAddress::new(self.0 + 0x10)
     }
+    #[inline]
     pub fn ENTRY_WIDTH(&self) -> RegisterAddress<vcap_const::ENTRY_WIDTH> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn IF_CNT(&self) -> RegisterAddress<vcap_const::IF_CNT> {
         RegisterAddress::new(self.0 + 0x24)
     }
+    #[inline]
     pub fn VCAP_VER(&self) -> RegisterAddress<vcap_const::VCAP_VER> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -90,22 +103,27 @@ impl VCAP_CONST {
 /// VCAP cache
 pub struct VCAP_CORE_CACHE(pub(super) u32);
 impl VCAP_CORE_CACHE {
+    #[inline]
     pub fn VCAP_ACTION_DAT(&self, index: u32) -> RegisterAddress<vcap_core_cache::VCAP_ACTION_DAT> {
         assert!(index < 64);
         RegisterAddress::new(self.0 + 0x200 + index * 0x4)
     }
+    #[inline]
     pub fn VCAP_CNT_DAT(&self, index: u32) -> RegisterAddress<vcap_core_cache::VCAP_CNT_DAT> {
         assert!(index < 32);
         RegisterAddress::new(self.0 + 0x300 + index * 0x4)
     }
+    #[inline]
     pub fn VCAP_ENTRY_DAT(&self, index: u32) -> RegisterAddress<vcap_core_cache::VCAP_ENTRY_DAT> {
         assert!(index < 64);
         RegisterAddress::new(self.0 + 0x0 + index * 0x4)
     }
+    #[inline]
     pub fn VCAP_MASK_DAT(&self, index: u32) -> RegisterAddress<vcap_core_cache::VCAP_MASK_DAT> {
         assert!(index < 64);
         RegisterAddress::new(self.0 + 0x100 + index * 0x4)
     }
+    #[inline]
     pub fn VCAP_RULE_ENA(&self) -> RegisterAddress<vcap_core_cache::VCAP_RULE_ENA> {
         RegisterAddress::new(self.0 + 0x380)
     }
@@ -114,9 +132,11 @@ impl VCAP_CORE_CACHE {
 /// VCAP operations
 pub struct VCAP_CORE_CFG(pub(super) u32);
 impl VCAP_CORE_CFG {
+    #[inline]
     pub fn VCAP_MV_CFG(&self) -> RegisterAddress<vcap_core_cfg::VCAP_MV_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn VCAP_UPDATE_CTRL(&self) -> RegisterAddress<vcap_core_cfg::VCAP_UPDATE_CTRL> {
         RegisterAddress::new(self.0 + 0x0)
     }
@@ -125,9 +145,11 @@ impl VCAP_CORE_CFG {
 /// Mapping of cores to interfaces
 pub struct VCAP_CORE_MAP(pub(super) u32);
 impl VCAP_CORE_MAP {
+    #[inline]
     pub fn VCAP_CORE_IDX(&self) -> RegisterAddress<vcap_core_map::VCAP_CORE_IDX> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn VCAP_CORE_MAP(&self) -> RegisterAddress<vcap_core_map::VCAP_CORE_MAP> {
         RegisterAddress::new(self.0 + 0x4)
     }
@@ -136,6 +158,7 @@ impl VCAP_CORE_MAP {
 /// Sticky bits
 pub struct VCAP_CORE_STICKY(pub(super) u32);
 impl VCAP_CORE_STICKY {
+    #[inline]
     pub fn VCAP_STICKY(&self) -> RegisterAddress<vcap_core_sticky::VCAP_STICKY> {
         RegisterAddress::new(self.0 + 0x0)
     }

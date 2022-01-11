@@ -36,9 +36,11 @@ impl PCS_XAUI_TSTPAT_CFG {
     /// Capture current error counter values
     ///
     /// 1: Capture
+    #[inline]
     pub fn freeze_err_cnt_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_freeze_err_cnt_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -48,9 +50,11 @@ impl PCS_XAUI_TSTPAT_CFG {
     /// Enable Test pattern checker
     ///
     /// 1: Check 0: No checking
+    #[inline]
     pub fn vt_chk_ena(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_vt_chk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -60,9 +64,11 @@ impl PCS_XAUI_TSTPAT_CFG {
     /// Check test pattern
     ///
     /// 000: Idle 011: MFPAT 100: CRPAT 101: CJPAT all others: Idle Note: LFPAT and HFPAT can not be checked since sync is impossible
+    #[inline]
     pub fn vt_chk_sel(&self) -> u32 {
         (self.0 & 0x70) >> 4
     }
+    #[inline]
     pub fn set_vt_chk_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 4;
@@ -72,9 +78,11 @@ impl PCS_XAUI_TSTPAT_CFG {
     /// Enable Test pattern generator
     ///
     /// 1: Generate test vectors 0: Normal operation
+    #[inline]
     pub fn vt_gen_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_vt_gen_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -84,9 +92,11 @@ impl PCS_XAUI_TSTPAT_CFG {
     /// Generate test pattern
     ///
     /// 000: Idle 001: HFPAT 010: LFPAT 011: MFPAT 100: CRPAT 101: CJPAT All others: Idle
+    #[inline]
     pub fn vt_gen_sel(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_vt_gen_sel(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;

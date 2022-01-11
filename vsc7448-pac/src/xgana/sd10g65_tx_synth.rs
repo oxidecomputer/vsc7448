@@ -34,18 +34,22 @@ use derive_more::{From, Into};
 pub struct SD10G65_SSC_CFG0(u32);
 impl SD10G65_SSC_CFG0 {
     /// SSC generator enable.
+    #[inline]
     pub fn ssc_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_ssc_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// SSC modulation frequency fine tuning control
+    #[inline]
     pub fn ssc_mod_freq(&self) -> u32 {
         (self.0 & 0x7e) >> 1
     }
+    #[inline]
     pub fn set_ssc_mod_freq(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 1;
@@ -53,9 +57,11 @@ impl SD10G65_SSC_CFG0 {
         self.0 |= value;
     }
     /// SSC modulation amplitude limiter
+    #[inline]
     pub fn ssc_mod_lim(&self) -> u32 {
         (self.0 & 0xfff80000) >> 19
     }
+    #[inline]
     pub fn set_ssc_mod_lim(&mut self, value: u32) {
         assert!(value <= 0x1fff);
         let value = value << 19;
@@ -63,9 +69,11 @@ impl SD10G65_SSC_CFG0 {
         self.0 |= value;
     }
     /// SSC modulation period / amplitude.
+    #[inline]
     pub fn ssc_mod_period(&self) -> u32 {
         (self.0 & 0x7ff80) >> 7
     }
+    #[inline]
     pub fn set_ssc_mod_period(&mut self, value: u32) {
         assert!(value <= 0xfff);
         let value = value << 7;
@@ -80,9 +88,11 @@ impl SD10G65_SSC_CFG0 {
 pub struct SD10G65_SSC_CFG1(u32);
 impl SD10G65_SSC_CFG1 {
     /// Select the MLD clock source for the internal MLD phase detector
+    #[inline]
     pub fn mld_sync_clk_sel(&self) -> u32 {
         (self.0 & 0x1800000) >> 23
     }
+    #[inline]
     pub fn set_mld_sync_clk_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 23;
@@ -90,9 +100,11 @@ impl SD10G65_SSC_CFG1 {
         self.0 |= value;
     }
     /// Control of the internal MLD phase detector: b0: enable; b1: enable hyst. b2: enable window function; b3: select window size
+    #[inline]
     pub fn mld_sync_ctrl(&self) -> u32 {
         (self.0 & 0x1e000000) >> 25
     }
+    #[inline]
     pub fn set_mld_sync_ctrl(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 25;
@@ -100,9 +112,11 @@ impl SD10G65_SSC_CFG1 {
         self.0 |= value;
     }
     /// Select between the internal and external MLD phase detector: 0: internal; 1: external
+    #[inline]
     pub fn mld_sync_src_sel(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
+    #[inline]
     pub fn set_mld_sync_src_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -110,9 +124,11 @@ impl SD10G65_SSC_CFG1 {
         self.0 |= value;
     }
     /// Enables Smooth generator
+    #[inline]
     pub fn smooth_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_smooth_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -120,18 +136,22 @@ impl SD10G65_SSC_CFG1 {
         self.0 |= value;
     }
     /// SSC modulation period multiplier encoded 2**n: 0 => 1; 1 => 2; 2 => 4, 3 => 8 ...
+    #[inline]
     pub fn ssc_mod_mul(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_ssc_mod_mul(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
     /// SSC sigma delta gain.
+    #[inline]
     pub fn ssc_sd_gain(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
     }
+    #[inline]
     pub fn set_ssc_sd_gain(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 5;
@@ -139,9 +159,11 @@ impl SD10G65_SSC_CFG1 {
         self.0 |= value;
     }
     /// SSC modulation start position on synchronization trigger
+    #[inline]
     pub fn ssc_sync_pos(&self) -> u32 {
         (self.0 & 0x18) >> 3
     }
+    #[inline]
     pub fn set_ssc_sync_pos(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 3;
@@ -149,9 +171,11 @@ impl SD10G65_SSC_CFG1 {
         self.0 |= value;
     }
     /// Frequency select of integrator 2 replica used for lane sync.
+    #[inline]
     pub fn sync_ctrl_fsel(&self) -> u32 {
         (self.0 & 0x3f0000) >> 16
     }
+    #[inline]
     pub fn set_sync_ctrl_fsel(&mut self, value: u32) {
         assert!(value <= 0x3f);
         let value = value << 16;
@@ -159,9 +183,11 @@ impl SD10G65_SSC_CFG1 {
         self.0 |= value;
     }
     /// Sticky bit that indicates a sync control protocol error.
+    #[inline]
     pub fn sync_ctrl_protocol_err(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_sync_ctrl_protocol_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -169,9 +195,11 @@ impl SD10G65_SSC_CFG1 {
         self.0 |= value;
     }
     /// Clear for synth_sc_protocol_err sticky bit. Rising edge causes the clearing and a concurrent error event has higher priority.
+    #[inline]
     pub fn sync_ctrl_protocol_err_clr(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
+    #[inline]
     pub fn set_sync_ctrl_protocol_err_clr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -179,9 +207,11 @@ impl SD10G65_SSC_CFG1 {
         self.0 |= value;
     }
     /// Controls integrator 2 replica behavior: '0': wrapping; '1': saturating.
+    #[inline]
     pub fn sync_ctrl_wrap_inhibit(&self) -> u32 {
         (self.0 & 0x400000) >> 22
     }
+    #[inline]
     pub fn set_sync_ctrl_wrap_inhibit(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 22;
@@ -196,9 +226,11 @@ impl SD10G65_SSC_CFG1 {
 pub struct SD10G65_TX_SYNTH_CFG0(u32);
 impl SD10G65_TX_SYNTH_CFG0 {
     /// Synthesizer BIAS adjust in steps of ~3%, 0: 100%, 7: 121%
+    #[inline]
     pub fn synth_bias_adjust(&self) -> u32 {
         (self.0 & 0x3800000) >> 23
     }
+    #[inline]
     pub fn set_synth_bias_adjust(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 23;
@@ -206,9 +238,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// enables CML2CMOS converter
+    #[inline]
     pub fn synth_conv_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_synth_conv_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -216,9 +250,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// comon sync speed
+    #[inline]
     pub fn synth_cs_speed(&self) -> u32 {
         (self.0 & 0x3800) >> 11
     }
+    #[inline]
     pub fn set_synth_cs_speed(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 11;
@@ -226,9 +262,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// dig. sync direction
+    #[inline]
     pub fn synth_ds_dir(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_synth_ds_dir(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -236,9 +274,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// dig. sync enable
+    #[inline]
     pub fn synth_ds_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_synth_ds_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -246,9 +286,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// dig. sync speed
+    #[inline]
     pub fn synth_ds_speed(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_synth_ds_speed(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -256,18 +298,22 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// synthesizer enable
+    #[inline]
     pub fn synth_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_synth_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// enable sync unit
+    #[inline]
     pub fn synth_ena_sync_unit(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_synth_ena_sync_unit(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -275,9 +321,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// selects feedback divider setting
+    #[inline]
     pub fn synth_fbdiv_sel(&self) -> u32 {
         (self.0 & 0x30000) >> 16
     }
+    #[inline]
     pub fn set_synth_fbdiv_sel(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 16;
@@ -285,9 +333,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// half rate enable
+    #[inline]
     pub fn synth_hrate_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_synth_hrate_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -295,9 +345,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// lane sync direction
+    #[inline]
     pub fn synth_ls_dir(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_synth_ls_dir(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -305,9 +357,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// lane sync enable
+    #[inline]
     pub fn synth_ls_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_synth_ls_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -315,9 +369,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// lane sync speed
+    #[inline]
     pub fn synth_ls_speed(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_synth_ls_speed(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -325,9 +381,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// Enable for different offset compensation stages
+    #[inline]
     pub fn synth_off_comp_ena(&self) -> u32 {
         (self.0 & 0x7c0000) >> 18
     }
+    #[inline]
     pub fn set_synth_off_comp_ena(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 18;
@@ -335,9 +393,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// reg. pool for late changes/fixes.
+    #[inline]
     pub fn synth_spare_pool(&self) -> u32 {
         (self.0 & 0x3c000000) >> 26
     }
+    #[inline]
     pub fn set_synth_spare_pool(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 26;
@@ -345,9 +405,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
         self.0 |= value;
     }
     /// Selects circuit speed. Coding: 0 for settings with synth_fbdiv_sel = 2; 1 for setting with synth_fbdiv_sel smaller than 2.
+    #[inline]
     pub fn synth_speed_sel(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_synth_speed_sel(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -362,9 +424,11 @@ impl SD10G65_TX_SYNTH_CFG0 {
 pub struct SD10G65_TX_SYNTH_CFG1(u32);
 impl SD10G65_TX_SYNTH_CFG1 {
     /// frequency m setting bits 35:32
+    #[inline]
     pub fn synth_freqm_1(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
+    #[inline]
     pub fn set_synth_freqm_1(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -372,18 +436,22 @@ impl SD10G65_TX_SYNTH_CFG1 {
         self.0 |= value;
     }
     /// frequency n setting bits 35:32
+    #[inline]
     pub fn synth_freqn_1(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_synth_freqn_1(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
     /// frequency multiplier
+    #[inline]
     pub fn synth_freq_mult(&self) -> u32 {
         (self.0 & 0x3fff00) >> 8
     }
+    #[inline]
     pub fn set_synth_freq_mult(&mut self, value: u32) {
         assert!(value <= 0x3fff);
         let value = value << 8;
@@ -391,9 +459,11 @@ impl SD10G65_TX_SYNTH_CFG1 {
         self.0 |= value;
     }
     /// frequency multiplier decoder bypass
+    #[inline]
     pub fn synth_freq_mult_byp(&self) -> u32 {
         (self.0 & 0x4000000) >> 26
     }
+    #[inline]
     pub fn set_synth_freq_mult_byp(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 26;
@@ -401,9 +471,11 @@ impl SD10G65_TX_SYNTH_CFG1 {
         self.0 |= value;
     }
     /// frequency multiplier MSBits in bypass mode
+    #[inline]
     pub fn synth_freq_mult_hi(&self) -> u32 {
         (self.0 & 0x3c00000) >> 22
     }
+    #[inline]
     pub fn set_synth_freq_mult_hi(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 22;
@@ -418,9 +490,11 @@ impl SD10G65_TX_SYNTH_CFG1 {
 pub struct SD10G65_TX_SYNTH_CFG3(u32);
 impl SD10G65_TX_SYNTH_CFG3 {
     /// frequency m setting bits 31:0
+    #[inline]
     pub fn synth_freqm_0(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_synth_freqm_0(&mut self, value: u32) {
         self.0 = value;
     }
@@ -432,9 +506,11 @@ impl SD10G65_TX_SYNTH_CFG3 {
 pub struct SD10G65_TX_SYNTH_CFG4(u32);
 impl SD10G65_TX_SYNTH_CFG4 {
     /// frequency n setting bits 31:0
+    #[inline]
     pub fn synth_freqn_0(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_synth_freqn_0(&mut self, value: u32) {
         self.0 = value;
     }

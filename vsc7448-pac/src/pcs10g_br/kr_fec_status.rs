@@ -34,9 +34,11 @@ impl KR_FEC_STATUS {
     /// Result of comparing KR FEC's corrected block count (1x00AC/1x00AD) to the threshold setting in 3x8E0A/3x8E0B.
     ///
     /// 0: count did not exceed threshold setting 1: count exceeded threshold setting
+    #[inline]
     pub fn fec_fixed_error_count_error_status(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_fec_fixed_error_count_error_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -46,9 +48,11 @@ impl KR_FEC_STATUS {
     /// Result of comparing KR FEC's uncorrectable block count (1x00AE/1x00AF) to the threshold setting in 3x8E0C/3x8E0D.
     ///
     /// 0: count did not exceed threshold setting 1: count exceeded threshold setting
+    #[inline]
     pub fn fec_unfixable_error_count_error_status(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_fec_unfixable_error_count_error_status(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -62,9 +66,11 @@ impl KR_FEC_STICKY {
     /// This sticky bit is set whenever fixed error count crosses configured FIXED_ERROR_COUNT_THRESHOLD. Note: write '1' to clear this bit.
     ///
     /// 0: Error counter has not exceeded threshold since the last time this bit was cleared. 1: Error count exceeded threshold since the last time this bit was cleared.
+    #[inline]
     pub fn fec_fixed_error_count_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_fec_fixed_error_count_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -74,9 +80,11 @@ impl KR_FEC_STICKY {
     /// FEC in frame lock indication This is a sticky bit that latches the low state.
     ///
     /// 0: FEC decoder has not achieved lock 1: FEC decoder has achieved lock
+    #[inline]
     pub fn fec_frame_lock_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_fec_frame_lock_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -85,9 +93,11 @@ impl KR_FEC_STICKY {
     /// This sticky bit is set whenever fixed error count crosses configured UNFIXABLE_ERROR_COUNT_THRESHOLD. Note: write '1' to clear this bit.
     ///
     /// 0: Error counter has not exceeded threshold since the last time this bit was cleared. 1: Error count exceeded threshold since the last time this bit was cleared.
+    #[inline]
     pub fn fec_unfixable_error_count_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_fec_unfixable_error_count_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -102,9 +112,11 @@ impl KR_FEC_STICKY_MASK {
     /// Enable interruput generation when FEC_FIXED_ERROR_COUNT_STICKY is set
     ///
     /// 0: Disable interrupt generation 1: Enable interrupt generation
+    #[inline]
     pub fn fec_fixed_error_count_sticky_mask(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_fec_fixed_error_count_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -114,9 +126,11 @@ impl KR_FEC_STICKY_MASK {
     /// Enable interruput generation when FEC_FRAME_LOCK_STICKY is set
     ///
     /// 0: Disable interrupt generation 1: Enable interrupt generation
+    #[inline]
     pub fn fec_frame_lock_sticky_mask(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_fec_frame_lock_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -125,9 +139,11 @@ impl KR_FEC_STICKY_MASK {
     /// Enable interruput generation when FEC_UNFIXABLE_ERROR_COUNT_STICKY is set
     ///
     /// 0: Disable interrupt generation 1: Enable interrupt generation
+    #[inline]
     pub fn fec_unfixable_error_count_sticky_mask(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_fec_unfixable_error_count_sticky_mask(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;

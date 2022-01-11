@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct MII_CFG(u32);
 impl MII_CFG {
     /// Option to disable deadlock fix if it causes any troubles.
+    #[inline]
     pub fn deadlock_fix_dis(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_deadlock_fix_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -42,9 +44,11 @@ impl MII_CFG {
         self.0 |= value;
     }
     /// Selects the interpretation of the BUSY_OR_IN_PROGRESS field in MII_STATUS.
+    #[inline]
     pub fn miim_cfg_dbg(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_miim_cfg_dbg(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -52,9 +56,11 @@ impl MII_CFG {
         self.0 |= value;
     }
     /// Configures the MIIM clock frequency. This is computed as system_clk/(2*(1+X)), where X is the value written to this register. Note : Setting X to 0 is invalid and will result in the same frequency as setting X to 1.
+    #[inline]
     pub fn miim_cfg_prescale(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_miim_cfg_prescale(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -63,9 +69,11 @@ impl MII_CFG {
     /// The ST (start-of-frame) field of the MIIM frame format adopts the value of this field. This must be configured for either clause 22 or 45 MIIM operation.
     ///
     /// "01": Clause 22 "00": Clause 45 Other values are reserved.
+    #[inline]
     pub fn miim_st_cfg_field(&self) -> u32 {
         (self.0 & 0x600) >> 9
     }
+    #[inline]
     pub fn set_miim_st_cfg_field(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 9;
@@ -80,9 +88,11 @@ impl MII_CFG_7226 {
     /// Use of XAUI/XGMII translator device.
     ///
     /// 0 : Disable 1 : Enable.
+    #[inline]
     pub fn miim_7226_cfg_field(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_miim_7226_cfg_field(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -97,9 +107,11 @@ impl MII_CMD {
     /// Indicates type of operation.
     ///
     /// Clause 22: 01 : Write 10 : Read Clause 45: 00 : Address 01 : Write 10 : Read inc. 11 : Read.
+    #[inline]
     pub fn miim_cmd_opr_field(&self) -> u32 {
         (self.0 & 0x6) >> 1
     }
+    #[inline]
     pub fn set_miim_cmd_opr_field(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 1;
@@ -107,9 +119,11 @@ impl MII_CMD {
         self.0 |= value;
     }
     /// Indicates the addressed PHY number.
+    #[inline]
     pub fn miim_cmd_phyad(&self) -> u32 {
         (self.0 & 0x3e000000) >> 25
     }
+    #[inline]
     pub fn set_miim_cmd_phyad(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 25;
@@ -117,9 +131,11 @@ impl MII_CMD {
         self.0 |= value;
     }
     /// Indicates the addressed of the register within the PHY that shall be accessed.
+    #[inline]
     pub fn miim_cmd_regad(&self) -> u32 {
         (self.0 & 0x1f00000) >> 20
     }
+    #[inline]
     pub fn set_miim_cmd_regad(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 20;
@@ -129,9 +145,11 @@ impl MII_CMD {
     /// Indicates whether automatic scanning of PHY registers is enabled. When enabled, the PHY-number for each automatic read is continuously round-robined from PHY_ADDR_LOW through PHY_ADDR_HIGH. This function is started upon a read operation (ACCESS_TYPE). Scan MUST be disabled when doing any configuration of the MIIM controller.
     ///
     /// 0 : Disabled 1 : Enabled.
+    #[inline]
     pub fn miim_cmd_scan(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_miim_cmd_scan(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -140,9 +158,11 @@ impl MII_CMD {
     /// Select if scanning of the PHY shall be done once, or scanning should be done continuously.
     ///
     /// 0 : Do continuously PHY scanning 1 : Stop once all PHY have been scanned.
+    #[inline]
     pub fn miim_cmd_single_scan(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_miim_cmd_single_scan(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -152,9 +172,11 @@ impl MII_CMD {
     /// Must be set for starting a new PHY access. This bit is automatically cleared.
     ///
     /// 0 : Write to this register is ignored. 1 : Write to this register is processed.
+    #[inline]
     pub fn miim_cmd_vld(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_miim_cmd_vld(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -162,9 +184,11 @@ impl MII_CMD {
         self.0 |= value;
     }
     /// Data to be written in the PHY register.
+    #[inline]
     pub fn miim_cmd_wrdata(&self) -> u32 {
         (self.0 & 0xffff0) >> 4
     }
+    #[inline]
     pub fn set_miim_cmd_wrdata(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 4;
@@ -177,9 +201,11 @@ impl MII_CMD {
 pub struct MII_DATA(u32);
 impl MII_DATA {
     /// Data read from PHY register.
+    #[inline]
     pub fn miim_data_rddata(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_miim_data_rddata(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -188,9 +214,11 @@ impl MII_DATA {
     /// Indicates whether a read operation failed or succeeded.
     ///
     /// 00 : OK 11 : Error
+    #[inline]
     pub fn miim_data_success(&self) -> u32 {
         (self.0 & 0x30000) >> 16
     }
+    #[inline]
     pub fn set_miim_data_success(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 16;
@@ -203,9 +231,11 @@ impl MII_DATA {
 pub struct MII_SCAN_0(u32);
 impl MII_SCAN_0 {
     /// Indicates the high PHY number to scan during automatic scanning.
+    #[inline]
     pub fn miim_scan_phyadhi(&self) -> u32 {
         (self.0 & 0x3e0) >> 5
     }
+    #[inline]
     pub fn set_miim_scan_phyadhi(&mut self, value: u32) {
         assert!(value <= 0x1f);
         let value = value << 5;
@@ -213,9 +243,11 @@ impl MII_SCAN_0 {
         self.0 |= value;
     }
     /// Indicates the low PHY number to scan during automatic scanning.
+    #[inline]
     pub fn miim_scan_phyadlo(&self) -> u32 {
         self.0 & 0x1f
     }
+    #[inline]
     pub fn set_miim_scan_phyadlo(&mut self, value: u32) {
         assert!(value <= 0x1f);
         self.0 &= !0x1f;
@@ -227,18 +259,22 @@ impl MII_SCAN_0 {
 pub struct MII_SCAN_1(u32);
 impl MII_SCAN_1 {
     /// Indicates the expected value for comparing the PHY registers during automatic scan.
+    #[inline]
     pub fn miim_scan_expect(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_miim_scan_expect(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
     /// Indicates the mask for comparing the PHY registers during automatic scan.
+    #[inline]
     pub fn miim_scan_mask(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_miim_scan_mask(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -253,9 +289,11 @@ impl MII_SCAN_LAST_RSLTS {
     /// Indicates for each PHY if a PHY register has matched the expected value (with mask). This register reflects the value of the last reading of the phy register.
     ///
     /// 0 : Mismatch. 1 : Match.
+    #[inline]
     pub fn miim_last_rslt(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_miim_last_rslt(&mut self, value: u32) {
         self.0 = value;
     }
@@ -267,9 +305,11 @@ impl MII_SCAN_LAST_RSLTS_VLD {
     /// Indicates for each PHY if a PHY register matched are valid or not.
     ///
     /// 0 : Scan result not valid. 1 : Scan result valid.
+    #[inline]
     pub fn miim_last_rslt_vld(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_miim_last_rslt_vld(&mut self, value: u32) {
         self.0 = value;
     }
@@ -281,9 +321,11 @@ impl MII_STATUS {
     /// Signals if all PHYs have been scanned ( with auto scan ) at least once.
     ///
     /// 0 : Auto scan has not scanned all PHYs. 1 : Auto scan has scanned all PHY at least once.
+    #[inline]
     pub fn miim_scan_complete(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_miim_scan_complete(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -293,9 +335,11 @@ impl MII_STATUS {
     /// Indicates the current state of the MIIM controller. When read operations are done (no longer busy), then read data is available via the DEVCPU_GCB::MII_DATA register.
     ///
     /// 0: MIIM controller is in idle state 1: MIIM controller is busy performing MIIM cmd (Either read or read cmd).
+    #[inline]
     pub fn miim_stat_busy(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_miim_stat_busy(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -305,9 +349,11 @@ impl MII_STATUS {
     /// The MIIM controller has a CMD fifo of depth one. When this field is 0, then it is safe to write another MIIM command to the MIIM controller.
     ///
     /// 0 : Read or write not pending 1 : Read or write pending.
+    #[inline]
     pub fn miim_stat_opr_pend(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_miim_stat_opr_pend(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -317,9 +363,11 @@ impl MII_STATUS {
     /// Indicates whether a read operation via the MIIM interface is in progress or not.
     ///
     /// 0 : Read not in progress 1 : Read in progress.
+    #[inline]
     pub fn miim_stat_pending_rd(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_miim_stat_pending_rd(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -329,9 +377,11 @@ impl MII_STATUS {
     /// Indicates whether a write operation via the MIIM interface is in progress or not.
     ///
     /// 0 : Write not in progress 1 : Write in progress.
+    #[inline]
     pub fn miim_stat_pending_wr(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_miim_stat_pending_wr(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

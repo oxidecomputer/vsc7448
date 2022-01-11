@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct TR_STAT_OVRD(u32);
 impl TR_STAT_OVRD {
     /// Override Stat_report field to transmit
+    #[inline]
     pub fn stat_ovrd(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_stat_ovrd(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

@@ -38,18 +38,23 @@ pub mod vaui_channel_cfg;
 /// ANEG Configuration Registers
 pub struct ANEG_CFG(pub(super) u32);
 impl ANEG_CFG {
+    #[inline]
     pub fn ANEG_ADV_ABILITY_0(&self) -> RegisterAddress<aneg_cfg::ANEG_ADV_ABILITY_0> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn ANEG_ADV_ABILITY_1(&self) -> RegisterAddress<aneg_cfg::ANEG_ADV_ABILITY_1> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    #[inline]
     pub fn ANEG_CFG(&self) -> RegisterAddress<aneg_cfg::ANEG_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn ANEG_NEXT_PAGE_0(&self) -> RegisterAddress<aneg_cfg::ANEG_NEXT_PAGE_0> {
         RegisterAddress::new(self.0 + 0xc)
     }
+    #[inline]
     pub fn ANEG_NEXT_PAGE_1(&self) -> RegisterAddress<aneg_cfg::ANEG_NEXT_PAGE_1> {
         RegisterAddress::new(self.0 + 0x10)
     }
@@ -58,12 +63,15 @@ impl ANEG_CFG {
 /// ANEG Status Registers
 pub struct ANEG_STATUS(pub(super) u32);
 impl ANEG_STATUS {
+    #[inline]
     pub fn ANEG_LP_ADV_ABILITY_0(&self) -> RegisterAddress<aneg_status::ANEG_LP_ADV_ABILITY_0> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn ANEG_LP_ADV_ABILITY_1(&self) -> RegisterAddress<aneg_status::ANEG_LP_ADV_ABILITY_1> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn ANEG_STATUS(&self) -> RegisterAddress<aneg_status::ANEG_STATUS> {
         RegisterAddress::new(self.0 + 0x8)
     }
@@ -72,6 +80,7 @@ impl ANEG_STATUS {
 /// VAUI channel Configuration Registers
 pub struct VAUI_CHANNEL_CFG(pub(super) u32);
 impl VAUI_CHANNEL_CFG {
+    #[inline]
     pub fn VAUI_CHANNEL_CFG(
         &self,
         index: u32,

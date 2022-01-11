@@ -31,9 +31,11 @@ use derive_more::{From, Into};
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct QLIMIT_CONG_CNT_MAX_STAT(u32);
 impl QLIMIT_CONG_CNT_MAX_STAT {
+    #[inline]
     pub fn qlimit_cong_cnt_max(&self) -> u32 {
         self.0 & 0xfff
     }
+    #[inline]
     pub fn set_qlimit_cong_cnt_max(&mut self, value: u32) {
         assert!(value <= 0xfff);
         self.0 &= !0xfff;
@@ -47,9 +49,11 @@ impl QLIMIT_CONG_CNT_MAX_STAT {
 pub struct QLIMIT_MON_CFG(u32);
 impl QLIMIT_MON_CFG {
     /// Clear shared memory pool monitoring statistics.
+    #[inline]
     pub fn qlimit_shr_mon_clr(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_qlimit_shr_mon_clr(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -60,9 +64,11 @@ impl QLIMIT_MON_CFG {
 #[derive(Copy, Clone, Eq, PartialEq, From, Into)]
 pub struct QLIMIT_SHR_FILL_MAX_STAT(u32);
 impl QLIMIT_SHR_FILL_MAX_STAT {
+    #[inline]
     pub fn qlimit_shr_fill_max(&self) -> u32 {
         self.0 & 0x7fff
     }
+    #[inline]
     pub fn set_qlimit_shr_fill_max(&mut self, value: u32) {
         assert!(value <= 0x7fff);
         self.0 &= !0x7fff;

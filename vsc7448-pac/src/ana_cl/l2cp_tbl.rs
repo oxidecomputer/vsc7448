@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct L2CP_ENTRY_CFG(u32);
 impl L2CP_ENTRY_CFG {
     /// Enable use of COSID_VAL as COS ID.
+    #[inline]
     pub fn cosid_ena(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_cosid_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -42,9 +44,11 @@ impl L2CP_ENTRY_CFG {
         self.0 |= value;
     }
     /// COS ID for L2CP frame.
+    #[inline]
     pub fn cosid_val(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
+    #[inline]
     pub fn set_cosid_val(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -54,9 +58,11 @@ impl L2CP_ENTRY_CFG {
     /// CPU forward configuration for L2CP frame.
     ///
     /// 0: Normal forward 1: Enable redirection to CPU queue 2: Enable copy to CPU queue 3: Discard the frame
+    #[inline]
     pub fn cpu_fwd_cfg(&self) -> u32 {
         (self.0 & 0x18) >> 3
     }
+    #[inline]
     pub fn set_cpu_fwd_cfg(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 3;
@@ -64,9 +70,11 @@ impl L2CP_ENTRY_CFG {
         self.0 |= value;
     }
     /// CPU extraction queue for L2CP frame copied or redirected to CPU by CPU_FWD_CFG.
+    #[inline]
     pub fn cpu_l2cp_qu(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_cpu_l2cp_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;

@@ -34,9 +34,11 @@ impl DLB_CFG {
     /// Configuration of the drop precedence change for green frames being remarked to yellow. For such frames, the DP level will be incremented with CIR_INC_DP_VAL.
     ///
     /// 0: DP is not increased. n: DP is increased with n for PIR traffic.
+    #[inline]
     pub fn cir_inc_dp_val(&self) -> u32 {
         (self.0 & 0x3000) >> 12
     }
+    #[inline]
     pub fn set_cir_inc_dp_val(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 12;
@@ -46,9 +48,11 @@ impl DLB_CFG {
     /// Configuration of dual leaky bucket color awareness. Frames with DP below or equal to COLOR_AWARE_LVL is treated as green. Frames with DP above COLOR_AWARE_LVL are treated as yellow.
     ///
     /// 0: DLB policer is color aware. Incoming frames with DP=0 are green and frames with DP>0 are yellow. 1: DLB policer is color aware. Incoming frames with DP<=1 are green and frames with DP>1 are yellow. 2: DLB policer is color aware. Incoming frames with DP<=2 are green and frames with DP>2 are yellow. 3: DLB policer is color unaware. All incoming frames are green.
+    #[inline]
     pub fn color_aware_lvl(&self) -> u32 {
         (self.0 & 0xc000) >> 14
     }
+    #[inline]
     pub fn set_color_aware_lvl(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 14;
@@ -58,9 +62,11 @@ impl DLB_CFG {
     /// Set Coupling Flag (MEF CF). Depending on the setting of COUPLING_MODE, LB_CFG[0] and LB_CFG[1] must be configured as follows: COUPLING_MODE=0: LB_CFG[0].RATE_VAL  must be configured to MEF CIR LB_CFG[0].THRES_VAL must be configured to MEF CBS LB_CFG[1].RATE_VAL  must be configured to MEF EIR LB_CFG[1].THRES_VAL must be configured to MEF EBS COUPLING_MODE=1: LB_CFG[0].RATE_VAL  must be configured to MEF CIR LB_CFG[0].THRES_VAL must be configured to MEF CBS LB_CFG[1].RATE_VAL  must be configured to MEF EIR + MEF CIR LB_CFG[1].THRES_VAL must be configured to MEF EBS + MEF CBS
     ///
     /// 0: CF=0 1: CF=1
+    #[inline]
     pub fn coupling_mode(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_coupling_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -70,9 +76,11 @@ impl DLB_CFG {
     /// Configures if stripped encapsulation data (normalized data) is policed by the policer.
     ///
     /// 0: Encapsulation data is counted as frame data. 1: Encapsulation data in not counted as frame data.
+    #[inline]
     pub fn encap_data_dis(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_encap_data_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -82,9 +90,11 @@ impl DLB_CFG {
     /// Value added to each frame before updating the bucket. Gap value range: -64 to +63 in two's complement format. Setting GAP_VALUE to 20 corresponds to a line-rate measurement, since on the line each frame will be preceded by 12 bytes of IFG and 8 bytes of preamble. Setting GAP_VALUE to 0 corresponds to a data-rate measurement.
     ///
     /// 0x40: -64 0x41: -63 ... 0x7F: -1 0x00: 0 0x01: 1 ... 0x3F: 63
+    #[inline]
     pub fn gap_val(&self) -> u32 {
         (self.0 & 0x1fc) >> 2
     }
+    #[inline]
     pub fn set_gap_val(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 2;
@@ -94,18 +104,22 @@ impl DLB_CFG {
     /// TIMESCALE_VAL and BASE_TICK_CNT controls the the rate interval as well as the rate granularity available for LB rate configuration The rate granularity is calculated as follows: 8 / (BASE_TICK_CNT*1e-10 * 2^(3 * TIMESCALE_VAL) The rate granularity also becomes the smallest configurable rate. The largest configurable rate is granularity * (2**<width of RATE_VAL>-2)
     ///
     /// Assuming BASE_TICK_CNT= 9765, RATE_VAL width = 11 bits: 0: Granularity: 8,192,524bps. Range: 8193kbps - 16.7Gbps 1: Granularity: 1,024,066bps. Range 1024kbps - 2Gbps 2: Granularity: 128,008bps. Range: 128kbps - 262Mbps 3: Granularity: 16,001bps. Range: 16kbps - 32Mbps
+    #[inline]
     pub fn timescale_val(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_timescale_val(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
     /// The time - in BASE_TICK_CNTs - at which last leak was performed.
+    #[inline]
     pub fn timestamp_val(&self) -> u32 {
         (self.0 & 0xffe0000) >> 17
     }
+    #[inline]
     pub fn set_timestamp_val(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         let value = value << 17;
@@ -115,9 +129,11 @@ impl DLB_CFG {
     /// Configures action to be applied to policed frames.
     ///
     /// 0: No action. 1: Remove front ports from frame's destination port set. 2: Remove CPU ports from frame's destination port set. 3: Remove both front ports and CPU ports from frame's destination port set.
+    #[inline]
     pub fn traffic_type_mask(&self) -> u32 {
         (self.0 & 0xc00) >> 10
     }
+    #[inline]
     pub fn set_traffic_type_mask(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 10;
@@ -130,9 +146,11 @@ impl DLB_CFG {
 pub struct LB_BUCKET_VAL(u32);
 impl LB_BUCKET_VAL {
     /// Number of bytes in leaky bucket.
+    #[inline]
     pub fn bucket_val(&self) -> u32 {
         (self.0 & 0xffffe00) >> 9
     }
+    #[inline]
     pub fn set_bucket_val(&mut self, value: u32) {
         assert!(value <= 0x7ffff);
         let value = value << 9;
@@ -140,9 +158,11 @@ impl LB_BUCKET_VAL {
         self.0 |= value;
     }
     /// Number of subbytes in leaky bucket.
+    #[inline]
     pub fn rem_val(&self) -> u32 {
         self.0 & 0x1ff
     }
+    #[inline]
     pub fn set_rem_val(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
@@ -156,9 +176,11 @@ impl LB_CFG {
     /// Specify rate in steps of configured granularity. The rate granularity is configured in TIMESCALE_VAL.
     ///
     /// 0: Disable leak. For THRES_VAL = 0 bucket is always closed. For THRES_VAL > 0, the configured burst size is available. 1: 1 * granularity 2: 2 * granularity ... max_value-1: (max_value-1)*granularity max_value: Disable leaky bucket (always open)
+    #[inline]
     pub fn rate_val(&self) -> u32 {
         self.0 & 0x7ff
     }
+    #[inline]
     pub fn set_rate_val(&mut self, value: u32) {
         assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
@@ -167,9 +189,11 @@ impl LB_CFG {
     /// Policer threshold size (a.ka. burst capacity). Unit is 2048 bytes
     ///
     /// 0: Threshold = 0 bytes (no burst allowed) 1: Threshold = 2048 bytes n: Threshold = n x 2048 bytes
+    #[inline]
     pub fn thres_val(&self) -> u32 {
         (self.0 & 0x7f0000) >> 16
     }
+    #[inline]
     pub fn set_thres_val(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 16;
@@ -184,9 +208,11 @@ impl MISC_CFG {
     /// Configuration of Drop Precedence bypass level. Frames with DP below DP_BYPASS_LVL bypass the policer (frames are never policed and the bucket is not updated with the frames).
     ///
     /// 0: No frames bypass the policer 1: Frames with DP = 0 bypass the policer 2: Frames with DP = 0 or 1 bypass the policer 3: Frames with DP = 0, 1 or 2 bypass the policer
+    #[inline]
     pub fn dp_bypass_lvl(&self) -> u32 {
         (self.0 & 0x6) >> 1
     }
+    #[inline]
     pub fn set_dp_bypass_lvl(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 1;
@@ -196,9 +222,11 @@ impl MISC_CFG {
     /// Enables frame rate mode for the policer, where policer rates are measured in frames per second instead of bits per second.
     ///
     /// 0: Rates measured in bits per second 1: Rates measured in frames per second
+    #[inline]
     pub fn frame_rate_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_frame_rate_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

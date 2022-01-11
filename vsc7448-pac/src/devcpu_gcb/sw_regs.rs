@@ -34,18 +34,22 @@ use derive_more::{From, Into};
 pub struct SW_INTR(u32);
 impl SW_INTR {
     /// Set this field to assert software interrupt 0. This field is automatically cleared after interrupt has been generated.
+    #[inline]
     pub fn sw0_intr(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_sw0_intr(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Set this field to inject software interrupt 1. This field is automatically cleared after interrupt has been generated.
+    #[inline]
     pub fn sw1_intr(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_sw1_intr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;

@@ -34,9 +34,11 @@ impl PP_CFG {
     /// Protection state vector with one bit per protection group. The protection group, used by a given service, is configured in ANA_CL:IPT:IPT.PPT_IDX. For protection group n, the protection status bit is derived the following way: ANA_CL:PPT:PP_CFG[n DIV 32].STATE[n MOD 32].
     ///
     /// 0: Protection group uses working entity. 1: Protection group uses protection entity.
+    #[inline]
     pub fn state(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_state(&mut self, value: u32) {
         self.0 = value;
     }

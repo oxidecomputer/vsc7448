@@ -34,18 +34,22 @@ use derive_more::{From, Into};
 pub struct QLIMIT_DIS_CFG(u32);
 impl QLIMIT_DIS_CFG {
     /// Disable queue limitation for the port. If either queue limitation is disabled for the source port, or for the destination port, the queue limitation algorithm is bypassed.
+    #[inline]
     pub fn qlimit_egr_dis(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_qlimit_egr_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Disable queue limitation for the port. If either queue limitation is disabled for the source port, or for the destination port, the queue limitation algorithm is bypassed.
+    #[inline]
     pub fn qlimit_igr_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_qlimit_igr_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -58,18 +62,22 @@ impl QLIMIT_DIS_CFG {
 pub struct QLIMIT_PORT_CFG(u32);
 impl QLIMIT_PORT_CFG {
     /// Queue limitation is for this port used in MAX mode, setting upper limits for a queue. Otherwise a minimum guarantee is given by the calculated queue maximum size
+    #[inline]
     pub fn qlimit_max_mode_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_qlimit_max_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Index of shared resource to use
+    #[inline]
     pub fn qlimit_shr_val(&self) -> u32 {
         (self.0 & 0x6) >> 1
     }
+    #[inline]
     pub fn set_qlimit_shr_val(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 1;

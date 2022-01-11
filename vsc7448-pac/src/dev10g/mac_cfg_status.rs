@@ -34,9 +34,11 @@ impl MAC_ADV_CHK_CFG {
     /// Extended End Of Packet Check: Specifies the requirement for the Rx column when holding an EOP character.
     ///
     /// '0': The values of the remaining Rx lanes of a column holding an EOP are ignored. E.g. if lane 1 holds an EOP, the value of lanes 2 and 3 are ignored '1': A received frame is error-marked if an Error character is received in any lane of the column holding the EOP character. E.g. if lane 1 holds an EOP, the frame is error-marked if lanes 0, 2, or 3 holds an Error character.
+    #[inline]
     pub fn ext_eop_chk_ena(&self) -> u32 {
         (self.0 & 0x1000000) >> 24
     }
+    #[inline]
     pub fn set_ext_eop_chk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 24;
@@ -46,9 +48,11 @@ impl MAC_ADV_CHK_CFG {
     /// Extended Start Of Packet Check Enable: Specifies the requirement for the Rx column prior to SOP character.
     ///
     /// '0': Value of Rx column at the XGMII interface prior to a SOP character is ignored '1': An IDLE column at the XGMII interface must be received prior to a SOP character for the MAC to detect a start of frame.
+    #[inline]
     pub fn ext_sop_chk_ena(&self) -> u32 {
         (self.0 & 0x100000) >> 20
     }
+    #[inline]
     pub fn set_ext_sop_chk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 20;
@@ -58,9 +62,11 @@ impl MAC_ADV_CHK_CFG {
     /// In-Range Error Check Enable: Determines whether or not a received frame should be discarded if the frame length does not match the frame PDU size:
     ///
     /// '0': Frames which have a frame length field inconsistent with the actual frame length are not error-marked '1': Frames with inconsistent frame length fields are error marked and will be discarded by the Rx Queue System.
+    #[inline]
     pub fn inr_err_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_inr_err_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -69,9 +75,11 @@ impl MAC_ADV_CHK_CFG {
     /// Out-Of-Range Error Check Enable: Determines whether or not a received frame should be discarded if the frame length field is out of range.
     ///
     /// '0': Out-of-range errors are ignored '1': A frame is discarded if the frame length field value is out of range
+    #[inline]
     pub fn oor_err_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_oor_err_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -81,9 +89,11 @@ impl MAC_ADV_CHK_CFG {
     /// Preamble Check Enable: Specifies the preamble requirement for a successful frame reception.
     ///
     /// '0': Skip preamble check. A SOP control character is sufficient for a successful frame reception. The minimum allowed preamble size is still 8 bytes (incl. SOP and SFD) but the preamble bytes between the SOP and SFD can have any data value. '1': Strict preamble check enabled, i.e. the last 6 bytes of a preamble - prior to the SFD - must all be equal to 0x55 for a successful frame reception. For preambles larger than 8 bytes, only the last 6 preamble bytes prior to the SFD are checked when this bit is set to 1.
+    #[inline]
     pub fn prm_chk_ena(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_prm_chk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -93,9 +103,11 @@ impl MAC_ADV_CHK_CFG {
     /// Preamble Shrink Check Disable: The MAC can be setup to discard a frame, if a SFD is received in lane 3 of the column containing the SOP. If stacking tags must be supported, the MAC must accept any data byte at this position.
     ///
     /// '0': Frames with a SFD in lane 3 of the column containing the SOP are discarded. '1': Frames with a SFD in lane 3 of the column containing the SOP are NOT discarded.
+    #[inline]
     pub fn prm_shk_chk_dis(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_prm_shk_chk_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -105,9 +117,11 @@ impl MAC_ADV_CHK_CFG {
     /// Start-of-Frame-Delimiter Check Enable: Specifies the requirement for a successful frame reception. When disabled (='0'), MAC10G will assume that preamble is 8 bytes (incl. SOP & SFD) when SOP is received. No checking of SFD is carried out. When enabled (='1'), MAC10G will search for SFD in lane 3/7 after reception of SOP, before accepting frame data. MAC10G will search for SFD until SFD is found or a control character is encountered.
     ///
     /// '0': Skip SFD check '1': Strict SFD check enabled, i.e. the SFD must be "D5" for a successful frame reception.
+    #[inline]
     pub fn sfd_chk_ena(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_sfd_chk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -122,9 +136,11 @@ impl MAC_ENA_CFG {
     /// Enable Receiver.
     ///
     /// '0': Disabled '1': Enabled.
+    #[inline]
     pub fn rx_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_rx_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -134,9 +150,11 @@ impl MAC_ENA_CFG {
     /// Enable Transmitter.
     ///
     /// '0': Disabled '1': Enabled.
+    #[inline]
     pub fn tx_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_tx_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -150,9 +168,11 @@ impl MAC_LB_CFG {
     /// Enables loopback from egress to ingress in the device. The MAC Rx clock is automatically set equal to the MAC Tx clock when the loop back is enabled.
     ///
     /// '0': Host loopback disabled at XGMII interface. '1': Host loopback enabled at XGMII interface.
+    #[inline]
     pub fn xgmii_host_lb_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_xgmii_host_lb_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -162,9 +182,11 @@ impl MAC_LB_CFG {
     /// Enables loopback from ingress to egres data path at XGMII interface.
     ///
     /// '0': PHY Loopback Disabled at XGMII interface. '1': PHY Loopback Enabled at XGMII interface.
+    #[inline]
     pub fn xgmii_phy_lb_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_xgmii_phy_lb_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -178,9 +200,11 @@ impl MAC_LFS_CFG {
     /// Link Fault Signaling Mode Enable: If enabled, the transmitter reacts on received Link Fault indications.
     ///
     /// '0': Ignore Link Faults detected by the MAC receiver module '1': React on detected Link Faults and transmit the appropriate Sequence Ordered Set.
+    #[inline]
     pub fn lfs_mode_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_lfs_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -189,9 +213,11 @@ impl MAC_LFS_CFG {
     /// LFS Unidirectional mode enable. Implementation of 802.3 clause 66. When asserted, this enables MAC to transmit data during reception of Local Fault and Remote Fault ordered sets from the PHY. When in Unidirectional mode: When receiving LF, frames are transmitted separated by RF ordered sets. When receiving RF, frames are transmitted separated by IDLE symbols
     ///
     /// '0' : LFS unidirectional mode is disabled '1' : LFS unidirectional mode is enabled
+    #[inline]
     pub fn lfs_unidir_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_lfs_unidir_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -201,9 +227,11 @@ impl MAC_LFS_CFG {
     /// During normal 802.3 compliant operation, it is possible to send spurious ||Q|| after the lfs condition was deasserted. Asserting this bit will prevent these spurious ||Q|| by delaying TX until the PCS reports that no ||Q|| are pending. Applicable for XAUI speeds only.
     ///
     /// 0 - Allow ||Q|| transmission (ieee 802.3 compliant) 1 - Suppress ||Q|| transmission
+    #[inline]
     pub fn spurious_q_dis(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_spurious_q_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -213,9 +241,11 @@ impl MAC_LFS_CFG {
     /// GNATS #6146. Use the leading edge of the TX_ENA signal to control the state machine in tx_datapath. This bit is implemented to disable the fix incase it is causing problems.
     ///
     /// 0 : Leading edge detect disabled 1 : Leading edge detect enabled
+    #[inline]
     pub fn use_leading_edge_detect(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_use_leading_edge_detect(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -230,9 +260,11 @@ impl MAC_MAXLEN_CFG {
     /// The maximum frame length accepted by the Receive Module. If the length is exceeded, this is indicated in the Statistics Engine (LONG_FRAME). The maximum length is automatically adjusted to accommodate maximum sized frames containing a VLAN tag - given that the MAC is configured to be VLAN aware (default): MTU size = 10056 Bytes. This includes all encapsulations and TAGs. Not including IFH. Reason is: QS supports a max of 63 segments. A segment is 160 Bytes. The IFH must be stored in the QS also, so room must be allocated. Thereby: 63 x 160B - 24B (IFH) = 10056 Bytes
     ///
     /// The maximum allowable size is 10056 Bytes.
+    #[inline]
     pub fn max_len(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_max_len(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -241,9 +273,11 @@ impl MAC_MAXLEN_CFG {
     /// Configures whether the Max Length Check takes the number of Q tags into consideration when assing if a frame is too long. If asserted, - 4 bytes will be added to MAX_LEN for single tagged frame. - 8 bytes will be added to MAX_LEN for double tagged frame. - 12 bytes will be added to MAX_LEN for tripple tagged frame.
     ///
     /// '0' : Only check max frame length against MAX_LEN '1' : Add 4/8/12 bytes to MAX_LEN when checking for max frame length
+    #[inline]
     pub fn max_len_tag_chk(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_max_len_tag_chk(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -258,9 +292,11 @@ impl MAC_MODE_CFG {
     /// When asserted (=1) MAC10G must check HIH checksum and discard frames if HIH checksum is not valid. When deasserted (=0) MAC10G must disregard the HIH checksum.
     ///
     /// = 0 ; MAC10G should disregard the HIH CKSM. = 1 ; MAC10G should discard any frame with invalid CKSM
+    #[inline]
     pub fn hih_crc_check(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_hih_crc_check(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -269,9 +305,11 @@ impl MAC_MODE_CFG {
     /// Register configures the format of the IPG. 1) Normal IPG : Averaging IPG for average of 12 bytes 2) Shrinked IPG : Minimum IPG of 4 - 7 bytes (Incl. Terminate Character and IDLE BYTEs)
     ///
     /// '0': Normal IPG. '1': Shrink IPG.
+    #[inline]
     pub fn mac_ipg_cfg(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_mac_ipg_cfg(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -281,9 +319,11 @@ impl MAC_MODE_CFG {
     /// This register configures the format of the preamble. This supports: 1) Standard preamble = 0xFB555555555555D5 2) Minimum preamble = 0xFB 3) Host Interface Header (HIH) located before the SFD 4) Host Interface Header (HIH) located after the SFD - default CRC 5) Host Interface Header (HIH) located after the SFD - HIH included in CRC
     ///
     /// 0: Standard Preamble 1: Minimum Preamble = 0xFB 2: HIH before SFD -	default CRC = 0xFB H0 H1 H2 H3 0x55 0x55 0xD5 3: HIH after SFD - default CRC = 0xFB 0x55 0x55 0xD5 H0 H1 H2 H3 4: HIH after SFD - HIH in CRC = 0xFB 0x55 0x55 0xD5 H0 H1 H2 H3 5 - 7: reserved HIH is 4 bytes: H0 H1 H2 H3
+    #[inline]
     pub fn mac_preamble_cfg(&self) -> u32 {
         (self.0 & 0x7000) >> 12
     }
+    #[inline]
     pub fn set_mac_preamble_cfg(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 12;
@@ -293,9 +333,11 @@ impl MAC_MODE_CFG {
     /// On a given link, Pause Frames can be either "Link Pause frames" or "Tunnel Pause Frames". "Link Pause Frames" will have standard preamble, while "Tunnel Pause Frames" will have HIH in the preamble. For "Link Pause Frames" MAC10G should not verify HIH CKSM, while for "Tunnel Pause Frames" MAC10G should verify HIH CKSM.
     ///
     /// 0: Pause frames are expected to be Link Pause frames - No HIH CKSM verification in MAC10G 1: Pause frames are expected to be Tunnel Pause frames - HIH CKSM is verified in MAC10G
+    #[inline]
     pub fn tunnel_pause_frames(&self) -> u32 {
         (self.0 & 0x10000) >> 16
     }
+    #[inline]
     pub fn set_tunnel_pause_frames(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 16;
@@ -305,9 +347,11 @@ impl MAC_MODE_CFG {
     /// XGMII Generator Mode Enable: In this mode, the transmitter will not insert the preamble and the end-of-packet control characters. Data that matches one of the XGMII control characters will be translated from a data character to a control character. This mode enables the MAC 10G to transmit e.g. special XGMII messages and/or malformed frames (in terms of the XGMII protocol).
     ///
     /// '0': XGMII Generator Mode Disabled '1': XGMII Generator Mode Enabled.
+    #[inline]
     pub fn xgmii_gen_mode_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_xgmii_gen_mode_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -322,9 +366,11 @@ impl MAC_NUM_TAGS_CFG {
     /// Configuration for number of consecutive VLAN Tags supported by the MAC. Maximum value is 3.
     ///
     /// '0': No tags are detected by MAC. 'n': Maximum of n consecutive VLAN Tags are detected by the MAC and accordingly MAX LEN is modified for frame length calculations.
+    #[inline]
     pub fn num_tags(&self) -> u32 {
         self.0 & 0x3
     }
+    #[inline]
     pub fn set_num_tags(&mut self, value: u32) {
         assert!(value <= 0x3);
         self.0 &= !0x3;
@@ -338,9 +384,11 @@ impl MAC_RX_LANE_STICKY_0 {
     /// Sticky bits for debugging Lane 0.
     ///
     /// Bit 0: Sticky bit indicating that a Data character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 1: Sticky bit indicating that a Control character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 2: Sticky bit indicating that an Idle character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 3: Sticky bit indicating that a Sequence character (0x9C) has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 4: Sticky bit indicating that a SOP character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 5: Sticky bit indicating that an EOP character has been received on Lane 0. Writing a '1' clears the sticky bit. Bit 6: Sticky bit indicating that an Error character has been received on Lane 0. Writing a '1' clears the sticky bit.
+    #[inline]
     pub fn lane0_sticky(&self) -> u32 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_lane0_sticky(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -349,9 +397,11 @@ impl MAC_RX_LANE_STICKY_0 {
     /// Sticky bits for debugging Lane 1.
     ///
     /// See format of LANE0 sticky bit register.
+    #[inline]
     pub fn lane1_sticky(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
     }
+    #[inline]
     pub fn set_lane1_sticky(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 8;
@@ -361,9 +411,11 @@ impl MAC_RX_LANE_STICKY_0 {
     /// Sticky bits for debugging Lane 2.
     ///
     /// See format of LANE0 sticky bit register.
+    #[inline]
     pub fn lane2_sticky(&self) -> u32 {
         (self.0 & 0x7f0000) >> 16
     }
+    #[inline]
     pub fn set_lane2_sticky(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 16;
@@ -373,9 +425,11 @@ impl MAC_RX_LANE_STICKY_0 {
     /// Sticky bits for debugging Lane 3.
     ///
     /// See format of LANE0 sticky bit register.
+    #[inline]
     pub fn lane3_sticky(&self) -> u32 {
         (self.0 & 0x7f000000) >> 24
     }
+    #[inline]
     pub fn set_lane3_sticky(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 24;
@@ -390,9 +444,11 @@ impl MAC_RX_LANE_STICKY_1 {
     /// Sticky bits for debugging Lane 4.
     ///
     /// See format of LANE0 sticky bit register.
+    #[inline]
     pub fn lane4_sticky(&self) -> u32 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_lane4_sticky(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;
@@ -401,9 +457,11 @@ impl MAC_RX_LANE_STICKY_1 {
     /// Sticky bits for debugging Lane 5.
     ///
     /// See format of LANE0 sticky bit register.
+    #[inline]
     pub fn lane5_sticky(&self) -> u32 {
         (self.0 & 0x7f00) >> 8
     }
+    #[inline]
     pub fn set_lane5_sticky(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 8;
@@ -413,9 +471,11 @@ impl MAC_RX_LANE_STICKY_1 {
     /// Sticky bits for debugging Lane 6.
     ///
     /// See format of LANE0 sticky bit register.
+    #[inline]
     pub fn lane6_sticky(&self) -> u32 {
         (self.0 & 0x7f0000) >> 16
     }
+    #[inline]
     pub fn set_lane6_sticky(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 16;
@@ -425,9 +485,11 @@ impl MAC_RX_LANE_STICKY_1 {
     /// Sticky bits for debugging Lane 7.
     ///
     /// See format of LANE0 sticky bit register.
+    #[inline]
     pub fn lane7_sticky(&self) -> u32 {
         (self.0 & 0x7f000000) >> 24
     }
+    #[inline]
     pub fn set_lane7_sticky(&mut self, value: u32) {
         assert!(value <= 0x7f);
         let value = value << 24;
@@ -444,9 +506,11 @@ impl MAC_STICKY {
     /// Indicates that an inter packet gap shrink was detected (IPG < 12 bytes).
     ///
     /// '0': no ipg shrink was detected '1': one or more ipg shrink were detected Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_ipg_shrink_sticky(&self) -> u32 {
         (self.0 & 0x200) >> 9
     }
+    #[inline]
     pub fn set_rx_ipg_shrink_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 9;
@@ -456,9 +520,11 @@ impl MAC_STICKY {
     /// Indicates that a frame with MPLS multicast was received.
     ///
     /// '0': No frames with MPLS multicast EtherType has been detected; '1': One or more frames with MPLS multicast EtherType have been detected; Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_mpls_mc_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_rx_mpls_mc_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -468,9 +534,11 @@ impl MAC_STICKY {
     /// Indicates that a frame with MPLS unicast was received.
     ///
     /// '0': No frames with MPLS Unicast EtherType has been detected; '1': One or more frames with MPLS Unicast EtherType have been detected; Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_mpls_uc_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_rx_mpls_uc_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -480,9 +548,11 @@ impl MAC_STICKY {
     /// Indicates that a frame was received with a non-standard preamble.
     ///
     /// '0': No non-standard preamble detected; '1': One or more frames with non-standard preamble detected; Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_non_std_pream_sticky(&self) -> u32 {
         (self.0 & 0x20) >> 5
     }
+    #[inline]
     pub fn set_rx_non_std_pream_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 5;
@@ -492,9 +562,11 @@ impl MAC_STICKY {
     /// If a SOP is received and a following control character is received within the preamble, this bit is set. (No data is passed to the host interface of the MAC).
     ///
     /// '0': No Preamble error detected; '1': One or more preamble errors detected; Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_pream_err_sticky(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_rx_pream_err_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -504,9 +576,11 @@ impl MAC_STICKY {
     /// If Preamble Check is enabled and a SOP is received, this bit is set if the following bytes do not match a "5555555555..55D5" pattern. A 12 bytes preamble of "55555555.55555555.555555D5" will not cause this sticky bit to be set. This sticky bit can only be set when the port is setup in 10 Gbps mode.
     ///
     /// '0': No Preamble check has failed; '1': One or more preamble checks have failed; Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_pream_mismatch_sticky(&self) -> u32 {
         (self.0 & 0x80) >> 7
     }
+    #[inline]
     pub fn set_rx_pream_mismatch_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 7;
@@ -516,9 +590,11 @@ impl MAC_STICKY {
     /// Indicates that a preamble shrink was detected (preamble < 8 bytes). This sticky bit can only be set when the port is setup in 10 Gbps mode, where frames with e.g. a 4 bytes preamble will be discarded, and it requires that PRM_SHK_CHK_DIS = 0 and SFD_CHK_ENA = 1. In SGMII mode, all preamble sizes down to 3 bytes (including SFD) are accepted and will not cause this sticky bit to be set.
     ///
     /// '0': no preamble shrink detected; '1': one or more preamble shrinks detected; Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_pream_shrink_sticky(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_rx_pream_shrink_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -528,9 +604,11 @@ impl MAC_STICKY {
     /// Indicates that a frame was received with a VLAN tag.
     ///
     /// '0': No Tagged frames have been detected; '1': One or more Tagged frames have been detected; Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn rx_tag_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_rx_tag_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -540,9 +618,11 @@ impl MAC_STICKY {
     /// Indicates that the transmit host initiated abort was executed.
     ///
     /// '0': no tx frame was aborted '1': one or more tx frames were aborted Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn tx_abort_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_tx_abort_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -551,9 +631,11 @@ impl MAC_STICKY {
     /// Sticky bit indicating that the MAC Transmit FIFO has dropped one or more frames because of underrun.
     ///
     /// '0': No MAC Tx FIFO underrun has occured '1': One or more MAC Tx FIFO underruns have occured Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn tx_uflw_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_tx_uflw_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -570,9 +652,11 @@ impl MAC_TAGS_CFG {
     /// Enables TAG_ID apart from standard 0x8100 and 0x88A8 for Tag comparision.
     ///
     /// '0': The MAC doesn't take TAG_ID for tag identification. '1': The MAC looks for tag according to encoding of TAG_ID
+    #[inline]
     pub fn tag_ena(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_tag_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -582,9 +666,11 @@ impl MAC_TAGS_CFG {
     /// This field defines which value is regarded as a VLAN/Service tag - besides 0x8100 and 0x88A8. The value is used for all ALL tag positions. I.e. a double tagged frame can have the following tag values: (INNER_TAG, OUTER_TAG): ( 0x8100, 0x8100 ) ( 0x8100, TAG_ID ) or ( TAG_ID, TAG_ID )
     ///
     /// "0x8100" - Standard Ethernet Bridge ethertype (C-tag) "0x88A8" - Provider Bridge Ethertype  (S-tag)
+    #[inline]
     pub fn tag_id(&self) -> u32 {
         (self.0 & 0xffff0000) >> 16
     }
+    #[inline]
     pub fn set_tag_id(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 16;
@@ -599,9 +685,11 @@ impl MAC_TX_MONITOR_STICKY {
     /// DISABLE state reached in Tx module of 10G MAC. Writing a '1' clears the sticky bit.
     ///
     /// '0': The DISABLE state has never been reached. '1': The DISABLE state has been reached. Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn dis_state_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_dis_state_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -610,9 +698,11 @@ impl MAC_TX_MONITOR_STICKY {
     /// IDLE state reached in Tx module of 10G MAC. Writing a '1' clears the sticky bit.
     ///
     /// '0': The IDLE state has never been reached. '1': The  IDLE state has been reached. Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn idle_state_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_idle_state_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -622,9 +712,11 @@ impl MAC_TX_MONITOR_STICKY {
     /// LFS: LOCAL FAULT state reached in Tx module of 10G MAC. Writing a '1' clears the sticky bit.
     ///
     /// '0': The LOCAL_FAULT state has never been reached. '1': The LOCAL_FAULT state has been reached. Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn local_err_state_sticky(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_local_err_state_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -634,9 +726,11 @@ impl MAC_TX_MONITOR_STICKY {
     /// LFS REMOTE FAULT state reached in Tx module of 10G MAC. Writing a '1' clears the sticky bit.
     ///
     /// '0': The REMOTE_FAULT state has never been reached. '1': The REMOTE_FAULT state has been reached. Bit is cleared by writing a '1' to this position.
+    #[inline]
     pub fn remote_err_state_sticky(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_remote_err_state_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;

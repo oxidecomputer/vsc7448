@@ -34,18 +34,22 @@ impl PFC_CFG {
     /// Configures the link speed. This is used to evaluate the time specifications in incoming pause frames.
     ///
     /// 0: 12000 Mbps 1: 10000 Mbps 2: 2500 Mbps 3: 1000 Mbps 4: 100 Mbps 5: 10 Mbps
+    #[inline]
     pub fn fc_link_speed(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_fc_link_speed(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
     /// Enable PFC per priority. Bit n enables PFC on priority n.
+    #[inline]
     pub fn rx_pfc_ena(&self) -> u32 {
         (self.0 & 0x7f8) >> 3
     }
+    #[inline]
     pub fn set_rx_pfc_ena(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 3;
@@ -60,9 +64,11 @@ impl PFC_TIMER {
     /// The current timer value per priority. Value >0 indicates that the priority is paused.
     ///
     /// Unit is 1024 bit times.
+    #[inline]
     pub fn pfc_timer_val(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_pfc_timer_val(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

@@ -36,9 +36,11 @@ impl SERDES1G_PLL_STATUS {
     /// Calibration error
     ///
     /// 0: No error during calibration 1: Errors occured during calibration
+    #[inline]
     pub fn pll_cal_err(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_pll_cal_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -48,9 +50,11 @@ impl SERDES1G_PLL_STATUS {
     /// Calibration status
     ///
     /// 0: Calibration not started or ongoing 1: Calibration finished
+    #[inline]
     pub fn pll_cal_not_done(&self) -> u32 {
         (self.0 & 0x1000) >> 12
     }
+    #[inline]
     pub fn set_pll_cal_not_done(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 12;
@@ -60,9 +64,11 @@ impl SERDES1G_PLL_STATUS {
     /// Out of range error
     ///
     /// 0: No out of range condition detected 1: Out of range condition since last calibration detected
+    #[inline]
     pub fn pll_out_of_range_err(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_pll_out_of_range_err(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -70,9 +76,11 @@ impl SERDES1G_PLL_STATUS {
         self.0 |= value;
     }
     /// PLL read-back data, depending on "pll_rb_data_sel" either the calibrated setting or the measured period
+    #[inline]
     pub fn pll_rb_data(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_pll_rb_data(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;

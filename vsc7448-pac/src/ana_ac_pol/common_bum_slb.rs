@@ -32,9 +32,11 @@ use derive_more::{From, Into};
 pub struct DLB_CTRL(u32);
 impl DLB_CTRL {
     /// TIMESCALE_VAL and BASE_TICK_CNT controls the the rate interval as well as the rate granularity available for LB rate configuration Refer to TIMESCALE_VAL for details.
+    #[inline]
     pub fn base_tick_cnt(&self) -> u32 {
         (self.0 & 0x7fff0) >> 4
     }
+    #[inline]
     pub fn set_base_tick_cnt(&mut self, value: u32) {
         assert!(value <= 0x7fff);
         let value = value << 4;
@@ -44,9 +46,11 @@ impl DLB_CTRL {
     /// Specifies the clock period in unit of 0.1ns.
     ///
     /// 40: 4ns (250MHz) 64: 6,4ns (156.25MHz) 192: 19,2 ns (52.08MHz)
+    #[inline]
     pub fn clk_period_01ns(&self) -> u32 {
         (self.0 & 0x7f80000) >> 19
     }
+    #[inline]
     pub fn set_clk_period_01ns(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 19;
@@ -56,9 +60,11 @@ impl DLB_CTRL {
     /// Enables adding of frame bytes to the leaky buckets.
     ///
     /// 0: Disable bucket addition 1: Enable bucket addition
+    #[inline]
     pub fn dlb_add_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_dlb_add_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -67,9 +73,11 @@ impl DLB_CTRL {
     /// Enables leaking from the leaky buckets.
     ///
     /// 0: Disable bucket leaking 1: Enable bucket leaking
+    #[inline]
     pub fn leak_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_leak_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -84,9 +92,11 @@ impl SLB_STICKY {
     /// Set when a LB scan completes. Bit is cleared by writing a 1 to this position.
     ///
     /// 0: No event has occured 1: Leak scan completes
+    #[inline]
     pub fn leak_scan_completed_sticky(&self) -> u32 {
         (self.0 & 0x80000000) >> 31
     }
+    #[inline]
     pub fn set_leak_scan_completed_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 31;
@@ -96,9 +106,11 @@ impl SLB_STICKY {
     /// Set when a LB scan starts. Bit is cleared by writing a 1 to this position.
     ///
     /// 0: No event has occured 1: Leak scan started
+    #[inline]
     pub fn leak_scan_started_sticky(&self) -> u32 {
         (self.0 & 0x40000000) >> 30
     }
+    #[inline]
     pub fn set_leak_scan_started_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 30;
@@ -108,9 +120,11 @@ impl SLB_STICKY {
     /// Set when a LB scan could not start because a scan is already ongoing. If this occur, BASE_TICK_CNT is set too low and must be increased. Bit is cleared by writing a 1 to this position.
     ///
     /// 0: No event has occured 1: Leak scan could not start at time
+    #[inline]
     pub fn leak_start_delayed_sticky(&self) -> u32 {
         (self.0 & 0x20000000) >> 29
     }
+    #[inline]
     pub fn set_leak_start_delayed_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 29;
@@ -120,9 +134,11 @@ impl SLB_STICKY {
     /// Set when the frame rate is exceeding the configured rate. Bit is cleared by writing a 1 to this position.
     ///
     /// 0: No event has occured 1: CIR exceeded
+    #[inline]
     pub fn slb_closed_sticky(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_slb_closed_sticky(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -136,9 +152,11 @@ impl TRAFFIC_MASK_CFG {
     /// Configures the frame types to be policed by the policer. Each bit in the mask enables policing of a specific frame type. Multiple frame types can be enabled at the same time and a frame can belong to multiple frame types. If a frame belongs to one or more enabled frame types, then the frame is policed.
     ///
     /// 'xxxxxx1' : Unknown broadcast frames are policed. 'xxxxx1x' : Unknown multicast frames are policed. 'xxxx1xx' : Unknown unicast frames are policed. 'xxx1xxx' : Known broadcast frames are policed. 'xx1xxxx' : Known multicast frames are policed. 'x1xxxxx' : Known unicast frames are policed. '1xxxxxx' : Learn frames are policed.
+    #[inline]
     pub fn traffic_type_mask(&self) -> u32 {
         self.0 & 0x7f
     }
+    #[inline]
     pub fn set_traffic_type_mask(&mut self, value: u32) {
         assert!(value <= 0x7f);
         self.0 &= !0x7f;

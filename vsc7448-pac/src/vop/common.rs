@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct COMMON_MEP_MC_MAC_LSB(u32);
 impl COMMON_MEP_MC_MAC_LSB {
     /// See register description.
+    #[inline]
     pub fn mep_mc_mac_lsb(&self) -> u32 {
         (self.0 & 0x7ffffff8) >> 3
     }
+    #[inline]
     pub fn set_mep_mc_mac_lsb(&mut self, value: u32) {
         assert!(value <= 0xfffffff);
         let value = value << 3;
@@ -51,9 +53,11 @@ impl COMMON_MEP_MC_MAC_LSB {
 pub struct COMMON_MEP_MC_MAC_MSB(u32);
 impl COMMON_MEP_MC_MAC_MSB {
     /// See register description.
+    #[inline]
     pub fn mep_mc_mac_msb(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_mep_mc_mac_msb(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -69,9 +73,11 @@ impl CPU_EXTR_CFG {
     /// Configures the CPU queue port of the CPU error queue.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn cpu_err_qu(&self) -> u32 {
         (self.0 & 0x7000) >> 12
     }
+    #[inline]
     pub fn set_cpu_err_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 12;
@@ -81,9 +87,11 @@ impl CPU_EXTR_CFG {
     /// Configures the destination for PDUs extracted to the Default CPU queue. The default CPU extraction queue is used for extraction of PDUs which do not have a dedicated extraction queue (UNKNOWN OPCODES).
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn def_copy_qu(&self) -> u32 {
         (self.0 & 0x38000) >> 15
     }
+    #[inline]
     pub fn set_def_copy_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 15;
@@ -93,9 +101,11 @@ impl CPU_EXTR_CFG {
     /// Configures the CPU queue to which DMM frames are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn dmm_cpu_qu(&self) -> u32 {
         (self.0 & 0x38) >> 3
     }
+    #[inline]
     pub fn set_dmm_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 3;
@@ -105,9 +115,11 @@ impl CPU_EXTR_CFG {
     /// Configures the CPU queue to which DMR and 1DM frames are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn dmr_cpu_qu(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_dmr_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -116,9 +128,11 @@ impl CPU_EXTR_CFG {
     /// Configures the CPU queue to which LMM/SLM frames are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn lmm_cpu_qu(&self) -> u32 {
         (self.0 & 0xe00) >> 9
     }
+    #[inline]
     pub fn set_lmm_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 9;
@@ -128,9 +142,11 @@ impl CPU_EXTR_CFG {
     /// Configures the CPU queue to which LMR / SLR / 1SL frames are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn lmr_cpu_qu(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
+    #[inline]
     pub fn set_lmr_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -147,9 +163,11 @@ impl CPU_EXTR_CFG_1 {
     /// Configures the CPU queue to which CCM frames are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn ccm_cpu_qu(&self) -> u32 {
         (self.0 & 0x38000) >> 15
     }
+    #[inline]
     pub fn set_ccm_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 15;
@@ -159,9 +177,11 @@ impl CPU_EXTR_CFG_1 {
     /// Configures the CPU queue to which CCM-LM frames are extracted. CCM-LM frames are CCM PDUs with non-zero content of the LM counters in the PDU
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn ccm_lm_cpu_qu(&self) -> u32 {
         (self.0 & 0x7000) >> 12
     }
+    #[inline]
     pub fn set_ccm_lm_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 12;
@@ -171,9 +191,11 @@ impl CPU_EXTR_CFG_1 {
     /// Configures the CPU queue to which LBM frames are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn lbm_cpu_qu(&self) -> u32 {
         (self.0 & 0xe00) >> 9
     }
+    #[inline]
     pub fn set_lbm_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 9;
@@ -183,9 +205,11 @@ impl CPU_EXTR_CFG_1 {
     /// Configures the CPU queue to which LBR and SAM_SEQ frames are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn lbr_cpu_qu(&self) -> u32 {
         (self.0 & 0x1c0) >> 6
     }
+    #[inline]
     pub fn set_lbr_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 6;
@@ -195,9 +219,11 @@ impl CPU_EXTR_CFG_1 {
     /// Configures the CPU queue to which LTM/LTR frames are extracted. (Configuration is shared for LTM and LTR PDUs)
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn lt_cpu_qu(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_lt_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -206,9 +232,11 @@ impl CPU_EXTR_CFG_1 {
     /// Configures the CPU queue to which TST frames are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn tst_cpu_qu(&self) -> u32 {
         (self.0 & 0x38) >> 3
     }
+    #[inline]
     pub fn set_tst_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 3;
@@ -225,9 +253,11 @@ impl CPU_EXTR_MPLS {
     /// Configures the CPU queue to which BFD-CC PDUs are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn bfd_cc_cpu_qu(&self) -> u32 {
         (self.0 & 0x38) >> 3
     }
+    #[inline]
     pub fn set_bfd_cc_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 3;
@@ -237,9 +267,11 @@ impl CPU_EXTR_MPLS {
     /// Configures the CPU queue to which BFD-CV PDUs are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn bfd_cv_cpu_qu(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_bfd_cv_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -253,9 +285,11 @@ impl CPU_EXTR_MPLS {
 pub struct HMO_FORCE_SLOT_CFG(u32);
 impl HMO_FORCE_SLOT_CFG {
     /// See register description.
+    #[inline]
     pub fn hmo_force_slot(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_hmo_force_slot(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -271,9 +305,11 @@ impl HMO_PERIOD_CFG {
     /// Configures expiry period of the 2 HMO timers as the number of BASE_TICKs between every LOC timer expiry. The BASE_TICK is configured: VOP::LOC_CTRL.LOC_BASE_TICK_CNT Default HMO timer is set to 0, which causes the HMO timer to never expire.
     ///
     /// For the default value of the LOC_BASE_TICK_CNTthe HMO scan timer will expire with the following intervals. A value of 0 disables the timeout for this counter. 50: 10us 500: 100us 5000: 1 ms 16500: 3.3ms 50000: 10ms 500000: 100ms 5000000: 1s
+    #[inline]
     pub fn hmo_period_val(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_hmo_period_val(&mut self, value: u32) {
         self.0 = value;
     }
@@ -285,9 +321,11 @@ impl HMO_PERIOD_CFG {
 pub struct HMO_TIMER_CFG(u32);
 impl HMO_TIMER_CFG {
     /// Assign which HMO timer will trigger the following VOE Auto HMO bits: * VOP:VOE_STAT:PDU_EXTRACT.CCM_ZERO_PERIOD_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.RX_MEL_LOW_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEGID_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEPID_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_PERIOD_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_PRIO_RX_ERR_EXTR To trigger the Auto HMO bits, this must be enabled by the VOE: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.HMO_CCM_RX_BAD_NXT
+    #[inline]
     pub fn hmo_ccm_rx_bad_nxt_timer(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_hmo_ccm_rx_bad_nxt_timer(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -295,9 +333,11 @@ impl HMO_TIMER_CFG {
         self.0 |= value;
     }
     /// Assign which HMO timer will trigger the following VOE Auto HMO bits: * VOP:VOE_STAT:PDU_EXTRACT.CCM_RX_TLV_NON_ZERO_EXTR To trigger the Auto HMO bits, this must be enabled by the VOE: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.HMO_CCM_RX_TLV_NON_ZERO
+    #[inline]
     pub fn hmo_ccm_rx_tlv_non_zero_timer(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_hmo_ccm_rx_tlv_non_zero_timer(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -305,18 +345,22 @@ impl HMO_TIMER_CFG {
         self.0 |= value;
     }
     /// Assign which HMO timer will trigger the following VOE Auto HMO bits: VOP:VOE_STAT:SYNLM_EXTRACT.EXTRACT_PEER_RX To trigger the Auto HMO bits, this must be enabled by the VOE: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.HMO_EXTRACT_PEER_RX
+    #[inline]
     pub fn hmo_extract_peer_rx_timer(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_hmo_extract_peer_rx_timer(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
     /// Assign which HMO timer will trigger the following VOE Auto HMO bits: * VOP:VOE_STAT:PDU_EXTRACT.CCM_RX_CCM_NXT_EXTR To trigger the Auto HMO bits, this must be enabled by the VOE: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.HMO_CCM_RX_BAD_NXT
+    #[inline]
     pub fn hmo_rx_ccm_nxt_timer(&self) -> u32 {
         (self.0 & 0x10) >> 4
     }
+    #[inline]
     pub fn set_hmo_rx_ccm_nxt_timer(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 4;
@@ -324,9 +368,11 @@ impl HMO_TIMER_CFG {
         self.0 |= value;
     }
     /// Assign which HMO timer will trigger the following VOE Auto HMO bits: VOP:VOE_STAT:PDU_EXTRACT.RX_TEST_FRM_NXT_EXTR To trigger the Auto HMO bits, this must be enabled by the VOE: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.HMO_RX_TEST_FRM_NXT
+    #[inline]
     pub fn hmo_rx_test_frm_nxt_timer(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_hmo_rx_test_frm_nxt_timer(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -343,9 +389,11 @@ impl INTR {
     /// Status of interrupts per VOE Ethernet: ---------------------- Interrupt is cleared by clearing the sticky causing interrupt in VOP:VOE_STAT:INTR_STICKY:* or by disabling the interrupt source in VOP:VOE_STAT:INTR_ENA.* MPLS-TP: ------------------------- Interrupt is cleared by clearing the sticky causing interrupt in VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.* or by disabling the interrupt source in VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.*
     ///
     /// Each bit in the field indicates the interrupt from a single VOE. 0: No interrupt from VOE 1: VOE has asserted the interrupt.
+    #[inline]
     pub fn voe_intr(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_voe_intr(&mut self, value: u32) {
         self.0 = value;
     }
@@ -359,9 +407,11 @@ impl LOC_CTRL {
     /// Specifies the number of system clock cycles for each LOC base time tick. The system clock is: 4 ns (250 MHz). The default base tick is set to 50 = 200 ns The base tick, is the event used for incrementing the 7 LOC counters. The time at which each of the LOC timers will timeout is specified in: * VOP::LOC_PERIOD_CFG::LOC_PERIOD_VAL Ethernet VOEs: ------------------------ When a LOC timer expires it causes a LOC Scan event, which will increment the CCM miss counter (VOP:VOE_STAT:CCM_STAT.CCM_MISS_CNT) for each VOE assigned to that particular LOC timer. The CCM miss counter for each VOE (CCM_MISS_CNT) will be cleared each time the VOE receives a valid CCM or CCM-LM frame. If the CCM_MISS count reaches 7 it will optionally cause an interrupt. MPLS-TP VOEs: ------------------------ When a LOC timer expires it causes a LOC Scan event, which will increment the BFD miss counter (VOP_MPLS:VOE_STAT_MPLS:BFD_STAT.BFD_MISS_CNT) for each VOE assigned to that particular LOC timer. The LOC counter for each VOE (BFD_MISS_CNT) will be cleared each time the VOE receives a valid BFD-CC or BFD-CV PDU. If the BFD_MISS_CNT count reaches the configured Detect Multiplier it will optionally cause an interrupt.
     ///
     /// 0: Illegal value 1: One clock between interval increment ... n: n clock between interval increment
+    #[inline]
     pub fn loc_base_tick_cnt(&self) -> u32 {
         (self.0 & 0x7f800) >> 11
     }
+    #[inline]
     pub fn set_loc_base_tick_cnt(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 11;
@@ -371,9 +421,11 @@ impl LOC_CTRL {
     /// When a LOC scan timer expires, the VOE will scan through all VOEs in the VOP and increment the LOC miss counter of all the VOEs assigned to that LOC timer. When a HMO scan timer expires, the VOE will scan through all VOEs in the VOP and assert the HMO extraction bits configured for the VOE. Another way to force a LOC scan / HMO is to write a mask to LOC_FORCE_HW_SCAN_ENA. Each of the bits in this register represents a LOC timer. Writing a mask to this register will force a LOC scan as if the LOC timers indicated in the mask had expired. A forced scan will start as soon as any currently active scan completes Active scan can be stopped by disabling the LOC scan controller. The width of the SCAN_MASK is 9 bits which are allocated as follows: bits 0-6: LOC scan timer 0 - 6 bits 7-8: HMO scan timer 0 - 1
     ///
     /// 0: No force bit 0 = 1: Force a scan of LOC scan timer 0 bit 1 = 1: Force a scan of LOC scan timer 1 bit 2 = 1: Force a scan of LOC scan timer 2 bit 3 = 1: Force a scan of LOC scan timer 3 bit 4 = 1: Force a scan of LOC scan timer 4 bit 5 = 1: Force a scan of LOC scan timer 5 bit 6 = 1: Force a scan of LOC scan timer 6 bit 7 = 1: Force a scan of HMO scan timer 0; (using HMO slot configured in VOP::HMO_FORCE_SLOT_CFG(0).HMO_FORCE_SLOT) bit 8 = 1: Force a scan of HMO scan timer 1; (using HMO slot configured in VOP::HMO_FORCE_SLOT_CFG(1).HMO_FORCE_SLOT)
+    #[inline]
     pub fn loc_force_hw_scan_ena(&self) -> u32 {
         self.0 & 0x1ff
     }
+    #[inline]
     pub fn set_loc_force_hw_scan_ena(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
@@ -382,9 +434,11 @@ impl LOC_CTRL {
     /// Specifies the number of clk cycle before another scan entry can be attempted. This can be used to space the LOC miss scanning of the VOEs. If an active SCAN is ongoing, the VOE will scan through the VOE_STAT and update the LOC miss counter of VOEs which are enabled for LOC detection. The scan will be done in 'idle cycles'. 'Idle cycles' are defined as cycles where the is no frame access and no CSR access to the VOP.
     ///
     /// 0-1: A scan is attempted at every idle cycle in the VOP 2: A scan is attempted no more often than every 2nd cycle. 3: A scan is attempted no more often than every 3rd cycle. .... 7: A scan is attempted no more often than every 7'th cycle.
+    #[inline]
     pub fn loc_space_between_entry_scan(&self) -> u32 {
         (self.0 & 0x600) >> 9
     }
+    #[inline]
     pub fn set_loc_space_between_entry_scan(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 9;
@@ -401,9 +455,11 @@ impl LOC_PERIOD_CFG {
     /// Configures Expiry Period of the 7 LOC timers as the number of BASE_TICKs between every LOC timer expiry. The BASE_TICK is configured: VOP::LOC_CTRL.LOC_BASE_TICK_CNT Default LOC timer expiry time: 3.3ms.
     ///
     /// A value of 0 disables the timeout for this counter. 50: 10us 500: 100us 5000: 1 ms 16500: 3.3ms 50000: 10ms 500000: 100ms 5000000: 1s
+    #[inline]
     pub fn loc_period_val(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_loc_period_val(&mut self, value: u32) {
         self.0 = value;
     }
@@ -417,9 +473,11 @@ impl LOC_SCAN_STICKY {
     /// Asserted by VOP when LOC_SCAN completes.
     ///
     /// 0: No event has occured 1: LOC scan completed Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn loc_scan_completed_sticky(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_loc_scan_completed_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -429,9 +487,11 @@ impl LOC_SCAN_STICKY {
     /// Reflects the current LOC scan mask. A bit is asserted for each of the LOC counters currently being increased. NOTE: This is not a sticky bit.
     ///
     /// 0: No event has occured 1: LOC scan ongoing. A bit is asserted for each LOC counter which is updating the LOC MISS CNT.
+    #[inline]
     pub fn loc_scan_ongoing_status(&self) -> u32 {
         (self.0 & 0xff8) >> 3
     }
+    #[inline]
     pub fn set_loc_scan_ongoing_status(&mut self, value: u32) {
         assert!(value <= 0x1ff);
         let value = value << 3;
@@ -441,9 +501,11 @@ impl LOC_SCAN_STICKY {
     /// Asserted by VOP when LOC_SCAN starts.
     ///
     /// 0: No event has occured 1: LOC scan started Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn loc_scan_started_sticky(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_loc_scan_started_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -453,9 +515,11 @@ impl LOC_SCAN_STICKY {
     /// Set when a LOC scan could not start because a scan is already ongoing. This is an indication that a LOC timer expired before the previous scan scheduled by the same LOC timer was initiated. This is an error condition. To fix it, the configured Period time of the LOC scan controller must be incremented.
     ///
     /// 0: No event has occured 1: Scan could not start in time Bit is cleared by writing a 1 to this position.
+    #[inline]
     pub fn loc_scan_start_delayed_sticky(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_loc_scan_start_delayed_sticky(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;
@@ -471,9 +535,11 @@ impl MASTER_INTR_CTRL {
     /// Status of the VOP interrupt. If asserted this can optionally generate an interrupt to the CPU. * VOP::MASTER_INTR_CTRL.OAM_MEP_INTR_ENA
     ///
     /// 0: VOP Interrupt is deasserted. 1: VOP Interrupt is asserted.
+    #[inline]
     pub fn oam_mep_intr(&self) -> u32 {
         (self.0 & 0x100) >> 8
     }
+    #[inline]
     pub fn set_oam_mep_intr(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 8;
@@ -483,9 +549,11 @@ impl MASTER_INTR_CTRL {
     /// Configures if OAM_MEP_INTR causes CPU interrupts
     ///
     /// 0: Disable interrupt 1: Enable interrupt
+    #[inline]
     pub fn oam_mep_intr_ena(&self) -> u32 {
         (self.0 & 0x2000000) >> 25
     }
+    #[inline]
     pub fn set_oam_mep_intr_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 25;
@@ -500,9 +568,11 @@ impl MASTER_INTR_CTRL {
 pub struct MPLS_GENERIC_CODEPOINT(u32);
 impl MPLS_GENERIC_CODEPOINT {
     /// Configures CPU queue to which MPLS-TP OAM PDUs with a G-ACH Channel Type configured as generic codepoints are extracted.
+    #[inline]
     pub fn generic_codepoint_cpu_qu(&self) -> u32 {
         (self.0 & 0x700) >> 8
     }
+    #[inline]
     pub fn set_generic_codepoint_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 8;
@@ -510,9 +580,11 @@ impl MPLS_GENERIC_CODEPOINT {
         self.0 |= value;
     }
     /// This value configures the MPLS-TP G-ACH Channel Type to be processed as a Generic OpCode corresponding to this generic Index.
+    #[inline]
     pub fn generic_codepoint_val(&self) -> u32 {
         (self.0 & 0x7fff800) >> 11
     }
+    #[inline]
     pub fn set_generic_codepoint_val(&mut self, value: u32) {
         assert!(value <= 0xffff);
         let value = value << 11;
@@ -529,9 +601,11 @@ impl OAM_GENERIC_CFG {
     /// If this bit is asserted, the DMAC check will be disabled for this generic OpCode, regardless of the configuration of the bit field: VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL This bit is required because some OpCodes (i.e. Ring PDU) will use a DMAC which is different from the configured Multicast and Unicast.
     ///
     /// 0: Perform DMAC check according to the value configured in VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL 1: No DMAC check for this Generic OpCode.
+    #[inline]
     pub fn generic_dmac_chk_dis(&self) -> u32 {
         (self.0 & 0x20000) >> 17
     }
+    #[inline]
     pub fn set_generic_dmac_chk_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 17;
@@ -541,9 +615,11 @@ impl OAM_GENERIC_CFG {
     /// Configures the CPU queue to which frames for this generic OpCode are extracted.
     ///
     /// 0: CPU queue 0 1: CPU queue 1 ... 7: CPU queue 7
+    #[inline]
     pub fn generic_opcode_cpu_qu(&self) -> u32 {
         (self.0 & 0x700) >> 8
     }
+    #[inline]
     pub fn set_generic_opcode_cpu_qu(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 8;
@@ -551,9 +627,11 @@ impl OAM_GENERIC_CFG {
         self.0 |= value;
     }
     /// This value configures the Y.1731 OpCode to be processed as a Generic OpCode corresponding to this generic Index.
+    #[inline]
     pub fn generic_opcode_val(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_generic_opcode_val(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -569,9 +647,11 @@ impl VERSION_CTRL {
     /// Configure which version of the CCM(-LM) PDU will be processed by the VOE.
     ///
     /// CCM_VERSION(x) = '0'; Version X of the CCM(-LM) PDU is invalid. CCM_VERSION(x) = '1'; Version X of the CCM(-LM) PDU is valid.
+    #[inline]
     pub fn ccm_version(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
+    #[inline]
     pub fn set_ccm_version(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
@@ -581,9 +661,11 @@ impl VERSION_CTRL {
     /// Configure which version of the DMM/DMR PDU will be processed by the VOE.
     ///
     /// DM_VERSION(x) = '0'; Version X of the DMM/DMR PDU is invalid. DM_VERSION(x) = '1'; Version X of the DMM/DMR PDU is valid.
+    #[inline]
     pub fn dm_version(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
+    #[inline]
     pub fn set_dm_version(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -593,9 +675,11 @@ impl VERSION_CTRL {
     /// Configure which version of the LMM/LMR PDU will be processed by the VOE.
     ///
     /// LM_VERSION(x) = '0'; Version X of the LMM/LMR PDU is invalid. LM_VERSION(x) = '1'; Version X of the LMM/LMR PDU is valid.
+    #[inline]
     pub fn lm_version(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
+    #[inline]
     pub fn set_lm_version(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -605,9 +689,11 @@ impl VERSION_CTRL {
     /// Configure which version of the 1DM PDU will be processed by the VOE.
     ///
     /// SDM_VERSION(x) = '0'; Version X of the 1DM PDU is invalid. SDM_VERSION(x) = '1'; Version X of the 1DM PDU is valid.
+    #[inline]
     pub fn sdm_version(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_sdm_version(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -623,9 +709,11 @@ impl VERSION_CTRL_2 {
     /// Configure which version of the LBM/LBR PDU will be processed by the VOE.
     ///
     /// LB_VERSION(x) = '0'; Version X of the LBM/LBR PDU is invalid. LB_VERSION(x) = '1'; Version X of the LBM/LBR PDU is valid.
+    #[inline]
     pub fn lb_version(&self) -> u32 {
         (self.0 & 0xff0000) >> 16
     }
+    #[inline]
     pub fn set_lb_version(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 16;
@@ -635,9 +723,11 @@ impl VERSION_CTRL_2 {
     /// Configure which version of the 1SL PDU will be processed by the VOE.
     ///
     /// SL1_VERSION(x) = '0'; Version X of the LBM/LBR PDU is invalid. SL1_VERSION(x) = '1'; Version X of the LBM/LBR PDU is valid.
+    #[inline]
     pub fn sl1_version(&self) -> u32 {
         self.0 & 0xff
     }
+    #[inline]
     pub fn set_sl1_version(&mut self, value: u32) {
         assert!(value <= 0xff);
         self.0 &= !0xff;
@@ -646,9 +736,11 @@ impl VERSION_CTRL_2 {
     /// Configure which version of the SLM/SLR PDU will be processed by the VOE.
     ///
     /// SL_VERSION(x) = '0'; Version X of the LBM/LBR PDU is invalid. SL_VERSION(x) = '1'; Version X of the LBM/LBR PDU is valid.
+    #[inline]
     pub fn sl_version(&self) -> u32 {
         (self.0 & 0xff00) >> 8
     }
+    #[inline]
     pub fn set_sl_version(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 8;
@@ -658,9 +750,11 @@ impl VERSION_CTRL_2 {
     /// Configure which version of the TST PDU will be processed by the VOE.
     ///
     /// TST_VERSION(x) = '0'; Version X of the TST PDU is invalid. TST_VERSION(x) = '1'; Version X of the TST PDU is valid.
+    #[inline]
     pub fn tst_version(&self) -> u32 {
         (self.0 & 0xff000000) >> 24
     }
+    #[inline]
     pub fn set_tst_version(&mut self, value: u32) {
         assert!(value <= 0xff);
         let value = value << 24;
@@ -673,9 +767,11 @@ impl VERSION_CTRL_2 {
 pub struct VERSION_CTRL_MPLS(u32);
 impl VERSION_CTRL_MPLS {
     /// The VOE will optionally validate the version of the incoming BFD frames against the value configured in this register. If the version in the incoming frame is not as configured, the frame will be discarded. The Rx validation is configured in the following bitfields: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_VERIFY_*
+    #[inline]
     pub fn bfd_version(&self) -> u32 {
         self.0 & 0x7
     }
+    #[inline]
     pub fn set_bfd_version(&mut self, value: u32) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
@@ -689,9 +785,11 @@ impl VERSION_CTRL_MPLS {
 pub struct VOE32_INTR(u32);
 impl VOE32_INTR {
     /// See register description.
+    #[inline]
     pub fn voe32_intr(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_voe32_intr(&mut self, value: u32) {
         self.0 = value;
     }
@@ -705,9 +803,11 @@ impl VOP_CTRL {
     /// The CCM PDU does not have a dedicated register for the RxFCf counter. However there is a reserved field which can be used to hold this value. Asserting this field enables updating reserved field for Rx CCM LM PDU with RxFCf. This is the only way to relay the RxFCf counter to the CPU.
     ///
     /// 0: Do not update CCM-LM frames with RxFC_f information 1: Update the CCM-LM Reserved field with RxFC_f information
+    #[inline]
     pub fn ccm_lm_upd_rsv_ena(&self) -> u32 {
         (self.0 & 0x800) >> 11
     }
+    #[inline]
     pub fn set_ccm_lm_upd_rsv_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 11;
@@ -717,9 +817,11 @@ impl VOP_CTRL {
     /// The VOE can optionally detect changes in the source port for CCM PDUs. The port on which the last valid PDU was received is saved: * VOP:VOE_STAT:CCM_RX_LAST.CCM_RX_SRC_PORT The VOE counts the number of valid CCM PDUs received on the same port as the previous in the following register: * VOP:VOE_STAT:CCM_STAT.CCM_RX_SRC_PORT_CNT If the this count reaches the value configured in this field, the following sticky bit is asserted: * VOP:VOE_STAT:INTR_STICKY.CCM_RX_SRC_PORT_DETECT_STICKY The sticky bit can optionally generate an interrupt. Note: that the VOE counts the number of frames matching the previous, hence if this bitfield is programmed to 'X', it will require 'X' + 1 consecutive frames on the same port to assert the sticky bit.
     ///
     /// 0: illegal value (Will never generate a sticky bit) 1-7: Assert sticky bit when 1-7 CCM PDUs were received on the same port as the previous.
+    #[inline]
     pub fn ccm_rx_src_port_detect_cnt(&self) -> u32 {
         (self.0 & 0x380) >> 7
     }
+    #[inline]
     pub fn set_ccm_rx_src_port_detect_cnt(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 7;
@@ -729,9 +831,11 @@ impl VOP_CTRL {
     /// If enabled the G.8113.1 LBR Rx errors at the 'Initiator MEP' are counted in the following counters: MEPID errors: * VOP:VOE_STAT:CCM_RX_ERR_1.CCM_RX_MEPID_ERR_CNT MEGID errors: * VOP:VOE_STAT:CCM_RX_ERR_1.CCM_RX_MEGID_ERR_CNT These counters are reused from Y.1731 CCM error counters. Note that only LBR Rx due to MEP ID and MEG ID mismatch are counted. LBR Rx errors due to 'illegal ID Sub-Type' and 'illlegal Loopback Indicator' are not counted. This bit only has effect for VOEs configured for G.8113.1 OAM.
     ///
     /// 0: Do not count G.8113.1 LBR Rx errors. 1: Count G.8113.1 LBR Rx errors.
+    #[inline]
     pub fn g_8113_1_cnt_lbr_rx_error_ena(&self) -> u32 {
         (self.0 & 0x8) >> 3
     }
+    #[inline]
     pub fn set_g_8113_1_cnt_lbr_rx_error_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 3;
@@ -741,9 +845,11 @@ impl VOP_CTRL {
     /// When the VOE is configured for G.8113.1 OAM, the 'Initiator MEP' will determine if incoming Rx LBR PDUs carry the 'Requesting MEP ID' TLV. If so the 'Initiator MEP' will determine if the 'Loopback Indicator' has been set to '1' by the 'Responder MEP'. If the 'Loopback Indicator' is not equal to '1' the frame is marked as invalid. In the VOE the 'Loopback Indicator' check is optional and can be configured using this bitfield.
     ///
     /// 0: Disable the 'Loopback Indicator' check in the 'Initiator MEP" (G.8113.1 OAM) 1: Enable the 'Loopback Indicator' check in the 'Initiator MEP" (G.8113.1 OAM)
+    #[inline]
     pub fn g_8113_1_lbk_indc_chk_ena(&self) -> u32 {
         (self.0 & 0x4) >> 2
     }
+    #[inline]
     pub fn set_g_8113_1_lbk_indc_chk_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 2;
@@ -753,9 +859,11 @@ impl VOP_CTRL {
     /// Asserting this bit will disable the Y.1731 MEL checking (RX / TX) in the VOE when the VOE is configured for G.8113.1 OAM. This is intended for use with G.8113.1 OAM. Since the MEL has no meaning in MPLS OAM, it is possible to disable the MEL using this bit, even if the standard specifies to set the MEL values of all OAM PDUs to the correct value.
     ///
     /// 0: MEL checking is done in the VOE as per Y.1731 1: MEL checking is disabled in the VOE. All frames are considered to have correct MEL.
+    #[inline]
     pub fn g_8113_1_mel_chk_dis(&self) -> u32 {
         (self.0 & 0x40) >> 6
     }
+    #[inline]
     pub fn set_g_8113_1_mel_chk_dis(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 6;
@@ -765,9 +873,11 @@ impl VOP_CTRL {
     /// The G.8113.1 standard (date: 11/2012) is not 100% clear on which MEP IDs are being exchanged and verified when two MEPs are exchanging 'LBM Target MEP ID' TLV <-> LBR 'Replying LBR MEP ID' TLV. It is therefore configurable which MEP IDs are carried in the TLVs, and from this follows which MEP IDs whill be used in the Initiator / Responder VOEs for MEP ID verification. The 4 possible scenarios are as follows: Scenario A: -------------------------------- Initiator MEP transmits 'Target MEP ID TLV' with the Initiator MEP ID (local MEP ID) Responder MEP replies with  'Replying MEP ID TLV' with the Initiator MEP ID (remote MEP ID) In this scenario the 'Responder MEP' must verify the Rx LBM Target MEP ID against the remote MEP ID (CCM_MEPID) In this scenario the 'Initiator MEP' must verify the Rx LBR Replying MEP ID against the local MEP ID (VOE_MEPID) Scenario B: -------------------------------- Initiator MEP transmits 'Target MEP ID TLV' with the Initiator MEP ID (local MEP ID) Responder MEP replies with  'Replying MEP ID TLV' with the Responder MEP ID (local MEP ID) In this scenario the 'Responder MEP' must verify the Rx LBM Target MEP ID against the remote MEP ID (CCM_MEPID) In this scenario the 'Initiator MEP' must verify the Rx LBR Replying MEP ID against the remote MEP ID (CCM_MEPID) Scenario C: -------------------------------- Initiator MEP transmits 'Target MEP ID TLV' with the Responder MEP ID (remote MEP ID) Responder MEP replies with  'Replying MEP ID TLV' with the Responder MEP ID (local MEP ID) In this scenario the 'Responder MEP' must verify the Rx LBM Target MEP ID against the local MEP ID (VOE_MEPID) In this scenario the 'Initiator MEP' must verify the Rx LBR Replying MEP ID against the remote MEP ID (CCM_MEPID) Scenario D: -------------------------------- Initiator MEP transmits 'Target MEP ID TLV' with the Responder MEP ID (remote MEP ID) Responder MEP replies with  'Replying MEP ID TLV' with the Initiator MEP ID (remote MEP ID) In this scenario the 'Responder MEP' must verify the Rx LBM Target MEP ID against the local MEP ID (VOE_MEPID) In this scenario the 'Initiator MEP' must verify the Rx LBR Replying MEP ID against the local MEP ID (VOE_MEPID)
     ///
     /// 00: Scenario A 01: Scenario B 10: Scenario C 11: Scenario D
+    #[inline]
     pub fn g_8113_1_mep_scenario(&self) -> u32 {
         (self.0 & 0x30) >> 4
     }
+    #[inline]
     pub fn set_g_8113_1_mep_scenario(&mut self, value: u32) {
         assert!(value <= 0x3);
         let value = value << 4;
@@ -777,9 +887,11 @@ impl VOP_CTRL {
     /// The LMR PDU does not have any fields reserved to hold the RxFCb counter upon reception of an LMR/SLR frame. For LMR: ---------------- The VOE supports adding the RxFCb counter following the other three counters in the LMR/SLR PDU. This requires extending the first TLV from 12 --> 16 bytes. Asserting this fields enables updating TLV OFFSET to 16 and setting inserting RxFCb after TxFCb. Further a new End TLV = 0 is written right after the LMR.RxFCb (at offset = 16) For SLR: -------------- The VOE supports adding the RxFCb counter following the other three counters in the SLR PDU. This requires extending the first TLV from 16 --> 20 bytes. Asserting this fields enables updating TLV OFFSET to 16 and setting inserting RxFCb after TxFCb. Further a new End TLV = 0 is written right after the SLR.RxFCb (at offset = 16) This solution is a proprietary solution, which allows forwarding the RxFCb value to an internal or external CPU. NOTE this will result in a non standards compliant frame. However, this is the only way to convey the RxFCb frame count to a CPU.
     ///
     /// 0: No modifications to LMR upon reception 1: Update LMR frames as described above.
+    #[inline]
     pub fn lmr_upd_rxfcl_ena(&self) -> u32 {
         (self.0 & 0x400) >> 10
     }
+    #[inline]
     pub fn set_lmr_upd_rxfcl_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 10;
@@ -787,9 +899,11 @@ impl VOP_CTRL {
         self.0 |= value;
     }
     /// Enables or disables automated Loss Of Continuity (LOC) Controller to be used for LOC detection by both Ethernet and MPLS-TP VOEs. When the LOC SCAN is disabled, the LOC timers will not expire so there is no increase of the LOC counters in the VOEs. When the LOC SCAN is enabled, the LOC timers will expire and increment the VOE LOC counters. LOC timers are configured in register: VOP::LOC_CTRL.* When the LOC scan controller is disabled, the LOC scan controller is automatically reset. I.e. all internal counters are set to default values. NOTE: This does not affect the LOC miss counters in the VOE.
+    #[inline]
     pub fn loc_scan_ena(&self) -> u32 {
         (self.0 & 0x2) >> 1
     }
+    #[inline]
     pub fn set_loc_scan_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 1;
@@ -797,9 +911,11 @@ impl VOP_CTRL {
         self.0 |= value;
     }
     /// Enables or disables the Vitesse OAM Processor (VOP). When the the VOP is disabled, both VOP and the single VOEs can be configured, but no frame processing is done. Further each individual VOE must be enabled to enable its functionality.
+    #[inline]
     pub fn vop_ena(&self) -> u32 {
         self.0 & 0x1
     }
+    #[inline]
     pub fn set_vop_ena(&mut self, value: u32) {
         assert!(value <= 0x1);
         self.0 &= !0x1;

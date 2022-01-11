@@ -34,9 +34,11 @@ use derive_more::{From, Into};
 pub struct PLL5G_BIST_CFG0A(u32);
 impl PLL5G_BIST_CFG0A {
     /// BIST compare pre divider M
+    #[inline]
     pub fn pllb_div_factor_pre(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_pllb_div_factor_pre(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -50,9 +52,11 @@ impl PLL5G_BIST_CFG0A {
 pub struct PLL5G_BIST_CFG0B(u32);
 impl PLL5G_BIST_CFG0B {
     /// BIST compare divider repeat count
+    #[inline]
     pub fn pllb_lock_repeat(&self) -> u32 {
         (self.0 & 0xf0) >> 4
     }
+    #[inline]
     pub fn set_pllb_lock_repeat(&mut self, value: u32) {
         assert!(value <= 0xf);
         let value = value << 4;
@@ -60,18 +64,22 @@ impl PLL5G_BIST_CFG0B {
         self.0 |= value;
     }
     /// BIST compare divider phase uncertainty
+    #[inline]
     pub fn pllb_lock_uncert(&self) -> u32 {
         self.0 & 0xf
     }
+    #[inline]
     pub fn set_pllb_lock_uncert(&mut self, value: u32) {
         assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
     /// BIST measure mode, 0: frequency, 1: phase
+    #[inline]
     pub fn pllb_meas_mode(&self) -> u32 {
         (self.0 & 0x4000) >> 14
     }
+    #[inline]
     pub fn set_pllb_meas_mode(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 14;
@@ -79,9 +87,11 @@ impl PLL5G_BIST_CFG0B {
         self.0 |= value;
     }
     /// BIST start, 0: reset BIST, 1: start/enable BIST
+    #[inline]
     pub fn pllb_start_bist(&self) -> u32 {
         (self.0 & 0x8000) >> 15
     }
+    #[inline]
     pub fn set_pllb_start_bist(&mut self, value: u32) {
         assert!(value <= 0x1);
         let value = value << 15;
@@ -96,9 +106,11 @@ impl PLL5G_BIST_CFG0B {
 pub struct PLL5G_BIST_CFG1(u32);
 impl PLL5G_BIST_CFG1 {
     /// BIST compare divider M
+    #[inline]
     pub fn pllb_div_factor_m(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_pllb_div_factor_m(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;
@@ -112,9 +124,11 @@ impl PLL5G_BIST_CFG1 {
 pub struct PLL5G_BIST_CFG2(u32);
 impl PLL5G_BIST_CFG2 {
     /// BIST compare divider N
+    #[inline]
     pub fn pllb_div_factor_n(&self) -> u32 {
         self.0 & 0xffff
     }
+    #[inline]
     pub fn set_pllb_div_factor_n(&mut self, value: u32) {
         assert!(value <= 0xffff);
         self.0 &= !0xffff;

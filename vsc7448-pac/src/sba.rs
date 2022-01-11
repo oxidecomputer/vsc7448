@@ -36,43 +36,56 @@ pub mod sba;
 /// Shared bus arbiter registers
 pub struct SBA(pub(super) u32);
 impl SBA {
+    #[inline]
     pub fn DFT_MST(&self) -> RegisterAddress<sba::DFT_MST> {
         RegisterAddress::new(self.0 + 0x48)
     }
+    #[inline]
     pub fn EBT(&self) -> RegisterAddress<sba::EBT> {
         RegisterAddress::new(self.0 + 0x44)
     }
+    #[inline]
     pub fn EBT_COUNT(&self) -> RegisterAddress<sba::EBT_COUNT> {
         RegisterAddress::new(self.0 + 0x3c)
     }
+    #[inline]
     pub fn EBT_EN(&self) -> RegisterAddress<sba::EBT_EN> {
         RegisterAddress::new(self.0 + 0x40)
     }
+    #[inline]
     pub fn PL_CPU(&self) -> RegisterAddress<sba::PL_CPU> {
         RegisterAddress::new(self.0 + 0x0)
     }
+    #[inline]
     pub fn PL_CSR(&self) -> RegisterAddress<sba::PL_CSR> {
         RegisterAddress::new(self.0 + 0x8)
     }
+    #[inline]
     pub fn PL_PCIE(&self) -> RegisterAddress<sba::PL_PCIE> {
         RegisterAddress::new(self.0 + 0x4)
     }
+    #[inline]
     pub fn RESERVED1(&self, index: u32) -> RegisterAddress<sba::RESERVED1> {
         assert!(index < 12);
         RegisterAddress::new(self.0 + 0xc + index * 0x4)
     }
+    #[inline]
     pub fn WT_CPU(&self) -> RegisterAddress<sba::WT_CPU> {
         RegisterAddress::new(self.0 + 0x54)
     }
+    #[inline]
     pub fn WT_CSR(&self) -> RegisterAddress<sba::WT_CSR> {
         RegisterAddress::new(self.0 + 0x5c)
     }
+    #[inline]
     pub fn WT_EN(&self) -> RegisterAddress<sba::WT_EN> {
         RegisterAddress::new(self.0 + 0x4c)
     }
+    #[inline]
     pub fn WT_PCIE(&self) -> RegisterAddress<sba::WT_PCIE> {
         RegisterAddress::new(self.0 + 0x58)
     }
+    #[inline]
     pub fn WT_TCL(&self) -> RegisterAddress<sba::WT_TCL> {
         RegisterAddress::new(self.0 + 0x50)
     }

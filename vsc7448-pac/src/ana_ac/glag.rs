@@ -34,9 +34,11 @@ impl MBR_CNT_CFG {
     /// GLAG member count. This is used to select the GLAG port mask within the GLAG part of ANA_AC:PGID. Using GLAG_MBR_CNT a GLAG_MBR_IDX is calculated as follows: GLAG_MBR_IDX = frame.ac % GLAG_MBR_CNT The frame's GLAGID and GLAG_MBR_IDX are then used for lookup in ANA_AC:PGID.
     ///
     /// 0: One member 1: Two members ... 7: Eight members
+    #[inline]
     pub fn glag_mbr_cnt(&self) -> u32 {
         (self.0 & 0x70000) >> 16
     }
+    #[inline]
     pub fn set_glag_mbr_cnt(&mut self, value: u32) {
         assert!(value <= 0x7);
         let value = value << 16;

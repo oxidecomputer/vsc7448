@@ -36,9 +36,11 @@ impl MSTP_FWD_CFG {
     /// Enable/disable forwarding per port. Ports in MSTP Forwarding state must be enabled in this port mask. If a port is disabled in this mask, frames received on the port are not forwarded, and frames are not forwarded to the port. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_DISCARD_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_FWD_ALLOWED_STICKY
     ///
     /// '0': forwarding is disabled from/to respective port '1': forwarding is enabled from/to respective port
+    #[inline]
     pub fn mstp_fwd_mask(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_mstp_fwd_mask(&mut self, value: u32) {
         self.0 = value;
     }
@@ -50,9 +52,11 @@ impl MSTP_FWD_CFG {
 pub struct MSTP_FWD_CFG1(u32);
 impl MSTP_FWD_CFG1 {
     /// Refer to MSTP_FWD_CFG.MSTP_FWD_MASK description.
+    #[inline]
     pub fn mstp_fwd_mask1(&self) -> u32 {
         self.0 & 0x1fffff
     }
+    #[inline]
     pub fn set_mstp_fwd_mask1(&mut self, value: u32) {
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
@@ -68,9 +72,11 @@ impl MSTP_LRN_CFG {
     /// Enable/disable learning per port. If a port is disabled in the mask, L2 learning of the (FID, SMAC) pair is not done. Ports in MSTP Learning and Forwarding state must be enabled in this mask. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_LRN_DENY_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.MSTP_LRN_ALLOWED_STICKY
     ///
     /// '0': Learning is disabled for frames from respective port '1': Learning is enabled for frames from respective port
+    #[inline]
     pub fn mstp_lrn_mask(&self) -> u32 {
         self.0
     }
+    #[inline]
     pub fn set_mstp_lrn_mask(&mut self, value: u32) {
         self.0 = value;
     }
@@ -80,9 +86,11 @@ impl MSTP_LRN_CFG {
 pub struct MSTP_LRN_CFG1(u32);
 impl MSTP_LRN_CFG1 {
     /// Refer to MSTP_LRN_CFG.MSTP_LRN_MASK description.
+    #[inline]
     pub fn mstp_lrn_mask1(&self) -> u32 {
         self.0 & 0x1fffff
     }
+    #[inline]
     pub fn set_mstp_lrn_mask1(&mut self, value: u32) {
         assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
