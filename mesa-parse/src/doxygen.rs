@@ -4,7 +4,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
 use regex::Regex;
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
 
 use crate::symregs::TargetMap;
 use vsc7448_types::{Field, OwnedTarget, Register, RegisterGroup};
@@ -21,6 +21,7 @@ enum DoxygenBlockType {
 #[derive(Debug)]
 struct DoxygenBlock {
     block_type: DoxygenBlockType,
+    parent: Vec<String>,
     name: String,
     desc: Option<String>,
     brief: Option<String>,
@@ -39,6 +40,7 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
     let mut out = DoxygenBlock {
         block_type: DoxygenBlockType::Unknown,
         name: "".to_string(),
+        parent: vec![],
         desc: None,
         brief: None,
         details: None,
@@ -64,6 +66,7 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
             assert!(out.block_type == DoxygenBlockType::Unknown);
             out.block_type = DoxygenBlockType::RegisterGroup;
             out.name = cap[2].to_owned();
+            out.parent.push(cap[1].to_owned());
             state = State::Desc;
         }
         if let Some(cap) = target_re.captures(s) {
@@ -76,12 +79,15 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
             assert!(out.block_type == DoxygenBlockType::Unknown);
             out.block_type = DoxygenBlockType::Register;
             out.name = cap[3].to_owned();
+            out.parent.push(cap[1].to_owned());
+            out.parent.push(cap[2].to_owned());
             state = State::Desc;
         }
         if let Some(cap) = field_re.captures(s) {
             assert!(out.block_type == DoxygenBlockType::Unknown);
             out.block_type = DoxygenBlockType::Field;
             out.name = cap[2].to_owned();
+            out.parent.push(cap[1].to_owned());
             state = State::Desc;
         }
         if let Some(cap) = brief_re.captures(s) {
@@ -147,8 +153,11 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
     let mut itr = s.lines().peekable();
     let field_re = Regex::new(r"#define\s+VTSS_F[A-Z_0-9]*\(x\)\s+(\w*)\((.+)\)$").unwrap();
     let mut target = None;
-    let mut group = None;
-    let mut register = None;
+    let mut target_name = None;
+
+    // Maps for a flat TARGET_REGGROUP_REGISTER name to a (REGGROUP, REGISTER)
+    // tuple, to easily decode field names (which are presented as flat names)
+    let mut flat_names = HashMap::new();
 
     while let Some(s) = itr.next() {
         let mut item = None;
@@ -177,42 +186,44 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
                     desc: item.desc.unwrap(),
                     groups: BTreeMap::new(),
                 });
+                target_name = Some(item.name);
             }
             DoxygenBlockType::RegisterGroup => {
-                if let Some((name, group)) = group.take() {
-                    target.as_mut().unwrap().groups.insert(name, group);
-                }
                 assert!(item.brief.is_none());
                 assert!(item.details.is_none());
                 let addr = map.get(&item.name).unwrap().0;
-                group = Some((
+                target.as_mut().unwrap().groups.insert(
                     item.name,
                     RegisterGroup {
                         addr,
                         desc: item.desc.unwrap(),
                         regs: BTreeMap::new(),
                     },
-                ));
+                );
             }
             DoxygenBlockType::Register => {
-                if let Some((name, reg)) = register.take() {
-                    group.as_mut().unwrap().1.regs.insert(name, reg);
-                }
-                let addr = *map
-                    .get(&group.as_ref().unwrap().0)
+                let addr = *map.get(&item.parent[1]).unwrap().1.get(&item.name).unwrap();
+                target
+                    .as_mut()
                     .unwrap()
-                    .1
-                    .get(&item.name)
-                    .unwrap();
-                register = Some((
-                    item.name,
-                    Register {
-                        addr,
-                        brief: item.brief,
-                        details: item.details,
-                        fields: BTreeMap::new(),
-                    },
-                ));
+                    .groups
+                    .get_mut(&item.parent[1])
+                    .unwrap()
+                    .regs
+                    .insert(
+                        item.name.clone(),
+                        Register {
+                            addr,
+                            brief: item.brief,
+                            details: item.details,
+                            fields: BTreeMap::new(),
+                        },
+                    );
+                assert!(&item.parent[0] == target_name.as_ref().unwrap());
+                flat_names.insert(
+                    format!("VTSS_{}_{}_{}", item.parent[0], item.parent[1], item.name),
+                    (item.parent[1].clone(), item.name),
+                );
             }
             DoxygenBlockType::Field => {
                 let s = itr.next().unwrap();
@@ -228,26 +239,30 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
                     let size: u8 = itr.next().unwrap().parse().unwrap();
                     (lo, lo + size)
                 };
+                let (group, reg) = flat_names.get(&item.parent[0]).unwrap();
                 assert!(item.desc.is_none());
-                register.as_mut().unwrap().1.fields.insert(
-                    item.name,
-                    Field {
-                        brief: item.brief,
-                        details: item.details,
-                        lo,
-                        hi,
-                    },
-                );
+                target
+                    .as_mut()
+                    .unwrap()
+                    .groups
+                    .get_mut(group)
+                    .unwrap()
+                    .regs
+                    .get_mut(reg)
+                    .unwrap()
+                    .fields
+                    .insert(
+                        item.name,
+                        Field {
+                            brief: item.brief,
+                            details: item.details,
+                            lo,
+                            hi,
+                        },
+                    );
             }
             _ => panic!("Invalid block type"),
         }
-    }
-    // Finalize pending parse
-    if let Some((name, reg)) = register.take() {
-        group.as_mut().unwrap().1.regs.insert(name, reg);
-    }
-    if let Some((name, group)) = group.take() {
-        target.as_mut().unwrap().groups.insert(name, group);
     }
     target.unwrap()
 }

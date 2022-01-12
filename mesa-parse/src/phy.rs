@@ -91,8 +91,10 @@ pub fn parse_phy_registers(s: &str, pages: &mut BTreeMap<String, Page<String>>) 
                     continue;
                 }
             };
-            let lo = parse_int::parse(&cap[2]).unwrap();
-            let hi = parse_int::parse(&cap[3]).unwrap();
+            let offset = parse_int::parse(&cap[2]).unwrap();
+            let width: u8 = parse_int::parse(&cap[3]).unwrap();
+            let lo = offset;
+            let hi = offset + width;
             active.as_mut().unwrap().2.fields.insert(
                 field_name.to_owned(),
                 Field {

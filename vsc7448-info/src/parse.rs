@@ -76,6 +76,12 @@ pub enum ParseError {
     NotRegisterGroupArray(&'static str),
     #[error("Register group index for {0} is out of range ({0} >= {1})")]
     InvalidRegisterGroupIndex(&'static str, u32, u32),
+    #[error("Register address is not valid for any targets")]
+    InvalidTargetAddress,
+    #[error("Register address is not valid within target {0}")]
+    InvalidGroupAddress(&'static str),
+    #[error("Register address is not valid within {0}:{1}")]
+    InvalidRegisterAddress(&'static str, &'static str),
 }
 
 impl TargetRegister {
@@ -91,11 +97,85 @@ impl TargetRegister {
         let reg = &group.regs[self.reg.name];
         addr += (reg.addr.base + reg.addr.width * self.reg.index.unwrap_or(0)) * 4;
 
-        addr.try_into().expect("Address exceeds 32-bit space?!")
+        addr
     }
     /// Returns this register's field map.
     pub fn fields(&self) -> &BTreeMap<String, Field<String>> {
         &TARGETS[&MEMORY_MAP[self.target.name].0].groups[self.group.name].regs[self.reg.name].fields
+    }
+}
+
+impl TargetRegister {
+    pub fn from_addr(addr: u32) -> Result<Self, ParseError> {
+        // Find the target which contains this address.  Targets aren't ordered
+        // and don't have full bounds, so we find the target whose base address
+        // is lower and closest to the input address.
+        let mut found_target: Option<(&'static str, u32, Option<u32>)> = None;
+        for (name, (_, v)) in MEMORY_MAP.iter() {
+            for (index, base) in v {
+                if addr >= *base && (found_target == None || found_target.unwrap().1 < *base) {
+                    found_target = Some((name, *base, *index));
+                }
+            }
+        }
+        if found_target.is_none() {
+            return Err(ParseError::InvalidTargetAddress);
+        }
+        let (target_name, base, target_index) = found_target.unwrap();
+        let offset = (addr - base) / 4;
+        let target = &TARGETS[&MEMORY_MAP[target_name].0];
+        let mut found_group = None;
+        for (name, g) in target.groups.iter() {
+            let start = g.addr.base;
+            let end = start + g.addr.width * g.addr.count;
+            if offset >= start && offset < end {
+                found_group = Some((name, (offset - start) / g.addr.width));
+            }
+        }
+        if found_group.is_none() {
+            return Err(ParseError::InvalidGroupAddress(target_name));
+        }
+
+        let (group_name, group_index) = found_group.unwrap();
+        let group = &target.groups[group_name];
+        let offset = offset - (group.addr.base + group.addr.width * group_index);
+        let mut found_reg = None;
+        for (name, r) in group.regs.iter() {
+            let start = r.addr.base;
+            let end = start + r.addr.width * r.addr.count;
+            if offset >= start && offset < end {
+                found_reg = Some((name, (offset - start) / r.addr.width));
+            }
+        }
+        if found_reg.is_none() {
+            return Err(ParseError::InvalidRegisterAddress(target_name, group_name));
+        }
+
+        let (reg_name, reg_index) = found_reg.unwrap();
+        let reg = &group.regs[reg_name];
+
+        Ok(Self {
+            target: Indexed {
+                name: target_name,
+                index: target_index,
+            },
+            group: Indexed {
+                name: group_name,
+                index: if group.addr.count > 1 {
+                    Some(group_index)
+                } else {
+                    None
+                },
+            },
+            reg: Indexed {
+                name: reg_name,
+                index: if reg.addr.count > 1 {
+                    Some(reg_index)
+                } else {
+                    None
+                },
+            },
+        })
     }
 }
 
@@ -340,23 +420,20 @@ impl std::str::FromStr for PhyRegister {
                     reg: PHY_MAP["STANDARD"]
                         .regs
                         .iter()
-                        .filter(|(_reg, r)| r.addr.base == words[0])
-                        .next()
+                        .find(|(_reg, r)| r.addr.base == words[0])
                         .ok_or(ParseError::NoSuchRegister)?
                         .0,
                 }),
                 2 => {
                     let page = PHY_MAP
                         .iter()
-                        .filter(|(_page, p)| p.base == words[0])
-                        .next()
+                        .find(|(_page, p)| p.base == words[0])
                         .ok_or(ParseError::NoSuchPage)?;
                     let reg = page
                         .1
                         .regs
                         .iter()
-                        .filter(|(_reg, r)| r.addr.base == words[1])
-                        .next()
+                        .find(|(_reg, r)| r.addr.base == words[1])
                         .ok_or(ParseError::NoSuchRegister)?;
                     Ok(PhyRegister {
                         page: page.0,
@@ -497,6 +574,19 @@ mod tests {
                 },
             })
         );
+    }
+
+    #[test]
+    fn test_parse_addr() {
+        let r = "QMAP_PORT_MODE[50]".parse::<TargetRegister>().unwrap();
+        let addr = r.address();
+        assert_eq!(TargetRegister::from_addr(addr), Ok(r));
+
+        let r = "DEV10G[3]:MAC_CFG_STATUS:MAC_TX_MONITOR_STICKY"
+            .parse::<TargetRegister>()
+            .unwrap();
+        let addr = r.address();
+        assert_eq!(TargetRegister::from_addr(addr), Ok(r));
     }
 
     #[test]
