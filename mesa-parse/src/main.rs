@@ -235,7 +235,7 @@ impl Vsc7448 {{"
     writeln!(&mut file, "\n}}")?;
 
     // Write top-level targets
-    for (name, (remap, _instances)) in target_list.iter() {
+    for (name, (remap, instances)) in target_list.iter() {
         // Open and write a header to the target-specific file
         let mut path = PathBuf::from(dir);
         path.push("src");
@@ -267,8 +267,19 @@ use crate::types::RegisterAddress;
             "
 /// {1}
 pub struct {0}(u32);
-impl {0} {{",
-            name, target_docs[remap].desc
+impl {0} {{
+    pub const BASE: usize = 0x{2:x};",
+            name, target_docs[remap].desc, instances[0].1,
+        )?;
+        if instances.len() > 1 {
+            let delta = instances[1].1 - instances[0].1;
+            writeln!(&mut file, "    pub const SIZE: usize = 0x{:x};", delta)?;
+        }
+        writeln!(
+            &mut file,
+            "    pub unsafe fn new_unchecked(a: u32) -> Self {{
+        Self(a)
+    }}"
         )?;
 
         for (gname, group) in target_docs[remap].groups.iter() {

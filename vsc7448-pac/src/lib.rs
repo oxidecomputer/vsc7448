@@ -278,6 +278,11 @@ impl Vsc7448 {
 /// The Automatic Frame Injector (AFI) provides mechanisms for periodic injection of PDUs. E.g. injection of - OAM PDUs for continuity check, loss and delay measurement - OAM PDUs for high service activation test, ref. ITU Y.1564. - IEEE 1588 PDUs
 pub struct AFI(u32);
 impl AFI {
+    pub const BASE: usize = 0x71a80000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn DTI_MISC(&self, index: u32) -> afi::DTI_MISC {
         assert!(index < 32);
@@ -324,6 +329,11 @@ impl AFI {
 /// Controls mask handling etc.
 pub struct ANA_AC(u32);
 impl ANA_AC {
+    pub const BASE: usize = 0x71f00000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn AGGR(&self, index: u32) -> ana_ac::AGGR {
         assert!(index < 16);
@@ -457,6 +467,11 @@ impl ANA_AC {
 /// Access Control List sub block of the Analyzer
 pub struct ANA_ACL(u32);
 impl ANA_ACL {
+    pub const BASE: usize = 0x71430000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn CNT_TBL(&self, index: u32) -> ana_acl::CNT_TBL {
         assert!(index < 4096);
@@ -485,6 +500,11 @@ impl ANA_ACL {
 /// This block os part of the Vitesse OAM MEP Processor (VOP). It is directly controlled by the VOP and performs all frame modification related OAM functions. This block is included in both the REW and the ANA_AC. The HW support for implementing an OAM MEP is implemented in a sub block, known as: Vitesse OAM Endpoint (VOE). The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs
 pub struct ANA_AC_OAM_MOD(u32);
 impl ANA_AC_OAM_MOD {
+    pub const BASE: usize = 0x71b80000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn OAM_PDU_MOD_CONT(&self, index: u32) -> ana_ac_oam_mod::OAM_PDU_MOD_CONT {
         assert!(index < 110);
@@ -509,6 +529,11 @@ impl ANA_AC_OAM_MOD {
 /// Controls the various policers.
 pub struct ANA_AC_POL(u32);
 impl ANA_AC_POL {
+    pub const BASE: usize = 0x71980000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn BDLB(&self, index: u32) -> ana_ac_pol::BDLB {
         assert!(index < 1024);
@@ -559,6 +584,11 @@ impl ANA_AC_POL {
 /// Classifier sub block of the Analyzer
 pub struct ANA_CL(u32);
 impl ANA_CL {
+    pub const BASE: usize = 0x71d00000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn COMMON(&self) -> ana_cl::COMMON {
         ana_cl::COMMON(self.0 + 0x23a80)
@@ -611,6 +641,11 @@ impl ANA_CL {
 /// Layer 2 sub block of the Analyzer
 pub struct ANA_L2(u32);
 impl ANA_L2 {
+    pub const BASE: usize = 0x71e00000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn COMMON(&self) -> ana_l2::COMMON {
         ana_l2::COMMON(self.0 + 0x8a2a8)
@@ -644,6 +679,11 @@ impl ANA_L2 {
 /// ANA_L3 provides the following functionality: - VLAN handling - MSTP handling - IP routing
 pub struct ANA_L3(u32);
 impl ANA_L3 {
+    pub const BASE: usize = 0x71800000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn ARP(&self, index: u32) -> ana_l3::ARP {
         assert!(index < 2048);
@@ -700,6 +740,11 @@ impl ANA_L3 {
 /// Assembler
 pub struct ASM(u32);
 impl ASM {
+    pub const BASE: usize = 0x71410000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn CFG(&self) -> asm::CFG {
         asm::CFG(self.0 + 0x3508)
@@ -747,6 +792,12 @@ impl ASM {
 /// \see vtss_target_DEV10G_e VAUI @ 12Gbps 2 lanes, XAUI @ 10 Gbps, XAUI @ 12 Gbps, VAUI @ 10Gbps 2 lanes and SGMII @ 10/100/1000/2500 Mbps
 pub struct DEV10G(u32);
 impl DEV10G {
+    pub const BASE: usize = 0x71390000;
+    pub const SIZE: usize = 0x10000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn DEV_CFG_STATUS(&self) -> dev10g::DEV_CFG_STATUS {
         dev10g::DEV_CFG_STATUS(self.0 + 0x160)
@@ -796,6 +847,12 @@ impl DEV10G {
 /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
 pub struct DEV1G(u32);
 impl DEV1G {
+    pub const BASE: usize = 0x71040000;
+    pub const SIZE: usize = 0x10000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn DEV1G_INTR_CFG_STATUS(&self) -> dev1g::DEV1G_INTR_CFG_STATUS {
         dev1g::DEV1G_INTR_CFG_STATUS(self.0 + 0x94)
@@ -829,6 +886,12 @@ impl DEV1G {
 /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
 pub struct DEV2G5(u32);
 impl DEV2G5 {
+    pub const BASE: usize = 0x711c0000;
+    pub const SIZE: usize = 0x10000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn DEV1G_INTR_CFG_STATUS(&self) -> dev2g5::DEV1G_INTR_CFG_STATUS {
         dev2g5::DEV1G_INTR_CFG_STATUS(self.0 + 0x94)
@@ -862,6 +925,11 @@ impl DEV2G5 {
 /// General Configuration Block
 pub struct DEVCPU_GCB(u32);
 impl DEVCPU_GCB {
+    pub const BASE: usize = 0x71010000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn CHIP_REGS(&self) -> devcpu_gcb::CHIP_REGS {
         devcpu_gcb::CHIP_REGS(self.0 + 0x0)
@@ -917,6 +985,11 @@ impl DEVCPU_GCB {
 /// CPU device origin
 pub struct DEVCPU_ORG(u32);
 impl DEVCPU_ORG {
+    pub const BASE: usize = 0x71000000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn DEVCPU_ORG(&self) -> devcpu_org::DEVCPU_ORG {
         devcpu_org::DEVCPU_ORG(self.0 + 0x0)
@@ -926,6 +999,11 @@ impl DEVCPU_ORG {
 /// DEVCPU Precision Timing Protocol Originator
 pub struct DEVCPU_PTP(u32);
 impl DEVCPU_PTP {
+    pub const BASE: usize = 0x717f0000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn PTP_CFG(&self) -> devcpu_ptp::PTP_CFG {
         devcpu_ptp::PTP_CFG(self.0 + 0xa0)
@@ -945,6 +1023,11 @@ impl DEVCPU_PTP {
 /// CPU Device Queue System
 pub struct DEVCPU_QS(u32);
 impl DEVCPU_QS {
+    pub const BASE: usize = 0x71020000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn INJ(&self) -> devcpu_qs::INJ {
         devcpu_qs::INJ(self.0 + 0x24)
@@ -958,6 +1041,11 @@ impl DEVCPU_QS {
 /// Disassembler
 pub struct DSM(u32);
 impl DSM {
+    pub const BASE: usize = 0x71450000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn CFG(&self) -> dsm::CFG {
         dsm::CFG(self.0 + 0xc)
@@ -987,6 +1075,11 @@ impl DSM {
 /// Hierarchical Scheduler Configuration
 pub struct HSCH(u32);
 impl HSCH {
+    pub const BASE: usize = 0x71880000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn HSCH_CFG(&self, index: u32) -> hsch::HSCH_CFG {
         assert!(index < 3400);
@@ -1051,6 +1144,11 @@ impl HSCH {
 /// Register Collection for Control of Macros (SERDES1G, SERDES6G, LCPLL)
 pub struct HSIO(u32);
 impl HSIO {
+    pub const BASE: usize = 0x71460000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn HW_CFGSTAT(&self) -> hsio::HW_CFGSTAT {
         hsio::HW_CFGSTAT(self.0 + 0x16c)
@@ -1132,6 +1230,11 @@ impl HSIO {
 /// VCore Configuration
 pub struct ICPU_CFG(u32);
 impl ICPU_CFG {
+    pub const BASE: usize = 0x70000000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn CPU_SYSTEM_CTRL(&self) -> icpu_cfg::CPU_SYSTEM_CTRL {
         icpu_cfg::CPU_SYSTEM_CTRL(self.0 + 0x0)
@@ -1185,6 +1288,11 @@ impl ICPU_CFG {
 /// Learn block
 pub struct LRN(u32);
 impl LRN {
+    pub const BASE: usize = 0x71420000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn COMMON(&self) -> lrn::COMMON {
         lrn::COMMON(self.0 + 0x0)
@@ -1194,6 +1302,11 @@ impl LRN {
 /// PCIe Endpoint Configuration Space
 pub struct PCIE(u32);
 impl PCIE {
+    pub const BASE: usize = 0x70111000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn PCIE_AER_CAP(&self) -> pcie::PCIE_AER_CAP {
         pcie::PCIE_AER_CAP(self.0 + 0x100)
@@ -1223,6 +1336,12 @@ impl PCIE {
 /// \see vtss_target_PCS_10GBASE_R_e PCS configuration and status registers and counters
 pub struct PCS10G_BR(u32);
 impl PCS10G_BR {
+    pub const BASE: usize = 0x713d0000;
+    pub const SIZE: usize = 0x10000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn EEE_STATS(&self) -> pcs10g_br::EEE_STATS {
         pcs10g_br::EEE_STATS(self.0 + 0xa8)
@@ -1268,6 +1387,11 @@ impl PCS10G_BR {
 /// Queue System Configuration
 pub struct QFWD(u32);
 impl QFWD {
+    pub const BASE: usize = 0x717d0000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn SYSTEM(&self) -> qfwd::SYSTEM {
         qfwd::SYSTEM(self.0 + 0x0)
@@ -1277,6 +1401,11 @@ impl QFWD {
 /// Queue System Configuration
 pub struct QRES(u32);
 impl QRES {
+    pub const BASE: usize = 0x71900000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn RES_CTRL(&self, index: u32) -> qres::RES_CTRL {
         assert!(index < 5120);
@@ -1296,6 +1425,11 @@ impl QRES {
 /// Queue System Configuration
 pub struct QSYS(u32);
 impl QSYS {
+    pub const BASE: usize = 0x717e0000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn CALCFG(&self) -> qsys::CALCFG {
         qsys::CALCFG(self.0 + 0x3d4)
@@ -1333,6 +1467,11 @@ impl QSYS {
 /// Rewriter
 pub struct REW(u32);
 impl REW {
+    pub const BASE: usize = 0x71b00000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn COMMON(&self) -> rew::COMMON {
         rew::COMMON(self.0 + 0x53c00)
@@ -1412,6 +1551,11 @@ impl REW {
 /// Shared Bus Arbiter
 pub struct SBA(u32);
 impl SBA {
+    pub const BASE: usize = 0x70110000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn SBA(&self) -> sba::SBA {
         sba::SBA(self.0 + 0x0)
@@ -1421,6 +1565,11 @@ impl SBA {
 /// SI Master Controller
 pub struct SIMC(u32);
 impl SIMC {
+    pub const BASE: usize = 0x70101000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn SIMC(&self) -> simc::SIMC {
         simc::SIMC(self.0 + 0x0)
@@ -1430,6 +1579,11 @@ impl SIMC {
 /// \see vtss_target_TWI_e Two-Wire Interface Controller
 pub struct TWI(u32);
 impl TWI {
+    pub const BASE: usize = 0x70100400;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn TWI(&self) -> twi::TWI {
         twi::TWI(self.0 + 0x0)
@@ -1439,6 +1593,11 @@ impl TWI {
 /// \see vtss_target_TWI_e Two-Wire Interface Controller
 pub struct TWI2(u32);
 impl TWI2 {
+    pub const BASE: usize = 0x70100c00;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn TWI(&self) -> twi2::TWI {
         twi2::TWI(self.0 + 0x0)
@@ -1448,6 +1607,11 @@ impl TWI2 {
 /// \see vtss_target_UART_e UART Controller
 pub struct UART(u32);
 impl UART {
+    pub const BASE: usize = 0x70100000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn UART(&self) -> uart::UART {
         uart::UART(self.0 + 0x0)
@@ -1457,6 +1621,11 @@ impl UART {
 /// \see vtss_target_UART_e UART Controller
 pub struct UART2(u32);
 impl UART2 {
+    pub const BASE: usize = 0x70100800;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn UART(&self) -> uart2::UART {
         uart2::UART(self.0 + 0x0)
@@ -1466,6 +1635,11 @@ impl UART2 {
 /// \see vtss_target_VAUI_CHANNEL_e Vaui channel configuration and status register set
 pub struct VAUI0(u32);
 impl VAUI0 {
+    pub const BASE: usize = 0x717b0000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn ANEG_CFG(&self, index: u32) -> vaui0::ANEG_CFG {
         assert!(index < 8);
@@ -1485,6 +1659,11 @@ impl VAUI0 {
 /// \see vtss_target_VAUI_CHANNEL_e Vaui channel configuration and status register set
 pub struct VAUI1(u32);
 impl VAUI1 {
+    pub const BASE: usize = 0x717c0000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn ANEG_CFG(&self, index: u32) -> vaui1::ANEG_CFG {
         assert!(index < 8);
@@ -1504,6 +1683,11 @@ impl VAUI1 {
 /// \see vtss_target_VCAP_CORE_e Vitesse Content Aware Processor
 pub struct VCAP_ES0(u32);
 impl VCAP_ES0 {
+    pub const BASE: usize = 0x71470000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn TCAM_BIST(&self) -> vcap_es0::TCAM_BIST {
         vcap_es0::TCAM_BIST(self.0 + 0x3c0)
@@ -1533,6 +1717,11 @@ impl VCAP_ES0 {
 /// \see vtss_target_VCAP_CORE_e Vitesse Content Aware Processor
 pub struct VCAP_SUPER(u32);
 impl VCAP_SUPER {
+    pub const BASE: usize = 0x71440000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn TCAM_BIST(&self) -> vcap_super::TCAM_BIST {
         vcap_super::TCAM_BIST(self.0 + 0x3c0)
@@ -1562,6 +1751,11 @@ impl VCAP_SUPER {
 /// The Vitesse OAM MEP Processor (VOP) implements the HW support for implementing OAM MEPs. The HW support for implementing an OAM MEP is implemented in a sub block, referred to as: Vitesse OAM Endpoint (VOE). The VOEs can be configured for either Ethernet PDU processing or MPLS-TP PDU processing. This CSR target us used for configuring VOEs configured for Ethernet processing. The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs (10 front ports + NPI) VOEs are configured for either Ethernet or MPLS-TP support using the following register: * VOP:VOE_CONF_REG:VOE_MISC_CONFIG.MPLS_OAM_ENA Use CSR target VOP to configure VOEs configured for Ethernet. To configure VOEs configured for MPLS-TP, use CSR target: VOP_MPLS. For VOEs configured for MPLS-TP, the following register groups are invalid: * VOP:VOE_CONF:* * VOP:VOE_STAT:*
 pub struct VOP(u32);
 impl VOP {
+    pub const BASE: usize = 0x71c00000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn ANA_COSID_MAP_CONF(&self, index: u32) -> vop::ANA_COSID_MAP_CONF {
         assert!(index < 1024);
@@ -1634,6 +1828,11 @@ impl VOP {
 /// The Vitesse OAM MEP Processor (VOP) implements the HW support for implementing OAM MEPs. The HW support for implementing an OAM MEP is implemented in a sub block, referred to as: Vitesse OAM Endpoint (VOE). The VOEs can be configured for either Ethernet PDU processing or MPLS-TP PDU processing. This CSR target us used for configuring VOEs configured for MPLS-TP processing. The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs (11 front ports) VOEs are configured for either Ethernet or MPLS-TP support using the following register: * VOP:VOE_CONF_REG:VOE_MISC_CONFIG.MPLS_OAM_ENA Use CSR target VOP_MPLS to configure VOEs configured for MPLS_TP. To configure VOEs configured for Ethernet use CSR target: VOP. For VOEs configured for Ethernet, the following register groups are invalid: * VOP:CONF_MPLS:* * VOP:STAT_MPLS:* Note that the VOP_MPLS CSR target shares the same physical RAM as VOP CSR target. The RAM is initialized to the VOP CSR target values (Ethernet VOE). Hence the initial values listed in the VOP_MPLS are not valid. Prior to using a VOE configured for MPLS, all REGISTERS MUST BE INITIALIZED.
 pub struct VOP_MPLS(u32);
 impl VOP_MPLS {
+    pub const BASE: usize = 0x71a00000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn VOE_CONF_MPLS(&self, index: u32) -> vop_mpls::VOE_CONF_MPLS {
         assert!(index < 1077);
@@ -1649,6 +1848,12 @@ impl VOP_MPLS {
 /// \see vtss_target_SD10G65_e Configuration and status for high speed macro.
 pub struct XGANA(u32);
 impl XGANA {
+    pub const BASE: usize = 0x71480000;
+    pub const SIZE: usize = 0x10000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn SD10G65_DES(&self) -> xgana::SD10G65_DES {
         xgana::SD10G65_DES(self.0 + 0x0)
@@ -1682,6 +1887,12 @@ impl XGANA {
 /// \see vtss_target_SD10G65_DIG_e Configuration and status of digital peripherals for high speed macro.
 pub struct XGDIG(u32);
 impl XGDIG {
+    pub const BASE: usize = 0x714c0000;
+    pub const SIZE: usize = 0x10000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn SD10G65_APC(&self) -> xgdig::SD10G65_APC {
         xgdig::SD10G65_APC(self.0 + 0x0)
@@ -1707,6 +1918,12 @@ impl XGDIG {
 /// \see vtss_target_KR_DEV1_e
 pub struct XGKR0(u32);
 impl XGKR0 {
+    pub const BASE: usize = 0x71540000;
+    pub const SIZE: usize = 0x10000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn APC_TMR(&self) -> xgkr0::APC_TMR {
         xgkr0::APC_TMR(self.0 + 0x80)
@@ -1864,6 +2081,12 @@ impl XGKR0 {
 /// \see vtss_target_KR_DEV7_e
 pub struct XGKR1(u32);
 impl XGKR1 {
+    pub const BASE: usize = 0x71580000;
+    pub const SIZE: usize = 0x10000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn AN_CFG0(&self) -> xgkr1::AN_CFG0 {
         xgkr1::AN_CFG0(self.0 + 0x48)
@@ -1961,6 +2184,12 @@ impl XGKR1 {
 /// \see vtss_target_XFI_SHELL_e XFI shell
 pub struct XGXFI(u32);
 impl XGXFI {
+    pub const BASE: usize = 0x71500000;
+    pub const SIZE: usize = 0x10000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn XFI_CONTROL(&self) -> xgxfi::XFI_CONTROL {
         xgxfi::XFI_CONTROL(self.0 + 0x0)
@@ -1970,6 +2199,11 @@ impl XGXFI {
 /// Queue Transfer Configuration
 pub struct XQS(u32);
 impl XQS {
+    pub const BASE: usize = 0x717a0000;
+    pub unsafe fn new_unchecked(a: u32) -> Self {
+        Self(a)
+    }
+
     #[inline(always)]
     pub fn QLIMIT_MON(&self, index: u32) -> xqs::QLIMIT_MON {
         assert!(index < 4);
