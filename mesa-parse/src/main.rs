@@ -268,12 +268,12 @@ use crate::types::RegisterAddress;
 /// {1}
 pub struct {0}(u32);
 impl {0} {{
-    pub const BASE: usize = 0x{2:x};",
+    pub const BASE: u32 = 0x{2:x};",
             name, target_docs[remap].desc, instances[0].1,
         )?;
         if instances.len() > 1 {
             let delta = instances[1].1 - instances[0].1;
-            writeln!(&mut file, "    pub const SIZE: usize = 0x{:x};", delta)?;
+            writeln!(&mut file, "    pub const SIZE: u32 = 0x{:x};", delta)?;
         }
         writeln!(
             &mut file,
