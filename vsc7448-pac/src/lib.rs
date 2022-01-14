@@ -279,7 +279,7 @@ impl Vsc7448 {
 pub struct AFI(u32);
 impl AFI {
     pub const BASE: u32 = 0x71a80000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -330,7 +330,7 @@ impl AFI {
 pub struct ANA_AC(u32);
 impl ANA_AC {
     pub const BASE: u32 = 0x71f00000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -468,7 +468,7 @@ impl ANA_AC {
 pub struct ANA_ACL(u32);
 impl ANA_ACL {
     pub const BASE: u32 = 0x71430000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -501,7 +501,7 @@ impl ANA_ACL {
 pub struct ANA_AC_OAM_MOD(u32);
 impl ANA_AC_OAM_MOD {
     pub const BASE: u32 = 0x71b80000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -530,7 +530,7 @@ impl ANA_AC_OAM_MOD {
 pub struct ANA_AC_POL(u32);
 impl ANA_AC_POL {
     pub const BASE: u32 = 0x71980000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -585,7 +585,7 @@ impl ANA_AC_POL {
 pub struct ANA_CL(u32);
 impl ANA_CL {
     pub const BASE: u32 = 0x71d00000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -642,7 +642,7 @@ impl ANA_CL {
 pub struct ANA_L2(u32);
 impl ANA_L2 {
     pub const BASE: u32 = 0x71e00000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -680,7 +680,7 @@ impl ANA_L2 {
 pub struct ANA_L3(u32);
 impl ANA_L3 {
     pub const BASE: u32 = 0x71800000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -741,7 +741,7 @@ impl ANA_L3 {
 pub struct ASM(u32);
 impl ASM {
     pub const BASE: u32 = 0x71410000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -794,7 +794,7 @@ pub struct DEV10G(u32);
 impl DEV10G {
     pub const BASE: u32 = 0x71390000;
     pub const SIZE: u32 = 0x10000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -849,7 +849,7 @@ pub struct DEV1G(u32);
 impl DEV1G {
     pub const BASE: u32 = 0x71040000;
     pub const SIZE: u32 = 0x10000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -888,7 +888,7 @@ pub struct DEV2G5(u32);
 impl DEV2G5 {
     pub const BASE: u32 = 0x711c0000;
     pub const SIZE: u32 = 0x10000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -926,7 +926,7 @@ impl DEV2G5 {
 pub struct DEVCPU_GCB(u32);
 impl DEVCPU_GCB {
     pub const BASE: u32 = 0x71010000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -986,7 +986,7 @@ impl DEVCPU_GCB {
 pub struct DEVCPU_ORG(u32);
 impl DEVCPU_ORG {
     pub const BASE: u32 = 0x71000000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1000,7 +1000,7 @@ impl DEVCPU_ORG {
 pub struct DEVCPU_PTP(u32);
 impl DEVCPU_PTP {
     pub const BASE: u32 = 0x717f0000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1024,7 +1024,7 @@ impl DEVCPU_PTP {
 pub struct DEVCPU_QS(u32);
 impl DEVCPU_QS {
     pub const BASE: u32 = 0x71020000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1042,7 +1042,7 @@ impl DEVCPU_QS {
 pub struct DSM(u32);
 impl DSM {
     pub const BASE: u32 = 0x71450000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1076,7 +1076,7 @@ impl DSM {
 pub struct HSCH(u32);
 impl HSCH {
     pub const BASE: u32 = 0x71880000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1145,7 +1145,7 @@ impl HSCH {
 pub struct HSIO(u32);
 impl HSIO {
     pub const BASE: u32 = 0x71460000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1231,7 +1231,7 @@ impl HSIO {
 pub struct ICPU_CFG(u32);
 impl ICPU_CFG {
     pub const BASE: u32 = 0x70000000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1289,7 +1289,7 @@ impl ICPU_CFG {
 pub struct LRN(u32);
 impl LRN {
     pub const BASE: u32 = 0x71420000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1303,7 +1303,7 @@ impl LRN {
 pub struct PCIE(u32);
 impl PCIE {
     pub const BASE: u32 = 0x70111000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1338,7 +1338,7 @@ pub struct PCS10G_BR(u32);
 impl PCS10G_BR {
     pub const BASE: u32 = 0x713d0000;
     pub const SIZE: u32 = 0x10000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1388,7 +1388,7 @@ impl PCS10G_BR {
 pub struct QFWD(u32);
 impl QFWD {
     pub const BASE: u32 = 0x717d0000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1402,7 +1402,7 @@ impl QFWD {
 pub struct QRES(u32);
 impl QRES {
     pub const BASE: u32 = 0x71900000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1426,7 +1426,7 @@ impl QRES {
 pub struct QSYS(u32);
 impl QSYS {
     pub const BASE: u32 = 0x717e0000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1468,7 +1468,7 @@ impl QSYS {
 pub struct REW(u32);
 impl REW {
     pub const BASE: u32 = 0x71b00000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1552,7 +1552,7 @@ impl REW {
 pub struct SBA(u32);
 impl SBA {
     pub const BASE: u32 = 0x70110000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1566,7 +1566,7 @@ impl SBA {
 pub struct SIMC(u32);
 impl SIMC {
     pub const BASE: u32 = 0x70101000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1580,7 +1580,7 @@ impl SIMC {
 pub struct TWI(u32);
 impl TWI {
     pub const BASE: u32 = 0x70100400;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1594,7 +1594,7 @@ impl TWI {
 pub struct TWI2(u32);
 impl TWI2 {
     pub const BASE: u32 = 0x70100c00;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1608,7 +1608,7 @@ impl TWI2 {
 pub struct UART(u32);
 impl UART {
     pub const BASE: u32 = 0x70100000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1622,7 +1622,7 @@ impl UART {
 pub struct UART2(u32);
 impl UART2 {
     pub const BASE: u32 = 0x70100800;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1636,7 +1636,7 @@ impl UART2 {
 pub struct VAUI0(u32);
 impl VAUI0 {
     pub const BASE: u32 = 0x717b0000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1660,7 +1660,7 @@ impl VAUI0 {
 pub struct VAUI1(u32);
 impl VAUI1 {
     pub const BASE: u32 = 0x717c0000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1684,7 +1684,7 @@ impl VAUI1 {
 pub struct VCAP_ES0(u32);
 impl VCAP_ES0 {
     pub const BASE: u32 = 0x71470000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1718,7 +1718,7 @@ impl VCAP_ES0 {
 pub struct VCAP_SUPER(u32);
 impl VCAP_SUPER {
     pub const BASE: u32 = 0x71440000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1752,7 +1752,7 @@ impl VCAP_SUPER {
 pub struct VOP(u32);
 impl VOP {
     pub const BASE: u32 = 0x71c00000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1829,7 +1829,7 @@ impl VOP {
 pub struct VOP_MPLS(u32);
 impl VOP_MPLS {
     pub const BASE: u32 = 0x71a00000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1850,7 +1850,7 @@ pub struct XGANA(u32);
 impl XGANA {
     pub const BASE: u32 = 0x71480000;
     pub const SIZE: u32 = 0x10000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1889,7 +1889,7 @@ pub struct XGDIG(u32);
 impl XGDIG {
     pub const BASE: u32 = 0x714c0000;
     pub const SIZE: u32 = 0x10000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -1920,7 +1920,7 @@ pub struct XGKR0(u32);
 impl XGKR0 {
     pub const BASE: u32 = 0x71540000;
     pub const SIZE: u32 = 0x10000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -2083,7 +2083,7 @@ pub struct XGKR1(u32);
 impl XGKR1 {
     pub const BASE: u32 = 0x71580000;
     pub const SIZE: u32 = 0x10000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -2186,7 +2186,7 @@ pub struct XGXFI(u32);
 impl XGXFI {
     pub const BASE: u32 = 0x71500000;
     pub const SIZE: u32 = 0x10000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 
@@ -2200,7 +2200,7 @@ impl XGXFI {
 pub struct XQS(u32);
 impl XQS {
     pub const BASE: u32 = 0x717a0000;
-    pub unsafe fn new_unchecked(a: u32) -> Self {
+    pub fn from_raw_unchecked_address(a: u32) -> Self {
         Self(a)
     }
 

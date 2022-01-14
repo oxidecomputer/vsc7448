@@ -277,7 +277,7 @@ impl {0} {{
         }
         writeln!(
             &mut file,
-            "    pub unsafe fn new_unchecked(a: u32) -> Self {{
+            "    pub fn from_raw_unchecked_address(a: u32) -> Self {{
         Self(a)
     }}"
         )?;
