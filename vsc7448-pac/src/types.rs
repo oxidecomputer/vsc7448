@@ -55,4 +55,11 @@ where
             _phantom: core::marker::PhantomData,
         }
     }
+    pub fn from_page_and_addr_unchecked(page: u16, addr: u8) -> Self {
+        Self {
+            page,
+            addr,
+            _phantom: core::marker::PhantomData,
+        }
+    }
 }
