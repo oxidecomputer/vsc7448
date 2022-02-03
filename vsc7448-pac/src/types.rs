@@ -26,7 +26,7 @@ where
     }
 }
 
-pub struct PhyRegisterAddress<T> {
+pub struct PhyRegisterAddress<T = u16> {
     pub page: u16,
     pub addr: u8,
     _phantom: core::marker::PhantomData<*const T>,
