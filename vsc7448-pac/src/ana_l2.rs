@@ -114,14 +114,14 @@ impl COMMON {
         RegisterAddress::new(self.0 + 0x150)
     }
     #[inline(always)]
-    pub fn PORT_DLB_CFG(&self, index: u32) -> RegisterAddress<common::PORT_DLB_CFG> {
+    pub fn PORT_DLB_CFG(&self, index: u8) -> RegisterAddress<common::PORT_DLB_CFG> {
         assert!(index < 53);
-        RegisterAddress::new(self.0 + 0x34 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x34 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn SCAN_FID_CFG(&self, index: u32) -> RegisterAddress<common::SCAN_FID_CFG> {
+    pub fn SCAN_FID_CFG(&self, index: u8) -> RegisterAddress<common::SCAN_FID_CFG> {
         assert!(index < 16);
-        RegisterAddress::new(self.0 + 0x10c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x10c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SCAN_FID_CTRL(&self) -> RegisterAddress<common::SCAN_FID_CTRL> {
@@ -141,18 +141,18 @@ impl ISDX {
         RegisterAddress::new(self.0 + 0x14)
     }
     #[inline(always)]
-    pub fn DLB_COS_CFG(&self, index: u32) -> RegisterAddress<isdx::DLB_COS_CFG> {
+    pub fn DLB_COS_CFG(&self, index: u8) -> RegisterAddress<isdx::DLB_COS_CFG> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x18 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn ISDX_BASE_CFG(&self) -> RegisterAddress<isdx::ISDX_BASE_CFG> {
         RegisterAddress::new(self.0 + 0x38)
     }
     #[inline(always)]
-    pub fn ISDX_COS_CFG(&self, index: u32) -> RegisterAddress<isdx::ISDX_COS_CFG> {
+    pub fn ISDX_COS_CFG(&self, index: u8) -> RegisterAddress<isdx::ISDX_COS_CFG> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x3c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x3c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn MISC_CFG(&self) -> RegisterAddress<isdx::MISC_CFG> {

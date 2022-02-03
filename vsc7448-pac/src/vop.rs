@@ -83,32 +83,32 @@ impl COMMON {
         RegisterAddress::new(self.0 + 0xc)
     }
     #[inline(always)]
-    pub fn HMO_FORCE_SLOT_CFG(&self, index: u32) -> RegisterAddress<common::HMO_FORCE_SLOT_CFG> {
+    pub fn HMO_FORCE_SLOT_CFG(&self, index: u8) -> RegisterAddress<common::HMO_FORCE_SLOT_CFG> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x84 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x84 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn HMO_PERIOD_CFG(&self, index: u32) -> RegisterAddress<common::HMO_PERIOD_CFG> {
+    pub fn HMO_PERIOD_CFG(&self, index: u8) -> RegisterAddress<common::HMO_PERIOD_CFG> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x7c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x7c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn HMO_TIMER_CFG(&self) -> RegisterAddress<common::HMO_TIMER_CFG> {
         RegisterAddress::new(self.0 + 0x8c)
     }
     #[inline(always)]
-    pub fn INTR(&self, index: u32) -> RegisterAddress<common::INTR> {
+    pub fn INTR(&self, index: u8) -> RegisterAddress<common::INTR> {
         assert!(index < 34);
-        RegisterAddress::new(self.0 + 0xa0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0xa0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn LOC_CTRL(&self) -> RegisterAddress<common::LOC_CTRL> {
         RegisterAddress::new(self.0 + 0x5c)
     }
     #[inline(always)]
-    pub fn LOC_PERIOD_CFG(&self, index: u32) -> RegisterAddress<common::LOC_PERIOD_CFG> {
+    pub fn LOC_PERIOD_CFG(&self, index: u8) -> RegisterAddress<common::LOC_PERIOD_CFG> {
         assert!(index < 7);
-        RegisterAddress::new(self.0 + 0x60 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x60 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn LOC_SCAN_STICKY(&self) -> RegisterAddress<common::LOC_SCAN_STICKY> {
@@ -121,15 +121,15 @@ impl COMMON {
     #[inline(always)]
     pub fn MPLS_GENERIC_CODEPOINT(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<common::MPLS_GENERIC_CODEPOINT> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x3c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x3c + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn OAM_GENERIC_CFG(&self, index: u32) -> RegisterAddress<common::OAM_GENERIC_CFG> {
+    pub fn OAM_GENERIC_CFG(&self, index: u8) -> RegisterAddress<common::OAM_GENERIC_CFG> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x1c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x1c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn VERSION_CTRL(&self) -> RegisterAddress<common::VERSION_CTRL> {
@@ -144,9 +144,9 @@ impl COMMON {
         RegisterAddress::new(self.0 + 0x18)
     }
     #[inline(always)]
-    pub fn VOE32_INTR(&self, index: u32) -> RegisterAddress<common::VOE32_INTR> {
+    pub fn VOE32_INTR(&self, index: u8) -> RegisterAddress<common::VOE32_INTR> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x98 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x98 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn VOP_CTRL(&self) -> RegisterAddress<common::VOP_CTRL> {
@@ -216,42 +216,42 @@ impl SAM_COSID_SEQ_CNT {
     #[inline(always)]
     pub fn SAM_LBM_TX_TRANSID(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBM_TX_TRANSID> {
         assert!(index < 7);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SAM_LBR_RX_FRM_CNT(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_FRM_CNT> {
         assert!(index < 7);
-        RegisterAddress::new(self.0 + 0x38 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x38 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SAM_LBR_RX_TRANSID(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_TRANSID> {
         assert!(index < 7);
-        RegisterAddress::new(self.0 + 0x54 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x54 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SAM_LBR_RX_TRANSID_ERR_CNT(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_TRANSID_ERR_CNT> {
         assert!(index < 7);
-        RegisterAddress::new(self.0 + 0x70 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x70 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SAM_LBR_TX_FRM_CNT(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_TX_FRM_CNT> {
         assert!(index < 7);
-        RegisterAddress::new(self.0 + 0x1c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x1c + u32::from(index) * 0x4)
     }
 }
 
@@ -276,9 +276,9 @@ impl VOE_CONF {
         RegisterAddress::new(self.0 + 0x40)
     }
     #[inline(always)]
-    pub fn CCM_MEGID_CFG(&self, index: u32) -> RegisterAddress<voe_conf::CCM_MEGID_CFG> {
+    pub fn CCM_MEGID_CFG(&self, index: u8) -> RegisterAddress<voe_conf::CCM_MEGID_CFG> {
         assert!(index < 12);
-        RegisterAddress::new(self.0 + 0x44 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x44 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn G_8113_1_CFG(&self) -> RegisterAddress<voe_conf::G_8113_1_CFG> {
@@ -357,9 +357,9 @@ impl VOE_CONF {
         RegisterAddress::new(self.0 + 0x74)
     }
     #[inline(always)]
-    pub fn SLM_PEER_LIST(&self, index: u32) -> RegisterAddress<voe_conf::SLM_PEER_LIST> {
+    pub fn SLM_PEER_LIST(&self, index: u8) -> RegisterAddress<voe_conf::SLM_PEER_LIST> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x7c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x7c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SLM_TEST_ID(&self) -> RegisterAddress<voe_conf::SLM_TEST_ID> {

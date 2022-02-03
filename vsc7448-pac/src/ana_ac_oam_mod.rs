@@ -65,9 +65,9 @@ impl OAM_PDU_MOD_CONT {
 pub struct PDU_MOD_CFG(pub(super) u32);
 impl PDU_MOD_CFG {
     #[inline(always)]
-    pub fn DM_PTP_DOMAIN_CFG(&self, index: u32) -> RegisterAddress<pdu_mod_cfg::DM_PTP_DOMAIN_CFG> {
+    pub fn DM_PTP_DOMAIN_CFG(&self, index: u8) -> RegisterAddress<pdu_mod_cfg::DM_PTP_DOMAIN_CFG> {
         assert!(index < 53);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn RD_LAST_PORT_BYTE_CNT_LSB(

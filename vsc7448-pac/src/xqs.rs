@@ -120,18 +120,18 @@ impl QLIMIT_SHR {
     #[inline(always)]
     pub fn QLIMIT_SHR_ATOP_CFG(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_ATOP_CFG> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x8 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn QLIMIT_SHR_CTOP_CFG(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_CTOP_CFG> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x10 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn QLIMIT_SHR_FILL_STAT(&self) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_FILL_STAT> {
@@ -140,34 +140,28 @@ impl QLIMIT_SHR {
     #[inline(always)]
     pub fn QLIMIT_SHR_QDIV_CFG(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_QDIV_CFG> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x20 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn QLIMIT_SHR_QLIM_CFG(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_QLIM_CFG> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x18 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn QLIMIT_SHR_TOP_CFG(
-        &self,
-        index: u32,
-    ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_TOP_CFG> {
+    pub fn QLIMIT_SHR_TOP_CFG(&self, index: u8) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_TOP_CFG> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn QLIMIT_SHR_WM_STAT(
-        &self,
-        index: u32,
-    ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_WM_STAT> {
+    pub fn QLIMIT_SHR_WM_STAT(&self, index: u8) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_WM_STAT> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x3c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x3c + u32::from(index) * 0x4)
     }
 }
 
@@ -197,9 +191,9 @@ impl QMAP_SE_TBL {
 pub struct QMAP_VPORT_TBL(pub(super) u32);
 impl QMAP_VPORT_TBL {
     #[inline(always)]
-    pub fn QMAP_VPORT_TBL(&self, index: u32) -> RegisterAddress<qmap_vport_tbl::QMAP_VPORT_TBL> {
+    pub fn QMAP_VPORT_TBL(&self, index: u8) -> RegisterAddress<qmap_vport_tbl::QMAP_VPORT_TBL> {
         assert!(index < 53);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
 
@@ -224,23 +218,23 @@ impl SYSTEM {
         RegisterAddress::new(self.0 + 0x8)
     }
     #[inline(always)]
-    pub fn FWD_DROP_EVENTS(&self, index: u32) -> RegisterAddress<system::FWD_DROP_EVENTS> {
+    pub fn FWD_DROP_EVENTS(&self, index: u8) -> RegisterAddress<system::FWD_DROP_EVENTS> {
         assert!(index < 57);
-        RegisterAddress::new(self.0 + 0xc + index * 0x4)
+        RegisterAddress::new(self.0 + 0xc + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn FWD_STAT_CNT(&self, index: u32) -> RegisterAddress<system::FWD_STAT_CNT> {
+    pub fn FWD_STAT_CNT(&self, index: u8) -> RegisterAddress<system::FWD_STAT_CNT> {
         assert!(index < 3);
-        RegisterAddress::new(self.0 + 0xf0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0xf0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn MAP_CFG_CFG(&self) -> RegisterAddress<system::MAP_CFG_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
     #[inline(always)]
-    pub fn QMAP_PORT_MODE(&self, index: u32) -> RegisterAddress<system::QMAP_PORT_MODE> {
+    pub fn QMAP_PORT_MODE(&self, index: u8) -> RegisterAddress<system::QMAP_PORT_MODE> {
         assert!(index < 53);
-        RegisterAddress::new(self.0 + 0x100 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x100 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_CFG(&self) -> RegisterAddress<system::STAT_CFG> {

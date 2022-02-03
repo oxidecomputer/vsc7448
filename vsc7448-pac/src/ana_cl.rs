@@ -46,23 +46,23 @@ pub mod sticky_mask;
 pub struct COMMON(pub(super) u32);
 impl COMMON {
     #[inline(always)]
-    pub fn ADV_RNG_CTRL(&self, index: u32) -> RegisterAddress<common::ADV_RNG_CTRL> {
+    pub fn ADV_RNG_CTRL(&self, index: u8) -> RegisterAddress<common::ADV_RNG_CTRL> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0xa4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0xa4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn ADV_RNG_VALUE_CFG(&self, index: u32) -> RegisterAddress<common::ADV_RNG_VALUE_CFG> {
+    pub fn ADV_RNG_VALUE_CFG(&self, index: u8) -> RegisterAddress<common::ADV_RNG_VALUE_CFG> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0xc4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0xc4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn AGGR_CFG(&self) -> RegisterAddress<common::AGGR_CFG> {
         RegisterAddress::new(self.0 + 0x4)
     }
     #[inline(always)]
-    pub fn CLM_KEY_CFG(&self, index: u32) -> RegisterAddress<common::CLM_KEY_CFG> {
+    pub fn CLM_KEY_CFG(&self, index: u8) -> RegisterAddress<common::CLM_KEY_CFG> {
         assert!(index < 6);
-        RegisterAddress::new(self.0 + 0x2bc + index * 0x4)
+        RegisterAddress::new(self.0 + 0x2bc + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn CLM_MISC_CTRL(&self) -> RegisterAddress<common::CLM_MISC_CTRL> {
@@ -73,28 +73,28 @@ impl COMMON {
         RegisterAddress::new(self.0 + 0xe4)
     }
     #[inline(always)]
-    pub fn CPU_8021_QOS_CFG(&self, index: u32) -> RegisterAddress<common::CPU_8021_QOS_CFG> {
+    pub fn CPU_8021_QOS_CFG(&self, index: u8) -> RegisterAddress<common::CPU_8021_QOS_CFG> {
         assert!(index < 16);
-        RegisterAddress::new(self.0 + 0x58 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x58 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn CPU_8021_QU_CFG(&self, index: u32) -> RegisterAddress<common::CPU_8021_QU_CFG> {
+    pub fn CPU_8021_QU_CFG(&self, index: u8) -> RegisterAddress<common::CPU_8021_QU_CFG> {
         assert!(index < 16);
-        RegisterAddress::new(self.0 + 0x18 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn CPU_PROTO_QU_CFG(&self) -> RegisterAddress<common::CPU_PROTO_QU_CFG> {
         RegisterAddress::new(self.0 + 0x14)
     }
     #[inline(always)]
-    pub fn DSCP_CFG(&self, index: u32) -> RegisterAddress<common::DSCP_CFG> {
+    pub fn DSCP_CFG(&self, index: u8) -> RegisterAddress<common::DSCP_CFG> {
         assert!(index < 64);
-        RegisterAddress::new(self.0 + 0xfc + index * 0x4)
+        RegisterAddress::new(self.0 + 0xfc + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn HM_CFG(&self, index: u32) -> RegisterAddress<common::HM_CFG> {
+    pub fn HM_CFG(&self, index: u8) -> RegisterAddress<common::HM_CFG> {
         assert!(index < 4);
-        RegisterAddress::new(self.0 + 0xec + index * 0x4)
+        RegisterAddress::new(self.0 + 0xec + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn MIP_CTRL(&self) -> RegisterAddress<common::MIP_CTRL> {
@@ -113,27 +113,27 @@ impl COMMON {
         RegisterAddress::new(self.0 + 0x2d4)
     }
     #[inline(always)]
-    pub fn MPLS_RSV_LBL_CFG(&self, index: u32) -> RegisterAddress<common::MPLS_RSV_LBL_CFG> {
+    pub fn MPLS_RSV_LBL_CFG(&self, index: u8) -> RegisterAddress<common::MPLS_RSV_LBL_CFG> {
         assert!(index < 16);
-        RegisterAddress::new(self.0 + 0x27c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x27c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn OAM_CFG(&self) -> RegisterAddress<common::OAM_CFG> {
         RegisterAddress::new(self.0 + 0x2e0)
     }
     #[inline(always)]
-    pub fn QOS_MAP_CFG(&self, index: u32) -> RegisterAddress<common::QOS_MAP_CFG> {
+    pub fn QOS_MAP_CFG(&self, index: u8) -> RegisterAddress<common::QOS_MAP_CFG> {
         assert!(index < 32);
-        RegisterAddress::new(self.0 + 0x1fc + index * 0x4)
+        RegisterAddress::new(self.0 + 0x1fc + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn UPSID_CFG(&self) -> RegisterAddress<common::UPSID_CFG> {
         RegisterAddress::new(self.0 + 0x0)
     }
     #[inline(always)]
-    pub fn VLAN_STAG_CFG(&self, index: u32) -> RegisterAddress<common::VLAN_STAG_CFG> {
+    pub fn VLAN_STAG_CFG(&self, index: u8) -> RegisterAddress<common::VLAN_STAG_CFG> {
         assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x8 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn VRAP_CFG(&self) -> RegisterAddress<common::VRAP_CFG> {
@@ -183,9 +183,9 @@ impl L2CP_TBL {
 pub struct MAP_TBL(pub(super) u32);
 impl MAP_TBL {
     #[inline(always)]
-    pub fn MAP_ENTRY(&self, index: u32) -> RegisterAddress<map_tbl::MAP_ENTRY> {
+    pub fn MAP_ENTRY(&self, index: u8) -> RegisterAddress<map_tbl::MAP_ENTRY> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SET_CTRL(&self) -> RegisterAddress<map_tbl::SET_CTRL> {
@@ -231,9 +231,9 @@ impl MPLS_PROFILE {
 pub struct PORT(pub(super) u32);
 impl PORT {
     #[inline(always)]
-    pub fn ADV_CL_CFG(&self, index: u32) -> RegisterAddress<port::ADV_CL_CFG> {
+    pub fn ADV_CL_CFG(&self, index: u8) -> RegisterAddress<port::ADV_CL_CFG> {
         assert!(index < 6);
-        RegisterAddress::new(self.0 + 0xb4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0xb4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn CAPTURE_BPDU_CFG(&self) -> RegisterAddress<port::CAPTURE_BPDU_CFG> {
@@ -256,14 +256,14 @@ impl PORT {
         RegisterAddress::new(self.0 + 0x0)
     }
     #[inline(always)]
-    pub fn PCP_DEI_MAP_CFG(&self, index: u32) -> RegisterAddress<port::PCP_DEI_MAP_CFG> {
+    pub fn PCP_DEI_MAP_CFG(&self, index: u8) -> RegisterAddress<port::PCP_DEI_MAP_CFG> {
         assert!(index < 16);
-        RegisterAddress::new(self.0 + 0x60 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x60 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn PCP_DEI_TRANS_CFG(&self, index: u32) -> RegisterAddress<port::PCP_DEI_TRANS_CFG> {
+    pub fn PCP_DEI_TRANS_CFG(&self, index: u8) -> RegisterAddress<port::PCP_DEI_TRANS_CFG> {
         assert!(index < 16);
-        RegisterAddress::new(self.0 + 0x1c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x1c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn PORT_ID_CFG(&self) -> RegisterAddress<port::PORT_ID_CFG> {
@@ -282,9 +282,9 @@ impl PORT {
         RegisterAddress::new(self.0 + 0x18)
     }
     #[inline(always)]
-    pub fn VLAN_FILTER_CTRL(&self, index: u32) -> RegisterAddress<port::VLAN_FILTER_CTRL> {
+    pub fn VLAN_FILTER_CTRL(&self, index: u8) -> RegisterAddress<port::VLAN_FILTER_CTRL> {
         assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn VLAN_TPID_CTRL(&self) -> RegisterAddress<port::VLAN_TPID_CTRL> {
@@ -296,9 +296,9 @@ impl PORT {
 pub struct PPT(pub(super) u32);
 impl PPT {
     #[inline(always)]
-    pub fn PP_CFG(&self, index: u32) -> RegisterAddress<ppt::PP_CFG> {
+    pub fn PP_CFG(&self, index: u8) -> RegisterAddress<ppt::PP_CFG> {
         assert!(index < 16);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
 
@@ -334,9 +334,9 @@ impl STICKY {
         RegisterAddress::new(self.0 + 0x20)
     }
     #[inline(always)]
-    pub fn VLAN_FILTER_STICKY(&self, index: u32) -> RegisterAddress<sticky::VLAN_FILTER_STICKY> {
+    pub fn VLAN_FILTER_STICKY(&self, index: u8) -> RegisterAddress<sticky::VLAN_FILTER_STICKY> {
         assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
 }
 
@@ -366,9 +366,9 @@ impl STICKY_MASK {
     #[inline(always)]
     pub fn VLAN_FILTER_STICKY_MASK(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<sticky_mask::VLAN_FILTER_STICKY_MASK> {
         assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
 }

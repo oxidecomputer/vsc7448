@@ -152,6 +152,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
+fn best_integer_fit(i: usize) -> &'static str {
+    if i <= usize::from(u8::MAX) {
+        "u8"
+    } else if i <= usize::from(u16::MAX) {
+        "u16"
+    } else if i <= usize::try_from(u32::MAX).unwrap() {
+        "u32"
+    } else {
+        panic!("Invalid integer: {}", i);
+    }
+}
+
 /// Prints `lib.rs` for the vsc7448_pac crate
 fn write_pac_lib(
     header: &str,
@@ -216,18 +228,25 @@ impl Vsc7448 {{"
                     assert_eq!(instance.0, Some(i as u32));
                     assert_eq!(instance.1, instances[0].1 + delta * i as u32);
                 }
+                let t = best_integer_fit(instances.len());
                 write!(
                     &mut file,
                     "
     #[inline(always)]
-    pub fn {0}(index: u32) -> {0} {{
+    pub fn {0}(index: {4}) -> {0} {{
         assert!(index < {2});
-        {0}(0x{1:x} + index * 0x{3:x})
+        {0}(0x{1:x} + {5} * 0x{3:x})
     }}",
                     name,
                     instances[0].1,
                     instances.len(),
-                    delta
+                    delta,
+                    t,
+                    if t == "u32" {
+                        "index"
+                    } else {
+                        "u32::from(index)"
+                    },
                 )?;
             }
         }
@@ -292,19 +311,26 @@ impl {0} {{
             }
 
             if group.addr.count > 1 {
+                let t = best_integer_fit(group.addr.count.try_into().unwrap());
                 write!(
                     &mut file,
                     "
     #[inline(always)]
-    pub fn {1}(&self, index: u32) -> {0}::{1} {{
+    pub fn {1}(&self, index: {5}) -> {0}::{1} {{
         assert!(index < {3});
-        {0}::{1}(self.0 + 0x{2:x} + index * 0x{4:x})
+        {0}::{1}(self.0 + 0x{2:x} + {6} * 0x{4:x})
     }}",
                     name.to_lowercase(),
                     gname,
                     group.addr.base * 4,
                     group.addr.count,
                     group.addr.width * 4,
+                    t,
+                    if t == "u32" {
+                        "index"
+                    } else {
+                        "u32::from(index)"
+                    }
                 )?;
             } else {
                 write!(
@@ -331,19 +357,26 @@ impl {0} {{",
             )?;
             for (rname, reg) in group.regs.iter() {
                 if reg.addr.count > 1 {
+                    let t = best_integer_fit(reg.addr.count.try_into().unwrap());
                     write!(
                         &mut tfile,
                         "
     #[inline(always)]
-    pub fn {0}(&self, index: u32) -> RegisterAddress<{1}::{0}> {{
+    pub fn {0}(&self, index: {5}) -> RegisterAddress<{1}::{0}> {{
         assert!(index < {4});
-        RegisterAddress::new(self.0 + 0x{2:x} + index * 0x{3:x})
+        RegisterAddress::new(self.0 + 0x{2:x} + {6} * 0x{3:x})
     }}",
                         rname,
                         gname.to_lowercase(),
                         reg.addr.base * 4,
                         reg.addr.width * 4,
-                        reg.addr.count
+                        reg.addr.count,
+                        t,
+                        if t == "u32" {
+                            "index"
+                        } else {
+                            "u32::from(index)"
+                        }
                     )?;
                 } else {
                     write!(

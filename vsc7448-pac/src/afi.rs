@@ -150,19 +150,19 @@ impl PORT_TBL {
 pub struct TTI_MISC(pub(super) u32);
 impl TTI_MISC {
     #[inline(always)]
-    pub fn TTI_CAL_SLOT_CNT(&self, index: u32) -> RegisterAddress<tti_misc::TTI_CAL_SLOT_CNT> {
+    pub fn TTI_CAL_SLOT_CNT(&self, index: u8) -> RegisterAddress<tti_misc::TTI_CAL_SLOT_CNT> {
         assert!(index < 4);
-        RegisterAddress::new(self.0 + 0x10 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn TTI_CAL_SLOT_PTRS(&self, index: u32) -> RegisterAddress<tti_misc::TTI_CAL_SLOT_PTRS> {
+    pub fn TTI_CAL_SLOT_PTRS(&self, index: u8) -> RegisterAddress<tti_misc::TTI_CAL_SLOT_PTRS> {
         assert!(index < 4);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn TTI_CAL_STATE(&self, index: u32) -> RegisterAddress<tti_misc::TTI_CAL_STATE> {
+    pub fn TTI_CAL_STATE(&self, index: u8) -> RegisterAddress<tti_misc::TTI_CAL_STATE> {
         assert!(index < 4);
-        RegisterAddress::new(self.0 + 0x20 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn TTI_CTRL(&self) -> RegisterAddress<tti_misc::TTI_CTRL> {
@@ -231,9 +231,9 @@ impl TTI_TICKS {
         RegisterAddress::new(self.0 + 0x8)
     }
     #[inline(always)]
-    pub fn TTI_TICK_STATE(&self, index: u32) -> RegisterAddress<tti_ticks::TTI_TICK_STATE> {
+    pub fn TTI_TICK_STATE(&self, index: u8) -> RegisterAddress<tti_ticks::TTI_TICK_STATE> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0xc + index * 0x4)
+        RegisterAddress::new(self.0 + 0xc + u32::from(index) * 0x4)
     }
 }
 
@@ -257,9 +257,9 @@ impl TUPE {
         RegisterAddress::new(self.0 + 0xc)
     }
     #[inline(always)]
-    pub fn TUPE_CRIT3(&self, index: u32) -> RegisterAddress<tupe::TUPE_CRIT3> {
+    pub fn TUPE_CRIT3(&self, index: u8) -> RegisterAddress<tupe::TUPE_CRIT3> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x10 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn TUPE_MISC(&self) -> RegisterAddress<tupe::TUPE_MISC> {

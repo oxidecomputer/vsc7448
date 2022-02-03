@@ -54,9 +54,9 @@ impl PORT {
         RegisterAddress::new(self.0 + 0x8)
     }
     #[inline(always)]
-    pub fn VCAP_S2_KEY_SEL(&self, index: u32) -> RegisterAddress<port::VCAP_S2_KEY_SEL> {
+    pub fn VCAP_S2_KEY_SEL(&self, index: u8) -> RegisterAddress<port::VCAP_S2_KEY_SEL> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
 
@@ -85,9 +85,9 @@ impl PTP_DOM {
 pub struct STICKY(pub(super) u32);
 impl STICKY {
     #[inline(always)]
-    pub fn SEC_LOOKUP_STICKY(&self, index: u32) -> RegisterAddress<sticky::SEC_LOOKUP_STICKY> {
+    pub fn SEC_LOOKUP_STICKY(&self, index: u8) -> RegisterAddress<sticky::SEC_LOOKUP_STICKY> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
 
@@ -103,23 +103,23 @@ impl VCAP_S2 {
         RegisterAddress::new(self.0 + 0x168)
     }
     #[inline(always)]
-    pub fn SWAP_SIP(&self, index: u32) -> RegisterAddress<vcap_s2::SWAP_SIP> {
+    pub fn SWAP_SIP(&self, index: u8) -> RegisterAddress<vcap_s2::SWAP_SIP> {
         assert!(index < 32);
-        RegisterAddress::new(self.0 + 0xe4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0xe4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn VCAP_S2_CFG(&self, index: u32) -> RegisterAddress<vcap_s2::VCAP_S2_CFG> {
+    pub fn VCAP_S2_CFG(&self, index: u8) -> RegisterAddress<vcap_s2::VCAP_S2_CFG> {
         assert!(index < 57);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn VCAP_S2_MISC_CTRL(&self) -> RegisterAddress<vcap_s2::VCAP_S2_MISC_CTRL> {
         RegisterAddress::new(self.0 + 0x16c)
     }
     #[inline(always)]
-    pub fn VCAP_S2_RNG_CTRL(&self, index: u32) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_CTRL> {
+    pub fn VCAP_S2_RNG_CTRL(&self, index: u8) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_CTRL> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x170 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x170 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn VCAP_S2_RNG_OFFSET_CFG(&self) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_OFFSET_CFG> {
@@ -128,10 +128,10 @@ impl VCAP_S2 {
     #[inline(always)]
     pub fn VCAP_S2_RNG_VALUE_CFG(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<vcap_s2::VCAP_S2_RNG_VALUE_CFG> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x190 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x190 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn VOE_LOOPBACK_CFG(&self) -> RegisterAddress<vcap_s2::VOE_LOOPBACK_CFG> {

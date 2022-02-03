@@ -198,9 +198,9 @@ impl COMMON {
 pub struct L3MC(pub(super) u32);
 impl L3MC {
     #[inline(always)]
-    pub fn EVMID_MASK_CFG(&self, index: u32) -> RegisterAddress<l3mc::EVMID_MASK_CFG> {
+    pub fn EVMID_MASK_CFG(&self, index: u8) -> RegisterAddress<l3mc::EVMID_MASK_CFG> {
         assert!(index < 4);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn L3MC_CTRL(&self) -> RegisterAddress<l3mc::L3MC_CTRL> {
@@ -378,8 +378,8 @@ impl VMID {
         RegisterAddress::new(self.0 + 0xc)
     }
     #[inline(always)]
-    pub fn VRRP_CFG(&self, index: u32) -> RegisterAddress<vmid::VRRP_CFG> {
+    pub fn VRRP_CFG(&self, index: u8) -> RegisterAddress<vmid::VRRP_CFG> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
 }

@@ -56,9 +56,9 @@ impl RES_CTRL {
 pub struct RES_QOS_ADV(pub(super) u32);
 impl RES_QOS_ADV {
     #[inline(always)]
-    pub fn PFC_CFG(&self, index: u32) -> RegisterAddress<res_qos_adv::PFC_CFG> {
+    pub fn PFC_CFG(&self, index: u8) -> RegisterAddress<res_qos_adv::PFC_CFG> {
         assert!(index < 57);
-        RegisterAddress::new(self.0 + 0xe8 + index * 0x4)
+        RegisterAddress::new(self.0 + 0xe8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn RES_DLB_OFFSET(&self) -> RegisterAddress<res_qos_adv::RES_DLB_OFFSET> {
@@ -69,9 +69,9 @@ impl RES_QOS_ADV {
         RegisterAddress::new(self.0 + 0xe4)
     }
     #[inline(always)]
-    pub fn WRED_GROUP(&self, index: u32) -> RegisterAddress<res_qos_adv::WRED_GROUP> {
+    pub fn WRED_GROUP(&self, index: u8) -> RegisterAddress<res_qos_adv::WRED_GROUP> {
         assert!(index < 57);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
 

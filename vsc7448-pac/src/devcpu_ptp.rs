@@ -39,14 +39,14 @@ pub mod ptp_status;
 pub struct PTP_CFG(pub(super) u32);
 impl PTP_CFG {
     #[inline(always)]
-    pub fn CLK_ADJ_CFG(&self, index: u32) -> RegisterAddress<ptp_cfg::CLK_ADJ_CFG> {
+    pub fn CLK_ADJ_CFG(&self, index: u8) -> RegisterAddress<ptp_cfg::CLK_ADJ_CFG> {
         assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn CLK_ADJ_FRQ(&self, index: u32) -> RegisterAddress<ptp_cfg::CLK_ADJ_FRQ> {
+    pub fn CLK_ADJ_FRQ(&self, index: u8) -> RegisterAddress<ptp_cfg::CLK_ADJ_FRQ> {
         assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x10 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn PTP_INTR_IDENT(&self) -> RegisterAddress<ptp_cfg::PTP_INTR_IDENT> {

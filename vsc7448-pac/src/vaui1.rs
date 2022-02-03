@@ -83,9 +83,9 @@ impl VAUI_CHANNEL_CFG {
     #[inline(always)]
     pub fn VAUI_CHANNEL_CFG(
         &self,
-        index: u32,
+        index: u8,
     ) -> RegisterAddress<vaui_channel_cfg::VAUI_CHANNEL_CFG> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }

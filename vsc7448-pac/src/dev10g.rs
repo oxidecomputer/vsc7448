@@ -400,9 +400,9 @@ impl MAC_CFG_STATUS {
         RegisterAddress::new(self.0 + 0x34)
     }
     #[inline(always)]
-    pub fn MAC_TAGS_CFG(&self, index: u32) -> RegisterAddress<mac_cfg_status::MAC_TAGS_CFG> {
+    pub fn MAC_TAGS_CFG(&self, index: u8) -> RegisterAddress<mac_cfg_status::MAC_TAGS_CFG> {
         assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x10 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn MAC_TX_MONITOR_STICKY(&self) -> RegisterAddress<mac_cfg_status::MAC_TX_MONITOR_STICKY> {

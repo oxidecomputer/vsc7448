@@ -54,24 +54,24 @@ impl CFG {
         RegisterAddress::new(self.0 + 0x378)
     }
     #[inline(always)]
-    pub fn MAC_ADDR_HIGH_CFG(&self, index: u32) -> RegisterAddress<cfg::MAC_ADDR_HIGH_CFG> {
+    pub fn MAC_ADDR_HIGH_CFG(&self, index: u8) -> RegisterAddress<cfg::MAC_ADDR_HIGH_CFG> {
         assert!(index < 55);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn MAC_ADDR_LOW_CFG(&self, index: u32) -> RegisterAddress<cfg::MAC_ADDR_LOW_CFG> {
+    pub fn MAC_ADDR_LOW_CFG(&self, index: u8) -> RegisterAddress<cfg::MAC_ADDR_LOW_CFG> {
         assert!(index < 55);
-        RegisterAddress::new(self.0 + 0xe0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0xe0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn PAUSE_CFG(&self, index: u32) -> RegisterAddress<cfg::PAUSE_CFG> {
+    pub fn PAUSE_CFG(&self, index: u8) -> RegisterAddress<cfg::PAUSE_CFG> {
         assert!(index < 55);
-        RegisterAddress::new(self.0 + 0x29c + index * 0x4)
+        RegisterAddress::new(self.0 + 0x29c + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn PORT_CFG(&self, index: u32) -> RegisterAddress<cfg::PORT_CFG> {
+    pub fn PORT_CFG(&self, index: u8) -> RegisterAddress<cfg::PORT_CFG> {
         assert!(index < 55);
-        RegisterAddress::new(self.0 + 0x1bc + index * 0x4)
+        RegisterAddress::new(self.0 + 0x1bc + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_CFG(&self) -> RegisterAddress<cfg::STAT_CFG> {
@@ -100,9 +100,9 @@ impl DBG {
         RegisterAddress::new(self.0 + 0x0)
     }
     #[inline(always)]
-    pub fn ERR_STICKY(&self, index: u32) -> RegisterAddress<dbg::ERR_STICKY> {
+    pub fn ERR_STICKY(&self, index: u8) -> RegisterAddress<dbg::ERR_STICKY> {
         assert!(index < 9);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn PRE_CNT_OFLW_STICKY(&self) -> RegisterAddress<dbg::PRE_CNT_OFLW_STICKY> {
@@ -343,14 +343,14 @@ impl DEV_STATISTICS {
 pub struct LBK_MISC_CFG(pub(super) u32);
 impl LBK_MISC_CFG {
     #[inline(always)]
-    pub fn LBK_AGING_DIS(&self, index: u32) -> RegisterAddress<lbk_misc_cfg::LBK_AGING_DIS> {
+    pub fn LBK_AGING_DIS(&self, index: u8) -> RegisterAddress<lbk_misc_cfg::LBK_AGING_DIS> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn LBK_FIFO_CFG(&self, index: u32) -> RegisterAddress<lbk_misc_cfg::LBK_FIFO_CFG> {
+    pub fn LBK_FIFO_CFG(&self, index: u8) -> RegisterAddress<lbk_misc_cfg::LBK_FIFO_CFG> {
         assert!(index < 3);
-        RegisterAddress::new(self.0 + 0x8 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
 }
 
@@ -358,14 +358,14 @@ impl LBK_MISC_CFG {
 pub struct LBK_STAT(pub(super) u32);
 impl LBK_STAT {
     #[inline(always)]
-    pub fn LBK_AGING_STICKY(&self, index: u32) -> RegisterAddress<lbk_stat::LBK_AGING_STICKY> {
+    pub fn LBK_AGING_STICKY(&self, index: u8) -> RegisterAddress<lbk_stat::LBK_AGING_STICKY> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x8 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn LBK_OVFLW_STICKY(&self, index: u32) -> RegisterAddress<lbk_stat::LBK_OVFLW_STICKY> {
+    pub fn LBK_OVFLW_STICKY(&self, index: u8) -> RegisterAddress<lbk_stat::LBK_OVFLW_STICKY> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
 
@@ -373,9 +373,9 @@ impl LBK_STAT {
 pub struct LBK_WM_CFG(pub(super) u32);
 impl LBK_WM_CFG {
     #[inline(always)]
-    pub fn VD_FC_WM(&self, index: u32) -> RegisterAddress<lbk_wm_cfg::VD_FC_WM> {
+    pub fn VD_FC_WM(&self, index: u8) -> RegisterAddress<lbk_wm_cfg::VD_FC_WM> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
 
@@ -387,9 +387,9 @@ impl PFC {
         RegisterAddress::new(self.0 + 0x0)
     }
     #[inline(always)]
-    pub fn PFC_TIMER(&self, index: u32) -> RegisterAddress<pfc::PFC_TIMER> {
+    pub fn PFC_TIMER(&self, index: u8) -> RegisterAddress<pfc::PFC_TIMER> {
         assert!(index < 8);
-        RegisterAddress::new(self.0 + 0x4 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
 }
 
@@ -397,9 +397,9 @@ impl PFC {
 pub struct PORT_STATUS(pub(super) u32);
 impl PORT_STATUS {
     #[inline(always)]
-    pub fn PORT_STICKY(&self, index: u32) -> RegisterAddress<port_status::PORT_STICKY> {
+    pub fn PORT_STICKY(&self, index: u8) -> RegisterAddress<port_status::PORT_STICKY> {
         assert!(index < 55);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
 

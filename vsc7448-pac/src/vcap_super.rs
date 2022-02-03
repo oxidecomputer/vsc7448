@@ -104,24 +104,24 @@ impl VCAP_CONST {
 pub struct VCAP_CORE_CACHE(pub(super) u32);
 impl VCAP_CORE_CACHE {
     #[inline(always)]
-    pub fn VCAP_ACTION_DAT(&self, index: u32) -> RegisterAddress<vcap_core_cache::VCAP_ACTION_DAT> {
+    pub fn VCAP_ACTION_DAT(&self, index: u8) -> RegisterAddress<vcap_core_cache::VCAP_ACTION_DAT> {
         assert!(index < 64);
-        RegisterAddress::new(self.0 + 0x200 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x200 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn VCAP_CNT_DAT(&self, index: u32) -> RegisterAddress<vcap_core_cache::VCAP_CNT_DAT> {
+    pub fn VCAP_CNT_DAT(&self, index: u8) -> RegisterAddress<vcap_core_cache::VCAP_CNT_DAT> {
         assert!(index < 32);
-        RegisterAddress::new(self.0 + 0x300 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x300 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn VCAP_ENTRY_DAT(&self, index: u32) -> RegisterAddress<vcap_core_cache::VCAP_ENTRY_DAT> {
+    pub fn VCAP_ENTRY_DAT(&self, index: u8) -> RegisterAddress<vcap_core_cache::VCAP_ENTRY_DAT> {
         assert!(index < 64);
-        RegisterAddress::new(self.0 + 0x0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
-    pub fn VCAP_MASK_DAT(&self, index: u32) -> RegisterAddress<vcap_core_cache::VCAP_MASK_DAT> {
+    pub fn VCAP_MASK_DAT(&self, index: u8) -> RegisterAddress<vcap_core_cache::VCAP_MASK_DAT> {
         assert!(index < 64);
-        RegisterAddress::new(self.0 + 0x100 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x100 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn VCAP_RULE_ENA(&self) -> RegisterAddress<vcap_core_cache::VCAP_RULE_ENA> {

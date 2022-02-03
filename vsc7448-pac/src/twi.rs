@@ -137,9 +137,9 @@ impl TWI {
         RegisterAddress::new(self.0 + 0xc)
     }
     #[inline(always)]
-    pub fn RESERVED2(&self, index: u32) -> RegisterAddress<twi::RESERVED2> {
+    pub fn RESERVED2(&self, index: u8) -> RegisterAddress<twi::RESERVED2> {
         assert!(index < 2);
-        RegisterAddress::new(self.0 + 0x24 + index * 0x4)
+        RegisterAddress::new(self.0 + 0x24 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn RESERVED3(&self) -> RegisterAddress<twi::RESERVED3> {
@@ -158,9 +158,9 @@ impl TWI {
         RegisterAddress::new(self.0 + 0x90)
     }
     #[inline(always)]
-    pub fn RESERVED7(&self, index: u32) -> RegisterAddress<twi::RESERVED7> {
+    pub fn RESERVED7(&self, index: u8) -> RegisterAddress<twi::RESERVED7> {
         assert!(index < 21);
-        RegisterAddress::new(self.0 + 0xa0 + index * 0x4)
+        RegisterAddress::new(self.0 + 0xa0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn RESERVED8(&self) -> RegisterAddress<twi::RESERVED8> {
