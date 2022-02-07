@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES1G DFT Status
 ///
 /// Status register of SERDES1G DFT functions
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_DFT_STATUS(u32);
 impl SERDES1G_DFT_STATUS {
     /// BIST activity
@@ -134,7 +134,7 @@ impl SERDES1G_DFT_STATUS {
 /// SERDES1G Misc Status
 ///
 /// Status register for miscellaneous functions
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_MISC_STATUS(u32);
 impl SERDES1G_MISC_STATUS {
     /// Phase selection of DES in 100fx mode

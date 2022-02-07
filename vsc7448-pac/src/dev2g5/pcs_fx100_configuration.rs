@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS 100Base FX Configuration
 ///
 /// Configuration bit groups for 100Base-FX PCS
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_FX100_CFG(u32);
 impl PCS_FX100_CFG {
     /// Far-End Fault (FEF) detection enable

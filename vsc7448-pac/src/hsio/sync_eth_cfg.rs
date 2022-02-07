@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SYNC ETH Configuration
 ///
 /// This register is replicated once per recovered clock output.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SYNC_ETH_CFG(u32);
 impl SYNC_ETH_CFG {
     /// Set to enable recovered clock pad
@@ -76,7 +76,7 @@ impl SYNC_ETH_CFG {
     }
 }
 /// Configuration of recovered clock from 2'nd PLL
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SYNC_ETH_PLL2_CFG(u32);
 impl SYNC_ETH_PLL2_CFG {
     /// This field is used instead of HSIO::PLL5G_CFG0.CPU_CLK_DIV for the PLL number 2.
@@ -117,7 +117,7 @@ impl SYNC_ETH_PLL2_CFG {
         self.0 |= value;
     }
 }
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SYNC_ETH_SD10G_CFG(u32);
 impl SYNC_ETH_SD10G_CFG {
     /// Set to enable auto-squelching for sync. ethernet clock output: when set the clock output will stop toggling (keep its last value constantly) when PCS looses link synchrony.

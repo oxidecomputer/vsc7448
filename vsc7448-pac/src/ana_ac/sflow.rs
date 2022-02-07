@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// sFlow status counts
 ///
 /// This register configures the sFlow sampler.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SFLOW_CNT(u32);
 impl SFLOW_CNT {
     /// The number of forwarded frames. The counter is free running (wraps around when reaching max value). This counter can be reset using ANA_AC::SFLOW_RESET_CTRL.SFLOW_FRAME_RESET_SHOT.
@@ -62,7 +62,7 @@ impl SFLOW_CNT {
 /// sFlow sampler control
 ///
 /// This register configures the sFlow sampler.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SFLOW_CTRL(u32);
 impl SFLOW_CTRL {
     /// Configures the sampler as an ingress, egress or dual direction sampler.

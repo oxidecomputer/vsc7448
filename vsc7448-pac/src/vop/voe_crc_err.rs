@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Count the number of LBR and TST CRC errors received.
 ///
 /// The VOE can verify the CRC-32 of Test TLVs in incoming LBR and TST PDUs. This functionality is enabled using one of the following bit fields: * VOP:VOE_CONF:OAM_HW_CTRL.LBR_TLV_CRC_VERIFY_ENA * VOP:VOE_CONF:OAM_HW_CTRL.TST_TLV_CRC_VERIFY_ENA When enabled the VOE examines the TLV field of valid LBR and TST PDUs in the Rx direction. If the first TLV following the LBR or TST PDU is a Test TLV including a CRC-32 across the Data Pattern, the VOE will calculate the CRC across the Data Pattern and verify the CRC-32. This register will count the number of CRC errors received by the VOE. The CRC counters are indexed as follows: * Service (/Path) VOEs are indexed: 0 - 255 * Port VOEs are indexed: 256 (Port 0) - 266 (Port 10)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LBR_CRC_ERR_CNT(u32);
 impl LBR_CRC_ERR_CNT {
     /// See Register Description.

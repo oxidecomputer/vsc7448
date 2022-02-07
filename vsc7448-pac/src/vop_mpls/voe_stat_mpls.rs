@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Invalid BFD CC Rx count.
 ///
 /// The number of invalid BFD CC PDUs received by the VOE. Invalid PDUs are Rx BFD CC PDUs which are discarded due to failing the BFD Rx verification.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_CC_RX_INVLD_CNT_REG(u32);
 impl BFD_CC_RX_INVLD_CNT_REG {
     /// See register description.
@@ -46,7 +46,7 @@ impl BFD_CC_RX_INVLD_CNT_REG {
 /// Valid BFD CC Rx count.
 ///
 /// The number of valid BFD CC PDUs received by the VOE.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_CC_RX_VLD_CNT_REG(u32);
 impl BFD_CC_RX_VLD_CNT_REG {
     /// See register description.
@@ -62,7 +62,7 @@ impl BFD_CC_RX_VLD_CNT_REG {
 /// Valid BFD CC Tx count.
 ///
 /// The number of BFD CC PDUs transmitted by the VOE.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_CC_TX_CNT_REG(u32);
 impl BFD_CC_TX_CNT_REG {
     /// See register description.
@@ -78,7 +78,7 @@ impl BFD_CC_TX_CNT_REG {
 /// Invalid BFD CV Rx count.
 ///
 /// The number of invalid BFD CV PDUs received by the VOE. Invalid PDUs are Rx BFD CV PDUs which are discarded due to failing the BFD Rx verification.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_CV_RX_INVLD_CNT_REG(u32);
 impl BFD_CV_RX_INVLD_CNT_REG {
     /// See register description.
@@ -94,7 +94,7 @@ impl BFD_CV_RX_INVLD_CNT_REG {
 /// Valid BFD CV Rx count.
 ///
 /// The number of valid BFD CV PDUs received by the VOE.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_CV_RX_VLD_CNT_REG(u32);
 impl BFD_CV_RX_VLD_CNT_REG {
     /// See register description.
@@ -110,7 +110,7 @@ impl BFD_CV_RX_VLD_CNT_REG {
 /// Valid BFD CV Tx count.
 ///
 /// The number of BFD CV PDUs transmitted by the VOE.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_CV_TX_CNT_REG(u32);
 impl BFD_CV_TX_CNT_REG {
     /// See register description.
@@ -126,7 +126,7 @@ impl BFD_CV_TX_CNT_REG {
 /// Result of previous BFD testing
 ///
 /// To detect changes in certain BFD states, this register stores the values of the testing of the previous BFD PDU.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_RX_LAST(u32);
 impl BFD_RX_LAST {
     /// Contains the current LOC state. When this value is changed (by LOC timer or Rx of valid BFD CC/CV) a sticky bit is asserted: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_LOC_CHANGE_STICKY An interrupt may optionally be generated: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.BFD_LOC_CHANGE_INT_ENA
@@ -144,7 +144,7 @@ impl BFD_RX_LAST {
 /// BFD Rx verification sticky bits.
 ///
 /// This register contains a sticky bit for each of the tests performed as part of the BFD Rx PDU validation. Frames causing the sticky to be asserted will be discarded if not extracted to the CPU. The extraction of BFD PDUs is configured in the following register: * VOP_MPLS:VOE_STAT_MPLS:PDU_EXTRACT_MPLS.* Notice that the Rx verification depends on the following registers: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_VERIFY_* PDUs faling the Rx verification can optionally be extracted by configuring the following bit field: * VOP_MPLS:VOE_STAT_MPLS:PDU_EXTRACT_MPLS.BFD_RX_ERR_EXTR
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_RX_STICKY(u32);
 impl BFD_RX_STICKY {
     /// Sticky bit asserted if an incoming BFD PDU fails the AUTH_MISMATCH test. The VOE is configured with the expected value of the incoming BFD PDUs: BFD CC: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_CC_AUTH_ENA BFD CV: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_CV_AUTH_ENA The AUTH_MISMATCH test will fail if the incoming BFD PDUs AUTH bit does not match the configured value.
@@ -270,7 +270,7 @@ impl BFD_RX_STICKY {
 /// BFD info related to the Local BFD Sink session (BFD_SINK)
 ///
 /// Misc. configuration related to the Local BFD Sink (BFD_SINK). The bit fields in this register are only used when the BFD session is configured for Independent Mode: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_COORDINATED_MODE_ENA = 0
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_SINK_INFO(u32);
 impl BFD_SINK_INFO {
     /// BFD diagnostic code of the Local BFD_SINK. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs DIAG field transmitted by the BFD_SINK. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
@@ -356,7 +356,7 @@ impl BFD_SINK_INFO {
 /// BFD info related to the Local BFD Source session (BFD_SRC)
 ///
 /// Misc. configuration related to the Local BFD Source (BFD_SRC).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_SRC_INFO(u32);
 impl BFD_SRC_INFO {
     /// BFD diagnostic code of the Local BFD_SRC. This register is configured by SW - never updated by VOE. If configured to do so, the VOE will write this value into all valid Tx BFD CC/CV PDUs DIAG field transmitted by the BFD_SRC. The VOE will update the Tx PDUs based on the following configuration: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA
@@ -442,7 +442,7 @@ impl BFD_SRC_INFO {
 /// BFD statistics
 ///
 /// Register contains misc. BFD related statistics.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_STAT(u32);
 impl BFD_STAT {
     /// BFD Loss of Continuity (LOC) Counter. This counter is incremented by the LOC SCAN timer programmed in the following bit field: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_SCAN_PERIOD The LOC counter is cleared every time a valid BFD CC/CV PDU is received. The VOE will generate a LOC event when the BFD_MISS_CNT is equal to the value in the relevant Detect Multiplier. Which Detect Multiplier is used depends on whether the BFD session is configured for "Coordinated Mode" or "Independent Mode".
@@ -460,7 +460,7 @@ impl BFD_STAT {
 /// BFD Tx verification sticky bits.
 ///
 /// This register contains sticky bits indicating the different Tx errors detected by the VOE.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BFD_TX_STICKY(u32);
 impl BFD_TX_STICKY {
     /// Sticky bit asserted if a BFD PDU is transmitted by a VOE and the VOE is configured to update the BFD PDU: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_TX_UPDATE_ENA and the Tx BFD PDU My Discriminator value does not match any of the configured BFD Discriminator Values: Coordinated or NEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SRC.BFD_LOCAL_DISCR_SRC FEIS session: * VOP_MPLS:VOE_CONF_MPLS:BFD_LOCAL_DISCR_SINK.BFD_LOCAL_DISCR_SINK The type of sesssion must be configured using the following bit field: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_COORDINATED_MODE_ENA
@@ -478,7 +478,7 @@ impl BFD_TX_STICKY {
 /// Rx Sticky bits
 ///
 /// Sticky bits are asserted when a valid MPLS-TP OAM PDU is received by the VOE. The G-ACH Channel Type specific Rx sticky bits: * "xxx"_RX_STICKY will be asserted even when the PDU is not enabled (VOP_MPLS:VOE_CONF_MPLS:OAM_HW_CTRL_MPLS.*), to allow detecting PDU types which are not expected.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CPT_RX_STICKY_MPLS(u32);
 impl CPT_RX_STICKY_MPLS {
     /// Asserted when the VOE receives a valid BFD CC PDU.
@@ -540,7 +540,7 @@ impl CPT_RX_STICKY_MPLS {
 /// Sticky bit interrupt enable
 ///
 /// The bitfields in this register are interrupt enable for the corresponding sticky bits in the following register: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.* If an interrupt is enabled, the interrupt is asserted when the corresponding sticky bit is asserted.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct INTR_ENA_MPLS(u32);
 impl INTR_ENA_MPLS {
     /// When asserted, the following sticky bit will cause a VOE interrupt: * VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.BFD_LOC_CHANGE_STICKY
@@ -678,7 +678,7 @@ impl INTR_ENA_MPLS {
 /// Sticky bits with interrupt capability
 ///
 /// The sticky bits in this register will cause a VOE interrupt if the interrupt is enabled by the corresponding enable bit field in: * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.* If an interrupt is enabled, the interrupt is asserted when the corresponding sticky bit is asserted.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct INTR_STICKY_MPLS(u32);
 impl INTR_STICKY_MPLS {
     /// This sticky bit is asserted when the VOE Loss of Continuity (LOC) detect state changes. The following two events will cause the assertion of this sticky bit: * The BFD_MISS_CNT is increased to 2 x the session Detect Mult (LOC detection). * A valid BFD CC/CV PDU is received by the VOE which is in LOC state.
@@ -816,7 +816,7 @@ impl INTR_STICKY_MPLS {
 /// Extraction of MPLS PDUs
 ///
 /// This register contains a number of bit fields which are used to configure extraction of certains MPLS PDUs, which match a given criteria. Note that some of the registers will extract either 'NEXT FRAME only ' (Hit Me Once) or 'ALL FRAMES' matching a given criteria, based on the configuration of the following bitfield: * EXTRACT_HIT_ME_ONCE
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PDU_EXTRACT_MPLS(u32);
 impl PDU_EXTRACT_MPLS {
     /// Extract the next valid BFD CC PDU received by the VOE.
@@ -918,7 +918,7 @@ impl PDU_EXTRACT_MPLS {
 /// Count non-selected OAM PDU received by the VOE.
 ///
 /// All PDU types can be configured as either selected or non-selected PDUs. This register counts the number of valid OAM PDUs configured as non-selected PDU type, received by the VOE. Selected OAM PDUs are configured in: * VOP_MPLS:VOE_CONF_MPLS:OAM_CNT_SEL_MPLS.*
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_CNT_NON_SEL_OAM_MPLS(u32);
 impl RX_CNT_NON_SEL_OAM_MPLS {
     /// See register description
@@ -934,7 +934,7 @@ impl RX_CNT_NON_SEL_OAM_MPLS {
 /// Count selected OAM PDU received by the VOE.
 ///
 /// All PDU types can be configured as either selected or non-selected PDUs. This register counts the number of valid OAM PDUs configured as selected PDU type, received by the VOE. Selected OAM PDUs are configured in: * VOP_MPLS:VOE_CONF_MPLS:OAM_CNT_SEL_MPLS.*
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_CNT_SEL_OAM_MPLS(u32);
 impl RX_CNT_SEL_OAM_MPLS {
     /// See register description.
@@ -950,7 +950,7 @@ impl RX_CNT_SEL_OAM_MPLS {
 /// Count NON-selected OAM PDUs transmitted by the VOE.
 ///
 /// All PDU types can be configured as either selected or non-selected PDUs. This register counts the number of valid OAM PDUs configured as non-selected PDU type, transmitted by the VOE. Selected OAM PDUs are configured in: * VOP_MPLS:VOE_CONF_MPLS:OAM_CNT_SEL_MPLS.*
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_CNT_NON_SEL_OAM_MPLS(u32);
 impl TX_CNT_NON_SEL_OAM_MPLS {
     /// See register description.
@@ -966,7 +966,7 @@ impl TX_CNT_NON_SEL_OAM_MPLS {
 /// Count selected OAM PDUs transmitted by the VOE.
 ///
 /// All PDU types can be configured as either selected or non-selected PDUs. This register counts the number of valid OAM PDUs configured as selected PDU type, transmitted by the VOE. Selected OAM PDUs are configured in: * VOP_MPLS:VOE_CONF_MPLS:OAM_CNT_SEL_MPLS.*
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_CNT_SEL_OAM_MPLS(u32);
 impl TX_CNT_SEL_OAM_MPLS {
     /// See register description.

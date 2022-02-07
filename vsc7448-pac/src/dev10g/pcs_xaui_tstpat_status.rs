@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Test Pattern Receive Sequence Counter
 ///
 /// Random Sequence Master Counter. The counter is used only if frame based pattern are to be checked (CRPAT, CJPAT) and it is incremented by one every 8th received symbol. The counter is started when a start of frame is detected and the counter stops when the last symbol of the (internally stored) reference frame was compared. The idle phase between two frames is not checked.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS(u32);
 impl PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS {
     /// Random sequence master counter
@@ -46,7 +46,7 @@ impl PCS_XAUI_TSTPAT_RX_SEQ_CNT_STATUS {
 /// Test Pattern Transmit Sequence Counter
 ///
 /// Jitter Pattern Transmit Counter. The counter counts the number of transmitted frames (only frame based pattern, i.e. CRPAT and CJPAT).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS(u32);
 impl PCS_XAUI_TSTPAT_TX_SEQ_CNT_STATUS {
     /// Jitter pattern transmit counter

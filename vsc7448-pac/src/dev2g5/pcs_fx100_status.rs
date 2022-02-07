@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS 100Base FX Status
 ///
 /// Status bit groups for 100Base-FX PCS. Note: If sigdet_cfg != "00" is selected status signal "signal_detect" shows the internal signal_detect value is gated with the status of rx toggle-rate control circuitry.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_FX100_STATUS(u32);
 impl PCS_FX100_STATUS {
     /// Data change position in the 10bit words received. Must be used for adjusting PTP ingress delays.

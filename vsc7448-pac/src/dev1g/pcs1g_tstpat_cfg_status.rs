@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS1G TSTPAT MODE CFG
 ///
 /// PCS1G testpattern mode configuration register (Frame based pattern 4 and 5 might be not available depending on chip type)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_TSTPAT_MODE_CFG(u32);
 impl PCS1G_TSTPAT_MODE_CFG {
     /// Jitter Test Pattern Select: Enables and selects the jitter test pattern to be transmitted. The jitter test patterns are according to the IEEE 802.3, Annex 36A
@@ -50,7 +50,7 @@ impl PCS1G_TSTPAT_MODE_CFG {
 /// PCS1G TSTPAT STATUS
 ///
 /// PCS1G testpattern status register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_TSTPAT_STATUS(u32);
 impl PCS1G_TSTPAT_STATUS {
     /// Jitter Test Pattern Error

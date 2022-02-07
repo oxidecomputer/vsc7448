@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Dev1g Interrupt Reg
 ///
 /// Interrupt register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV1G_INTR(u32);
 impl DEV1G_INTR {
     /// ANEG Link down interrupt (only PCS1g)
@@ -148,7 +148,7 @@ impl DEV1G_INTR {
 /// Dev1g Intr Configuration
 ///
 /// Interrupt Mask (Enable) register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV1G_INTR_CFG(u32);
 impl DEV1G_INTR_CFG {
     /// ANEG Link down interrupt enable (only PCS1g)
@@ -266,7 +266,7 @@ impl DEV1G_INTR_CFG {
 /// Dev1g Interrupt Ident
 ///
 /// Pending Interrupts (only enabled interrupts are visible)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV1G_INTR_IDENT(u32);
 impl DEV1G_INTR_IDENT {
     /// ANEG Link down interrupt (only PCS1g)

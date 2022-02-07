@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// RCOMP Status
 ///
 /// Status register bits for the RCOMP
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RCOMP_STATUS(u32);
 impl RCOMP_STATUS {
     /// Resistor comparison activity

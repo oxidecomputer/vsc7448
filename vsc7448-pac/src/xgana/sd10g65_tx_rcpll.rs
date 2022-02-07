@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SD10G65 TX RCPLL Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 TX RCPLL.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_RCPLL_CFG0(u32);
 impl SD10G65_TX_RCPLL_CFG0 {
     /// Enable RCPLL FSM
@@ -220,7 +220,7 @@ impl SD10G65_TX_RCPLL_CFG0 {
 /// SD10G65 TX RCPLL Configuration register 1
 ///
 /// Configuration register 1 for SD10G65 TX RCPLL.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_RCPLL_CFG1(u32);
 impl SD10G65_TX_RCPLL_CFG1 {
     /// enable special BIST settings
@@ -292,7 +292,7 @@ impl SD10G65_TX_RCPLL_CFG1 {
 /// SD10G65 TX RCPLL Configuration register 2
 ///
 /// Configuration register 2 for SD10G65 TX RCPLL.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_RCPLL_CFG2(u32);
 impl SD10G65_TX_RCPLL_CFG2 {
     /// Not used
@@ -448,7 +448,7 @@ impl SD10G65_TX_RCPLL_CFG2 {
 /// SD10G65 TX RCPLL Status register 0
 ///
 /// Status register 0 for SD10G65 TX RCPLL.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_RCPLL_STAT0(u32);
 impl SD10G65_TX_RCPLL_STAT0 {
     /// PLL lock status,
@@ -532,7 +532,7 @@ impl SD10G65_TX_RCPLL_STAT0 {
 /// SD10G65 TX RCPLL Status register 1
 ///
 /// Status register 1 for SD10G65 TX RCPLL.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_RCPLL_STAT1(u32);
 impl SD10G65_TX_RCPLL_STAT1 {
     /// Actual value of step up counter

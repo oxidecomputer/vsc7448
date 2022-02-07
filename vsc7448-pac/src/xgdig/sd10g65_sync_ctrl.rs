@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// RX_SYNC_CTRL config register
 ///
 /// RX Sync control configuration register, synchronize I2 of one RX to the I2 of another RX
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_SYNC_CTRL_CFG(u32);
 impl RX_SYNC_CTRL_CFG {
     /// Clear RX I2 value
@@ -74,7 +74,7 @@ impl RX_SYNC_CTRL_CFG {
 /// RX_SYNC_CTRL status register
 ///
 /// RX Sync control status register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_SYNC_CTRL_STAT(u32);
 impl RX_SYNC_CTRL_STAT {
     /// RX Lane synchronization fifo overflow
@@ -92,7 +92,7 @@ impl RX_SYNC_CTRL_STAT {
 /// SYNC_CTRL config register
 ///
 /// Sync control configuration register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SYNC_CTRL_CFG(u32);
 impl SYNC_CTRL_CFG {
     /// Source selection for lane synchronization
@@ -112,7 +112,7 @@ impl SYNC_CTRL_CFG {
 /// SYNC_CTRL status register
 ///
 /// Sync control status register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SYNC_CTRL_STAT(u32);
 impl SYNC_CTRL_STAT {
     /// Lane synchronization fifo overflow

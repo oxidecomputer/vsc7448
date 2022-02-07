@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Byte count of all frames passing through the Port VOE (LSB)
 ///
 /// Byte count of all frames passing through the Port VOE. Whenever this RAM is read, the value of this register will be sampled into the following register: * ANA_AC_OAM_MOD::RD_LAST_PORT_BYTE_CNT_LSB.RD_LAST_PORT_BYTE_CNT_LSB (ANA) * REW::RD_LAST_PORT_BYTE_CNT_LSB.RD_LAST_PORT_BYTE_CNT_LSB (REW)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_BYTE_CNT_LSB(u32);
 impl PORT_BYTE_CNT_LSB {
     /// See Register Description.
@@ -46,7 +46,7 @@ impl PORT_BYTE_CNT_LSB {
 /// Byte count of all frames passing through the Port VOE (MSB)
 ///
 /// Byte count of all frames passing through the Port VOE. Whenever this RAM is read, the value of this register will be sampled into the following register: * ANA_AC_OAM_MOD::RD_LAST_PORT_BYTE_CNT_MSB.RD_LAST_PORT_BYTE_CNT_MSB (ANA) * REW::RD_LAST_PORT_BYTE_CNT_MSB.RD_LAST_PORT_BYTE_CNT_MSB (REW)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_BYTE_CNT_MSB(u32);
 impl PORT_BYTE_CNT_MSB {
     /// See Register Description.
@@ -64,7 +64,7 @@ impl PORT_BYTE_CNT_MSB {
 /// Count all the frames which pass through the Port VOE
 ///
 /// This counter counts all the frames which pass though the Port VOE. Whenever this RAM is read, the value of this register will be sampled into the following register: * ANA_AC_OAM_MOD::RD_LAST_PORT_FRM_CNT_LSB.RD_LAST_PORT_FRM_CNT_LSB (ANA) * REW::RD_LAST_PORT_FRM_CNT_LSB.RD_LAST_PORT_FRM_CNT_LSB (REW)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_FRM_CNT_LSB(u32);
 impl PORT_FRM_CNT_LSB {
     /// See Register Description.
@@ -80,7 +80,7 @@ impl PORT_FRM_CNT_LSB {
 /// Count selected OAM PDU received by MEP Counter
 ///
 /// Implements the OAM VOE LM port counters. Depending on whether the OAM_PDU_MOD block is instantiated in the REW or the ANA these counters will be either egress (REW) or ingress (ANA) counters. Y.1731 LM counters count frames and are 32 bit wide. Whenever this RAM is read, the value of this register will be sampled into the following register: * ANA_AC_OAM_MOD::RD_LAST_PORT_LM_CNT_LSB.RD_LAST_PORT_LM_CNT_LSB (ANA) * REW::RD_LAST_PORT_LM_CNT_LSB.RD_LAST_PORT_LM_CNT_LSB (REW)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_LM_CNT_LSB(u32);
 impl PORT_LM_CNT_LSB {
     /// See Register Description.

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Internal events for debugging only
 ///
 /// Core events.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct EVENTS_CORE(u32);
 impl EVENTS_CORE {
     /// Look in the RTL!

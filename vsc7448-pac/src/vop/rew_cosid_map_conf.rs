@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// COSID / Color control signals
 ///
 /// The bit fields in this register determines the source of the COSID mapping / COLOR of frames not processed by the VOE.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct COSID_MAP_CFG_REW(u32);
 impl COSID_MAP_CFG_REW {
     /// Determines if the VOE LM counters counts all frames or only GREEN frames.
@@ -78,7 +78,7 @@ impl COSID_MAP_CFG_REW {
 /// COSID mapping table
 ///
 /// COSID mapping table used for mapping the selected COSID values. A single mapping table is available for each of the Service/Path VOEs.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct COSID_MAP_TABLE_REW(u32);
 impl COSID_MAP_TABLE_REW {
     /// The table is used to map the choosen COSID in the REW. bit(2:0) will be used to map COSID = 0 bit(5:3) will be used to map COSID = 1 ... bit(23:21) will be used to map COSID = 7 When mapping a COSID, the following procedure is followed: 1) Use COSID_SRC_SEL_REW to select the source of the COSID mapping. I.e. if COSID_SRC_SEL_REW = 1 (TC) the input to the mapping table is set to the IFH.TC. 2) Map the selected value. If IFH.TC = 3, the mapped COSID will be set to COSID_MAP_TABLE_REW[11:9]

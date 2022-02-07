@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Configuration for VAUI channel
 ///
 /// Configuration register for specific vaui channel settings
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VAUI_CHANNEL_CFG(u32);
 impl VAUI_CHANNEL_CFG {
     /// Enable alignment of lane to a common clock (e.g. XAUI mode) and dock lane with ANEG of lane 0 (Master-ANEG)

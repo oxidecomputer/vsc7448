@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SD10G65 OB Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 OB.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_OB_CFG0(u32);
 impl SD10G65_OB_CFG0 {
     /// Bypass data path (e.g. for JTAG), allows to drive output when EN_DIRECT=1 and EN_OB=1
@@ -182,7 +182,7 @@ impl SD10G65_OB_CFG0 {
 /// SD10G65 OB Configuration register 1
 ///
 /// Configuration register 1 for SD10G65 OB.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_OB_CFG1(u32);
 impl SD10G65_OB_CFG1 {
     /// Enable amplitude compensation of AB bleed current
@@ -308,7 +308,7 @@ impl SD10G65_OB_CFG1 {
 /// SD10G65 OB Configuration register 2
 ///
 /// Configuration register 2 for SD10G65 OB. D_filter contains four 6-bit precalculated DA input values. Please note the differences in programming for various interface (IF) bit widths. For calculation details see documentation of OB10G.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_OB_CFG2(u32);
 impl SD10G65_OB_CFG2 {
     /// Transmit filter coefficients for FIR taps. Suggested start value (no emphasis, max amplitude)
@@ -328,7 +328,7 @@ impl SD10G65_OB_CFG2 {
 /// SD10G65 OB Configuration register 3  access to receiver detect functionality
 ///
 /// Configuration register 3 for SD10G65 OB.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_OB_CFG3(u32);
 impl SD10G65_OB_CFG3 {
     /// Indicates a completed receiver detect measurement. Should be one few us after rec_det_start is set.
@@ -396,7 +396,7 @@ impl SD10G65_OB_CFG3 {
 /// SD10G65 SBUS TX CFG Service-Bus related setting
 ///
 /// Configuration register for Service-Bus related setting. Note: this register is only used for configuration if Tx is used stand alone, otherwise SD10G65_SBUS_RX_CFG (Rx macro) is used for configuration!
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_SBUS_TX_CFG(u32);
 impl SD10G65_SBUS_TX_CFG {
     /// Enable analog test output
@@ -494,7 +494,7 @@ impl SD10G65_SBUS_TX_CFG {
 /// SD10G65_TX Revision ID
 ///
 /// Revision numbers of the analog sub IPs used in the SD10G65_TX
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_REV_ID(u32);
 impl SD10G65_TX_REV_ID {
     /// Feature set number of output buffer (ob10g_N)
@@ -548,7 +548,7 @@ impl SD10G65_TX_REV_ID {
 /// SD10G65_TX subversion revision number
 ///
 /// Subversion revision number for the RTL used in SD10G65_TX
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_SVN_ID(u32);
 impl SD10G65_TX_SVN_ID {
     /// SVN revision number of RTL sources

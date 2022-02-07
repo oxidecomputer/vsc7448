@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Router Leg Diagnostic
 ///
 /// Diagnostic bits related to longest prefix matching.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct L3_LPM_REMAP_STICKY(u32);
 impl L3_LPM_REMAP_STICKY {
     /// Set if an IPv4 multicast longest prefix match has been found and the returned L3MC_IDX is less than the number of L3MC table entries.

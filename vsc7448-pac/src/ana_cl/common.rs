@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// VCAP_CLM range types per range checker
 ///
 /// Define range checkers used in VCAP_CLM keys.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ADV_RNG_CTRL(u32);
 impl ADV_RNG_CTRL {
     /// Selected frame field is matched against the range defined in ANA_CL::ADV_RNG_VALUE_CFG.
@@ -48,7 +48,7 @@ impl ADV_RNG_CTRL {
     }
 }
 /// VCAP_CLM range values per range checker
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ADV_RNG_VALUE_CFG(u32);
 impl ADV_RNG_VALUE_CFG {
     /// Upper range value. Value is included in range.
@@ -78,7 +78,7 @@ impl ADV_RNG_VALUE_CFG {
 /// Aggregation code calculation
 ///
 /// This register determines which fields contribute to the calculation of the 4-bit aggregation code. The aggregation code is used to select the egress port if multiple ports are aggregated. Fields enabled are XOR'ed together to generate the final aggregation code.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct AGGR_CFG(u32);
 impl AGGR_CFG {
     /// Allow destination MAC address to contribute to the aggregation code calculation.
@@ -266,7 +266,7 @@ impl AGGR_CFG {
 /// Miscellaneous CLM configuration per lookup.
 ///
 /// Miscellaneous CLM configuration per lookup.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CLM_KEY_CFG(u32);
 impl CLM_KEY_CFG {
     /// Select version of TRI_VID key.
@@ -284,7 +284,7 @@ impl CLM_KEY_CFG {
     }
 }
 /// Miscellaneous VCAP_CLM configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CLM_MISC_CTRL(u32);
 impl CLM_MISC_CTRL {
     /// Select default value of the G_IDX field in VCAP CLM.
@@ -428,7 +428,7 @@ impl CLM_MISC_CTRL {
     }
 }
 /// Common stack configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct COMMON_VSTAX_CFG(u32);
 impl COMMON_VSTAX_CFG {
     /// Enable / disable getting DSCP from VSTAX MISC field when encoding as AC.
@@ -448,7 +448,7 @@ impl COMMON_VSTAX_CFG {
 /// QoS class per address of BPDU, GARP, and CCM frames.
 ///
 /// The register instance number corresponds to the address of the extracted frame. For instance: CPU_8021_QOS_CFG[4].BPDU_QOS is the QoS class used for BPDU frames with address 01-80-C2-00-00-04.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CPU_8021_QOS_CFG(u32);
 impl CPU_8021_QOS_CFG {
     /// Configures QoS class for frames with DMAC in BPDU range that are redirected to the CPU.
@@ -490,7 +490,7 @@ impl CPU_8021_QOS_CFG {
 /// CPU extraction queue per address of BPDU, GARP, and CCM frames.
 ///
 /// The register instance number corresponds to the address of the extracted frame. For instance: CPU_8021_QU_CFG[4].CPU_BPDU_QU is the CPU extraction queue used for BPDU frames with address 01-80-C2-00-00-04.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CPU_8021_QU_CFG(u32);
 impl CPU_8021_QU_CFG {
     /// CPU extraction queue for BPDU frames.
@@ -530,7 +530,7 @@ impl CPU_8021_QU_CFG {
     }
 }
 /// CPU extraction queue configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CPU_PROTO_QU_CFG(u32);
 impl CPU_PROTO_QU_CFG {
     /// CPU extraction queue used for IPv6 Hop by hop and ICMP frames.
@@ -606,7 +606,7 @@ impl CPU_PROTO_QU_CFG {
     }
 }
 /// Various configuration per DSCP
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DSCP_CFG(u32);
 impl DSCP_CFG {
     /// DP level for DSCP value if enabled (ANA_CL:PORT:QOS_CFG.DSCP_DP_ENA).
@@ -670,7 +670,7 @@ impl DSCP_CFG {
     }
 }
 /// HMD port configurations
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct HM_CFG(u32);
 impl HM_CFG {
     /// Contains the port number of the used HMD X port
@@ -714,7 +714,7 @@ impl HM_CFG {
     }
 }
 /// MIP_TBL CCM hit me once set control
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MIP_CTRL(u32);
 impl MIP_CTRL {
     /// Set all CCM Hit me once bits. Cleared when the access completes. Ref: ANA_CL:MIP_TBL:CCM_HMO_CTRL
@@ -746,7 +746,7 @@ impl MIP_CTRL {
     }
 }
 /// Various MPLS configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MPLS_CFG(u32);
 impl MPLS_CFG {
     /// CPU copy of frames when channel_type check for G8113.1 (MPLS_OAM_FLAVOR) is not 0x8902.
@@ -942,7 +942,7 @@ impl MPLS_CFG {
     }
 }
 /// Various MPLS OAM LM configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MPLS_LM_CFG(u32);
 impl MPLS_LM_CFG {
     /// Controls if profile should be part of OAM LM count.
@@ -1020,7 +1020,7 @@ impl MPLS_LM_CFG {
 /// Miscellaneous MPLS configuration.
 ///
 /// Miscellaneous MPLS configuration.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MPLS_MISC_CFG(u32);
 impl MPLS_MISC_CFG {
     /// Enable skipping of reserved label during label extract. In order for a reserved label to be skipped, either MPLS_RSV_LBL_CFG[<label>].RSVD_LBL_SKIP_ENA or MPLS_MISC_CFG.CLM_RSVD_LBL_SKIP_ENA[<clm idx>] must be set.
@@ -1052,7 +1052,7 @@ impl MPLS_MISC_CFG {
 /// MPLS configuration per reserved MPLS label
 ///
 /// This register enabling each of the 16 Reserved MPLS Labels (Label Value < 16) for Skipping. Note: Handling of reserved labels require that the reserved label is within NUM_VLD_LABELS of the CLM entry that has been hit for MLBS or FULL action or that the reserved label is first label for MLBS_REDUCED action. The RESERVED LABELS have been assigned the following meaning (RFC 3032). ------------------------------------------------------------------- 0: IPv4 Explicit NULL Label 1: Router Alert Label (RAL) 2: IPv6 Explicit NULL Label 3: Reserved (Implicit NULL Label - Never in stack) 4: (Reserved - Not yet assigned) 5: (Reserved - Not yet assigned) 6: (Reserved - Not yet assigned) 7: (Reserved - Not yet assigned) 8: (Reserved - Not yet assigned) 9: (Reserved - Not yet assigned) 10: (Reserved - Not yet assigned) 11: (Reserved - Not yet assigned) 12: (Reserved - Not yet assigned) 13: Generic Alert Label (GAL) 14: OAM Alert Label (OAL) 15: (Reserved - Not yet assigned) -------------------------------------------------------------------
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MPLS_RSV_LBL_CFG(u32);
 impl MPLS_RSV_LBL_CFG {
     /// Enable skipping of reserved label during label extract. In order for a reserved label to be skipped, either MPLS_RSV_LBL_CFG[<label>].RSVD_LBL_SKIP_ENA or MPLS_MISC_CFG.CLM_RSVD_LBL_SKIP_ENA[<clm idx>] must be set.
@@ -1070,7 +1070,7 @@ impl MPLS_RSV_LBL_CFG {
     }
 }
 /// Various MPLS OAM configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct OAM_CFG(u32);
 impl OAM_CFG {
     /// Used to enable VCCV2 OAM signalling. If not enabled, VCCV2 signalling can not be configured.
@@ -1100,7 +1100,7 @@ impl OAM_CFG {
     }
 }
 /// Configuration per QoS class and DP level
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct QOS_MAP_CFG(u32);
 impl QOS_MAP_CFG {
     /// Table values for rewriting DSCP values using DP level and QoS class if enabled. Map the frame's DP level and QoS class to a DSCP value. DSCP = QOS_MAP_CFG[8*DP level + QoS class].DSCP_REWR_VAL. This is controlled in ANA_CL:PORT:QOS_CFG.DSCP_REWR_MODE_SEL and ANA_CL::DSCP_CFG.DSCP_REWR_ENA.
@@ -1117,7 +1117,7 @@ impl QOS_MAP_CFG {
     }
 }
 /// Configure UPSID when stacking
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct UPSID_CFG(u32);
 impl UPSID_CFG {
     /// Configures own unit port set ID (UPSID) to be used for stacking. The configured value must be even. Port numbers below 32 will use the configured (even) UPSID, whereas port numbers >=32 will use the configured UPSID plus 1. This must be configured consistently across the following registers: ANA_CL::UPSID_CFG.UPSID_NUM ANA_AC::COMMON_VSTAX_CFG.OWN_UPSID ANA_L2::VSTAX_CTRL.OWN_UPSID REW::COMMON_CTRL.OWN_UPSID
@@ -1135,7 +1135,7 @@ impl UPSID_CFG {
 /// Custom S-tag EtherTypes
 ///
 /// In addition to these custom TPID values, tags with TPID = 0x88A8 are always recognized as S-tags.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_STAG_CFG(u32);
 impl VLAN_STAG_CFG {
     /// Configurable S-tag TPID EtherType. This value must be configured identically in REW::TPID_CFG.TPID_VAL.
@@ -1151,7 +1151,7 @@ impl VLAN_STAG_CFG {
     }
 }
 /// VRAP classifier configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VRAP_CFG(u32);
 impl VRAP_CFG {
     /// VID value for VRAP frames.
@@ -1179,7 +1179,7 @@ impl VRAP_CFG {
     }
 }
 /// VRAP data
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VRAP_HDR_DATA(u32);
 impl VRAP_HDR_DATA {
     /// A VRAP frame's VRAP header is matched against VRAP_HDR_DATA, except for bits don't cared by VRAP_HDR_MASK. The VRAP header is four bytes located in the frame after EtherType = 0x8808 and EPID = 0x0004.
@@ -1193,7 +1193,7 @@ impl VRAP_HDR_DATA {
     }
 }
 /// VRAP mask
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VRAP_HDR_MASK(u32);
 impl VRAP_HDR_MASK {
     /// Bits set in VRAP_HDR_MASK don't care the equivalent bits in VRAP_HDR_DATA.

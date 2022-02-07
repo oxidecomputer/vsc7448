@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// APC common configuration register 0
 ///
 /// Common configurations 0 for APC logic. Note: For HML error correction logic HML=000/001/011/111 are considered valid, 010 and 101 are considered correctable (010 correctable to 011; 101 correctable to 001) and 100 and 110 are considered incorrectable.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_COMMON_CFG0(u32);
 impl APC_COMMON_CFG0 {
     /// Enable APC direct connections instead of local IB configuration registers.
@@ -266,7 +266,7 @@ impl APC_COMMON_CFG0 {
 /// APC DFE1 Control registers
 ///
 /// General behavior control for DFE1 parameter control.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE1_CTRL(u32);
 impl APC_DFE1_CTRL {
     /// Parameter value (controlled/computed value)
@@ -406,7 +406,7 @@ impl APC_DFE1_CTRL {
 /// APC DFE1 Parameter control register
 ///
 /// Configuration register for controlled DFE1 parameter. Note, for parameters larger than 8 bits, ini/min/max values are shifted to the left. For parameters smaller than 8 bits only the lower bits of ini/min/max are used.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE1_PAR_CFG(u32);
 impl APC_DFE1_PAR_CFG {
     /// Parameter change mode
@@ -488,7 +488,7 @@ impl APC_DFE1_PAR_CFG {
 /// APC DFE1 Timer config
 ///
 /// Configuration registers for DFE1 controller timing.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE1_TIMER_CFG(u32);
 impl APC_DFE1_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
@@ -520,7 +520,7 @@ impl APC_DFE1_TIMER_CFG {
 /// APC DFE2 Control registers
 ///
 /// General behavior control for DFE2 parameter control.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE2_CTRL(u32);
 impl APC_DFE2_CTRL {
     /// Parameter value (controlled/computed value)
@@ -660,7 +660,7 @@ impl APC_DFE2_CTRL {
 /// APC DFE2 Parameter control register
 ///
 /// Configuration register for controlled DFE2 parameter. Note, for parameters larger than 8 bits, ini/min/max values are shifted to the left. For parameters smaller than 8 bits only the lower bits of ini/min/max are used.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE2_PAR_CFG(u32);
 impl APC_DFE2_PAR_CFG {
     /// Parameter change mode
@@ -742,7 +742,7 @@ impl APC_DFE2_PAR_CFG {
 /// APC DFE2 Timer config
 ///
 /// Configuration registers for DFE2 controller timing.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE2_TIMER_CFG(u32);
 impl APC_DFE2_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
@@ -774,7 +774,7 @@ impl APC_DFE2_TIMER_CFG {
 /// APC DFE3 Control registers
 ///
 /// General behavior control for DFE3 parameter control.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE3_CTRL(u32);
 impl APC_DFE3_CTRL {
     /// Parameter value (controlled/computed value)
@@ -914,7 +914,7 @@ impl APC_DFE3_CTRL {
 /// APC DFE3 Parameter control register
 ///
 /// Configuration register for controlled DFE3 parameter. Note, for parameters larger than 8 bits, ini/min/max values are shifted to the left. For parameters smaller than 8 bits only the lower bits of ini/min/max are used.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE3_PAR_CFG(u32);
 impl APC_DFE3_PAR_CFG {
     /// Parameter change mode
@@ -996,7 +996,7 @@ impl APC_DFE3_PAR_CFG {
 /// APC DFE3 Timer config
 ///
 /// Configuration registers for DFE3 controller timing.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE3_TIMER_CFG(u32);
 impl APC_DFE3_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
@@ -1028,7 +1028,7 @@ impl APC_DFE3_TIMER_CFG {
 /// APC DFE4 Control registers
 ///
 /// General behavior control for DFE4 parameter control.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE4_CTRL(u32);
 impl APC_DFE4_CTRL {
     /// Parameter value (controlled/computed value)
@@ -1168,7 +1168,7 @@ impl APC_DFE4_CTRL {
 /// APC DFE4 Parameter control register
 ///
 /// Configuration register for controlled DFE4 parameter. Note, for parameters larger than 8 bits, ini/min/max values are shifted to the left. For parameters smaller than 8 bits only the lower bits of ini/min/max are used.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE4_PAR_CFG(u32);
 impl APC_DFE4_PAR_CFG {
     /// Parameter change mode
@@ -1250,7 +1250,7 @@ impl APC_DFE4_PAR_CFG {
 /// APC DFE4 Timer config
 ///
 /// Configuration registers for DFE4 controller timing.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_DFE4_TIMER_CFG(u32);
 impl APC_DFE4_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
@@ -1282,7 +1282,7 @@ impl APC_DFE4_TIMER_CFG {
 /// APC EQZ_AGC Control registers
 ///
 /// General behavior control for EQZ_AGC parameter control.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_AGC_CTRL(u32);
 impl APC_EQZ_AGC_CTRL {
     /// Parameter value (controlled/computed value)
@@ -1422,7 +1422,7 @@ impl APC_EQZ_AGC_CTRL {
 /// APC EQZ_AGC Parameter control register
 ///
 /// Configuration register for controlled EQZ_AGC parameter. Note, for parameters larger than 8 bits, ini/min/max values are shifted to the left. For parameters smaller than 8 bits only the lower bits of ini/min/max are used.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_AGC_PAR_CFG(u32);
 impl APC_EQZ_AGC_PAR_CFG {
     /// Parameter change mode
@@ -1504,7 +1504,7 @@ impl APC_EQZ_AGC_PAR_CFG {
 /// APC EQZ_AGC Timer config
 ///
 /// Configuration registers for EQZ_AGC controller timing.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_AGC_TIMER_CFG(u32);
 impl APC_EQZ_AGC_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
@@ -1536,7 +1536,7 @@ impl APC_EQZ_AGC_TIMER_CFG {
 /// APC EQZ CTRL config
 ///
 /// Configuration register for gain control logic
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_COMMON_CFG(u32);
 impl APC_EQZ_COMMON_CFG {
     /// Stop update of gain_adj
@@ -1682,7 +1682,7 @@ impl APC_EQZ_COMMON_CFG {
 /// APC EQZ CTRL status register
 ///
 /// Observation register for controlled settings
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_CTRL_STATUS(u32);
 impl APC_EQZ_CTRL_STATUS {
     /// Parameter value (controlled/computed gain value)
@@ -1736,7 +1736,7 @@ impl APC_EQZ_CTRL_STATUS {
 /// APC EQZ_C Control registers
 ///
 /// General behavior control for EQZ_C parameter control.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_C_CTRL(u32);
 impl APC_EQZ_C_CTRL {
     /// Parameter value (controlled/computed value)
@@ -1876,7 +1876,7 @@ impl APC_EQZ_C_CTRL {
 /// APC EQZ_C Parameter control register
 ///
 /// Configuration register for controlled EQZ_C parameter. Note, for parameters larger than 8 bits, ini/min/max values are shifted to the left. For parameters smaller than 8 bits only the lower bits of ini/min/max are used.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_C_PAR_CFG(u32);
 impl APC_EQZ_C_PAR_CFG {
     /// Parameter change mode
@@ -1958,7 +1958,7 @@ impl APC_EQZ_C_PAR_CFG {
 /// APC EQZ_C Timer config
 ///
 /// Configuration registers for EQZ_C controller timing.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_C_TIMER_CFG(u32);
 impl APC_EQZ_C_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
@@ -1990,7 +1990,7 @@ impl APC_EQZ_C_TIMER_CFG {
 /// APC EQZ ADJ CTRL configuration register
 ///
 /// Configuration register for gain_adj
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_GAIN_ADJ_CTRL_CFG(u32);
 impl APC_EQZ_GAIN_ADJ_CTRL_CFG {
     /// Gain_adj initial value (used if EQZ_GAIN_CHG_MODE = 1)
@@ -2032,7 +2032,7 @@ impl APC_EQZ_GAIN_ADJ_CTRL_CFG {
 /// APC EQZ CTRL configuration register
 ///
 /// Configuration register for gain
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_GAIN_CTRL_CFG(u32);
 impl APC_EQZ_GAIN_CTRL_CFG {
     /// Gain initial value (used if EQZ_GAIN_CHG_MODE = 1)
@@ -2074,7 +2074,7 @@ impl APC_EQZ_GAIN_CTRL_CFG {
 /// APC EQZ LD control
 ///
 /// Configuration register for level-detect (LD) control, timing and behavior (timing: number of rx_clk cycles, used for LD toggling)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_LD_CTRL(u32);
 impl APC_EQZ_LD_CTRL {
     /// Bypass LD catch circuitry (allows capturing pulses shorter then one rx_clk cycle)
@@ -2200,7 +2200,7 @@ impl APC_EQZ_LD_CTRL {
 /// APC EQZ LD CTRL config0
 ///
 /// Configuration register 0 for level-detect (LD) controller timing (number of rx_clk cycles, used for operation timing). Important note: For small ld_t_* values it might be necessary to change IB configuration bit-group IB_LDSD_DIVSEL to higher values!
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_LD_CTRL_CFG0(u32);
 impl APC_EQZ_LD_CTRL_CFG0 {
     /// Minimum activity for LD in work mode (value is multiplied by 8)
@@ -2230,7 +2230,7 @@ impl APC_EQZ_LD_CTRL_CFG0 {
 /// APC EQZ LD CTRL config1
 ///
 /// Configuration register 1 for level-detect (LD) controller timing (number of rx_clk cycles, used for calibration timing). Important note: For small ld_t_* values it might be necessary to change IB configuration bit-group IB_LDSD_DIVSEL to higher values!
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_LD_CTRL_CFG1(u32);
 impl APC_EQZ_LD_CTRL_CFG1 {
     /// Minimum activity for LD in calibration mode (value is multiplied by 8)
@@ -2260,7 +2260,7 @@ impl APC_EQZ_LD_CTRL_CFG1 {
 /// APC EQZ_L Control registers
 ///
 /// General behavior control for EQZ_L parameter control.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_L_CTRL(u32);
 impl APC_EQZ_L_CTRL {
     /// Parameter value (controlled/computed value)
@@ -2400,7 +2400,7 @@ impl APC_EQZ_L_CTRL {
 /// APC EQZ_L Parameter control register
 ///
 /// Configuration register for controlled EQZ_L parameter. Note, for parameters larger than 8 bits, ini/min/max values are shifted to the left. For parameters smaller than 8 bits only the lower bits of ini/min/max are used.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_L_PAR_CFG(u32);
 impl APC_EQZ_L_PAR_CFG {
     /// Parameter change mode
@@ -2482,7 +2482,7 @@ impl APC_EQZ_L_PAR_CFG {
 /// APC EQZ_L Timer config
 ///
 /// Configuration registers for EQZ_L controller timing.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_L_TIMER_CFG(u32);
 impl APC_EQZ_L_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
@@ -2514,7 +2514,7 @@ impl APC_EQZ_L_TIMER_CFG {
 /// APC EQZ_OFFS Control registers
 ///
 /// General behavior control for EQZ_OFFS parameter control.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_OFFS_CTRL(u32);
 impl APC_EQZ_OFFS_CTRL {
     /// Parameter value (controlled/computed value)
@@ -2654,7 +2654,7 @@ impl APC_EQZ_OFFS_CTRL {
 /// APC EQZ_OFFS Parameter control register
 ///
 /// Configuration register for controlled EQZ_OFFS parameter. Note, for parameters larger than 8 bits, ini/min/max values are shifted to the left. For parameters smaller than 8 bits only the lower bits of ini/min/max are used.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_OFFS_PAR_CFG(u32);
 impl APC_EQZ_OFFS_PAR_CFG {
     /// Parameter change mode
@@ -2736,7 +2736,7 @@ impl APC_EQZ_OFFS_PAR_CFG {
 /// APC EQZ_OFFS Timer config
 ///
 /// Configuration registers for EQZ_OFFS controller timing.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_OFFS_TIMER_CFG(u32);
 impl APC_EQZ_OFFS_TIMER_CFG {
     /// Operation time (in number of rx_clk cycles)
@@ -2768,7 +2768,7 @@ impl APC_EQZ_OFFS_TIMER_CFG {
 /// APC EQZ Pattern matching cfg register0
 ///
 /// Pattern matching configuration register for eqz_c and eqz_l control
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_PAT_MATCH_CFG0(u32);
 impl APC_EQZ_PAT_MATCH_CFG0 {
     /// EQZ-C-control pattern mask (only those bits are used for pattern matching whose mask bit is set)
@@ -2822,7 +2822,7 @@ impl APC_EQZ_PAT_MATCH_CFG0 {
 /// APC EQZ Pattern matching cfg register1
 ///
 /// Pattern matching configuration register for eqz_offs and eqz_agc control Note, if mask is set to 0, all bits are "matching" and taken into account for parameter contol.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_EQZ_PAT_MATCH_CFG1(u32);
 impl APC_EQZ_PAT_MATCH_CFG1 {
     /// EQZ-AGC-control pattern mask (only those bits are used for pattern matching whose mask bit is set)
@@ -2876,7 +2876,7 @@ impl APC_EQZ_PAT_MATCH_CFG1 {
 /// APC FLEXCTRL read counter register
 ///
 /// Observation register for multiple counters. The selection is done via APC_COMMON_CFG0.BLOCK_READ_SEL (select flexctrl block to be read) and APC_XXX_CTRL.XXX_READ_CNT_SEL (counter within flexctrl block XXX) or APC_COMMON_CFG0.OFFSCAL_READ_CNT_SEL. Notice that for EQZ and DFE counters hit_cnt and err_cnt make only sense in DISCRETE control mode.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_FLEXCTRL_CNT_STATUS(u32);
 impl APC_FLEXCTRL_CNT_STATUS {
     /// Current counter value
@@ -2892,7 +2892,7 @@ impl APC_FLEXCTRL_CNT_STATUS {
 /// APC sampling stage calibration configuration register 0
 ///
 /// Configuration register 0 for APC sampling stage calibrations logic
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_IS_CAL_CFG0(u32);
 impl APC_IS_CAL_CFG0 {
     /// Initial value for CP/MD FF threshold calibration.
@@ -3030,7 +3030,7 @@ impl APC_IS_CAL_CFG0 {
 /// APC sampling stage calibration configuration register 1
 ///
 /// Configuration register 1 for APC sampling stage calibrations logic
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_IS_CAL_CFG1(u32);
 impl APC_IS_CAL_CFG1 {
     /// Controls number of calibrations iterations to settle values that depend on each other (offset vs threshold). Coding number of iterations = cal_num_iterations + 1.
@@ -3182,7 +3182,7 @@ impl APC_IS_CAL_CFG1 {
 /// APC LC softcontrol configuration register
 ///
 /// Configuration register 0 for the LC-Softcontrol logic block. The L and C paramters can be controlled depending on DFE1 and DFE2 and EQZ_AGC parameters instead of pattern matching.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_LC_SOFTCTRL_CFG(u32);
 impl APC_LC_SOFTCTRL_CFG {
     /// EQZ_AGC threshold for mandatory increase of L and C. If EQZ_AGC > (128+LC_SC_AGC_THRESHOLD) then L and C control values are increased.
@@ -3310,7 +3310,7 @@ impl APC_LC_SOFTCTRL_CFG {
 /// APC LC softcontrol configuration register 1
 ///
 /// Configuration register 1 for the LC-Softcontrol logic block.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_LC_SOFTCTRL_CFG1(u32);
 impl APC_LC_SOFTCTRL_CFG1 {
     /// Target value for DFE1 during L/C-control operation
@@ -3340,7 +3340,7 @@ impl APC_LC_SOFTCTRL_CFG1 {
 /// APC level detect calibration configuration register
 ///
 /// Configuration register for APC level detect calibrations logic
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_LD_CAL_CFG(u32);
 impl APC_LD_CAL_CFG {
     /// Calibration clock divider. Clock used in calibration blocks is divided by 2^(2*CAL_CLK_DIV)
@@ -3438,7 +3438,7 @@ impl APC_LD_CAL_CFG {
 /// APC parctrl FSM1 Timer config
 ///
 /// Timing configuration register for common flexible parameter control FSM1
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_PARCTRL_FSM1_TIMER_CFG(u32);
 impl APC_PARCTRL_FSM1_TIMER_CFG {
     /// FSM1 Operation time (in number of rx_clk cycles)
@@ -3470,7 +3470,7 @@ impl APC_PARCTRL_FSM1_TIMER_CFG {
 /// APC parctrl FSM2 Timer config
 ///
 /// Timing configuration register for common flexible parameter control FSM2
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_PARCTRL_FSM2_TIMER_CFG(u32);
 impl APC_PARCTRL_FSM2_TIMER_CFG {
     /// FSM2 Operation time (in number of rx_clk cycles)
@@ -3502,7 +3502,7 @@ impl APC_PARCTRL_FSM2_TIMER_CFG {
 /// APC parameter control synchronization register
 ///
 /// Configuration register for common flexible parameter control FSMs
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_PARCTRL_SYNC_CFG(u32);
 impl APC_PARCTRL_SYNC_CFG {
     /// APC spare register pool
@@ -3656,7 +3656,7 @@ impl APC_PARCTRL_SYNC_CFG {
 /// APC top control configuration register
 ///
 /// Configuration register for top control logic
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct APC_TOP_CTRL_CFG(u32);
 impl APC_TOP_CTRL_CFG {
     /// Delay time required to power down auxilliary channels

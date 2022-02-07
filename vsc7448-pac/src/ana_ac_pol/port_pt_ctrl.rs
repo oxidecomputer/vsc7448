@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Configures stat and policer pipeline point per pipeline action
 ///
 /// Configures pipeline location for the various stat and policer entity for each pipeline action: repl:0 NONE, XTR_LATE_REW repl:1 INJ, INJ_MASQ, LBK_ASM repl:2 XTR repl:3 XTR_UPMEP repl:4 LBK_QS
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ACTION_CTRL(u32);
 impl ACTION_CTRL {
     /// Disable port statistics.

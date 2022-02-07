@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS2X6G Configuration
 ///
 /// Configuration register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS2X6G_CFG(u32);
 impl PCS2X6G_CFG {
     /// Enable Link control via Backplane Ethernet ANEG

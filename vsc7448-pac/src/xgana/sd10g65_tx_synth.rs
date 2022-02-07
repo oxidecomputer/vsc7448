@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SD10G65 SSC generator Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 SSC generator.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_SSC_CFG0(u32);
 impl SD10G65_SSC_CFG0 {
     /// SSC generator enable.
@@ -84,7 +84,7 @@ impl SD10G65_SSC_CFG0 {
 /// SD10G65 SSC generator Configuration register 1
 ///
 /// Configuration register 1 for SD10G65 SSC generator.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_SSC_CFG1(u32);
 impl SD10G65_SSC_CFG1 {
     /// Select the MLD clock source for the internal MLD phase detector
@@ -222,7 +222,7 @@ impl SD10G65_SSC_CFG1 {
 /// SD10G65 TX Synthesizer Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 TX SYNTH.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_SYNTH_CFG0(u32);
 impl SD10G65_TX_SYNTH_CFG0 {
     /// Synthesizer BIAS adjust in steps of ~3%, 0: 100%, 7: 121%
@@ -420,7 +420,7 @@ impl SD10G65_TX_SYNTH_CFG0 {
 /// SD10G65 TX Synthesizer Configuration register 1
 ///
 /// Configuration register 1 for SD10G65 TX SYNTH.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_SYNTH_CFG1(u32);
 impl SD10G65_TX_SYNTH_CFG1 {
     /// frequency m setting bits 35:32
@@ -486,7 +486,7 @@ impl SD10G65_TX_SYNTH_CFG1 {
 /// SD10G65 TX Synthesizer Configuration register 3
 ///
 /// Configuration register 3 for SD10G65 TX SYNTH.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_SYNTH_CFG3(u32);
 impl SD10G65_TX_SYNTH_CFG3 {
     /// frequency m setting bits 31:0
@@ -502,7 +502,7 @@ impl SD10G65_TX_SYNTH_CFG3 {
 /// SD10G65 TX Synthesizer Configuration register 4
 ///
 /// Configuration register 4 for SD10G65 TX SYNTH.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_TX_SYNTH_CFG4(u32);
 impl SD10G65_TX_SYNTH_CFG4 {
     /// frequency n setting bits 31:0

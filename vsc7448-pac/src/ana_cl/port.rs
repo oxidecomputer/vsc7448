@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// VCAP_CLM configuration
 ///
 /// Replicated per lookup in VCAP_CLM.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ADV_CL_CFG(u32);
 impl ADV_CL_CFG {
     /// VCAP_CLM key type used for frame types other than MPLS and IPv4/IPv6.
@@ -162,7 +162,7 @@ impl ADV_CL_CFG {
 /// BPDU redirection control
 ///
 /// Configuration of CPU capturing of BPDU frames.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CAPTURE_BPDU_CFG(u32);
 impl CAPTURE_BPDU_CFG {
     /// Control CPU redirection, copy or discard of reserved DMAC addresses in the range 01-80-C2-00-00-10 to 01-80-C2-00-00-1F. Each two bits of this fields control a DMAC addres: Bits 0 and 1 control address 01-80-C2-00-00-10, bits 2 and 3 control address 01-80-C2-00-00-11, and so on. Frames are extracted to the CPU extraction queue defined in ANA_CL::CPU_8021_QU_CFG.
@@ -180,7 +180,7 @@ impl CAPTURE_BPDU_CFG {
 /// CPU forward control
 ///
 /// Configuration of CPU capturing of control frames.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CAPTURE_CFG(u32);
 impl CAPTURE_CFG {
     /// This configuration applies to the CPU forwarding function of the basic classifier. Each bit corresponds to one of the known TPIDs. If a bit is set, the basic classifier does not CPU forward a frame if the frame's outer VLAN tag contains the corresponding TPID.
@@ -298,7 +298,7 @@ impl CAPTURE_CFG {
 /// GXRP redirection control
 ///
 /// Configuration of CPU capturing of GARP frames.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CAPTURE_GXRP_CFG(u32);
 impl CAPTURE_GXRP_CFG {
     /// Control CPU redirection, copy or discard of reserved DMAC addresses in the range 01-80-C2-00-00-20 to 01-80-C2-00-00-2F. Each two bits of this fields control a DMAC addres: Bits 0 and 1 control address 01-80-C2-00-00-20, bits 2 and 3 control address 01-80-C2-00-00-21, and so on. Frames are extracted to the CPU extraction queue defined in ANA_CL::CPU_8021_QU_CFG.
@@ -316,7 +316,7 @@ impl CAPTURE_GXRP_CFG {
 /// IEEE802.1ag / ITU-T Y.1731 OAM frame filtering control
 ///
 /// Configuration of CPU capturing of IEEE802.1ag and Y.1731 control frames.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CAPTURE_Y1731_AG_CFG(u32);
 impl CAPTURE_Y1731_AG_CFG {
     /// Control CPU redirection, copy or discard of reserved DMAC addresses in the range 01-80-C2-00-00-30 to 01-80-C2-00-00-3F. Each two bits of this fields control a DMAC addres: Bits 0 and 1 control address 01-80-C2-00-00-30, bits 2 and 3 control address 01-80-C2-00-00-31, and so on. Frames are extracted to the CPU extraction queue defined in ANA_CL::CPU_8021_QU_CFG.
@@ -334,7 +334,7 @@ impl CAPTURE_Y1731_AG_CFG {
 /// Filter configuration
 ///
 /// Configuration of filtering of frames not matching expected ingress properties
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct FILTER_CTRL(u32);
 impl FILTER_CTRL {
     /// Discard frames with DMAC or SMAC equal to 00-00-00-00-00-00.
@@ -380,7 +380,7 @@ impl FILTER_CTRL {
 /// DEI and PCP mapping table
 ///
 /// Mapping of frame's DEI and PCP to classified QoS class and drop precedence level. Configuration per DEI, PCP.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCP_DEI_MAP_CFG(u32);
 impl PCP_DEI_MAP_CFG {
     /// Map DEI and PCP to a DP level: DP level = PCP_DEI_MAP_CFG[8*DEI + PCP].PCP_DEI_DP_VAL.
@@ -410,7 +410,7 @@ impl PCP_DEI_MAP_CFG {
 /// DEI and PCP translation table
 ///
 /// Translation of frame's DEI and PCP to classified DEI and PCP. Configuration per DEI and PCP. The use of this table is enabled in VLAN_CTRL.VLAN_PCP_DEI_TRANS_ENA.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCP_DEI_TRANS_CFG(u32);
 impl PCP_DEI_TRANS_CFG {
     /// Translate VLAN PCP and DEI to a classified DEI: DEI = PCP_DEI_TRANS_CFG[8*DEI + PCP].DEI_TRANS_VAL.
@@ -440,7 +440,7 @@ impl PCP_DEI_TRANS_CFG {
 /// Port ID data
 ///
 /// Configuration of GLAG and logical port number.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_ID_CFG(u32);
 impl PORT_ID_CFG {
     /// Global Link Aggregation Group (GLAG) number to be used in relation to learning and forwarding.
@@ -514,7 +514,7 @@ impl PORT_ID_CFG {
 /// QoS configuration
 ///
 /// Configuration of basic QoS classification.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct QOS_CFG(u32);
 impl QOS_CFG {
     /// Default port DP level.
@@ -658,7 +658,7 @@ impl QOS_CFG {
 /// Stacking configuration
 ///
 /// Configure stacking awareness
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct STACKING_CTRL(u32);
 impl STACKING_CTRL {
     /// Ingress port drop mode configuration. Applicable for front port only.
@@ -730,7 +730,7 @@ impl STACKING_CTRL {
     }
 }
 /// VLAN configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_CTRL(u32);
 impl VLAN_CTRL {
     /// Default DEI bit for the port for untagged frames. Also used if port is VLAN unaware.
@@ -878,7 +878,7 @@ impl VLAN_CTRL {
 /// VLAN acceptance filter
 ///
 /// VLAN_FILTER_CTRL[0] applies to outer VLAN tag (first tag). VLAN_FILTER_CTRL[1] applies to middle VLAN tag (second tag). VLAN_FILTER_CTRL[2] applies to inner VLAN tag (third tag).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_FILTER_CTRL(u32);
 impl VLAN_FILTER_CTRL {
     /// Discard frame if the investigated VLAN tag is a C-tag (TPID=0x8100) and VID>0.
@@ -1016,7 +1016,7 @@ impl VLAN_FILTER_CTRL {
 /// TPID awareness configuration
 ///
 /// Configuration of which TPID values are accepted as valid VLAN tags.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_TPID_CTRL(u32);
 impl VLAN_TPID_CTRL {
     /// Control which TPID values are accepted as valid VLAN tags for L3 routing and basic VLAN classification. If an incoming frame contains a TPID for which BASIC_TPID_AWARE_DIS is set, then the TPID is treated a non-TPID EtherType and no further tags are identified.

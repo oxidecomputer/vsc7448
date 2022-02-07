@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// CCM-LM Rx LM sample value.
 ///
 /// This is the value of the Rx LM counter sampled when the latest CCM-LM frame was received. This value must be transmitted as CCM-LM.RX_FCB in the next CCM-LM frame transmitted by this VOE.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CCM_RX_FCB_CFG(u32);
 impl CCM_RX_FCB_CFG {
     /// See register description.
@@ -46,7 +46,7 @@ impl CCM_RX_FCB_CFG {
 /// CCM-LM Tx sample value.
 ///
 /// Value of the CCM-LM.TX_FC_F field in the lastest received valid CCM-LM frame by this VOE. This value must be transmitted as CCM-LM.TX_FCB in the next CCM-LM frame transmitted by this VOE.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CCM_TX_FCB_CFG(u32);
 impl CCM_TX_FCB_CFG {
     /// See register description.

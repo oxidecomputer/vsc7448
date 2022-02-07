@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Port policer rate configuration
 ///
 /// The registers are index by 4 x port number + port policer index.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct POL_PORT_RATE_CFG(u32);
 impl POL_PORT_RATE_CFG {
     /// Port policer leaky bucket rate. Regarding unit, refer to POL_UPD_INT. Related parameters: ANA_AC_POL:POL_ALL_CFG:POL_UPD_INT_CFG.POL_UPD_INT ANA_AC_POL:POL_PORT_CTRL:POL_PORT_CFG.FRAME_RATE_ENA
@@ -50,7 +50,7 @@ impl POL_PORT_RATE_CFG {
 /// Port policer upper threshold configuration
 ///
 /// The registers are index by 4 x port number + port policer index.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct POL_PORT_THRES_CFG_0(u32);
 impl POL_PORT_THRES_CFG_0 {
     /// Threshold size for port policer (burst capacity). Related parameters: ANA_AC_POL:POL_PORT_CTRL:POL_PORT_CFG.FRAME_RATE_ENA
@@ -70,7 +70,7 @@ impl POL_PORT_THRES_CFG_0 {
 /// Port policer lower threshold configuration
 ///
 /// The registers are index by 4 x port number + port policer index.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct POL_PORT_THRES_CFG_1(u32);
 impl POL_PORT_THRES_CFG_1 {
     /// Hysteresis size for port policer. Unit is 8192 bytes. PORT_THRES1 is used when a port policer is in flow control mode. Flow control is asserted when the bucket level exceeds PORT_THRES0. Flow control is deasserted when the bucket has leaked PORT_THRES1 bytes since the assertion. PORT_THRES1 must be programmed smaller or equal to PORT_THRES0. Related parameters: ANA_AC_POL:POL_PORT_CFG:POL_PORT_THRES_CFG_0.PORT_THRES0 ANA_AC_POL:POL_ALL_CFG:POL_PORT_FC_CFG.FC_ENA

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// MCB SERDES1G Address Cfg
 ///
 /// Configuration of SERDES1G MCB slaves to be accessed
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MCB_SERDES1G_ADDR_CFG(u32);
 impl MCB_SERDES1G_ADDR_CFG {
     /// Activation vector for SERDES1G-Slaves, one-hot coded, each bit is related to one macro, e.g. bit 0 enables/disables access to macro no. 0.

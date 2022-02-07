@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PLL5G BIST Configuration register 0A
 ///
 /// Configuration register 0A for PLL5G BIST.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PLL5G_BIST_CFG0A(u32);
 impl PLL5G_BIST_CFG0A {
     /// BIST compare pre divider M
@@ -48,7 +48,7 @@ impl PLL5G_BIST_CFG0A {
 /// PLL5G BIST Configuration register 0B
 ///
 /// Configuration register 0B for PLL5G BIST.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PLL5G_BIST_CFG0B(u32);
 impl PLL5G_BIST_CFG0B {
     /// BIST compare divider repeat count
@@ -102,7 +102,7 @@ impl PLL5G_BIST_CFG0B {
 /// PLL5G BIST Configuration register 1
 ///
 /// Configuration register 1 for PLL5G BIST.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PLL5G_BIST_CFG1(u32);
 impl PLL5G_BIST_CFG1 {
     /// BIST compare divider M
@@ -120,7 +120,7 @@ impl PLL5G_BIST_CFG1 {
 /// PLL5G BIST Configuration register 2
 ///
 /// Configuration register 2 for PLL5G BIST.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PLL5G_BIST_CFG2(u32);
 impl PLL5G_BIST_CFG2 {
     /// BIST compare divider N

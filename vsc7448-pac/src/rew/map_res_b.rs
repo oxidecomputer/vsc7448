@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Configuration of mapping tables 2 and 3. MPLS label
 ///
 /// Lookup 2 and 3 values
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MAP_LBL_B(u32);
 impl MAP_LBL_B {
     /// Mapped MPLS label value
@@ -50,7 +50,7 @@ impl MAP_LBL_B {
 /// Configuration of mapping tables 2 and 3
 ///
 /// Lookup 2 and 3 values
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MAP_VAL_B(u32);
 impl MAP_VAL_B {
     /// Mapped DEI value

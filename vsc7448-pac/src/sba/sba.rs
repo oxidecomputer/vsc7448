@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Default master
 ///
 /// The default master is selected by the bus when no master has requested ownership. The default master is able to start bus accesses slightly faster than other masters.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_MST(u32);
 impl DFT_MST {
     /// Use this field to configure default master.
@@ -48,7 +48,7 @@ impl DFT_MST {
     }
 }
 /// Early burst termination
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct EBT(u32);
 impl EBT {
     /// Set when an Early Burst Termination takes place. The register is cleared when read.
@@ -64,7 +64,7 @@ impl EBT {
     }
 }
 /// Early burst termination count
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct EBT_COUNT(u32);
 impl EBT_COUNT {
     /// Maximum number of cycles a transfer can take before being subject to an early burst termination.
@@ -80,7 +80,7 @@ impl EBT_COUNT {
     }
 }
 /// Early burst termination enable
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct EBT_EN(u32);
 impl EBT_EN {
     /// Use this field to enable early burst termination.
@@ -98,7 +98,7 @@ impl EBT_EN {
     }
 }
 /// Master 1 arbitration priority
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PL_CPU(u32);
 impl PL_CPU {
     /// Arbitration priority for the master. When multiple masters request the bus at the same time, the one with the highest priority is ganted bus access.
@@ -116,7 +116,7 @@ impl PL_CPU {
     }
 }
 /// Master 3 arbitration priority
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PL_CSR(u32);
 impl PL_CSR {
     /// See SBA::PL1 for description.
@@ -132,7 +132,7 @@ impl PL_CSR {
     }
 }
 /// Master 2 arbitration priority
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PL_PCIE(u32);
 impl PL_PCIE {
     /// See SBA::PL1 for description.
@@ -148,7 +148,7 @@ impl PL_PCIE {
     }
 }
 /// Reserved
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RESERVED1(u32);
 impl RESERVED1 {
     #[inline(always)]
@@ -161,7 +161,7 @@ impl RESERVED1 {
     }
 }
 /// Master 1 clock tokens
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct WT_CPU(u32);
 impl WT_CPU {
     /// Number of tokens to grant the master at the start of each refresh period for weighted-token arbitration scheme. If configured with a value of zero, the master is considered to have infinite tokens.
@@ -177,7 +177,7 @@ impl WT_CPU {
     }
 }
 /// Master 3 clock tokens
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct WT_CSR(u32);
 impl WT_CSR {
     /// See SBA::WT_CL1 for description.
@@ -195,7 +195,7 @@ impl WT_CSR {
 /// Weighted-token arbitration scheme enable
 ///
 /// When weighted token arbitration is enabled, each master on the shared bus is granted a configurable number of tokens at the start of each refresh period. The length of each refresh period is configurable. In each clock-cycle that a master uses the bus, the token counter for that master decreases. Once all tokens are spent, the master is forced to a low priority. A master with tokens remaining, always takes priority over masters with no tokens remaining.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct WT_EN(u32);
 impl WT_EN {
     /// Set this field to enable weighted-token arbitration scheme.
@@ -211,7 +211,7 @@ impl WT_EN {
     }
 }
 /// Master 2 clock tokens
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct WT_PCIE(u32);
 impl WT_PCIE {
     /// See SBA::WT_CL1 for description.
@@ -227,7 +227,7 @@ impl WT_PCIE {
     }
 }
 /// Clock tokens refresh period
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct WT_TCL(u32);
 impl WT_TCL {
     /// Refresh period length for the weighted-token arbitration scheme.

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SD10G65 DES Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 DES.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_DES_CFG0(u32);
 impl SD10G65_DES_CFG0 {
     /// Deserializer disable.
@@ -110,7 +110,7 @@ impl SD10G65_DES_CFG0 {
 /// SD10G65 MOEBDIV Configuration register 0
 ///
 /// Configuration register 0 for SD10G65 MoebiusDivider
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SD10G65_MOEBDIV_CFG0(u32);
 impl SD10G65_MOEBDIV_CFG0 {
     /// Bandwidth selection for cp/md of cdr loop when core NOT flags valid data detected

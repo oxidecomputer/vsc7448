@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS1G Aneg Configuration
 ///
 /// PCS1G Auto-negotiation configuration register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_ANEG_CFG(u32);
 impl PCS1G_ANEG_CFG {
     /// Advertised Ability Register: Holds the capabilities of the device as described IEEE 802.3, Clause 37.
@@ -90,7 +90,7 @@ impl PCS1G_ANEG_CFG {
 /// PCS1G Aneg Next Page Configuration
 ///
 /// PCS1G Auto-negotiation configuration register for next-page function
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_ANEG_NP_CFG(u32);
 impl PCS1G_ANEG_NP_CFG {
     /// Next page loaded
@@ -122,7 +122,7 @@ impl PCS1G_ANEG_NP_CFG {
 /// PCS1G Aneg Next Page Status Register
 ///
 /// PCS1G Auto-negotiation next page status register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_ANEG_NP_STATUS(u32);
 impl PCS1G_ANEG_NP_STATUS {
     /// Next page ability register from link partner as described in IEEE 802.3, Clause 37
@@ -141,7 +141,7 @@ impl PCS1G_ANEG_NP_STATUS {
 /// PCS1G ANEG Status Register
 ///
 /// PCS1G Auto-negotiation status register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_ANEG_STATUS(u32);
 impl PCS1G_ANEG_STATUS {
     /// Auto Negotiation Complete
@@ -201,7 +201,7 @@ impl PCS1G_ANEG_STATUS {
 /// PCS1G comma detection Configuration
 ///
 /// PCS1G comma detection configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_CDET_CFG(u32);
 impl PCS1G_CDET_CFG {
     /// Enable comma detection and code-group alignment
@@ -221,7 +221,7 @@ impl PCS1G_CDET_CFG {
 /// PCS1G Configuration
 ///
 /// PCS1G main configuration register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_CFG(u32);
 impl PCS1G_CFG {
     /// Enable Link control via Backplane Ethernet ANEG
@@ -269,7 +269,7 @@ impl PCS1G_CFG {
 /// PCS1G Debug Configuration
 ///
 /// PCS1G Debug configuration register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_DBG_CFG(u32);
 impl PCS1G_DBG_CFG {
     /// Use Debug Link Timer
@@ -289,7 +289,7 @@ impl PCS1G_DBG_CFG {
 /// PCS1G debug status
 ///
 /// PCS1G debug status register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_DEBUG_STATUS(u32);
 impl PCS1G_DEBUG_STATUS {
     /// Indicates the mode of the TBI
@@ -310,7 +310,7 @@ impl PCS1G_DEBUG_STATUS {
 /// PCS1G Loopback Configuration
 ///
 /// PCS1G Loop-Back configuration register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_LB_CFG(u32);
 impl PCS1G_LB_CFG {
     /// Loops data in PCS (GMII side) from ingress direction to egress direction. Rate adaption is automatically performed in a FIFO within the PCS
@@ -358,7 +358,7 @@ impl PCS1G_LB_CFG {
 /// PCS1G link down counter
 ///
 /// PCS1G link down counter register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_LINK_DOWN_CNT(u32);
 impl PCS1G_LINK_DOWN_CNT {
     /// Link Down Counter. A counter that counts the number of times a link has been down. The counter does not saturate at 255 and is only cleared when writing 0 to the register
@@ -376,7 +376,7 @@ impl PCS1G_LINK_DOWN_CNT {
 /// PCS1G link status
 ///
 /// PCS1G link status register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_LINK_STATUS(u32);
 impl PCS1G_LINK_STATUS {
     /// Additional delay in rx-path; multiply the value of this field by the line-rate bit-period (800ps for 10/100/1000, 320ps for 2G5 mode.) This field is valid when the link is up, it remains constant for as long as the link is up, value may cange on link-down event. This field shows the number of data bits that is stored in the rx comma-alignment block, values of 0-9 is possible.
@@ -436,7 +436,7 @@ impl PCS1G_LINK_STATUS {
 /// PCS1G Low Power Idle Configuration
 ///
 /// Configuration register for Low Power Idle (Energy Efficient Ethernet)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_LPI_CFG(u32);
 impl PCS1G_LPI_CFG {
     /// LPI-Timer test mode.
@@ -498,7 +498,7 @@ impl PCS1G_LPI_CFG {
 /// PCS1G Low Power Idle Status
 ///
 /// Status register for Low Power Idle (Energy Efficient Ethernet)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_LPI_STATUS(u32);
 impl PCS1G_LPI_STATUS {
     /// Receiver Low-Power idle occurrence
@@ -588,7 +588,7 @@ impl PCS1G_LPI_STATUS {
 /// PCS1G wake error counter
 ///
 /// PCS1G Low Power Idle wake error counter (Energy Efficient Ethernet)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_LPI_WAKE_ERROR_CNT(u32);
 impl PCS1G_LPI_WAKE_ERROR_CNT {
     /// Wake Error Counter. A counter that is incremented when the link partner does not send wake-up burst in due time. The counter saturates at 65535 and is cleared when writing 0 to the register
@@ -606,7 +606,7 @@ impl PCS1G_LPI_WAKE_ERROR_CNT {
 /// PCS1G Mode Configuration
 ///
 /// PCS1G mode configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_MODE_CFG(u32);
 impl PCS1G_MODE_CFG {
     /// Selection of PCS operation
@@ -640,7 +640,7 @@ impl PCS1G_MODE_CFG {
 /// PCS1G Signal Detect Configuration
 ///
 /// PCS1G signal_detect configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_SD_CFG(u32);
 impl PCS1G_SD_CFG {
     /// Signal Detect Enable
@@ -688,7 +688,7 @@ impl PCS1G_SD_CFG {
 /// PCS1G sticky register
 ///
 /// PCS1G status register for sticky bits
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS1G_STICKY(u32);
 impl PCS1G_STICKY {
     /// The sticky bit is set when the link has been down - i.e. if the ANEG state machine has not been in the AN_DISABLE_LINK_OK or LINK_OK state for one or more clock cycles. This occurs if e.g. ANEG is restarted or for example if signal-detect or synchronization has been lost for more than 10 ms (1.6 ms in SGMII mode). By setting the UDLT bit, the required down time can be reduced to 9,77 us (1.56 us)

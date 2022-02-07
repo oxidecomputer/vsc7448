@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES6G ACJTAG Status
 ///
 /// Status register of (AC)JTAG debug capability
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_ACJTAG_STATUS(u32);
 impl SERDES6G_ACJTAG_STATUS {
     /// ACJTAG captured data for n leg
@@ -72,7 +72,7 @@ impl SERDES6G_ACJTAG_STATUS {
 /// SERDES6G IB Status register 0
 ///
 /// Status register for Signal Detect
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_STATUS0(u32);
 impl SERDES6G_IB_STATUS0 {
     /// Signals mission mode after calibration was done.
@@ -186,7 +186,7 @@ impl SERDES6G_IB_STATUS0 {
 /// SERDES6G IB Status register 1
 ///
 /// Regulation stage status register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_IB_STATUS1(u32);
 impl SERDES6G_IB_STATUS1 {
     /// Current high-pass-gain regulation value
@@ -240,7 +240,7 @@ impl SERDES6G_IB_STATUS1 {
 /// SERDES6G Pll Status
 ///
 /// Status register of SERDES6G RCPLL
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_PLL_STATUS(u32);
 impl SERDES6G_PLL_STATUS {
     /// Calibration error
@@ -300,7 +300,7 @@ impl SERDES6G_PLL_STATUS {
 /// SERDES6G REVID
 ///
 /// Revision ID register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_REVID(u32);
 impl SERDES6G_REVID {
     /// DES revision

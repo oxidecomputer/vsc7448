@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Loopback Configuration Register
 ///
 /// A number of internal loopback can be enabled in each device by the configuration bits in this register.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV_LB_CFG(u32);
 impl DEV_LB_CFG {
     /// An internal loopback from the egress Taxi bus to the ingress Taxi bus can be enabled.
@@ -62,7 +62,7 @@ impl DEV_LB_CFG {
     }
 }
 /// Debug Configuration Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV_MISC_CFG(u32);
 impl DEV_MISC_CFG {
     /// Clears RX_RESYNC_MAX_FILL_LVL that holds the max. fill level of RX RESYNC FIFO. This is a on shot bit automatically cleared by HW.
@@ -97,7 +97,7 @@ impl DEV_MISC_CFG {
 /// Port Proetection Configuration Register
 ///
 /// When port protedction is enabled the device will snoop and transmit data destined for another device 10G identified by port_protect_id.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV_PORT_PROTECT(u32);
 impl DEV_PORT_PROTECT {
     /// Enables snooping of egress data from another port. The port from which egress data is copied and transmitted at the Ethernet port is determined by the PORT_PROTECT_ID configuration.
@@ -129,7 +129,7 @@ impl DEV_PORT_PROTECT {
     }
 }
 /// Clock/Reset Control Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV_RST_CTRL(u32);
 impl DEV_RST_CTRL {
     /// Reset MAC Rx clock domains of the device.
@@ -217,7 +217,7 @@ impl DEV_RST_CTRL {
     }
 }
 /// Ingress (receive) Path Status Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV_RX_STATUS(u32);
 impl DEV_RX_STATUS {
     /// Maximum fill level of Rx resync FIFO. Fill level can be cleared by writing to RX_RESYNC_MAX_FILL_LVL_CLR bit.
@@ -235,7 +235,7 @@ impl DEV_RX_STATUS {
 /// Miscellaneous Sticky Bit Register
 ///
 /// Clear the sticky bits by writing a '1' in the relevant bitgroups.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV_STICKY(u32);
 impl DEV_STICKY {
     /// Indicates that a missing EOF has been detected. Writing a '1' clears the sticky bit.
@@ -310,7 +310,7 @@ impl DEV_STICKY {
     }
 }
 /// Control Energy Efficient Ethernet operation.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct EEE_CFG(u32);
 impl EEE_CFG {
     /// Enable EEE operation on the port. A port enters the low power mode when no egress queues have data ready. The port is activated when one of the following conditions is true: - A queue has been non-empty for EEE_TIMER_AGE. - A queue has more than EEE_HIGH_FRAMES frames pending. - A queue has more than EEE_HIGH_BYTES bytes pending. - A queue is marked as a fast queue, and has data pending.
@@ -382,7 +382,7 @@ impl EEE_CFG {
 /// Interrupt Source Register
 ///
 /// Interrupt Source Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct INTR(u32);
 impl INTR {
     /// Link status is down (source: PCS1G, PCS10G or PCS2x6G depending on current DEV10G mode)
@@ -456,7 +456,7 @@ impl INTR {
 /// Interrupt Enable Register
 ///
 /// Interrupt Enable Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct INTR_ENA(u32);
 impl INTR_ENA {
     /// Set to enable propagation of LINK_DWN interrupt.
@@ -522,7 +522,7 @@ impl INTR_ENA {
 /// Interrupt Status Register
 ///
 /// Interrupt Status Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct INTR_IDENT(u32);
 impl INTR_IDENT {
     /// Set if LINK_DWN interrupt is currently active (indicating interrupt towards higher level interrupt controller.)
@@ -586,7 +586,7 @@ impl INTR_IDENT {
     }
 }
 /// selects mode for which status counter will count the coresponding frames on RX and TX
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PFC_PAUSE_MODE_CTRL(u32);
 impl PFC_PAUSE_MODE_CTRL {
     /// '0' : counters will be having number of pause frame received/transmitted '1' : counters will be having number of PFC frame received/transmitted
@@ -602,7 +602,7 @@ impl PFC_PAUSE_MODE_CTRL {
     }
 }
 /// PTP Configuration per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PTP_CFG(u32);
 impl PTP_CFG {
     /// Configures the time domain this port is assigned to. This domain assignment must be made before the central counters in DEVCPU block is enabled.
@@ -654,7 +654,7 @@ impl PTP_CFG {
     }
 }
 /// PTP Bit time accuracy configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PTP_CFG_BTDLY(u32);
 impl PTP_CFG_BTDLY {
     /// Time in 100ps to subtract from timestamper in the ingress direction to compensate for static delay through the physical encoding layers.
@@ -706,7 +706,7 @@ impl PTP_CFG_BTDLY {
     }
 }
 /// PTP Events per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PTP_EVENTS(u32);
 impl PTP_EVENTS {
     /// The correction field update went out of range. Valid range is -2^47 to 2^48-1. The frame CF will be changed to the maximum value. This range check is bypassed if ADDS48 mode is in use on the ingress or egress port.

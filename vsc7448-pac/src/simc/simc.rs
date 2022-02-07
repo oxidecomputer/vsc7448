@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Baud Rate Select
 ///
 /// The register derives the frequency of the serial clock that regulates the data transfer. The 16-bit field in this register defines the SI divider value. This register can only be written when master is disabled (SIMC::SIMCEN.SIMCEN = 0).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BAUDR(u32);
 impl BAUDR {
     /// The LSB for this field is always set to 0 and is unaffected by a write operation, which ensures an even value is held in this register. If the value is 0, the serial output clock (si_clk) is disabled. The frequency of the si_clk is derived from the following equation: Fsclk_out = Fsystem_clk/SCKDV where SCKDV is any even value between 2 and 65534 and Fsystem_clk is 250MHz.
@@ -48,7 +48,7 @@ impl BAUDR {
 /// Control Register 0
 ///
 /// This register controls the serial data transfer. This register can only be written when master is disabled (SIMC::SIMCEN.SIMCEN = 0).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CTRLR0(u32);
 impl CTRLR0 {
     /// Control Frame Size. Selects the length of the control word for the Microwire frame format.
@@ -152,7 +152,7 @@ impl CTRLR0 {
 /// Control Register 1
 ///
 /// Control register 1 controls the end of serial transfers when in receive-only mode. This register can only be written when master is disabled (SIMC::SIMCEN.SIMCEN = 0).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CTRLR1(u32);
 impl CTRLR1 {
     /// When SIMC::CTRLR0.TMOD = 2, this register field sets the number of data frames to be continuously received by the master. The master continues to receive serial data until the number of data frames received is equal to this register value plus 1, which enables receiveing up to 64 KB of data in a continuous transfer.
@@ -170,7 +170,7 @@ impl CTRLR1 {
 /// Transmit/Receive FIFO
 ///
 /// 16-bit read/write buffer for the transmit/receive FIFOs. When the register is read, data in the receive FIFO buffer is accessed. When it is written to, data are moved into the transmit FIFO buffer; a write can occur only when SIMC::SIMCEN.SIMCEN = 1. FIFOs are reset when SIMC::SIMCEN.SIMCEN = 0. This register is replicated to allow burst access to fifo's; the replication index is not used when accessing the FIFO.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DR(u32);
 impl DR {
     /// Data is aligned to bit 0 (right-justified) when accessing less than 16 bit data-words. Read = Receive FIFO buffer. Write = Transmit FIFO buffer.
@@ -186,7 +186,7 @@ impl DR {
     }
 }
 /// SIMC Combined Interrupt Clear
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ICR(u32);
 impl ICR {
     /// This field is set when any of the master's TXO, RXO, RXU, or MST interrupts are active. Reading from this register clears all interrupts, as reading from SIMC::TXOICR, SIMC::RXOICR, SIMC::RXUICR, and SIMC::MSTICR registers.
@@ -202,7 +202,7 @@ impl ICR {
     }
 }
 /// Interrupt Mask
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct IMR(u32);
 impl IMR {
     /// Set to enable Multi-Master Contention Interrupt
@@ -280,7 +280,7 @@ impl IMR {
 /// Interrupt Status
 ///
 /// If any bit is set in this register, then the SI Master Controller is indicating interrupt towards the VCore Interrupt Controller.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ISR(u32);
 impl ISR {
     /// Multi-Master Contention Interrupt Status, this field is masked by SIMC::IMR.MSTIM.
@@ -356,7 +356,7 @@ impl ISR {
     }
 }
 /// Multi-Master Contention Interrupt Clear
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MSTICR(u32);
 impl MSTICR {
     /// This field is set when Multi-Master Contention Interrupt is active, interrupt is cleared by reading this register.
@@ -374,7 +374,7 @@ impl MSTICR {
 /// Microwire Control Register
 ///
 /// This register controls the direction of the data word for the half-duplex Microwire serial protocol. This register can only be written when master is disabled (SIMC::SIMCEN.SIMCEN = 0).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MWCR(u32);
 impl MWCR {
     /// Defines the direction of the data word when the Microwire serial protocol is used. When this bit is set to 0, the data word is received by the master from the external serial device. When this bit is set to 1, the data word is transmitted from the master to the external serial device.
@@ -418,7 +418,7 @@ impl MWCR {
     }
 }
 /// Raw Interrupt Status
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RISR(u32);
 impl RISR {
     /// Current status of Multi-Master Contention Interrupt before masking.
@@ -494,7 +494,7 @@ impl RISR {
     }
 }
 /// Receive FIFO Level
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RXFLR(u32);
 impl RXFLR {
     /// Contains the number of valid data entries in the receive FIFO.
@@ -510,7 +510,7 @@ impl RXFLR {
     }
 }
 /// Receive FIFO Threshold level
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RXFTLR(u32);
 impl RXFTLR {
     /// When the number of receive FIFO entries is greater than or equal to this value + 1, the receive FIFO full interrupt is triggered. The receive FIFO depth is 40, do not program value exceeding 39.
@@ -526,7 +526,7 @@ impl RXFTLR {
     }
 }
 /// Receive FIFO Overflow Interrupt Clear
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RXOICR(u32);
 impl RXOICR {
     /// This field is set when Receive FIFO Overflow Interrupt is active, interrupt is cleared by reading this register.
@@ -542,7 +542,7 @@ impl RXOICR {
     }
 }
 /// Receive FIFO Underflow Interrupt Clear
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RXUICR(u32);
 impl RXUICR {
     /// This field is set when Receive FIFO Underflow Interrupt is active, interrupt is cleared by reading this register.
@@ -560,7 +560,7 @@ impl RXUICR {
 /// Slave Enable
 ///
 /// The register enables the individual slave select output lines from the master. 16 slave-select output pins are available on the master. This register can only be written when master is disabled and not busy.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SER(u32);
 impl SER {
     /// Each bit in this register corresponds to a slave select line from the master. When a bit in this register is set, the corresponding slave select line from the master is activated when a serial transfer begins. Setting or clearing bits in this register have no effect on the corresponding slave select outputs until a transfer is started. Before beginning a transfer, enable the bit in this register that corresponds to the slave device with which the master wants to communicate. When not operating in broadcast mode, only one bit in this field should be set.
@@ -578,7 +578,7 @@ impl SER {
     }
 }
 /// SIMC Enable
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SIMCEN(u32);
 impl SIMCEN {
     /// Set to enable master operations. When disabled, all serial transfers are halted immediately. Transmit and receive FIFO buffers are cleared when disabled. It is impossible to program some of the master control registers when enabled. Note: The SI Master Controller must own the SI interface before it is enabled, see ICPU_CFG::GENERAL_CTRL.IF_SI_OWNER for more information.
@@ -594,7 +594,7 @@ impl SIMCEN {
     }
 }
 /// Status Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SR(u32);
 impl SR {
     /// Set when serial transfer is in progress. Cleared when master is idle or disabled.
@@ -658,7 +658,7 @@ impl SR {
     }
 }
 /// Transmit FIFO Level
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TXFLR(u32);
 impl TXFLR {
     /// Contains the number of valid data entries in the transmit FIFO.
@@ -674,7 +674,7 @@ impl TXFLR {
     }
 }
 /// Transmit FIFO Threshold Level
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TXFTLR(u32);
 impl TXFTLR {
     /// When the number of transmit FIFO entries is less than or equal to this value, the transmit FIFO empty interrupt is triggered. The transmit FIFO depth is 8, do not program value exceeding 7.
@@ -690,7 +690,7 @@ impl TXFTLR {
     }
 }
 /// Transmit FIFO Overflow Interrupt Clear
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TXOICR(u32);
 impl TXOICR {
     /// This field is set when Transmit FIFO Overflow Interrupt is active, interrupt is cleared by reading this register.

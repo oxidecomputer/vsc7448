@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES1G Common Cfg
 ///
 /// Configuration register for common SERDES1G functions Note: When enabling the facility loop (ena_floop) also the phase alignment in the serializer has to be enabled and configured adequate.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_COMMON_CFG(u32);
 impl SERDES1G_COMMON_CFG {
     /// Enable direct line
@@ -216,7 +216,7 @@ impl SERDES1G_COMMON_CFG {
 /// SERDES1G Deserializer Cfg
 ///
 /// Configuration register for SERDES1G deserializer
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_DES_CFG(u32);
 impl SERDES1G_DES_CFG {
     /// Bandwidth selection for proportional path of CDR loop.
@@ -320,7 +320,7 @@ impl SERDES1G_DES_CFG {
 /// SERDES1G Input Buffer Cfg
 ///
 /// Configuration register for SERDES1G input buffer
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_IB_CFG(u32);
 impl SERDES1G_IB_CFG {
     /// Hysteresis level for AC-JTAG Input
@@ -490,7 +490,7 @@ impl SERDES1G_IB_CFG {
 /// SERDES1G Output Buffer Cfg
 ///
 /// Configuration register for SERDES1G output buffer
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_OB_CFG(u32);
 impl SERDES1G_OB_CFG {
     /// Amplitude control in steps of 50mVppd.
@@ -586,7 +586,7 @@ impl SERDES1G_OB_CFG {
 /// SERDES1G Pll Cfg
 ///
 /// Configuration register for SERDES1G RCPLL
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_PLL_CFG(u32);
 impl SERDES1G_PLL_CFG {
     /// Enable feedback divider (divide by two)
@@ -681,7 +681,7 @@ impl SERDES1G_PLL_CFG {
 /// SERDES1G Serializer Cfg
 ///
 /// Configuration register for SERDES1G serializer
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_SER_CFG(u32);
 impl SERDES1G_SER_CFG {
     /// Select reference clock source for phase alignment

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Core reset control
 ///
 /// Controls reset and initialization of the switching core. Proper startup sequence is: - Enable memories - Initialize memories - Enable core
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RAM_INIT(u32);
 impl RAM_INIT {
     /// Core memory controllers are enabled when this field is set.

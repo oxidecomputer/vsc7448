@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS2X6G Error Counter
 ///
 /// PCS2X6G error counter
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS2X6G_ERR_CNT_STAT(u32);
 impl PCS2X6G_ERR_CNT_STAT {
     /// Number of errors detected in 64B/66B decoder.
@@ -48,7 +48,7 @@ impl PCS2X6G_ERR_CNT_STAT {
 /// PCS2X6G Error Status
 ///
 /// Error indication of 64B/66B PCS2X6G logic
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS2X6G_ERR_STATUS(u32);
 impl PCS2X6G_ERR_STATUS {
     /// Alignment lost in deskew logic
@@ -110,7 +110,7 @@ impl PCS2X6G_ERR_STATUS {
 /// PCS2X6G Status
 ///
 /// Status of PCS2X6G logic
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS2X6G_STATUS(u32);
 impl PCS2X6G_STATUS {
     /// Status of deskew logic

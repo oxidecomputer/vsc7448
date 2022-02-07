@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS Receiver comma alignment Register
 ///
 /// Receive comma alignment status Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_CGALIGN_STATUS(u32);
 impl PCS_XAUI_CGALIGN_STATUS {
     /// Delay through the lane barrelshifter. Lane N delay is stored in bits 5N+4 to 5N. Unit is line bit times
@@ -48,7 +48,7 @@ impl PCS_XAUI_CGALIGN_STATUS {
 /// PCS Receiver Deskew Register
 ///
 /// Receive deskew status Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_DESKEW_STATUS(u32);
 impl PCS_XAUI_DESKEW_STATUS {
     /// Delay through deskew fifo for each lane. Lane N delay is stored in bits 4N+3 to 4N. Unit is PCS clock cycles
@@ -66,7 +66,7 @@ impl PCS_XAUI_DESKEW_STATUS {
 /// PCS Low Power Idle Status
 ///
 /// Status register for Low Power Idle (Energy Efficient Ethernet)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_LPI_STATUS(u32);
 impl PCS_XAUI_LPI_STATUS {
     /// Receiver Low-Pwer idle occurrence
@@ -170,7 +170,7 @@ impl PCS_XAUI_LPI_STATUS {
 /// PCS Receiver Lane Error Status
 ///
 /// Receiver Lane Error Status register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_RX_ERROR_STATUS(u32);
 impl PCS_XAUI_RX_ERROR_STATUS {
     /// Alignment lost in deskew logic
@@ -218,7 +218,7 @@ impl PCS_XAUI_RX_ERROR_STATUS {
 /// PCS RX 10b8b Codegroup Error and Lane 3 Error Counter
 ///
 /// 10b8b Decoder Codegroup error counter. In test pattern check mode, this counter counts the errors of lane 3. In the latter case the counter is incremented by one whenever at least one out of eighty received bits (eight symbols) is corrupted.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS(u32);
 impl PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS {
     /// Number of detected codegroup errors/Number of errors in lane 3
@@ -234,7 +234,7 @@ impl PCS_XAUI_RX_FIFO_CG_ERR_L3_CNT_STATUS {
 /// PCS RX 10b8b Disparity Error and Lane 2 Error Counter
 ///
 /// 10b8b Decoder Disparity error counter. In test pattern check mode, this counter counts the errors of lane 2. In the latter case the counter is incremented by one whenever at least one out of eighty received bits (eight symbols) is corrupted.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS(u32);
 impl PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS {
     /// Number of detected disparity errors/Number of errors in lane 2
@@ -250,7 +250,7 @@ impl PCS_XAUI_RX_FIFO_D_ERR_L2_CNT_STATUS {
 /// PCS RX Fifo Overflow Error and Lane 0 Error Counter
 ///
 /// Receive Fifo Overflow error counter. In test pattern check mode, this counter counts the errors of lane 0. In the latter case the counter is incremented by one whenever at least one out of eighty received bits (eight symbols) is corrupted.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS(u32);
 impl PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS {
     /// Number of detected fifo overflow errors/Number of errors in lane 0
@@ -266,7 +266,7 @@ impl PCS_XAUI_RX_FIFO_OF_ERR_L0_CNT_STATUS {
 /// PCS RX Fifo Underflow Error and Lane 1 Error Counter
 ///
 /// Receive Fifo Underflow error counter. In test pattern check mode, this counter counts the errors of lane 1. In the latter case the counter is incremented by one whenever at least one out of eighty received bits (eight symbols) is corrupted.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS(u32);
 impl PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS {
     /// Number of detected fifo underflow errors/Number of errors in lane 1
@@ -282,7 +282,7 @@ impl PCS_XAUI_RX_FIFO_UF_ERR_L1_CNT_STATUS {
 /// PCS Receiver Sequence Result Register
 ///
 /// Sequence Receive Status Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_RX_SEQ_REC_STATUS(u32);
 impl PCS_XAUI_RX_SEQ_REC_STATUS {
     /// Received ||Q|| code (Sequence information, i.e. lower 24 bit of a Sequence)
@@ -314,7 +314,7 @@ impl PCS_XAUI_RX_SEQ_REC_STATUS {
 /// PCS Receiver Status Register
 ///
 /// Receive Lane Status Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_RX_STATUS(u32);
 impl PCS_XAUI_RX_STATUS {
     /// Status of lane alignment

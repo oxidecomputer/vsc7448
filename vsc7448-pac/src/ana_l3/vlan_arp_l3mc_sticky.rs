@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// ARP and L3MC table related diagnostic registers
 ///
 /// ARP and L3MC table related diagnostic registers.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct L3_ARP_IPMC_STICKY(u32);
 impl L3_ARP_IPMC_STICKY {
     /// Set if the IPv4/IPv6 DIP or (DIP,SIP) lookup failed due to - No match in LPM table - Unsupported action type in LPM table - ARP table lookup returns an invalid entry.
@@ -394,7 +394,7 @@ impl L3_ARP_IPMC_STICKY {
     }
 }
 /// VLAN Diagnostic
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_STICKY(u32);
 impl VLAN_STICKY {
     /// Set if a frame has been filtered due to MSTP_FWD_MASK. Related parameters: ANA_L3:MSTP:MSTP_FWD_CFG.MSTP_FWD_MASK

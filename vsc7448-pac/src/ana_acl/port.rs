@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PTP port configuration
 ///
 /// Clock domain selection and mapping of ingress port number.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PTP_CFG(u32);
 impl PTP_CFG {
     /// Selects the PTP time domain to use when updating receiveTimestamp in Delay_Resp frames.
@@ -62,7 +62,7 @@ impl PTP_CFG {
 /// VCAP_IS2 key selection
 ///
 /// Key selection for VCAP_IS2 lookups. Replicated per lookup.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VCAP_S2_KEY_SEL(u32);
 impl VCAP_S2_KEY_SEL {
     /// Applies to ARP/RARP frames.

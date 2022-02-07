@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES1G Pll Status
 ///
 /// Status register of SERDES1G RCPLL
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_PLL_STATUS(u32);
 impl SERDES1G_PLL_STATUS {
     /// Calibration error

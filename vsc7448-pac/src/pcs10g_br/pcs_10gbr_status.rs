@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS interrupt status register
 ///
 /// Contains the sticky bits representing interrupts from the PCS. Set by logic. Write 1 to clear.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_INTR_STAT(u32);
 impl PCS_INTR_STAT {
     /// Interrupt when an invalid Rx block is detected
@@ -148,7 +148,7 @@ impl PCS_INTR_STAT {
 /// PCS status register
 ///
 /// Contains status information from the PCS core
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_STATUS(u32);
 impl PCS_STATUS {
     /// The block_lock status from the synchronization state machine

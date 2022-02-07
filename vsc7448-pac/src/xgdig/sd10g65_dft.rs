@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// DFT BIST configuration register 0
 ///
 /// BIST configuration register for SD10G65 DFT controlling 'check and wait-stable' mode. The length of a '40-bit clock cycle' is defined by 40 divided by the chosen bit rate per second.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_BIST_CFG0(u32);
 impl DFT_BIST_CFG0 {
     /// BIST FSM: threshold to enter FINISHED state (refer to cfg field frame_len_cfg)
@@ -64,7 +64,7 @@ impl DFT_BIST_CFG0 {
 /// DFT BIST configuration register 1
 ///
 /// BIST configuration register for SD10G65 DFT	controlling 'stable' mode. The length of a '40-bit clock cycle' is defined by 40 divided by the chosen bit rate per second.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_BIST_CFG1(u32);
 impl DFT_BIST_CFG1 {
     /// BIST FSM: threshold to iterate counter for max_stable_attempts
@@ -98,7 +98,7 @@ impl DFT_BIST_CFG1 {
 /// DFT BIST configuration register 2
 ///
 /// BIST configuration register for SD10G65 DFT controlling frame length in 'check' mode.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_BIST_CFG2(u32);
 impl DFT_BIST_CFG2 {
     /// BIST FSM: threshold to iterate counter for max_bist_frames (refer to cfg field max_bist_frames_cfg)
@@ -116,7 +116,7 @@ impl DFT_BIST_CFG2 {
 /// DFT BIST configuration register 3
 ///
 /// BIST configuration register for SD10G65 DFT controlling stable attempts in ' wait-stable' mode.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_BIST_CFG3(u32);
 impl DFT_BIST_CFG3 {
     /// BIST FSM: threshold to enter SYNC_ERR state
@@ -134,7 +134,7 @@ impl DFT_BIST_CFG3 {
 /// DFT clock compare config
 ///
 /// Configuration register for Clock Compare logic. Compared clocks are always divided by 4 before any further processing. A clock edge on tx_clk increments the counter, a clock edge on rx_clk decrements the counter. If only one clock is selected for clock comparison, the number of clock cycles within a given time can be measured.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_CLK_CMP_CFG(u32);
 impl DFT_CLK_CMP_CFG {
     /// Clock compare divider for RX clock
@@ -234,7 +234,7 @@ impl DFT_CLK_CMP_CFG {
 /// DFT clock comparison maximum value
 ///
 /// Clock comparison max result. Can be used to judge e.g. SSC clock deviation. This register is updated after clock comparison timer has expired. In continuous mode this register is periodically updated.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_CLK_CMP_MAXVAL(u32);
 impl DFT_CLK_CMP_MAXVAL {
     /// Clock comparison max value (maximum measured difference between clk0 and clk1)
@@ -250,7 +250,7 @@ impl DFT_CLK_CMP_MAXVAL {
 /// DFT clock compare timer
 ///
 /// Clock comparison timer. After timer has expired, current clock comparison value is stored. The timer is clocked with core_clk (typically f=250MHz or 4ns period)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_CLK_CMP_TIMER(u32);
 impl DFT_CLK_CMP_TIMER {
     /// Clock comparison timer. Counter interval is N + 1 core clock cycles.
@@ -266,7 +266,7 @@ impl DFT_CLK_CMP_TIMER {
 /// DFT clock comparison value
 ///
 /// Clock comparison result. This register is updated after clock comparison timer has expired. In continuous mode this register is periodically updated.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_CLK_CMP_VALUE(u32);
 impl DFT_CLK_CMP_VALUE {
     /// Clock comparison value (difference between clk0 and clk1)
@@ -282,7 +282,7 @@ impl DFT_CLK_CMP_VALUE {
 /// DFT clock generator configuration register
 ///
 /// Configuration register for clock generator to build a low speed clock signal of variable length and variable duty cycle provided on all data bits simultaniously
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_CLK_GEN_CFG(u32);
 impl DFT_CLK_GEN_CFG {
     /// Duty cycle distortion: Refer to configuration fields 'cg_per_cfg' and 'cg_per_jump_cfg' for encoding description
@@ -342,7 +342,7 @@ impl DFT_CLK_GEN_CFG {
 /// DFT error status register
 ///
 /// Status register for SD10G65 DFT containing the error counter value
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_ERR_STAT(u32);
 impl DFT_ERR_STAT {
     /// Counter output depending on cnt_cfg
@@ -358,7 +358,7 @@ impl DFT_ERR_STAT {
 /// DFT miscellaneous status register
 ///
 /// Status register for SD10G65 DFT
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_MAIN_STAT(u32);
 impl DFT_MAIN_STAT {
     /// BIST is active (i.e. left DOZE but did not enter a final state)
@@ -448,7 +448,7 @@ impl DFT_MAIN_STAT {
 /// DFT PRBS status register
 ///
 /// Status register for SD10G65 DFT containing the PRBS data related to 1st sync lost event
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_PRBS_STAT(u32);
 impl DFT_PRBS_STAT {
     /// PRBS data after first sync lost
@@ -464,7 +464,7 @@ impl DFT_PRBS_STAT {
 /// DFT Main configuration register
 ///
 /// Main configuration register for SD10G65 DFT.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_RX_CFG(u32);
 impl DFT_RX_CFG {
     /// States in which error counting is enabled
@@ -710,7 +710,7 @@ impl DFT_RX_CFG {
 /// DFT pattern mask configuration register
 ///
 /// Configuration register for SD10G65 DFT to mask data bits preventing error counting for these bits.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_RX_MASK_CFG(u32);
 impl DFT_RX_MASK_CFG {
     /// Mask out (active high) errors in 32 LSB data bits
@@ -726,7 +726,7 @@ impl DFT_RX_MASK_CFG {
 /// DFT Pattern checker configuration register
 ///
 /// Pattern checker configuration register for SD10G65 DFT.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_RX_PAT_CFG(u32);
 impl DFT_RX_PAT_CFG {
     /// Maximum address in Checker (before continuing with address 0)
@@ -780,7 +780,7 @@ impl DFT_RX_PAT_CFG {
 /// DFT Main configuration register
 ///
 /// Main configuration register for SD10G65 DFT.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_TX_CFG(u32);
 impl DFT_TX_CFG {
     /// Enable TX DFT capability
@@ -894,7 +894,7 @@ impl DFT_TX_CFG {
 /// DFT TX constant pattern status register
 ///
 /// Status register for SD10G65 DFT containing the constant patterns used for comparison (last in LEARN mode)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_TX_CMP_DAT_STAT(u32);
 impl DFT_TX_CMP_DAT_STAT {
     /// 10 bits data word at address 'store_addr_cfg' used for further observation by SW
@@ -924,7 +924,7 @@ impl DFT_TX_CMP_DAT_STAT {
 /// DFT TX Error insertion configuration register
 ///
 /// Configuration register for explicit error insertion into DFT driven data stream. Allows to insert expected errors to check e.g. TX/RX connectivity
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_TX_ERR_INSERT_CFG(u32);
 impl DFT_TX_ERR_INSERT_CFG {
     /// Preload value for clock generator timer (refer also to configuration field cg_mode_cfg).
@@ -1012,7 +1012,7 @@ impl DFT_TX_ERR_INSERT_CFG {
 /// DFT TX Constant pattern configuration register
 ///
 /// TX Constant MSB pattern configuration register for SD10G65 DFT.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DFT_TX_PAT_CFG(u32);
 impl DFT_TX_PAT_CFG {
     /// Maximum address in generator (before continuing with address 0)

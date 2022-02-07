@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES6G DFT Status
 ///
 /// Status register of SERDES6G DFT functions
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_DFT_STATUS(u32);
 impl SERDES6G_DFT_STATUS {
     /// BIST activity
@@ -148,7 +148,7 @@ impl SERDES6G_DFT_STATUS {
 /// SERDES6G Error Counter
 ///
 /// Error counter for SERDES6G PRBS
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_ERR_CNT(u32);
 impl SERDES6G_ERR_CNT {
     /// PRBS error counter
@@ -166,7 +166,7 @@ impl SERDES6G_ERR_CNT {
 /// SERDES6G Misc Status
 ///
 /// Status register for miscellaneous functions
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES6G_MISC_STATUS(u32);
 impl SERDES6G_MISC_STATUS {
     /// Phase selection of DES in 100fx mode

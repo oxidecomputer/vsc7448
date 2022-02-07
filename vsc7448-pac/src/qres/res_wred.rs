@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Random Early Discard (WRED) configuration
 ///
 /// Configuration of Random Early Discard (RED) profile per RedGroup/QoS class/DP level. The profile index is calulated as Group*24+(DP-1)*8+QOS. There are no profiled for DP=0..
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct WRED_PROFILE(u32);
 impl WRED_PROFILE {
     /// See WM_RED_LOW. Unit is 2816 bytes.

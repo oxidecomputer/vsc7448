@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// VCAP_IS2 counter
 ///
 /// The CNT_TBL counters count number of hits in VCAP_IS2. For each of the two VCAP_IS2 lookups, a VCAP match results in the associated counter being incremented using the VCAP_IS2 action CNT_ID as index.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CNT(u32);
 impl CNT {
     /// VCAP_IS2 counter value.

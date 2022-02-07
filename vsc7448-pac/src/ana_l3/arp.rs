@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// ARP table data
 ///
 /// Configuration registers for ARP table
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ARP_CFG_0(u32);
 impl ARP_CFG_0 {
     /// Enable entry for address resolution usage.
@@ -122,7 +122,7 @@ impl ARP_CFG_0 {
 /// ARP table data 1
 ///
 /// Configuration registers for ARP table
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ARP_CFG_1(u32);
 impl ARP_CFG_1 {
     /// 32 least significant bits of MAC address. Used for ARP entry and/or (SMAC,SIP)/(DMAC,DIP) check. Most significant bits are configured in ARP_CFG_0.MAC_MSB. If MAC address for ARP entry is all-zeros, then the frame is redirected to CPU. CPU queue used for such frames is configured in ZERO_DMAC_CPU_QU.

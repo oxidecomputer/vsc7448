@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Diagnostic information
 ///
 /// Diagnostic sticky bits.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct STICKY(u32);
 impl STICKY {
     /// Set if frame is redirected due to VCAP IS2. Write 1 to clear this field.

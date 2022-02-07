@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Miscellaneous CCM configuration
 ///
 /// Misc configuration for CCM(-LM) PDU handling.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CCM_CFG(u32);
 impl CCM_CFG {
     /// The VOE inserts LM information into Tx CCM frames injected by internal or external CPU if the following bit field is asserted. * VOP:VOE_STAT:CCM_STAT.CCM_LM_INSERT_NXT This is known as LM insertion. The VOE clears this bit field, when inserting LM information into a Tx CCM PDU. The assertion of this bit field can be done either by the CPU or automatically based on LOC timeout counter expiry. To enable automatic LM insertion a LOC timeout counter must be assigned for LM insertion, by programming the number of the LOC timeout counter into this field. Every time the the configured LOC timeout counter expires, the above bit field will be asserted. This configuration will NOT affect the CCM PDU period field. Note that the rate at which LM information is inserted is twice the rate indicated by the LOC_PERIOD_VAL of the selected timeout counter. I.e. if the VOP::LOC_PERIOD_CFG.LOC_PERIOD_VAL of the selected timeout counter is set to 10 ms, LM information will be inserted every 5 ms. Note: VOP:VOE_CONF:OAM_HW_CTRL.CCM_LM_ENA must be asserted prior to configuring this register.
@@ -126,7 +126,7 @@ impl CCM_CFG {
 /// Configuration of CCM MEGID
 ///
 /// Configures 48 byte MEG ID (lowest replication index correspond to MSB) to be verified in incoming CCM(-LM) frames. In case MEG ID verification is enabled (VOP:VOE_CONF:CCM_CFG.CCM_MEGID_CHK_ENA = 1) the value of the CCM.MEGID field of incoming CCM(-LM) frames will be verified against the value configured in this register. If there is a mismatch, the following bit will be asserted: * VOP:VOE_STAT:CCM_RX_LAST.CCM_MEGID_ERR When the above bit changes value, the VOE optionally generates an interrupt.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CCM_MEGID_CFG(u32);
 impl CCM_MEGID_CFG {
     /// See register description.
@@ -142,7 +142,7 @@ impl CCM_MEGID_CFG {
 /// Configuration of G.8113.1 OAM
 ///
 /// Register contains bit for configuring the G.8113.1 functionality of the VOE. Configuration only has effect if the VOE is configured for G.8113.1 OAM. * VOP:VOE_CONF:VOE_CTRL.G_8113_1_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct G_8113_1_CFG(u32);
 impl G_8113_1_CFG {
     /// When running G.8113 LBM / LBR there are two phases: Discovery phase. ---------------------------- 'Initiator MEPs' transmit Discovery 'Target MEP ID' TLVs to the peers (MIPs / MEP) on the MPLS connection. The peers will respond with 'Replying MEP ID' TLVs including their MIP / MEP identification. In this phase the 'Initiator MEP' cannot verify the incoming 'Replying MEP ID' TLVs. When configured for 'Discovery', the 'Initiator VOE' will discard incoming Discovery TLVs (ID Sub-Type: 0, 1) The following sticky bit is asserted: * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_ILLEGAL_SUBTYPE_STICKY Discarded frames can optionally be extracted to the CPU error queue: * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBR_RX_ERR_EXTR All other TLVs are accepted without further verification and can optionally be extracted the CPU for peer MEP identification. * VOP:VOE_CONF:OAM_CPU_COPY_CTRL.LBR_CPU_COPY_ENA Connection Verification (CV) phase. ------------------------------------------------- Once the MEP is aware the identity of the MIPs, MEP along the MPLS connection, it will transmit LBM PDUs with 'Target MEP ID' TLVs directed at the specific MIPs / MEPs. When receiving the Rx LBR PDUs it must verify that the 'Reponder MIP / MEP' matches the expected peer MIP/MEP. In this phase the VOE can be configured to expect either 'Replying MEP ID' TLV (ID Sub-Type: 2) or 'Replying MIP ID' TLV (ID Sub-Type: 3) If an unexpected ID Sub-Type is received, the frame is marked as invalid and the following sticky bit is asserted: * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_ILLEGAL_SUBTYPE_STICKY Discarded frames can optionally be extracted to the CPU error queue: * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBR_RX_ERR_EXTR When an expected ID Sub-Type the contents is validated against the values configured in the VOE as follows: CV - MIP (ID Sub-Type: 3) -------------------------------------------- If 'Replying MEP ID TLV' verification is enabled: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_LBX_MEXID_CHK_ENA The VOE will verify the content of the TLV as follows: * TLV.CarrierCode == G_8113_1_REMOTE_MIPID[13:8] * TLV.NodeID == G_8113_1_REMOTE_MIPID[7:4] * TLV.IfNum == G_8113_1_REMOTE_MIPID[3:0] CV - MEP (ID Sub-Type: 2) --------------------------------------------- If 'Replying MEP ID TLV' verification is enabled: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_LBX_MEXID_CHK_ENA The VOE will verify the MEP ID of the incoming LBR 'Replying MEP ID' TLV. If the verification fails (MIP / MEP ID), the frame is marked as invalid. The following sticky bit is asserted: * VOP:VOE_STAT:OAM_RX_STICKY2.G_8113_1_LBX_RX_ILLEGAL_MEXID_STICKY The frame can optionally be extracted to the CPU error queue: * VOP:VOE_STAT:PDU_EXTRACT.G_8113_1_LBR_RX_ERR_EXTR
@@ -176,7 +176,7 @@ impl G_8113_1_CFG {
 /// G.8113.1 MIP ID verification configuration
 ///
 /// When the G.8113.1 'Initator MEP' is configured for : Connection Verification - MIP: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_INITIATOR_FUNCTION There are 14 bytes in the 'Replying MIP ID' TLV which must be verified. These are configured in this register. I practice the register is split into 4 separate registers: * G_8113_1_REMOTE_MIPID (32 bits) * G_8113_1_REMOTE_MIPID1 (32 bits) * G_8113_1_REMOTE_MIPID2 (32 bits) * G_8113_1_REMOTE_MIPID3 (16 bits) The below description will assume that these 4 registers are concatenated into one 14 byte long register. The bytes to be verified in the 'Replying MIP ID' TLV are configured as follows: * LBR.CarrierCode == G_8113_1_REMOTE_MIPID[13:8] * LBR.NodeID == G_8113_1_REMOTE_MIPID[7:4] * LBR.IfNum == G_8113_1_REMOTE_MIPID[3:0]
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct G_8113_1_REMOTE_MIPID(u32);
 impl G_8113_1_REMOTE_MIPID {
     /// See register description.
@@ -192,7 +192,7 @@ impl G_8113_1_REMOTE_MIPID {
 /// G.8113.1 MIP ID verification configuration
 ///
 /// When the G.8113.1 'Initator MEP' is configured for : Connection Verification - MIP: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_INITIATOR_FUNCTION There are 14 bytes in the 'Replying MIP ID' TLV which must be verified. These are configured in this register. I practice the register is split into 4 separate registers: * G_8113_1_REMOTE_MIPID (32 bits) * G_8113_1_REMOTE_MIPID1 (32 bits) * G_8113_1_REMOTE_MIPID2 (32 bits) * G_8113_1_REMOTE_MIPID3 (16 bits) The below description will assume that these 4 registers are concatenated into one 14 byte long register. The bytes to be verified in the 'Replying MIP ID' TLV are configured as follows: * LBR.CarrierCode == G_8113_1_REMOTE_MIPID[13:8] * LBR.NodeID == G_8113_1_REMOTE_MIPID[7:4] * LBR.IfNum == G_8113_1_REMOTE_MIPID[3:0]
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct G_8113_1_REMOTE_MIPID1(u32);
 impl G_8113_1_REMOTE_MIPID1 {
     /// See register description.
@@ -208,7 +208,7 @@ impl G_8113_1_REMOTE_MIPID1 {
 /// G.8113.1 MIP ID verification configuration
 ///
 /// When the G.8113.1 'Initator MEP' is configured for : Connection Verification - MIP: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_INITIATOR_FUNCTION There are 14 bytes in the 'Replying MIP ID' TLV which must be verified. These are configured in this register. I practice the register is split into 4 separate registers: * G_8113_1_REMOTE_MIPID (32 bits) * G_8113_1_REMOTE_MIPID1 (32 bits) * G_8113_1_REMOTE_MIPID2 (32 bits) * G_8113_1_REMOTE_MIPID3 (16 bits) The below description will assume that these 4 registers are concatenated into one 14 byte long register. The bytes to be verified in the 'Replying MIP ID' TLV are configured as follows: * LBR.CarrierCode == G_8113_1_REMOTE_MIPID[13:8] * LBR.NodeID == G_8113_1_REMOTE_MIPID[7:4] * LBR.IfNum == G_8113_1_REMOTE_MIPID[3:0]
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct G_8113_1_REMOTE_MIPID2(u32);
 impl G_8113_1_REMOTE_MIPID2 {
     /// See register description.
@@ -224,7 +224,7 @@ impl G_8113_1_REMOTE_MIPID2 {
 /// G.8113.1 MIP ID verification configuration
 ///
 /// When the G.8113.1 'Initator MEP' is configured for : Connection Verification - MIP: * VOP:VOE_CONF:G_8113_1_CFG.G_8113_1_INITIATOR_FUNCTION There are 14 bytes in the 'Replying MIP ID' TLV which must be verified. These are configured in this register. I practice the register is split into 4 separate registers: * G_8113_1_REMOTE_MIPID (32 bits) * G_8113_1_REMOTE_MIPID1 (32 bits) * G_8113_1_REMOTE_MIPID2 (32 bits) * G_8113_1_REMOTE_MIPID3 (16 bits) The below description will assume that these 4 registers are concatenated into one 14 byte long register. The bytes to be verified in the 'Replying MIP ID' TLV are configured as follows: * LBR.CarrierCode == G_8113_1_REMOTE_MIPID[13:8] * LBR.NodeID == G_8113_1_REMOTE_MIPID[7:4] * LBR.IfNum == G_8113_1_REMOTE_MIPID[3:0]
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct G_8113_1_REMOTE_MIPID3(u32);
 impl G_8113_1_REMOTE_MIPID3 {
     /// See register description.
@@ -242,7 +242,7 @@ impl G_8113_1_REMOTE_MIPID3 {
 /// OAM Loopback configuration
 ///
 /// Contains configuration for loopbing back frames. I.e. returning OAM replies in response to messages. When OAM Messages are looped into OAM Replies, by the VOE, the ISDX of the OAM Reply is set to the value configured in: * LB_ISDX regardless of the ISDX of the incoming OAM Message. All OAM Replies are assigned the same ISDX value.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LOOPBACK_CFG(u32);
 impl LOOPBACK_CFG {
     /// When OAM PDUs are looped, the DP bits can be cleared or keep their value depending on the setting of this bit. This only affects frames being looped: * LBM --> LBR * LMM --> LMR * DMM --> DMR * SLM --> SLR
@@ -288,7 +288,7 @@ impl LOOPBACK_CFG {
 /// Enables loopback of OAM Messages to OAM Replies
 ///
 /// Some OAM PDU types can be looped, by returning a Reply in response to a Message. The looping of these PDUs is enabled by setting the bit fields in this register. When looping a PDU, both the Message and the Reply must be enabled for PDU updating: * VOP:VOE_CONF:OAM_HW_CTRL.*
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LOOPBACK_ENA(u32);
 impl LOOPBACK_ENA {
     /// This field determines whether incoming DMM frames are looped and transmitted as DMR frames. If loopback is not enabled frames are discarded. Incoming DMM frames can optionally be extracted to the CPU, regardless of loopback setting.
@@ -336,7 +336,7 @@ impl LOOPBACK_ENA {
 /// VOE MAC Unicast address (LSB)
 ///
 /// Configures the VOE Unicast MAC address (LSB). This address can be verified by the VOE when frames arrive, depending on the configuration of: VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MEP_UC_MAC_LSB(u32);
 impl MEP_UC_MAC_LSB {
     /// See register description.
@@ -352,7 +352,7 @@ impl MEP_UC_MAC_LSB {
 /// VOE MAC Unicast address (MSB)
 ///
 /// Configures the VOE Unicast MAC address (MSB). This address can be verified by the VOE when frames arrive, depending on the configuration of: * VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MEP_UC_MAC_MSB(u32);
 impl MEP_UC_MAC_MSB {
     /// See register description.
@@ -370,7 +370,7 @@ impl MEP_UC_MAC_MSB {
 /// Configuration of which OAM PDUs should be counted by LM counters.
 ///
 /// Default behavior is that all OAM PDUs processed by a VOE (i.e. OAM PDU MEG level matches VOE MEL_VAL) will not be counted as data by the LM counters. This is according to Y.1731 Using this register (OAM_CNT_DATA_CTRL) it is possible to configure the OAM PDUs separately to be counted as data. This includes all PDUs except for SLM, SLR and 1SL which are never counted in the LM counters, unless the VOE is configured for synthetic loss measurement: * VOP:VOE_CONF_REG:VOE_MISC_CONFIG.SL_ENA The configuration in this register controls the counting in both the Rx and Tx direction. The data counters are located: Service VOE: --------------------- Egress: REW:VOE_SRV_LM_CNT.SRV_LM_CNT_LSB.SRV_LM_CNT_LSB Ingress: ANA_AC_OAM_MOD:VOE_SRV_LM_CNT.SRV_LM_CNT_LSB.SRV_LM_CNT_LSB Port VOE: ------------------- Egress: REW:VOE_PORT_LM_CNT:PORT_LM_CNT_LSB.PORT_LM_CNT_LSB Ingress: ANA_AC_OAM_MOD:VOE_PORT_LM_CNT:PORT_LM_CNT_LSB.PORT_LM_CNT_LSB
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct OAM_CNT_DATA_CTRL(u32);
 impl OAM_CNT_DATA_CTRL {
     /// Enable / disable counting valid CCM(-LM) PDUs as data in LM counters.
@@ -558,7 +558,7 @@ impl OAM_CNT_DATA_CTRL {
 /// Configuration which OAM PDUs are counted in selected PDU counter.
 ///
 /// The OAM frames processed by the VOE can be counted separately in Rx and Tx direction. In each direction there are two counters: 1) Default OAM counter This counter counts all the PDU types which are NOT selected using the OAM_CNT_OAM_CTRL register: * RX_OAM_FRM_CNT * TX_OAM_FRM_CNT 2) Selected OAM counter: This counter counts all the PDU types selected for counting using the OAM_CNT_OAM_CTRL register: * RX_SEL_OAM_CNT * TX_SEL_OAM_CNT Any valid OAM PDU is counted in exactly one of the above registers. I.e. as default all OAM PDUs are not selected, and they are all counted in the default OAM counters: RX / TX _ OAM_FRM_CNT. Using this register (OAM_CNT_OAM_CTRL), PDUs can be moved to the selected coutners: RX / TX SEL_OAM_CNT. The selection of OAM PDUs for the selected counter is done commonly for the Tx and Rx direction.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct OAM_CNT_OAM_CTRL(u32);
 impl OAM_CNT_OAM_CTRL {
     /// Enable / disable count of OAM PDU CCM with LM content as selected OAM. For this register to take effect, the HW processing of CCM-LM frames must be enabled: * VOP:VOE_CONF:OAM_HW_CTRL.CCM_LM_ENA
@@ -758,7 +758,7 @@ impl OAM_CNT_OAM_CTRL {
 /// CPU extraction for the supported OAM PDU OpCodes.
 ///
 /// Configures CPU copy for the supported OAM PDU OpCodes. Configuring a PDU type for CPU extraction, will result in all valid OAM PDUs of this type to extracted to the CPU. Invalid OAM PDUs are not extracted. OAM PDUs are considered invalid if they fail either of the following checks: * MEL check (Must match the VOE) * MAC check * CCM validation (CCM/CCM-LM frames only) * SynLM check fails (SLM/SLR/1SL) Frames extracted by asserting this bit field are extracted to the destination queues configured of the VOP: * VOP::CPU_EXTR_CFG.* * VOP::CPU_EXTR_CFG_1.*
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct OAM_CPU_COPY_CTRL(u32);
 impl OAM_CPU_COPY_CTRL {
     /// If asserted all valid CCM PDUs received by the VOE are extracted to the CPU. Extraction queue is determined by: * VOP::CPU_EXTR_CFG_1.CCM_CPU_QU
@@ -974,7 +974,7 @@ impl OAM_CPU_COPY_CTRL {
 /// OAM HW processing control
 ///
 /// Configures per OAM OpCode if it is processed by the VOE. If an OAM PDU type is not enabled in this register, the OAM PDU will not be updated by the VOE. This allows the PDU processing to be done in SW. OAM PDU statistics are updated regardless of this setting. When OAM PDU is disabled, the following functions are still performed by the VOE: * Generic Y.1731 frame validation: MEL filtering, DMAC check. No PDU specific filtering (CCM only) * The Rx sticky bits will be set for a PDU. * OAM PDUs can be extracted to the CPU. * OAM PDUs can be counted as data. * OAM PDUs specific counters are updated. Further TST / LBR Test TLV CRC can be enabled, using the following bit fields: * TST_TLV_CRC_VERIFY_ENA * LBR_TLV_CRC_VERIFY_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct OAM_HW_CTRL(u32);
 impl OAM_HW_CTRL {
     /// Enable HW processing of valid CCM PDUs received by the VOE in both the Tx and the Rx direction.
@@ -1124,7 +1124,7 @@ impl OAM_HW_CTRL {
 /// Path MEP configuration
 ///
 /// The VOE supports hierarchical LM counting. This implies that when a VOE is processing a frame, it can update the LM counter of the VOE configured at the Server Layer, if a Server Layer exists. Within the scope of the register list, a VOE configured at the Server Layer is referred to as Path VOE. This register is used to assign a Path VOE to the current service VOE. Port VOEs are considered as Server Layer VOEs per default, and can not be assigned at Path VOEs. Assigning a Path VOE to the VOE implies that all frames received by this VOE, will also be counted by the Path VOE indicated by the following register: * PATH_VOEID The path VOE must be enabled by asserting the following field: * PATH_VOE_ENA Note, that the VOE assigned as Path VOP must be enabled for Path VOE operation: * VOP:VOE_CONF:VOE_CTRL.VOE_IS_PATH
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PATH_VOE_CFG(u32);
 impl PATH_VOE_CFG {
     /// Assigns a Path VOE to the VOE. Must be enabled by: PATH_VOE_ENA = 1
@@ -1156,7 +1156,7 @@ impl PATH_VOE_CFG {
 /// Allow PDUs to pass through the VOE.
 ///
 /// Standard Y.1731 MEL filtering requires a MEP to terminate / block all OAM PDUs received at the samel level as configured for the MEP. It is default behavior for the VOE to implement this MEL filtering. This behavior can be altered for generic OpCodes by asserting this bit.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PDU_VOE_PASS(u32);
 impl PDU_VOE_PASS {
     /// Each of the bits in the register represents a Generic OpCode. See: VOP::OAM_GENERIC_CFG.* When asserting a bit in the register, the corresponding Generic OpCode will be allowed to pass though VOE, rather than be terminated, when received at the same MEL as is configured for the VOE. This can be used to allow e.g. Ring PDUs to be copied and to pass transparently through the VOE.
@@ -1174,7 +1174,7 @@ impl PDU_VOE_PASS {
 /// Configuration of CCM MEPID
 ///
 /// Configures 16 bit MEP ID of the peer MEP. This value is used for two purposes: CCM(-LM): -------------------------- This value is verified against incoming CCM(-LM) frames. In case MEP ID verification is enabled (VOP:VOE_CONF:CCM_CFG.CCM_MEPID_CHK_ENA = 1) the value of the CCM.MEPID field of incoming CCM/CCM-LM frames will be verified against the value configured in this register. If there is a mismatch, the following bit will be asserted: * VOP:VOE_STAT:CCM_RX_LAST.CCM_MEPID_ERR When the above bit changes value, the VOE optionally generates an interrupt. LBM / LBR TLV verification (G.8113.1 OAM) ----------------------------------------------------------------------- The peer MEP ID is used to verify the MEP ID contained in the Rx LBM'Target MEP / MIP ID' / LBR 'Replying MEP / MIP ID TLV.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PEER_MEPID_CFG(u32);
 impl PEER_MEPID_CFG {
     /// See register description.
@@ -1192,7 +1192,7 @@ impl PEER_MEPID_CFG {
 /// SAM per COSID sequence numbering
 ///
 /// As per default, the VOE will use a single sequence number across all COSIDs for each of the following PDU types: * CCM * LBM/LBR, TST or SAM_SEQ (mutually exclusive) Additionally the VOP includes 32 counter sets which can be used for SAM per COSID sequence numbering of the following PDU types: * CCM * LBM/LBR, TST or SAM_SEQ (mutually exclusive) This register is used to configure the VOE for per COSID sequence numbering by assigning one of the SAM per COSID counter sets to the VOE. The per COSID sequence numbering is implemented by using the corresponding register in the VOE to count priority 7, while the remaining priorities (0-6) are counted using a dedicated RAM. The SAM per COSID counters (prio: 0 - 6) are located in: * VOP:SAM_COSID_SEQ_CNT NOTE: The appointed per COSID counter set can be used for either LBM/LBR/TST or CCM, hence only one of the below registers may be asserted. * PER_COSID_LBM * PER_COSID_CCM Asserting both is a misconfiguration. When per COSID sequence numbering is enabled, the VOE will use the counter set configured in: * PER_COSID_CNT_SET
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SAM_COSID_SEQ_CFG(u32);
 impl SAM_COSID_SEQ_CFG {
     /// Enable SAM per COSID sequence numbering for the following PDUs * CCM(-LM) This bit field MUST not be asserted at the same time as: PER_COSID_LBM When SAM per COSID sequence numbering is enabled, the VOE will use the SAM counter set configured in: * PER_COSID_CNT_SET
@@ -1234,7 +1234,7 @@ impl SAM_COSID_SEQ_CFG {
 /// Support for SAM sequence numbering of non OAM frames.
 ///
 /// The VOE can be configured to support sequence numbering of non OAM frames. This can be used for testing as specified in SAM or RFC2544 etc. Note that the configuring support for sequence numbering of non OAM frames excludes the use of the following PDU types for this VOE: * TST * LBM * LBR This is because the statistics used to support non OAM sequence numbering re-uses the registers otherwise used for processing the above PDUs. This functionality is referred to as SAM_SEQ.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SAM_NON_OAM_SEQ_CFG(u32);
 impl SAM_NON_OAM_SEQ_CFG {
     /// Asserting this bit will configure the VOE as initiator of non OAM frames with sequence number (SAM_SEQ). This must NOT be asserted at the same time as asserting: * SAM_SEQ_RESP = 1
@@ -1306,7 +1306,7 @@ impl SAM_NON_OAM_SEQ_CFG {
 /// Configurations for Synthetic Loss Measurements
 ///
 /// This register contains miscellaneous configurations for Synthetic Loss Measurement.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SLM_CONFIG(u32);
 impl SLM_CONFIG {
     /// The VOE supports only a single priority (COSID) when configured for SynLM. If the frame priority of Tx / Rx SynLM PDUs processed by the VOE does not match the configured value, the frame is considered to be invalid.
@@ -1324,7 +1324,7 @@ impl SLM_CONFIG {
 /// A list of the MEPIDs with which SLM is supported.
 ///
 /// This list can be programmed with up to 8 MEPIDs which identify the peer MEPs which are part of the SynLM session. When a SynLM PDU is processed by the VOE, the VOE will match the MEPID of the peer MEP (found in the SynLM PDU). If a match is found, the VOE will use the index of the row which matches the MEPID to identify which peer MEP the frame is sent to / received from. This index is used when updating the Rx / Tx LM counters for a VOE which is enabled for SynLM.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SLM_PEER_LIST(u32);
 impl SLM_PEER_LIST {
     /// If enabled, SLM_PEER_MEPID contains a valid MEPID
@@ -1354,7 +1354,7 @@ impl SLM_PEER_LIST {
 /// SynLM Initiator Test ID
 ///
 /// A SynLM session is identified by a SynLM Test ID. The VOE supports a single Test ID for each Initiator function. The Initiator function will validate the Test ID of incoming SLR PDUs. If the Test ID of the incoming SLR PDU doest not match the value configured in this register, the frame will be considered invalid and the following sticky bit is asserted: * VOP:VOE_STAT:OAM_RX_STICKY2.RX_SLM_TESTID_ERR_STICKY The VOE will not verify the Test ID in incoming PDUs when acting as a Remote MEP.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SLM_TEST_ID(u32);
 impl SLM_TEST_ID {
     /// See register description.
@@ -1370,7 +1370,7 @@ impl SLM_TEST_ID {
 /// Configures updating sequence numbers / transactions ID (TX)
 ///
 /// The configuration in this register group determines whether the VOE will update the sequence number / transaction ID for valid Tx frames.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_TRANSID_UPDATE(u32);
 impl TX_TRANSID_UPDATE {
     /// If asserted, the transaction ID will be updated for valid LBM frames transmitted by this VOE. This can be used to avoid overwriting the Tx ID for externally generated LBM frames.
@@ -1400,7 +1400,7 @@ impl TX_TRANSID_UPDATE {
 /// Misc. VOE control configuration
 ///
 /// This register includes configuration of misc. VOE properties.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VOE_CTRL(u32);
 impl VOE_CTRL {
     /// Asserting this bit will block all Rx frames not processed or blocked by MEL filtering in the VOE. This blocking will not interfer with OAM PDU's processed or MEL filtered by the VOE, but it will block all service frames in the Rx direction. The following frames will be blocked: * OAM PDU's with MEL_HIGH * Data frames Frames discarded by this blocking will counted in the following counter: * VOP:VOE_STAT:RX_OAM_DISCARD.RX_FRM_DISCARD_CNT Frames blocked by this functionality will be counted as part of the LM Rx counters.
@@ -1564,7 +1564,7 @@ impl VOE_CTRL {
 /// VOE MEPID
 ///
 /// The MEPID of the VOE. This is currently only used for SLM and LBM / LBR TLV verification (G.8113.1 only).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VOE_MEPID_CFG(u32);
 impl VOE_MEPID_CFG {
     /// See register description.

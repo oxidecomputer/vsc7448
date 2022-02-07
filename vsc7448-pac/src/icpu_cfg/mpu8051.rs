@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// 8051 memory offset configuration
 ///
 /// When loading (or examining) onchip 8051 memory, then it is only possible to move 32-bit words. This is why bits [17:16] and [1:0] of this register is not implemented. Setting START and STOP addresses determines how many words that are loaded (or examined). For example, when loading programs of less than 64KBytes, decreasing the stop address will speed up the load time. When manually loading or examining the onchip 8051 memory via an external CPU the data has to be put somewhere in SBA memory space on its way into or out-of the onchip 8051 memory, for this the 8 x 32-bit general purpose registers starting at 0x70000000 is a good choice. By using all (or some) of these registers it is possible to move up to 8 32-bit words to/from the onchip memory per access.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MEMACC(u32);
 impl MEMACC {
     /// Starting 32-bit word address when loading or examining the onchip 8051 memory.
@@ -59,7 +59,7 @@ impl MEMACC {
     }
 }
 /// 8051 memory load/examine configuration/status
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MEMACC_CTRL(u32);
 impl MEMACC_CTRL {
     /// Set this field to start an access with the parameters specified by MEMACC_CTRL.MEMACC_EXAMINE, MEMACC.MEMACC_START, MEMACC.MEMACC_STOP, and MEMACC_SBA.MEMACC_SBA_START. This field is cleared when the requested number of 32-bit words has been transfered.
@@ -91,7 +91,7 @@ impl MEMACC_CTRL {
 /// SBA memory offset configuration
 ///
 /// There is no stop address in the SBA address space. The number of 32-bit words which is moved per access is determined by the MEMACC.MEMACC_START and MEMACC.MEMACC_STOP.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MEMACC_SBA(u32);
 impl MEMACC_SBA {
     /// This field determines where in the SBA memory space (32-bit alligned) the automatic load/examine mechanims reads/writes data to/from the onchip 8051 memory.
@@ -108,7 +108,7 @@ impl MEMACC_SBA {
     }
 }
 /// 8051 configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MPU8051_CFG(u32);
 impl MPU8051_CFG {
     /// This field controls if the VCore UART or the 8051's internal UART is conencted to the chip IOs. The default, when the UART is always used. By clearing this field the 8051's internal UART will be connected to the chip IOs, this field only applies to an 8051 enabled system - clearing this field has no effect in a MIPS based VCore System.
@@ -124,7 +124,7 @@ impl MPU8051_CFG {
     }
 }
 /// 8051 ROM configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MPU8051_IROM(u32);
 impl MPU8051_IROM {
     /// This Field specifies the offset into AHB space from which the 8051 must fetch its IROM code during firmware startup.
@@ -143,7 +143,7 @@ impl MPU8051_IROM {
 /// 8051 memory mapping mechanism
 ///
 /// The MAP_* and MSADDR_* fields in this register is similar to the corresponding 8051 SFR register for control mapping the on-chip memory into the 8051 memory space. These fields must be used to configure 8051 memory mapping if the 8051 on-chip memory is loaded manually via an external processor. If the 8051 program itself does loading of on-chip memory then it must instead use the SFR equivalents.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MPU8051_MMAP(u32);
 impl MPU8051_MMAP {
     /// Set to map 8051 code-accesses in the high 32KByte memory range to on-chip memory instead of FLASH.
@@ -245,7 +245,7 @@ impl MPU8051_MMAP {
 /// 8051 status
 ///
 /// These read only fields can be used for debugging 8051 programs.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MPU8051_STAT(u32);
 impl MPU8051_STAT {
     /// A read-only copy of the 8051 GPR register at SFR address 0xF0.

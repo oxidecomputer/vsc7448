@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Queue Limitation Configuration
 ///
 /// Disabling queue limitation per port.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct QLIMIT_DIS_CFG(u32);
 impl QLIMIT_DIS_CFG {
     /// Disable queue limitation for the port. If either queue limitation is disabled for the source port, or for the destination port, the queue limitation algorithm is bypassed.
@@ -58,7 +58,7 @@ impl QLIMIT_DIS_CFG {
     }
 }
 /// Queue Limitation Configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct QLIMIT_PORT_CFG(u32);
 impl QLIMIT_PORT_CFG {
     /// Queue limitation is for this port used in MAX mode, setting upper limits for a queue. Otherwise a minimum guarantee is given by the calculated queue maximum size

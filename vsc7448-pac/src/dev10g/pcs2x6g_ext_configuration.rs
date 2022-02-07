@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS2x6G Extended Configuration
 ///
 /// Special configuration bit groups for PCS2x6G.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS2X6G_EXT_CFG(u32);
 impl PCS2X6G_EXT_CFG {
     /// Flip HM-Bus, i.e. map lane 0 on 1 and lane 1 on 0

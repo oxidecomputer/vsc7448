@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS XAUI Test Pattern Configuration
 ///
 /// Test Pattern Generator/Checker Control Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_TSTPAT_CFG(u32);
 impl PCS_XAUI_TSTPAT_CFG {
     /// Capture current error counter values

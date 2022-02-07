@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PLL5G Status 0
 ///
 /// Status register 0 for the PLL5G
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PLL5G_STATUS0(u32);
 impl PLL5G_STATUS0 {
     /// RCPLL Flag that indicates that the calibration procedure has finished.
@@ -108,7 +108,7 @@ impl PLL5G_STATUS0 {
 /// PLL5G Status 1
 ///
 /// Status register 1 for the PLL5G
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PLL5G_STATUS1(u32);
 impl PLL5G_STATUS1 {
     /// VCO frequency difference to refclk

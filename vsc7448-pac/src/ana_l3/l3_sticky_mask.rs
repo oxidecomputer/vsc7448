@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Enable per concurrent counter for each sticky bit
 ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RLEG_STICKY_MASK(u32);
 impl RLEG_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
@@ -132,7 +132,7 @@ impl RLEG_STICKY_MASK {
 /// Enable per concurrent counter for each sticky bit
 ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ROUT_STICKY_MASK(u32);
 impl ROUT_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
@@ -354,7 +354,7 @@ impl ROUT_STICKY_MASK {
 /// Enable per concurrent counter for each sticky bit
 ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SECUR_STICKY_MASK(u32);
 impl SECUR_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.
@@ -456,7 +456,7 @@ impl SECUR_STICKY_MASK {
 /// Enable per concurrent counter for each sticky bit
 ///
 /// Each ANA_L3 sticky bit can be counted in each of the concurrent counters.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_MSTP_STICKY_MASK(u32);
 impl VLAN_MSTP_STICKY_MASK {
     /// Enable counting of sticky event per concurrent counter.

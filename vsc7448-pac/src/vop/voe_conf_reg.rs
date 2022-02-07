@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Miscellanous per VOE configuration
 ///
 /// Miscellaneous per VOE configuration.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VOE_MISC_CONFIG(u32);
 impl VOE_MISC_CONFIG {
     /// If this field is asserted, the VOE will count bytes instead of frames. This is not 100% supported and tested. Feature is only available for Service / Path VOEs. Byte count is disabled for Port VOEs.

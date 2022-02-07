@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// One micro-second timer configuration register
 ///
 /// This register value is used to elaps 1us time as specified in IEEE802.3az-2010 clause 49.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ONE_US_TIMER_REG(u32);
 impl ONE_US_TIMER_REG {
     /// This holds no.of 64-bit PMA clocks required to achieve 1 micro-second (1 us) time interval. As per IEEE 803.3az-2010, min and max values are as follows: MIN : 1.1 us = 178 MAX: 1.3 us = 209 Note: Default value is ~1.1 us = 178
@@ -48,7 +48,7 @@ impl ONE_US_TIMER_REG {
 /// EEE RX Quiet timer configuration register
 ///
 /// This register value is used to elaps time in RX_SLEEP and RX_QUIET states of EEE RX-FSM as specified in IEEE802.3az-2010 clause 49.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_TQ_TIMER_REG(u32);
 impl RX_TQ_TIMER_REG {
     /// This holds no.of 64-bit PMA clocks required to achieve specified sleep+quiet time interval. As per IEEE 803.3az-2010, min and max values are as follows: MIN : 2 ms = 322266 MAX: 3 ms = 483398 Note: Default value is ~2.5 ms = 402832
@@ -66,7 +66,7 @@ impl RX_TQ_TIMER_REG {
 /// EEE RX Wake timer configuration register
 ///
 /// This register value is used to elaps time in RX_WAKE state of EEE RX-FSM as specified in IEEE802.3az-2010 clause 49.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_TW_TIMER_REG(u32);
 impl RX_TW_TIMER_REG {
     /// This holds no.of 64-bit PMA clocks required to achieve specified wake time interval. As per IEEE 803.3az-2010, this timer values are as follows: Without scrambler bypassed (or Without FEC): 11.5 us = 1853 With scrambler bypassed (or With FEC): 13.7 us = 2207 Note: Default value is ~11.5 us = 1853
@@ -84,7 +84,7 @@ impl RX_TW_TIMER_REG {
 /// EEE RX Sleep timer configuration register
 ///
 /// This register value is used to elaps time in RX_WTF state of EEE RX-FSM as specified in IEEE802.3az-2010 clause 49.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_WF_TIMER_REG(u32);
 impl RX_WF_TIMER_REG {
     /// This holds no.of 64-bit PMA clocks required to achieve specified wake time fault time interval. As per IEEE 803.3az-2010, this value is: MAX: 10 ms = 1611328
@@ -102,7 +102,7 @@ impl RX_WF_TIMER_REG {
 /// EEE TX Quiet timer configuration register
 ///
 /// This register value is used to elaps time in TX_QUIET state of EEE TX-FSM as specified in IEEE802.3az-2010 clause 49.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_TQ_TIMER_REG(u32);
 impl TX_TQ_TIMER_REG {
     /// This holds no.of 64-bit PMA clocks required to achieve specified quiet time interval. As per IEEE 803.3az-2010, min and max values are as follows: MIN : 1.7 ms = 273926 MAX: 1.8 ms = 290039 Note: Default value is ~1.7 ms = 273926
@@ -120,7 +120,7 @@ impl TX_TQ_TIMER_REG {
 /// EEE TX Sleep timer configuration register
 ///
 /// This register value is used to elaps time in TX_SLEEP state of EEE TX-FSM as specified in IEEE802.3az-2010 clause 49.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_TS_TIMER_REG(u32);
 impl TX_TS_TIMER_REG {
     /// This holds no.of 64-bit PMA clocks required to achieve specified sleep time interval. As per IEEE 803.3az-2010, min and max values are as follows: MIN : 4.9 us = 790 MAX: 5.1 us = 821 Note: Default value is ~5 us = 806
@@ -138,7 +138,7 @@ impl TX_TS_TIMER_REG {
 /// EEE TX Wake timer configuration register
 ///
 /// This register value is used to elaps time in TX_WAKE state of EEE TX-FSM as specified in IEEE802.3az-2010 clause 49.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_TW_TIMER_REG(u32);
 impl TX_TW_TIMER_REG {
     /// This holds no.of 64-bit PMA clocks required to achieve specified wake time interval. As per IEEE 803.3az-2010, min and max values are as follows: MIN : 10.9 us = 1757 MAX: 11.1 us = 1788 Note: Default value is ~11 us = 1773

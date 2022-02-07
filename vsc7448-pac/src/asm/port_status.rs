@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// ASM port sticky bits
 ///
 /// This register holds all the sticky bits that exists for each port.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_STICKY(u32);
 impl PORT_STICKY {
     /// This field indicates if one or more Ethernet frames have been discarded due to aging.

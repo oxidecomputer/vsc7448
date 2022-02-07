@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Sticky bit register for rate limit modes
 ///
 /// Sticky bit register for rate limit modes
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_RATE_LIMIT_STICKY(u32);
 impl TX_RATE_LIMIT_STICKY {
     /// Sticky bit set when one of the three tx rate limitation modes has increased the IPG. I.e. when a tx rate limit mode was enabled an DSM has requested the device to use a IPG different from 12 byte.

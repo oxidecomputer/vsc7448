@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Miscellaneous debug configuration
 ///
 /// This register holds miscellaneous configuration bit groups used for debug
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DBG_CFG(u32);
 impl DBG_CFG {
     /// This field can be used to configure the ASM not to silently discard frames that are aborted by a device within the first cell of a frame. Note that enabling this feature may cause overflow in the ASM when small fragments are received at the Taxi interface.
@@ -90,7 +90,7 @@ impl DBG_CFG {
 /// Holds a number of sticky bits that are set if internal errors are detected.
 ///
 /// Writing a '1' to a bit group clears that bit.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ERR_STICKY(u32);
 impl ERR_STICKY {
     /// Cell words must only be granted a given Taxi bus every 3rd cell cycle or more. I.e. for Taxi A there must always be two or more cell slots given to another Taxi other than A or idle, before Taxi A is allowed to get the next grant. If the cell bus calendar causes 2 cell slots to be allocated the same Taxi bus within 3 cell cycles, the last cell slot is ignored and a sticky bit is asserted.
@@ -278,7 +278,7 @@ impl ERR_STICKY {
 /// Register containing sticky bits for pre counter overflow
 ///
 /// Register containing sticky bits for pre counter overflow
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PRE_CNT_OFLW_STICKY(u32);
 impl PRE_CNT_OFLW_STICKY {
     /// Will be set if one of the statistics pause frame pre counters has an overflow.

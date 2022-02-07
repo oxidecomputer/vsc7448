@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Manually assert software interrupt
 ///
 /// This register provides a simple interface for interrupting on either sofware interrupt 0 or 1, without implementing semaphore support. Note: setting this field causes a short pulse on the corresponding interrupt connection, this kind of interrupt cannot be used in combination with the SW1_INTR_CONFIG.SW1_INTR_BYPASS feature.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SW_INTR(u32);
 impl SW_INTR {
     /// Set this field to assert software interrupt 0. This field is automatically cleared after interrupt has been generated.

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Configuration per device buffer.
 ///
 /// Miscellaneous configurations per device buffer.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct BUF_CFG(u32);
 impl BUF_CFG {
     /// Enable aging of frames stuck in the DSM buffer system for long periods. Aging is done by comparing the age era stamped into the frame with the current age era. This check is only performed at SOF. If the current age era is more than one higher than the era stamped into the frame, then the frame is discarded.
@@ -62,7 +62,7 @@ impl BUF_CFG {
 /// Clear a single buffer in the DSM.
 ///
 /// This register controls clearing of buffers in the DSM.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CLR_BUF(u32);
 impl CLR_BUF {
     /// A write to this register clears the indicated buffer. No other buffers will be influenced by clearing this buffer. Encoding: 1: Clears buffer for port 0 2: Clears buffer for port 1 2^N: Clears buffer for port N If N > 31 Use respective next register.
@@ -80,7 +80,7 @@ impl CLR_BUF {
 /// Debug control
 ///
 /// Configures which events are counterd in the ageing counter.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DBG_CTRL(u32);
 impl DBG_CTRL {
     /// Controls which event the AGE counter counts. This setting is common for all aging counters.
@@ -100,7 +100,7 @@ impl DBG_CTRL {
 /// Token count tx stop watermark
 ///
 /// Token count tx stop watermark
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DEV_TX_STOP_WM_CFG(u32);
 impl DEV_TX_STOP_WM_CFG {
     /// Set this to '1' when a 10G capable port runs at speeds below 10G.
@@ -142,7 +142,7 @@ impl DEV_TX_STOP_WM_CFG {
 /// FC configuration for Ethernet ports.
 ///
 /// FC configuration for Ethernet ports.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ETH_FC_CFG(u32);
 impl ETH_FC_CFG {
     /// Obey FC status received from ANA
@@ -172,7 +172,7 @@ impl ETH_FC_CFG {
 /// PFC configuration for Ethernet ports.
 ///
 /// PFC configuration for Ethernet ports.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ETH_PFC_CFG(u32);
 impl ETH_PFC_CFG {
     /// Enable PFC operation for the port.
@@ -214,7 +214,7 @@ impl ETH_PFC_CFG {
 /// Configuration register for IPG shrink mode
 ///
 /// Configuration register for IPG shrink mode
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct IPG_SHRINK_CFG(u32);
 impl IPG_SHRINK_CFG {
     /// Enable for preamble shrink in IPG shrink mode of DEV10G, DEV24G. Preamble shrink is only allowed when IPG shrink mode is enabled.
@@ -244,7 +244,7 @@ impl IPG_SHRINK_CFG {
 /// MAC Address Base Configuration Register - bits 47-24.
 ///
 /// MAC base address. Used when generating Pause Control Frames with the specified MAC address.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MAC_ADDR_BASE_HIGH_CFG(u32);
 impl MAC_ADDR_BASE_HIGH_CFG {
     /// Bits 47-24 of MAC base address. Used when generating Pause Control Frames with the specified MAC address.
@@ -262,7 +262,7 @@ impl MAC_ADDR_BASE_HIGH_CFG {
 /// MAC Address Base Configuration Register - bits 23-0.
 ///
 /// MAC base address. Used when generating Pause Control Frames with the specified MAC address.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MAC_ADDR_BASE_LOW_CFG(u32);
 impl MAC_ADDR_BASE_LOW_CFG {
     /// Bits 23-0 of MAC base address. Used when generating Pause Control Frames with the specified MAC address.
@@ -280,7 +280,7 @@ impl MAC_ADDR_BASE_LOW_CFG {
 /// MAC Configuration Register.
 ///
 /// Contains configuration for flowcontrol and operation in FDX or HDX for Ethernet ports connected to the DSM.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MAC_CFG(u32);
 impl MAC_CFG {
     /// Enables HDX backpressure instead of FDX FC when FC is generated. Note: 10G and 24G ports can not run HDX, so for those ports this field must always be set to '0'.
@@ -342,7 +342,7 @@ impl MAC_CFG {
 /// txAdditionalFrameOverhead configuration
 ///
 /// Configuration of the txAdditionalFrameOverhead in RateLimit
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RATE_CTRL(u32);
 impl RATE_CTRL {
     /// If Rate Limit mode Frame Rate Overhead is enabled this bitgroup is used for configuration of txAdditionalFrameOverhead.
@@ -361,7 +361,7 @@ impl RATE_CTRL {
 /// Pause frame handling in RX direction
 ///
 /// Pause frame handling in RX direction
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_PAUSE_CFG(u32);
 impl RX_PAUSE_CFG {
     /// Configures for each Ethernet port whether flow control is obeyed locally in the DSM or if the flow_control information is sent to the SCH. If not all priorities should obey flow control for this port, then the DSM should not stop the data stream in a flow control case, but let the SCH stop the traffic to avoid head of line blocking. If all priorities should obey flow control for this port, then the DSM should stop the data stream locally to be able to pass 802.3 conformance testing. If the data stream is stopped by the SCH frames in the OQS can not be aged, thus the Allocation Bitmaps in the QS must not recover lost elements.
@@ -395,7 +395,7 @@ impl RX_PAUSE_CFG {
 /// SCH stop fill level
 ///
 /// SCH stop fill level
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SCH_STOP_WM_CFG(u32);
 impl SCH_STOP_WM_CFG {
     /// DSM buffer fill level at which SCH is stopped to send to this device.
@@ -415,7 +415,7 @@ impl SCH_STOP_WM_CFG {
 /// Transmit start fill level
 ///
 /// Transmit start fill level
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_START_WM_CFG(u32);
 impl TX_START_WM_CFG {
     /// The number of 4-bytes words in DSM buffer required before the DSM will start to transmit on the taxi bus. The fill level must above a certain threshold to avoid underflow in the devices. Single cell frames will be transfered immediately.

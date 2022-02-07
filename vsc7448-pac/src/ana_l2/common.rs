@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Auto learn configuration
 ///
 /// Configures automatic learning per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct AUTO_LRN_CFG(u32);
 impl AUTO_LRN_CFG {
     /// Configures per port automatic learning of incoming learn frames received on this port. Forwarding to CPU is still allowed. This does not influence the port move detection in ANA_L2::MOVELOG_STICKY.
@@ -48,7 +48,7 @@ impl AUTO_LRN_CFG {
 /// Auto learn configuration
 ///
 /// Configures automatic learning per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct AUTO_LRN_CFG1(u32);
 impl AUTO_LRN_CFG1 {
     /// Refer to AUTO_LRN_CFG.AUTO_LRN_ENA description.
@@ -66,7 +66,7 @@ impl AUTO_LRN_CFG1 {
     }
 }
 /// Front Port scan filter configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct FILTER_LOCAL_CTRL(u32);
 impl FILTER_LOCAL_CTRL {
     /// Configures additional front port SCAN filter for Automatic ageing and CPU scan. See LRN::SCAN_NEXT_CFG.SCAN_USE_PORT_FILTER_ENA and LRN::AUTOAGE_CFG_1.USE_PORT_FILTER_ENA.
@@ -82,7 +82,7 @@ impl FILTER_LOCAL_CTRL {
     }
 }
 /// Front Port scan filter configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct FILTER_LOCAL_CTRL1(u32);
 impl FILTER_LOCAL_CTRL1 {
     /// Refer to FILTER_LOCAL_CTRL.FILTER_FRONTPORT_ENA description.
@@ -100,7 +100,7 @@ impl FILTER_LOCAL_CTRL1 {
     }
 }
 /// Remote scan filter configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct FILTER_OTHER_CTRL(u32);
 impl FILTER_OTHER_CTRL {
     /// Configures additional filtering of Remote entries (i.e. entries with UPSID != ANA_L2::VSTAX_CTRL.OWN_UPSID) for automatic ageing and CPU scan. See LRN::SCAN_NEXT_CFG.SCAN_USE_PORT_FILTER_ENA and LRN::AUTOAGE_CFG_1.USE_PORT_FILTER_ENA.
@@ -120,7 +120,7 @@ impl FILTER_OTHER_CTRL {
 /// Forwarding configuration
 ///
 /// Configure common forwarding options. Upon reception of a frame the (DMAC, EFID) is used to perform a lookup in the MAC table. If an entry is found the destination is known and forwarded according to the entry ADDR_TYPE and ADDR. Alternatively the destination is considered unknown and might be applicable for flooding.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct FWD_CFG(u32);
 impl FWD_CFG {
     /// Configures CPU copy of frames where (DMAC, EFID) is known in the MAC table and the entry has the CPU_COPY bit set. Frames are sent to the CPU queue configured in ANA_L2::FWD_CFG.CPU_DMAC_QU.
@@ -282,7 +282,7 @@ impl FWD_CFG {
 /// ANA_L2 Interrupt events
 ///
 /// ANA_L2 Interrupt events if interrupt enable is set in ANA_L2::INTR_ENA and the corresponding event is triggered in ANA_L2::INTR_IDENT
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct INTR(u32);
 impl INTR {
     /// Set if FID learn limit triggered interrupt. To enable interrupt of this events set the corresponding *_INTR_ENA
@@ -358,7 +358,7 @@ impl INTR {
 /// ANA_L2 interrupt enable mask
 ///
 /// Controls interrupt of CPU. Events can be found in ANA_L2::INTR Identity of interrupt events can be found in ANA_L2::INTR_IDENT
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct INTR_ENA(u32);
 impl INTR_ENA {
     /// Configures FID_LIMIT_INTR interrupts
@@ -432,7 +432,7 @@ impl INTR_ENA {
     }
 }
 /// ANA_L2 interrupt status
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct INTR_IDENT(u32);
 impl INTR_IDENT {
     /// Status of FID_LIMIT_INTR interrupts
@@ -508,7 +508,7 @@ impl INTR_IDENT {
 /// Learn configuration
 ///
 /// Configures learn handling. Upon reception of a frame the (SMAC, IFID) is used to perform a lookup in the MAC table. If an entry is found the station sending the frame is considered known and the SOURCE entry is retrieved from the MAC table - alternatively the station is considered unknown. A comparison of the received port information and the port information known is performed for known stations to detection port move. A frame with changed or unknown station information is considered a learn frame.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LRN_CFG(u32);
 impl LRN_CFG {
     /// Configures if aged entries are choosen before nonaged when randomly selecting a non locket entry to replace
@@ -714,7 +714,7 @@ impl LRN_CFG {
 /// Learn copy configuration
 ///
 /// Configures CPU copy of learn frames per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LRN_COPY_CFG(u32);
 impl LRN_COPY_CFG {
     /// Configures per port copy of incoming learn frames received received on this port. Copies are sent to the CPU queue specified by ANA_L2::LRN_CFG.CPU_LRN_QU. This does not influence the port move detection in ANA_L2::MOVELOG_STICKY.
@@ -732,7 +732,7 @@ impl LRN_COPY_CFG {
 /// Learn copy configuration
 ///
 /// Configures CPU copy of learn frames per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LRN_COPY_CFG1(u32);
 impl LRN_COPY_CFG1 {
     /// Refer to LRN_COPY_CFG.CPU_LRN_COPY_ENA description.
@@ -752,7 +752,7 @@ impl LRN_COPY_CFG1 {
 /// Secure learn configuration
 ///
 /// Configures secure forwarding per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LRN_SECUR_CFG(u32);
 impl LRN_SECUR_CFG {
     /// Configures per port discard of incoming learn frames received on this port. Forwarding to CPU is still allowed. This does not influence the port move detection in ANA_L2::MOVELOG_STICKY.
@@ -770,7 +770,7 @@ impl LRN_SECUR_CFG {
 /// Secure learn configuration
 ///
 /// Configures secure forwarding per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LRN_SECUR_CFG1(u32);
 impl LRN_SECUR_CFG1 {
     /// Refer to LRN_SECUR_CFG.DROP_UNKNOWN_SRC_ENA description.
@@ -790,7 +790,7 @@ impl LRN_SECUR_CFG1 {
 /// Secure learn configuration for locked entries
 ///
 /// Configures secure forwarding for static (LOCKED) entries per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LRN_SECUR_LOCKED_CFG(u32);
 impl LRN_SECUR_LOCKED_CFG {
     /// Configures per port discard of incoming frames triggering a port move for a locked entry in the MAC table received on this port. Forwarding to CPU is still allowed. This does not influence the port move detection in ANA_L2::MOVELOG_STICKY.
@@ -808,7 +808,7 @@ impl LRN_SECUR_LOCKED_CFG {
 /// Secure learn configuration for locked entries
 ///
 /// Configures secure forwarding for static (LOCKED) entries per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LRN_SECUR_LOCKED_CFG1(u32);
 impl LRN_SECUR_LOCKED_CFG1 {
     /// Refer to LRN_SECUR_LOCKED_CFG.DROP_MOVED_LOCKED_ENA description.
@@ -828,7 +828,7 @@ impl LRN_SECUR_LOCKED_CFG1 {
 /// Sticky Portmove status
 ///
 /// Identifies ports with moved stations
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MOVELOG_STICKY(u32);
 impl MOVELOG_STICKY {
     /// When a known station identified by (IFID, SMAC) pair with port information (LRN::MAC_ACCESS_CFG_2.MAC_ENTRY_ADDR_TYPE and LRN::MAC_ACCESS_CFG_2.MAC_ENTRY_ADDR) is seen with changed port information, the new port is set in this mask. Write 1 to clear the corresponding bit. Notice: If operation VSTAX AF mode (ANA_L2::LRN_CFG.VSTAX_BASIC_LRN_MODE_ENA)  port move operates a little different since different types of port moves are supported see: ANA_L2::STICKY.LOCAL_TO_REMOTE_PORTMOVE_STICKY ANA_L2::STICKY.REMOTE_TO_LOCAL_PORTMOVE_STICKY ANA_L2::STICKY.REMOTE_TO_REMOTE_PORTMOVE_STICKY ANA_L2::STICKY.GLOBAL_TO_GLOBAL_PORTMOVE_STICKY ANA_L2::STICKY.GLOBAL_TO_LOCAL_PORTMOVE_STICKY ANA_L2::STICKY.LOCAL_TO_GLOBAL_PORTMOVE_STICKY ANA_L2::STICKY.LOCAL_TO_LOCAL_PORTMOVE_STICKY
@@ -846,7 +846,7 @@ impl MOVELOG_STICKY {
 /// Sticky Portmove status
 ///
 /// Identifies ports with moved stations
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MOVELOG_STICKY1(u32);
 impl MOVELOG_STICKY1 {
     /// Refer to MOVELOG_STICKY.PORTMOVE_LOG_STICKY description.
@@ -866,7 +866,7 @@ impl MOVELOG_STICKY1 {
 /// Service DLB Port default configuration
 ///
 /// Configures per port dual leaky bucket indexes
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_DLB_CFG(u32);
 impl PORT_DLB_CFG {
     /// Specifies the default port Dual leaky bucket index to be used for frames with ISDX=0 if ANA_L2::FWD_CFG.PORT_DEFAULT_BDLB_ENA is enabled.
@@ -896,7 +896,7 @@ impl PORT_DLB_CFG {
 /// Configures a number of additional VID/FID to be used when doing scan
 ///
 /// This is to allow faster ring protection update
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SCAN_FID_CFG(u32);
 impl SCAN_FID_CFG {
     /// Configures additional FID/VID filters doing scan if LRN:COMMON:SCAN_NEXT_CFG.FID_FILTER_ENA and ANA_L2:COMMON:SCAN_FID_CTRL.SCAN_FID_ENA is set.
@@ -916,7 +916,7 @@ impl SCAN_FID_CFG {
 /// Configures if additional VID/FID are used when doing scan
 ///
 /// This is to allow faster ring protection update
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SCAN_FID_CTRL(u32);
 impl SCAN_FID_CTRL {
     /// Controls use of additional FID filters used during scan when LRN:COMMON:SCAN_NEXT_CFG.FID_FILTER_ENA is set.
@@ -936,7 +936,7 @@ impl SCAN_FID_CTRL {
 /// VSTAX configuration
 ///
 /// Configures stacking learning and forwarding operation
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VSTAX_CTRL(u32);
 impl VSTAX_CTRL {
     /// Configures CPU queue for VSTAX2 triggered events (Configurable using ANA_L2::VSTAX_CTRL).

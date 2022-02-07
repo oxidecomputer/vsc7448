@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Source port mask
 ///
 /// Refer to description for ANA_AC:SRC.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SRC_CFG(u32);
 impl SRC_CFG {
     /// Refer to description for ANA_AC:SRC.
@@ -46,7 +46,7 @@ impl SRC_CFG {
 /// Source port mask
 ///
 /// Refer to description for ANA_AC:SRC.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SRC_CFG1(u32);
 impl SRC_CFG1 {
     /// Refer to description for ANA_AC:SRC.

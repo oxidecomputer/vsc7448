@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Counter values
 ///
 /// See description for QSYS:STAT.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CNT(u32);
 impl CNT {
     /// Counter value, ref. QSYS:STAT.

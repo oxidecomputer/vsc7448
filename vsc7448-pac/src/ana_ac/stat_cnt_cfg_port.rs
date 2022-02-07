@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Event handling configuration.
 ///
 /// This register group defines how to handle the incoming events.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct STAT_CFG(u32);
 impl STAT_CFG {
     /// Configure whether to count frames or bytes.
@@ -78,7 +78,7 @@ impl STAT_CFG {
 /// Sticky bits for events.
 ///
 /// It is the sticky bits of events. If one event is triggered, the corresponding bit is set to '1' before it is cleared. To write '1' into this bit will clear the sticky bit.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct STAT_EVENTS_STICKY(u32);
 impl STAT_EVENTS_STICKY {
     /// These are the sticky bits of events. There is a sticky bit for an event for each flow.
@@ -96,7 +96,7 @@ impl STAT_EVENTS_STICKY {
     }
 }
 /// The counter's least significant 32 bits.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct STAT_LSB_CNT(u32);
 impl STAT_LSB_CNT {
     /// This register contains the least significant 32 bits of a counter.
@@ -110,7 +110,7 @@ impl STAT_LSB_CNT {
     }
 }
 /// The counter's most significant 8 bits.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct STAT_MSB_CNT(u32);
 impl STAT_MSB_CNT {
     /// The counter's most significant 8 bits. The field stores the value in the counters of a flow from bit 32 to the most significant bit. Reading: The MSB part of the counter is latched to a shadow register, when the LSB part is read. As a result, the LSB part must always be read first, and the MSB part must be read immediately after the LSB part is read. Writing: The procedure for writing differs depending on counter group: ANA_AC:STAT_CNT_CFG_PORT: LSB part must be written first, followed by MSB part. All other counter groups: MSB part must be written first, followed by LSB part.

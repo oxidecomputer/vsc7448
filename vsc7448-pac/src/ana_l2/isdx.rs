@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Ingress service dual leaky bucket policer, base address
 ///
 /// Specifies service DLB policer index. If ANA_L2::FWD_CFG.QUEUE_DEFAULT_SDLB_ENA is set some of the indeces are used for queue default DLB (see ANA_L2::PORT_DLB_CFG.QUEUE_DLB_IDX). The ingress service DLB policer is selected as DLB_IDX + DLB_COS_OFFSET[frame's classified  COS ID].
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DLB_CFG(u32);
 impl DLB_CFG {
     /// Dual leaky bucket base address.
@@ -46,7 +46,7 @@ impl DLB_CFG {
     }
 }
 /// Ingress service dual leaky bucket policer, offset per COS ID
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DLB_COS_CFG(u32);
 impl DLB_COS_CFG {
     /// Dual leaky bucket offset per COS ID.
@@ -64,7 +64,7 @@ impl DLB_COS_CFG {
 /// Ingress service counter set, base address
 ///
 /// The ingress service counter set is selected as ISDX_BASE_ADDR + ISDX_COS_OFFSET[frame's classified  COS ID].
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ISDX_BASE_CFG(u32);
 impl ISDX_BASE_CFG {
     /// Ingress service counter set base address.
@@ -80,7 +80,7 @@ impl ISDX_BASE_CFG {
     }
 }
 /// Ingress service counter set, offset per COS ID
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ISDX_COS_CFG(u32);
 impl ISDX_COS_CFG {
     /// Ingress service counter set offset per COS ID.
@@ -98,7 +98,7 @@ impl ISDX_COS_CFG {
 /// Controls various indexes.
 ///
 /// Controls BDLB and BUM indexes and SDLB policer pipeline point.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MISC_CFG(u32);
 impl MISC_CFG {
     /// Bundle Policer Dual leaky bucket index. If ANA_L2::FWD_CFG.PORT_DEFAULT_BDLB_ENA is set some of the indeces are used for port default DLB (see ANA_L2::PORT_DLB_CFG.PORT_DLB_IDX). Related parameters: ANA_AC_POL:BDLB
@@ -154,7 +154,7 @@ impl MISC_CFG {
 /// Ingress service port mask configuration
 ///
 /// Configures port mask to be used in relation to service
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_MASK_CFG(u32);
 impl PORT_MASK_CFG {
     /// Configures ingress service portmask. Can be used as replacement for VLAN PORTMASK or as an further filtering of VLAN PORTMASK depending on ANA_L2:ISDX:SERVICE_CTRL.PORT_MASK_REPLACE_ENA.
@@ -172,7 +172,7 @@ impl PORT_MASK_CFG {
 /// Ingress service port mask configuration
 ///
 /// Configures port mask to be used in relation to service
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_MASK_CFG1(u32);
 impl PORT_MASK_CFG1 {
     /// Refer to PORT_MASK_CFG.PORT_MASK description.
@@ -192,7 +192,7 @@ impl PORT_MASK_CFG1 {
 /// Controls QGRP handling
 ///
 /// Controls QGRP index and QSYS OAM drop counting.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct QGRP_CFG(u32);
 impl QGRP_CFG {
     /// Configures QSYS group
@@ -224,7 +224,7 @@ impl QGRP_CFG {
 /// Ingress service forwarding configuration
 ///
 /// Configures service based forwarding.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERVICE_CTRL(u32);
 impl SERVICE_CTRL {
     /// Overrule aggregation code from ANA_CL.

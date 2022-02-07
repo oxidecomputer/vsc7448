@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// 1588 configuration
 ///
 /// Selects ingress PTP mode of the CPU and virtual device ports. Replication n configures port 53+n.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PTP_CPUVD_MODE_CFG(u32);
 impl PTP_CPUVD_MODE_CFG {
     /// Sets the time domain this port belongs to.
@@ -60,7 +60,7 @@ impl PTP_CPUVD_MODE_CFG {
     }
 }
 /// PTP reserved field check
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PTP_RSRV_NOT_ZERO(u32);
 impl PTP_RSRV_NOT_ZERO {
     /// Register contains one bit per port being set when the port has received a frame with non-zero reserved bytes field This register covers ports 0-31
@@ -74,7 +74,7 @@ impl PTP_RSRV_NOT_ZERO {
     }
 }
 /// PTP reserved field check
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PTP_RSRV_NOT_ZERO_1(u32);
 impl PTP_RSRV_NOT_ZERO_1 {
     /// This register covers ports 32-56. See PTP_RSRV_NOT_ZERO for description.
@@ -90,7 +90,7 @@ impl PTP_RSRV_NOT_ZERO_1 {
     }
 }
 /// Configuration register for PTP stamping
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PTP_TWOSTEP_CTRL(u32);
 impl PTP_TWOSTEP_CTRL {
     /// Write one to advance the stamp queue to the next available.
@@ -166,7 +166,7 @@ impl PTP_TWOSTEP_CTRL {
     }
 }
 /// Ingress time stamp
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PTP_TWOSTEP_STAMP(u32);
 impl PTP_TWOSTEP_STAMP {
     /// Contains the 32 bit timestamp.

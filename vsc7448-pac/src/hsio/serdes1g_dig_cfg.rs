@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// SERDES1G DFT Configuration register 0
 ///
 /// Configuration register 0 for SERDES1G DFT functions
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_DFT_CFG0(u32);
 impl SERDES1G_DFT_CFG0 {
     /// Disable output inverter of BIST PRBS generator
@@ -144,7 +144,7 @@ impl SERDES1G_DFT_CFG0 {
 /// SERDES1G DFT Configuration register 1
 ///
 /// Configuration register 1 for SERDES1G DFT functions (TX direction)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_DFT_CFG1(u32);
 impl SERDES1G_DFT_CFG1 {
     /// Direction of Frequency-Offset (TX-Path)
@@ -230,7 +230,7 @@ impl SERDES1G_DFT_CFG1 {
 /// SERDES1G DFT Configuration register 2
 ///
 /// Configuration register 2 for SERDES1G DFT functions (RX direction)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_DFT_CFG2(u32);
 impl SERDES1G_DFT_CFG2 {
     /// Direction of Frequency-Offset (RX-Path)
@@ -316,7 +316,7 @@ impl SERDES1G_DFT_CFG2 {
 /// SERDES1G Misc Configuration
 ///
 /// Configuration register for miscellaneous functions
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_MISC_CFG(u32);
 impl SERDES1G_MISC_CFG {
     /// Enable deserializer cp/md handling for 100fx mode
@@ -446,7 +446,7 @@ impl SERDES1G_MISC_CFG {
 /// SERDES1G RCPLL BIST Configuration
 ///
 /// Configuration register for the 1G RC-PLL BIST
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_RC_PLL_BIST_CFG(u32);
 impl SERDES1G_RC_PLL_BIST_CFG {
     /// Enables the BIST for the RC-PLL
@@ -500,7 +500,7 @@ impl SERDES1G_RC_PLL_BIST_CFG {
 /// SERDES1G Test Pattern Configuration
 ///
 /// Test bits (pattern) for SERDES1G lane. These bits are used when Lane_Test_cfg.Test_mode is set to 2 (fixed pattern)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERDES1G_TP_CFG(u32);
 impl SERDES1G_TP_CFG {
     /// Static pattern tranferred in fixed pattern test mode, LSB is transferred first

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Generalized MPLS exception handling
 ///
 /// This register allows exception handling of reserved MPLS labels and IP control protocols.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PROFILE_CFG(u32);
 impl PROFILE_CFG {
     /// If the frame is forwarded to the CPU (via PROFILE_CFG.FWD_SEL), it will be forwarded to the CPU queue configured in this field.

@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// CPU Queue
 ///
 /// Configuration of CPU queues relevant for routing
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CPU_QU_CFG(u32);
 impl CPU_QU_CFG {
     /// CPU queue for IPv4/IPv6 frames failing MTU check. Related parameters: ANA_L3:COMMON:ROUTING_CFG.IP4_LEN_REDIR ANA_L3:COMMON:ROUTING_CFG.IP6_LEN_REDIR ANA_L3:VMID:MAX_LEN.IP4_MAX_LEN ANA_L3:VMID:MAX_LEN.IP6_MAX_LEN
@@ -148,7 +148,7 @@ impl CPU_QU_CFG {
 /// Enable (DIP,SMAC) / (DIP,VMID) check
 ///
 /// Bit per port that enables (DIP, DMAC) and/or (DIP, VMID) check.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DIP_SECURE_ENA(u32);
 impl DIP_SECURE_ENA {
     /// Lookup DIP in LPM and check that a) DMAC corresponds to MAC address in ARP table entry and/or b) Frame has been received on the router leg specified in ARP table entry. Any mismatch is signalled to ANA_ACL for use in security rules. DIP check is only performed for L2 forwarded IP unicast frames. Related parameters: ANA_L3:ARP:ARP_CFG_0.MAC_MSB ANA_L3:ARP:ARP_CFG_1.MAC_LSB ANA_L3:ARP:ARP_CFG_0.ARP_VMID ANA_L3:ARP:ARP_CFG_0.SECUR_MATCH_VMID_ENA ANA_L3:ARP:ARP_CFG_0.SECUR_MATCH_MAC_ENA ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.SECUR_DIP_FAIL_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.SECUR_IP4_DIP_MATCH_STICK Y ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.SECUR_IP6_DIP_MATCH_STICK Y
@@ -166,7 +166,7 @@ impl DIP_SECURE_ENA {
 /// Enable (DIP,SMAC) / (DIP,VMID) check
 ///
 /// Bit per port that enables (DIP, DMAC) and/or (DIP, VMID) check.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct DIP_SECURE_ENA1(u32);
 impl DIP_SECURE_ENA1 {
     /// Refer to DIP_SECURE_ENA.DIP_CMP_ENA description.
@@ -184,7 +184,7 @@ impl DIP_SECURE_ENA1 {
 /// Multicast routing control configuration
 ///
 /// IP multicast traffic enable per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct L3_MC_ENA(u32);
 impl L3_MC_ENA {
     /// Enable multicast routing per port. If disabled, IP multicast frames received on the port will not be routed. If disabled and L3_ENA_MODE=1, then routed IP multicast frames will not be transmitted on the port. Related parameters: ANA_L3:COMMON:ROUTING_CFG.L3_ENA_MODE.
@@ -200,7 +200,7 @@ impl L3_MC_ENA {
 /// Multicast routing control Configuration
 ///
 /// IP multicast traffic enable per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct L3_MC_ENA1(u32);
 impl L3_MC_ENA1 {
     /// Refer to L3_MC_ENA.L3_MC_ENA description.
@@ -218,7 +218,7 @@ impl L3_MC_ENA1 {
 /// Unicast routing control configuration
 ///
 /// Enable of L3 unicast traffic per port.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct L3_UC_ENA(u32);
 impl L3_UC_ENA {
     /// Enable unicast routing per port. If disabled, IP unicast frames received on the port will not be routed. If disabled and L3_ENA_MODE=1, then routed IP unicast frames will not be transmitted on the port. Related parameters: ANA_L3:COMMON:ROUTING_CFG.L3_ENA_MODE.
@@ -234,7 +234,7 @@ impl L3_UC_ENA {
 /// Unicast routing control configuration
 ///
 /// Enable of L3 unicast traffic per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct L3_UC_ENA1(u32);
 impl L3_UC_ENA1 {
     /// Refer to L3_UC_ENA.L3_UC_ENA description.
@@ -250,7 +250,7 @@ impl L3_UC_ENA1 {
     }
 }
 /// Miscellanous control parameters
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MISC_CTRL(u32);
 impl MISC_CTRL {
     /// Enable update of AC for routed frames.
@@ -268,7 +268,7 @@ impl MISC_CTRL {
 /// Forwarding Control
 ///
 /// Configuration of forwarding state per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_FWD_CTRL(u32);
 impl PORT_FWD_CTRL {
     /// Enable forwarding per physical port. If disabled, frames received on port are discarded and frames are not forwarded to the port. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.PORT_FWD_DENY_STICKY
@@ -284,7 +284,7 @@ impl PORT_FWD_CTRL {
 /// Forwarding Control
 ///
 /// Configuration of forwarding state per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_FWD_CTRL1(u32);
 impl PORT_FWD_CTRL1 {
     /// Refer to PORT_FWD_CTRL.PORT_FWD_ENA description.
@@ -302,7 +302,7 @@ impl PORT_FWD_CTRL1 {
 /// Learning Control
 ///
 /// Configuration of learning state per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_LRN_CTRL(u32);
 impl PORT_LRN_CTRL {
     /// Enable/disable learning per physical port. Related parameters: ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.PORT_LRN_DENY_STICKY
@@ -318,7 +318,7 @@ impl PORT_LRN_CTRL {
 /// Learning Control
 ///
 /// Configuration of learning state per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PORT_LRN_CTRL1(u32);
 impl PORT_LRN_CTRL1 {
     /// Refer to PORT_LRN_CTRL.PORT_LRN_ENA description.
@@ -336,7 +336,7 @@ impl PORT_LRN_CTRL1 {
 /// Router leg base MAC address
 ///
 /// Configuration of router leg base MAC address.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RLEG_CFG_0(u32);
 impl RLEG_CFG_0 {
     /// Router leg base MAC address, least significant bits. In order to have different MAC addresses per router leg, the base address may be incremented using VID or VMID, ref. RLEG_MAC_TYPE_SEL. This must be configured consistently in REW::RLEG_CFG_0.RLEG_MAC_LSB.
@@ -357,7 +357,7 @@ impl RLEG_CFG_0 {
 /// Router Leg base MAC address
 ///
 /// Configuration of router leg base MAC address.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RLEG_CFG_1(u32);
 impl RLEG_CFG_1 {
     /// Router leg base MAC address, least significant bits. In order to have different MAC addresses per router leg, the base address may be incremented using VID or VMID, ref. RLEG_MAC_TYPE_SEL. This must be configured consistently in REW::RLEG_CFG_1.RLEG_MAC_MSB.
@@ -391,7 +391,7 @@ impl RLEG_CFG_1 {
 /// Routing Configuration
 ///
 /// Configuration of routing checks. Note that these checks only applies to frames matching a router leg.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct ROUTING_CFG(u32);
 impl ROUTING_CFG {
     /// Enable redirection to CPU of IPv4 frames with IP4 options. CPU queue is configured in ANA_L3:COMMON:CPU_QU_CFG.CPU_RLEG_IP_OPT_QU. Packets with IP options are not subject to routing. Related parameters: ANA_L3:COMMON:CPU_QU_CFG.CPU_RLEG_IP_OPT_QU ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.RLEG_MC_IP_OPT_REDIR_STIC KY
@@ -659,7 +659,7 @@ impl ROUTING_CFG {
 /// Service Control
 ///
 /// Miscellaneous service configuration.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SERVICE_CFG(u32);
 impl SERVICE_CFG {
     /// Force Egress FID=ANA_L3:VLAN:VLAN_CFG.VLAN_FID when ANA_CL:IPT:VSI_CFG.VSI_ENA==1 and frame has multicast DMAC. See also SERVICE_CFG.VSI_FORCE_MC_EFID_ENA.
@@ -693,7 +693,7 @@ impl SERVICE_CFG {
 /// Enable SIP RPF check
 ///
 /// Bit per port that enables SIP RPF check.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SIP_RPF_ENA(u32);
 impl SIP_RPF_ENA {
     /// Enable SIP RPF check per ingress port. For more information, refer to ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_SIP_RPF_MODE ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_SIP_RPF_MODE
@@ -709,7 +709,7 @@ impl SIP_RPF_ENA {
 /// Enable SIP RPF check
 ///
 /// Bit per port that enables SIP RPF check.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SIP_RPF_ENA1(u32);
 impl SIP_RPF_ENA1 {
     /// Enable SIP RPF check per ingress port. For more information, refer to ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_SIP_RPF_MODE ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_SIP_RPF_MODE
@@ -727,7 +727,7 @@ impl SIP_RPF_ENA1 {
 /// Enable (SIP,SMAC) / (SIP,VMID) check
 ///
 /// Bit per port that enables (SIP, SMAC) and/or (SIP, VMID) check.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SIP_SECURE_ENA(u32);
 impl SIP_SECURE_ENA {
     /// Lookup SIP in LPM and check that a) SMAC corresponds to MAC address in ARP table entry and/or b) Frame has been received on the router leg specified in ARP table entry. Any mismatch is signalled to ANA_ACL for use in security rules. Related parameters: ANA_L3:ARP:ARP_CFG_0.MAC_MSB ANA_L3:ARP:ARP_CFG_1.MAC_LSB ANA_L3:ARP:ARP_CFG_0.ARP_VMID ANA_L3:ARP:ARP_CFG_0.SECUR_MATCH_VMID_ENA ANA_L3:ARP:ARP_CFG_0.SECUR_MATCH_MAC_ENA ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.SECUR_DIP_FAIL_STICKY ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.SECUR_IP4_SIP_MATCH_STICK Y ANA_L3:VLAN_ARP_L3MC_STICKY:L3_ARP_IPMC_STICKY.SECUR_IP6_SIP_MATCH_STICK Y
@@ -745,7 +745,7 @@ impl SIP_SECURE_ENA {
 /// Enable (SIP,SMAC) / (SIP,VMID) check
 ///
 /// Bit per port that enables (SIP, SMAC) and/or (SIP, VMID) check.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct SIP_SECURE_ENA1(u32);
 impl SIP_SECURE_ENA1 {
     /// Refer to SIP_SECURE_ENA.SIP_CMP_ENA description.
@@ -763,7 +763,7 @@ impl SIP_SECURE_ENA1 {
 /// VLAN Community port mask
 ///
 /// Configuration of Community port mask. See description of ANA_L3:VLAN:VLAN_CFG.VLAN_PRIVATE_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_COMMUNITY_CFG(u32);
 impl VLAN_COMMUNITY_CFG {
     /// Ports marked in this mask are treated as community ports, if the VLAN is a private VLAN. Ref. ANA_L3:VLAN:VLAN_CFG.VLAN_PRIVATE_ENA
@@ -781,7 +781,7 @@ impl VLAN_COMMUNITY_CFG {
 /// VLAN Community port mask
 ///
 /// Configuration of Community port mask. See description of ANA_L3:VLAN:VLAN_CFG.VLAN_PRIVATE_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_COMMUNITY_CFG1(u32);
 impl VLAN_COMMUNITY_CFG1 {
     /// Refer to VLAN_COMMUNITY_CFG.VLAN_COMMUNITY_MASK description.
@@ -799,7 +799,7 @@ impl VLAN_COMMUNITY_CFG1 {
 /// VLAN Control
 ///
 /// Basic VLAN related configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_CTRL(u32);
 impl VLAN_CTRL {
     /// Enable/disable VLAN lookup. This field must be enabled to allow VLAN and MSTP filtering. For VLAN unaware operation, this field can be disabled.
@@ -817,7 +817,7 @@ impl VLAN_CTRL {
 /// VLAN Filter Control
 ///
 /// Configuration of VLAN ingress filtering per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_FILTER_CTRL(u32);
 impl VLAN_FILTER_CTRL {
     /// Enable VLAN ingress filtering per port. If a port is enabled in this mask, frames received on the port are discarded if the port is not a member of the classified VLAN. VLAN ingress filtering can also be enabled per VLAN. VLAN ingress filtering is performed if either enabled for ingress port or for VLAN. Related parameters: ANA_L3:VLAN:VLAN_CFG.VLAN_IGR_FILTER_ENA ANA_L3:VLAN_ARP_L3MC_STICKY:VLAN_STICKY.VLAN_IGR_FILTER_STICKY
@@ -833,7 +833,7 @@ impl VLAN_FILTER_CTRL {
 /// VLAN Filter Control
 ///
 /// Configuration of VLAN ingress filtering per port
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_FILTER_CTRL1(u32);
 impl VLAN_FILTER_CTRL1 {
     /// Refer to VLAN_FILTER_CTRL.VLAN_IGR_FILTER_ENA description.
@@ -851,7 +851,7 @@ impl VLAN_FILTER_CTRL1 {
 /// VLAN isolated port mask
 ///
 /// Configuration of isolated port mask. See description of ANA_L3:VLAN:VLAN_CFG.VLAN_PRIVATE_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_ISOLATED_CFG(u32);
 impl VLAN_ISOLATED_CFG {
     /// Ports marked in this mask are treated as isolated ports, if the VLAN is a private VLAN. Ref. ANA_L3:VLAN:VLAN_CFG.VLAN_PRIVATE_ENA
@@ -869,7 +869,7 @@ impl VLAN_ISOLATED_CFG {
 /// VLAN isolated port mask
 ///
 /// Configuration of isolated port mask. See description of ANA_L3:VLAN:VLAN_CFG.VLAN_PRIVATE_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VLAN_ISOLATED_CFG1(u32);
 impl VLAN_ISOLATED_CFG1 {
     /// Refer to VLAN_ISOLATED_CFG.VLAN_ISOLATED_MASK description.
@@ -887,7 +887,7 @@ impl VLAN_ISOLATED_CFG1 {
 /// IPv4 Virtual Router Leg Configuration
 ///
 /// Configuration of VRRP MAC address for IPv4. Use of VRRP for IPv4 is enabled per router leg in ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_VRID_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VRRP_IP4_CFG_0(u32);
 impl VRRP_IP4_CFG_0 {
     /// Mid part of IPv4 Virtual Router Redundancy Protocol MAC address.
@@ -908,7 +908,7 @@ impl VRRP_IP4_CFG_0 {
 /// IPv4 Virtual Router Leg Configuration
 ///
 /// Configuration of VRRP MAC address for IPv4. Use of VRRP for IPv4 is enabled per router leg in ANA_L3:VMID:RLEG_CTRL.RLEG_IP4_VRID_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VRRP_IP4_CFG_1(u32);
 impl VRRP_IP4_CFG_1 {
     /// Upper part of IPv4 Virtual Router Redundancy Protocol MAC address.
@@ -928,7 +928,7 @@ impl VRRP_IP4_CFG_1 {
 /// IPv6 Virtual Router Leg Configuration
 ///
 /// Configuration of VRRP MAC address for IPv6. Use of VRRP for IPv6 is enabled per router leg in ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_VRID_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VRRP_IP6_CFG_0(u32);
 impl VRRP_IP6_CFG_0 {
     /// Mid part of IPv6 Virtual Router Redundancy Protocol MAC address.
@@ -948,7 +948,7 @@ impl VRRP_IP6_CFG_0 {
 /// IPv6 Virtual Router Leg Configuration
 ///
 /// Configuration of VRRP MAC address for IPv6. Use of VRRP for IPv6 is enabled per router leg in ANA_L3:VMID:RLEG_CTRL.RLEG_IP6_VRID_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VRRP_IP6_CFG_1(u32);
 impl VRRP_IP6_CFG_1 {
     /// Upper part of IPv6 Virtual Router Redundancy Protocol MAC address.

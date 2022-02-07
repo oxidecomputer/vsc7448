@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// PCS XAUI Configuration
 ///
 /// PCS XAUI Configuration Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_CFG(u32);
 impl PCS_XAUI_CFG {
     /// Enable Link control via Backplane Ethernet ANEG
@@ -148,7 +148,7 @@ impl PCS_XAUI_CFG {
 /// PCS XAUI Extended Configuration
 ///
 /// Special configuration bit groups for PCS XAUI
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_EXT_CFG(u32);
 impl PCS_XAUI_EXT_CFG {
     /// Flip HM-Bus in receive direction, i.e. map lane 0 on 3, lane 1 on 2, lane 2 on 1 and lane 3 on 0
@@ -210,7 +210,7 @@ impl PCS_XAUI_EXT_CFG {
 /// PCS Interleave Mode Configuration
 ///
 /// Configuration register set for Interleave Mode (XAUI via two lanes) - also known as DDR-XAUI
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_INTERLEAVE_MODE_CFG(u32);
 impl PCS_XAUI_INTERLEAVE_MODE_CFG {
     /// Comma replacement. In interleave mode (using /K/ byte orderung) one 20-bit word must have only one comma for proper alignment. Misleading commas are replaced by comma_repl in transmit direction and replaced by K28.5-commas again in receive direction. Comma_repl has to be an unused valid special code-group which does not contain a comma, i.e. K28.2, K28.6 or K23.7 are possible replacements.
@@ -382,7 +382,7 @@ impl PCS_XAUI_INTERLEAVE_MODE_CFG {
 /// PCS Low Power Idle Configuration
 ///
 /// Configuration register for Low Power Idle (Energy Efficient Ethernet)
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_LPI_CFG(u32);
 impl PCS_XAUI_LPI_CFG {
     /// Max wake-up time before link_fail
@@ -444,7 +444,7 @@ impl PCS_XAUI_LPI_CFG {
 /// PCS XAUI Receiver Error Counter Configuration
 ///
 /// Error Counter Configuration Register (if a bit in the mask field is set, the errors of that lane are not counted).
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_RX_ERR_CNT_CFG(u32);
 impl PCS_XAUI_RX_ERR_CNT_CFG {
     /// Codegroup error counting mask
@@ -506,7 +506,7 @@ impl PCS_XAUI_RX_ERR_CNT_CFG {
 /// PCS XAUI SignalDetect Configuration
 ///
 /// PCS_XAUI signal_detect configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_SD_CFG(u32);
 impl PCS_XAUI_SD_CFG {
     /// Signal Detect Enable
@@ -554,7 +554,7 @@ impl PCS_XAUI_SD_CFG {
 /// PCS Transmitter Sequence Configuration Register
 ///
 /// Sequence Transmit Configuration Register
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct PCS_XAUI_TX_SEQ_CFG(u32);
 impl PCS_XAUI_TX_SEQ_CFG {
     /// Transmit ||Q|| code (Sequence information, i.e. lower 24 bit of a Sequence)

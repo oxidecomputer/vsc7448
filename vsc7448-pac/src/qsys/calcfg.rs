@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Automatic calendar setup
 ///
 /// These four registers configures the automaric calendar for the next 16 ports from 'repl'*16.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CAL_AUTO(u32);
 impl CAL_AUTO {
     /// Per port setting for internal bandwidth for 16 ports. Replication M, Bits 2N+1 and 2N is a two bit value for port M*16+N, encoded as seen below.
@@ -46,7 +46,7 @@ impl CAL_AUTO {
     }
 }
 /// Calendar configuration
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CAL_CTRL(u32);
 impl CAL_CTRL {
     /// The automatic calendar failed to service all ports.
@@ -88,7 +88,7 @@ impl CAL_CTRL {
     }
 }
 /// Manual calendar setup
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CAL_SEQ(u32);
 impl CAL_SEQ {
     /// Port to service in the cycle given by the CAL_SEQ_LEN value.

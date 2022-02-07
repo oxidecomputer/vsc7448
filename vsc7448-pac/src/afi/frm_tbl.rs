@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// Frame Table entry configuration
 ///
 /// Note: Write operations to entries in the frame table, which are in the process of being removed (FRM_RM=1, see FRM_ENTRY_PART0) are not allowed.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct FRM_ENTRY_PART0(u32);
 impl FRM_ENTRY_PART0 {
     /// Configuration of frame or delay entry in Frame Table. Delay entries are only used for DTI. Delay entry fields: DELAY: Delay between injection of start of frames. Unit: One system clock cycle. Frame entry fields: INJ_CNT: Injection count. Number times to inject frame. Frame is ignored if INJ_CNT=0 or FRM_RM=1. Only applicable for DTI. FRM_RM: When set, next frame injection causes frame to be removed from buffer memory. This injection will not be transmitted on the destination port. Once removed, HW sets FRM_GONE=1. FRM_GONE: Set by AFI when frame has been removed from buffer memory. FRM_INFO: Frame information, ref. AFI:MISC:NEW_FRM_INFO.FRM_INFO.
@@ -50,7 +50,7 @@ impl FRM_ENTRY_PART0 {
 /// Entry type and pointer to next Frame Table entry.
 ///
 /// Note: Write operations to entries in the frame table, which are in the process of being removed (FRM_RM=1, see FRM_ENTRY_PART0) are not allowed.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct FRM_NEXT_AND_TYPE(u32);
 impl FRM_NEXT_AND_TYPE {
     /// Entry Type. Delay entries are only applicable to DTI. The Entry Type controls the use of FRM_ENTRY_PART0.PART0.

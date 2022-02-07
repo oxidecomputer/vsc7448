@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// ber_count
 ///
 /// ber_count from IEEE802.3 section 49.2.14.2.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_BER_CNT(u32);
 impl RX_BER_CNT {
     /// ber_count from the BER state machine
@@ -48,7 +48,7 @@ impl RX_BER_CNT {
 /// Invalid character counter
 ///
 /// Counts the number of invalid control characters
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_CHARERR_CNT(u32);
 impl RX_CHARERR_CNT {
     /// Count of the number of invalid control characters
@@ -64,7 +64,7 @@ impl RX_CHARERR_CNT {
 /// Rx errored block counter
 ///
 /// Count of the Rx errored blocks
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_ERRBLK_CNT(u32);
 impl RX_ERRBLK_CNT {
     /// Count of the errored Rx blocks
@@ -80,7 +80,7 @@ impl RX_ERRBLK_CNT {
 /// Rx ordered set FIFO data
 ///
 /// The register interface to the ordered set data
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_FSET_FIFO_DATA(u32);
 impl RX_FSET_FIFO_DATA {
     /// Register interface to the FIFO containing captured ordered sets. Each read of this register pops a 24-bit ordered set off the FIFO and increments the FIFO pointer.
@@ -99,7 +99,7 @@ impl RX_FSET_FIFO_DATA {
 /// Status of Rx signal ordered set FIFO
 ///
 /// Contains status information for the FIFO containing captured Rx ordered sets
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_FSET_FIFO_STAT(u32);
 impl RX_FSET_FIFO_STAT {
     /// Indicates if the FIFO is full
@@ -133,7 +133,7 @@ impl RX_FSET_FIFO_STAT {
 /// Rx ordered set FIFO data
 ///
 /// The register interface to the ordered set data
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_OSET_FIFO_DATA(u32);
 impl RX_OSET_FIFO_DATA {
     /// Register interface to the FIFO containing captured ordered sets. Each read of this register pops a 24-bit ordered set off the FIFO and increments the FIFO pointer.
@@ -152,7 +152,7 @@ impl RX_OSET_FIFO_DATA {
 /// Status of Rx sequence ordered set FIFO
 ///
 /// Contains status information for the FIFO containing captured Rx ordered sets
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RX_OSET_FIFO_STAT(u32);
 impl RX_OSET_FIFO_STAT {
     /// Indicates if the FIFO is full
@@ -186,7 +186,7 @@ impl RX_OSET_FIFO_STAT {
 /// Test pattern mode error counts
 ///
 /// Count of the errors detected in test pattern mode
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TEST_ERR_CNT(u32);
 impl TEST_ERR_CNT {
     /// Count of detected test pattern errors in Rx test pattern checker. Write 0 to clear.
@@ -202,7 +202,7 @@ impl TEST_ERR_CNT {
 /// Invalid character counter
 ///
 /// Counts the number of invalid control characters
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_CHARERR_CNT(u32);
 impl TX_CHARERR_CNT {
     /// Count of the number of invalid control characters
@@ -218,7 +218,7 @@ impl TX_CHARERR_CNT {
 /// Tx errored block counter
 ///
 /// Count of the Tx errored blocks
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TX_ERRBLK_CNT(u32);
 impl TX_ERRBLK_CNT {
     /// Count of the errored Tx blocks

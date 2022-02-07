@@ -30,7 +30,7 @@ use derive_more::{From, Into};
 /// VOP Multicast MAC address configuration (LSB)
 ///
 /// Each VOE can be addressed using either a common Multicast MAC address or a VOE specific Unicast MAC address. This register configures the Multicast Address common to all the VOEs. The full MAC address is a concatenation of the following registers: 1) VOP::COMMON_MEP_MC_MAC_LSB 2) VOP::COMMON_MEP_MC_MAC_MSB The default value of this register is determined by 802.1ag. The DMAC check to be performed for each VOE is configured in the following bit field: VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL Note that only the upper 44 bits are matched, since the lower 4 bits of the DMAC address contain the MEG level.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct COMMON_MEP_MC_MAC_LSB(u32);
 impl COMMON_MEP_MC_MAC_LSB {
     /// See register description.
@@ -49,7 +49,7 @@ impl COMMON_MEP_MC_MAC_LSB {
 /// VOP Multicast MAC address configuration (MSB)
 ///
 /// Each VOE can be addressed using either a common Multicast MAC address or a VOE specific Unicast MAC address. This register configures the Multicast Address common to all the VOEs. The full MAC address is a concatenation of the folliowing registers: 1) VOP::COMMON_MEP_MC_MAC_LSB 2) VOP::COMMON_MEP_MC_MAC_MSB The default value of this register is determined by 802.1ag. The DMAC check to be performed for each VOE is configured in the following bit field: VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL Note that only the upper 44 bits are matched, since the lower 4 bits of the DMAC address contain the MEG level.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct COMMON_MEP_MC_MAC_MSB(u32);
 impl COMMON_MEP_MC_MAC_MSB {
     /// See register description.
@@ -67,7 +67,7 @@ impl COMMON_MEP_MC_MAC_MSB {
 /// Configuring destination for frames extracted to the CPU by Ethernet VOEs
 ///
 /// This register configures the destination for OAM frames which are extracted to CPU by the VOE for various reasons. An OAM PDU may be extracted to the CPU for various reasons: * Based on PDU type (See register: VOP:VOE_CONF:OAM_CPU_COPY_CTRL.* * OAM error condition (e.g. DMAC error) * PDU specific extraction reasons. Most HW supported OAM PDUs have their own configuration, while some related PDUs share a single configuration. The configuration for each OAM PDU consists of one bit field which indicate which of the extraction queues the relevant PDUs are extracted: *_CPU_QU OAM PDU types which do not have a specific configuration will use the default configuration: DEF_COPY_CPU_QU The details are described for each bit field.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CPU_EXTR_CFG(u32);
 impl CPU_EXTR_CFG {
     /// Configures the CPU queue port of the CPU error queue.
@@ -157,7 +157,7 @@ impl CPU_EXTR_CFG {
 /// Configuring destination for frames extracted to the CPU.
 ///
 /// See description for CPU_EXTR_CFG
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CPU_EXTR_CFG_1(u32);
 impl CPU_EXTR_CFG_1 {
     /// Configures the CPU queue to which CCM frames are extracted.
@@ -247,7 +247,7 @@ impl CPU_EXTR_CFG_1 {
 /// Configuring destination for frames extracted to the CPU by MPLS VOEs
 ///
 /// See description for CPU_EXTR_CFG
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct CPU_EXTR_MPLS(u32);
 impl CPU_EXTR_MPLS {
     /// Configures the CPU queue to which BFD-CC PDUs are extracted.
@@ -281,7 +281,7 @@ impl CPU_EXTR_MPLS {
 /// HMO slots used for forced scanning.
 ///
 /// When a HMO scan is forced, the HMO slots used for the scan are used for the HMO scan is programmed in this register. A separate HMO slot can be programmed for each of the HMO timers. A HMO scan is forced using the following register: - VOP::LOC_CTRL.LOC_FORCE_HW_SCAN_ENA
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct HMO_FORCE_SLOT_CFG(u32);
 impl HMO_FORCE_SLOT_CFG {
     /// See register description.
@@ -299,7 +299,7 @@ impl HMO_FORCE_SLOT_CFG {
 /// Configures the 2 different HMO scan periods
 ///
 /// 2 independent HMO timers are implemented to be used with the auto Hit-Me-Once (HMO) scan. This register implements a separate timeout period for each of the 2 HMO timers. The timeout period is specified in the number of LOC base ticks between every HMO timer expiry. Each HMO scan timer has an associated HMO slot (0-7 i.e. 3 bit), which is increased every time the HMO scan timer expires. When a HMO scan timer expires and causes a HMO scan, the current HMO slot is part of the scan, so that only the VOEs assigned to that HMO slot are affected by the scan. This allows the distributing the VOEs assigned to a given HMO scan timer into 8 HMO slots. Hence each VOE is only affected by 1 of 8 HMO scans for a given HMO scan timer. I.e. to achieve auto HMO frame extraction every 1 second, the HMO timer must be set to expire every 125 us. For configuration of the LOC base tick, see bit field: * VOP::LOC_CTRL.LOC_BASE_TICK_CNT The default value for the LOC base tick is 200 ns. A HMO scan is initiated at half the configured HMO PERIOD, because this is the way the scans are implemented for LOC scanning. A VOE can be configured for HMO auto assertion based on one of the 2 HMO timers. The HMO timers are used only Ethernet VOEs. The HMO timers have no effect on MPLS-TP VOEs. Ethernet VOE: ----------------------- The HMO events are assigned to a specific HMO scan timer: * VOP::HMO_TIMER_CFG.* The VOE is assigned a HMO slot using the following register: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.HMO_SLOT When the HMO timer assigned to the VOE, causes a HMO scan with the HMO slot assigned to the VOE, the VOE will assert the extraction bits selected for auto HMO. The extraction bits are located in the following register: * VOP:VOE_STAT:PDU_EXTRACT The extraction bits are assigned for auto HMO in the following register: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE MPLS-TP VOE: -------------------------- The HMO counters have no effect.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct HMO_PERIOD_CFG(u32);
 impl HMO_PERIOD_CFG {
     /// Configures expiry period of the 2 HMO timers as the number of BASE_TICKs between every LOC timer expiry. The BASE_TICK is configured: VOP::LOC_CTRL.LOC_BASE_TICK_CNT Default HMO timer is set to 0, which causes the HMO timer to never expire.
@@ -317,7 +317,7 @@ impl HMO_PERIOD_CFG {
 /// Configure HMO TIMER for HMO extraction events.
 ///
 /// There are 2 HMO timers, which allow for Auto HMO of selected frame types. Each of the events which support HMO are assigned to one of the 2 HMO timers using this register. This setting is hence global for all VOEs. For each of the bitfields, it is configured which of the HMO timers will trigger the HMO bits to be asserted. In addition to the correct HMO timer expiring, the VOE must be configured for the correct HMO SLOT and the Auto HMO must be enabled in the VOE before the HMO bits are asserted. The is used to space the extracted frames, so the CPU does not get flooded with frames from all active VOEs at once.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct HMO_TIMER_CFG(u32);
 impl HMO_TIMER_CFG {
     /// Assign which HMO timer will trigger the following VOE Auto HMO bits: * VOP:VOE_STAT:PDU_EXTRACT.CCM_ZERO_PERIOD_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.RX_MEL_LOW_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEGID_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_MEPID_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_PERIOD_RX_ERR_EXTR * VOP:VOE_STAT:PDU_EXTRACT.CCM_PRIO_RX_ERR_EXTR To trigger the Auto HMO bits, this must be enabled by the VOE: * VOP:VOE_STAT:AUTO_HIT_ME_ONCE.HMO_CCM_RX_BAD_NXT
@@ -383,7 +383,7 @@ impl HMO_TIMER_CFG {
 /// VOE interrupts
 ///
 /// This register contains the interrupt for each individual VOE, grouped in 32 bit registers. The interrupts are numbered according to the VOEs: 0 - 255 are the Service / Path VOEs 256 - 266 are the Port VOEs The VOE interrupts are enabled in the following registers: Ethernet: ------------------- * VOP:VOE_STAT:INTR_ENA MPLS-TP: ----------------- * VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS The following register indicates with a single bit if there is an asserted interrupt in each of the registers in VOE_INTR * VOP::VOE32_INTR
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct INTR(u32);
 impl INTR {
     /// Status of interrupts per VOE Ethernet: ---------------------- Interrupt is cleared by clearing the sticky causing interrupt in VOP:VOE_STAT:INTR_STICKY:* or by disabling the interrupt source in VOP:VOE_STAT:INTR_ENA.* MPLS-TP: ------------------------- Interrupt is cleared by clearing the sticky causing interrupt in VOP_MPLS:VOE_STAT_MPLS:INTR_STICKY_MPLS.* or by disabling the interrupt source in VOP_MPLS:VOE_STAT_MPLS:INTR_ENA_MPLS.*
@@ -401,7 +401,7 @@ impl INTR {
 /// Loss Of Continuity Controller configuration
 ///
 /// Configures LOC Controller to increment the LOC miss counters in the VOEs.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LOC_CTRL(u32);
 impl LOC_CTRL {
     /// Specifies the number of system clock cycles for each LOC base time tick. The system clock is: 4 ns (250 MHz). The default base tick is set to 50 = 200 ns The base tick, is the event used for incrementing the 7 LOC counters. The time at which each of the LOC timers will timeout is specified in: * VOP::LOC_PERIOD_CFG::LOC_PERIOD_VAL Ethernet VOEs: ------------------------ When a LOC timer expires it causes a LOC Scan event, which will increment the CCM miss counter (VOP:VOE_STAT:CCM_STAT.CCM_MISS_CNT) for each VOE assigned to that particular LOC timer. The CCM miss counter for each VOE (CCM_MISS_CNT) will be cleared each time the VOE receives a valid CCM or CCM-LM frame. If the CCM_MISS count reaches 7 it will optionally cause an interrupt. MPLS-TP VOEs: ------------------------ When a LOC timer expires it causes a LOC Scan event, which will increment the BFD miss counter (VOP_MPLS:VOE_STAT_MPLS:BFD_STAT.BFD_MISS_CNT) for each VOE assigned to that particular LOC timer. The LOC counter for each VOE (BFD_MISS_CNT) will be cleared each time the VOE receives a valid BFD-CC or BFD-CV PDU. If the BFD_MISS_CNT count reaches the configured Detect Multiplier it will optionally cause an interrupt.
@@ -449,7 +449,7 @@ impl LOC_CTRL {
 /// Configures the 7 different LOC scan periods
 ///
 /// Independent timers are implemented to be used with the Loss Of Continuity (LOC) Scan. This register implements the timout period for every one of the 7 LOC timers. The timeout period is specified in the number of LOC base ticks between every LOC timer expiry. For configuration of the LOC base tick, see bit field: * VOP::LOC_CTRL.LOC_BASE_TICK_CNT The default value for the LOC base tick is 200 ns, which means that the LOC timer counters are incremented every 200 ns. A LOC miss count scan is initiated at half the configured LOC PERIOD. A VOE can be configured for LOC checking based on one of the 7 timeout counters. The LOC Controller is used both by Ethernet VOEs and MPLS-TP VOEs for LOC detection. Ethernet VOE: --------------- A LOC event is generated at the VOE when the CCM miss count count is 7. VOP:VOE_STAT:CCM_STAT.CCM_MISS_CNT This effectively implements a LOC event at 3,5 times the configured LOC period. MPLS-TP VOE: -------------------------- A LOC event is generated at the VOE when the BFD_MISS_CNT is equal to the valid Detect Multiplier in the VOE.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LOC_PERIOD_CFG(u32);
 impl LOC_PERIOD_CFG {
     /// Configures Expiry Period of the 7 LOC timers as the number of BASE_TICKs between every LOC timer expiry. The BASE_TICK is configured: VOP::LOC_CTRL.LOC_BASE_TICK_CNT Default LOC timer expiry time: 3.3ms.
@@ -467,7 +467,7 @@ impl LOC_PERIOD_CFG {
 /// CCM SCAN Diagnostic
 ///
 /// Bits in this register indicate the current status of the LOC scanning. Note that the following bit field is NOT sticky: * LOC_SCAN_ONGOING_STATUS
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct LOC_SCAN_STICKY(u32);
 impl LOC_SCAN_STICKY {
     /// Asserted by VOP when LOC_SCAN completes.
@@ -529,7 +529,7 @@ impl LOC_SCAN_STICKY {
 /// VOP interrupt control.
 ///
 /// This is the combined interrupt output from the VOP. To determine the VOE source of the interrupt, read register: * VOP::INTR.VOE_INTR
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MASTER_INTR_CTRL(u32);
 impl MASTER_INTR_CTRL {
     /// Status of the VOP interrupt. If asserted this can optionally generate an interrupt to the CPU. * VOP::MASTER_INTR_CTRL.OAM_MEP_INTR_ENA
@@ -564,7 +564,7 @@ impl MASTER_INTR_CTRL {
 /// Generic OAM PDU Opcodes configuration
 ///
 /// The VOE implements HW support for a number of dedicated MPLS-TP codepoints (BFD CC/CV) which all have dedicated control registers. In addition to the dedicated MPLS-TP Codepoints with dedicated control registers, the VOE further supports configuring 8 Generic Codepoints, which can be extracted to CPU or forwarded independently of other Codepoints. The Generic Codepoints are configured using this register. The value of each Codepoint is configured globally across all VOEs in the following bit field: * GENERIC_CODEPOINT_VAL A codepoint which is not explicitly supported and which not configured as a Generic Codepoint will be treated as an UNKNOWN Codepoint. The extraction and forwarding of Generic Codepoints can be configured individually pr. VOE using the following registers: * VOP_MPLS:VOE_CONF_MPLS:CPU_COPY_CTRL_MPLS.GENERIC_COPY_MASK * VOP_MPLS:VOE_CONF_MPLS:OAM_CNT_SEL_MPLS.GENERIC_CPT_CNT_SEL_MASK
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct MPLS_GENERIC_CODEPOINT(u32);
 impl MPLS_GENERIC_CODEPOINT {
     /// Configures CPU queue to which MPLS-TP OAM PDUs with a G-ACH Channel Type configured as generic codepoints are extracted.
@@ -595,7 +595,7 @@ impl MPLS_GENERIC_CODEPOINT {
 /// Generic OAM PDU Opcodes configuration
 ///
 /// The VOE implements HW support for a number of selected OAM PDUs which all have dedicated control registers. In addition to the selected OAM PDUs with dedicated control registers, the VOE further supports configuring 8 Generic Opcodes, which can be extracted to CPU or forwarded independently of other OpCodes. The value of each OpCode is configured globally across all VOEs in the following bit field: * GENERIC_OPCODE_VAL An opcode which is not explicitly supported and which not configured as a Generic OpCode will be treated as an UNKNOWN opcode. The extraction and forwarding of Generic OpCodes can be configured individually pr. VOE using the following registers: * VOP:VOE_CONF:OAM_CPU_COPY_CTRL.GENERIC_COPY_MASK * VOP:VOE_CONF:OAM_CNT_OAM_CTRL.GENERIC_OAM_CNT_MASK * VOP:VOE_CONF:OAM_CNT_DATA_CTRL.GENERIC_DATA_CNT_MASK
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct OAM_GENERIC_CFG(u32);
 impl OAM_GENERIC_CFG {
     /// If this bit is asserted, the DMAC check will be disabled for this generic OpCode, regardless of the configuration of the bit field: VOP:VOE_CONF:VOE_CTRL.RX_DMAC_CHK_SEL This bit is required because some OpCodes (i.e. Ring PDU) will use a DMAC which is different from the configured Multicast and Unicast.
@@ -641,7 +641,7 @@ impl OAM_GENERIC_CFG {
 /// Define valid y.1731 PDU version number.
 ///
 /// This register group allows configuration of which versions of the PDU is valid for each of the Y.1731 PDUs supported by HW processing. Only the PDUs which have dedicated HW support in the VOE can be verified by the VOE. For PDUs being forwarded to the CPU the version is assumed to be verified in SW. The version is configured commonly for Message and Response of the same PDU type. For each PDU (pair) there are 8 bits, each representing a version number: 0 - 7. Asserting the bit corresponding to a given version will configure the HW to accept PDUs of this version. E.g. the following will configure VERSION = 1 as being valid for CCM(-LM) frames. * CCM_VERSION(1) = 1
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VERSION_CTRL(u32);
 impl VERSION_CTRL {
     /// Configure which version of the CCM(-LM) PDU will be processed by the VOE.
@@ -703,7 +703,7 @@ impl VERSION_CTRL {
 /// Define valid y.1731 PDU version number.
 ///
 /// This register group allows configuration of which versions of the PDU is valid for each of the Y.1731 PDUs supported by HW processing. Only the PDUs which are being processed by VOE can be verified by the VOE. For PDUs being forwarded to the CPU the version is assumed to be verified in SW. The version is configured commonly for Message and Response of the same PDU type. For each PDU (pair) there are 8 bits, each representing a version number: 0 - 7. Asserting the bit corresponding to a given version will configure the VOE to accept PDUs of this version. E.g. the following will configure VERSION = 1 as being valid for CCM(-LM) frames. * CCM_VERSION(1) = 1
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VERSION_CTRL_2(u32);
 impl VERSION_CTRL_2 {
     /// Configure which version of the LBM/LBR PDU will be processed by the VOE.
@@ -763,7 +763,7 @@ impl VERSION_CTRL_2 {
     }
 }
 /// Version control configuration for MPLS
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VERSION_CTRL_MPLS(u32);
 impl VERSION_CTRL_MPLS {
     /// The VOE will optionally validate the version of the incoming BFD frames against the value configured in this register. If the version in the incoming frame is not as configured, the frame will be discarded. The Rx validation is configured in the following bitfields: * VOP_MPLS:VOE_CONF_MPLS:BFD_CONFIG.BFD_RX_VERIFY_*
@@ -781,7 +781,7 @@ impl VERSION_CTRL_MPLS {
 /// One bit per 32 VOE interrupts.
 ///
 /// The following register contains a bit for every VOE indicating whether VOE interrupt is asserted: * VOP::INTR.* To speed up the process of finding out which interrups are asserted, this register (INTR_VOE32) contains a single bit for every 32-bit register in the above register. Every bit in INTR_VOE32 indicates if an interrupt is asserted in the corresponding 32 bit register in VOP::INTR.* I.e. bit 0 = '1' indicates an active interrupt in VOP::INTR[0].VOE_INTR bit 1 = '1' indicates an active interrupt in VOP::INTR[1].VOE_INTR ...
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VOE32_INTR(u32);
 impl VOE32_INTR {
     /// See register description.
@@ -797,7 +797,7 @@ impl VOE32_INTR {
 /// Miscellaneous Vitesse OAM Processor Controls
 ///
 /// This register contains variable settings which are global to all VOEs.
-#[derive(Copy, Clone, Eq, PartialEq, From, Into)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct VOP_CTRL(u32);
 impl VOP_CTRL {
     /// The CCM PDU does not have a dedicated register for the RxFCf counter. However there is a reserved field which can be used to hold this value. Asserting this field enables updating reserved field for Rx CCM LM PDU with RxFCf. This is the only way to relay the RxFCf counter to the CPU.
