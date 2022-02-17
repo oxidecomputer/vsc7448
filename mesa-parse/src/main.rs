@@ -197,17 +197,9 @@ pub mod phy;
         writeln!(&mut file, "pub mod {};", name.to_lowercase())?;
     }
 
-    // Write top-level targets
-    write!(
-        &mut file,
-        "
-pub struct Vsc7448 {{}}
-impl Vsc7448 {{"
-    )?;
-
     // Create the top-level Vsc7448 struct, which has static functions to
     // construct each kind of target
-    for (name, (_, instances)) in target_list.iter() {
+    for (name, (remap, instances)) in target_list.iter() {
         let mut instances = instances.clone();
         instances.sort();
         match instances.len() {
@@ -215,11 +207,12 @@ impl Vsc7448 {{"
             1 => write!(
                 &mut file,
                 "
-    #[inline(always)]
-    pub fn {0}() -> {0} {{
-        {0}(0x{1:x})
-    }}",
-                name, instances[0].1
+/// {2}
+#[inline(always)]
+pub fn {0}() -> tgt::{0} {{
+    tgt::{0}(0x{1:x})
+}}",
+                name, instances[0].1, target_docs[remap].desc,
             )?,
             _ => {
                 // Sanity-check that the instances are tightly packed in memory
@@ -232,11 +225,12 @@ impl Vsc7448 {{"
                 write!(
                     &mut file,
                     "
-    #[inline(always)]
-    pub fn {0}(index: {4}) -> {0} {{
-        assert!(index < {2});
-        {0}(0x{1:x} + {5} * 0x{3:x})
-    }}",
+/// {6}
+#[inline(always)]
+pub fn {0}(index: {4}) -> tgt::{0} {{
+    assert!(index < {2});
+    tgt::{0}(0x{1:x} + {5} * 0x{3:x})
+}}",
                     name,
                     instances[0].1,
                     instances.len(),
@@ -247,11 +241,21 @@ impl Vsc7448 {{"
                     } else {
                         "u32::from(index)"
                     },
+                    target_docs[remap].desc,
                 )?;
             }
         }
     }
-    writeln!(&mut file, "\n}}")?;
+    writeln!(
+        &mut file,
+        "\n
+/// This module contains `struct`'s to represent various top-level targets
+/// within the chip.  These `struct`'s share names with functions in the
+/// crate root, so they are hidden in a separate module (since those root
+/// functions will be used much more often).
+pub mod tgt {{
+    use super::*;"
+    )?;
 
     // Write top-level targets
     for (name, (remap, instances)) in target_list.iter() {
@@ -284,21 +288,21 @@ use crate::types::RegisterAddress;
         writeln!(
             &mut file,
             "
-/// {1}
-pub struct {0}(u32);
-impl {0} {{
-    pub const BASE: u32 = 0x{2:x};",
+    /// {1}
+    pub struct {0}(pub(super) u32);
+    impl {0} {{
+        pub const BASE: u32 = 0x{2:x};",
             name, target_docs[remap].desc, instances[0].1,
         )?;
         if instances.len() > 1 {
             let delta = instances[1].1 - instances[0].1;
-            writeln!(&mut file, "    pub const SIZE: u32 = 0x{:x};", delta)?;
+            writeln!(&mut file, "        pub const SIZE: u32 = 0x{:x};", delta)?;
         }
         writeln!(
             &mut file,
-            "    pub fn from_raw_unchecked_address(a: u32) -> Self {{
-        Self(a)
-    }}"
+            "        pub fn from_raw_unchecked_address(a: u32) -> Self {{
+            Self(a)
+        }}"
         )?;
 
         for (gname, group) in target_docs[remap].groups.iter() {
@@ -315,11 +319,11 @@ impl {0} {{
                 write!(
                     &mut file,
                     "
-    #[inline(always)]
-    pub fn {1}(&self, index: {5}) -> {0}::{1} {{
-        assert!(index < {3});
-        {0}::{1}(self.0 + 0x{2:x} + {6} * 0x{4:x})
-    }}",
+        #[inline(always)]
+        pub fn {1}(&self, index: {5}) -> {0}::{1} {{
+            assert!(index < {3});
+            {0}::{1}(self.0 + 0x{2:x} + {6} * 0x{4:x})
+        }}",
                     name.to_lowercase(),
                     gname,
                     group.addr.base * 4,
@@ -336,10 +340,10 @@ impl {0} {{
                 write!(
                     &mut file,
                     "
-    #[inline(always)]
-    pub fn {1}(&self) -> {0}::{1} {{
-        {0}::{1}(self.0 + 0x{2:x})
-    }}",
+        #[inline(always)]
+        pub fn {1}(&self) -> {0}::{1} {{
+            {0}::{1}(self.0 + 0x{2:x})
+        }}",
                     name.to_lowercase(),
                     gname,
                     group.addr.base * 4,
@@ -395,9 +399,9 @@ impl {0} {{",
             }
             writeln!(&mut tfile, "\n}}")?;
         }
-        writeln!(&mut file, "\n}}")?;
+        writeln!(&mut file, "\n    }}")?;
     }
-    writeln!(&mut file)?;
+    writeln!(&mut file, "}}")?;
 
     // Now, write the Phy registers
     let mut path = PathBuf::from(dir);

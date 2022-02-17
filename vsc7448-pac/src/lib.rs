@@ -82,2175 +82,2225 @@ pub mod xgkr1;
 pub mod xgxfi;
 pub mod xqs;
 
-pub struct Vsc7448 {}
-impl Vsc7448 {
-    #[inline(always)]
-    pub fn AFI() -> AFI {
-        AFI(0x71a80000)
-    }
-    #[inline(always)]
-    pub fn ANA_AC() -> ANA_AC {
-        ANA_AC(0x71f00000)
-    }
-    #[inline(always)]
-    pub fn ANA_ACL() -> ANA_ACL {
-        ANA_ACL(0x71430000)
-    }
-    #[inline(always)]
-    pub fn ANA_AC_OAM_MOD() -> ANA_AC_OAM_MOD {
-        ANA_AC_OAM_MOD(0x71b80000)
-    }
-    #[inline(always)]
-    pub fn ANA_AC_POL() -> ANA_AC_POL {
-        ANA_AC_POL(0x71980000)
-    }
-    #[inline(always)]
-    pub fn ANA_CL() -> ANA_CL {
-        ANA_CL(0x71d00000)
-    }
-    #[inline(always)]
-    pub fn ANA_L2() -> ANA_L2 {
-        ANA_L2(0x71e00000)
-    }
-    #[inline(always)]
-    pub fn ANA_L3() -> ANA_L3 {
-        ANA_L3(0x71800000)
-    }
-    #[inline(always)]
-    pub fn ASM() -> ASM {
-        ASM(0x71410000)
-    }
-    #[inline(always)]
-    pub fn DEV10G(index: u8) -> DEV10G {
-        assert!(index < 4);
-        DEV10G(0x71390000 + u32::from(index) * 0x10000)
-    }
-    #[inline(always)]
-    pub fn DEV1G(index: u8) -> DEV1G {
-        assert!(index < 24);
-        DEV1G(0x71040000 + u32::from(index) * 0x10000)
-    }
-    #[inline(always)]
-    pub fn DEV2G5(index: u8) -> DEV2G5 {
-        assert!(index < 29);
-        DEV2G5(0x711c0000 + u32::from(index) * 0x10000)
-    }
-    #[inline(always)]
-    pub fn DEVCPU_GCB() -> DEVCPU_GCB {
-        DEVCPU_GCB(0x71010000)
-    }
-    #[inline(always)]
-    pub fn DEVCPU_ORG() -> DEVCPU_ORG {
-        DEVCPU_ORG(0x71000000)
-    }
-    #[inline(always)]
-    pub fn DEVCPU_PTP() -> DEVCPU_PTP {
-        DEVCPU_PTP(0x717f0000)
-    }
-    #[inline(always)]
-    pub fn DEVCPU_QS() -> DEVCPU_QS {
-        DEVCPU_QS(0x71020000)
-    }
-    #[inline(always)]
-    pub fn DSM() -> DSM {
-        DSM(0x71450000)
-    }
-    #[inline(always)]
-    pub fn HSCH() -> HSCH {
-        HSCH(0x71880000)
-    }
-    #[inline(always)]
-    pub fn HSIO() -> HSIO {
-        HSIO(0x71460000)
-    }
-    #[inline(always)]
-    pub fn ICPU_CFG() -> ICPU_CFG {
-        ICPU_CFG(0x70000000)
-    }
-    #[inline(always)]
-    pub fn LRN() -> LRN {
-        LRN(0x71420000)
-    }
-    #[inline(always)]
-    pub fn PCIE() -> PCIE {
-        PCIE(0x70111000)
-    }
-    #[inline(always)]
-    pub fn PCS10G_BR(index: u8) -> PCS10G_BR {
-        assert!(index < 4);
-        PCS10G_BR(0x713d0000 + u32::from(index) * 0x10000)
-    }
-    #[inline(always)]
-    pub fn QFWD() -> QFWD {
-        QFWD(0x717d0000)
-    }
-    #[inline(always)]
-    pub fn QRES() -> QRES {
-        QRES(0x71900000)
-    }
-    #[inline(always)]
-    pub fn QSYS() -> QSYS {
-        QSYS(0x717e0000)
-    }
-    #[inline(always)]
-    pub fn REW() -> REW {
-        REW(0x71b00000)
-    }
-    #[inline(always)]
-    pub fn SBA() -> SBA {
-        SBA(0x70110000)
-    }
-    #[inline(always)]
-    pub fn SIMC() -> SIMC {
-        SIMC(0x70101000)
-    }
-    #[inline(always)]
-    pub fn TWI() -> TWI {
-        TWI(0x70100400)
-    }
-    #[inline(always)]
-    pub fn TWI2() -> TWI2 {
-        TWI2(0x70100c00)
-    }
-    #[inline(always)]
-    pub fn UART() -> UART {
-        UART(0x70100000)
-    }
-    #[inline(always)]
-    pub fn UART2() -> UART2 {
-        UART2(0x70100800)
-    }
-    #[inline(always)]
-    pub fn VAUI0() -> VAUI0 {
-        VAUI0(0x717b0000)
-    }
-    #[inline(always)]
-    pub fn VAUI1() -> VAUI1 {
-        VAUI1(0x717c0000)
-    }
-    #[inline(always)]
-    pub fn VCAP_ES0() -> VCAP_ES0 {
-        VCAP_ES0(0x71470000)
-    }
-    #[inline(always)]
-    pub fn VCAP_SUPER() -> VCAP_SUPER {
-        VCAP_SUPER(0x71440000)
-    }
-    #[inline(always)]
-    pub fn VOP() -> VOP {
-        VOP(0x71c00000)
-    }
-    #[inline(always)]
-    pub fn VOP_MPLS() -> VOP_MPLS {
-        VOP_MPLS(0x71a00000)
-    }
-    #[inline(always)]
-    pub fn XGANA(index: u8) -> XGANA {
-        assert!(index < 4);
-        XGANA(0x71480000 + u32::from(index) * 0x10000)
-    }
-    #[inline(always)]
-    pub fn XGDIG(index: u8) -> XGDIG {
-        assert!(index < 4);
-        XGDIG(0x714c0000 + u32::from(index) * 0x10000)
-    }
-    #[inline(always)]
-    pub fn XGKR0(index: u8) -> XGKR0 {
-        assert!(index < 4);
-        XGKR0(0x71540000 + u32::from(index) * 0x10000)
-    }
-    #[inline(always)]
-    pub fn XGKR1(index: u8) -> XGKR1 {
-        assert!(index < 4);
-        XGKR1(0x71580000 + u32::from(index) * 0x10000)
-    }
-    #[inline(always)]
-    pub fn XGXFI(index: u8) -> XGXFI {
-        assert!(index < 4);
-        XGXFI(0x71500000 + u32::from(index) * 0x10000)
-    }
-    #[inline(always)]
-    pub fn XQS() -> XQS {
-        XQS(0x717a0000)
-    }
-}
-
 /// The Automatic Frame Injector (AFI) provides mechanisms for periodic injection of PDUs. E.g. injection of - OAM PDUs for continuity check, loss and delay measurement - OAM PDUs for high service activation test, ref. ITU Y.1564. - IEEE 1588 PDUs
-pub struct AFI(u32);
-impl AFI {
-    pub const BASE: u32 = 0x71a80000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn DTI_MISC(&self, index: u8) -> afi::DTI_MISC {
-        assert!(index < 32);
-        afi::DTI_MISC(self.0 + 0x285e8 + u32::from(index) * 0xc)
-    }
-    #[inline(always)]
-    pub fn DTI_TBL(&self, index: u8) -> afi::DTI_TBL {
-        assert!(index < 32);
-        afi::DTI_TBL(self.0 + 0x28000 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn FRM_TBL(&self, index: u16) -> afi::FRM_TBL {
-        assert!(index < 4096);
-        afi::FRM_TBL(self.0 + 0x20000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn MISC(&self) -> afi::MISC {
-        afi::MISC(self.0 + 0x285c8)
-    }
-    #[inline(always)]
-    pub fn PORT_TBL(&self, index: u8) -> afi::PORT_TBL {
-        assert!(index < 57);
-        afi::PORT_TBL(self.0 + 0x28400 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn TTI_MISC(&self) -> afi::TTI_MISC {
-        afi::TTI_MISC(self.0 + 0x28794)
-    }
-    #[inline(always)]
-    pub fn TTI_TBL(&self, index: u16) -> afi::TTI_TBL {
-        assert!(index < 4096);
-        afi::TTI_TBL(self.0 + 0x0 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn TTI_TICKS(&self) -> afi::TTI_TICKS {
-        afi::TTI_TICKS(self.0 + 0x28768)
-    }
-    #[inline(always)]
-    pub fn TUPE(&self) -> afi::TUPE {
-        afi::TUPE(self.0 + 0x287d8)
-    }
+#[inline(always)]
+pub fn AFI() -> tgt::AFI {
+    tgt::AFI(0x71a80000)
 }
-
 /// Controls mask handling etc.
-pub struct ANA_AC(u32);
-impl ANA_AC {
-    pub const BASE: u32 = 0x71f00000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn AGGR(&self, index: u8) -> ana_ac::AGGR {
-        assert!(index < 16);
-        ana_ac::AGGR(self.0 + 0x94380 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn COREMEM(&self) -> ana_ac::COREMEM {
-        ana_ac::COREMEM(self.0 + 0x94350)
-    }
-    #[inline(always)]
-    pub fn GLAG(&self, index: u8) -> ana_ac::GLAG {
-        assert!(index < 32);
-        ana_ac::GLAG(self.0 + 0x94700 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn MIRROR_PROBE(&self, index: u8) -> ana_ac::MIRROR_PROBE {
-        assert!(index < 3);
-        ana_ac::MIRROR_PROBE(self.0 + 0x94780 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn PGID(&self, index: u16) -> ana_ac::PGID {
-        assert!(index < 1077);
-        ana_ac::PGID(self.0 + 0x90000 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn PS_COMMON(&self) -> ana_ac::PS_COMMON {
-        ana_ac::PS_COMMON(self.0 + 0x94da8)
-    }
-    #[inline(always)]
-    pub fn PS_STICKY(&self) -> ana_ac::PS_STICKY {
-        ana_ac::PS_STICKY(self.0 + 0x9435c)
-    }
-    #[inline(always)]
-    pub fn PS_STICKY_MASK(&self, index: u8) -> ana_ac::PS_STICKY_MASK {
-        assert!(index < 4);
-        ana_ac::PS_STICKY_MASK(self.0 + 0x94ebc + u32::from(index) * 0x40)
-    }
-    #[inline(always)]
-    pub fn RAM_CTRL(&self) -> ana_ac::RAM_CTRL {
-        ana_ac::RAM_CTRL(self.0 + 0x94358)
-    }
-    #[inline(always)]
-    pub fn SFLOW(&self, index: u8) -> ana_ac::SFLOW {
-        assert!(index < 53);
-        ana_ac::SFLOW(self.0 + 0x94c00 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn SRC(&self, index: u8) -> ana_ac::SRC {
-        assert!(index < 89);
-        ana_ac::SRC(self.0 + 0x94400 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn STAT_CNT_CFG_ACL(&self, index: u8) -> ana_ac::STAT_CNT_CFG_ACL {
-        assert!(index < 32);
-        ana_ac::STAT_CNT_CFG_ACL(self.0 + 0x94a00 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn STAT_CNT_CFG_BDLB(&self, index: u16) -> ana_ac::STAT_CNT_CFG_BDLB {
-        assert!(index < 1024);
-        ana_ac::STAT_CNT_CFG_BDLB(self.0 + 0x98000 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn STAT_CNT_CFG_BUM(&self, index: u16) -> ana_ac::STAT_CNT_CFG_BUM {
-        assert!(index < 1024);
-        ana_ac::STAT_CNT_CFG_BUM(self.0 + 0x80000 + u32::from(index) * 0x40)
-    }
-    #[inline(always)]
-    pub fn STAT_CNT_CFG_ERLEG(&self, index: u16) -> ana_ac::STAT_CNT_CFG_ERLEG {
-        assert!(index < 256);
-        ana_ac::STAT_CNT_CFG_ERLEG(self.0 + 0xa0000 + u32::from(index) * 0x40)
-    }
-    #[inline(always)]
-    pub fn STAT_CNT_CFG_IRLEG(&self, index: u16) -> ana_ac::STAT_CNT_CFG_IRLEG {
-        assert!(index < 256);
-        ana_ac::STAT_CNT_CFG_IRLEG(self.0 + 0x9c000 + u32::from(index) * 0x40)
-    }
-    #[inline(always)]
-    pub fn STAT_CNT_CFG_ISDX(&self, index: u16) -> ana_ac::STAT_CNT_CFG_ISDX {
-        assert!(index < 8192);
-        ana_ac::STAT_CNT_CFG_ISDX(self.0 + 0x0 + u32::from(index) * 0x40)
-    }
-    #[inline(always)]
-    pub fn STAT_CNT_CFG_PORT(&self, index: u8) -> ana_ac::STAT_CNT_CFG_PORT {
-        assert!(index < 57);
-        ana_ac::STAT_CNT_CFG_PORT(self.0 + 0x95000 + u32::from(index) * 0x40)
-    }
-    #[inline(always)]
-    pub fn STAT_CNT_CFG_QUEUE(&self, index: u16) -> ana_ac::STAT_CNT_CFG_QUEUE {
-        assert!(index < 456);
-        ana_ac::STAT_CNT_CFG_QUEUE(self.0 + 0x96000 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn STAT_GLOBAL_CFG_ACL(&self) -> ana_ac::STAT_GLOBAL_CFG_ACL {
-        ana_ac::STAT_GLOBAL_CFG_ACL(self.0 + 0x946c8)
-    }
-    #[inline(always)]
-    pub fn STAT_GLOBAL_CFG_BDLB(&self) -> ana_ac::STAT_GLOBAL_CFG_BDLB {
-        ana_ac::STAT_GLOBAL_CFG_BDLB(self.0 + 0x947e0)
-    }
-    #[inline(always)]
-    pub fn STAT_GLOBAL_CFG_BUM(&self) -> ana_ac::STAT_GLOBAL_CFG_BUM {
-        ana_ac::STAT_GLOBAL_CFG_BUM(self.0 + 0x95e88)
-    }
-    #[inline(always)]
-    pub fn STAT_GLOBAL_CFG_ERLEG(&self) -> ana_ac::STAT_GLOBAL_CFG_ERLEG {
-        ana_ac::STAT_GLOBAL_CFG_ERLEG(self.0 + 0x95f30)
-    }
-    #[inline(always)]
-    pub fn STAT_GLOBAL_CFG_IRLEG(&self) -> ana_ac::STAT_GLOBAL_CFG_IRLEG {
-        ana_ac::STAT_GLOBAL_CFG_IRLEG(self.0 + 0x95ed0)
-    }
-    #[inline(always)]
-    pub fn STAT_GLOBAL_CFG_ISDX(&self) -> ana_ac::STAT_GLOBAL_CFG_ISDX {
-        ana_ac::STAT_GLOBAL_CFG_ISDX(self.0 + 0x95e40)
-    }
-    #[inline(always)]
-    pub fn STAT_GLOBAL_CFG_PORT(&self) -> ana_ac::STAT_GLOBAL_CFG_PORT {
-        ana_ac::STAT_GLOBAL_CFG_PORT(self.0 + 0x94360)
-    }
-    #[inline(always)]
-    pub fn STAT_GLOBAL_CFG_QUEUE(&self) -> ana_ac::STAT_GLOBAL_CFG_QUEUE {
-        ana_ac::STAT_GLOBAL_CFG_QUEUE(self.0 + 0x946e0)
-    }
-    #[inline(always)]
-    pub fn UPSID(&self, index: u8) -> ana_ac::UPSID {
-        assert!(index < 32);
-        ana_ac::UPSID(self.0 + 0x94800 + u32::from(index) * 0x10)
-    }
+#[inline(always)]
+pub fn ANA_AC() -> tgt::ANA_AC {
+    tgt::ANA_AC(0x71f00000)
 }
-
 /// Access Control List sub block of the Analyzer
-pub struct ANA_ACL(u32);
-impl ANA_ACL {
-    pub const BASE: u32 = 0x71430000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn CNT_TBL(&self, index: u16) -> ana_acl::CNT_TBL {
-        assert!(index < 4096);
-        ana_acl::CNT_TBL(self.0 + 0x0 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn PORT(&self, index: u8) -> ana_acl::PORT {
-        assert!(index < 57);
-        ana_acl::PORT(self.0 + 0x4000 + u32::from(index) * 0xc)
-    }
-    #[inline(always)]
-    pub fn PTP_DOM(&self, index: u8) -> ana_acl::PTP_DOM {
-        assert!(index < 3);
-        ana_acl::PTP_DOM(self.0 + 0x446c + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn STICKY(&self) -> ana_acl::STICKY {
-        ana_acl::STICKY(self.0 + 0x4464)
-    }
-    #[inline(always)]
-    pub fn VCAP_S2(&self) -> ana_acl::VCAP_S2 {
-        ana_acl::VCAP_S2(self.0 + 0x42ac)
-    }
+#[inline(always)]
+pub fn ANA_ACL() -> tgt::ANA_ACL {
+    tgt::ANA_ACL(0x71430000)
 }
-
 /// This block os part of the Vitesse OAM MEP Processor (VOP). It is directly controlled by the VOP and performs all frame modification related OAM functions. This block is included in both the REW and the ANA_AC. The HW support for implementing an OAM MEP is implemented in a sub block, known as: Vitesse OAM Endpoint (VOE). The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs
-pub struct ANA_AC_OAM_MOD(u32);
-impl ANA_AC_OAM_MOD {
-    pub const BASE: u32 = 0x71b80000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn OAM_PDU_MOD_CONT(&self, index: u8) -> ana_ac_oam_mod::OAM_PDU_MOD_CONT {
-        assert!(index < 110);
-        ana_ac_oam_mod::OAM_PDU_MOD_CONT(self.0 + 0xa000 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn PDU_MOD_CFG(&self) -> ana_ac_oam_mod::PDU_MOD_CFG {
-        ana_ac_oam_mod::PDU_MOD_CFG(self.0 + 0x9a80)
-    }
-    #[inline(always)]
-    pub fn VOE_PORT_LM_CNT(&self, index: u16) -> ana_ac_oam_mod::VOE_PORT_LM_CNT {
-        assert!(index < 424);
-        ana_ac_oam_mod::VOE_PORT_LM_CNT(self.0 + 0x8000 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn VOE_SRV_LM_CNT(&self, index: u16) -> ana_ac_oam_mod::VOE_SRV_LM_CNT {
-        assert!(index < 8192);
-        ana_ac_oam_mod::VOE_SRV_LM_CNT(self.0 + 0x0 + u32::from(index) * 0x4)
-    }
+#[inline(always)]
+pub fn ANA_AC_OAM_MOD() -> tgt::ANA_AC_OAM_MOD {
+    tgt::ANA_AC_OAM_MOD(0x71b80000)
 }
-
 /// Controls the various policers.
-pub struct ANA_AC_POL(u32);
-impl ANA_AC_POL {
-    pub const BASE: u32 = 0x71980000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn BDLB(&self, index: u16) -> ana_ac_pol::BDLB {
-        assert!(index < 1024);
-        ana_ac_pol::BDLB(self.0 + 0x28000 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn BUM_SLB(&self, index: u16) -> ana_ac_pol::BUM_SLB {
-        assert!(index < 1024);
-        ana_ac_pol::BUM_SLB(self.0 + 0x30000 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn COMMON_BDLB(&self) -> ana_ac_pol::COMMON_BDLB {
-        ana_ac_pol::COMMON_BDLB(self.0 + 0x237dc)
-    }
-    #[inline(always)]
-    pub fn COMMON_BUM_SLB(&self) -> ana_ac_pol::COMMON_BUM_SLB {
-        ana_ac_pol::COMMON_BUM_SLB(self.0 + 0x237e4)
-    }
-    #[inline(always)]
-    pub fn COMMON_SDLB(&self) -> ana_ac_pol::COMMON_SDLB {
-        ana_ac_pol::COMMON_SDLB(self.0 + 0x237d4)
-    }
-    #[inline(always)]
-    pub fn POL_ALL_CFG(&self) -> ana_ac_pol::POL_ALL_CFG {
-        ana_ac_pol::POL_ALL_CFG(self.0 + 0x23500)
-    }
-    #[inline(always)]
-    pub fn POL_PORT_CFG(&self) -> ana_ac_pol::POL_PORT_CFG {
-        ana_ac_pol::POL_PORT_CFG(self.0 + 0x24000)
-    }
-    #[inline(always)]
-    pub fn POL_PORT_CTRL(&self, index: u8) -> ana_ac_pol::POL_PORT_CTRL {
-        assert!(index < 57);
-        ana_ac_pol::POL_PORT_CTRL(self.0 + 0x23800 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn PORT_PT_CTRL(&self, index: u8) -> ana_ac_pol::PORT_PT_CTRL {
-        assert!(index < 64);
-        ana_ac_pol::PORT_PT_CTRL(self.0 + 0x25000 + u32::from(index) * 0x14)
-    }
-    #[inline(always)]
-    pub fn SDLB(&self, index: u16) -> ana_ac_pol::SDLB {
-        assert!(index < 4520);
-        ana_ac_pol::SDLB(self.0 + 0x0 + u32::from(index) * 0x20)
-    }
+#[inline(always)]
+pub fn ANA_AC_POL() -> tgt::ANA_AC_POL {
+    tgt::ANA_AC_POL(0x71980000)
 }
-
 /// Classifier sub block of the Analyzer
-pub struct ANA_CL(u32);
-impl ANA_CL {
-    pub const BASE: u32 = 0x71d00000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn COMMON(&self) -> ana_cl::COMMON {
-        ana_cl::COMMON(self.0 + 0x23a80)
-    }
-    #[inline(always)]
-    pub fn IPT(&self, index: u16) -> ana_cl::IPT {
-        assert!(index < 4096);
-        ana_cl::IPT(self.0 + 0x0 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn L2CP_TBL(&self, index: u16) -> ana_cl::L2CP_TBL {
-        assert!(index < 3744);
-        ana_cl::L2CP_TBL(self.0 + 0x20000 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn MAP_TBL(&self, index: u16) -> ana_cl::MAP_TBL {
-        assert!(index < 512);
-        ana_cl::MAP_TBL(self.0 + 0x18000 + u32::from(index) * 0x40)
-    }
-    #[inline(always)]
-    pub fn MIP_TBL(&self, index: u16) -> ana_cl::MIP_TBL {
-        assert!(index < 1024);
-        ana_cl::MIP_TBL(self.0 + 0x10000 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn MPLS_PROFILE(&self, index: u8) -> ana_cl::MPLS_PROFILE {
-        assert!(index < 18);
-        ana_cl::MPLS_PROFILE(self.0 + 0x23d68 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn PORT(&self, index: u8) -> ana_cl::PORT {
-        assert!(index < 57);
-        ana_cl::PORT(self.0 + 0x24000 + u32::from(index) * 0x100)
-    }
-    #[inline(always)]
-    pub fn PPT(&self) -> ana_cl::PPT {
-        ana_cl::PPT(self.0 + 0x23db0)
-    }
-    #[inline(always)]
-    pub fn STICKY(&self) -> ana_cl::STICKY {
-        ana_cl::STICKY(self.0 + 0x23df0)
-    }
-    #[inline(always)]
-    pub fn STICKY_MASK(&self, index: u8) -> ana_cl::STICKY_MASK {
-        assert!(index < 4);
-        ana_cl::STICKY_MASK(self.0 + 0x23e18 + u32::from(index) * 0x20)
-    }
+#[inline(always)]
+pub fn ANA_CL() -> tgt::ANA_CL {
+    tgt::ANA_CL(0x71d00000)
 }
-
 /// Layer 2 sub block of the Analyzer
-pub struct ANA_L2(u32);
-impl ANA_L2 {
-    pub const BASE: u32 = 0x71e00000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn COMMON(&self) -> ana_l2::COMMON {
-        ana_l2::COMMON(self.0 + 0x8a2a8)
-    }
-    #[inline(always)]
-    pub fn ISDX(&self, index: u16) -> ana_l2::ISDX {
-        assert!(index < 4096);
-        ana_l2::ISDX(self.0 + 0x0 + u32::from(index) * 0x80)
-    }
-    #[inline(always)]
-    pub fn LRN_LIMIT(&self, index: u16) -> ana_l2::LRN_LIMIT {
-        assert!(index < 5120);
-        ana_l2::LRN_LIMIT(self.0 + 0x80000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn PORT_LIMIT(&self, index: u8) -> ana_l2::PORT_LIMIT {
-        assert!(index < 85);
-        ana_l2::PORT_LIMIT(self.0 + 0x8a000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn STICKY(&self) -> ana_l2::STICKY {
-        ana_l2::STICKY(self.0 + 0x8a40c)
-    }
-    #[inline(always)]
-    pub fn STICKY_MASK(&self, index: u8) -> ana_l2::STICKY_MASK {
-        assert!(index < 4);
-        ana_l2::STICKY_MASK(self.0 + 0x8a410 + u32::from(index) * 0x4)
-    }
+#[inline(always)]
+pub fn ANA_L2() -> tgt::ANA_L2 {
+    tgt::ANA_L2(0x71e00000)
 }
-
 /// ANA_L3 provides the following functionality: - VLAN handling - MSTP handling - IP routing
-pub struct ANA_L3(u32);
-impl ANA_L3 {
-    pub const BASE: u32 = 0x71800000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn ARP(&self, index: u16) -> ana_l3::ARP {
-        assert!(index < 2048);
-        ana_l3::ARP(self.0 + 0x30000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn ARP_PTR_REMAP(&self, index: u8) -> ana_l3::ARP_PTR_REMAP {
-        assert!(index < 64);
-        ana_l3::ARP_PTR_REMAP(self.0 + 0x35500 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn COMMON(&self) -> ana_l3::COMMON {
-        ana_l3::COMMON(self.0 + 0x35420)
-    }
-    #[inline(always)]
-    pub fn L3MC(&self, index: u16) -> ana_l3::L3MC {
-        assert!(index < 1024);
-        ana_l3::L3MC(self.0 + 0x28000 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn L3_STICKY_MASK(&self, index: u8) -> ana_l3::L3_STICKY_MASK {
-        assert!(index < 4);
-        ana_l3::L3_STICKY_MASK(self.0 + 0x35600 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn LPM_REMAP_STICKY(&self) -> ana_l3::LPM_REMAP_STICKY {
-        ana_l3::LPM_REMAP_STICKY(self.0 + 0x354d0)
-    }
-    #[inline(always)]
-    pub fn MSTP(&self, index: u8) -> ana_l3::MSTP {
-        assert!(index < 66);
-        ana_l3::MSTP(self.0 + 0x35000 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn TUPE(&self) -> ana_l3::TUPE {
-        ana_l3::TUPE(self.0 + 0x3549c)
-    }
-    #[inline(always)]
-    pub fn VLAN(&self, index: u16) -> ana_l3::VLAN {
-        assert!(index < 5120);
-        ana_l3::VLAN(self.0 + 0x0 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn VLAN_ARP_L3MC_STICKY(&self) -> ana_l3::VLAN_ARP_L3MC_STICKY {
-        ana_l3::VLAN_ARP_L3MC_STICKY(self.0 + 0x354d4)
-    }
-    #[inline(always)]
-    pub fn VMID(&self, index: u8) -> ana_l3::VMID {
-        assert!(index < 128);
-        ana_l3::VMID(self.0 + 0x34000 + u32::from(index) * 0x20)
-    }
+#[inline(always)]
+pub fn ANA_L3() -> tgt::ANA_L3 {
+    tgt::ANA_L3(0x71800000)
 }
-
 /// Assembler
-pub struct ASM(u32);
-impl ASM {
-    pub const BASE: u32 = 0x71410000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn CFG(&self) -> asm::CFG {
-        asm::CFG(self.0 + 0x3508)
-    }
-    #[inline(always)]
-    pub fn COREMEM(&self) -> asm::COREMEM {
-        asm::COREMEM(self.0 + 0x3500)
-    }
-    #[inline(always)]
-    pub fn DBG(&self) -> asm::DBG {
-        asm::DBG(self.0 + 0x3884)
-    }
-    #[inline(always)]
-    pub fn DEV_STATISTICS(&self, index: u8) -> asm::DEV_STATISTICS {
-        assert!(index < 53);
-        asm::DEV_STATISTICS(self.0 + 0x0 + u32::from(index) * 0x100)
-    }
-    #[inline(always)]
-    pub fn LBK_MISC_CFG(&self) -> asm::LBK_MISC_CFG {
-        asm::LBK_MISC_CFG(self.0 + 0x3994)
-    }
-    #[inline(always)]
-    pub fn LBK_STAT(&self) -> asm::LBK_STAT {
-        asm::LBK_STAT(self.0 + 0x39a8)
-    }
-    #[inline(always)]
-    pub fn LBK_WM_CFG(&self) -> asm::LBK_WM_CFG {
-        asm::LBK_WM_CFG(self.0 + 0x398c)
-    }
-    #[inline(always)]
-    pub fn PFC(&self, index: u8) -> asm::PFC {
-        assert!(index < 55);
-        asm::PFC(self.0 + 0x4000 + u32::from(index) * 0x40)
-    }
-    #[inline(always)]
-    pub fn PORT_STATUS(&self) -> asm::PORT_STATUS {
-        asm::PORT_STATUS(self.0 + 0x38b0)
-    }
-    #[inline(always)]
-    pub fn RAM_CTRL(&self) -> asm::RAM_CTRL {
-        asm::RAM_CTRL(self.0 + 0x39b8)
-    }
+#[inline(always)]
+pub fn ASM() -> tgt::ASM {
+    tgt::ASM(0x71410000)
 }
-
 /// \see vtss_target_DEV10G_e VAUI @ 12Gbps 2 lanes, XAUI @ 10 Gbps, XAUI @ 12 Gbps, VAUI @ 10Gbps 2 lanes and SGMII @ 10/100/1000/2500 Mbps
-pub struct DEV10G(u32);
-impl DEV10G {
-    pub const BASE: u32 = 0x71390000;
-    pub const SIZE: u32 = 0x10000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn DEV_CFG_STATUS(&self) -> dev10g::DEV_CFG_STATUS {
-        dev10g::DEV_CFG_STATUS(self.0 + 0x160)
-    }
-    #[inline(always)]
-    pub fn DEV_STATISTICS_32BIT(&self) -> dev10g::DEV_STATISTICS_32BIT {
-        dev10g::DEV_STATISTICS_32BIT(self.0 + 0x38)
-    }
-    #[inline(always)]
-    pub fn DEV_STATISTICS_40BIT(&self) -> dev10g::DEV_STATISTICS_40BIT {
-        dev10g::DEV_STATISTICS_40BIT(self.0 + 0xd4)
-    }
-    #[inline(always)]
-    pub fn MAC_CFG_STATUS(&self) -> dev10g::MAC_CFG_STATUS {
-        dev10g::MAC_CFG_STATUS(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn PCS2X6G_CONFIGURATION(&self) -> dev10g::PCS2X6G_CONFIGURATION {
-        dev10g::PCS2X6G_CONFIGURATION(self.0 + 0x14c)
-    }
-    #[inline(always)]
-    pub fn PCS2X6G_EXT_CONFIGURATION(&self) -> dev10g::PCS2X6G_EXT_CONFIGURATION {
-        dev10g::PCS2X6G_EXT_CONFIGURATION(self.0 + 0x15c)
-    }
-    #[inline(always)]
-    pub fn PCS2X6G_STATUS(&self) -> dev10g::PCS2X6G_STATUS {
-        dev10g::PCS2X6G_STATUS(self.0 + 0x150)
-    }
-    #[inline(always)]
-    pub fn PCS_XAUI_CONFIGURATION(&self) -> dev10g::PCS_XAUI_CONFIGURATION {
-        dev10g::PCS_XAUI_CONFIGURATION(self.0 + 0xfc)
-    }
-    #[inline(always)]
-    pub fn PCS_XAUI_STATUS(&self) -> dev10g::PCS_XAUI_STATUS {
-        dev10g::PCS_XAUI_STATUS(self.0 + 0x118)
-    }
-    #[inline(always)]
-    pub fn PCS_XAUI_TSTPAT_CONFIGURATION(&self) -> dev10g::PCS_XAUI_TSTPAT_CONFIGURATION {
-        dev10g::PCS_XAUI_TSTPAT_CONFIGURATION(self.0 + 0x140)
-    }
-    #[inline(always)]
-    pub fn PCS_XAUI_TSTPAT_STATUS(&self) -> dev10g::PCS_XAUI_TSTPAT_STATUS {
-        dev10g::PCS_XAUI_TSTPAT_STATUS(self.0 + 0x144)
-    }
+#[inline(always)]
+pub fn DEV10G(index: u8) -> tgt::DEV10G {
+    assert!(index < 4);
+    tgt::DEV10G(0x71390000 + u32::from(index) * 0x10000)
 }
-
 /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
-pub struct DEV1G(u32);
-impl DEV1G {
-    pub const BASE: u32 = 0x71040000;
-    pub const SIZE: u32 = 0x10000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn DEV1G_INTR_CFG_STATUS(&self) -> dev1g::DEV1G_INTR_CFG_STATUS {
-        dev1g::DEV1G_INTR_CFG_STATUS(self.0 + 0x94)
-    }
-    #[inline(always)]
-    pub fn DEV_CFG_STATUS(&self) -> dev1g::DEV_CFG_STATUS {
-        dev1g::DEV_CFG_STATUS(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn MAC_CFG_STATUS(&self) -> dev1g::MAC_CFG_STATUS {
-        dev1g::MAC_CFG_STATUS(self.0 + 0x1c)
-    }
-    #[inline(always)]
-    pub fn PCS1G_CFG_STATUS(&self) -> dev1g::PCS1G_CFG_STATUS {
-        dev1g::PCS1G_CFG_STATUS(self.0 + 0x40)
-    }
-    #[inline(always)]
-    pub fn PCS1G_TSTPAT_CFG_STATUS(&self) -> dev1g::PCS1G_TSTPAT_CFG_STATUS {
-        dev1g::PCS1G_TSTPAT_CFG_STATUS(self.0 + 0x84)
-    }
-    #[inline(always)]
-    pub fn PCS_FX100_CONFIGURATION(&self) -> dev1g::PCS_FX100_CONFIGURATION {
-        dev1g::PCS_FX100_CONFIGURATION(self.0 + 0x8c)
-    }
-    #[inline(always)]
-    pub fn PCS_FX100_STATUS(&self) -> dev1g::PCS_FX100_STATUS {
-        dev1g::PCS_FX100_STATUS(self.0 + 0x90)
-    }
+#[inline(always)]
+pub fn DEV1G(index: u8) -> tgt::DEV1G {
+    assert!(index < 24);
+    tgt::DEV1G(0x71040000 + u32::from(index) * 0x10000)
 }
-
 /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
-pub struct DEV2G5(u32);
-impl DEV2G5 {
-    pub const BASE: u32 = 0x711c0000;
-    pub const SIZE: u32 = 0x10000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn DEV1G_INTR_CFG_STATUS(&self) -> dev2g5::DEV1G_INTR_CFG_STATUS {
-        dev2g5::DEV1G_INTR_CFG_STATUS(self.0 + 0x94)
-    }
-    #[inline(always)]
-    pub fn DEV_CFG_STATUS(&self) -> dev2g5::DEV_CFG_STATUS {
-        dev2g5::DEV_CFG_STATUS(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn MAC_CFG_STATUS(&self) -> dev2g5::MAC_CFG_STATUS {
-        dev2g5::MAC_CFG_STATUS(self.0 + 0x1c)
-    }
-    #[inline(always)]
-    pub fn PCS1G_CFG_STATUS(&self) -> dev2g5::PCS1G_CFG_STATUS {
-        dev2g5::PCS1G_CFG_STATUS(self.0 + 0x40)
-    }
-    #[inline(always)]
-    pub fn PCS1G_TSTPAT_CFG_STATUS(&self) -> dev2g5::PCS1G_TSTPAT_CFG_STATUS {
-        dev2g5::PCS1G_TSTPAT_CFG_STATUS(self.0 + 0x84)
-    }
-    #[inline(always)]
-    pub fn PCS_FX100_CONFIGURATION(&self) -> dev2g5::PCS_FX100_CONFIGURATION {
-        dev2g5::PCS_FX100_CONFIGURATION(self.0 + 0x8c)
-    }
-    #[inline(always)]
-    pub fn PCS_FX100_STATUS(&self) -> dev2g5::PCS_FX100_STATUS {
-        dev2g5::PCS_FX100_STATUS(self.0 + 0x90)
-    }
+#[inline(always)]
+pub fn DEV2G5(index: u8) -> tgt::DEV2G5 {
+    assert!(index < 29);
+    tgt::DEV2G5(0x711c0000 + u32::from(index) * 0x10000)
 }
-
 /// General Configuration Block
-pub struct DEVCPU_GCB(u32);
-impl DEVCPU_GCB {
-    pub const BASE: u32 = 0x71010000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn CHIP_REGS(&self) -> devcpu_gcb::CHIP_REGS {
-        devcpu_gcb::CHIP_REGS(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn FAN_CTRL(&self) -> devcpu_gcb::FAN_CTRL {
-        devcpu_gcb::FAN_CTRL(self.0 + 0x474)
-    }
-    #[inline(always)]
-    pub fn GPIO(&self) -> devcpu_gcb::GPIO {
-        devcpu_gcb::GPIO(self.0 + 0x38)
-    }
-    #[inline(always)]
-    pub fn MEMITGR(&self) -> devcpu_gcb::MEMITGR {
-        devcpu_gcb::MEMITGR(self.0 + 0x47c)
-    }
-    #[inline(always)]
-    pub fn MIIM(&self, index: u8) -> devcpu_gcb::MIIM {
-        assert!(index < 3);
-        devcpu_gcb::MIIM(self.0 + 0xc8 + u32::from(index) * 0x24)
-    }
-    #[inline(always)]
-    pub fn MIIM_READ_SCAN(&self) -> devcpu_gcb::MIIM_READ_SCAN {
-        devcpu_gcb::MIIM_READ_SCAN(self.0 + 0x134)
-    }
-    #[inline(always)]
-    pub fn MIIM_SLAVE(&self) -> devcpu_gcb::MIIM_SLAVE {
-        devcpu_gcb::MIIM_SLAVE(self.0 + 0x14c)
-    }
-    #[inline(always)]
-    pub fn SIO_CTRL(&self, index: u8) -> devcpu_gcb::SIO_CTRL {
-        assert!(index < 3);
-        devcpu_gcb::SIO_CTRL(self.0 + 0x150 + u32::from(index) * 0x10c)
-    }
-    #[inline(always)]
-    pub fn SW_REGS(&self) -> devcpu_gcb::SW_REGS {
-        devcpu_gcb::SW_REGS(self.0 + 0x20)
-    }
-    #[inline(always)]
-    pub fn TEMP_SENSOR(&self) -> devcpu_gcb::TEMP_SENSOR {
-        devcpu_gcb::TEMP_SENSOR(self.0 + 0x140)
-    }
-    #[inline(always)]
-    pub fn VCORE_ACCESS(&self) -> devcpu_gcb::VCORE_ACCESS {
-        devcpu_gcb::VCORE_ACCESS(self.0 + 0x24)
-    }
-    #[inline(always)]
-    pub fn VRAP(&self) -> devcpu_gcb::VRAP {
-        devcpu_gcb::VRAP(self.0 + 0x494)
-    }
+#[inline(always)]
+pub fn DEVCPU_GCB() -> tgt::DEVCPU_GCB {
+    tgt::DEVCPU_GCB(0x71010000)
 }
-
 /// CPU device origin
-pub struct DEVCPU_ORG(u32);
-impl DEVCPU_ORG {
-    pub const BASE: u32 = 0x71000000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn DEVCPU_ORG(&self) -> devcpu_org::DEVCPU_ORG {
-        devcpu_org::DEVCPU_ORG(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn DEVCPU_ORG() -> tgt::DEVCPU_ORG {
+    tgt::DEVCPU_ORG(0x71000000)
 }
-
 /// DEVCPU Precision Timing Protocol Originator
-pub struct DEVCPU_PTP(u32);
-impl DEVCPU_PTP {
-    pub const BASE: u32 = 0x717f0000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn PTP_CFG(&self) -> devcpu_ptp::PTP_CFG {
-        devcpu_ptp::PTP_CFG(self.0 + 0xa0)
-    }
-    #[inline(always)]
-    pub fn PTP_PINS(&self, index: u8) -> devcpu_ptp::PTP_PINS {
-        assert!(index < 5);
-        devcpu_ptp::PTP_PINS(self.0 + 0x0 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn PTP_STATUS(&self, index: u8) -> devcpu_ptp::PTP_STATUS {
-        assert!(index < 3);
-        devcpu_ptp::PTP_STATUS(self.0 + 0xcc + u32::from(index) * 0x10)
-    }
+#[inline(always)]
+pub fn DEVCPU_PTP() -> tgt::DEVCPU_PTP {
+    tgt::DEVCPU_PTP(0x717f0000)
 }
-
 /// CPU Device Queue System
-pub struct DEVCPU_QS(u32);
-impl DEVCPU_QS {
-    pub const BASE: u32 = 0x71020000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn INJ(&self) -> devcpu_qs::INJ {
-        devcpu_qs::INJ(self.0 + 0x24)
-    }
-    #[inline(always)]
-    pub fn XTR(&self) -> devcpu_qs::XTR {
-        devcpu_qs::XTR(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn DEVCPU_QS() -> tgt::DEVCPU_QS {
+    tgt::DEVCPU_QS(0x71020000)
 }
-
 /// Disassembler
-pub struct DSM(u32);
-impl DSM {
-    pub const BASE: u32 = 0x71450000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn CFG(&self) -> dsm::CFG {
-        dsm::CFG(self.0 + 0xc)
-    }
-    #[inline(always)]
-    pub fn COREMEM(&self) -> dsm::COREMEM {
-        dsm::COREMEM(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn RAM_CTRL(&self) -> dsm::RAM_CTRL {
-        dsm::RAM_CTRL(self.0 + 0x8)
-    }
-    #[inline(always)]
-    pub fn RATE_LIMIT_CFG(&self) -> dsm::RATE_LIMIT_CFG {
-        dsm::RATE_LIMIT_CFG(self.0 + 0xb4c)
-    }
-    #[inline(always)]
-    pub fn RATE_LIMIT_STATUS(&self) -> dsm::RATE_LIMIT_STATUS {
-        dsm::RATE_LIMIT_STATUS(self.0 + 0xde4)
-    }
-    #[inline(always)]
-    pub fn STATUS(&self) -> dsm::STATUS {
-        dsm::STATUS(self.0 + 0xa58)
-    }
+#[inline(always)]
+pub fn DSM() -> tgt::DSM {
+    tgt::DSM(0x71450000)
 }
-
 /// Hierarchical Scheduler Configuration
-pub struct HSCH(u32);
-impl HSCH {
-    pub const BASE: u32 = 0x71880000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn HSCH_CFG(&self, index: u16) -> hsch::HSCH_CFG {
-        assert!(index < 3400);
-        hsch::HSCH_CFG(self.0 + 0x0 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn HSCH_DWRR(&self, index: u8) -> hsch::HSCH_DWRR {
-        assert!(index < 64);
-        hsch::HSCH_DWRR(self.0 + 0x1ad00 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn HSCH_INP_STATE(&self, index: u8) -> hsch::HSCH_INP_STATE {
-        assert!(index < 2);
-        hsch::HSCH_INP_STATE(self.0 + 0x1ae00 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn HSCH_L0_CFG(&self, index: u16) -> hsch::HSCH_L0_CFG {
-        assert!(index < 3400);
-        hsch::HSCH_L0_CFG(self.0 + 0x38000 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn HSCH_L1W(&self, index: u8) -> hsch::HSCH_L1W {
-        assert!(index < 64);
-        hsch::HSCH_L1W(self.0 + 0x1c000 + u32::from(index) * 0x100)
-    }
-    #[inline(always)]
-    pub fn HSCH_L1_CFG(&self, index: u8) -> hsch::HSCH_L1_CFG {
-        assert!(index < 64);
-        hsch::HSCH_L1_CFG(self.0 + 0x1a900 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn HSCH_LEAK_LISTS(&self, index: u8) -> hsch::HSCH_LEAK_LISTS {
-        assert!(index < 4);
-        hsch::HSCH_LEAK_LISTS(self.0 + 0x1b034 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn HSCH_MISC(&self) -> hsch::HSCH_MISC {
-        hsch::HSCH_MISC(self.0 + 0x1ae08)
-    }
-    #[inline(always)]
-    pub fn HSCH_STATUS(&self, index: u16) -> hsch::HSCH_STATUS {
-        assert!(index < 3400);
-        hsch::HSCH_STATUS(self.0 + 0x20000 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn QSHP_ALLOC_CFG(&self, index: u16) -> hsch::QSHP_ALLOC_CFG {
-        assert!(index < 3400);
-        hsch::QSHP_ALLOC_CFG(self.0 + 0x30000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn QSHP_CFG(&self, index: u8) -> hsch::QSHP_CFG {
-        assert!(index < 64);
-        hsch::QSHP_CFG(self.0 + 0x1aa00 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn QSHP_STATUS(&self, index: u8) -> hsch::QSHP_STATUS {
-        assert!(index < 64);
-        hsch::QSHP_STATUS(self.0 + 0x1ac00 + u32::from(index) * 0x4)
-    }
+#[inline(always)]
+pub fn HSCH() -> tgt::HSCH {
+    tgt::HSCH(0x71880000)
 }
-
 /// Register Collection for Control of Macros (SERDES1G, SERDES6G, LCPLL)
-pub struct HSIO(u32);
-impl HSIO {
-    pub const BASE: u32 = 0x71460000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn HW_CFGSTAT(&self) -> hsio::HW_CFGSTAT {
-        hsio::HW_CFGSTAT(self.0 + 0x16c)
-    }
-    #[inline(always)]
-    pub fn MCB_SERDES1G_CFG(&self) -> hsio::MCB_SERDES1G_CFG {
-        hsio::MCB_SERDES1G_CFG(self.0 + 0xe8)
-    }
-    #[inline(always)]
-    pub fn MCB_SERDES6G_CFG(&self) -> hsio::MCB_SERDES6G_CFG {
-        hsio::MCB_SERDES6G_CFG(self.0 + 0x168)
-    }
-    #[inline(always)]
-    pub fn PLL5G_BIST_CFG(&self, index: u8) -> hsio::PLL5G_BIST_CFG {
-        assert!(index < 2);
-        hsio::PLL5G_BIST_CFG(self.0 + 0x48 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn PLL5G_BIST_STATUS(&self, index: u8) -> hsio::PLL5G_BIST_STATUS {
-        assert!(index < 2);
-        hsio::PLL5G_BIST_STATUS(self.0 + 0x68 + u32::from(index) * 0xc)
-    }
-    #[inline(always)]
-    pub fn PLL5G_CFG(&self, index: u8) -> hsio::PLL5G_CFG {
-        assert!(index < 2);
-        hsio::PLL5G_CFG(self.0 + 0x0 + u32::from(index) * 0x1c)
-    }
-    #[inline(always)]
-    pub fn PLL5G_STATUS(&self, index: u8) -> hsio::PLL5G_STATUS {
-        assert!(index < 2);
-        hsio::PLL5G_STATUS(self.0 + 0x38 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn RCOMP_CFG(&self) -> hsio::RCOMP_CFG {
-        hsio::RCOMP_CFG(self.0 + 0x80)
-    }
-    #[inline(always)]
-    pub fn RCOMP_STATUS(&self) -> hsio::RCOMP_STATUS {
-        hsio::RCOMP_STATUS(self.0 + 0x84)
-    }
-    #[inline(always)]
-    pub fn SERDES1G_ANA_CFG(&self) -> hsio::SERDES1G_ANA_CFG {
-        hsio::SERDES1G_ANA_CFG(self.0 + 0xac)
-    }
-    #[inline(always)]
-    pub fn SERDES1G_ANA_STATUS(&self) -> hsio::SERDES1G_ANA_STATUS {
-        hsio::SERDES1G_ANA_STATUS(self.0 + 0xc4)
-    }
-    #[inline(always)]
-    pub fn SERDES1G_DIG_CFG(&self) -> hsio::SERDES1G_DIG_CFG {
-        hsio::SERDES1G_DIG_CFG(self.0 + 0xc8)
-    }
-    #[inline(always)]
-    pub fn SERDES1G_DIG_STATUS(&self) -> hsio::SERDES1G_DIG_STATUS {
-        hsio::SERDES1G_DIG_STATUS(self.0 + 0xe0)
-    }
-    #[inline(always)]
-    pub fn SERDES6G_ANA_CFG(&self) -> hsio::SERDES6G_ANA_CFG {
-        hsio::SERDES6G_ANA_CFG(self.0 + 0x11c)
-    }
-    #[inline(always)]
-    pub fn SERDES6G_ANA_STATUS(&self) -> hsio::SERDES6G_ANA_STATUS {
-        hsio::SERDES6G_ANA_STATUS(self.0 + 0x154)
-    }
-    #[inline(always)]
-    pub fn SERDES6G_DIG_CFG(&self) -> hsio::SERDES6G_DIG_CFG {
-        hsio::SERDES6G_DIG_CFG(self.0 + 0xec)
-    }
-    #[inline(always)]
-    pub fn SERDES6G_DIG_STATUS(&self) -> hsio::SERDES6G_DIG_STATUS {
-        hsio::SERDES6G_DIG_STATUS(self.0 + 0x110)
-    }
-    #[inline(always)]
-    pub fn SYNC_ETH_CFG(&self) -> hsio::SYNC_ETH_CFG {
-        hsio::SYNC_ETH_CFG(self.0 + 0x88)
-    }
+#[inline(always)]
+pub fn HSIO() -> tgt::HSIO {
+    tgt::HSIO(0x71460000)
 }
-
 /// VCore Configuration
-pub struct ICPU_CFG(u32);
-impl ICPU_CFG {
-    pub const BASE: u32 = 0x70000000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn CPU_SYSTEM_CTRL(&self) -> icpu_cfg::CPU_SYSTEM_CTRL {
-        icpu_cfg::CPU_SYSTEM_CTRL(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn FDMA(&self) -> icpu_cfg::FDMA {
-        icpu_cfg::FDMA(self.0 + 0x1c0)
-    }
-    #[inline(always)]
-    pub fn INTR(&self) -> icpu_cfg::INTR {
-        icpu_cfg::INTR(self.0 + 0x70)
-    }
-    #[inline(always)]
-    pub fn MANUAL_XTRINJ(&self) -> icpu_cfg::MANUAL_XTRINJ {
-        icpu_cfg::MANUAL_XTRINJ(self.0 + 0x4000)
-    }
-    #[inline(always)]
-    pub fn MEMCTRL(&self) -> icpu_cfg::MEMCTRL {
-        icpu_cfg::MEMCTRL(self.0 + 0x130)
-    }
-    #[inline(always)]
-    pub fn MPU8051(&self) -> icpu_cfg::MPU8051 {
-        icpu_cfg::MPU8051(self.0 + 0x54)
-    }
-    #[inline(always)]
-    pub fn PCIE(&self) -> icpu_cfg::PCIE {
-        icpu_cfg::PCIE(self.0 + 0x384)
-    }
-    #[inline(always)]
-    pub fn PI_MST(&self) -> icpu_cfg::PI_MST {
-        icpu_cfg::PI_MST(self.0 + 0x2c)
-    }
-    #[inline(always)]
-    pub fn SPI_MST(&self) -> icpu_cfg::SPI_MST {
-        icpu_cfg::SPI_MST(self.0 + 0x3c)
-    }
-    #[inline(always)]
-    pub fn TIMERS(&self) -> icpu_cfg::TIMERS {
-        icpu_cfg::TIMERS(self.0 + 0x104)
-    }
-    #[inline(always)]
-    pub fn TWI_DELAY(&self) -> icpu_cfg::TWI_DELAY {
-        icpu_cfg::TWI_DELAY(self.0 + 0x1b8)
-    }
-    #[inline(always)]
-    pub fn TWI_SPIKE_FILTER(&self) -> icpu_cfg::TWI_SPIKE_FILTER {
-        icpu_cfg::TWI_SPIKE_FILTER(self.0 + 0x1bc)
-    }
+#[inline(always)]
+pub fn ICPU_CFG() -> tgt::ICPU_CFG {
+    tgt::ICPU_CFG(0x70000000)
 }
-
 /// Learn block
-pub struct LRN(u32);
-impl LRN {
-    pub const BASE: u32 = 0x71420000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn COMMON(&self) -> lrn::COMMON {
-        lrn::COMMON(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn LRN() -> tgt::LRN {
+    tgt::LRN(0x71420000)
 }
-
 /// PCIe Endpoint Configuration Space
-pub struct PCIE(u32);
-impl PCIE {
-    pub const BASE: u32 = 0x70111000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn PCIE_AER_CAP(&self) -> pcie::PCIE_AER_CAP {
-        pcie::PCIE_AER_CAP(self.0 + 0x100)
-    }
-    #[inline(always)]
-    pub fn PCIE_CAP(&self) -> pcie::PCIE_CAP {
-        pcie::PCIE_CAP(self.0 + 0x70)
-    }
-    #[inline(always)]
-    pub fn PCIE_MSI_CAP(&self) -> pcie::PCIE_MSI_CAP {
-        pcie::PCIE_MSI_CAP(self.0 + 0x50)
-    }
-    #[inline(always)]
-    pub fn PCIE_PM_CAP(&self) -> pcie::PCIE_PM_CAP {
-        pcie::PCIE_PM_CAP(self.0 + 0x40)
-    }
-    #[inline(always)]
-    pub fn PCIE_PORT_LOGIC(&self) -> pcie::PCIE_PORT_LOGIC {
-        pcie::PCIE_PORT_LOGIC(self.0 + 0x700)
-    }
-    #[inline(always)]
-    pub fn PCIE_TYPE0_HDR(&self) -> pcie::PCIE_TYPE0_HDR {
-        pcie::PCIE_TYPE0_HDR(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn PCIE() -> tgt::PCIE {
+    tgt::PCIE(0x70111000)
 }
-
 /// \see vtss_target_PCS_10GBASE_R_e PCS configuration and status registers and counters
-pub struct PCS10G_BR(u32);
-impl PCS10G_BR {
-    pub const BASE: u32 = 0x713d0000;
-    pub const SIZE: u32 = 0x10000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn EEE_STATS(&self) -> pcs10g_br::EEE_STATS {
-        pcs10g_br::EEE_STATS(self.0 + 0xa8)
-    }
-    #[inline(always)]
-    pub fn EEE_TIMER_CFG(&self) -> pcs10g_br::EEE_TIMER_CFG {
-        pcs10g_br::EEE_TIMER_CFG(self.0 + 0x8c)
-    }
-    #[inline(always)]
-    pub fn KR_FEC_CAPABILITY(&self) -> pcs10g_br::KR_FEC_CAPABILITY {
-        pcs10g_br::KR_FEC_CAPABILITY(self.0 + 0x88)
-    }
-    #[inline(always)]
-    pub fn KR_FEC_CFG(&self) -> pcs10g_br::KR_FEC_CFG {
-        pcs10g_br::KR_FEC_CFG(self.0 + 0x68)
-    }
-    #[inline(always)]
-    pub fn KR_FEC_HA_STATUS(&self) -> pcs10g_br::KR_FEC_HA_STATUS {
-        pcs10g_br::KR_FEC_HA_STATUS(self.0 + 0x74)
-    }
-    #[inline(always)]
-    pub fn KR_FEC_STATUS(&self) -> pcs10g_br::KR_FEC_STATUS {
-        pcs10g_br::KR_FEC_STATUS(self.0 + 0x7c)
-    }
-    #[inline(always)]
-    pub fn KR_FEC_THRESHOLD_CFG(&self) -> pcs10g_br::KR_FEC_THRESHOLD_CFG {
-        pcs10g_br::KR_FEC_THRESHOLD_CFG(self.0 + 0x6c)
-    }
-    #[inline(always)]
-    pub fn PCS_10GBR_CFG(&self) -> pcs10g_br::PCS_10GBR_CFG {
-        pcs10g_br::PCS_10GBR_CFG(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn PCS_10GBR_HA_STATUS(&self) -> pcs10g_br::PCS_10GBR_HA_STATUS {
-        pcs10g_br::PCS_10GBR_HA_STATUS(self.0 + 0x40)
-    }
-    #[inline(always)]
-    pub fn PCS_10GBR_STATUS(&self) -> pcs10g_br::PCS_10GBR_STATUS {
-        pcs10g_br::PCS_10GBR_STATUS(self.0 + 0x38)
-    }
+#[inline(always)]
+pub fn PCS10G_BR(index: u8) -> tgt::PCS10G_BR {
+    assert!(index < 4);
+    tgt::PCS10G_BR(0x713d0000 + u32::from(index) * 0x10000)
 }
-
 /// Queue System Configuration
-pub struct QFWD(u32);
-impl QFWD {
-    pub const BASE: u32 = 0x717d0000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn SYSTEM(&self) -> qfwd::SYSTEM {
-        qfwd::SYSTEM(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn QFWD() -> tgt::QFWD {
+    tgt::QFWD(0x717d0000)
 }
-
 /// Queue System Configuration
-pub struct QRES(u32);
-impl QRES {
-    pub const BASE: u32 = 0x71900000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn RES_CTRL(&self, index: u16) -> qres::RES_CTRL {
-        assert!(index < 5120);
-        qres::RES_CTRL(self.0 + 0x0 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn RES_QOS_ADV(&self) -> qres::RES_QOS_ADV {
-        qres::RES_QOS_ADV(self.0 + 0x14120)
-    }
-    #[inline(always)]
-    pub fn RES_WRED(&self, index: u8) -> qres::RES_WRED {
-        assert!(index < 72);
-        qres::RES_WRED(self.0 + 0x14000 + u32::from(index) * 0x4)
-    }
+#[inline(always)]
+pub fn QRES() -> tgt::QRES {
+    tgt::QRES(0x71900000)
 }
-
 /// Queue System Configuration
-pub struct QSYS(u32);
-impl QSYS {
-    pub const BASE: u32 = 0x717e0000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn CALCFG(&self) -> qsys::CALCFG {
-        qsys::CALCFG(self.0 + 0x3d4)
-    }
-    #[inline(always)]
-    pub fn COREMEM(&self) -> qsys::COREMEM {
-        qsys::COREMEM(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn MISC(&self) -> qsys::MISC {
-        qsys::MISC(self.0 + 0x104)
-    }
-    #[inline(always)]
-    pub fn MMGT(&self) -> qsys::MMGT {
-        qsys::MMGT(self.0 + 0x3bc)
-    }
-    #[inline(always)]
-    pub fn MMGT_PORT(&self) -> qsys::MMGT_PORT {
-        qsys::MMGT_PORT(self.0 + 0x3c4)
-    }
-    #[inline(always)]
-    pub fn PAUSE_CFG(&self) -> qsys::PAUSE_CFG {
-        qsys::PAUSE_CFG(self.0 + 0x108)
-    }
-    #[inline(always)]
-    pub fn RAM_CTRL(&self) -> qsys::RAM_CTRL {
-        qsys::RAM_CTRL(self.0 + 0x3ec)
-    }
-    #[inline(always)]
-    pub fn SYSTEM(&self) -> qsys::SYSTEM {
-        qsys::SYSTEM(self.0 + 0x8)
-    }
+#[inline(always)]
+pub fn QSYS() -> tgt::QSYS {
+    tgt::QSYS(0x717e0000)
 }
-
 /// Rewriter
-pub struct REW(u32);
-impl REW {
-    pub const BASE: u32 = 0x71b00000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn COMMON(&self) -> rew::COMMON {
-        rew::COMMON(self.0 + 0x53c00)
-    }
-    #[inline(always)]
-    pub fn COREMEM(&self) -> rew::COREMEM {
-        rew::COREMEM(self.0 + 0x53500)
-    }
-    #[inline(always)]
-    pub fn ENCAP(&self, index: u16) -> rew::ENCAP {
-        assert!(index < 1024);
-        rew::ENCAP(self.0 + 0x0 + u32::from(index) * 0x80)
-    }
-    #[inline(always)]
-    pub fn ISDX_TBL(&self, index: u16) -> rew::ISDX_TBL {
-        assert!(index < 4096);
-        rew::ISDX_TBL(self.0 + 0x20000 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn MAP_RES_A(&self, index: u16) -> rew::MAP_RES_A {
-        assert!(index < 4096);
-        rew::MAP_RES_A(self.0 + 0x30000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn MAP_RES_B(&self, index: u16) -> rew::MAP_RES_B {
-        assert!(index < 4096);
-        rew::MAP_RES_B(self.0 + 0x38000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn MIP_TBL(&self, index: u16) -> rew::MIP_TBL {
-        assert!(index < 1024);
-        rew::MIP_TBL(self.0 + 0x40000 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn OAM_PDU_MOD_CONT(&self, index: u8) -> rew::OAM_PDU_MOD_CONT {
-        assert!(index < 106);
-        rew::OAM_PDU_MOD_CONT(self.0 + 0x56000 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn PDU_MOD_CFG(&self) -> rew::PDU_MOD_CFG {
-        rew::PDU_MOD_CFG(self.0 + 0x53e74)
-    }
-    #[inline(always)]
-    pub fn PORT(&self, index: u8) -> rew::PORT {
-        assert!(index < 53);
-        rew::PORT(self.0 + 0x50000 + u32::from(index) * 0x100)
-    }
-    #[inline(always)]
-    pub fn PTP_CTRL(&self) -> rew::PTP_CTRL {
-        rew::PTP_CTRL(self.0 + 0x53508)
-    }
-    #[inline(always)]
-    pub fn PTP_SEQ_NO(&self) -> rew::PTP_SEQ_NO {
-        rew::PTP_SEQ_NO(self.0 + 0x53800)
-    }
-    #[inline(always)]
-    pub fn RAM_CTRL(&self) -> rew::RAM_CTRL {
-        rew::RAM_CTRL(self.0 + 0x53528)
-    }
-    #[inline(always)]
-    pub fn VMID(&self, index: u8) -> rew::VMID {
-        assert!(index < 128);
-        rew::VMID(self.0 + 0x53600 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn VOE_PORT_LM_CNT(&self, index: u16) -> rew::VOE_PORT_LM_CNT {
-        assert!(index < 424);
-        rew::VOE_PORT_LM_CNT(self.0 + 0x54000 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn VOE_SRV_LM_CNT(&self, index: u16) -> rew::VOE_SRV_LM_CNT {
-        assert!(index < 8192);
-        rew::VOE_SRV_LM_CNT(self.0 + 0x48000 + u32::from(index) * 0x4)
-    }
+#[inline(always)]
+pub fn REW() -> tgt::REW {
+    tgt::REW(0x71b00000)
 }
-
 /// Shared Bus Arbiter
-pub struct SBA(u32);
-impl SBA {
-    pub const BASE: u32 = 0x70110000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn SBA(&self) -> sba::SBA {
-        sba::SBA(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn SBA() -> tgt::SBA {
+    tgt::SBA(0x70110000)
 }
-
 /// SI Master Controller
-pub struct SIMC(u32);
-impl SIMC {
-    pub const BASE: u32 = 0x70101000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn SIMC(&self) -> simc::SIMC {
-        simc::SIMC(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn SIMC() -> tgt::SIMC {
+    tgt::SIMC(0x70101000)
 }
-
 /// \see vtss_target_TWI_e Two-Wire Interface Controller
-pub struct TWI(u32);
-impl TWI {
-    pub const BASE: u32 = 0x70100400;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn TWI(&self) -> twi::TWI {
-        twi::TWI(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn TWI() -> tgt::TWI {
+    tgt::TWI(0x70100400)
 }
-
 /// \see vtss_target_TWI_e Two-Wire Interface Controller
-pub struct TWI2(u32);
-impl TWI2 {
-    pub const BASE: u32 = 0x70100c00;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn TWI(&self) -> twi2::TWI {
-        twi2::TWI(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn TWI2() -> tgt::TWI2 {
+    tgt::TWI2(0x70100c00)
 }
-
 /// \see vtss_target_UART_e UART Controller
-pub struct UART(u32);
-impl UART {
-    pub const BASE: u32 = 0x70100000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn UART(&self) -> uart::UART {
-        uart::UART(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn UART() -> tgt::UART {
+    tgt::UART(0x70100000)
 }
-
 /// \see vtss_target_UART_e UART Controller
-pub struct UART2(u32);
-impl UART2 {
-    pub const BASE: u32 = 0x70100800;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn UART(&self) -> uart2::UART {
-        uart2::UART(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn UART2() -> tgt::UART2 {
+    tgt::UART2(0x70100800)
 }
-
 /// \see vtss_target_VAUI_CHANNEL_e Vaui channel configuration and status register set
-pub struct VAUI0(u32);
-impl VAUI0 {
-    pub const BASE: u32 = 0x717b0000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn ANEG_CFG(&self, index: u8) -> vaui0::ANEG_CFG {
-        assert!(index < 8);
-        vaui0::ANEG_CFG(self.0 + 0x8 + u32::from(index) * 0x14)
-    }
-    #[inline(always)]
-    pub fn ANEG_STATUS(&self, index: u8) -> vaui0::ANEG_STATUS {
-        assert!(index < 8);
-        vaui0::ANEG_STATUS(self.0 + 0xa8 + u32::from(index) * 0xc)
-    }
-    #[inline(always)]
-    pub fn VAUI_CHANNEL_CFG(&self) -> vaui0::VAUI_CHANNEL_CFG {
-        vaui0::VAUI_CHANNEL_CFG(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn VAUI0() -> tgt::VAUI0 {
+    tgt::VAUI0(0x717b0000)
 }
-
 /// \see vtss_target_VAUI_CHANNEL_e Vaui channel configuration and status register set
-pub struct VAUI1(u32);
-impl VAUI1 {
-    pub const BASE: u32 = 0x717c0000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn ANEG_CFG(&self, index: u8) -> vaui1::ANEG_CFG {
-        assert!(index < 8);
-        vaui1::ANEG_CFG(self.0 + 0x8 + u32::from(index) * 0x14)
-    }
-    #[inline(always)]
-    pub fn ANEG_STATUS(&self, index: u8) -> vaui1::ANEG_STATUS {
-        assert!(index < 8);
-        vaui1::ANEG_STATUS(self.0 + 0xa8 + u32::from(index) * 0xc)
-    }
-    #[inline(always)]
-    pub fn VAUI_CHANNEL_CFG(&self) -> vaui1::VAUI_CHANNEL_CFG {
-        vaui1::VAUI_CHANNEL_CFG(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn VAUI1() -> tgt::VAUI1 {
+    tgt::VAUI1(0x717c0000)
 }
-
 /// \see vtss_target_VCAP_CORE_e Vitesse Content Aware Processor
-pub struct VCAP_ES0(u32);
-impl VCAP_ES0 {
-    pub const BASE: u32 = 0x71470000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn TCAM_BIST(&self) -> vcap_es0::TCAM_BIST {
-        vcap_es0::TCAM_BIST(self.0 + 0x3c0)
-    }
-    #[inline(always)]
-    pub fn VCAP_CONST(&self) -> vcap_es0::VCAP_CONST {
-        vcap_es0::VCAP_CONST(self.0 + 0x398)
-    }
-    #[inline(always)]
-    pub fn VCAP_CORE_CACHE(&self) -> vcap_es0::VCAP_CORE_CACHE {
-        vcap_es0::VCAP_CORE_CACHE(self.0 + 0x8)
-    }
-    #[inline(always)]
-    pub fn VCAP_CORE_CFG(&self) -> vcap_es0::VCAP_CORE_CFG {
-        vcap_es0::VCAP_CORE_CFG(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn VCAP_CORE_MAP(&self) -> vcap_es0::VCAP_CORE_MAP {
-        vcap_es0::VCAP_CORE_MAP(self.0 + 0x38c)
-    }
-    #[inline(always)]
-    pub fn VCAP_CORE_STICKY(&self) -> vcap_es0::VCAP_CORE_STICKY {
-        vcap_es0::VCAP_CORE_STICKY(self.0 + 0x394)
-    }
+#[inline(always)]
+pub fn VCAP_ES0() -> tgt::VCAP_ES0 {
+    tgt::VCAP_ES0(0x71470000)
 }
-
 /// \see vtss_target_VCAP_CORE_e Vitesse Content Aware Processor
-pub struct VCAP_SUPER(u32);
-impl VCAP_SUPER {
-    pub const BASE: u32 = 0x71440000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn TCAM_BIST(&self) -> vcap_super::TCAM_BIST {
-        vcap_super::TCAM_BIST(self.0 + 0x3c0)
-    }
-    #[inline(always)]
-    pub fn VCAP_CONST(&self) -> vcap_super::VCAP_CONST {
-        vcap_super::VCAP_CONST(self.0 + 0x398)
-    }
-    #[inline(always)]
-    pub fn VCAP_CORE_CACHE(&self) -> vcap_super::VCAP_CORE_CACHE {
-        vcap_super::VCAP_CORE_CACHE(self.0 + 0x8)
-    }
-    #[inline(always)]
-    pub fn VCAP_CORE_CFG(&self) -> vcap_super::VCAP_CORE_CFG {
-        vcap_super::VCAP_CORE_CFG(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn VCAP_CORE_MAP(&self) -> vcap_super::VCAP_CORE_MAP {
-        vcap_super::VCAP_CORE_MAP(self.0 + 0x38c)
-    }
-    #[inline(always)]
-    pub fn VCAP_CORE_STICKY(&self) -> vcap_super::VCAP_CORE_STICKY {
-        vcap_super::VCAP_CORE_STICKY(self.0 + 0x394)
-    }
+#[inline(always)]
+pub fn VCAP_SUPER() -> tgt::VCAP_SUPER {
+    tgt::VCAP_SUPER(0x71440000)
 }
-
 /// The Vitesse OAM MEP Processor (VOP) implements the HW support for implementing OAM MEPs. The HW support for implementing an OAM MEP is implemented in a sub block, referred to as: Vitesse OAM Endpoint (VOE). The VOEs can be configured for either Ethernet PDU processing or MPLS-TP PDU processing. This CSR target us used for configuring VOEs configured for Ethernet processing. The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs (10 front ports + NPI) VOEs are configured for either Ethernet or MPLS-TP support using the following register: * VOP:VOE_CONF_REG:VOE_MISC_CONFIG.MPLS_OAM_ENA Use CSR target VOP to configure VOEs configured for Ethernet. To configure VOEs configured for MPLS-TP, use CSR target: VOP_MPLS. For VOEs configured for MPLS-TP, the following register groups are invalid: * VOP:VOE_CONF:* * VOP:VOE_STAT:*
-pub struct VOP(u32);
-impl VOP {
-    pub const BASE: u32 = 0x71c00000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn ANA_COSID_MAP_CONF(&self, index: u16) -> vop::ANA_COSID_MAP_CONF {
-        assert!(index < 1024);
-        vop::ANA_COSID_MAP_CONF(self.0 + 0x48000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn COMMON(&self) -> vop::COMMON {
-        vop::COMMON(self.0 + 0x43508)
-    }
-    #[inline(always)]
-    pub fn COREMEM(&self) -> vop::COREMEM {
-        vop::COREMEM(self.0 + 0x43500)
-    }
-    #[inline(always)]
-    pub fn PORT_COSID_MAP_CONF(&self, index: u8) -> vop::PORT_COSID_MAP_CONF {
-        assert!(index < 53);
-        vop::PORT_COSID_MAP_CONF(self.0 + 0x46400 + u32::from(index) * 0x10)
-    }
-    #[inline(always)]
-    pub fn RAM_CTRL(&self) -> vop::RAM_CTRL {
-        vop::RAM_CTRL(self.0 + 0x43638)
-    }
-    #[inline(always)]
-    pub fn REW_COSID_MAP_CONF(&self, index: u16) -> vop::REW_COSID_MAP_CONF {
-        assert!(index < 1024);
-        vop::REW_COSID_MAP_CONF(self.0 + 0x4a000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn SAM_COSID_SEQ_CNT(&self, index: u8) -> vop::SAM_COSID_SEQ_CNT {
-        assert!(index < 32);
-        vop::SAM_COSID_SEQ_CNT(self.0 + 0x4c000 + u32::from(index) * 0x100)
-    }
-    #[inline(always)]
-    pub fn VOE_CCM_LM(&self, index: u16) -> vop::VOE_CCM_LM {
-        assert!(index < 1077);
-        vop::VOE_CCM_LM(self.0 + 0x44000 + u32::from(index) * 0x8)
-    }
-    #[inline(always)]
-    pub fn VOE_CONF(&self, index: u16) -> vop::VOE_CONF {
-        assert!(index < 1077);
-        vop::VOE_CONF(self.0 + 0x0 + u32::from(index) * 0x100)
-    }
-    #[inline(always)]
-    pub fn VOE_CONF_REG(&self, index: u16) -> vop::VOE_CONF_REG {
-        assert!(index < 1077);
-        vop::VOE_CONF_REG(self.0 + 0x4e000 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn VOE_CONTEXT_ANA(&self, index: u8) -> vop::VOE_CONTEXT_ANA {
-        assert!(index < 110);
-        vop::VOE_CONTEXT_ANA(self.0 + 0x47000 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn VOE_CONTEXT_REW(&self, index: u8) -> vop::VOE_CONTEXT_REW {
-        assert!(index < 53);
-        vop::VOE_CONTEXT_REW(self.0 + 0x43800 + u32::from(index) * 0x20)
-    }
-    #[inline(always)]
-    pub fn VOE_CRC_ERR(&self, index: u16) -> vop::VOE_CRC_ERR {
-        assert!(index < 1077);
-        vop::VOE_CRC_ERR(self.0 + 0x50000 + u32::from(index) * 0x4)
-    }
-    #[inline(always)]
-    pub fn VOE_STAT(&self, index: u16) -> vop::VOE_STAT {
-        assert!(index < 1077);
-        vop::VOE_STAT(self.0 + 0x80000 + u32::from(index) * 0x80)
-    }
+#[inline(always)]
+pub fn VOP() -> tgt::VOP {
+    tgt::VOP(0x71c00000)
 }
-
 /// The Vitesse OAM MEP Processor (VOP) implements the HW support for implementing OAM MEPs. The HW support for implementing an OAM MEP is implemented in a sub block, referred to as: Vitesse OAM Endpoint (VOE). The VOEs can be configured for either Ethernet PDU processing or MPLS-TP PDU processing. This CSR target us used for configuring VOEs configured for MPLS-TP processing. The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs (11 front ports) VOEs are configured for either Ethernet or MPLS-TP support using the following register: * VOP:VOE_CONF_REG:VOE_MISC_CONFIG.MPLS_OAM_ENA Use CSR target VOP_MPLS to configure VOEs configured for MPLS_TP. To configure VOEs configured for Ethernet use CSR target: VOP. For VOEs configured for Ethernet, the following register groups are invalid: * VOP:CONF_MPLS:* * VOP:STAT_MPLS:* Note that the VOP_MPLS CSR target shares the same physical RAM as VOP CSR target. The RAM is initialized to the VOP CSR target values (Ethernet VOE). Hence the initial values listed in the VOP_MPLS are not valid. Prior to using a VOE configured for MPLS, all REGISTERS MUST BE INITIALIZED.
-pub struct VOP_MPLS(u32);
-impl VOP_MPLS {
-    pub const BASE: u32 = 0x71a00000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn VOE_CONF_MPLS(&self, index: u16) -> vop_mpls::VOE_CONF_MPLS {
-        assert!(index < 1077);
-        vop_mpls::VOE_CONF_MPLS(self.0 + 0x40000 + u32::from(index) * 0x40)
-    }
-    #[inline(always)]
-    pub fn VOE_STAT_MPLS(&self, index: u16) -> vop_mpls::VOE_STAT_MPLS {
-        assert!(index < 1077);
-        vop_mpls::VOE_STAT_MPLS(self.0 + 0x0 + u32::from(index) * 0x80)
-    }
+#[inline(always)]
+pub fn VOP_MPLS() -> tgt::VOP_MPLS {
+    tgt::VOP_MPLS(0x71a00000)
 }
-
 /// \see vtss_target_SD10G65_e Configuration and status for high speed macro.
-pub struct XGANA(u32);
-impl XGANA {
-    pub const BASE: u32 = 0x71480000;
-    pub const SIZE: u32 = 0x10000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn SD10G65_DES(&self) -> xgana::SD10G65_DES {
-        xgana::SD10G65_DES(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn SD10G65_IB(&self) -> xgana::SD10G65_IB {
-        xgana::SD10G65_IB(self.0 + 0x80)
-    }
-    #[inline(always)]
-    pub fn SD10G65_OB(&self) -> xgana::SD10G65_OB {
-        xgana::SD10G65_OB(self.0 + 0x40)
-    }
-    #[inline(always)]
-    pub fn SD10G65_RX_RCPLL(&self) -> xgana::SD10G65_RX_RCPLL {
-        xgana::SD10G65_RX_RCPLL(self.0 + 0xc0)
-    }
-    #[inline(always)]
-    pub fn SD10G65_RX_SYNTH(&self) -> xgana::SD10G65_RX_SYNTH {
-        xgana::SD10G65_RX_SYNTH(self.0 + 0x100)
-    }
-    #[inline(always)]
-    pub fn SD10G65_TX_RCPLL(&self) -> xgana::SD10G65_TX_RCPLL {
-        xgana::SD10G65_TX_RCPLL(self.0 + 0x180)
-    }
-    #[inline(always)]
-    pub fn SD10G65_TX_SYNTH(&self) -> xgana::SD10G65_TX_SYNTH {
-        xgana::SD10G65_TX_SYNTH(self.0 + 0x140)
-    }
+#[inline(always)]
+pub fn XGANA(index: u8) -> tgt::XGANA {
+    assert!(index < 4);
+    tgt::XGANA(0x71480000 + u32::from(index) * 0x10000)
 }
-
 /// \see vtss_target_SD10G65_DIG_e Configuration and status of digital peripherals for high speed macro.
-pub struct XGDIG(u32);
-impl XGDIG {
-    pub const BASE: u32 = 0x714c0000;
-    pub const SIZE: u32 = 0x10000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn SD10G65_APC(&self) -> xgdig::SD10G65_APC {
-        xgdig::SD10G65_APC(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn SD10G65_DFT(&self) -> xgdig::SD10G65_DFT {
-        xgdig::SD10G65_DFT(self.0 + 0xcc)
-    }
-    #[inline(always)]
-    pub fn SD10G65_RCPLL_BIST(&self) -> xgdig::SD10G65_RCPLL_BIST {
-        xgdig::SD10G65_RCPLL_BIST(self.0 + 0x128)
-    }
-    #[inline(always)]
-    pub fn SD10G65_SYNC_CTRL(&self) -> xgdig::SD10G65_SYNC_CTRL {
-        xgdig::SD10G65_SYNC_CTRL(self.0 + 0x118)
-    }
-    #[inline(always)]
-    pub fn SD10G65_VSCOPE2(&self) -> xgdig::SD10G65_VSCOPE2 {
-        xgdig::SD10G65_VSCOPE2(self.0 + 0xb0)
-    }
+#[inline(always)]
+pub fn XGDIG(index: u8) -> tgt::XGDIG {
+    assert!(index < 4);
+    tgt::XGDIG(0x714c0000 + u32::from(index) * 0x10000)
 }
-
 /// \see vtss_target_KR_DEV1_e
-pub struct XGKR0(u32);
-impl XGKR0 {
-    pub const BASE: u32 = 0x71540000;
-    pub const SIZE: u32 = 0x10000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn APC_TMR(&self) -> xgkr0::APC_TMR {
-        xgkr0::APC_TMR(self.0 + 0x80)
-    }
-    #[inline(always)]
-    pub fn KR_1X0096(&self) -> xgkr0::KR_1X0096 {
-        xgkr0::KR_1X0096(self.0 + 0x8)
-    }
-    #[inline(always)]
-    pub fn KR_1X0097(&self) -> xgkr0::KR_1X0097 {
-        xgkr0::KR_1X0097(self.0 + 0x2c)
-    }
-    #[inline(always)]
-    pub fn KR_1X0098(&self) -> xgkr0::KR_1X0098 {
-        xgkr0::KR_1X0098(self.0 + 0xc)
-    }
-    #[inline(always)]
-    pub fn KR_1X0099(&self) -> xgkr0::KR_1X0099 {
-        xgkr0::KR_1X0099(self.0 + 0x10)
-    }
-    #[inline(always)]
-    pub fn KR_1X009A(&self) -> xgkr0::KR_1X009A {
-        xgkr0::KR_1X009A(self.0 + 0x14)
-    }
-    #[inline(always)]
-    pub fn KR_1X009B(&self) -> xgkr0::KR_1X009B {
-        xgkr0::KR_1X009B(self.0 + 0x18)
-    }
-    #[inline(always)]
-    pub fn MW_TMR(&self) -> xgkr0::MW_TMR {
-        xgkr0::MW_TMR(self.0 + 0x88)
-    }
-    #[inline(always)]
-    pub fn OBCFG_ADDR(&self) -> xgkr0::OBCFG_ADDR {
-        xgkr0::OBCFG_ADDR(self.0 + 0x7c)
-    }
-    #[inline(always)]
-    pub fn TR_BER_OFS(&self) -> xgkr0::TR_BER_OFS {
-        xgkr0::TR_BER_OFS(self.0 + 0x6c)
-    }
-    #[inline(always)]
-    pub fn TR_BER_THR(&self) -> xgkr0::TR_BER_THR {
-        xgkr0::TR_BER_THR(self.0 + 0x68)
-    }
-    #[inline(always)]
-    pub fn TR_BRKMASK(&self) -> xgkr0::TR_BRKMASK {
-        xgkr0::TR_BRKMASK(self.0 + 0x74)
-    }
-    #[inline(always)]
-    pub fn TR_CFG0(&self) -> xgkr0::TR_CFG0 {
-        xgkr0::TR_CFG0(self.0 + 0x30)
-    }
-    #[inline(always)]
-    pub fn TR_CFG1(&self) -> xgkr0::TR_CFG1 {
-        xgkr0::TR_CFG1(self.0 + 0x34)
-    }
-    #[inline(always)]
-    pub fn TR_CFG2(&self) -> xgkr0::TR_CFG2 {
-        xgkr0::TR_CFG2(self.0 + 0x38)
-    }
-    #[inline(always)]
-    pub fn TR_CFG3(&self) -> xgkr0::TR_CFG3 {
-        xgkr0::TR_CFG3(self.0 + 0x3c)
-    }
-    #[inline(always)]
-    pub fn TR_CFG4(&self) -> xgkr0::TR_CFG4 {
-        xgkr0::TR_CFG4(self.0 + 0x40)
-    }
-    #[inline(always)]
-    pub fn TR_CFG5(&self) -> xgkr0::TR_CFG5 {
-        xgkr0::TR_CFG5(self.0 + 0x44)
-    }
-    #[inline(always)]
-    pub fn TR_CFG6(&self) -> xgkr0::TR_CFG6 {
-        xgkr0::TR_CFG6(self.0 + 0x48)
-    }
-    #[inline(always)]
-    pub fn TR_CFG7(&self) -> xgkr0::TR_CFG7 {
-        xgkr0::TR_CFG7(self.0 + 0x4c)
-    }
-    #[inline(always)]
-    pub fn TR_CFG8(&self) -> xgkr0::TR_CFG8 {
-        xgkr0::TR_CFG8(self.0 + 0x50)
-    }
-    #[inline(always)]
-    pub fn TR_CFG9(&self) -> xgkr0::TR_CFG9 {
-        xgkr0::TR_CFG9(self.0 + 0x54)
-    }
-    #[inline(always)]
-    pub fn TR_COEF_OVRD(&self) -> xgkr0::TR_COEF_OVRD {
-        xgkr0::TR_COEF_OVRD(self.0 + 0x5c)
-    }
-    #[inline(always)]
-    pub fn TR_ERRCNT(&self) -> xgkr0::TR_ERRCNT {
-        xgkr0::TR_ERRCNT(self.0 + 0xa4)
-    }
-    #[inline(always)]
-    pub fn TR_FRAMES_SENT(&self) -> xgkr0::TR_FRAMES_SENT {
-        xgkr0::TR_FRAMES_SENT(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn TR_GAIN(&self) -> xgkr0::TR_GAIN {
-        xgkr0::TR_GAIN(self.0 + 0x58)
-    }
-    #[inline(always)]
-    pub fn TR_LUT(&self) -> xgkr0::TR_LUT {
-        xgkr0::TR_LUT(self.0 + 0x9c)
-    }
-    #[inline(always)]
-    pub fn TR_LUTSEL(&self) -> xgkr0::TR_LUTSEL {
-        xgkr0::TR_LUTSEL(self.0 + 0x70)
-    }
-    #[inline(always)]
-    pub fn TR_MTHD(&self) -> xgkr0::TR_MTHD {
-        xgkr0::TR_MTHD(self.0 + 0x64)
-    }
-    #[inline(always)]
-    pub fn TR_OVRD(&self) -> xgkr0::TR_OVRD {
-        xgkr0::TR_OVRD(self.0 + 0x1c)
-    }
-    #[inline(always)]
-    pub fn TR_REC(&self) -> xgkr0::TR_REC {
-        xgkr0::TR_REC(self.0 + 0xb0)
-    }
-    #[inline(always)]
-    pub fn TR_SM_HIST(&self) -> xgkr0::TR_SM_HIST {
-        xgkr0::TR_SM_HIST(self.0 + 0xa8)
-    }
-    #[inline(always)]
-    pub fn TR_STAT_OVRD(&self) -> xgkr0::TR_STAT_OVRD {
-        xgkr0::TR_STAT_OVRD(self.0 + 0x60)
-    }
-    #[inline(always)]
-    pub fn TR_STEP(&self) -> xgkr0::TR_STEP {
-        xgkr0::TR_STEP(self.0 + 0x20)
-    }
-    #[inline(always)]
-    pub fn TR_STS1(&self) -> xgkr0::TR_STS1 {
-        xgkr0::TR_STS1(self.0 + 0x24)
-    }
-    #[inline(always)]
-    pub fn TR_STS2(&self) -> xgkr0::TR_STS2 {
-        xgkr0::TR_STS2(self.0 + 0x28)
-    }
-    #[inline(always)]
-    pub fn TR_TAPVAL(&self) -> xgkr0::TR_TAPVAL {
-        xgkr0::TR_TAPVAL(self.0 + 0x90)
-    }
-    #[inline(always)]
-    pub fn WT_TMR(&self) -> xgkr0::WT_TMR {
-        xgkr0::WT_TMR(self.0 + 0x84)
-    }
+#[inline(always)]
+pub fn XGKR0(index: u8) -> tgt::XGKR0 {
+    assert!(index < 4);
+    tgt::XGKR0(0x71540000 + u32::from(index) * 0x10000)
 }
-
 /// \see vtss_target_KR_DEV7_e
-pub struct XGKR1(u32);
-impl XGKR1 {
-    pub const BASE: u32 = 0x71580000;
-    pub const SIZE: u32 = 0x10000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn AN_CFG0(&self) -> xgkr1::AN_CFG0 {
-        xgkr1::AN_CFG0(self.0 + 0x48)
-    }
-    #[inline(always)]
-    pub fn AN_HIST(&self) -> xgkr1::AN_HIST {
-        xgkr1::AN_HIST(self.0 + 0x9c)
-    }
-    #[inline(always)]
-    pub fn AN_SM(&self) -> xgkr1::AN_SM {
-        xgkr1::AN_SM(self.0 + 0x24)
-    }
-    #[inline(always)]
-    pub fn AN_STS0(&self) -> xgkr1::AN_STS0 {
-        xgkr1::AN_STS0(self.0 + 0x28)
-    }
-    #[inline(always)]
-    pub fn AW_TMR(&self) -> xgkr1::AW_TMR {
-        xgkr1::AW_TMR(self.0 + 0x54)
-    }
-    #[inline(always)]
-    pub fn BL_TMR(&self) -> xgkr1::BL_TMR {
-        xgkr1::BL_TMR(self.0 + 0x4c)
-    }
-    #[inline(always)]
-    pub fn KR10G_TMR(&self) -> xgkr1::KR10G_TMR {
-        xgkr1::KR10G_TMR(self.0 + 0x84)
-    }
-    #[inline(always)]
-    pub fn KR1G_TMR(&self) -> xgkr1::KR1G_TMR {
-        xgkr1::KR1G_TMR(self.0 + 0x94)
-    }
-    #[inline(always)]
-    pub fn KR3G_TMR(&self) -> xgkr1::KR3G_TMR {
-        xgkr1::KR3G_TMR(self.0 + 0x8c)
-    }
-    #[inline(always)]
-    pub fn KR_7X0000(&self) -> xgkr1::KR_7X0000 {
-        xgkr1::KR_7X0000(self.0 + 0x10)
-    }
-    #[inline(always)]
-    pub fn KR_7X0001(&self) -> xgkr1::KR_7X0001 {
-        xgkr1::KR_7X0001(self.0 + 0x14)
-    }
-    #[inline(always)]
-    pub fn KR_7X0030(&self) -> xgkr1::KR_7X0030 {
-        xgkr1::KR_7X0030(self.0 + 0x44)
-    }
-    #[inline(always)]
-    pub fn LD_ADV(&self) -> xgkr1::LD_ADV {
-        xgkr1::LD_ADV(self.0 + 0x2c)
-    }
-    #[inline(always)]
-    pub fn LD_NEXT_PAGE(&self) -> xgkr1::LD_NEXT_PAGE {
-        xgkr1::LD_NEXT_PAGE(self.0 + 0x38)
-    }
-    #[inline(always)]
-    pub fn LFLONG_TMR(&self) -> xgkr1::LFLONG_TMR {
-        xgkr1::LFLONG_TMR(self.0 + 0x5c)
-    }
-    #[inline(always)]
-    pub fn LFSHORT_TMR(&self) -> xgkr1::LFSHORT_TMR {
-        xgkr1::LFSHORT_TMR(self.0 + 0x64)
-    }
-    #[inline(always)]
-    pub fn LP_BASE_PAGE_0(&self) -> xgkr1::LP_BASE_PAGE_0 {
-        xgkr1::LP_BASE_PAGE_0(self.0 + 0x18)
-    }
-    #[inline(always)]
-    pub fn LP_BASE_PAGE_1(&self) -> xgkr1::LP_BASE_PAGE_1 {
-        xgkr1::LP_BASE_PAGE_1(self.0 + 0x1c)
-    }
-    #[inline(always)]
-    pub fn LP_BASE_PAGE_2(&self) -> xgkr1::LP_BASE_PAGE_2 {
-        xgkr1::LP_BASE_PAGE_2(self.0 + 0x20)
-    }
-    #[inline(always)]
-    pub fn LP_NEXT_PAGE(&self) -> xgkr1::LP_NEXT_PAGE {
-        xgkr1::LP_NEXT_PAGE(self.0 + 0x0)
-    }
-    #[inline(always)]
-    pub fn LP_TMR(&self) -> xgkr1::LP_TMR {
-        xgkr1::LP_TMR(self.0 + 0x6c)
-    }
-    #[inline(always)]
-    pub fn PD_TMR(&self) -> xgkr1::PD_TMR {
-        xgkr1::PD_TMR(self.0 + 0x7c)
-    }
-    #[inline(always)]
-    pub fn TR_TMR(&self) -> xgkr1::TR_TMR {
-        xgkr1::TR_TMR(self.0 + 0x74)
-    }
+#[inline(always)]
+pub fn XGKR1(index: u8) -> tgt::XGKR1 {
+    assert!(index < 4);
+    tgt::XGKR1(0x71580000 + u32::from(index) * 0x10000)
 }
-
 /// \see vtss_target_XFI_SHELL_e XFI shell
-pub struct XGXFI(u32);
-impl XGXFI {
-    pub const BASE: u32 = 0x71500000;
-    pub const SIZE: u32 = 0x10000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
-    }
-
-    #[inline(always)]
-    pub fn XFI_CONTROL(&self) -> xgxfi::XFI_CONTROL {
-        xgxfi::XFI_CONTROL(self.0 + 0x0)
-    }
+#[inline(always)]
+pub fn XGXFI(index: u8) -> tgt::XGXFI {
+    assert!(index < 4);
+    tgt::XGXFI(0x71500000 + u32::from(index) * 0x10000)
+}
+/// Queue Transfer Configuration
+#[inline(always)]
+pub fn XQS() -> tgt::XQS {
+    tgt::XQS(0x717a0000)
 }
 
-/// Queue Transfer Configuration
-pub struct XQS(u32);
-impl XQS {
-    pub const BASE: u32 = 0x717a0000;
-    pub fn from_raw_unchecked_address(a: u32) -> Self {
-        Self(a)
+/// This module contains `struct`s to represent various top-level targets
+/// within the chip.  These `struct`s share names with functions above, which
+/// is why we hide them in a separate module (since they will be used a lot
+/// less often than the constructor functions)
+pub mod tgt {
+    use super::*;
+
+    /// The Automatic Frame Injector (AFI) provides mechanisms for periodic injection of PDUs. E.g. injection of - OAM PDUs for continuity check, loss and delay measurement - OAM PDUs for high service activation test, ref. ITU Y.1564. - IEEE 1588 PDUs
+    pub struct AFI(pub(super) u32);
+    impl AFI {
+        pub const BASE: u32 = 0x71a80000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn DTI_MISC(&self, index: u8) -> afi::DTI_MISC {
+            assert!(index < 32);
+            afi::DTI_MISC(self.0 + 0x285e8 + u32::from(index) * 0xc)
+        }
+        #[inline(always)]
+        pub fn DTI_TBL(&self, index: u8) -> afi::DTI_TBL {
+            assert!(index < 32);
+            afi::DTI_TBL(self.0 + 0x28000 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn FRM_TBL(&self, index: u16) -> afi::FRM_TBL {
+            assert!(index < 4096);
+            afi::FRM_TBL(self.0 + 0x20000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn MISC(&self) -> afi::MISC {
+            afi::MISC(self.0 + 0x285c8)
+        }
+        #[inline(always)]
+        pub fn PORT_TBL(&self, index: u8) -> afi::PORT_TBL {
+            assert!(index < 57);
+            afi::PORT_TBL(self.0 + 0x28400 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn TTI_MISC(&self) -> afi::TTI_MISC {
+            afi::TTI_MISC(self.0 + 0x28794)
+        }
+        #[inline(always)]
+        pub fn TTI_TBL(&self, index: u16) -> afi::TTI_TBL {
+            assert!(index < 4096);
+            afi::TTI_TBL(self.0 + 0x0 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn TTI_TICKS(&self) -> afi::TTI_TICKS {
+            afi::TTI_TICKS(self.0 + 0x28768)
+        }
+        #[inline(always)]
+        pub fn TUPE(&self) -> afi::TUPE {
+            afi::TUPE(self.0 + 0x287d8)
+        }
     }
 
-    #[inline(always)]
-    pub fn QLIMIT_MON(&self, index: u8) -> xqs::QLIMIT_MON {
-        assert!(index < 4);
-        xqs::QLIMIT_MON(self.0 + 0x1910 + u32::from(index) * 0xc)
+    /// Controls mask handling etc.
+    pub struct ANA_AC(pub(super) u32);
+    impl ANA_AC {
+        pub const BASE: u32 = 0x71f00000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn AGGR(&self, index: u8) -> ana_ac::AGGR {
+            assert!(index < 16);
+            ana_ac::AGGR(self.0 + 0x94380 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn COREMEM(&self) -> ana_ac::COREMEM {
+            ana_ac::COREMEM(self.0 + 0x94350)
+        }
+        #[inline(always)]
+        pub fn GLAG(&self, index: u8) -> ana_ac::GLAG {
+            assert!(index < 32);
+            ana_ac::GLAG(self.0 + 0x94700 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn MIRROR_PROBE(&self, index: u8) -> ana_ac::MIRROR_PROBE {
+            assert!(index < 3);
+            ana_ac::MIRROR_PROBE(self.0 + 0x94780 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn PGID(&self, index: u16) -> ana_ac::PGID {
+            assert!(index < 1077);
+            ana_ac::PGID(self.0 + 0x90000 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn PS_COMMON(&self) -> ana_ac::PS_COMMON {
+            ana_ac::PS_COMMON(self.0 + 0x94da8)
+        }
+        #[inline(always)]
+        pub fn PS_STICKY(&self) -> ana_ac::PS_STICKY {
+            ana_ac::PS_STICKY(self.0 + 0x9435c)
+        }
+        #[inline(always)]
+        pub fn PS_STICKY_MASK(&self, index: u8) -> ana_ac::PS_STICKY_MASK {
+            assert!(index < 4);
+            ana_ac::PS_STICKY_MASK(self.0 + 0x94ebc + u32::from(index) * 0x40)
+        }
+        #[inline(always)]
+        pub fn RAM_CTRL(&self) -> ana_ac::RAM_CTRL {
+            ana_ac::RAM_CTRL(self.0 + 0x94358)
+        }
+        #[inline(always)]
+        pub fn SFLOW(&self, index: u8) -> ana_ac::SFLOW {
+            assert!(index < 53);
+            ana_ac::SFLOW(self.0 + 0x94c00 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn SRC(&self, index: u8) -> ana_ac::SRC {
+            assert!(index < 89);
+            ana_ac::SRC(self.0 + 0x94400 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn STAT_CNT_CFG_ACL(&self, index: u8) -> ana_ac::STAT_CNT_CFG_ACL {
+            assert!(index < 32);
+            ana_ac::STAT_CNT_CFG_ACL(self.0 + 0x94a00 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn STAT_CNT_CFG_BDLB(&self, index: u16) -> ana_ac::STAT_CNT_CFG_BDLB {
+            assert!(index < 1024);
+            ana_ac::STAT_CNT_CFG_BDLB(self.0 + 0x98000 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn STAT_CNT_CFG_BUM(&self, index: u16) -> ana_ac::STAT_CNT_CFG_BUM {
+            assert!(index < 1024);
+            ana_ac::STAT_CNT_CFG_BUM(self.0 + 0x80000 + u32::from(index) * 0x40)
+        }
+        #[inline(always)]
+        pub fn STAT_CNT_CFG_ERLEG(&self, index: u16) -> ana_ac::STAT_CNT_CFG_ERLEG {
+            assert!(index < 256);
+            ana_ac::STAT_CNT_CFG_ERLEG(self.0 + 0xa0000 + u32::from(index) * 0x40)
+        }
+        #[inline(always)]
+        pub fn STAT_CNT_CFG_IRLEG(&self, index: u16) -> ana_ac::STAT_CNT_CFG_IRLEG {
+            assert!(index < 256);
+            ana_ac::STAT_CNT_CFG_IRLEG(self.0 + 0x9c000 + u32::from(index) * 0x40)
+        }
+        #[inline(always)]
+        pub fn STAT_CNT_CFG_ISDX(&self, index: u16) -> ana_ac::STAT_CNT_CFG_ISDX {
+            assert!(index < 8192);
+            ana_ac::STAT_CNT_CFG_ISDX(self.0 + 0x0 + u32::from(index) * 0x40)
+        }
+        #[inline(always)]
+        pub fn STAT_CNT_CFG_PORT(&self, index: u8) -> ana_ac::STAT_CNT_CFG_PORT {
+            assert!(index < 57);
+            ana_ac::STAT_CNT_CFG_PORT(self.0 + 0x95000 + u32::from(index) * 0x40)
+        }
+        #[inline(always)]
+        pub fn STAT_CNT_CFG_QUEUE(&self, index: u16) -> ana_ac::STAT_CNT_CFG_QUEUE {
+            assert!(index < 456);
+            ana_ac::STAT_CNT_CFG_QUEUE(self.0 + 0x96000 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn STAT_GLOBAL_CFG_ACL(&self) -> ana_ac::STAT_GLOBAL_CFG_ACL {
+            ana_ac::STAT_GLOBAL_CFG_ACL(self.0 + 0x946c8)
+        }
+        #[inline(always)]
+        pub fn STAT_GLOBAL_CFG_BDLB(&self) -> ana_ac::STAT_GLOBAL_CFG_BDLB {
+            ana_ac::STAT_GLOBAL_CFG_BDLB(self.0 + 0x947e0)
+        }
+        #[inline(always)]
+        pub fn STAT_GLOBAL_CFG_BUM(&self) -> ana_ac::STAT_GLOBAL_CFG_BUM {
+            ana_ac::STAT_GLOBAL_CFG_BUM(self.0 + 0x95e88)
+        }
+        #[inline(always)]
+        pub fn STAT_GLOBAL_CFG_ERLEG(&self) -> ana_ac::STAT_GLOBAL_CFG_ERLEG {
+            ana_ac::STAT_GLOBAL_CFG_ERLEG(self.0 + 0x95f30)
+        }
+        #[inline(always)]
+        pub fn STAT_GLOBAL_CFG_IRLEG(&self) -> ana_ac::STAT_GLOBAL_CFG_IRLEG {
+            ana_ac::STAT_GLOBAL_CFG_IRLEG(self.0 + 0x95ed0)
+        }
+        #[inline(always)]
+        pub fn STAT_GLOBAL_CFG_ISDX(&self) -> ana_ac::STAT_GLOBAL_CFG_ISDX {
+            ana_ac::STAT_GLOBAL_CFG_ISDX(self.0 + 0x95e40)
+        }
+        #[inline(always)]
+        pub fn STAT_GLOBAL_CFG_PORT(&self) -> ana_ac::STAT_GLOBAL_CFG_PORT {
+            ana_ac::STAT_GLOBAL_CFG_PORT(self.0 + 0x94360)
+        }
+        #[inline(always)]
+        pub fn STAT_GLOBAL_CFG_QUEUE(&self) -> ana_ac::STAT_GLOBAL_CFG_QUEUE {
+            ana_ac::STAT_GLOBAL_CFG_QUEUE(self.0 + 0x946e0)
+        }
+        #[inline(always)]
+        pub fn UPSID(&self, index: u8) -> ana_ac::UPSID {
+            assert!(index < 32);
+            ana_ac::UPSID(self.0 + 0x94800 + u32::from(index) * 0x10)
+        }
     }
-    #[inline(always)]
-    pub fn QLIMIT_PORT(&self, index: u8) -> xqs::QLIMIT_PORT {
-        assert!(index < 57);
-        xqs::QLIMIT_PORT(self.0 + 0x1638 + u32::from(index) * 0x8)
+
+    /// Access Control List sub block of the Analyzer
+    pub struct ANA_ACL(pub(super) u32);
+    impl ANA_ACL {
+        pub const BASE: u32 = 0x71430000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn CNT_TBL(&self, index: u16) -> ana_acl::CNT_TBL {
+            assert!(index < 4096);
+            ana_acl::CNT_TBL(self.0 + 0x0 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn PORT(&self, index: u8) -> ana_acl::PORT {
+            assert!(index < 57);
+            ana_acl::PORT(self.0 + 0x4000 + u32::from(index) * 0xc)
+        }
+        #[inline(always)]
+        pub fn PTP_DOM(&self, index: u8) -> ana_acl::PTP_DOM {
+            assert!(index < 3);
+            ana_acl::PTP_DOM(self.0 + 0x446c + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn STICKY(&self) -> ana_acl::STICKY {
+            ana_acl::STICKY(self.0 + 0x4464)
+        }
+        #[inline(always)]
+        pub fn VCAP_S2(&self) -> ana_acl::VCAP_S2 {
+            ana_acl::VCAP_S2(self.0 + 0x42ac)
+        }
     }
-    #[inline(always)]
-    pub fn QLIMIT_QUEUE(&self, index: u8) -> xqs::QLIMIT_QUEUE {
-        assert!(index < 4);
-        xqs::QLIMIT_QUEUE(self.0 + 0x1450 + u32::from(index) * 0x4)
+
+    /// This block os part of the Vitesse OAM MEP Processor (VOP). It is directly controlled by the VOP and performs all frame modification related OAM functions. This block is included in both the REW and the ANA_AC. The HW support for implementing an OAM MEP is implemented in a sub block, known as: Vitesse OAM Endpoint (VOE). The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs
+    pub struct ANA_AC_OAM_MOD(pub(super) u32);
+    impl ANA_AC_OAM_MOD {
+        pub const BASE: u32 = 0x71b80000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn OAM_PDU_MOD_CONT(&self, index: u8) -> ana_ac_oam_mod::OAM_PDU_MOD_CONT {
+            assert!(index < 110);
+            ana_ac_oam_mod::OAM_PDU_MOD_CONT(self.0 + 0xa000 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn PDU_MOD_CFG(&self) -> ana_ac_oam_mod::PDU_MOD_CFG {
+            ana_ac_oam_mod::PDU_MOD_CFG(self.0 + 0x9a80)
+        }
+        #[inline(always)]
+        pub fn VOE_PORT_LM_CNT(&self, index: u16) -> ana_ac_oam_mod::VOE_PORT_LM_CNT {
+            assert!(index < 424);
+            ana_ac_oam_mod::VOE_PORT_LM_CNT(self.0 + 0x8000 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn VOE_SRV_LM_CNT(&self, index: u16) -> ana_ac_oam_mod::VOE_SRV_LM_CNT {
+            assert!(index < 8192);
+            ana_ac_oam_mod::VOE_SRV_LM_CNT(self.0 + 0x0 + u32::from(index) * 0x4)
+        }
     }
-    #[inline(always)]
-    pub fn QLIMIT_SE(&self, index: u8) -> xqs::QLIMIT_SE {
-        assert!(index < 4);
-        xqs::QLIMIT_SE(self.0 + 0x1420 + u32::from(index) * 0x8)
+
+    /// Controls the various policers.
+    pub struct ANA_AC_POL(pub(super) u32);
+    impl ANA_AC_POL {
+        pub const BASE: u32 = 0x71980000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn BDLB(&self, index: u16) -> ana_ac_pol::BDLB {
+            assert!(index < 1024);
+            ana_ac_pol::BDLB(self.0 + 0x28000 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn BUM_SLB(&self, index: u16) -> ana_ac_pol::BUM_SLB {
+            assert!(index < 1024);
+            ana_ac_pol::BUM_SLB(self.0 + 0x30000 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn COMMON_BDLB(&self) -> ana_ac_pol::COMMON_BDLB {
+            ana_ac_pol::COMMON_BDLB(self.0 + 0x237dc)
+        }
+        #[inline(always)]
+        pub fn COMMON_BUM_SLB(&self) -> ana_ac_pol::COMMON_BUM_SLB {
+            ana_ac_pol::COMMON_BUM_SLB(self.0 + 0x237e4)
+        }
+        #[inline(always)]
+        pub fn COMMON_SDLB(&self) -> ana_ac_pol::COMMON_SDLB {
+            ana_ac_pol::COMMON_SDLB(self.0 + 0x237d4)
+        }
+        #[inline(always)]
+        pub fn POL_ALL_CFG(&self) -> ana_ac_pol::POL_ALL_CFG {
+            ana_ac_pol::POL_ALL_CFG(self.0 + 0x23500)
+        }
+        #[inline(always)]
+        pub fn POL_PORT_CFG(&self) -> ana_ac_pol::POL_PORT_CFG {
+            ana_ac_pol::POL_PORT_CFG(self.0 + 0x24000)
+        }
+        #[inline(always)]
+        pub fn POL_PORT_CTRL(&self, index: u8) -> ana_ac_pol::POL_PORT_CTRL {
+            assert!(index < 57);
+            ana_ac_pol::POL_PORT_CTRL(self.0 + 0x23800 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn PORT_PT_CTRL(&self, index: u8) -> ana_ac_pol::PORT_PT_CTRL {
+            assert!(index < 64);
+            ana_ac_pol::PORT_PT_CTRL(self.0 + 0x25000 + u32::from(index) * 0x14)
+        }
+        #[inline(always)]
+        pub fn SDLB(&self, index: u16) -> ana_ac_pol::SDLB {
+            assert!(index < 4520);
+            ana_ac_pol::SDLB(self.0 + 0x0 + u32::from(index) * 0x20)
+        }
     }
-    #[inline(always)]
-    pub fn QLIMIT_SHR(&self, index: u8) -> xqs::QLIMIT_SHR {
-        assert!(index < 4);
-        xqs::QLIMIT_SHR(self.0 + 0x1800 + u32::from(index) * 0x44)
+
+    /// Classifier sub block of the Analyzer
+    pub struct ANA_CL(pub(super) u32);
+    impl ANA_CL {
+        pub const BASE: u32 = 0x71d00000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn COMMON(&self) -> ana_cl::COMMON {
+            ana_cl::COMMON(self.0 + 0x23a80)
+        }
+        #[inline(always)]
+        pub fn IPT(&self, index: u16) -> ana_cl::IPT {
+            assert!(index < 4096);
+            ana_cl::IPT(self.0 + 0x0 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn L2CP_TBL(&self, index: u16) -> ana_cl::L2CP_TBL {
+            assert!(index < 3744);
+            ana_cl::L2CP_TBL(self.0 + 0x20000 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn MAP_TBL(&self, index: u16) -> ana_cl::MAP_TBL {
+            assert!(index < 512);
+            ana_cl::MAP_TBL(self.0 + 0x18000 + u32::from(index) * 0x40)
+        }
+        #[inline(always)]
+        pub fn MIP_TBL(&self, index: u16) -> ana_cl::MIP_TBL {
+            assert!(index < 1024);
+            ana_cl::MIP_TBL(self.0 + 0x10000 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn MPLS_PROFILE(&self, index: u8) -> ana_cl::MPLS_PROFILE {
+            assert!(index < 18);
+            ana_cl::MPLS_PROFILE(self.0 + 0x23d68 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn PORT(&self, index: u8) -> ana_cl::PORT {
+            assert!(index < 57);
+            ana_cl::PORT(self.0 + 0x24000 + u32::from(index) * 0x100)
+        }
+        #[inline(always)]
+        pub fn PPT(&self) -> ana_cl::PPT {
+            ana_cl::PPT(self.0 + 0x23db0)
+        }
+        #[inline(always)]
+        pub fn STICKY(&self) -> ana_cl::STICKY {
+            ana_cl::STICKY(self.0 + 0x23df0)
+        }
+        #[inline(always)]
+        pub fn STICKY_MASK(&self, index: u8) -> ana_cl::STICKY_MASK {
+            assert!(index < 4);
+            ana_cl::STICKY_MASK(self.0 + 0x23e18 + u32::from(index) * 0x20)
+        }
     }
-    #[inline(always)]
-    pub fn QMAP_QOS_TBL(&self, index: u8) -> xqs::QMAP_QOS_TBL {
-        assert!(index < 4);
-        xqs::QMAP_QOS_TBL(self.0 + 0x1400 + u32::from(index) * 0x8)
+
+    /// Layer 2 sub block of the Analyzer
+    pub struct ANA_L2(pub(super) u32);
+    impl ANA_L2 {
+        pub const BASE: u32 = 0x71e00000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn COMMON(&self) -> ana_l2::COMMON {
+            ana_l2::COMMON(self.0 + 0x8a2a8)
+        }
+        #[inline(always)]
+        pub fn ISDX(&self, index: u16) -> ana_l2::ISDX {
+            assert!(index < 4096);
+            ana_l2::ISDX(self.0 + 0x0 + u32::from(index) * 0x80)
+        }
+        #[inline(always)]
+        pub fn LRN_LIMIT(&self, index: u16) -> ana_l2::LRN_LIMIT {
+            assert!(index < 5120);
+            ana_l2::LRN_LIMIT(self.0 + 0x80000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn PORT_LIMIT(&self, index: u8) -> ana_l2::PORT_LIMIT {
+            assert!(index < 85);
+            ana_l2::PORT_LIMIT(self.0 + 0x8a000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn STICKY(&self) -> ana_l2::STICKY {
+            ana_l2::STICKY(self.0 + 0x8a40c)
+        }
+        #[inline(always)]
+        pub fn STICKY_MASK(&self, index: u8) -> ana_l2::STICKY_MASK {
+            assert!(index < 4);
+            ana_l2::STICKY_MASK(self.0 + 0x8a410 + u32::from(index) * 0x4)
+        }
     }
-    #[inline(always)]
-    pub fn QMAP_SE_TBL(&self, index: u8) -> xqs::QMAP_SE_TBL {
-        assert!(index < 4);
-        xqs::QMAP_SE_TBL(self.0 + 0x1440 + u32::from(index) * 0x4)
+
+    /// ANA_L3 provides the following functionality: - VLAN handling - MSTP handling - IP routing
+    pub struct ANA_L3(pub(super) u32);
+    impl ANA_L3 {
+        pub const BASE: u32 = 0x71800000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn ARP(&self, index: u16) -> ana_l3::ARP {
+            assert!(index < 2048);
+            ana_l3::ARP(self.0 + 0x30000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn ARP_PTR_REMAP(&self, index: u8) -> ana_l3::ARP_PTR_REMAP {
+            assert!(index < 64);
+            ana_l3::ARP_PTR_REMAP(self.0 + 0x35500 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn COMMON(&self) -> ana_l3::COMMON {
+            ana_l3::COMMON(self.0 + 0x35420)
+        }
+        #[inline(always)]
+        pub fn L3MC(&self, index: u16) -> ana_l3::L3MC {
+            assert!(index < 1024);
+            ana_l3::L3MC(self.0 + 0x28000 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn L3_STICKY_MASK(&self, index: u8) -> ana_l3::L3_STICKY_MASK {
+            assert!(index < 4);
+            ana_l3::L3_STICKY_MASK(self.0 + 0x35600 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn LPM_REMAP_STICKY(&self) -> ana_l3::LPM_REMAP_STICKY {
+            ana_l3::LPM_REMAP_STICKY(self.0 + 0x354d0)
+        }
+        #[inline(always)]
+        pub fn MSTP(&self, index: u8) -> ana_l3::MSTP {
+            assert!(index < 66);
+            ana_l3::MSTP(self.0 + 0x35000 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn TUPE(&self) -> ana_l3::TUPE {
+            ana_l3::TUPE(self.0 + 0x3549c)
+        }
+        #[inline(always)]
+        pub fn VLAN(&self, index: u16) -> ana_l3::VLAN {
+            assert!(index < 5120);
+            ana_l3::VLAN(self.0 + 0x0 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn VLAN_ARP_L3MC_STICKY(&self) -> ana_l3::VLAN_ARP_L3MC_STICKY {
+            ana_l3::VLAN_ARP_L3MC_STICKY(self.0 + 0x354d4)
+        }
+        #[inline(always)]
+        pub fn VMID(&self, index: u8) -> ana_l3::VMID {
+            assert!(index < 128);
+            ana_l3::VMID(self.0 + 0x34000 + u32::from(index) * 0x20)
+        }
     }
-    #[inline(always)]
-    pub fn QMAP_VPORT_TBL(&self, index: u8) -> xqs::QMAP_VPORT_TBL {
-        assert!(index < 4);
-        xqs::QMAP_VPORT_TBL(self.0 + 0x1000 + u32::from(index) * 0x100)
+
+    /// Assembler
+    pub struct ASM(pub(super) u32);
+    impl ASM {
+        pub const BASE: u32 = 0x71410000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn CFG(&self) -> asm::CFG {
+            asm::CFG(self.0 + 0x3508)
+        }
+        #[inline(always)]
+        pub fn COREMEM(&self) -> asm::COREMEM {
+            asm::COREMEM(self.0 + 0x3500)
+        }
+        #[inline(always)]
+        pub fn DBG(&self) -> asm::DBG {
+            asm::DBG(self.0 + 0x3884)
+        }
+        #[inline(always)]
+        pub fn DEV_STATISTICS(&self, index: u8) -> asm::DEV_STATISTICS {
+            assert!(index < 53);
+            asm::DEV_STATISTICS(self.0 + 0x0 + u32::from(index) * 0x100)
+        }
+        #[inline(always)]
+        pub fn LBK_MISC_CFG(&self) -> asm::LBK_MISC_CFG {
+            asm::LBK_MISC_CFG(self.0 + 0x3994)
+        }
+        #[inline(always)]
+        pub fn LBK_STAT(&self) -> asm::LBK_STAT {
+            asm::LBK_STAT(self.0 + 0x39a8)
+        }
+        #[inline(always)]
+        pub fn LBK_WM_CFG(&self) -> asm::LBK_WM_CFG {
+            asm::LBK_WM_CFG(self.0 + 0x398c)
+        }
+        #[inline(always)]
+        pub fn PFC(&self, index: u8) -> asm::PFC {
+            assert!(index < 55);
+            asm::PFC(self.0 + 0x4000 + u32::from(index) * 0x40)
+        }
+        #[inline(always)]
+        pub fn PORT_STATUS(&self) -> asm::PORT_STATUS {
+            asm::PORT_STATUS(self.0 + 0x38b0)
+        }
+        #[inline(always)]
+        pub fn RAM_CTRL(&self) -> asm::RAM_CTRL {
+            asm::RAM_CTRL(self.0 + 0x39b8)
+        }
     }
-    #[inline(always)]
-    pub fn STAT(&self, index: u16) -> xqs::STAT {
-        assert!(index < 1024);
-        xqs::STAT(self.0 + 0x0 + u32::from(index) * 0x4)
+
+    /// \see vtss_target_DEV10G_e VAUI @ 12Gbps 2 lanes, XAUI @ 10 Gbps, XAUI @ 12 Gbps, VAUI @ 10Gbps 2 lanes and SGMII @ 10/100/1000/2500 Mbps
+    pub struct DEV10G(pub(super) u32);
+    impl DEV10G {
+        pub const BASE: u32 = 0x71390000;
+        pub const SIZE: u32 = 0x10000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn DEV_CFG_STATUS(&self) -> dev10g::DEV_CFG_STATUS {
+            dev10g::DEV_CFG_STATUS(self.0 + 0x160)
+        }
+        #[inline(always)]
+        pub fn DEV_STATISTICS_32BIT(&self) -> dev10g::DEV_STATISTICS_32BIT {
+            dev10g::DEV_STATISTICS_32BIT(self.0 + 0x38)
+        }
+        #[inline(always)]
+        pub fn DEV_STATISTICS_40BIT(&self) -> dev10g::DEV_STATISTICS_40BIT {
+            dev10g::DEV_STATISTICS_40BIT(self.0 + 0xd4)
+        }
+        #[inline(always)]
+        pub fn MAC_CFG_STATUS(&self) -> dev10g::MAC_CFG_STATUS {
+            dev10g::MAC_CFG_STATUS(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn PCS2X6G_CONFIGURATION(&self) -> dev10g::PCS2X6G_CONFIGURATION {
+            dev10g::PCS2X6G_CONFIGURATION(self.0 + 0x14c)
+        }
+        #[inline(always)]
+        pub fn PCS2X6G_EXT_CONFIGURATION(&self) -> dev10g::PCS2X6G_EXT_CONFIGURATION {
+            dev10g::PCS2X6G_EXT_CONFIGURATION(self.0 + 0x15c)
+        }
+        #[inline(always)]
+        pub fn PCS2X6G_STATUS(&self) -> dev10g::PCS2X6G_STATUS {
+            dev10g::PCS2X6G_STATUS(self.0 + 0x150)
+        }
+        #[inline(always)]
+        pub fn PCS_XAUI_CONFIGURATION(&self) -> dev10g::PCS_XAUI_CONFIGURATION {
+            dev10g::PCS_XAUI_CONFIGURATION(self.0 + 0xfc)
+        }
+        #[inline(always)]
+        pub fn PCS_XAUI_STATUS(&self) -> dev10g::PCS_XAUI_STATUS {
+            dev10g::PCS_XAUI_STATUS(self.0 + 0x118)
+        }
+        #[inline(always)]
+        pub fn PCS_XAUI_TSTPAT_CONFIGURATION(&self) -> dev10g::PCS_XAUI_TSTPAT_CONFIGURATION {
+            dev10g::PCS_XAUI_TSTPAT_CONFIGURATION(self.0 + 0x140)
+        }
+        #[inline(always)]
+        pub fn PCS_XAUI_TSTPAT_STATUS(&self) -> dev10g::PCS_XAUI_TSTPAT_STATUS {
+            dev10g::PCS_XAUI_TSTPAT_STATUS(self.0 + 0x144)
+        }
     }
-    #[inline(always)]
-    pub fn SYSTEM(&self) -> xqs::SYSTEM {
-        xqs::SYSTEM(self.0 + 0x1460)
+
+    /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
+    pub struct DEV1G(pub(super) u32);
+    impl DEV1G {
+        pub const BASE: u32 = 0x71040000;
+        pub const SIZE: u32 = 0x10000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn DEV1G_INTR_CFG_STATUS(&self) -> dev1g::DEV1G_INTR_CFG_STATUS {
+            dev1g::DEV1G_INTR_CFG_STATUS(self.0 + 0x94)
+        }
+        #[inline(always)]
+        pub fn DEV_CFG_STATUS(&self) -> dev1g::DEV_CFG_STATUS {
+            dev1g::DEV_CFG_STATUS(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn MAC_CFG_STATUS(&self) -> dev1g::MAC_CFG_STATUS {
+            dev1g::MAC_CFG_STATUS(self.0 + 0x1c)
+        }
+        #[inline(always)]
+        pub fn PCS1G_CFG_STATUS(&self) -> dev1g::PCS1G_CFG_STATUS {
+            dev1g::PCS1G_CFG_STATUS(self.0 + 0x40)
+        }
+        #[inline(always)]
+        pub fn PCS1G_TSTPAT_CFG_STATUS(&self) -> dev1g::PCS1G_TSTPAT_CFG_STATUS {
+            dev1g::PCS1G_TSTPAT_CFG_STATUS(self.0 + 0x84)
+        }
+        #[inline(always)]
+        pub fn PCS_FX100_CONFIGURATION(&self) -> dev1g::PCS_FX100_CONFIGURATION {
+            dev1g::PCS_FX100_CONFIGURATION(self.0 + 0x8c)
+        }
+        #[inline(always)]
+        pub fn PCS_FX100_STATUS(&self) -> dev1g::PCS_FX100_STATUS {
+            dev1g::PCS_FX100_STATUS(self.0 + 0x90)
+        }
+    }
+
+    /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
+    pub struct DEV2G5(pub(super) u32);
+    impl DEV2G5 {
+        pub const BASE: u32 = 0x711c0000;
+        pub const SIZE: u32 = 0x10000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn DEV1G_INTR_CFG_STATUS(&self) -> dev2g5::DEV1G_INTR_CFG_STATUS {
+            dev2g5::DEV1G_INTR_CFG_STATUS(self.0 + 0x94)
+        }
+        #[inline(always)]
+        pub fn DEV_CFG_STATUS(&self) -> dev2g5::DEV_CFG_STATUS {
+            dev2g5::DEV_CFG_STATUS(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn MAC_CFG_STATUS(&self) -> dev2g5::MAC_CFG_STATUS {
+            dev2g5::MAC_CFG_STATUS(self.0 + 0x1c)
+        }
+        #[inline(always)]
+        pub fn PCS1G_CFG_STATUS(&self) -> dev2g5::PCS1G_CFG_STATUS {
+            dev2g5::PCS1G_CFG_STATUS(self.0 + 0x40)
+        }
+        #[inline(always)]
+        pub fn PCS1G_TSTPAT_CFG_STATUS(&self) -> dev2g5::PCS1G_TSTPAT_CFG_STATUS {
+            dev2g5::PCS1G_TSTPAT_CFG_STATUS(self.0 + 0x84)
+        }
+        #[inline(always)]
+        pub fn PCS_FX100_CONFIGURATION(&self) -> dev2g5::PCS_FX100_CONFIGURATION {
+            dev2g5::PCS_FX100_CONFIGURATION(self.0 + 0x8c)
+        }
+        #[inline(always)]
+        pub fn PCS_FX100_STATUS(&self) -> dev2g5::PCS_FX100_STATUS {
+            dev2g5::PCS_FX100_STATUS(self.0 + 0x90)
+        }
+    }
+
+    /// General Configuration Block
+    pub struct DEVCPU_GCB(pub(super) u32);
+    impl DEVCPU_GCB {
+        pub const BASE: u32 = 0x71010000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn CHIP_REGS(&self) -> devcpu_gcb::CHIP_REGS {
+            devcpu_gcb::CHIP_REGS(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn FAN_CTRL(&self) -> devcpu_gcb::FAN_CTRL {
+            devcpu_gcb::FAN_CTRL(self.0 + 0x474)
+        }
+        #[inline(always)]
+        pub fn GPIO(&self) -> devcpu_gcb::GPIO {
+            devcpu_gcb::GPIO(self.0 + 0x38)
+        }
+        #[inline(always)]
+        pub fn MEMITGR(&self) -> devcpu_gcb::MEMITGR {
+            devcpu_gcb::MEMITGR(self.0 + 0x47c)
+        }
+        #[inline(always)]
+        pub fn MIIM(&self, index: u8) -> devcpu_gcb::MIIM {
+            assert!(index < 3);
+            devcpu_gcb::MIIM(self.0 + 0xc8 + u32::from(index) * 0x24)
+        }
+        #[inline(always)]
+        pub fn MIIM_READ_SCAN(&self) -> devcpu_gcb::MIIM_READ_SCAN {
+            devcpu_gcb::MIIM_READ_SCAN(self.0 + 0x134)
+        }
+        #[inline(always)]
+        pub fn MIIM_SLAVE(&self) -> devcpu_gcb::MIIM_SLAVE {
+            devcpu_gcb::MIIM_SLAVE(self.0 + 0x14c)
+        }
+        #[inline(always)]
+        pub fn SIO_CTRL(&self, index: u8) -> devcpu_gcb::SIO_CTRL {
+            assert!(index < 3);
+            devcpu_gcb::SIO_CTRL(self.0 + 0x150 + u32::from(index) * 0x10c)
+        }
+        #[inline(always)]
+        pub fn SW_REGS(&self) -> devcpu_gcb::SW_REGS {
+            devcpu_gcb::SW_REGS(self.0 + 0x20)
+        }
+        #[inline(always)]
+        pub fn TEMP_SENSOR(&self) -> devcpu_gcb::TEMP_SENSOR {
+            devcpu_gcb::TEMP_SENSOR(self.0 + 0x140)
+        }
+        #[inline(always)]
+        pub fn VCORE_ACCESS(&self) -> devcpu_gcb::VCORE_ACCESS {
+            devcpu_gcb::VCORE_ACCESS(self.0 + 0x24)
+        }
+        #[inline(always)]
+        pub fn VRAP(&self) -> devcpu_gcb::VRAP {
+            devcpu_gcb::VRAP(self.0 + 0x494)
+        }
+    }
+
+    /// CPU device origin
+    pub struct DEVCPU_ORG(pub(super) u32);
+    impl DEVCPU_ORG {
+        pub const BASE: u32 = 0x71000000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn DEVCPU_ORG(&self) -> devcpu_org::DEVCPU_ORG {
+            devcpu_org::DEVCPU_ORG(self.0 + 0x0)
+        }
+    }
+
+    /// DEVCPU Precision Timing Protocol Originator
+    pub struct DEVCPU_PTP(pub(super) u32);
+    impl DEVCPU_PTP {
+        pub const BASE: u32 = 0x717f0000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn PTP_CFG(&self) -> devcpu_ptp::PTP_CFG {
+            devcpu_ptp::PTP_CFG(self.0 + 0xa0)
+        }
+        #[inline(always)]
+        pub fn PTP_PINS(&self, index: u8) -> devcpu_ptp::PTP_PINS {
+            assert!(index < 5);
+            devcpu_ptp::PTP_PINS(self.0 + 0x0 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn PTP_STATUS(&self, index: u8) -> devcpu_ptp::PTP_STATUS {
+            assert!(index < 3);
+            devcpu_ptp::PTP_STATUS(self.0 + 0xcc + u32::from(index) * 0x10)
+        }
+    }
+
+    /// CPU Device Queue System
+    pub struct DEVCPU_QS(pub(super) u32);
+    impl DEVCPU_QS {
+        pub const BASE: u32 = 0x71020000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn INJ(&self) -> devcpu_qs::INJ {
+            devcpu_qs::INJ(self.0 + 0x24)
+        }
+        #[inline(always)]
+        pub fn XTR(&self) -> devcpu_qs::XTR {
+            devcpu_qs::XTR(self.0 + 0x0)
+        }
+    }
+
+    /// Disassembler
+    pub struct DSM(pub(super) u32);
+    impl DSM {
+        pub const BASE: u32 = 0x71450000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn CFG(&self) -> dsm::CFG {
+            dsm::CFG(self.0 + 0xc)
+        }
+        #[inline(always)]
+        pub fn COREMEM(&self) -> dsm::COREMEM {
+            dsm::COREMEM(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn RAM_CTRL(&self) -> dsm::RAM_CTRL {
+            dsm::RAM_CTRL(self.0 + 0x8)
+        }
+        #[inline(always)]
+        pub fn RATE_LIMIT_CFG(&self) -> dsm::RATE_LIMIT_CFG {
+            dsm::RATE_LIMIT_CFG(self.0 + 0xb4c)
+        }
+        #[inline(always)]
+        pub fn RATE_LIMIT_STATUS(&self) -> dsm::RATE_LIMIT_STATUS {
+            dsm::RATE_LIMIT_STATUS(self.0 + 0xde4)
+        }
+        #[inline(always)]
+        pub fn STATUS(&self) -> dsm::STATUS {
+            dsm::STATUS(self.0 + 0xa58)
+        }
+    }
+
+    /// Hierarchical Scheduler Configuration
+    pub struct HSCH(pub(super) u32);
+    impl HSCH {
+        pub const BASE: u32 = 0x71880000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn HSCH_CFG(&self, index: u16) -> hsch::HSCH_CFG {
+            assert!(index < 3400);
+            hsch::HSCH_CFG(self.0 + 0x0 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn HSCH_DWRR(&self, index: u8) -> hsch::HSCH_DWRR {
+            assert!(index < 64);
+            hsch::HSCH_DWRR(self.0 + 0x1ad00 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn HSCH_INP_STATE(&self, index: u8) -> hsch::HSCH_INP_STATE {
+            assert!(index < 2);
+            hsch::HSCH_INP_STATE(self.0 + 0x1ae00 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn HSCH_L0_CFG(&self, index: u16) -> hsch::HSCH_L0_CFG {
+            assert!(index < 3400);
+            hsch::HSCH_L0_CFG(self.0 + 0x38000 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn HSCH_L1W(&self, index: u8) -> hsch::HSCH_L1W {
+            assert!(index < 64);
+            hsch::HSCH_L1W(self.0 + 0x1c000 + u32::from(index) * 0x100)
+        }
+        #[inline(always)]
+        pub fn HSCH_L1_CFG(&self, index: u8) -> hsch::HSCH_L1_CFG {
+            assert!(index < 64);
+            hsch::HSCH_L1_CFG(self.0 + 0x1a900 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn HSCH_LEAK_LISTS(&self, index: u8) -> hsch::HSCH_LEAK_LISTS {
+            assert!(index < 4);
+            hsch::HSCH_LEAK_LISTS(self.0 + 0x1b034 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn HSCH_MISC(&self) -> hsch::HSCH_MISC {
+            hsch::HSCH_MISC(self.0 + 0x1ae08)
+        }
+        #[inline(always)]
+        pub fn HSCH_STATUS(&self, index: u16) -> hsch::HSCH_STATUS {
+            assert!(index < 3400);
+            hsch::HSCH_STATUS(self.0 + 0x20000 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn QSHP_ALLOC_CFG(&self, index: u16) -> hsch::QSHP_ALLOC_CFG {
+            assert!(index < 3400);
+            hsch::QSHP_ALLOC_CFG(self.0 + 0x30000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn QSHP_CFG(&self, index: u8) -> hsch::QSHP_CFG {
+            assert!(index < 64);
+            hsch::QSHP_CFG(self.0 + 0x1aa00 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn QSHP_STATUS(&self, index: u8) -> hsch::QSHP_STATUS {
+            assert!(index < 64);
+            hsch::QSHP_STATUS(self.0 + 0x1ac00 + u32::from(index) * 0x4)
+        }
+    }
+
+    /// Register Collection for Control of Macros (SERDES1G, SERDES6G, LCPLL)
+    pub struct HSIO(pub(super) u32);
+    impl HSIO {
+        pub const BASE: u32 = 0x71460000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn HW_CFGSTAT(&self) -> hsio::HW_CFGSTAT {
+            hsio::HW_CFGSTAT(self.0 + 0x16c)
+        }
+        #[inline(always)]
+        pub fn MCB_SERDES1G_CFG(&self) -> hsio::MCB_SERDES1G_CFG {
+            hsio::MCB_SERDES1G_CFG(self.0 + 0xe8)
+        }
+        #[inline(always)]
+        pub fn MCB_SERDES6G_CFG(&self) -> hsio::MCB_SERDES6G_CFG {
+            hsio::MCB_SERDES6G_CFG(self.0 + 0x168)
+        }
+        #[inline(always)]
+        pub fn PLL5G_BIST_CFG(&self, index: u8) -> hsio::PLL5G_BIST_CFG {
+            assert!(index < 2);
+            hsio::PLL5G_BIST_CFG(self.0 + 0x48 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn PLL5G_BIST_STATUS(&self, index: u8) -> hsio::PLL5G_BIST_STATUS {
+            assert!(index < 2);
+            hsio::PLL5G_BIST_STATUS(self.0 + 0x68 + u32::from(index) * 0xc)
+        }
+        #[inline(always)]
+        pub fn PLL5G_CFG(&self, index: u8) -> hsio::PLL5G_CFG {
+            assert!(index < 2);
+            hsio::PLL5G_CFG(self.0 + 0x0 + u32::from(index) * 0x1c)
+        }
+        #[inline(always)]
+        pub fn PLL5G_STATUS(&self, index: u8) -> hsio::PLL5G_STATUS {
+            assert!(index < 2);
+            hsio::PLL5G_STATUS(self.0 + 0x38 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn RCOMP_CFG(&self) -> hsio::RCOMP_CFG {
+            hsio::RCOMP_CFG(self.0 + 0x80)
+        }
+        #[inline(always)]
+        pub fn RCOMP_STATUS(&self) -> hsio::RCOMP_STATUS {
+            hsio::RCOMP_STATUS(self.0 + 0x84)
+        }
+        #[inline(always)]
+        pub fn SERDES1G_ANA_CFG(&self) -> hsio::SERDES1G_ANA_CFG {
+            hsio::SERDES1G_ANA_CFG(self.0 + 0xac)
+        }
+        #[inline(always)]
+        pub fn SERDES1G_ANA_STATUS(&self) -> hsio::SERDES1G_ANA_STATUS {
+            hsio::SERDES1G_ANA_STATUS(self.0 + 0xc4)
+        }
+        #[inline(always)]
+        pub fn SERDES1G_DIG_CFG(&self) -> hsio::SERDES1G_DIG_CFG {
+            hsio::SERDES1G_DIG_CFG(self.0 + 0xc8)
+        }
+        #[inline(always)]
+        pub fn SERDES1G_DIG_STATUS(&self) -> hsio::SERDES1G_DIG_STATUS {
+            hsio::SERDES1G_DIG_STATUS(self.0 + 0xe0)
+        }
+        #[inline(always)]
+        pub fn SERDES6G_ANA_CFG(&self) -> hsio::SERDES6G_ANA_CFG {
+            hsio::SERDES6G_ANA_CFG(self.0 + 0x11c)
+        }
+        #[inline(always)]
+        pub fn SERDES6G_ANA_STATUS(&self) -> hsio::SERDES6G_ANA_STATUS {
+            hsio::SERDES6G_ANA_STATUS(self.0 + 0x154)
+        }
+        #[inline(always)]
+        pub fn SERDES6G_DIG_CFG(&self) -> hsio::SERDES6G_DIG_CFG {
+            hsio::SERDES6G_DIG_CFG(self.0 + 0xec)
+        }
+        #[inline(always)]
+        pub fn SERDES6G_DIG_STATUS(&self) -> hsio::SERDES6G_DIG_STATUS {
+            hsio::SERDES6G_DIG_STATUS(self.0 + 0x110)
+        }
+        #[inline(always)]
+        pub fn SYNC_ETH_CFG(&self) -> hsio::SYNC_ETH_CFG {
+            hsio::SYNC_ETH_CFG(self.0 + 0x88)
+        }
+    }
+
+    /// VCore Configuration
+    pub struct ICPU_CFG(pub(super) u32);
+    impl ICPU_CFG {
+        pub const BASE: u32 = 0x70000000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn CPU_SYSTEM_CTRL(&self) -> icpu_cfg::CPU_SYSTEM_CTRL {
+            icpu_cfg::CPU_SYSTEM_CTRL(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn FDMA(&self) -> icpu_cfg::FDMA {
+            icpu_cfg::FDMA(self.0 + 0x1c0)
+        }
+        #[inline(always)]
+        pub fn INTR(&self) -> icpu_cfg::INTR {
+            icpu_cfg::INTR(self.0 + 0x70)
+        }
+        #[inline(always)]
+        pub fn MANUAL_XTRINJ(&self) -> icpu_cfg::MANUAL_XTRINJ {
+            icpu_cfg::MANUAL_XTRINJ(self.0 + 0x4000)
+        }
+        #[inline(always)]
+        pub fn MEMCTRL(&self) -> icpu_cfg::MEMCTRL {
+            icpu_cfg::MEMCTRL(self.0 + 0x130)
+        }
+        #[inline(always)]
+        pub fn MPU8051(&self) -> icpu_cfg::MPU8051 {
+            icpu_cfg::MPU8051(self.0 + 0x54)
+        }
+        #[inline(always)]
+        pub fn PCIE(&self) -> icpu_cfg::PCIE {
+            icpu_cfg::PCIE(self.0 + 0x384)
+        }
+        #[inline(always)]
+        pub fn PI_MST(&self) -> icpu_cfg::PI_MST {
+            icpu_cfg::PI_MST(self.0 + 0x2c)
+        }
+        #[inline(always)]
+        pub fn SPI_MST(&self) -> icpu_cfg::SPI_MST {
+            icpu_cfg::SPI_MST(self.0 + 0x3c)
+        }
+        #[inline(always)]
+        pub fn TIMERS(&self) -> icpu_cfg::TIMERS {
+            icpu_cfg::TIMERS(self.0 + 0x104)
+        }
+        #[inline(always)]
+        pub fn TWI_DELAY(&self) -> icpu_cfg::TWI_DELAY {
+            icpu_cfg::TWI_DELAY(self.0 + 0x1b8)
+        }
+        #[inline(always)]
+        pub fn TWI_SPIKE_FILTER(&self) -> icpu_cfg::TWI_SPIKE_FILTER {
+            icpu_cfg::TWI_SPIKE_FILTER(self.0 + 0x1bc)
+        }
+    }
+
+    /// Learn block
+    pub struct LRN(pub(super) u32);
+    impl LRN {
+        pub const BASE: u32 = 0x71420000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn COMMON(&self) -> lrn::COMMON {
+            lrn::COMMON(self.0 + 0x0)
+        }
+    }
+
+    /// PCIe Endpoint Configuration Space
+    pub struct PCIE(pub(super) u32);
+    impl PCIE {
+        pub const BASE: u32 = 0x70111000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn PCIE_AER_CAP(&self) -> pcie::PCIE_AER_CAP {
+            pcie::PCIE_AER_CAP(self.0 + 0x100)
+        }
+        #[inline(always)]
+        pub fn PCIE_CAP(&self) -> pcie::PCIE_CAP {
+            pcie::PCIE_CAP(self.0 + 0x70)
+        }
+        #[inline(always)]
+        pub fn PCIE_MSI_CAP(&self) -> pcie::PCIE_MSI_CAP {
+            pcie::PCIE_MSI_CAP(self.0 + 0x50)
+        }
+        #[inline(always)]
+        pub fn PCIE_PM_CAP(&self) -> pcie::PCIE_PM_CAP {
+            pcie::PCIE_PM_CAP(self.0 + 0x40)
+        }
+        #[inline(always)]
+        pub fn PCIE_PORT_LOGIC(&self) -> pcie::PCIE_PORT_LOGIC {
+            pcie::PCIE_PORT_LOGIC(self.0 + 0x700)
+        }
+        #[inline(always)]
+        pub fn PCIE_TYPE0_HDR(&self) -> pcie::PCIE_TYPE0_HDR {
+            pcie::PCIE_TYPE0_HDR(self.0 + 0x0)
+        }
+    }
+
+    /// \see vtss_target_PCS_10GBASE_R_e PCS configuration and status registers and counters
+    pub struct PCS10G_BR(pub(super) u32);
+    impl PCS10G_BR {
+        pub const BASE: u32 = 0x713d0000;
+        pub const SIZE: u32 = 0x10000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn EEE_STATS(&self) -> pcs10g_br::EEE_STATS {
+            pcs10g_br::EEE_STATS(self.0 + 0xa8)
+        }
+        #[inline(always)]
+        pub fn EEE_TIMER_CFG(&self) -> pcs10g_br::EEE_TIMER_CFG {
+            pcs10g_br::EEE_TIMER_CFG(self.0 + 0x8c)
+        }
+        #[inline(always)]
+        pub fn KR_FEC_CAPABILITY(&self) -> pcs10g_br::KR_FEC_CAPABILITY {
+            pcs10g_br::KR_FEC_CAPABILITY(self.0 + 0x88)
+        }
+        #[inline(always)]
+        pub fn KR_FEC_CFG(&self) -> pcs10g_br::KR_FEC_CFG {
+            pcs10g_br::KR_FEC_CFG(self.0 + 0x68)
+        }
+        #[inline(always)]
+        pub fn KR_FEC_HA_STATUS(&self) -> pcs10g_br::KR_FEC_HA_STATUS {
+            pcs10g_br::KR_FEC_HA_STATUS(self.0 + 0x74)
+        }
+        #[inline(always)]
+        pub fn KR_FEC_STATUS(&self) -> pcs10g_br::KR_FEC_STATUS {
+            pcs10g_br::KR_FEC_STATUS(self.0 + 0x7c)
+        }
+        #[inline(always)]
+        pub fn KR_FEC_THRESHOLD_CFG(&self) -> pcs10g_br::KR_FEC_THRESHOLD_CFG {
+            pcs10g_br::KR_FEC_THRESHOLD_CFG(self.0 + 0x6c)
+        }
+        #[inline(always)]
+        pub fn PCS_10GBR_CFG(&self) -> pcs10g_br::PCS_10GBR_CFG {
+            pcs10g_br::PCS_10GBR_CFG(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn PCS_10GBR_HA_STATUS(&self) -> pcs10g_br::PCS_10GBR_HA_STATUS {
+            pcs10g_br::PCS_10GBR_HA_STATUS(self.0 + 0x40)
+        }
+        #[inline(always)]
+        pub fn PCS_10GBR_STATUS(&self) -> pcs10g_br::PCS_10GBR_STATUS {
+            pcs10g_br::PCS_10GBR_STATUS(self.0 + 0x38)
+        }
+    }
+
+    /// Queue System Configuration
+    pub struct QFWD(pub(super) u32);
+    impl QFWD {
+        pub const BASE: u32 = 0x717d0000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn SYSTEM(&self) -> qfwd::SYSTEM {
+            qfwd::SYSTEM(self.0 + 0x0)
+        }
+    }
+
+    /// Queue System Configuration
+    pub struct QRES(pub(super) u32);
+    impl QRES {
+        pub const BASE: u32 = 0x71900000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn RES_CTRL(&self, index: u16) -> qres::RES_CTRL {
+            assert!(index < 5120);
+            qres::RES_CTRL(self.0 + 0x0 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn RES_QOS_ADV(&self) -> qres::RES_QOS_ADV {
+            qres::RES_QOS_ADV(self.0 + 0x14120)
+        }
+        #[inline(always)]
+        pub fn RES_WRED(&self, index: u8) -> qres::RES_WRED {
+            assert!(index < 72);
+            qres::RES_WRED(self.0 + 0x14000 + u32::from(index) * 0x4)
+        }
+    }
+
+    /// Queue System Configuration
+    pub struct QSYS(pub(super) u32);
+    impl QSYS {
+        pub const BASE: u32 = 0x717e0000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn CALCFG(&self) -> qsys::CALCFG {
+            qsys::CALCFG(self.0 + 0x3d4)
+        }
+        #[inline(always)]
+        pub fn COREMEM(&self) -> qsys::COREMEM {
+            qsys::COREMEM(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn MISC(&self) -> qsys::MISC {
+            qsys::MISC(self.0 + 0x104)
+        }
+        #[inline(always)]
+        pub fn MMGT(&self) -> qsys::MMGT {
+            qsys::MMGT(self.0 + 0x3bc)
+        }
+        #[inline(always)]
+        pub fn MMGT_PORT(&self) -> qsys::MMGT_PORT {
+            qsys::MMGT_PORT(self.0 + 0x3c4)
+        }
+        #[inline(always)]
+        pub fn PAUSE_CFG(&self) -> qsys::PAUSE_CFG {
+            qsys::PAUSE_CFG(self.0 + 0x108)
+        }
+        #[inline(always)]
+        pub fn RAM_CTRL(&self) -> qsys::RAM_CTRL {
+            qsys::RAM_CTRL(self.0 + 0x3ec)
+        }
+        #[inline(always)]
+        pub fn SYSTEM(&self) -> qsys::SYSTEM {
+            qsys::SYSTEM(self.0 + 0x8)
+        }
+    }
+
+    /// Rewriter
+    pub struct REW(pub(super) u32);
+    impl REW {
+        pub const BASE: u32 = 0x71b00000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn COMMON(&self) -> rew::COMMON {
+            rew::COMMON(self.0 + 0x53c00)
+        }
+        #[inline(always)]
+        pub fn COREMEM(&self) -> rew::COREMEM {
+            rew::COREMEM(self.0 + 0x53500)
+        }
+        #[inline(always)]
+        pub fn ENCAP(&self, index: u16) -> rew::ENCAP {
+            assert!(index < 1024);
+            rew::ENCAP(self.0 + 0x0 + u32::from(index) * 0x80)
+        }
+        #[inline(always)]
+        pub fn ISDX_TBL(&self, index: u16) -> rew::ISDX_TBL {
+            assert!(index < 4096);
+            rew::ISDX_TBL(self.0 + 0x20000 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn MAP_RES_A(&self, index: u16) -> rew::MAP_RES_A {
+            assert!(index < 4096);
+            rew::MAP_RES_A(self.0 + 0x30000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn MAP_RES_B(&self, index: u16) -> rew::MAP_RES_B {
+            assert!(index < 4096);
+            rew::MAP_RES_B(self.0 + 0x38000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn MIP_TBL(&self, index: u16) -> rew::MIP_TBL {
+            assert!(index < 1024);
+            rew::MIP_TBL(self.0 + 0x40000 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn OAM_PDU_MOD_CONT(&self, index: u8) -> rew::OAM_PDU_MOD_CONT {
+            assert!(index < 106);
+            rew::OAM_PDU_MOD_CONT(self.0 + 0x56000 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn PDU_MOD_CFG(&self) -> rew::PDU_MOD_CFG {
+            rew::PDU_MOD_CFG(self.0 + 0x53e74)
+        }
+        #[inline(always)]
+        pub fn PORT(&self, index: u8) -> rew::PORT {
+            assert!(index < 53);
+            rew::PORT(self.0 + 0x50000 + u32::from(index) * 0x100)
+        }
+        #[inline(always)]
+        pub fn PTP_CTRL(&self) -> rew::PTP_CTRL {
+            rew::PTP_CTRL(self.0 + 0x53508)
+        }
+        #[inline(always)]
+        pub fn PTP_SEQ_NO(&self) -> rew::PTP_SEQ_NO {
+            rew::PTP_SEQ_NO(self.0 + 0x53800)
+        }
+        #[inline(always)]
+        pub fn RAM_CTRL(&self) -> rew::RAM_CTRL {
+            rew::RAM_CTRL(self.0 + 0x53528)
+        }
+        #[inline(always)]
+        pub fn VMID(&self, index: u8) -> rew::VMID {
+            assert!(index < 128);
+            rew::VMID(self.0 + 0x53600 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn VOE_PORT_LM_CNT(&self, index: u16) -> rew::VOE_PORT_LM_CNT {
+            assert!(index < 424);
+            rew::VOE_PORT_LM_CNT(self.0 + 0x54000 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn VOE_SRV_LM_CNT(&self, index: u16) -> rew::VOE_SRV_LM_CNT {
+            assert!(index < 8192);
+            rew::VOE_SRV_LM_CNT(self.0 + 0x48000 + u32::from(index) * 0x4)
+        }
+    }
+
+    /// Shared Bus Arbiter
+    pub struct SBA(pub(super) u32);
+    impl SBA {
+        pub const BASE: u32 = 0x70110000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn SBA(&self) -> sba::SBA {
+            sba::SBA(self.0 + 0x0)
+        }
+    }
+
+    /// SI Master Controller
+    pub struct SIMC(pub(super) u32);
+    impl SIMC {
+        pub const BASE: u32 = 0x70101000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn SIMC(&self) -> simc::SIMC {
+            simc::SIMC(self.0 + 0x0)
+        }
+    }
+
+    /// \see vtss_target_TWI_e Two-Wire Interface Controller
+    pub struct TWI(pub(super) u32);
+    impl TWI {
+        pub const BASE: u32 = 0x70100400;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn TWI(&self) -> twi::TWI {
+            twi::TWI(self.0 + 0x0)
+        }
+    }
+
+    /// \see vtss_target_TWI_e Two-Wire Interface Controller
+    pub struct TWI2(pub(super) u32);
+    impl TWI2 {
+        pub const BASE: u32 = 0x70100c00;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn TWI(&self) -> twi2::TWI {
+            twi2::TWI(self.0 + 0x0)
+        }
+    }
+
+    /// \see vtss_target_UART_e UART Controller
+    pub struct UART(pub(super) u32);
+    impl UART {
+        pub const BASE: u32 = 0x70100000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn UART(&self) -> uart::UART {
+            uart::UART(self.0 + 0x0)
+        }
+    }
+
+    /// \see vtss_target_UART_e UART Controller
+    pub struct UART2(pub(super) u32);
+    impl UART2 {
+        pub const BASE: u32 = 0x70100800;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn UART(&self) -> uart2::UART {
+            uart2::UART(self.0 + 0x0)
+        }
+    }
+
+    /// \see vtss_target_VAUI_CHANNEL_e Vaui channel configuration and status register set
+    pub struct VAUI0(pub(super) u32);
+    impl VAUI0 {
+        pub const BASE: u32 = 0x717b0000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn ANEG_CFG(&self, index: u8) -> vaui0::ANEG_CFG {
+            assert!(index < 8);
+            vaui0::ANEG_CFG(self.0 + 0x8 + u32::from(index) * 0x14)
+        }
+        #[inline(always)]
+        pub fn ANEG_STATUS(&self, index: u8) -> vaui0::ANEG_STATUS {
+            assert!(index < 8);
+            vaui0::ANEG_STATUS(self.0 + 0xa8 + u32::from(index) * 0xc)
+        }
+        #[inline(always)]
+        pub fn VAUI_CHANNEL_CFG(&self) -> vaui0::VAUI_CHANNEL_CFG {
+            vaui0::VAUI_CHANNEL_CFG(self.0 + 0x0)
+        }
+    }
+
+    /// \see vtss_target_VAUI_CHANNEL_e Vaui channel configuration and status register set
+    pub struct VAUI1(pub(super) u32);
+    impl VAUI1 {
+        pub const BASE: u32 = 0x717c0000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn ANEG_CFG(&self, index: u8) -> vaui1::ANEG_CFG {
+            assert!(index < 8);
+            vaui1::ANEG_CFG(self.0 + 0x8 + u32::from(index) * 0x14)
+        }
+        #[inline(always)]
+        pub fn ANEG_STATUS(&self, index: u8) -> vaui1::ANEG_STATUS {
+            assert!(index < 8);
+            vaui1::ANEG_STATUS(self.0 + 0xa8 + u32::from(index) * 0xc)
+        }
+        #[inline(always)]
+        pub fn VAUI_CHANNEL_CFG(&self) -> vaui1::VAUI_CHANNEL_CFG {
+            vaui1::VAUI_CHANNEL_CFG(self.0 + 0x0)
+        }
+    }
+
+    /// \see vtss_target_VCAP_CORE_e Vitesse Content Aware Processor
+    pub struct VCAP_ES0(pub(super) u32);
+    impl VCAP_ES0 {
+        pub const BASE: u32 = 0x71470000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn TCAM_BIST(&self) -> vcap_es0::TCAM_BIST {
+            vcap_es0::TCAM_BIST(self.0 + 0x3c0)
+        }
+        #[inline(always)]
+        pub fn VCAP_CONST(&self) -> vcap_es0::VCAP_CONST {
+            vcap_es0::VCAP_CONST(self.0 + 0x398)
+        }
+        #[inline(always)]
+        pub fn VCAP_CORE_CACHE(&self) -> vcap_es0::VCAP_CORE_CACHE {
+            vcap_es0::VCAP_CORE_CACHE(self.0 + 0x8)
+        }
+        #[inline(always)]
+        pub fn VCAP_CORE_CFG(&self) -> vcap_es0::VCAP_CORE_CFG {
+            vcap_es0::VCAP_CORE_CFG(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn VCAP_CORE_MAP(&self) -> vcap_es0::VCAP_CORE_MAP {
+            vcap_es0::VCAP_CORE_MAP(self.0 + 0x38c)
+        }
+        #[inline(always)]
+        pub fn VCAP_CORE_STICKY(&self) -> vcap_es0::VCAP_CORE_STICKY {
+            vcap_es0::VCAP_CORE_STICKY(self.0 + 0x394)
+        }
+    }
+
+    /// \see vtss_target_VCAP_CORE_e Vitesse Content Aware Processor
+    pub struct VCAP_SUPER(pub(super) u32);
+    impl VCAP_SUPER {
+        pub const BASE: u32 = 0x71440000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn TCAM_BIST(&self) -> vcap_super::TCAM_BIST {
+            vcap_super::TCAM_BIST(self.0 + 0x3c0)
+        }
+        #[inline(always)]
+        pub fn VCAP_CONST(&self) -> vcap_super::VCAP_CONST {
+            vcap_super::VCAP_CONST(self.0 + 0x398)
+        }
+        #[inline(always)]
+        pub fn VCAP_CORE_CACHE(&self) -> vcap_super::VCAP_CORE_CACHE {
+            vcap_super::VCAP_CORE_CACHE(self.0 + 0x8)
+        }
+        #[inline(always)]
+        pub fn VCAP_CORE_CFG(&self) -> vcap_super::VCAP_CORE_CFG {
+            vcap_super::VCAP_CORE_CFG(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn VCAP_CORE_MAP(&self) -> vcap_super::VCAP_CORE_MAP {
+            vcap_super::VCAP_CORE_MAP(self.0 + 0x38c)
+        }
+        #[inline(always)]
+        pub fn VCAP_CORE_STICKY(&self) -> vcap_super::VCAP_CORE_STICKY {
+            vcap_super::VCAP_CORE_STICKY(self.0 + 0x394)
+        }
+    }
+
+    /// The Vitesse OAM MEP Processor (VOP) implements the HW support for implementing OAM MEPs. The HW support for implementing an OAM MEP is implemented in a sub block, referred to as: Vitesse OAM Endpoint (VOE). The VOEs can be configured for either Ethernet PDU processing or MPLS-TP PDU processing. This CSR target us used for configuring VOEs configured for Ethernet processing. The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs (10 front ports + NPI) VOEs are configured for either Ethernet or MPLS-TP support using the following register: * VOP:VOE_CONF_REG:VOE_MISC_CONFIG.MPLS_OAM_ENA Use CSR target VOP to configure VOEs configured for Ethernet. To configure VOEs configured for MPLS-TP, use CSR target: VOP_MPLS. For VOEs configured for MPLS-TP, the following register groups are invalid: * VOP:VOE_CONF:* * VOP:VOE_STAT:*
+    pub struct VOP(pub(super) u32);
+    impl VOP {
+        pub const BASE: u32 = 0x71c00000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn ANA_COSID_MAP_CONF(&self, index: u16) -> vop::ANA_COSID_MAP_CONF {
+            assert!(index < 1024);
+            vop::ANA_COSID_MAP_CONF(self.0 + 0x48000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn COMMON(&self) -> vop::COMMON {
+            vop::COMMON(self.0 + 0x43508)
+        }
+        #[inline(always)]
+        pub fn COREMEM(&self) -> vop::COREMEM {
+            vop::COREMEM(self.0 + 0x43500)
+        }
+        #[inline(always)]
+        pub fn PORT_COSID_MAP_CONF(&self, index: u8) -> vop::PORT_COSID_MAP_CONF {
+            assert!(index < 53);
+            vop::PORT_COSID_MAP_CONF(self.0 + 0x46400 + u32::from(index) * 0x10)
+        }
+        #[inline(always)]
+        pub fn RAM_CTRL(&self) -> vop::RAM_CTRL {
+            vop::RAM_CTRL(self.0 + 0x43638)
+        }
+        #[inline(always)]
+        pub fn REW_COSID_MAP_CONF(&self, index: u16) -> vop::REW_COSID_MAP_CONF {
+            assert!(index < 1024);
+            vop::REW_COSID_MAP_CONF(self.0 + 0x4a000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn SAM_COSID_SEQ_CNT(&self, index: u8) -> vop::SAM_COSID_SEQ_CNT {
+            assert!(index < 32);
+            vop::SAM_COSID_SEQ_CNT(self.0 + 0x4c000 + u32::from(index) * 0x100)
+        }
+        #[inline(always)]
+        pub fn VOE_CCM_LM(&self, index: u16) -> vop::VOE_CCM_LM {
+            assert!(index < 1077);
+            vop::VOE_CCM_LM(self.0 + 0x44000 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn VOE_CONF(&self, index: u16) -> vop::VOE_CONF {
+            assert!(index < 1077);
+            vop::VOE_CONF(self.0 + 0x0 + u32::from(index) * 0x100)
+        }
+        #[inline(always)]
+        pub fn VOE_CONF_REG(&self, index: u16) -> vop::VOE_CONF_REG {
+            assert!(index < 1077);
+            vop::VOE_CONF_REG(self.0 + 0x4e000 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn VOE_CONTEXT_ANA(&self, index: u8) -> vop::VOE_CONTEXT_ANA {
+            assert!(index < 110);
+            vop::VOE_CONTEXT_ANA(self.0 + 0x47000 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn VOE_CONTEXT_REW(&self, index: u8) -> vop::VOE_CONTEXT_REW {
+            assert!(index < 53);
+            vop::VOE_CONTEXT_REW(self.0 + 0x43800 + u32::from(index) * 0x20)
+        }
+        #[inline(always)]
+        pub fn VOE_CRC_ERR(&self, index: u16) -> vop::VOE_CRC_ERR {
+            assert!(index < 1077);
+            vop::VOE_CRC_ERR(self.0 + 0x50000 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn VOE_STAT(&self, index: u16) -> vop::VOE_STAT {
+            assert!(index < 1077);
+            vop::VOE_STAT(self.0 + 0x80000 + u32::from(index) * 0x80)
+        }
+    }
+
+    /// The Vitesse OAM MEP Processor (VOP) implements the HW support for implementing OAM MEPs. The HW support for implementing an OAM MEP is implemented in a sub block, referred to as: Vitesse OAM Endpoint (VOE). The VOEs can be configured for either Ethernet PDU processing or MPLS-TP PDU processing. This CSR target us used for configuring VOEs configured for MPLS-TP processing. The VOP includes the following: * 256 Service / Path VOEs * 11 Port VOEs (11 front ports) VOEs are configured for either Ethernet or MPLS-TP support using the following register: * VOP:VOE_CONF_REG:VOE_MISC_CONFIG.MPLS_OAM_ENA Use CSR target VOP_MPLS to configure VOEs configured for MPLS_TP. To configure VOEs configured for Ethernet use CSR target: VOP. For VOEs configured for Ethernet, the following register groups are invalid: * VOP:CONF_MPLS:* * VOP:STAT_MPLS:* Note that the VOP_MPLS CSR target shares the same physical RAM as VOP CSR target. The RAM is initialized to the VOP CSR target values (Ethernet VOE). Hence the initial values listed in the VOP_MPLS are not valid. Prior to using a VOE configured for MPLS, all REGISTERS MUST BE INITIALIZED.
+    pub struct VOP_MPLS(pub(super) u32);
+    impl VOP_MPLS {
+        pub const BASE: u32 = 0x71a00000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn VOE_CONF_MPLS(&self, index: u16) -> vop_mpls::VOE_CONF_MPLS {
+            assert!(index < 1077);
+            vop_mpls::VOE_CONF_MPLS(self.0 + 0x40000 + u32::from(index) * 0x40)
+        }
+        #[inline(always)]
+        pub fn VOE_STAT_MPLS(&self, index: u16) -> vop_mpls::VOE_STAT_MPLS {
+            assert!(index < 1077);
+            vop_mpls::VOE_STAT_MPLS(self.0 + 0x0 + u32::from(index) * 0x80)
+        }
+    }
+
+    /// \see vtss_target_SD10G65_e Configuration and status for high speed macro.
+    pub struct XGANA(pub(super) u32);
+    impl XGANA {
+        pub const BASE: u32 = 0x71480000;
+        pub const SIZE: u32 = 0x10000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn SD10G65_DES(&self) -> xgana::SD10G65_DES {
+            xgana::SD10G65_DES(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn SD10G65_IB(&self) -> xgana::SD10G65_IB {
+            xgana::SD10G65_IB(self.0 + 0x80)
+        }
+        #[inline(always)]
+        pub fn SD10G65_OB(&self) -> xgana::SD10G65_OB {
+            xgana::SD10G65_OB(self.0 + 0x40)
+        }
+        #[inline(always)]
+        pub fn SD10G65_RX_RCPLL(&self) -> xgana::SD10G65_RX_RCPLL {
+            xgana::SD10G65_RX_RCPLL(self.0 + 0xc0)
+        }
+        #[inline(always)]
+        pub fn SD10G65_RX_SYNTH(&self) -> xgana::SD10G65_RX_SYNTH {
+            xgana::SD10G65_RX_SYNTH(self.0 + 0x100)
+        }
+        #[inline(always)]
+        pub fn SD10G65_TX_RCPLL(&self) -> xgana::SD10G65_TX_RCPLL {
+            xgana::SD10G65_TX_RCPLL(self.0 + 0x180)
+        }
+        #[inline(always)]
+        pub fn SD10G65_TX_SYNTH(&self) -> xgana::SD10G65_TX_SYNTH {
+            xgana::SD10G65_TX_SYNTH(self.0 + 0x140)
+        }
+    }
+
+    /// \see vtss_target_SD10G65_DIG_e Configuration and status of digital peripherals for high speed macro.
+    pub struct XGDIG(pub(super) u32);
+    impl XGDIG {
+        pub const BASE: u32 = 0x714c0000;
+        pub const SIZE: u32 = 0x10000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn SD10G65_APC(&self) -> xgdig::SD10G65_APC {
+            xgdig::SD10G65_APC(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn SD10G65_DFT(&self) -> xgdig::SD10G65_DFT {
+            xgdig::SD10G65_DFT(self.0 + 0xcc)
+        }
+        #[inline(always)]
+        pub fn SD10G65_RCPLL_BIST(&self) -> xgdig::SD10G65_RCPLL_BIST {
+            xgdig::SD10G65_RCPLL_BIST(self.0 + 0x128)
+        }
+        #[inline(always)]
+        pub fn SD10G65_SYNC_CTRL(&self) -> xgdig::SD10G65_SYNC_CTRL {
+            xgdig::SD10G65_SYNC_CTRL(self.0 + 0x118)
+        }
+        #[inline(always)]
+        pub fn SD10G65_VSCOPE2(&self) -> xgdig::SD10G65_VSCOPE2 {
+            xgdig::SD10G65_VSCOPE2(self.0 + 0xb0)
+        }
+    }
+
+    /// \see vtss_target_KR_DEV1_e
+    pub struct XGKR0(pub(super) u32);
+    impl XGKR0 {
+        pub const BASE: u32 = 0x71540000;
+        pub const SIZE: u32 = 0x10000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn APC_TMR(&self) -> xgkr0::APC_TMR {
+            xgkr0::APC_TMR(self.0 + 0x80)
+        }
+        #[inline(always)]
+        pub fn KR_1X0096(&self) -> xgkr0::KR_1X0096 {
+            xgkr0::KR_1X0096(self.0 + 0x8)
+        }
+        #[inline(always)]
+        pub fn KR_1X0097(&self) -> xgkr0::KR_1X0097 {
+            xgkr0::KR_1X0097(self.0 + 0x2c)
+        }
+        #[inline(always)]
+        pub fn KR_1X0098(&self) -> xgkr0::KR_1X0098 {
+            xgkr0::KR_1X0098(self.0 + 0xc)
+        }
+        #[inline(always)]
+        pub fn KR_1X0099(&self) -> xgkr0::KR_1X0099 {
+            xgkr0::KR_1X0099(self.0 + 0x10)
+        }
+        #[inline(always)]
+        pub fn KR_1X009A(&self) -> xgkr0::KR_1X009A {
+            xgkr0::KR_1X009A(self.0 + 0x14)
+        }
+        #[inline(always)]
+        pub fn KR_1X009B(&self) -> xgkr0::KR_1X009B {
+            xgkr0::KR_1X009B(self.0 + 0x18)
+        }
+        #[inline(always)]
+        pub fn MW_TMR(&self) -> xgkr0::MW_TMR {
+            xgkr0::MW_TMR(self.0 + 0x88)
+        }
+        #[inline(always)]
+        pub fn OBCFG_ADDR(&self) -> xgkr0::OBCFG_ADDR {
+            xgkr0::OBCFG_ADDR(self.0 + 0x7c)
+        }
+        #[inline(always)]
+        pub fn TR_BER_OFS(&self) -> xgkr0::TR_BER_OFS {
+            xgkr0::TR_BER_OFS(self.0 + 0x6c)
+        }
+        #[inline(always)]
+        pub fn TR_BER_THR(&self) -> xgkr0::TR_BER_THR {
+            xgkr0::TR_BER_THR(self.0 + 0x68)
+        }
+        #[inline(always)]
+        pub fn TR_BRKMASK(&self) -> xgkr0::TR_BRKMASK {
+            xgkr0::TR_BRKMASK(self.0 + 0x74)
+        }
+        #[inline(always)]
+        pub fn TR_CFG0(&self) -> xgkr0::TR_CFG0 {
+            xgkr0::TR_CFG0(self.0 + 0x30)
+        }
+        #[inline(always)]
+        pub fn TR_CFG1(&self) -> xgkr0::TR_CFG1 {
+            xgkr0::TR_CFG1(self.0 + 0x34)
+        }
+        #[inline(always)]
+        pub fn TR_CFG2(&self) -> xgkr0::TR_CFG2 {
+            xgkr0::TR_CFG2(self.0 + 0x38)
+        }
+        #[inline(always)]
+        pub fn TR_CFG3(&self) -> xgkr0::TR_CFG3 {
+            xgkr0::TR_CFG3(self.0 + 0x3c)
+        }
+        #[inline(always)]
+        pub fn TR_CFG4(&self) -> xgkr0::TR_CFG4 {
+            xgkr0::TR_CFG4(self.0 + 0x40)
+        }
+        #[inline(always)]
+        pub fn TR_CFG5(&self) -> xgkr0::TR_CFG5 {
+            xgkr0::TR_CFG5(self.0 + 0x44)
+        }
+        #[inline(always)]
+        pub fn TR_CFG6(&self) -> xgkr0::TR_CFG6 {
+            xgkr0::TR_CFG6(self.0 + 0x48)
+        }
+        #[inline(always)]
+        pub fn TR_CFG7(&self) -> xgkr0::TR_CFG7 {
+            xgkr0::TR_CFG7(self.0 + 0x4c)
+        }
+        #[inline(always)]
+        pub fn TR_CFG8(&self) -> xgkr0::TR_CFG8 {
+            xgkr0::TR_CFG8(self.0 + 0x50)
+        }
+        #[inline(always)]
+        pub fn TR_CFG9(&self) -> xgkr0::TR_CFG9 {
+            xgkr0::TR_CFG9(self.0 + 0x54)
+        }
+        #[inline(always)]
+        pub fn TR_COEF_OVRD(&self) -> xgkr0::TR_COEF_OVRD {
+            xgkr0::TR_COEF_OVRD(self.0 + 0x5c)
+        }
+        #[inline(always)]
+        pub fn TR_ERRCNT(&self) -> xgkr0::TR_ERRCNT {
+            xgkr0::TR_ERRCNT(self.0 + 0xa4)
+        }
+        #[inline(always)]
+        pub fn TR_FRAMES_SENT(&self) -> xgkr0::TR_FRAMES_SENT {
+            xgkr0::TR_FRAMES_SENT(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn TR_GAIN(&self) -> xgkr0::TR_GAIN {
+            xgkr0::TR_GAIN(self.0 + 0x58)
+        }
+        #[inline(always)]
+        pub fn TR_LUT(&self) -> xgkr0::TR_LUT {
+            xgkr0::TR_LUT(self.0 + 0x9c)
+        }
+        #[inline(always)]
+        pub fn TR_LUTSEL(&self) -> xgkr0::TR_LUTSEL {
+            xgkr0::TR_LUTSEL(self.0 + 0x70)
+        }
+        #[inline(always)]
+        pub fn TR_MTHD(&self) -> xgkr0::TR_MTHD {
+            xgkr0::TR_MTHD(self.0 + 0x64)
+        }
+        #[inline(always)]
+        pub fn TR_OVRD(&self) -> xgkr0::TR_OVRD {
+            xgkr0::TR_OVRD(self.0 + 0x1c)
+        }
+        #[inline(always)]
+        pub fn TR_REC(&self) -> xgkr0::TR_REC {
+            xgkr0::TR_REC(self.0 + 0xb0)
+        }
+        #[inline(always)]
+        pub fn TR_SM_HIST(&self) -> xgkr0::TR_SM_HIST {
+            xgkr0::TR_SM_HIST(self.0 + 0xa8)
+        }
+        #[inline(always)]
+        pub fn TR_STAT_OVRD(&self) -> xgkr0::TR_STAT_OVRD {
+            xgkr0::TR_STAT_OVRD(self.0 + 0x60)
+        }
+        #[inline(always)]
+        pub fn TR_STEP(&self) -> xgkr0::TR_STEP {
+            xgkr0::TR_STEP(self.0 + 0x20)
+        }
+        #[inline(always)]
+        pub fn TR_STS1(&self) -> xgkr0::TR_STS1 {
+            xgkr0::TR_STS1(self.0 + 0x24)
+        }
+        #[inline(always)]
+        pub fn TR_STS2(&self) -> xgkr0::TR_STS2 {
+            xgkr0::TR_STS2(self.0 + 0x28)
+        }
+        #[inline(always)]
+        pub fn TR_TAPVAL(&self) -> xgkr0::TR_TAPVAL {
+            xgkr0::TR_TAPVAL(self.0 + 0x90)
+        }
+        #[inline(always)]
+        pub fn WT_TMR(&self) -> xgkr0::WT_TMR {
+            xgkr0::WT_TMR(self.0 + 0x84)
+        }
+    }
+
+    /// \see vtss_target_KR_DEV7_e
+    pub struct XGKR1(pub(super) u32);
+    impl XGKR1 {
+        pub const BASE: u32 = 0x71580000;
+        pub const SIZE: u32 = 0x10000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn AN_CFG0(&self) -> xgkr1::AN_CFG0 {
+            xgkr1::AN_CFG0(self.0 + 0x48)
+        }
+        #[inline(always)]
+        pub fn AN_HIST(&self) -> xgkr1::AN_HIST {
+            xgkr1::AN_HIST(self.0 + 0x9c)
+        }
+        #[inline(always)]
+        pub fn AN_SM(&self) -> xgkr1::AN_SM {
+            xgkr1::AN_SM(self.0 + 0x24)
+        }
+        #[inline(always)]
+        pub fn AN_STS0(&self) -> xgkr1::AN_STS0 {
+            xgkr1::AN_STS0(self.0 + 0x28)
+        }
+        #[inline(always)]
+        pub fn AW_TMR(&self) -> xgkr1::AW_TMR {
+            xgkr1::AW_TMR(self.0 + 0x54)
+        }
+        #[inline(always)]
+        pub fn BL_TMR(&self) -> xgkr1::BL_TMR {
+            xgkr1::BL_TMR(self.0 + 0x4c)
+        }
+        #[inline(always)]
+        pub fn KR10G_TMR(&self) -> xgkr1::KR10G_TMR {
+            xgkr1::KR10G_TMR(self.0 + 0x84)
+        }
+        #[inline(always)]
+        pub fn KR1G_TMR(&self) -> xgkr1::KR1G_TMR {
+            xgkr1::KR1G_TMR(self.0 + 0x94)
+        }
+        #[inline(always)]
+        pub fn KR3G_TMR(&self) -> xgkr1::KR3G_TMR {
+            xgkr1::KR3G_TMR(self.0 + 0x8c)
+        }
+        #[inline(always)]
+        pub fn KR_7X0000(&self) -> xgkr1::KR_7X0000 {
+            xgkr1::KR_7X0000(self.0 + 0x10)
+        }
+        #[inline(always)]
+        pub fn KR_7X0001(&self) -> xgkr1::KR_7X0001 {
+            xgkr1::KR_7X0001(self.0 + 0x14)
+        }
+        #[inline(always)]
+        pub fn KR_7X0030(&self) -> xgkr1::KR_7X0030 {
+            xgkr1::KR_7X0030(self.0 + 0x44)
+        }
+        #[inline(always)]
+        pub fn LD_ADV(&self) -> xgkr1::LD_ADV {
+            xgkr1::LD_ADV(self.0 + 0x2c)
+        }
+        #[inline(always)]
+        pub fn LD_NEXT_PAGE(&self) -> xgkr1::LD_NEXT_PAGE {
+            xgkr1::LD_NEXT_PAGE(self.0 + 0x38)
+        }
+        #[inline(always)]
+        pub fn LFLONG_TMR(&self) -> xgkr1::LFLONG_TMR {
+            xgkr1::LFLONG_TMR(self.0 + 0x5c)
+        }
+        #[inline(always)]
+        pub fn LFSHORT_TMR(&self) -> xgkr1::LFSHORT_TMR {
+            xgkr1::LFSHORT_TMR(self.0 + 0x64)
+        }
+        #[inline(always)]
+        pub fn LP_BASE_PAGE_0(&self) -> xgkr1::LP_BASE_PAGE_0 {
+            xgkr1::LP_BASE_PAGE_0(self.0 + 0x18)
+        }
+        #[inline(always)]
+        pub fn LP_BASE_PAGE_1(&self) -> xgkr1::LP_BASE_PAGE_1 {
+            xgkr1::LP_BASE_PAGE_1(self.0 + 0x1c)
+        }
+        #[inline(always)]
+        pub fn LP_BASE_PAGE_2(&self) -> xgkr1::LP_BASE_PAGE_2 {
+            xgkr1::LP_BASE_PAGE_2(self.0 + 0x20)
+        }
+        #[inline(always)]
+        pub fn LP_NEXT_PAGE(&self) -> xgkr1::LP_NEXT_PAGE {
+            xgkr1::LP_NEXT_PAGE(self.0 + 0x0)
+        }
+        #[inline(always)]
+        pub fn LP_TMR(&self) -> xgkr1::LP_TMR {
+            xgkr1::LP_TMR(self.0 + 0x6c)
+        }
+        #[inline(always)]
+        pub fn PD_TMR(&self) -> xgkr1::PD_TMR {
+            xgkr1::PD_TMR(self.0 + 0x7c)
+        }
+        #[inline(always)]
+        pub fn TR_TMR(&self) -> xgkr1::TR_TMR {
+            xgkr1::TR_TMR(self.0 + 0x74)
+        }
+    }
+
+    /// \see vtss_target_XFI_SHELL_e XFI shell
+    pub struct XGXFI(pub(super) u32);
+    impl XGXFI {
+        pub const BASE: u32 = 0x71500000;
+        pub const SIZE: u32 = 0x10000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn XFI_CONTROL(&self) -> xgxfi::XFI_CONTROL {
+            xgxfi::XFI_CONTROL(self.0 + 0x0)
+        }
+    }
+
+    /// Queue Transfer Configuration
+    pub struct XQS(pub(super) u32);
+    impl XQS {
+        pub const BASE: u32 = 0x717a0000;
+        pub fn from_raw_unchecked_address(a: u32) -> Self {
+            Self(a)
+        }
+
+        #[inline(always)]
+        pub fn QLIMIT_MON(&self, index: u8) -> xqs::QLIMIT_MON {
+            assert!(index < 4);
+            xqs::QLIMIT_MON(self.0 + 0x1910 + u32::from(index) * 0xc)
+        }
+        #[inline(always)]
+        pub fn QLIMIT_PORT(&self, index: u8) -> xqs::QLIMIT_PORT {
+            assert!(index < 57);
+            xqs::QLIMIT_PORT(self.0 + 0x1638 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn QLIMIT_QUEUE(&self, index: u8) -> xqs::QLIMIT_QUEUE {
+            assert!(index < 4);
+            xqs::QLIMIT_QUEUE(self.0 + 0x1450 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn QLIMIT_SE(&self, index: u8) -> xqs::QLIMIT_SE {
+            assert!(index < 4);
+            xqs::QLIMIT_SE(self.0 + 0x1420 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn QLIMIT_SHR(&self, index: u8) -> xqs::QLIMIT_SHR {
+            assert!(index < 4);
+            xqs::QLIMIT_SHR(self.0 + 0x1800 + u32::from(index) * 0x44)
+        }
+        #[inline(always)]
+        pub fn QMAP_QOS_TBL(&self, index: u8) -> xqs::QMAP_QOS_TBL {
+            assert!(index < 4);
+            xqs::QMAP_QOS_TBL(self.0 + 0x1400 + u32::from(index) * 0x8)
+        }
+        #[inline(always)]
+        pub fn QMAP_SE_TBL(&self, index: u8) -> xqs::QMAP_SE_TBL {
+            assert!(index < 4);
+            xqs::QMAP_SE_TBL(self.0 + 0x1440 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn QMAP_VPORT_TBL(&self, index: u8) -> xqs::QMAP_VPORT_TBL {
+            assert!(index < 4);
+            xqs::QMAP_VPORT_TBL(self.0 + 0x1000 + u32::from(index) * 0x100)
+        }
+        #[inline(always)]
+        pub fn STAT(&self, index: u16) -> xqs::STAT {
+            assert!(index < 1024);
+            xqs::STAT(self.0 + 0x0 + u32::from(index) * 0x4)
+        }
+        #[inline(always)]
+        pub fn SYSTEM(&self) -> xqs::SYSTEM {
+            xqs::SYSTEM(self.0 + 0x1460)
+        }
     }
 }
