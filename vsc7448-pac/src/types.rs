@@ -29,7 +29,11 @@ where
 pub struct PhyRegisterAddress<T> {
     pub page: u16,
     pub addr: u8,
-    _phantom: core::marker::PhantomData<*const T>,
+
+    // This is pub(crate) so that we can construct PhyRegisterAddress<T>
+    // with a const fn, e.g. phy::STANDARD::MODE_CONTROL(); we can't have a
+    // normal new() function because "trait objects in const fn are unstable"
+    pub(crate) _phantom: core::marker::PhantomData<*const T>,
 }
 // We can't #[derive(Copy, Clone)] because of PhantomData
 impl<T> Copy for PhyRegisterAddress<T> {}
@@ -48,13 +52,6 @@ where
     T: From<u16>,
     u16: From<T>,
 {
-    pub(crate) fn new(page: u16, addr: u8) -> Self {
-        Self {
-            page,
-            addr,
-            _phantom: core::marker::PhantomData,
-        }
-    }
     pub fn from_page_and_addr_unchecked(page: u16, addr: u8) -> Self {
         Self {
             page,

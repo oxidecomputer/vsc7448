@@ -317,10 +317,10 @@ pub fn XQS() -> tgt::XQS {
     tgt::XQS(0x717a0000)
 }
 
-/// This module contains `struct`s to represent various top-level targets
-/// within the chip.  These `struct`s share names with functions above, which
-/// is why we hide them in a separate module (since they will be used a lot
-/// less often than the constructor functions)
+/// This module contains `struct`'s to represent various top-level targets
+/// within the chip.  These `struct`'s share names with functions in the
+/// crate root, so they are hidden in a separate module (since those root
+/// functions will be used much more often).
 pub mod tgt {
     use super::*;
 

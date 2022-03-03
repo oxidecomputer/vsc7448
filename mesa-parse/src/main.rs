@@ -426,6 +426,7 @@ impl {0} {{",
     writeln!(
         &mut file,
         "
+use core::marker::PhantomData;
 use crate::types::PhyRegisterAddress;
 "
     )?;
@@ -466,8 +467,8 @@ impl {pname} {{",
                 &mut file,
                 "
     #[inline(always)]
-    pub fn {0}() -> PhyRegisterAddress<{1}::{0}> {{
-        PhyRegisterAddress::new({2}, {3})
+    pub const fn {0}() -> PhyRegisterAddress<{1}::{0}> {{
+        PhyRegisterAddress {{ page: {2}, addr: {3}, _phantom: PhantomData }}
     }}",
                 rname,
                 pname.to_lowercase(),
