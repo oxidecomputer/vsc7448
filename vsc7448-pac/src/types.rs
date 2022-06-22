@@ -24,6 +24,9 @@ where
             _phantom: core::marker::PhantomData,
         }
     }
+    pub fn from_addr_unchecked(addr: u32) -> Self {
+        Self::new(addr)
+    }
 }
 
 pub struct PhyRegisterAddress<T> {
