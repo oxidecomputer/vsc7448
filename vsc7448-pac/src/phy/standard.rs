@@ -268,6 +268,8 @@ impl EXTENDED_CONTROL_AND_STATUS {
     }
 }
 #[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
+pub struct COOPER_VTSS_PHY_AUXILIARY_CONTROL_AND_STATUS(pub u16);
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct EXTENDED_PHY_CONTROL(u16);
 impl EXTENDED_PHY_CONTROL {
     #[inline(always)]

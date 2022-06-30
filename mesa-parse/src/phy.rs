@@ -25,11 +25,11 @@ pub fn parse_phy_pages(s: &str) -> BTreeMap<String, Page<String>> {
 pub fn parse_phy_registers(s: &str, pages: &mut BTreeMap<String, Page<String>>) {
     //#define  VTSS_PHY_MODE_CONTROL VTSS_PHY_PAGE_STANDARD, 0
     let reg_re = Regex::new(
-        r"^#define\s+VTSS_PHY_(?:PAGE_)?([A-Z0-9_]+)\s+VTSS_PHY_PAGE_([A-Z0-9_]+),\s*([0-9]+)$",
+        r"^#define\s+(?:VTSS_)?(?:PHY_)?(?:PAGE_)?([A-Z0-9_]+)\s+VTSS_PHY_PAGE_([A-Z0-9_]+),\s*([0-9]+)$",
     )
     .unwrap();
     let field_re = Regex::new(
-        r"^#define\s+VTSS_(?:F_)?PHY_(?:F_PAGE_)?([A-Z0-9_]+)\s+VTSS_PHY_BIT\(([0-9]+)\)$",
+        r"^#define\s+VTSS_(?:[FM]_)?(?:PHY_)?(?:F_PAGE_)?([A-Z0-9_]+)\s+VTSS_PHY_BIT\(([0-9]+)\)$",
     )
     .unwrap();
     let mask_re =

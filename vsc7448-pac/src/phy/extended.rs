@@ -267,3 +267,63 @@ impl EXT_28 {
         self.0 |= value;
     }
 }
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
+pub struct EPG_CTRL_REG_1(u16);
+impl EPG_CTRL_REG_1 {
+    #[inline(always)]
+    pub fn bad_frame_fcs_gen(&self) -> u16 {
+        self.0 & 0x1
+    }
+    #[inline(always)]
+    pub fn set_bad_frame_fcs_gen(&mut self, value: u16) {
+        assert!(value <= 0x1);
+        self.0 &= !0x1;
+        self.0 |= value;
+    }
+    #[inline(always)]
+    pub fn epg_enable(&self) -> u16 {
+        (self.0 & 0x8000) >> 15
+    }
+    #[inline(always)]
+    pub fn set_epg_enable(&mut self, value: u16) {
+        assert!(value <= 0x1);
+        let value = value << 15;
+        self.0 &= !0x8000;
+        self.0 |= value;
+    }
+    #[inline(always)]
+    pub fn epg_run_stop(&self) -> u16 {
+        (self.0 & 0x4000) >> 14
+    }
+    #[inline(always)]
+    pub fn set_epg_run_stop(&mut self, value: u16) {
+        assert!(value <= 0x1);
+        let value = value << 14;
+        self.0 &= !0x4000;
+        self.0 |= value;
+    }
+    #[inline(always)]
+    pub fn ipg_8192nsec(&self) -> u16 {
+        (self.0 & 0x400) >> 10
+    }
+    #[inline(always)]
+    pub fn set_ipg_8192nsec(&mut self, value: u16) {
+        assert!(value <= 0x1);
+        let value = value << 10;
+        self.0 &= !0x400;
+        self.0 |= value;
+    }
+    #[inline(always)]
+    pub fn random_payload_pattern(&self) -> u16 {
+        (self.0 & 0x2) >> 1
+    }
+    #[inline(always)]
+    pub fn set_random_payload_pattern(&mut self, value: u16) {
+        assert!(value <= 0x1);
+        let value = value << 1;
+        self.0 &= !0x2;
+        self.0 |= value;
+    }
+}
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
+pub struct EPG_CTRL_REG_2(pub u16);

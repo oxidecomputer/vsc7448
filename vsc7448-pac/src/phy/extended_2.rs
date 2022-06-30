@@ -56,6 +56,8 @@ impl EEE_CONTROL {
     }
 }
 #[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
+pub struct EXTENDED_CHIP_ID(pub u16);
+#[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct TESLA_RGMII_CONTROL(pub u16);
 #[derive(Copy, Clone, Debug, Eq, PartialEq, From, Into)]
 pub struct RGMII_CONTROL(u16);
@@ -79,6 +81,17 @@ impl RGMII_CONTROL {
     pub fn set_nano_rgmii_skew_tx(&mut self, value: u16) {
         assert!(value <= 0x7);
         self.0 &= !0x7;
+        self.0 |= value;
+    }
+    #[inline(always)]
+    pub fn nano_sof_enable(&self) -> u16 {
+        (self.0 & 0x1000) >> 12
+    }
+    #[inline(always)]
+    pub fn set_nano_sof_enable(&mut self, value: u16) {
+        assert!(value <= 0x1);
+        let value = value << 12;
+        self.0 &= !0x1000;
         self.0 |= value;
     }
     #[inline(always)]

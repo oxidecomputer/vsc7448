@@ -169,6 +169,15 @@ impl STANDARD {
         }
     }
     #[inline(always)]
+    pub const fn COOPER_VTSS_PHY_AUXILIARY_CONTROL_AND_STATUS(
+    ) -> PhyRegisterAddress<standard::COOPER_VTSS_PHY_AUXILIARY_CONTROL_AND_STATUS> {
+        PhyRegisterAddress {
+            page: 0,
+            addr: 23,
+            _phantom: PhantomData,
+        }
+    }
+    #[inline(always)]
     pub const fn EXTENDED_PHY_CONTROL() -> PhyRegisterAddress<standard::EXTENDED_PHY_CONTROL> {
         PhyRegisterAddress {
             page: 0,
@@ -343,6 +352,22 @@ impl EXTENDED {
             _phantom: PhantomData,
         }
     }
+    #[inline(always)]
+    pub const fn EPG_CTRL_REG_1() -> PhyRegisterAddress<extended::EPG_CTRL_REG_1> {
+        PhyRegisterAddress {
+            page: 1,
+            addr: 29,
+            _phantom: PhantomData,
+        }
+    }
+    #[inline(always)]
+    pub const fn EPG_CTRL_REG_2() -> PhyRegisterAddress<extended::EPG_CTRL_REG_2> {
+        PhyRegisterAddress {
+            page: 1,
+            addr: 30,
+            _phantom: PhantomData,
+        }
+    }
 }
 
 /// Extended registers - page 2
@@ -361,6 +386,14 @@ impl EXTENDED_2 {
         PhyRegisterAddress {
             page: 2,
             addr: 17,
+            _phantom: PhantomData,
+        }
+    }
+    #[inline(always)]
+    pub const fn EXTENDED_CHIP_ID() -> PhyRegisterAddress<extended_2::EXTENDED_CHIP_ID> {
+        PhyRegisterAddress {
+            page: 2,
+            addr: 18,
             _phantom: PhantomData,
         }
     }
