@@ -38,7 +38,7 @@ impl QLIMIT_CONG_CNT_STAT {
     }
     #[inline(always)]
     pub fn set_qlimit_act_cnt(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -48,7 +48,7 @@ impl QLIMIT_CONG_CNT_STAT {
     }
     #[inline(always)]
     pub fn set_qlimit_cong_cnt(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 15;
         self.0 &= !0x7ff8000;
         self.0 |= value;
@@ -64,7 +64,7 @@ impl QLIMIT_QUE_ACT_CFG {
     }
     #[inline(always)]
     pub fn set_qlimit_que_act(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -79,7 +79,7 @@ impl QLIMIT_QUE_CONG_CFG {
     }
     #[inline(always)]
     pub fn set_qlimit_que_cong(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -95,7 +95,7 @@ impl QLIMIT_SE_CONG_CFG {
     }
     #[inline(always)]
     pub fn set_qlimit_se_cong(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
+        debug_assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
     }
@@ -111,7 +111,7 @@ impl QLIMIT_SHR_ATOP_CFG {
     }
     #[inline(always)]
     pub fn set_qlimit_shr_atop(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -127,7 +127,7 @@ impl QLIMIT_SHR_CTOP_CFG {
     }
     #[inline(always)]
     pub fn set_qlimit_shr_ctop(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -142,7 +142,7 @@ impl QLIMIT_SHR_FILL_STAT {
     }
     #[inline(always)]
     pub fn set_qlimit_shr_fill(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -158,7 +158,7 @@ impl QLIMIT_SHR_QDIV_CFG {
     }
     #[inline(always)]
     pub fn set_qlimit_shr_qdiv(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -174,7 +174,7 @@ impl QLIMIT_SHR_QLIM_CFG {
     }
     #[inline(always)]
     pub fn set_qlimit_shr_qlim(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -190,7 +190,7 @@ impl QLIMIT_SHR_TOP_CFG {
     }
     #[inline(always)]
     pub fn set_qlimit_shr_top(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -205,7 +205,7 @@ impl QLIMIT_SHR_WM_STAT {
     }
     #[inline(always)]
     pub fn set_qlimit_shr_wm(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }

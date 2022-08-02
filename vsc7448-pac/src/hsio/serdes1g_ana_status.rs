@@ -42,7 +42,7 @@ impl SERDES1G_PLL_STATUS {
     }
     #[inline(always)]
     pub fn set_pll_cal_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl SERDES1G_PLL_STATUS {
     }
     #[inline(always)]
     pub fn set_pll_cal_not_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl SERDES1G_PLL_STATUS {
     }
     #[inline(always)]
     pub fn set_pll_out_of_range_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -82,7 +82,7 @@ impl SERDES1G_PLL_STATUS {
     }
     #[inline(always)]
     pub fn set_pll_rb_data(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }

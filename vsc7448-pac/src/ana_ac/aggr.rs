@@ -56,7 +56,7 @@ impl AGGR_CFG1 {
     }
     #[inline(always)]
     pub fn set_port_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }

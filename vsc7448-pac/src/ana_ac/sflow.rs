@@ -42,7 +42,7 @@ impl SFLOW_CNT {
     }
     #[inline(always)]
     pub fn set_sflow_frame_fwd_cnt(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -53,7 +53,7 @@ impl SFLOW_CNT {
     }
     #[inline(always)]
     pub fn set_sflow_sample_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -74,7 +74,7 @@ impl SFLOW_CTRL {
     }
     #[inline(always)]
     pub fn set_sflow_dir_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 15;
         self.0 &= !0x18000;
         self.0 |= value;
@@ -86,7 +86,7 @@ impl SFLOW_CTRL {
     }
     #[inline(always)]
     pub fn set_sflow_prbs(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         let value = value << 17;
         self.0 &= !0xfffe0000;
         self.0 |= value;
@@ -100,7 +100,7 @@ impl SFLOW_CTRL {
     }
     #[inline(always)]
     pub fn set_sflow_sample_rate(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }

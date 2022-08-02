@@ -40,7 +40,7 @@ impl CNT_CTRL {
     }
     #[inline(always)]
     pub fn set_event_cnt_all(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl CNT_CTRL {
     }
     #[inline(always)]
     pub fn set_event_cnt_port(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 5;
         self.0 &= !0x7e0;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl CNT_CTRL {
     }
     #[inline(always)]
     pub fn set_stat_cnt_frm_abort_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -82,7 +82,7 @@ impl CNT_CTRL {
     }
     #[inline(always)]
     pub fn set_stat_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -95,7 +95,7 @@ impl CNT_CTRL {
     }
     #[inline(always)]
     pub fn set_vstax_stat_esdx_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -114,7 +114,7 @@ impl COMMON_CTRL {
     }
     #[inline(always)]
     pub fn set_frm_clr_pad_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -127,7 +127,7 @@ impl COMMON_CTRL {
     }
     #[inline(always)]
     pub fn set_invld_w16_pop_cnt_frm_abort(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -141,7 +141,7 @@ impl COMMON_CTRL {
     }
     #[inline(always)]
     pub fn set_l3_clr_vstax_dst_rsv(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -155,7 +155,7 @@ impl COMMON_CTRL {
     }
     #[inline(always)]
     pub fn set_own_upsid(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 2;
         self.0 &= !0x7c;
         self.0 |= value;
@@ -176,7 +176,7 @@ impl DP_MAP {
     }
     #[inline(always)]
     pub fn set_dp(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -192,7 +192,7 @@ impl DSCP_REMAP {
     }
     #[inline(always)]
     pub fn set_dscp_remap(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -210,7 +210,7 @@ impl ES0_CTRL {
     }
     #[inline(always)]
     pub fn set_es0_by_rleg(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -224,7 +224,7 @@ impl ES0_CTRL {
     }
     #[inline(always)]
     pub fn set_es0_by_rt_fwd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -238,7 +238,7 @@ impl ES0_CTRL {
     }
     #[inline(always)]
     pub fn set_es0_frm_lbk_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -252,7 +252,7 @@ impl ES0_CTRL {
     }
     #[inline(always)]
     pub fn set_es0_lu_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -272,7 +272,7 @@ impl GCPU_CFG {
     }
     #[inline(always)]
     pub fn set_gcpu_do_not_rew(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -286,7 +286,7 @@ impl GCPU_CFG {
     }
     #[inline(always)]
     pub fn set_gcpu_fwd_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -300,7 +300,7 @@ impl GCPU_CFG {
     }
     #[inline(always)]
     pub fn set_gcpu_keep_ifh(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 20;
         self.0 &= !0x300000;
         self.0 |= value;
@@ -314,7 +314,7 @@ impl GCPU_CFG {
     }
     #[inline(always)]
     pub fn set_gcpu_tag_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 17;
         self.0 &= !0x60000;
         self.0 |= value;
@@ -328,7 +328,7 @@ impl GCPU_CFG {
     }
     #[inline(always)]
     pub fn set_gcpu_upsid(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -341,7 +341,7 @@ impl GCPU_CFG {
     }
     #[inline(always)]
     pub fn set_gcpu_upspn(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 8;
         self.0 &= !0x1f00;
         self.0 |= value;
@@ -362,7 +362,7 @@ impl GCPU_TAG_CFG {
     }
     #[inline(always)]
     pub fn set_tag_dei_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -376,7 +376,7 @@ impl GCPU_TAG_CFG {
     }
     #[inline(always)]
     pub fn set_tag_pcp_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -390,7 +390,7 @@ impl GCPU_TAG_CFG {
     }
     #[inline(always)]
     pub fn set_tag_pcp_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -403,7 +403,7 @@ impl GCPU_TAG_CFG {
     }
     #[inline(always)]
     pub fn set_tag_tpid_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 17;
         self.0 &= !0xe0000;
         self.0 |= value;
@@ -417,7 +417,7 @@ impl GCPU_TAG_CFG {
     }
     #[inline(always)]
     pub fn set_tag_vid_val(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 5;
         self.0 &= !0x1ffe0;
         self.0 |= value;
@@ -434,7 +434,7 @@ impl HIH_DEF_CFG {
     }
     #[inline(always)]
     pub fn set_hih_def_cksm(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -445,7 +445,7 @@ impl HIH_DEF_CFG {
     }
     #[inline(always)]
     pub fn set_hih_def_cl(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 8;
         self.0 &= !0xffff00;
         self.0 |= value;
@@ -457,7 +457,7 @@ impl HIH_DEF_CFG {
     }
     #[inline(always)]
     pub fn set_hih_def_flags(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -469,7 +469,7 @@ impl HIH_DEF_CFG {
     }
     #[inline(always)]
     pub fn set_hih_def_lpid(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -490,7 +490,7 @@ impl HIH_DEV10G_CFG {
     }
     #[inline(always)]
     pub fn set_hih_location(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -508,7 +508,7 @@ impl MIP_CTRL {
     }
     #[inline(always)]
     pub fn set_mip_ccm_hmo_set_shot(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -522,7 +522,7 @@ impl MIP_CTRL {
     }
     #[inline(always)]
     pub fn set_mip_ccm_interval_mask(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -542,7 +542,7 @@ impl MIP_STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_mip_ccm_copy_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -556,7 +556,7 @@ impl MIP_STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_mip_generic_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -570,7 +570,7 @@ impl MIP_STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_mip_lbm_da_chk_fail_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -584,7 +584,7 @@ impl MIP_STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_mip_lbm_redir_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -598,7 +598,7 @@ impl MIP_STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_mip_ltm_redir_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -612,7 +612,7 @@ impl MIP_STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_mip_mel_chk_fail_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -625,7 +625,7 @@ impl MIP_STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_mip_raps_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -646,7 +646,7 @@ impl MIRROR_PROBE_CFG {
     }
     #[inline(always)]
     pub fn set_mirror_tx_port(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 12;
         self.0 &= !0x3f000;
         self.0 |= value;
@@ -660,7 +660,7 @@ impl MIRROR_PROBE_CFG {
     }
     #[inline(always)]
     pub fn set_remote_encap_id(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 2;
         self.0 &= !0xffc;
         self.0 |= value;
@@ -674,7 +674,7 @@ impl MIRROR_PROBE_CFG {
     }
     #[inline(always)]
     pub fn set_remote_mirror_cfg(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -694,7 +694,7 @@ impl MIRROR_TAG_A_CFG {
     }
     #[inline(always)]
     pub fn set_tag_a_dei_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -708,7 +708,7 @@ impl MIRROR_TAG_A_CFG {
     }
     #[inline(always)]
     pub fn set_tag_a_pcp_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -722,7 +722,7 @@ impl MIRROR_TAG_A_CFG {
     }
     #[inline(always)]
     pub fn set_tag_a_pcp_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -735,7 +735,7 @@ impl MIRROR_TAG_A_CFG {
     }
     #[inline(always)]
     pub fn set_tag_a_tpid_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 17;
         self.0 &= !0xe0000;
         self.0 |= value;
@@ -749,7 +749,7 @@ impl MIRROR_TAG_A_CFG {
     }
     #[inline(always)]
     pub fn set_tag_a_vid_val(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 5;
         self.0 &= !0x1ffe0;
         self.0 |= value;
@@ -770,7 +770,7 @@ impl MIRROR_TAG_B_CFG {
     }
     #[inline(always)]
     pub fn set_tag_b_dei_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -784,7 +784,7 @@ impl MIRROR_TAG_B_CFG {
     }
     #[inline(always)]
     pub fn set_tag_b_pcp_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -798,7 +798,7 @@ impl MIRROR_TAG_B_CFG {
     }
     #[inline(always)]
     pub fn set_tag_b_pcp_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -811,7 +811,7 @@ impl MIRROR_TAG_B_CFG {
     }
     #[inline(always)]
     pub fn set_tag_b_tpid_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 17;
         self.0 &= !0xe0000;
         self.0 |= value;
@@ -825,7 +825,7 @@ impl MIRROR_TAG_B_CFG {
     }
     #[inline(always)]
     pub fn set_tag_b_vid_val(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 5;
         self.0 &= !0x1ffe0;
         self.0 |= value;
@@ -846,7 +846,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_es0_lport_num(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 24;
         self.0 &= !0x3f000000;
         self.0 |= value;
@@ -860,7 +860,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_inj_stat_pipeline_pt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -874,7 +874,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_keep_ifh_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;
@@ -888,7 +888,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_port_voe_default_dei(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -902,7 +902,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_port_voe_default_pcp(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 7;
         self.0 &= !0x380;
         self.0 |= value;
@@ -916,7 +916,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_port_voe_tpid_aware_dis(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 10;
         self.0 &= !0x7c00;
         self.0 |= value;
@@ -930,7 +930,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_vstax2_mirror_obey_was_tagged(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -944,7 +944,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_vstax2_misc_isdx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -958,7 +958,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_vstax_hdr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -972,7 +972,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_vstax_pad_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -986,7 +986,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_vstax_stack_grp_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -999,7 +999,7 @@ impl PORT_CTRL {
     }
     #[inline(always)]
     pub fn set_xtr_stat_pipeline_pt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 20;
         self.0 &= !0xf00000;
         self.0 |= value;
@@ -1018,7 +1018,7 @@ impl RLEG_CFG_0 {
     }
     #[inline(always)]
     pub fn set_rleg_mac_lsb(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -1036,7 +1036,7 @@ impl RLEG_CFG_1 {
     }
     #[inline(always)]
     pub fn set_rleg_mac_msb(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -1049,7 +1049,7 @@ impl RLEG_CFG_1 {
     }
     #[inline(always)]
     pub fn set_rleg_mac_type_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -1068,7 +1068,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_dscp_remap_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -1082,7 +1082,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_dscp_replace_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -1096,7 +1096,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_invld_ifh_for_ptp_frm_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -1110,7 +1110,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_invld_pop_cnt_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -1124,7 +1124,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_invld_w16_pop_cnt_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -1138,7 +1138,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_ip4_mc_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1152,7 +1152,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_ip4_uc_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -1166,7 +1166,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_ip6_mc_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -1180,7 +1180,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_ip6_uc_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -1194,7 +1194,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_link_layer_added_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1208,7 +1208,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_link_layer_error_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -1222,7 +1222,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_rewrite_overflow_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -1236,7 +1236,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_vlan_pop_cnt_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1249,7 +1249,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_vlan_prio_tagged_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -1263,7 +1263,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_vlan_tag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1277,7 +1277,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_vlan_untagged_vid0_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -1291,7 +1291,7 @@ impl STICKY_EVENT {
     }
     #[inline(always)]
     pub fn set_vlan_untag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1310,7 +1310,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_remap_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -1324,7 +1324,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_replace_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -1338,7 +1338,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_invld_ifh_for_ptp_frm_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -1352,7 +1352,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_invld_pop_cnt_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -1366,7 +1366,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_invld_w16_pop_cnt_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -1380,7 +1380,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_ip4_mc_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1394,7 +1394,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_ip4_uc_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -1408,7 +1408,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_mc_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -1422,7 +1422,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_uc_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -1436,7 +1436,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_link_layer_added_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1450,7 +1450,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_link_layer_error_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -1464,7 +1464,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_rewrite_overflow_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -1478,7 +1478,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_pop_cnt_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1491,7 +1491,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_prio_tagged_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -1505,7 +1505,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_tag_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1519,7 +1519,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_untagged_vid0_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -1533,7 +1533,7 @@ impl STICKY_EVENT_CNT_MASK_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_untag_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1568,7 +1568,7 @@ impl TPID_CFG {
     }
     #[inline(always)]
     pub fn set_tpid_val(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -1586,7 +1586,7 @@ impl VSTAX_PORT_GRP_CFG {
     }
     #[inline(always)]
     pub fn set_vstax_lrn_all_hp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1600,7 +1600,7 @@ impl VSTAX_PORT_GRP_CFG {
     }
     #[inline(always)]
     pub fn set_vstax_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1611,7 +1611,7 @@ impl VSTAX_PORT_GRP_CFG {
     }
     #[inline(always)]
     pub fn set_vstax_ttl(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 4;
         self.0 &= !0x1f0;
         self.0 |= value;

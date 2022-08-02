@@ -40,7 +40,7 @@ impl PCS_FX100_STATUS {
     }
     #[inline(always)]
     pub fn set_edge_pos_ptp(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 8;
         self.0 &= !0xf00;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl PCS_FX100_STATUS {
     }
     #[inline(always)]
     pub fn set_fef_found_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl PCS_FX100_STATUS {
     }
     #[inline(always)]
     pub fn set_fef_status(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -82,7 +82,7 @@ impl PCS_FX100_STATUS {
     }
     #[inline(always)]
     pub fn set_pcs_error_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -96,7 +96,7 @@ impl PCS_FX100_STATUS {
     }
     #[inline(always)]
     pub fn set_signal_detect(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl PCS_FX100_STATUS {
     }
     #[inline(always)]
     pub fn set_ssd_error_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -124,7 +124,7 @@ impl PCS_FX100_STATUS {
     }
     #[inline(always)]
     pub fn set_sync_lost_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -138,7 +138,7 @@ impl PCS_FX100_STATUS {
     }
     #[inline(always)]
     pub fn set_sync_status(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

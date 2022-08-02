@@ -40,7 +40,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_core_clk_div(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -53,7 +53,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_cpu_clk_div(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 6;
         self.0 &= !0xfc0;
         self.0 |= value;
@@ -65,7 +65,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_div4(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -77,7 +77,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_ena_bias(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -89,7 +89,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_ena_clktree(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 29;
         self.0 &= !0x20000000;
         self.0 |= value;
@@ -101,7 +101,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_ena_cp1(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -113,7 +113,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_ena_lane(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_ena_lock_fine(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -137,7 +137,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_ena_rot(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -149,7 +149,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_ena_vco_buf(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -161,7 +161,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_ena_vco_contrh(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -173,7 +173,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_loop_bw_res(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 18;
         self.0 &= !0x7c0000;
         self.0 |= value;
@@ -185,7 +185,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_selbgv820(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 23;
         self.0 &= !0x7800000;
         self.0 |= value;
@@ -197,7 +197,7 @@ impl PLL5G_CFG0 {
     }
     #[inline(always)]
     pub fn set_selcpi(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 16;
         self.0 &= !0x30000;
         self.0 |= value;
@@ -216,7 +216,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_ena_direct(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -228,7 +228,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_force_set_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -239,7 +239,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_half_rate(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -251,7 +251,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_out_of_range_recal_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -263,7 +263,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_pwd_rx(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -275,7 +275,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_pwd_tx(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -287,7 +287,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_quarter_rate(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -299,7 +299,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_rc_ctrl_data(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 6;
         self.0 &= !0x3fc0;
         self.0 |= value;
@@ -311,7 +311,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_rc_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -323,7 +323,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_readback_data_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -335,7 +335,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_rot_dir(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -347,7 +347,7 @@ impl PLL5G_CFG1 {
     }
     #[inline(always)]
     pub fn set_rot_speed(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -366,7 +366,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ampc_sel(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 12;
         self.0 &= !0xff000;
         self.0 |= value;
@@ -378,7 +378,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_disable_fsm(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -390,7 +390,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_disable_fsm_por(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -402,7 +402,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_ampctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -414,7 +414,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_amp_ctrl_force(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -426,7 +426,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_clk_bypass(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -438,7 +438,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_clk_bypass1(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -450,7 +450,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_cp2(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -462,7 +462,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_fbtestout(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -474,7 +474,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_gain_test(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -485,7 +485,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_pfd_in_flip(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 29;
         self.0 &= !0x20000000;
         self.0 |= value;
@@ -497,7 +497,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_rcpll(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -509,7 +509,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_test_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -521,7 +521,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_ena_vco_nref_testout(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -533,7 +533,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_en_reset_frq_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -545,7 +545,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_en_reset_lim_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -557,7 +557,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_en_reset_overrun(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -569,7 +569,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_frc_fsm_por(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -581,7 +581,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_gain_test(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 5;
         self.0 &= !0x3e0;
         self.0 |= value;
@@ -593,7 +593,7 @@ impl PLL5G_CFG2 {
     }
     #[inline(always)]
     pub fn set_pwd_ampctrl_n(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -612,7 +612,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_clkout2_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 19;
         self.0 &= !0x380000;
         self.0 |= value;
@@ -624,7 +624,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_ena_ana_test_out(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -636,7 +636,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_ena_test_out(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -648,7 +648,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_fbdivsel(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -659,7 +659,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_fbdivsel_tst_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -671,7 +671,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_force_cp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -683,7 +683,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_force_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -695,7 +695,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_force_hi(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -707,7 +707,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_force_lo(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -719,7 +719,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_force_vco_contrh(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -731,7 +731,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_rst_fb_n(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -743,7 +743,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_sel_cml_cmos_pfd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -755,7 +755,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_sel_fbdclk(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -767,7 +767,7 @@ impl PLL5G_CFG3 {
     }
     #[inline(always)]
     pub fn set_test_ana_out_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 22;
         self.0 &= !0xc00000;
         self.0 |= value;
@@ -786,7 +786,7 @@ impl PLL5G_CFG4 {
     }
     #[inline(always)]
     pub fn set_ib_bias_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -798,7 +798,7 @@ impl PLL5G_CFG4 {
     }
     #[inline(always)]
     pub fn set_ib_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -816,7 +816,7 @@ impl PLL5G_CFG5 {
     }
     #[inline(always)]
     pub fn set_ob_bias_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -828,7 +828,7 @@ impl PLL5G_CFG5 {
     }
     #[inline(always)]
     pub fn set_ob_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -848,7 +848,7 @@ impl PLL5G_CFG6 {
     }
     #[inline(always)]
     pub fn set_ddr_clk_div(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -859,7 +859,7 @@ impl PLL5G_CFG6 {
     }
     #[inline(always)]
     pub fn set_ena_fbclkc2(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -871,7 +871,7 @@ impl PLL5G_CFG6 {
     }
     #[inline(always)]
     pub fn set_ena_refclkc2(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;

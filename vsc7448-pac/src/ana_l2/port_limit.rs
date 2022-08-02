@@ -42,7 +42,7 @@ impl PORT_LIMIT_CTRL {
     }
     #[inline(always)]
     pub fn set_port_limit_exceed_irq_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl PORT_LIMIT_CTRL {
     }
     #[inline(always)]
     pub fn set_port_limit_exceed_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 15;
         self.0 &= !0x18000;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl PORT_LIMIT_CTRL {
     }
     #[inline(always)]
     pub fn set_port_lrn_cnt_limit(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -90,7 +90,7 @@ impl PORT_LIMIT_STATUS {
     }
     #[inline(always)]
     pub fn set_port_lrn_cnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -103,7 +103,7 @@ impl PORT_LIMIT_STATUS {
     }
     #[inline(always)]
     pub fn set_port_lrn_limit_exceeded_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;

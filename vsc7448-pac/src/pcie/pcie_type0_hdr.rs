@@ -37,7 +37,7 @@ impl BAR0 {
     }
     #[inline(always)]
     pub fn set_bar0_mem_io(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -47,7 +47,7 @@ impl BAR0 {
     }
     #[inline(always)]
     pub fn set_bar0_prefetch(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -58,7 +58,7 @@ impl BAR0 {
     }
     #[inline(always)]
     pub fn set_bar0_start(&mut self, value: u32) {
-        assert!(value <= 0xfffffff);
+        debug_assert!(value <= 0xfffffff);
         let value = value << 4;
         self.0 &= !0xfffffff0;
         self.0 |= value;
@@ -69,7 +69,7 @@ impl BAR0 {
     }
     #[inline(always)]
     pub fn set_bar0_type(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -85,7 +85,7 @@ impl BAR1 {
     }
     #[inline(always)]
     pub fn set_bar1_mem_io(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -95,7 +95,7 @@ impl BAR1 {
     }
     #[inline(always)]
     pub fn set_bar1_prefetch(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -106,7 +106,7 @@ impl BAR1 {
     }
     #[inline(always)]
     pub fn set_bar1_start(&mut self, value: u32) {
-        assert!(value <= 0xfffffff);
+        debug_assert!(value <= 0xfffffff);
         let value = value << 4;
         self.0 &= !0xfffffff0;
         self.0 |= value;
@@ -117,7 +117,7 @@ impl BAR1 {
     }
     #[inline(always)]
     pub fn set_bar1_type(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -133,7 +133,7 @@ impl BAR2 {
     }
     #[inline(always)]
     pub fn set_bar2_mem_io(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -143,7 +143,7 @@ impl BAR2 {
     }
     #[inline(always)]
     pub fn set_bar2_prefetch(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -154,7 +154,7 @@ impl BAR2 {
     }
     #[inline(always)]
     pub fn set_bar2_start(&mut self, value: u32) {
-        assert!(value <= 0xfffffff);
+        debug_assert!(value <= 0xfffffff);
         let value = value << 4;
         self.0 &= !0xfffffff0;
         self.0 |= value;
@@ -165,7 +165,7 @@ impl BAR2 {
     }
     #[inline(always)]
     pub fn set_bar2_type(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -181,7 +181,7 @@ impl BAR3 {
     }
     #[inline(always)]
     pub fn set_bar3_mem_io(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -191,7 +191,7 @@ impl BAR3 {
     }
     #[inline(always)]
     pub fn set_bar3_prefetch(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -202,7 +202,7 @@ impl BAR3 {
     }
     #[inline(always)]
     pub fn set_bar3_start(&mut self, value: u32) {
-        assert!(value <= 0xfffffff);
+        debug_assert!(value <= 0xfffffff);
         let value = value << 4;
         self.0 &= !0xfffffff0;
         self.0 |= value;
@@ -213,7 +213,7 @@ impl BAR3 {
     }
     #[inline(always)]
     pub fn set_bar3_type(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -229,7 +229,7 @@ impl BAR4 {
     }
     #[inline(always)]
     pub fn set_bar4_mem_io(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -239,7 +239,7 @@ impl BAR4 {
     }
     #[inline(always)]
     pub fn set_bar4_prefetch(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -250,7 +250,7 @@ impl BAR4 {
     }
     #[inline(always)]
     pub fn set_bar4_start(&mut self, value: u32) {
-        assert!(value <= 0xfffffff);
+        debug_assert!(value <= 0xfffffff);
         let value = value << 4;
         self.0 &= !0xfffffff0;
         self.0 |= value;
@@ -261,7 +261,7 @@ impl BAR4 {
     }
     #[inline(always)]
     pub fn set_bar4_type(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -277,7 +277,7 @@ impl BAR5 {
     }
     #[inline(always)]
     pub fn set_bar5_mem_io(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -287,7 +287,7 @@ impl BAR5 {
     }
     #[inline(always)]
     pub fn set_bar5_prefetch(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -298,7 +298,7 @@ impl BAR5 {
     }
     #[inline(always)]
     pub fn set_bar5_start(&mut self, value: u32) {
-        assert!(value <= 0xfffffff);
+        debug_assert!(value <= 0xfffffff);
         let value = value << 4;
         self.0 &= !0xfffffff0;
         self.0 |= value;
@@ -309,7 +309,7 @@ impl BAR5 {
     }
     #[inline(always)]
     pub fn set_bar5_type(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -325,7 +325,7 @@ impl BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE {
     }
     #[inline(always)]
     pub fn set_bist(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -336,7 +336,7 @@ impl BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE {
     }
     #[inline(always)]
     pub fn set_cache_line_size(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -346,7 +346,7 @@ impl BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE {
     }
     #[inline(always)]
     pub fn set_header_type(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 16;
         self.0 &= !0x7f0000;
         self.0 |= value;
@@ -357,7 +357,7 @@ impl BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE {
     }
     #[inline(always)]
     pub fn set_latency_master_timer(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -368,7 +368,7 @@ impl BIST_HEADER_TYPE_LATENCY_CACHE_LINE_SIZE {
     }
     #[inline(always)]
     pub fn set_multi_func(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -397,7 +397,7 @@ impl CLASS_CODE_REVISION_ID {
     }
     #[inline(always)]
     pub fn set_base_class_code(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -408,7 +408,7 @@ impl CLASS_CODE_REVISION_ID {
     }
     #[inline(always)]
     pub fn set_program_interface(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -419,7 +419,7 @@ impl CLASS_CODE_REVISION_ID {
     }
     #[inline(always)]
     pub fn set_revision_id(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -429,7 +429,7 @@ impl CLASS_CODE_REVISION_ID {
     }
     #[inline(always)]
     pub fn set_subclass_code(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -445,7 +445,7 @@ impl DEVICE_ID_VENDOR_ID {
     }
     #[inline(always)]
     pub fn set_pci_type0_device_id(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -456,7 +456,7 @@ impl DEVICE_ID_VENDOR_ID {
     }
     #[inline(always)]
     pub fn set_pci_type0_vendor_id(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -471,7 +471,7 @@ impl EXP_ROM_BASE_ADDR {
     }
     #[inline(always)]
     pub fn set_exp_rom_base_address(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         let value = value << 11;
         self.0 &= !0xfffff800;
         self.0 |= value;
@@ -482,7 +482,7 @@ impl EXP_ROM_BASE_ADDR {
     }
     #[inline(always)]
     pub fn set_rom_bar_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -497,7 +497,7 @@ impl MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE {
     }
     #[inline(always)]
     pub fn set_int_line(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -507,7 +507,7 @@ impl MAX_LATENCY_MIN_GRANT_INTERRUPT_PIN_INTERRUPT_LINE {
     }
     #[inline(always)]
     pub fn set_int_pin(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -523,7 +523,7 @@ impl PCI_CAP_PTR {
     }
     #[inline(always)]
     pub fn set_cap_pointer(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -538,7 +538,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_cap_list(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -549,7 +549,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_detected_parity_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -560,7 +560,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_dev_sel_timing(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 25;
         self.0 &= !0x6000000;
         self.0 |= value;
@@ -571,7 +571,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_fast_66mhz_cap(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -582,7 +582,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_fast_b2b_cap(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -593,7 +593,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_int_status(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -604,7 +604,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_master_dpe(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -615,7 +615,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type0_bus_master_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -626,7 +626,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type0_int_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -637,7 +637,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type0_io_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -647,7 +647,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type0_mem_space_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -658,7 +658,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type0_parity_err_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -669,7 +669,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type0_serren(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -680,7 +680,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type0_special_cycle_operation(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -691,7 +691,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type_idsel_stepping(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -702,7 +702,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type_mwi_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -713,7 +713,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type_reserv(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 11;
         self.0 &= !0x1f800;
         self.0 |= value;
@@ -724,7 +724,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_pci_type_vga_palette_snoop(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -735,7 +735,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_rcvd_master_abort(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 29;
         self.0 &= !0x20000000;
         self.0 |= value;
@@ -746,7 +746,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_rcvd_target_abort(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -757,7 +757,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_signaled_sys_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -768,7 +768,7 @@ impl STATUS_COMMAND {
     }
     #[inline(always)]
     pub fn set_signaled_target_abort(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -784,7 +784,7 @@ impl SUBSYSTEM_ID_SUBSYSTEM_VENDOR_ID {
     }
     #[inline(always)]
     pub fn set_subsys_dev_id(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -795,7 +795,7 @@ impl SUBSYSTEM_ID_SUBSYSTEM_VENDOR_ID {
     }
     #[inline(always)]
     pub fn set_subsys_vendor_id(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

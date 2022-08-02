@@ -40,7 +40,7 @@ impl DLB_CFG {
     }
     #[inline(always)]
     pub fn set_dlb_idx(&mut self, value: u32) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
     }
@@ -56,7 +56,7 @@ impl DLB_COS_CFG {
     }
     #[inline(always)]
     pub fn set_dlb_cos_offset(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -74,7 +74,7 @@ impl ISDX_BASE_CFG {
     }
     #[inline(always)]
     pub fn set_isdx_base_addr(&mut self, value: u32) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
     }
@@ -90,7 +90,7 @@ impl ISDX_COS_CFG {
     }
     #[inline(always)]
     pub fn set_isdx_cos_offset(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -108,7 +108,7 @@ impl MISC_CFG {
     }
     #[inline(always)]
     pub fn set_bdlb_idx(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -119,7 +119,7 @@ impl MISC_CFG {
     }
     #[inline(always)]
     pub fn set_bum_slb_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -131,7 +131,7 @@ impl MISC_CFG {
     }
     #[inline(always)]
     pub fn set_bum_slb_idx(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 10;
         self.0 &= !0xffc00;
         self.0 |= value;
@@ -145,7 +145,7 @@ impl MISC_CFG {
     }
     #[inline(always)]
     pub fn set_pipeline_pt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 21;
         self.0 &= !0x1e00000;
         self.0 |= value;
@@ -184,7 +184,7 @@ impl PORT_MASK_CFG1 {
     }
     #[inline(always)]
     pub fn set_port_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -202,7 +202,7 @@ impl QGRP_CFG {
     }
     #[inline(always)]
     pub fn set_qgrp_idx(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 2;
         self.0 &= !0xffc;
         self.0 |= value;
@@ -216,7 +216,7 @@ impl QGRP_CFG {
     }
     #[inline(always)]
     pub fn set_qgrp_oam_type(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -236,7 +236,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_aggr_replace_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -250,7 +250,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_aggr_val(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 21;
         self.0 &= !0x1e00000;
         self.0 |= value;
@@ -262,7 +262,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_cda_fwd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -276,7 +276,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_es0_isdx_key_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -290,7 +290,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_fwd_addr(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -303,7 +303,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_fwd_type(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -317,7 +317,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_isdx_based_fwd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -331,7 +331,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_isdx_based_src_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -343,7 +343,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_port_mask_replace_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -357,7 +357,7 @@ impl SERVICE_CTRL {
     }
     #[inline(always)]
     pub fn set_src_mask_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;

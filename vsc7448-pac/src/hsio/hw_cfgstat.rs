@@ -38,7 +38,7 @@ impl HW_CFG {
     }
     #[inline(always)]
     pub fn set_anaout_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl HW_CFG {
     }
     #[inline(always)]
     pub fn set_dev10g_0_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -66,7 +66,7 @@ impl HW_CFG {
     }
     #[inline(always)]
     pub fn set_dev10g_1_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -80,7 +80,7 @@ impl HW_CFG {
     }
     #[inline(always)]
     pub fn set_dev10g_2_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 16;
         self.0 &= !0x30000;
         self.0 |= value;
@@ -94,7 +94,7 @@ impl HW_CFG {
     }
     #[inline(always)]
     pub fn set_dev10g_3_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 18;
         self.0 &= !0xc0000;
         self.0 |= value;
@@ -106,7 +106,7 @@ impl HW_CFG {
     }
     #[inline(always)]
     pub fn set_qsgmii_ena(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -122,7 +122,7 @@ impl HW_QSGMII_CFG {
     }
     #[inline(always)]
     pub fn set_e_det_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -134,7 +134,7 @@ impl HW_QSGMII_CFG {
     }
     #[inline(always)]
     pub fn set_flip_lanes(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -145,7 +145,7 @@ impl HW_QSGMII_CFG {
     }
     #[inline(always)]
     pub fn set_shyst_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -157,7 +157,7 @@ impl HW_QSGMII_CFG {
     }
     #[inline(always)]
     pub fn set_use_i1_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -174,7 +174,7 @@ impl HW_QSGMII_STAT {
     }
     #[inline(always)]
     pub fn set_delay_var_x200ps(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 1;
         self.0 &= !0x7e;
         self.0 |= value;
@@ -186,7 +186,7 @@ impl HW_QSGMII_STAT {
     }
     #[inline(always)]
     pub fn set_sync(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

@@ -38,7 +38,7 @@ impl PCIEMST_BAR1_MASK {
     }
     #[inline(always)]
     pub fn set_bar1_mask(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         let value = value << 8;
         self.0 &= !0xffffff00;
         self.0 |= value;
@@ -55,7 +55,7 @@ impl PCIEMST_BAR1_OFFSET {
     }
     #[inline(always)]
     pub fn set_bar1_offset(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         let value = value << 8;
         self.0 &= !0xffffff00;
         self.0 |= value;
@@ -72,7 +72,7 @@ impl PCIEMST_BAR2_MASK {
     }
     #[inline(always)]
     pub fn set_bar2_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -89,7 +89,7 @@ impl PCIEMST_BAR2_OFFSET {
     }
     #[inline(always)]
     pub fn set_bar2_offset(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -108,7 +108,7 @@ impl PCIEMST_REPLY_INFO {
     }
     #[inline(always)]
     pub fn set_mst_reply_info(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -124,7 +124,7 @@ impl PCIEPCS_BEACON {
     }
     #[inline(always)]
     pub fn set_beacon_max_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -136,7 +136,7 @@ impl PCIEPCS_BEACON {
     }
     #[inline(always)]
     pub fn set_beacon_max_dly(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -147,7 +147,7 @@ impl PCIEPCS_BEACON {
     }
     #[inline(always)]
     pub fn set_beacon_val(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 16;
         self.0 &= !0x3ff0000;
         self.0 |= value;
@@ -164,7 +164,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_beacon_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -175,7 +175,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_beacon_force(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -187,7 +187,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_idle_data_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -199,7 +199,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_idle_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -213,7 +213,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_idle_dly(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 5;
         self.0 &= !0x60;
         self.0 |= value;
@@ -225,7 +225,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_rxinv_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -237,7 +237,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_rxlp_force(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -249,7 +249,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_rxrst_force(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -263,7 +263,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_rxrst_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -275,7 +275,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_rxsdet_force(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -287,7 +287,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_rxsdet_xor(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -299,7 +299,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_rxswap_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -311,7 +311,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_sdetcom_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -323,7 +323,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_sdetcom_perm(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -335,7 +335,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_txlp_force(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -347,7 +347,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_txrst_force(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -361,7 +361,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_txrst_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -375,7 +375,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_txrx_detect(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -387,7 +387,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_txswap_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -401,7 +401,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_wake_oe(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -415,7 +415,7 @@ impl PCIEPCS_CFG {
     }
     #[inline(always)]
     pub fn set_wake_pol(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -432,7 +432,7 @@ impl PCIESLV_FDMA {
     }
     #[inline(always)]
     pub fn set_fdma_attr(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 2;
         self.0 &= !0xc;
         self.0 |= value;
@@ -446,7 +446,7 @@ impl PCIESLV_FDMA {
     }
     #[inline(always)]
     pub fn set_fdma_offset(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -457,7 +457,7 @@ impl PCIESLV_FDMA {
     }
     #[inline(always)]
     pub fn set_fdma_tc(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -474,7 +474,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_attr(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 10;
         self.0 &= !0xc00;
         self.0 |= value;
@@ -486,7 +486,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_be(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 24;
         self.0 &= !0xf000000;
         self.0 |= value;
@@ -498,7 +498,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_ep(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -510,7 +510,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_msg_code(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 15;
         self.0 &= !0x7f8000;
         self.0 |= value;
@@ -524,7 +524,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_offset(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -535,7 +535,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_reserved0(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -547,7 +547,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_reserved1(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -559,7 +559,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_tc(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -571,7 +571,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_td(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -585,7 +585,7 @@ impl PCIESLV_SBA {
     }
     #[inline(always)]
     pub fn set_sba_type(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 2;
         self.0 &= !0x7c;
         self.0 |= value;
@@ -602,7 +602,7 @@ impl PCIE_AUX_CFG {
     }
     #[inline(always)]
     pub fn set_aux_power_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -618,7 +618,7 @@ impl PCIE_CFG {
     }
     #[inline(always)]
     pub fn set_cg_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -630,7 +630,7 @@ impl PCIE_CFG {
     }
     #[inline(always)]
     pub fn set_conf_req_retry_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -642,7 +642,7 @@ impl PCIE_CFG {
     }
     #[inline(always)]
     pub fn set_ltssm_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -654,7 +654,7 @@ impl PCIE_CFG {
     }
     #[inline(always)]
     pub fn set_mem_cg_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -666,7 +666,7 @@ impl PCIE_CFG {
     }
     #[inline(always)]
     pub fn set_mem_ring_core_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -677,7 +677,7 @@ impl PCIE_CFG {
     }
     #[inline(always)]
     pub fn set_pcie_bar_wr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -694,7 +694,7 @@ impl PCIE_CTRL {
     }
     #[inline(always)]
     pub fn set_powerup(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -710,7 +710,7 @@ impl PCIE_DBG_STAT {
     }
     #[inline(always)]
     pub fn set_data_link_layer_up(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -721,7 +721,7 @@ impl PCIE_DBG_STAT {
     }
     #[inline(always)]
     pub fn set_pm_l2_exit(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -733,7 +733,7 @@ impl PCIE_DBG_STAT {
     }
     #[inline(always)]
     pub fn set_tbi_rx_ce(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -745,7 +745,7 @@ impl PCIE_DBG_STAT {
     }
     #[inline(always)]
     pub fn set_tbi_rx_data(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 2;
         self.0 &= !0xffc;
         self.0 |= value;
@@ -757,7 +757,7 @@ impl PCIE_DBG_STAT {
     }
     #[inline(always)]
     pub fn set_tbi_rx_los(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -769,7 +769,7 @@ impl PCIE_DBG_STAT {
     }
     #[inline(always)]
     pub fn set_tbi_rx_sdet(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -786,7 +786,7 @@ impl PCIE_INTR {
     }
     #[inline(always)]
     pub fn set_intr_bar1_rd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -798,7 +798,7 @@ impl PCIE_INTR {
     }
     #[inline(always)]
     pub fn set_intr_bar1_wr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -810,7 +810,7 @@ impl PCIE_INTR {
     }
     #[inline(always)]
     pub fn set_intr_link_state(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -822,7 +822,7 @@ impl PCIE_INTR {
     }
     #[inline(always)]
     pub fn set_intr_ltssm_state(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -834,7 +834,7 @@ impl PCIE_INTR {
     }
     #[inline(always)]
     pub fn set_intr_pm_state(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -852,7 +852,7 @@ impl PCIE_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_falling_vector_val(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 7;
         self.0 &= !0xf80;
         self.0 |= value;
@@ -864,7 +864,7 @@ impl PCIE_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_function_number(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 15;
         self.0 &= !0x38000;
         self.0 |= value;
@@ -876,7 +876,7 @@ impl PCIE_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_intr_falling_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -888,7 +888,7 @@ impl PCIE_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_intr_rising_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -899,7 +899,7 @@ impl PCIE_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_rising_vector_val(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 2;
         self.0 &= !0x7c;
         self.0 |= value;
@@ -911,7 +911,7 @@ impl PCIE_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_traffic_class(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -930,7 +930,7 @@ impl PCIE_INTR_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_legacy_mode_intr_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -942,7 +942,7 @@ impl PCIE_INTR_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_pcie_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -953,7 +953,7 @@ impl PCIE_INTR_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_wakeup_on_intr_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -970,7 +970,7 @@ impl PCIE_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_bar1_rd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -982,7 +982,7 @@ impl PCIE_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_bar1_wr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -994,7 +994,7 @@ impl PCIE_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_link_state_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1006,7 +1006,7 @@ impl PCIE_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_ltssm_state_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -1018,7 +1018,7 @@ impl PCIE_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_pm_state_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1034,7 +1034,7 @@ impl PCIE_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_intr_bar1_rd_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1046,7 +1046,7 @@ impl PCIE_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_intr_bar1_wr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1058,7 +1058,7 @@ impl PCIE_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_intr_link_state_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1070,7 +1070,7 @@ impl PCIE_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_intr_ltssm_state_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -1082,7 +1082,7 @@ impl PCIE_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_intr_pm_state_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1099,7 +1099,7 @@ impl PCIE_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_intr_pending_falling(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1110,7 +1110,7 @@ impl PCIE_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_intr_pending_rising(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1128,7 +1128,7 @@ impl PCIE_STAT {
     }
     #[inline(always)]
     pub fn set_link_state(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 3;
         self.0 &= !0x38;
         self.0 |= value;
@@ -1142,7 +1142,7 @@ impl PCIE_STAT {
     }
     #[inline(always)]
     pub fn set_ltssm_state(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 6;
         self.0 &= !0xfc0;
         self.0 |= value;
@@ -1156,7 +1156,7 @@ impl PCIE_STAT {
     }
     #[inline(always)]
     pub fn set_pm_state(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -1167,7 +1167,7 @@ impl PCIE_STAT {
     }
     #[inline(always)]
     pub fn set_slv_error_reply(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;

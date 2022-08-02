@@ -42,7 +42,7 @@ impl PCS_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_c64b66b_err_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl PCS_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_lock_changed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl PCS_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rx_fset_fifo_full_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl PCS_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rx_fset_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl PCS_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rx_hi_ber_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -111,7 +111,7 @@ impl PCS_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rx_oset_fifo_full_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl PCS_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rx_oset_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -139,7 +139,7 @@ impl PCS_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_xgmii_err_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -160,7 +160,7 @@ impl PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_rx_block_lock(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -174,7 +174,7 @@ impl PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_rx_hi_ber(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -187,7 +187,7 @@ impl PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_testpat_match(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;

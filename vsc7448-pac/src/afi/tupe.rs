@@ -38,7 +38,7 @@ impl TUPE_ADDR {
     }
     #[inline(always)]
     pub fn set_tupe_end_addr(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 16;
         self.0 &= !0xfff0000;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl TUPE_ADDR {
     }
     #[inline(always)]
     pub fn set_tupe_start_addr(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -66,7 +66,7 @@ impl TUPE_CMD1 {
     }
     #[inline(always)]
     pub fn set_cmd_port_num_val(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -77,7 +77,7 @@ impl TUPE_CMD1 {
     }
     #[inline(always)]
     pub fn set_cmd_qu_num_val(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 8;
         self.0 &= !0xffff00;
         self.0 |= value;
@@ -94,7 +94,7 @@ impl TUPE_CRIT1 {
     }
     #[inline(always)]
     pub fn set_crit_port_num_val(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -105,7 +105,7 @@ impl TUPE_CRIT1 {
     }
     #[inline(always)]
     pub fn set_crit_qu_num_val(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 8;
         self.0 &= !0xffff00;
         self.0 |= value;
@@ -122,7 +122,7 @@ impl TUPE_CRIT2 {
     }
     #[inline(always)]
     pub fn set_crit_tupe_ctrl_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -138,7 +138,7 @@ impl TUPE_CRIT3 {
     }
     #[inline(always)]
     pub fn set_crit_tupe_ctrl_val(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -154,7 +154,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_cmd_port_num_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -166,7 +166,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_cmd_qu_num_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -178,7 +178,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_cmd_timer_ena_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -190,7 +190,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_cmd_timer_ena_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -202,7 +202,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_crit_port_num_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -214,7 +214,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_crit_qu_num_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -226,7 +226,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_tupe_start(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

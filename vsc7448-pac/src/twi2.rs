@@ -138,7 +138,7 @@ impl TWI {
     }
     #[inline(always)]
     pub fn RESERVED2(&self, index: u8) -> RegisterAddress<twi::RESERVED2> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x24 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -159,7 +159,7 @@ impl TWI {
     }
     #[inline(always)]
     pub fn RESERVED7(&self, index: u8) -> RegisterAddress<twi::RESERVED7> {
-        assert!(index < 21);
+        debug_assert!(index < 21);
         RegisterAddress::new(self.0 + 0xa0 + u32::from(index) * 0x4)
     }
     #[inline(always)]

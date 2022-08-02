@@ -38,7 +38,7 @@ impl MANUAL_CFG {
     }
     #[inline(always)]
     pub fn set_inj_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl MANUAL_CFG {
     }
     #[inline(always)]
     pub fn set_inj_swap_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -62,7 +62,7 @@ impl MANUAL_CFG {
     }
     #[inline(always)]
     pub fn set_xtr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -73,7 +73,7 @@ impl MANUAL_CFG {
     }
     #[inline(always)]
     pub fn set_xtr_flush_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -85,7 +85,7 @@ impl MANUAL_CFG {
     }
     #[inline(always)]
     pub fn set_xtr_swap_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -116,7 +116,7 @@ impl MANUAL_INTR {
     }
     #[inline(always)]
     pub fn set_intr_inj_rdy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -128,7 +128,7 @@ impl MANUAL_INTR {
     }
     #[inline(always)]
     pub fn set_intr_xtr_any_rdy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -140,7 +140,7 @@ impl MANUAL_INTR {
     }
     #[inline(always)]
     pub fn set_intr_xtr_sof_rdy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -156,7 +156,7 @@ impl MANUAL_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_inj_rdy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -168,7 +168,7 @@ impl MANUAL_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_xtr_any_rdy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -180,7 +180,7 @@ impl MANUAL_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_xtr_sof_rdy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

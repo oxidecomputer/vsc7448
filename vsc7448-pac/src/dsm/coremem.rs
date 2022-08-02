@@ -38,7 +38,7 @@ impl CM_ADDR {
     }
     #[inline(always)]
     pub fn set_cm_addr(&mut self, value: u32) {
-        assert!(value <= 0x3fffff);
+        debug_assert!(value <= 0x3fffff);
         self.0 &= !0x3fffff;
         self.0 |= value;
     }
@@ -49,7 +49,7 @@ impl CM_ADDR {
     }
     #[inline(always)]
     pub fn set_cm_id(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 22;
         self.0 &= !0x3fc00000;
         self.0 |= value;

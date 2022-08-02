@@ -40,7 +40,7 @@ impl MAC_ADV_CHK_CFG {
     }
     #[inline(always)]
     pub fn set_len_drop_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -58,7 +58,7 @@ impl MAC_ENA_CFG {
     }
     #[inline(always)]
     pub fn set_rx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -72,7 +72,7 @@ impl MAC_ENA_CFG {
     }
     #[inline(always)]
     pub fn set_tx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -90,7 +90,7 @@ impl MAC_HDX_CFG {
     }
     #[inline(always)]
     pub fn set_bypass_col_sync(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -102,7 +102,7 @@ impl MAC_HDX_CFG {
     }
     #[inline(always)]
     pub fn set_late_col_pos(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -115,7 +115,7 @@ impl MAC_HDX_CFG {
     }
     #[inline(always)]
     pub fn set_retry_after_exc_col_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -129,7 +129,7 @@ impl MAC_HDX_CFG {
     }
     #[inline(always)]
     pub fn set_seed(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -143,7 +143,7 @@ impl MAC_HDX_CFG {
     }
     #[inline(always)]
     pub fn set_seed_load(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -162,7 +162,7 @@ impl MAC_IFG_CFG {
     }
     #[inline(always)]
     pub fn set_restore_old_ipg_check(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -176,7 +176,7 @@ impl MAC_IFG_CFG {
     }
     #[inline(always)]
     pub fn set_rx_ifg1(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -189,7 +189,7 @@ impl MAC_IFG_CFG {
     }
     #[inline(always)]
     pub fn set_rx_ifg2(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -203,7 +203,7 @@ impl MAC_IFG_CFG {
     }
     #[inline(always)]
     pub fn set_tx_ifg(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 8;
         self.0 &= !0x1f00;
         self.0 |= value;
@@ -220,7 +220,7 @@ impl MAC_MAXLEN_CFG {
     }
     #[inline(always)]
     pub fn set_max_len(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -238,7 +238,7 @@ impl MAC_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_fc_word_sync_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -252,7 +252,7 @@ impl MAC_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_fdx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -265,7 +265,7 @@ impl MAC_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_giga_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -282,7 +282,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_ipg_shrink_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -296,7 +296,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_junk_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -310,7 +310,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_pream_shrink_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -322,7 +322,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_tx_abort_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -333,7 +333,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_tx_fifo_oflw_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -347,7 +347,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_tx_jam_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -361,7 +361,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_tx_retransmit_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -382,7 +382,7 @@ impl MAC_TAGS_CFG {
     }
     #[inline(always)]
     pub fn set_pb_ena(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -394,7 +394,7 @@ impl MAC_TAGS_CFG {
     }
     #[inline(always)]
     pub fn set_tag_id(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -408,7 +408,7 @@ impl MAC_TAGS_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_awr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -419,7 +419,7 @@ impl MAC_TAGS_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_len_awr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -440,7 +440,7 @@ impl MAC_TAGS_CFG2 {
     }
     #[inline(always)]
     pub fn set_tag_id2(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -453,7 +453,7 @@ impl MAC_TAGS_CFG2 {
     }
     #[inline(always)]
     pub fn set_tag_id3(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;

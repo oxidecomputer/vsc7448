@@ -40,7 +40,7 @@ impl MEMACC {
     }
     #[inline(always)]
     pub fn set_memacc_start(&mut self, value: u32) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         let value = value << 2;
         self.0 &= !0xfffc;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl MEMACC {
     }
     #[inline(always)]
     pub fn set_memacc_stop(&mut self, value: u32) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         let value = value << 18;
         self.0 &= !0xfffc0000;
         self.0 |= value;
@@ -69,7 +69,7 @@ impl MEMACC_CTRL {
     }
     #[inline(always)]
     pub fn set_memacc_do(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -82,7 +82,7 @@ impl MEMACC_CTRL {
     }
     #[inline(always)]
     pub fn set_memacc_examine(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -101,7 +101,7 @@ impl MEMACC_SBA {
     }
     #[inline(always)]
     pub fn set_memacc_sba_start(&mut self, value: u32) {
-        assert!(value <= 0x3fffffff);
+        debug_assert!(value <= 0x3fffffff);
         let value = value << 2;
         self.0 &= !0xfffffffc;
         self.0 |= value;
@@ -118,7 +118,7 @@ impl MPU8051_CFG {
     }
     #[inline(always)]
     pub fn set_uart_sys_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -134,7 +134,7 @@ impl MPU8051_IROM {
     }
     #[inline(always)]
     pub fn set_rom_offset(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -153,7 +153,7 @@ impl MPU8051_MMAP {
     }
     #[inline(always)]
     pub fn set_map_code_high(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -165,7 +165,7 @@ impl MPU8051_MMAP {
     }
     #[inline(always)]
     pub fn set_map_code_low(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -177,7 +177,7 @@ impl MPU8051_MMAP {
     }
     #[inline(always)]
     pub fn set_map_data_high(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -189,7 +189,7 @@ impl MPU8051_MMAP {
     }
     #[inline(always)]
     pub fn set_map_data_low(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -200,7 +200,7 @@ impl MPU8051_MMAP {
     }
     #[inline(always)]
     pub fn set_msaddr_code_high(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -212,7 +212,7 @@ impl MPU8051_MMAP {
     }
     #[inline(always)]
     pub fn set_msaddr_code_low(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -224,7 +224,7 @@ impl MPU8051_MMAP {
     }
     #[inline(always)]
     pub fn set_msaddr_data_high(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -236,7 +236,7 @@ impl MPU8051_MMAP {
     }
     #[inline(always)]
     pub fn set_msaddr_data_low(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -255,7 +255,7 @@ impl MPU8051_STAT {
     }
     #[inline(always)]
     pub fn set_mpu8051_gpr(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -266,7 +266,7 @@ impl MPU8051_STAT {
     }
     #[inline(always)]
     pub fn set_mpu8051_sba_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -278,7 +278,7 @@ impl MPU8051_STAT {
     }
     #[inline(always)]
     pub fn set_mpu8051_stop(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;

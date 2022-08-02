@@ -40,7 +40,7 @@ impl RLEG_CTRL {
     }
     #[inline(always)]
     pub fn set_rleg_evid(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -53,7 +53,7 @@ impl RLEG_CTRL {
     }
     #[inline(always)]
     pub fn set_rleg_vstax2_was_tagged(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;

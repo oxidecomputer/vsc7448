@@ -38,7 +38,7 @@ impl TR_CFG7 {
     }
     #[inline(always)]
     pub fn set_cm_init(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 6;
         self.0 &= !0xfc0;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl TR_CFG7 {
     }
     #[inline(always)]
     pub fn set_dfe_ofs(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }

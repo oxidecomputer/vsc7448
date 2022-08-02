@@ -52,7 +52,7 @@ impl DEV_INTR_BYPASS1 {
     }
     #[inline(always)]
     pub fn set_dev_intr_bypass1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -82,7 +82,7 @@ impl DEV_INTR_ENA1 {
     }
     #[inline(always)]
     pub fn set_dev_intr_ena1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -112,7 +112,7 @@ impl DEV_INTR_IDENT1 {
     }
     #[inline(always)]
     pub fn set_dev_intr_ident1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -144,7 +144,7 @@ impl DEV_INTR_POL1 {
     }
     #[inline(always)]
     pub fn set_dev_intr_pol1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -174,7 +174,7 @@ impl DEV_INTR_RAW1 {
     }
     #[inline(always)]
     pub fn set_dev_intr_raw1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -204,7 +204,7 @@ impl DEV_INTR_STICKY1 {
     }
     #[inline(always)]
     pub fn set_dev_intr_sticky1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -236,7 +236,7 @@ impl DEV_INTR_TRIGGER1 {
     }
     #[inline(always)]
     pub fn set_dev_intr_trigger1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -254,7 +254,7 @@ impl DST_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_dst_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -272,7 +272,7 @@ impl DST_INTR_MAP {
     }
     #[inline(always)]
     pub fn set_dst_intr_map(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -290,7 +290,7 @@ impl EXT_DST_INTR_DRV {
     }
     #[inline(always)]
     pub fn set_ext_dst_intr_drv(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -308,7 +308,7 @@ impl EXT_DST_INTR_POL {
     }
     #[inline(always)]
     pub fn set_ext_dst_intr_pol(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -326,7 +326,7 @@ impl EXT_SRC_INTR_POL {
     }
     #[inline(always)]
     pub fn set_ext_src_intr_pol(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -342,7 +342,7 @@ impl INTR_BYPASS {
     }
     #[inline(always)]
     pub fn set_intr_bypass(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -358,7 +358,7 @@ impl INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -374,7 +374,7 @@ impl INTR_ENA_CLR {
     }
     #[inline(always)]
     pub fn set_intr_ena_clr(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -390,7 +390,7 @@ impl INTR_ENA_SET {
     }
     #[inline(always)]
     pub fn set_intr_ena_set(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -406,7 +406,7 @@ impl INTR_FORCE {
     }
     #[inline(always)]
     pub fn set_intr_force(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -422,7 +422,7 @@ impl INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -438,7 +438,7 @@ impl INTR_RAW {
     }
     #[inline(always)]
     pub fn set_intr_raw(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -454,7 +454,7 @@ impl INTR_STICKY {
     }
     #[inline(always)]
     pub fn set_intr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -472,7 +472,7 @@ impl INTR_TRIGGER {
     }
     #[inline(always)]
     pub fn set_intr_trigger(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }

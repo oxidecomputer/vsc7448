@@ -40,7 +40,7 @@ impl VCAP_MV_CFG {
     }
     #[inline(always)]
     pub fn set_mv_num_pos(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl VCAP_MV_CFG {
     }
     #[inline(always)]
     pub fn set_mv_size(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -72,7 +72,7 @@ impl VCAP_UPDATE_CTRL {
     }
     #[inline(always)]
     pub fn set_clear_cache(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl VCAP_UPDATE_CTRL {
     }
     #[inline(always)]
     pub fn set_mv_traffic_ign(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -95,7 +95,7 @@ impl VCAP_UPDATE_CTRL {
     }
     #[inline(always)]
     pub fn set_update_action_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -109,7 +109,7 @@ impl VCAP_UPDATE_CTRL {
     }
     #[inline(always)]
     pub fn set_update_addr(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 3;
         self.0 &= !0x7fff8;
         self.0 |= value;
@@ -123,7 +123,7 @@ impl VCAP_UPDATE_CTRL {
     }
     #[inline(always)]
     pub fn set_update_cmd(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 22;
         self.0 &= !0x1c00000;
         self.0 |= value;
@@ -135,7 +135,7 @@ impl VCAP_UPDATE_CTRL {
     }
     #[inline(always)]
     pub fn set_update_cnt_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -147,7 +147,7 @@ impl VCAP_UPDATE_CTRL {
     }
     #[inline(always)]
     pub fn set_update_entry_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -159,7 +159,7 @@ impl VCAP_UPDATE_CTRL {
     }
     #[inline(always)]
     pub fn set_update_shot(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;

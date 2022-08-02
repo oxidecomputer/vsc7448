@@ -42,7 +42,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_an_link_ctrl_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_lf_gen_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_pcs_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -83,7 +83,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_ploop_ra_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -97,7 +97,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_resync_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -111,7 +111,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_scram_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_sd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -139,7 +139,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_sd_pol(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -153,7 +153,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_sd_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -165,7 +165,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_sh_cnt_max(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 10;
         self.0 &= !0xfc00;
         self.0 |= value;
@@ -179,7 +179,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_sloop_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -193,7 +193,7 @@ impl PCS2X6G_CFG {
     }
     #[inline(always)]
     pub fn set_sync_type_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 8;
         self.0 &= !0x300;
         self.0 |= value;

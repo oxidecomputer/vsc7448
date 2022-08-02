@@ -40,7 +40,7 @@ impl BUM_CFG {
     }
     #[inline(always)]
     pub fn set_bum_slb_idx(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -58,7 +58,7 @@ impl TUPE_CTRL {
     }
     #[inline(always)]
     pub fn set_tupe_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -76,7 +76,7 @@ impl VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_fid(&mut self, value: u32) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         let value = value << 8;
         self.0 &= !0x1fff00;
         self.0 |= value;
@@ -88,7 +88,7 @@ impl VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_flood_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -100,7 +100,7 @@ impl VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_igr_filter_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -112,7 +112,7 @@ impl VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_lrn_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -124,7 +124,7 @@ impl VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_mirror_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -135,7 +135,7 @@ impl VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_mstp_ptr(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 24;
         self.0 &= !0x7f000000;
         self.0 |= value;
@@ -147,7 +147,7 @@ impl VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_private_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -159,7 +159,7 @@ impl VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_rleg_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -173,7 +173,7 @@ impl VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_vlan_sec_fwd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -210,7 +210,7 @@ impl VLAN_MASK_CFG1 {
     }
     #[inline(always)]
     pub fn set_vlan_port_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -226,7 +226,7 @@ impl VMID_CFG {
     }
     #[inline(always)]
     pub fn set_vmid(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }

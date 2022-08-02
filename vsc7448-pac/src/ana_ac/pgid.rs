@@ -54,7 +54,7 @@ impl PGID_CFG1 {
     }
     #[inline(always)]
     pub fn set_port_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl PGID_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_pgid_cpu_copy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -83,7 +83,7 @@ impl PGID_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_pgid_cpu_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -97,7 +97,7 @@ impl PGID_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_stack_type_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;

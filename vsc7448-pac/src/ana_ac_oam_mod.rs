@@ -66,7 +66,7 @@ pub struct PDU_MOD_CFG(pub(super) u32);
 impl PDU_MOD_CFG {
     #[inline(always)]
     pub fn DM_PTP_DOMAIN_CFG(&self, index: u8) -> RegisterAddress<pdu_mod_cfg::DM_PTP_DOMAIN_CFG> {
-        assert!(index < 53);
+        debug_assert!(index < 53);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]

@@ -40,7 +40,7 @@ impl RX_BER_CNT {
     }
     #[inline(always)]
     pub fn set_rx_ber_cnt(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -90,7 +90,7 @@ impl RX_FSET_FIFO_DATA {
     }
     #[inline(always)]
     pub fn set_rx_fset_fifo_data(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         let value = value << 8;
         self.0 &= !0xffffff00;
         self.0 |= value;
@@ -111,7 +111,7 @@ impl RX_FSET_FIFO_STAT {
     }
     #[inline(always)]
     pub fn set_rx_fset_fifo_full(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl RX_FSET_FIFO_STAT {
     }
     #[inline(always)]
     pub fn set_rx_fset_fifo_num(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -143,7 +143,7 @@ impl RX_OSET_FIFO_DATA {
     }
     #[inline(always)]
     pub fn set_rx_oset_fifo_data(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         let value = value << 8;
         self.0 &= !0xffffff00;
         self.0 |= value;
@@ -164,7 +164,7 @@ impl RX_OSET_FIFO_STAT {
     }
     #[inline(always)]
     pub fn set_rx_oset_fifo_full(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -178,7 +178,7 @@ impl RX_OSET_FIFO_STAT {
     }
     #[inline(always)]
     pub fn set_rx_oset_fifo_num(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }

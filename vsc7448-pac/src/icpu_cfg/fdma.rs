@@ -38,7 +38,7 @@ impl FDMA_CH_ACTIVATE {
     }
     #[inline(always)]
     pub fn set_ch_activate(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl FDMA_CH_CFG {
     }
     #[inline(always)]
     pub fn set_ch_inj_grp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -66,7 +66,7 @@ impl FDMA_CH_CFG {
     }
     #[inline(always)]
     pub fn set_ch_prio(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 2;
         self.0 &= !0x3c;
         self.0 |= value;
@@ -78,7 +78,7 @@ impl FDMA_CH_CFG {
     }
     #[inline(always)]
     pub fn set_doneeof_stop_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -89,7 +89,7 @@ impl FDMA_CH_CFG {
     }
     #[inline(always)]
     pub fn set_done_stop_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -101,7 +101,7 @@ impl FDMA_CH_CFG {
     }
     #[inline(always)]
     pub fn set_stat_in_data_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -118,7 +118,7 @@ impl FDMA_CH_CNT {
     }
     #[inline(always)]
     pub fn set_ch_cnt_dcb(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -130,7 +130,7 @@ impl FDMA_CH_CNT {
     }
     #[inline(always)]
     pub fn set_ch_cnt_frm(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -142,7 +142,7 @@ impl FDMA_CH_CNT {
     }
     #[inline(always)]
     pub fn set_ch_cnt_sig(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -158,7 +158,7 @@ impl FDMA_CH_DISABLE {
     }
     #[inline(always)]
     pub fn set_ch_disable(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -174,7 +174,7 @@ impl FDMA_CH_FORCEDIS {
     }
     #[inline(always)]
     pub fn set_ch_forcedis(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -190,7 +190,7 @@ impl FDMA_CH_INJ_TOKEN_CNT {
     }
     #[inline(always)]
     pub fn set_ch_inj_token_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -236,7 +236,7 @@ impl FDMA_CH_SAFE {
     }
     #[inline(always)]
     pub fn set_ch_safe(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -254,7 +254,7 @@ impl FDMA_CH_STAT {
     }
     #[inline(always)]
     pub fn set_ch_stat(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -270,7 +270,7 @@ impl FDMA_CONST {
     }
     #[inline(always)]
     pub fn set_ch_inj_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -282,7 +282,7 @@ impl FDMA_CONST {
     }
     #[inline(always)]
     pub fn set_ch_xtr_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -298,7 +298,7 @@ impl FDMA_DCB_DATAL {
     }
     #[inline(always)]
     pub fn set_datal(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -309,7 +309,7 @@ impl FDMA_DCB_DATAL {
     }
     #[inline(always)]
     pub fn set_token(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -354,7 +354,7 @@ impl FDMA_DCB_LLP_PREV {
     }
     #[inline(always)]
     pub fn set_llp_prev(&mut self, value: u32) {
-        assert!(value <= 0x3fffffff);
+        debug_assert!(value <= 0x3fffffff);
         let value = value << 2;
         self.0 &= !0xfffffffc;
         self.0 |= value;
@@ -373,7 +373,7 @@ impl FDMA_DCB_STAT {
     }
     #[inline(always)]
     pub fn set_abort(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -385,7 +385,7 @@ impl FDMA_DCB_STAT {
     }
     #[inline(always)]
     pub fn set_blockl(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -396,7 +396,7 @@ impl FDMA_DCB_STAT {
     }
     #[inline(always)]
     pub fn set_blocko(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 20;
         self.0 &= !0xfff00000;
         self.0 |= value;
@@ -408,7 +408,7 @@ impl FDMA_DCB_STAT {
     }
     #[inline(always)]
     pub fn set_eof(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -420,7 +420,7 @@ impl FDMA_DCB_STAT {
     }
     #[inline(always)]
     pub fn set_pd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -432,7 +432,7 @@ impl FDMA_DCB_STAT {
     }
     #[inline(always)]
     pub fn set_sof(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -449,7 +449,7 @@ impl FDMA_EVT_ERR {
     }
     #[inline(always)]
     pub fn set_evt_err(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -467,7 +467,7 @@ impl FDMA_EVT_ERR_CODE {
     }
     #[inline(always)]
     pub fn set_evt_err_code(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -485,7 +485,7 @@ impl FDMA_GCFG {
     }
     #[inline(always)]
     pub fn set_inj_rf_wm(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 7;
         self.0 &= !0xf80;
         self.0 |= value;
@@ -497,7 +497,7 @@ impl FDMA_GCFG {
     }
     #[inline(always)]
     pub fn set_pd_ignore(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -508,7 +508,7 @@ impl FDMA_GCFG {
     }
     #[inline(always)]
     pub fn set_xtr_avail_ext_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -520,7 +520,7 @@ impl FDMA_GCFG {
     }
     #[inline(always)]
     pub fn set_xtr_prio_bp_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -534,7 +534,7 @@ impl FDMA_GCFG {
     }
     #[inline(always)]
     pub fn set_xtr_rf_wm(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 3;
         self.0 &= !0x78;
         self.0 |= value;
@@ -551,7 +551,7 @@ impl FDMA_GSTAT {
     }
     #[inline(always)]
     pub fn set_inj_rf_high(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 5;
         self.0 &= !0x7e0;
         self.0 |= value;
@@ -563,7 +563,7 @@ impl FDMA_GSTAT {
     }
     #[inline(always)]
     pub fn set_xtr_rf_high(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -579,7 +579,7 @@ impl FDMA_IDLECNT {
     }
     #[inline(always)]
     pub fn set_idlecnt(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -595,7 +595,7 @@ impl FDMA_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -611,7 +611,7 @@ impl FDMA_INTR_FRM {
     }
     #[inline(always)]
     pub fn set_intr_frm(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -627,7 +627,7 @@ impl FDMA_INTR_FRM_ENA {
     }
     #[inline(always)]
     pub fn set_intr_frm_ena(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -643,7 +643,7 @@ impl FDMA_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -659,7 +659,7 @@ impl FDMA_INTR_LLP {
     }
     #[inline(always)]
     pub fn set_intr_llp(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -675,7 +675,7 @@ impl FDMA_INTR_LLP_ENA {
     }
     #[inline(always)]
     pub fn set_intr_llp_ena(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -691,7 +691,7 @@ impl FDMA_INTR_SIG {
     }
     #[inline(always)]
     pub fn set_intr_sig(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -707,7 +707,7 @@ impl FDMA_INTR_SIG_ENA {
     }
     #[inline(always)]
     pub fn set_intr_sig_ena(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }

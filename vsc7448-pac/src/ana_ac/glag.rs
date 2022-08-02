@@ -40,7 +40,7 @@ impl MBR_CNT_CFG {
     }
     #[inline(always)]
     pub fn set_glag_mbr_cnt(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 16;
         self.0 &= !0x70000;
         self.0 |= value;

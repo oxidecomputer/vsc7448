@@ -56,7 +56,7 @@ impl CAL_CTRL {
     }
     #[inline(always)]
     pub fn set_cal_auto_error(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -67,7 +67,7 @@ impl CAL_CTRL {
     }
     #[inline(always)]
     pub fn set_cal_auto_grant_rate(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 1;
         self.0 &= !0x7fe;
         self.0 |= value;
@@ -81,7 +81,7 @@ impl CAL_CTRL {
     }
     #[inline(always)]
     pub fn set_cal_mode(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 11;
         self.0 &= !0x7800;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl CAL_SEQ {
     }
     #[inline(always)]
     pub fn set_cal_seq_cur_val(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 7;
         self.0 &= !0x1f80;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl CAL_SEQ {
     }
     #[inline(always)]
     pub fn set_cal_seq_len(&mut self, value: u32) {
-        assert!(value <= 0x1ff);
+        debug_assert!(value <= 0x1ff);
         let value = value << 13;
         self.0 &= !0x3fe000;
         self.0 |= value;
@@ -122,7 +122,7 @@ impl CAL_SEQ {
     }
     #[inline(always)]
     pub fn set_cal_seq_pgm_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -133,7 +133,7 @@ impl CAL_SEQ {
     }
     #[inline(always)]
     pub fn set_cal_seq_pgm_val(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 1;
         self.0 &= !0x7e;
         self.0 |= value;

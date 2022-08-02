@@ -38,7 +38,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_def_oam_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_err_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -62,7 +62,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_g8113_1_non_oam_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -74,7 +74,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_ip_profile_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -86,7 +86,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_ip_traffic_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_mep_oam_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_pop_err_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -122,7 +122,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_rsvd_profile_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -134,7 +134,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_rsv_xtr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -146,7 +146,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_segment_oam_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -158,7 +158,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_swap_err_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -170,7 +170,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_lsp_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -182,7 +182,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_no_hw_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -194,7 +194,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_segment_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -206,7 +206,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_vcc1_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -218,7 +218,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_vcc2_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -230,7 +230,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_vcc3_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -242,7 +242,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_mip_vcc4_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -254,7 +254,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_cw_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -266,7 +266,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_err_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -278,7 +278,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -290,7 +290,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_vcc1_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -302,7 +302,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_vcc2_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -314,7 +314,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_vcc3_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -326,7 +326,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_term_pw_vcc4_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -338,7 +338,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_too_few_vld_labels_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -350,7 +350,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_use_tc_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -361,7 +361,7 @@ impl ADV_CL_MPLS_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_mpls_use_ttl_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -378,7 +378,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_cosid_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -390,7 +390,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_dei_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -402,7 +402,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_dp_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -414,7 +414,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_dscp_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -426,7 +426,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_generic_idx_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -438,7 +438,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_hih_force_mode_used_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -450,7 +450,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_hih_key_used_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -462,7 +462,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_isdx_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -474,7 +474,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_map_tbl_idx0_updated_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -486,7 +486,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_map_tbl_idx1_updated_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -498,7 +498,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_masq_inj_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -510,7 +510,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_max_w16_offset_fail_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -522,7 +522,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_nxt_key_type_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -534,7 +534,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_nxt_normalize_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -546,7 +546,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_nxt_offset_too_big_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -557,7 +557,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_nxt_type_cw_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -569,7 +569,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_nxt_type_eth_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -581,7 +581,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_nxt_type_mpls_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -593,7 +593,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_pcp_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -605,7 +605,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_qos_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -617,7 +617,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_vid_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -629,7 +629,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_vlan_popcnt_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -641,7 +641,7 @@ impl ADV_CL_STICKY {
     }
     #[inline(always)]
     pub fn set_adv_cl_vlan_was_tagged_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -660,7 +660,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_ag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -674,7 +674,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_bpdu_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -688,7 +688,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_capture_tpid_dis_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -702,7 +702,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_gxrp_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -716,7 +716,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_igmp_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -730,7 +730,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_ip4_mc_ctrl_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -744,7 +744,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_ip6_hop_by_hop_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -758,7 +758,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_ip6_icmp_hop_by_hop_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -772,7 +772,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_ip6_mc_ctrl_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -786,7 +786,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_mld_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -800,7 +800,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_vrap_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -814,7 +814,7 @@ impl CAT_STICKY {
     }
     #[inline(always)]
     pub fn set_vstax2_ttl_zero_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -833,7 +833,7 @@ impl CLASS_STICKY {
     }
     #[inline(always)]
     pub fn set_dscp_qos_rewr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -847,7 +847,7 @@ impl CLASS_STICKY {
     }
     #[inline(always)]
     pub fn set_dscp_translate_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -861,7 +861,7 @@ impl CLASS_STICKY {
     }
     #[inline(always)]
     pub fn set_qos_default_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -875,7 +875,7 @@ impl CLASS_STICKY {
     }
     #[inline(always)]
     pub fn set_qos_dscp_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -889,7 +889,7 @@ impl CLASS_STICKY {
     }
     #[inline(always)]
     pub fn set_qos_pcp_dei_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -903,7 +903,7 @@ impl CLASS_STICKY {
     }
     #[inline(always)]
     pub fn set_qos_stack_tag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -916,7 +916,7 @@ impl CLASS_STICKY {
     }
     #[inline(always)]
     pub fn set_vid_port_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -930,7 +930,7 @@ impl CLASS_STICKY {
     }
     #[inline(always)]
     pub fn set_vid_stack_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -944,7 +944,7 @@ impl CLASS_STICKY {
     }
     #[inline(always)]
     pub fn set_vid_tag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -963,7 +963,7 @@ impl FILTER_STICKY {
     }
     #[inline(always)]
     pub fn set_bad_macs_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -976,7 +976,7 @@ impl FILTER_STICKY {
     }
     #[inline(always)]
     pub fn set_stacking_filter_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -995,7 +995,7 @@ impl IP_HDR_CHK_STICKY {
     }
     #[inline(always)]
     pub fn set_ip4_chksum_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1008,7 +1008,7 @@ impl IP_HDR_CHK_STICKY {
     }
     #[inline(always)]
     pub fn set_ip4_fragment_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1022,7 +1022,7 @@ impl IP_HDR_CHK_STICKY {
     }
     #[inline(always)]
     pub fn set_ip4_len_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1036,7 +1036,7 @@ impl IP_HDR_CHK_STICKY {
     }
     #[inline(always)]
     pub fn set_ip_options_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1053,7 +1053,7 @@ impl MIP_STICKY {
     }
     #[inline(always)]
     pub fn set_mip_ccm_copy_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1064,7 +1064,7 @@ impl MIP_STICKY {
     }
     #[inline(always)]
     pub fn set_mip_generic_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -1076,7 +1076,7 @@ impl MIP_STICKY {
     }
     #[inline(always)]
     pub fn set_mip_lbm_da_chk_fail_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -1088,7 +1088,7 @@ impl MIP_STICKY {
     }
     #[inline(always)]
     pub fn set_mip_lbm_redir_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1100,7 +1100,7 @@ impl MIP_STICKY {
     }
     #[inline(always)]
     pub fn set_mip_ltm_redir_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1112,7 +1112,7 @@ impl MIP_STICKY {
     }
     #[inline(always)]
     pub fn set_mip_mel_chk_fail_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -1124,7 +1124,7 @@ impl MIP_STICKY {
     }
     #[inline(always)]
     pub fn set_mip_raps_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1145,7 +1145,7 @@ impl VLAN_FILTER_STICKY {
     }
     #[inline(always)]
     pub fn set_filter_ctag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1159,7 +1159,7 @@ impl VLAN_FILTER_STICKY {
     }
     #[inline(always)]
     pub fn set_filter_prio_ctag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1173,7 +1173,7 @@ impl VLAN_FILTER_STICKY {
     }
     #[inline(always)]
     pub fn set_filter_prio_stag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1187,7 +1187,7 @@ impl VLAN_FILTER_STICKY {
     }
     #[inline(always)]
     pub fn set_filter_required_tag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -1201,7 +1201,7 @@ impl VLAN_FILTER_STICKY {
     }
     #[inline(always)]
     pub fn set_filter_stag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

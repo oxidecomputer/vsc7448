@@ -96,7 +96,7 @@ impl CELL_BUS_STICKY {
     }
     #[inline(always)]
     pub fn set_cell_bus_missing_eof_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -109,7 +109,7 @@ impl CELL_BUS_STICKY {
     }
     #[inline(always)]
     pub fn set_cell_bus_missing_sof_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -130,7 +130,7 @@ impl PRE_CNT_OFLW_STICKY {
     }
     #[inline(always)]
     pub fn set_pre_cnt_oflw_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;

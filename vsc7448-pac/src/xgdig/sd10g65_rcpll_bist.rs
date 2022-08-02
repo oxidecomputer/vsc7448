@@ -40,7 +40,7 @@ impl SD10G65_RCPLL_BIST_CFG0 {
     }
     #[inline(always)]
     pub fn set_pllb_comp_uncert(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 4;
         self.0 &= !0xff0;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl SD10G65_RCPLL_BIST_CFG0 {
     }
     #[inline(always)]
     pub fn set_pllb_freq_devi(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -64,7 +64,7 @@ impl SD10G65_RCPLL_BIST_CFG0 {
     }
     #[inline(always)]
     pub fn set_pllb_inc_dec_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 2;
         self.0 &= !0xc;
         self.0 |= value;
@@ -76,7 +76,7 @@ impl SD10G65_RCPLL_BIST_CFG0 {
     }
     #[inline(always)]
     pub fn set_pllb_start_bist(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -94,7 +94,7 @@ impl SD10G65_RCPLL_BIST_CFG1 {
     }
     #[inline(always)]
     pub fn set_pllb_div_factor_pre(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -105,7 +105,7 @@ impl SD10G65_RCPLL_BIST_CFG1 {
     }
     #[inline(always)]
     pub fn set_pllb_lock_repeat(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 20;
         self.0 &= !0xf00000;
         self.0 |= value;
@@ -117,7 +117,7 @@ impl SD10G65_RCPLL_BIST_CFG1 {
     }
     #[inline(always)]
     pub fn set_pllb_lock_uncert(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -136,7 +136,7 @@ impl SD10G65_RCPLL_BIST_CFG2 {
     }
     #[inline(always)]
     pub fn set_pllb_div_factor_m(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -154,7 +154,7 @@ impl SD10G65_RCPLL_BIST_CFG3 {
     }
     #[inline(always)]
     pub fn set_pllb_div_factor_n(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -172,7 +172,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_busy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -184,7 +184,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_done_n(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -196,7 +196,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_fail(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -207,7 +207,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_phase_lock(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -219,7 +219,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_pll_cnt_high(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         let value = value << 16;
         self.0 &= !0x7ff0000;
         self.0 |= value;
@@ -231,7 +231,7 @@ impl SD10G65_RCPLL_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_pll_cnt_low(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         let value = value << 5;
         self.0 &= !0xffe0;
         self.0 |= value;
@@ -250,7 +250,7 @@ impl SD10G65_RCPLL_BIST_STAT1 {
     }
     #[inline(always)]
     pub fn set_pllb_phase_diff(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -268,7 +268,7 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
     }
     #[inline(always)]
     pub fn set_pllb_clock_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -279,7 +279,7 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
     }
     #[inline(always)]
     pub fn set_pllb_meas_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -291,7 +291,7 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
     }
     #[inline(always)]
     pub fn set_pllb_sel125clk(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -303,7 +303,7 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
     }
     #[inline(always)]
     pub fn set_pllb_spi_base_addr(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -315,7 +315,7 @@ impl SD10G65_RX_RCPLL_BIST_CFG4 {
     }
     #[inline(always)]
     pub fn set_pllb_start_meas(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;

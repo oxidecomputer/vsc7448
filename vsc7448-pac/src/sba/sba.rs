@@ -42,7 +42,7 @@ impl DFT_MST {
     }
     #[inline(always)]
     pub fn set_dft_mst(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -58,7 +58,7 @@ impl EBT {
     }
     #[inline(always)]
     pub fn set_ebt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -74,7 +74,7 @@ impl EBT_COUNT {
     }
     #[inline(always)]
     pub fn set_ebt_count(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -92,7 +92,7 @@ impl EBT_EN {
     }
     #[inline(always)]
     pub fn set_ebt_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -110,7 +110,7 @@ impl PL_CPU {
     }
     #[inline(always)]
     pub fn set_pl1(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -126,7 +126,7 @@ impl PL_CSR {
     }
     #[inline(always)]
     pub fn set_pl3(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -142,7 +142,7 @@ impl PL_PCIE {
     }
     #[inline(always)]
     pub fn set_pl2(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -171,7 +171,7 @@ impl WT_CPU {
     }
     #[inline(always)]
     pub fn set_wt_cl1(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -187,7 +187,7 @@ impl WT_CSR {
     }
     #[inline(always)]
     pub fn set_wt_cl3(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -205,7 +205,7 @@ impl WT_EN {
     }
     #[inline(always)]
     pub fn set_wt_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -221,7 +221,7 @@ impl WT_PCIE {
     }
     #[inline(always)]
     pub fn set_wt_cl2(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -237,7 +237,7 @@ impl WT_TCL {
     }
     #[inline(always)]
     pub fn set_wt_tcl(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

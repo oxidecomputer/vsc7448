@@ -42,7 +42,7 @@ impl POL_PORT_RATE_CFG {
     }
     #[inline(always)]
     pub fn set_port_rate(&mut self, value: u32) {
-        assert!(value <= 0x7ffff);
+        debug_assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;
     }
@@ -62,7 +62,7 @@ impl POL_PORT_THRES_CFG_0 {
     }
     #[inline(always)]
     pub fn set_port_thres0(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -82,7 +82,7 @@ impl POL_PORT_THRES_CFG_1 {
     }
     #[inline(always)]
     pub fn set_port_thres1(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }

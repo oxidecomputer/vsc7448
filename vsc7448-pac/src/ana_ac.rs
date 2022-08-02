@@ -192,7 +192,7 @@ impl PS_COMMON {
     }
     #[inline(always)]
     pub fn VSTAX_CTRL(&self, index: u8) -> RegisterAddress<ps_common::VSTAX_CTRL> {
-        assert!(index < 53);
+        debug_assert!(index < 53);
         RegisterAddress::new(self.0 + 0x30 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -263,12 +263,12 @@ pub struct STAT_CNT_CFG_ACL(pub(super) u32);
 impl STAT_CNT_CFG_ACL {
     #[inline(always)]
     pub fn STAT_LSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_acl::STAT_LSB_CNT> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_MSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_acl::STAT_MSB_CNT> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
 }
@@ -278,12 +278,12 @@ pub struct STAT_CNT_CFG_BDLB(pub(super) u32);
 impl STAT_CNT_CFG_BDLB {
     #[inline(always)]
     pub fn STAT_LSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_bdlb::STAT_LSB_CNT> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_MSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_bdlb::STAT_MSB_CNT> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
 }
@@ -293,12 +293,12 @@ pub struct STAT_CNT_CFG_BUM(pub(super) u32);
 impl STAT_CNT_CFG_BUM {
     #[inline(always)]
     pub fn STAT_LSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_bum::STAT_LSB_CNT> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_MSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_bum::STAT_MSB_CNT> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
 }
@@ -308,12 +308,12 @@ pub struct STAT_CNT_CFG_ERLEG(pub(super) u32);
 impl STAT_CNT_CFG_ERLEG {
     #[inline(always)]
     pub fn STAT_LSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_erleg::STAT_LSB_CNT> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_MSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_erleg::STAT_MSB_CNT> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
 }
@@ -323,12 +323,12 @@ pub struct STAT_CNT_CFG_IRLEG(pub(super) u32);
 impl STAT_CNT_CFG_IRLEG {
     #[inline(always)]
     pub fn STAT_LSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_irleg::STAT_LSB_CNT> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_MSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_irleg::STAT_MSB_CNT> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
 }
@@ -338,12 +338,12 @@ pub struct STAT_CNT_CFG_ISDX(pub(super) u32);
 impl STAT_CNT_CFG_ISDX {
     #[inline(always)]
     pub fn STAT_LSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_isdx::STAT_LSB_CNT> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_MSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_isdx::STAT_MSB_CNT> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
 }
@@ -353,7 +353,7 @@ pub struct STAT_CNT_CFG_PORT(pub(super) u32);
 impl STAT_CNT_CFG_PORT {
     #[inline(always)]
     pub fn STAT_CFG(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_port::STAT_CFG> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -362,12 +362,12 @@ impl STAT_CNT_CFG_PORT {
     }
     #[inline(always)]
     pub fn STAT_LSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_port::STAT_LSB_CNT> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x14 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_MSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_port::STAT_MSB_CNT> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x24 + u32::from(index) * 0x4)
     }
 }
@@ -377,12 +377,12 @@ pub struct STAT_CNT_CFG_QUEUE(pub(super) u32);
 impl STAT_CNT_CFG_QUEUE {
     #[inline(always)]
     pub fn STAT_LSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_queue::STAT_LSB_CNT> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn STAT_MSB_CNT(&self, index: u8) -> RegisterAddress<stat_cnt_cfg_queue::STAT_MSB_CNT> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
 }
@@ -395,7 +395,7 @@ impl STAT_GLOBAL_CFG_ACL {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_acl::GLOBAL_CNT_FRM_TYPE_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -403,7 +403,7 @@ impl STAT_GLOBAL_CFG_ACL {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_acl::STAT_GLOBAL_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -411,7 +411,7 @@ impl STAT_GLOBAL_CFG_ACL {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_acl::STAT_GLOBAL_EVENT_MASK> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
 }
@@ -424,7 +424,7 @@ impl STAT_GLOBAL_CFG_BDLB {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_bdlb::GLOBAL_CNT_FRM_TYPE_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -432,7 +432,7 @@ impl STAT_GLOBAL_CFG_BDLB {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_bdlb::STAT_GLOBAL_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -440,7 +440,7 @@ impl STAT_GLOBAL_CFG_BDLB {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_bdlb::STAT_GLOBAL_EVENT_MASK> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
 }
@@ -453,7 +453,7 @@ impl STAT_GLOBAL_CFG_BUM {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_bum::GLOBAL_CNT_FRM_TYPE_CFG> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -461,7 +461,7 @@ impl STAT_GLOBAL_CFG_BUM {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_bum::STAT_GLOBAL_CFG> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -469,7 +469,7 @@ impl STAT_GLOBAL_CFG_BUM {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_bum::STAT_GLOBAL_EVENT_MASK> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x30 + u32::from(index) * 0x4)
     }
 }
@@ -482,7 +482,7 @@ impl STAT_GLOBAL_CFG_ERLEG {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_erleg::GLOBAL_CNT_FRM_TYPE_CFG> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -490,7 +490,7 @@ impl STAT_GLOBAL_CFG_ERLEG {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_erleg::STAT_GLOBAL_CFG> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -498,7 +498,7 @@ impl STAT_GLOBAL_CFG_ERLEG {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_erleg::STAT_GLOBAL_EVENT_MASK> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x40 + u32::from(index) * 0x4)
     }
 }
@@ -511,7 +511,7 @@ impl STAT_GLOBAL_CFG_IRLEG {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_irleg::GLOBAL_CNT_FRM_TYPE_CFG> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -519,7 +519,7 @@ impl STAT_GLOBAL_CFG_IRLEG {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_irleg::STAT_GLOBAL_CFG> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -527,7 +527,7 @@ impl STAT_GLOBAL_CFG_IRLEG {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_irleg::STAT_GLOBAL_EVENT_MASK> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x40 + u32::from(index) * 0x4)
     }
 }
@@ -540,7 +540,7 @@ impl STAT_GLOBAL_CFG_ISDX {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_isdx::GLOBAL_CNT_FRM_TYPE_CFG> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -548,7 +548,7 @@ impl STAT_GLOBAL_CFG_ISDX {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_isdx::STAT_GLOBAL_CFG> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -556,7 +556,7 @@ impl STAT_GLOBAL_CFG_ISDX {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_isdx::STAT_GLOBAL_EVENT_MASK> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x30 + u32::from(index) * 0x4)
     }
 }
@@ -569,7 +569,7 @@ impl STAT_GLOBAL_CFG_PORT {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_port::STAT_GLOBAL_EVENT_MASK> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -586,7 +586,7 @@ impl STAT_GLOBAL_CFG_QUEUE {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_queue::GLOBAL_CNT_FRM_TYPE_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -594,7 +594,7 @@ impl STAT_GLOBAL_CFG_QUEUE {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_queue::STAT_GLOBAL_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -602,7 +602,7 @@ impl STAT_GLOBAL_CFG_QUEUE {
         &self,
         index: u8,
     ) -> RegisterAddress<stat_global_cfg_queue::STAT_GLOBAL_EVENT_MASK> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
 }

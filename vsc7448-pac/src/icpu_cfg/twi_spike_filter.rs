@@ -38,7 +38,7 @@ impl TWI_SPIKE_FILTER_CFG {
     }
     #[inline(always)]
     pub fn set_spike_filter_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }

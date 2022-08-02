@@ -40,7 +40,7 @@ impl L3_LPM_REMAP_STICKY {
     }
     #[inline(always)]
     pub fn set_lpm_ip4mc_found_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -51,7 +51,7 @@ impl L3_LPM_REMAP_STICKY {
     }
     #[inline(always)]
     pub fn set_lpm_ip4uc_found_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -63,7 +63,7 @@ impl L3_LPM_REMAP_STICKY {
     }
     #[inline(always)]
     pub fn set_lpm_ip6mc_found_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -75,7 +75,7 @@ impl L3_LPM_REMAP_STICKY {
     }
     #[inline(always)]
     pub fn set_lpm_ip6uc_found_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -87,7 +87,7 @@ impl L3_LPM_REMAP_STICKY {
     }
     #[inline(always)]
     pub fn set_secur_ip4_lpm_found_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -99,7 +99,7 @@ impl L3_LPM_REMAP_STICKY {
     }
     #[inline(always)]
     pub fn set_secur_ip6_lpm_found_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;

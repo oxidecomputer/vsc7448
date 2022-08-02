@@ -57,7 +57,7 @@ impl CPU_SYSTEM_CTRL {
     }
     #[inline(always)]
     pub fn GPR(&self, index: u8) -> RegisterAddress<cpu_system_ctrl::GPR> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -75,12 +75,12 @@ impl FDMA {
     }
     #[inline(always)]
     pub fn FDMA_CH_CFG(&self, index: u8) -> RegisterAddress<fdma::FDMA_CH_CFG> {
-        assert!(index < 10);
+        debug_assert!(index < 10);
         RegisterAddress::new(self.0 + 0x18c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn FDMA_CH_CNT(&self, index: u8) -> RegisterAddress<fdma::FDMA_CH_CNT> {
-        assert!(index < 10);
+        debug_assert!(index < 10);
         RegisterAddress::new(self.0 + 0xdc + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -93,7 +93,7 @@ impl FDMA {
     }
     #[inline(always)]
     pub fn FDMA_CH_INJ_TOKEN_CNT(&self, index: u8) -> RegisterAddress<fdma::FDMA_CH_INJ_TOKEN_CNT> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x104 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -101,7 +101,7 @@ impl FDMA {
         &self,
         index: u8,
     ) -> RegisterAddress<fdma::FDMA_CH_INJ_TOKEN_TICK_CNT> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x144 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -109,7 +109,7 @@ impl FDMA {
         &self,
         index: u8,
     ) -> RegisterAddress<fdma::FDMA_CH_INJ_TOKEN_TICK_RLD> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x124 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -126,27 +126,27 @@ impl FDMA {
     }
     #[inline(always)]
     pub fn FDMA_DCB_DATAL(&self, index: u8) -> RegisterAddress<fdma::FDMA_DCB_DATAL> {
-        assert!(index < 10);
+        debug_assert!(index < 10);
         RegisterAddress::new(self.0 + 0x50 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn FDMA_DCB_DATAP(&self, index: u8) -> RegisterAddress<fdma::FDMA_DCB_DATAP> {
-        assert!(index < 10);
+        debug_assert!(index < 10);
         RegisterAddress::new(self.0 + 0x28 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn FDMA_DCB_LLP(&self, index: u8) -> RegisterAddress<fdma::FDMA_DCB_LLP> {
-        assert!(index < 10);
+        debug_assert!(index < 10);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn FDMA_DCB_LLP_PREV(&self, index: u8) -> RegisterAddress<fdma::FDMA_DCB_LLP_PREV> {
-        assert!(index < 10);
+        debug_assert!(index < 10);
         RegisterAddress::new(self.0 + 0xa0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn FDMA_DCB_STAT(&self, index: u8) -> RegisterAddress<fdma::FDMA_DCB_STAT> {
-        assert!(index < 10);
+        debug_assert!(index < 10);
         RegisterAddress::new(self.0 + 0x78 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -256,22 +256,22 @@ impl INTR {
     }
     #[inline(always)]
     pub fn DEV_INTR_TRIGGER(&self, index: u8) -> RegisterAddress<intr::DEV_INTR_TRIGGER> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x64 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn DEV_INTR_TRIGGER1(&self, index: u8) -> RegisterAddress<intr::DEV_INTR_TRIGGER1> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x6c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn DST_INTR_IDENT(&self, index: u8) -> RegisterAddress<intr::DST_INTR_IDENT> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x38 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn DST_INTR_MAP(&self, index: u8) -> RegisterAddress<intr::DST_INTR_MAP> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x28 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -320,7 +320,7 @@ impl INTR {
     }
     #[inline(always)]
     pub fn INTR_TRIGGER(&self, index: u8) -> RegisterAddress<intr::INTR_TRIGGER> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
 }
@@ -334,7 +334,7 @@ impl MANUAL_XTRINJ {
     }
     #[inline(always)]
     pub fn MANUAL_INJ(&self, index: u16) -> RegisterAddress<manual_xtrinj::MANUAL_INJ> {
-        assert!(index < 4096);
+        debug_assert!(index < 4096);
         RegisterAddress::new(self.0 + 0x4000 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -347,7 +347,7 @@ impl MANUAL_XTRINJ {
     }
     #[inline(always)]
     pub fn MANUAL_XTR(&self, index: u16) -> RegisterAddress<manual_xtrinj::MANUAL_XTR> {
-        assert!(index < 4096);
+        debug_assert!(index < 4096);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
@@ -369,12 +369,12 @@ impl MEMCTRL {
     }
     #[inline(always)]
     pub fn MEMCTRL_DQS_AUTO(&self, index: u8) -> RegisterAddress<memctrl::MEMCTRL_DQS_AUTO> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x48 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn MEMCTRL_DQS_DLY(&self, index: u8) -> RegisterAddress<memctrl::MEMCTRL_DQS_DLY> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x40 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -439,17 +439,17 @@ impl MEMCTRL {
     }
     #[inline(always)]
     pub fn MEMPHY_DLLCFG0(&self, index: u8) -> RegisterAddress<memctrl::MEMPHY_DLLCFG0> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x58 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn MEMPHY_DLLCFG1(&self, index: u8) -> RegisterAddress<memctrl::MEMPHY_DLLCFG1> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x64 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn MEMPHY_DQ_DLY_TRM(&self, index: u8) -> RegisterAddress<memctrl::MEMPHY_DQ_DLY_TRM> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x70 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -564,7 +564,7 @@ impl PCIE {
     }
     #[inline(always)]
     pub fn PCIE_INTR_CFG(&self, index: u8) -> RegisterAddress<pcie::PCIE_INTR_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x48 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -581,7 +581,7 @@ impl PCIE {
     }
     #[inline(always)]
     pub fn PCIE_INTR_STAT(&self, index: u8) -> RegisterAddress<pcie::PCIE_INTR_STAT> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x50 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -620,7 +620,7 @@ impl SPI_MST {
     }
     #[inline(always)]
     pub fn SPI_MST_STATUS(&self, index: u8) -> RegisterAddress<spi_mst::SPI_MST_STATUS> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -634,12 +634,12 @@ pub struct TIMERS(pub(super) u32);
 impl TIMERS {
     #[inline(always)]
     pub fn TIMER_CTRL(&self, index: u8) -> RegisterAddress<timers::TIMER_CTRL> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn TIMER_RELOAD_VALUE(&self, index: u8) -> RegisterAddress<timers::TIMER_RELOAD_VALUE> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x14 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -648,7 +648,7 @@ impl TIMERS {
     }
     #[inline(always)]
     pub fn TIMER_VALUE(&self, index: u8) -> RegisterAddress<timers::TIMER_VALUE> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]

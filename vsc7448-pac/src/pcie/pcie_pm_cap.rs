@@ -37,7 +37,7 @@ impl CAP_ID_NXT_PTR {
     }
     #[inline(always)]
     pub fn set_aux_curr(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 22;
         self.0 &= !0x1c00000;
         self.0 |= value;
@@ -48,7 +48,7 @@ impl CAP_ID_NXT_PTR {
     }
     #[inline(always)]
     pub fn set_d1_support(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -59,7 +59,7 @@ impl CAP_ID_NXT_PTR {
     }
     #[inline(always)]
     pub fn set_d2_support(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl CAP_ID_NXT_PTR {
     }
     #[inline(always)]
     pub fn set_dsi(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -81,7 +81,7 @@ impl CAP_ID_NXT_PTR {
     }
     #[inline(always)]
     pub fn set_pme_clk(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -92,7 +92,7 @@ impl CAP_ID_NXT_PTR {
     }
     #[inline(always)]
     pub fn set_pme_support(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 27;
         self.0 &= !0xf8000000;
         self.0 |= value;
@@ -103,7 +103,7 @@ impl CAP_ID_NXT_PTR {
     }
     #[inline(always)]
     pub fn set_pm_cap_id(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -113,7 +113,7 @@ impl CAP_ID_NXT_PTR {
     }
     #[inline(always)]
     pub fn set_pm_next_pointer(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -124,7 +124,7 @@ impl CAP_ID_NXT_PTR {
     }
     #[inline(always)]
     pub fn set_pm_spec_ver(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 16;
         self.0 &= !0x70000;
         self.0 |= value;
@@ -140,7 +140,7 @@ impl CON_STATUS {
     }
     #[inline(always)]
     pub fn set_b2_b3_support(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -151,7 +151,7 @@ impl CON_STATUS {
     }
     #[inline(always)]
     pub fn set_bus_pwr_clk_con_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -162,7 +162,7 @@ impl CON_STATUS {
     }
     #[inline(always)]
     pub fn set_data_reg_add_info(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -173,7 +173,7 @@ impl CON_STATUS {
     }
     #[inline(always)]
     pub fn set_data_scale(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 13;
         self.0 &= !0x6000;
         self.0 |= value;
@@ -184,7 +184,7 @@ impl CON_STATUS {
     }
     #[inline(always)]
     pub fn set_data_select(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 9;
         self.0 &= !0x1e00;
         self.0 |= value;
@@ -195,7 +195,7 @@ impl CON_STATUS {
     }
     #[inline(always)]
     pub fn set_no_soft_rst(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -206,7 +206,7 @@ impl CON_STATUS {
     }
     #[inline(always)]
     pub fn set_pme_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -217,7 +217,7 @@ impl CON_STATUS {
     }
     #[inline(always)]
     pub fn set_pme_status(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -228,7 +228,7 @@ impl CON_STATUS {
     }
     #[inline(always)]
     pub fn set_power_state(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }

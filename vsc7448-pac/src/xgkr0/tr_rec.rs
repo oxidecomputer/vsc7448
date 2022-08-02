@@ -38,7 +38,7 @@ impl TR_C0_DME_REC {
     }
     #[inline(always)]
     pub fn set_c0_dme_rec(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl TR_C0_LIM_REC {
     }
     #[inline(always)]
     pub fn set_c0_max_rec(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 8;
         self.0 &= !0x7f00;
         self.0 |= value;
@@ -66,7 +66,7 @@ impl TR_C0_LIM_REC {
     }
     #[inline(always)]
     pub fn set_c0_min_rec(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -82,7 +82,7 @@ impl TR_CM_DME_REC {
     }
     #[inline(always)]
     pub fn set_cm_dme_rec(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -98,7 +98,7 @@ impl TR_CM_LIM_REC {
     }
     #[inline(always)]
     pub fn set_cm_max_rec(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 8;
         self.0 &= !0x7f00;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl TR_CM_LIM_REC {
     }
     #[inline(always)]
     pub fn set_cm_min_rec(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -126,7 +126,7 @@ impl TR_CP_DME_REC {
     }
     #[inline(always)]
     pub fn set_cp_dme_rec(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -142,7 +142,7 @@ impl TR_CP_LIM_REC {
     }
     #[inline(always)]
     pub fn set_cp_max_rec(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 8;
         self.0 &= !0x7f00;
         self.0 |= value;
@@ -154,7 +154,7 @@ impl TR_CP_LIM_REC {
     }
     #[inline(always)]
     pub fn set_cp_min_rec(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }

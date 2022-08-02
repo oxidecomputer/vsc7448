@@ -38,7 +38,7 @@ impl MIIM_SLAVE_CFG {
     }
     #[inline(always)]
     pub fn set_spike_filter_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 1;
         self.0 &= !0x3e;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl MIIM_SLAVE_CFG {
     }
     #[inline(always)]
     pub fn set_spike_filter_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

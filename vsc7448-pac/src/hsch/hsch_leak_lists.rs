@@ -38,7 +38,7 @@ impl HSCH_LEAK_CFG {
     }
     #[inline(always)]
     pub fn set_leak_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -49,7 +49,7 @@ impl HSCH_LEAK_CFG {
     }
     #[inline(always)]
     pub fn set_leak_first(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         let value = value << 1;
         self.0 &= !0xfffe;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl HSCH_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_leak_time(&mut self, value: u32) {
-        assert!(value <= 0x3ffff);
+        debug_assert!(value <= 0x3ffff);
         self.0 &= !0x3ffff;
         self.0 |= value;
     }

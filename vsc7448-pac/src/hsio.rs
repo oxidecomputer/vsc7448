@@ -63,7 +63,7 @@ impl HW_CFGSTAT {
     }
     #[inline(always)]
     pub fn HW_QSGMII_STAT(&self, index: u8) -> RegisterAddress<hw_cfgstat::HW_QSGMII_STAT> {
-        assert!(index < 12);
+        debug_assert!(index < 12);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
 }
@@ -431,7 +431,7 @@ pub struct SYNC_ETH_CFG(pub(super) u32);
 impl SYNC_ETH_CFG {
     #[inline(always)]
     pub fn SYNC_ETH_CFG(&self, index: u8) -> RegisterAddress<sync_eth_cfg::SYNC_ETH_CFG> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -443,7 +443,7 @@ impl SYNC_ETH_CFG {
         &self,
         index: u8,
     ) -> RegisterAddress<sync_eth_cfg::SYNC_ETH_SD10G_CFG> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x14 + u32::from(index) * 0x4)
     }
 }

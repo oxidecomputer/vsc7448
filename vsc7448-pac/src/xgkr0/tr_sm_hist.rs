@@ -38,7 +38,7 @@ impl HIST_LSW {
     }
     #[inline(always)]
     pub fn set_lptsm_hist_lsw(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl HIST_MSW {
     }
     #[inline(always)]
     pub fn set_lptsm_hist_msw(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -65,7 +65,7 @@ impl HIST_MSW {
     }
     #[inline(always)]
     pub fn set_sm_hist(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 4;
         self.0 &= !0x7f0;
         self.0 |= value;

@@ -36,7 +36,7 @@ impl MAC_SERDES_PCS_CONTROL {
     }
     #[inline(always)]
     pub fn set_aneg_ena(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -47,7 +47,7 @@ impl MAC_SERDES_PCS_CONTROL {
     }
     #[inline(always)]
     pub fn set_fast_link_status_ena(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -58,7 +58,7 @@ impl MAC_SERDES_PCS_CONTROL {
     }
     #[inline(always)]
     pub fn set_force_adv_ability(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -69,7 +69,7 @@ impl MAC_SERDES_PCS_CONTROL {
     }
     #[inline(always)]
     pub fn set_inhibit_mac_odd_start_delay(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -80,7 +80,7 @@ impl MAC_SERDES_PCS_CONTROL {
     }
     #[inline(always)]
     pub fn set_inv_polarity_at_input(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -91,7 +91,7 @@ impl MAC_SERDES_PCS_CONTROL {
     }
     #[inline(always)]
     pub fn set_inv_polarity_at_output(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -102,7 +102,7 @@ impl MAC_SERDES_PCS_CONTROL {
     }
     #[inline(always)]
     pub fn set_mac_if_pd_ena(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -113,7 +113,7 @@ impl MAC_SERDES_PCS_CONTROL {
     }
     #[inline(always)]
     pub fn set_sgmii_output_preamble(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -128,7 +128,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_mac_aneg_complete(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -139,7 +139,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_mac_cgbad(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -150,7 +150,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_mac_fdx_adv(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -161,7 +161,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_mac_hdx_adv(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -172,7 +172,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_mac_link_status(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -183,7 +183,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_mac_lp_aneg_capable(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -194,7 +194,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_mac_lp_aneg_restart(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -205,7 +205,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_mac_pcs_sig_detect(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -215,7 +215,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_mac_sync_fail(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -226,7 +226,7 @@ impl MAC_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_sgmii_align_error(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -247,7 +247,7 @@ impl MEDIA_SERDES_TX_GOOD_PACKET_COUNTER {
     }
     #[inline(always)]
     pub fn set_active(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -258,7 +258,7 @@ impl MEDIA_SERDES_TX_GOOD_PACKET_COUNTER {
     }
     #[inline(always)]
     pub fn set_cnt(&mut self, value: u16) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
     }
@@ -272,7 +272,7 @@ impl MEDIA_SERDES_TX_CRC_ERROR_COUNTER {
     }
     #[inline(always)]
     pub fn set_cnt(&mut self, value: u16) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -282,7 +282,7 @@ impl MEDIA_SERDES_TX_CRC_ERROR_COUNTER {
     }
     #[inline(always)]
     pub fn set_tx_preamble_fix(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -293,7 +293,7 @@ impl MEDIA_SERDES_TX_CRC_ERROR_COUNTER {
     }
     #[inline(always)]
     pub fn set_tx_select(&mut self, value: u16) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -310,7 +310,7 @@ impl MEDIA_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_100basefx_proto_xfer_link_status(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -321,7 +321,7 @@ impl MEDIA_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_10mb_link_status(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -332,7 +332,7 @@ impl MEDIA_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_lp_aneg_cap(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -343,7 +343,7 @@ impl MEDIA_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_lp_full_duplex(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -354,7 +354,7 @@ impl MEDIA_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_lp_half_duplex(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -365,7 +365,7 @@ impl MEDIA_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_media_aneg_complete(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -376,7 +376,7 @@ impl MEDIA_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_media_link_status(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -387,7 +387,7 @@ impl MEDIA_SERDES_PCS_STATUS {
     }
     #[inline(always)]
     pub fn set_media_sig_det(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -403,7 +403,7 @@ impl MEDIA_SERDES_STATUS {
     }
     #[inline(always)]
     pub fn set_100fx_fefi_detect(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -414,7 +414,7 @@ impl MEDIA_SERDES_STATUS {
     }
     #[inline(always)]
     pub fn set_100fx_hls_detect(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -425,7 +425,7 @@ impl MEDIA_SERDES_STATUS {
     }
     #[inline(always)]
     pub fn set_comma_detect(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -436,7 +436,7 @@ impl MEDIA_SERDES_STATUS {
     }
     #[inline(always)]
     pub fn set_comma_realign(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -447,7 +447,7 @@ impl MEDIA_SERDES_STATUS {
     }
     #[inline(always)]
     pub fn set_fiber_serdes_freq(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -458,7 +458,7 @@ impl MEDIA_SERDES_STATUS {
     }
     #[inline(always)]
     pub fn set_sig_detect(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -473,7 +473,7 @@ impl MEDIA_MAC_SERDES_RX_GOOD_COUNTER {
     }
     #[inline(always)]
     pub fn set_cnt(&mut self, value: u16) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
     }

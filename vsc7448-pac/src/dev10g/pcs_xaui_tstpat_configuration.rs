@@ -42,7 +42,7 @@ impl PCS_XAUI_TSTPAT_CFG {
     }
     #[inline(always)]
     pub fn set_freeze_err_cnt_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl PCS_XAUI_TSTPAT_CFG {
     }
     #[inline(always)]
     pub fn set_vt_chk_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl PCS_XAUI_TSTPAT_CFG {
     }
     #[inline(always)]
     pub fn set_vt_chk_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl PCS_XAUI_TSTPAT_CFG {
     }
     #[inline(always)]
     pub fn set_vt_gen_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl PCS_XAUI_TSTPAT_CFG {
     }
     #[inline(always)]
     pub fn set_vt_gen_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }

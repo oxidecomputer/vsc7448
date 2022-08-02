@@ -42,7 +42,7 @@ impl AUTOAGE_CFG {
     }
     #[inline(always)]
     pub fn set_period_val(&mut self, value: u32) {
-        assert!(value <= 0xfffffff);
+        debug_assert!(value <= 0xfffffff);
         self.0 &= !0xfffffff;
         self.0 |= value;
     }
@@ -55,7 +55,7 @@ impl AUTOAGE_CFG {
     }
     #[inline(always)]
     pub fn set_unit_size(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 28;
         self.0 &= !0x30000000;
         self.0 |= value;
@@ -74,7 +74,7 @@ impl AUTOAGE_CFG_1 {
     }
     #[inline(always)]
     pub fn set_cells_between_entry_scan(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 15;
         self.0 &= !0x1ff8000;
         self.0 |= value;
@@ -88,7 +88,7 @@ impl AUTOAGE_CFG_1 {
     }
     #[inline(always)]
     pub fn set_clk_period_01ns(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 7;
         self.0 &= !0x7f80;
         self.0 |= value;
@@ -102,7 +102,7 @@ impl AUTOAGE_CFG_1 {
     }
     #[inline(always)]
     pub fn set_force_hw_scan_shot(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 2;
         self.0 &= !0x3c;
         self.0 |= value;
@@ -116,7 +116,7 @@ impl AUTOAGE_CFG_1 {
     }
     #[inline(always)]
     pub fn set_force_hw_scan_stop_shot(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -130,7 +130,7 @@ impl AUTOAGE_CFG_1 {
     }
     #[inline(always)]
     pub fn set_force_idle_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -141,7 +141,7 @@ impl AUTOAGE_CFG_1 {
     }
     #[inline(always)]
     pub fn set_pause_auto_age_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -155,7 +155,7 @@ impl AUTOAGE_CFG_1 {
     }
     #[inline(always)]
     pub fn set_use_port_filter_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -176,7 +176,7 @@ impl AUTOAGE_CFG_2 {
     }
     #[inline(always)]
     pub fn set_next_row(&mut self, value: u32) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         let value = value << 4;
         self.0 &= !0x3fff0;
         self.0 |= value;
@@ -190,7 +190,7 @@ impl AUTOAGE_CFG_2 {
     }
     #[inline(always)]
     pub fn set_scan_ongoing_status(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -206,7 +206,7 @@ impl AUTO_LRN_CFG {
     }
     #[inline(always)]
     pub fn set_auto_age_interval(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -220,7 +220,7 @@ impl AUTO_LRN_CFG {
     }
     #[inline(always)]
     pub fn set_auto_lrn_cpu_copy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -234,7 +234,7 @@ impl AUTO_LRN_CFG {
     }
     #[inline(always)]
     pub fn set_auto_lrn_cpu_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 5;
         self.0 &= !0xe0;
         self.0 |= value;
@@ -248,7 +248,7 @@ impl AUTO_LRN_CFG {
     }
     #[inline(always)]
     pub fn set_auto_lrn_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -261,7 +261,7 @@ impl AUTO_LRN_CFG {
     }
     #[inline(always)]
     pub fn set_auto_lrn_ignore_vlan(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -275,7 +275,7 @@ impl AUTO_LRN_CFG {
     }
     #[inline(always)]
     pub fn set_auto_lrn_mirror(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -289,7 +289,7 @@ impl AUTO_LRN_CFG {
     }
     #[inline(always)]
     pub fn set_auto_lrn_src_kill_fwd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -310,7 +310,7 @@ impl COMMON_ACCESS_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_access_cmd(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 1;
         self.0 &= !0x1e;
         self.0 |= value;
@@ -324,7 +324,7 @@ impl COMMON_ACCESS_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_access_direct_col(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 20;
         self.0 &= !0x300000;
         self.0 |= value;
@@ -338,7 +338,7 @@ impl COMMON_ACCESS_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_access_direct_row(&mut self, value: u32) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         let value = value << 5;
         self.0 &= !0x7ffe0;
         self.0 |= value;
@@ -352,7 +352,7 @@ impl COMMON_ACCESS_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_access_direct_type(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -366,7 +366,7 @@ impl COMMON_ACCESS_CTRL {
     }
     #[inline(always)]
     pub fn set_mac_table_access_shot(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -384,7 +384,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_autoage_aged_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -398,7 +398,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_autoage_remove_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -412,7 +412,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_autoage_scan_completed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -426,7 +426,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_autoage_scan_started_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -440,7 +440,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_autoage_start_delayed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -454,7 +454,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_auto_lrn_failed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -468,7 +468,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_auto_lrn_fid_limit_exceeded_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -482,7 +482,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_auto_lrn_insert_cam_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -496,7 +496,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_auto_lrn_insert_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -510,7 +510,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_auto_lrn_refresh_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -524,7 +524,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_auto_lrn_replace_failed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -538,7 +538,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_auto_lrn_replace_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -552,7 +552,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_lookup_failed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -566,7 +566,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_lookup_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -580,7 +580,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_lrn_failed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -593,7 +593,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_lrn_fid_limit_exceeded_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -607,7 +607,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_lrn_insert_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -621,7 +621,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_lrn_refresh_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -635,7 +635,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_lrn_replace_failed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -649,7 +649,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_lrn_replace_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -663,7 +663,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_read_direct_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -677,7 +677,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_unlearn_failed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -691,7 +691,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_unlearn_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -705,7 +705,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_cpu_write_direct_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -719,7 +719,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_lrn_move_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -733,7 +733,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_lrn_queue_data_avail_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -747,7 +747,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_lrn_queue_overflow_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -761,7 +761,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_row_with_scan_entry_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -775,7 +775,7 @@ impl EVENT_STICKY {
     }
     #[inline(always)]
     pub fn set_scan_removed_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -794,7 +794,7 @@ impl LATEST_POS_STATUS {
     }
     #[inline(always)]
     pub fn set_latest_col(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -807,7 +807,7 @@ impl LATEST_POS_STATUS {
     }
     #[inline(always)]
     pub fn set_latest_row(&mut self, value: u32) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         let value = value << 4;
         self.0 &= !0x3fff0;
         self.0 |= value;
@@ -821,7 +821,7 @@ impl LATEST_POS_STATUS {
     }
     #[inline(always)]
     pub fn set_latest_type(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -835,7 +835,7 @@ impl LATEST_POS_STATUS {
     }
     #[inline(always)]
     pub fn set_scan_next_status(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 18;
         self.0 &= !0x3c0000;
         self.0 |= value;
@@ -854,7 +854,7 @@ impl MAC_ACCESS_CFG_0 {
     }
     #[inline(always)]
     pub fn set_mac_entry_fid(&mut self, value: u32) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         let value = value << 16;
         self.0 &= !0x1fff0000;
         self.0 |= value;
@@ -868,7 +868,7 @@ impl MAC_ACCESS_CFG_0 {
     }
     #[inline(always)]
     pub fn set_mac_entry_mac_msb(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -906,7 +906,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_addr(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -919,7 +919,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_addr_type(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -933,7 +933,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_age_flag(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 19;
         self.0 &= !0x180000;
         self.0 |= value;
@@ -945,7 +945,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_age_interval(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 17;
         self.0 &= !0x60000;
         self.0 |= value;
@@ -957,7 +957,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_cpu_copy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -969,7 +969,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_cpu_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 24;
         self.0 &= !0x7000000;
         self.0 |= value;
@@ -983,7 +983,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_locked(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -995,7 +995,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_mirror(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -1009,7 +1009,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_nxt_lrn_all(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -1023,7 +1023,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_src_kill_fwd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -1037,7 +1037,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_vlan_ignore(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -1051,7 +1051,7 @@ impl MAC_ACCESS_CFG_2 {
     }
     #[inline(always)]
     pub fn set_mac_entry_vld(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -1072,7 +1072,7 @@ impl SCAN_LAST_ROW_CFG {
     }
     #[inline(always)]
     pub fn set_scan_last_row(&mut self, value: u32) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
         self.0 |= value;
     }
@@ -1092,7 +1092,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_addr_filter_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1105,7 +1105,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_fid_filter_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1119,7 +1119,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_nxt_lrn_all_filter_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -1133,7 +1133,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_age_filter_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -1147,7 +1147,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_age_flag_update_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 18;
         self.0 &= !0x1c0000;
         self.0 |= value;
@@ -1161,7 +1161,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_age_interval_mask(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 2;
         self.0 &= !0x3c;
         self.0 |= value;
@@ -1175,7 +1175,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_next_aged_only_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -1189,7 +1189,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_next_ignore_locked_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -1203,7 +1203,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_next_inc_age_bits_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -1217,7 +1217,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_next_move_found_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -1231,7 +1231,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_next_remove_found_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1245,7 +1245,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_next_until_found_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -1259,7 +1259,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_nxt_lrn_all_update_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 16;
         self.0 &= !0x30000;
         self.0 |= value;
@@ -1273,7 +1273,7 @@ impl SCAN_NEXT_CFG {
     }
     #[inline(always)]
     pub fn set_scan_use_port_filter_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -1290,7 +1290,7 @@ impl SCAN_NEXT_CFG_1 {
     }
     #[inline(always)]
     pub fn set_port_move_new_addr(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         let value = value << 16;
         self.0 &= !0x7fff0000;
         self.0 |= value;
@@ -1304,7 +1304,7 @@ impl SCAN_NEXT_CFG_1 {
     }
     #[inline(always)]
     pub fn set_scan_entry_addr_mask(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -1320,7 +1320,7 @@ impl SCAN_NEXT_CNT {
     }
     #[inline(always)]
     pub fn set_scan_next_cnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

@@ -40,7 +40,7 @@ impl MAC_ADV_CHK_CFG {
     }
     #[inline(always)]
     pub fn set_ext_eop_chk_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl MAC_ADV_CHK_CFG {
     }
     #[inline(always)]
     pub fn set_ext_sop_chk_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl MAC_ADV_CHK_CFG {
     }
     #[inline(always)]
     pub fn set_inr_err_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -81,7 +81,7 @@ impl MAC_ADV_CHK_CFG {
     }
     #[inline(always)]
     pub fn set_oor_err_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -95,7 +95,7 @@ impl MAC_ADV_CHK_CFG {
     }
     #[inline(always)]
     pub fn set_prm_chk_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -109,7 +109,7 @@ impl MAC_ADV_CHK_CFG {
     }
     #[inline(always)]
     pub fn set_prm_shk_chk_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -123,7 +123,7 @@ impl MAC_ADV_CHK_CFG {
     }
     #[inline(always)]
     pub fn set_sfd_chk_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -142,7 +142,7 @@ impl MAC_ENA_CFG {
     }
     #[inline(always)]
     pub fn set_rx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -156,7 +156,7 @@ impl MAC_ENA_CFG {
     }
     #[inline(always)]
     pub fn set_tx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -174,7 +174,7 @@ impl MAC_LB_CFG {
     }
     #[inline(always)]
     pub fn set_xgmii_host_lb_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -188,7 +188,7 @@ impl MAC_LB_CFG {
     }
     #[inline(always)]
     pub fn set_xgmii_phy_lb_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -206,7 +206,7 @@ impl MAC_LFS_CFG {
     }
     #[inline(always)]
     pub fn set_lfs_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -219,7 +219,7 @@ impl MAC_LFS_CFG {
     }
     #[inline(always)]
     pub fn set_lfs_unidir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -233,7 +233,7 @@ impl MAC_LFS_CFG {
     }
     #[inline(always)]
     pub fn set_spurious_q_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -247,7 +247,7 @@ impl MAC_LFS_CFG {
     }
     #[inline(always)]
     pub fn set_use_leading_edge_detect(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -266,7 +266,7 @@ impl MAC_MAXLEN_CFG {
     }
     #[inline(always)]
     pub fn set_max_len(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -279,7 +279,7 @@ impl MAC_MAXLEN_CFG {
     }
     #[inline(always)]
     pub fn set_max_len_tag_chk(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -298,7 +298,7 @@ impl MAC_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_hih_crc_check(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -311,7 +311,7 @@ impl MAC_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_mac_ipg_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -325,7 +325,7 @@ impl MAC_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_mac_preamble_cfg(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -339,7 +339,7 @@ impl MAC_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_tunnel_pause_frames(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -353,7 +353,7 @@ impl MAC_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_xgmii_gen_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -372,7 +372,7 @@ impl MAC_NUM_TAGS_CFG {
     }
     #[inline(always)]
     pub fn set_num_tags(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -390,7 +390,7 @@ impl MAC_RX_LANE_STICKY_0 {
     }
     #[inline(always)]
     pub fn set_lane0_sticky(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -403,7 +403,7 @@ impl MAC_RX_LANE_STICKY_0 {
     }
     #[inline(always)]
     pub fn set_lane1_sticky(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 8;
         self.0 &= !0x7f00;
         self.0 |= value;
@@ -417,7 +417,7 @@ impl MAC_RX_LANE_STICKY_0 {
     }
     #[inline(always)]
     pub fn set_lane2_sticky(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 16;
         self.0 &= !0x7f0000;
         self.0 |= value;
@@ -431,7 +431,7 @@ impl MAC_RX_LANE_STICKY_0 {
     }
     #[inline(always)]
     pub fn set_lane3_sticky(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 24;
         self.0 &= !0x7f000000;
         self.0 |= value;
@@ -450,7 +450,7 @@ impl MAC_RX_LANE_STICKY_1 {
     }
     #[inline(always)]
     pub fn set_lane4_sticky(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -463,7 +463,7 @@ impl MAC_RX_LANE_STICKY_1 {
     }
     #[inline(always)]
     pub fn set_lane5_sticky(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 8;
         self.0 &= !0x7f00;
         self.0 |= value;
@@ -477,7 +477,7 @@ impl MAC_RX_LANE_STICKY_1 {
     }
     #[inline(always)]
     pub fn set_lane6_sticky(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 16;
         self.0 &= !0x7f0000;
         self.0 |= value;
@@ -491,7 +491,7 @@ impl MAC_RX_LANE_STICKY_1 {
     }
     #[inline(always)]
     pub fn set_lane7_sticky(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 24;
         self.0 &= !0x7f000000;
         self.0 |= value;
@@ -512,7 +512,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_ipg_shrink_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -526,7 +526,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_mpls_mc_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -540,7 +540,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_mpls_uc_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -554,7 +554,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_non_std_pream_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -568,7 +568,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_pream_err_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -582,7 +582,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_pream_mismatch_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -596,7 +596,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_pream_shrink_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -610,7 +610,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_rx_tag_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -624,7 +624,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_tx_abort_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -637,7 +637,7 @@ impl MAC_STICKY {
     }
     #[inline(always)]
     pub fn set_tx_uflw_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -658,7 +658,7 @@ impl MAC_TAGS_CFG {
     }
     #[inline(always)]
     pub fn set_tag_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -672,7 +672,7 @@ impl MAC_TAGS_CFG {
     }
     #[inline(always)]
     pub fn set_tag_id(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -691,7 +691,7 @@ impl MAC_TX_MONITOR_STICKY {
     }
     #[inline(always)]
     pub fn set_dis_state_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -704,7 +704,7 @@ impl MAC_TX_MONITOR_STICKY {
     }
     #[inline(always)]
     pub fn set_idle_state_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -718,7 +718,7 @@ impl MAC_TX_MONITOR_STICKY {
     }
     #[inline(always)]
     pub fn set_local_err_state_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -732,7 +732,7 @@ impl MAC_TX_MONITOR_STICKY {
     }
     #[inline(always)]
     pub fn set_remote_err_state_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;

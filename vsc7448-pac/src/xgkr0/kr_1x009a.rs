@@ -38,7 +38,7 @@ impl KR_1X009A {
     }
     #[inline(always)]
     pub fn set_ldcoef(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

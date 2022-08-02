@@ -38,7 +38,7 @@ impl MW_TMR_LSW {
     }
     #[inline(always)]
     pub fn set_mw_tmr_lsw(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl MW_TMR_MSW {
     }
     #[inline(always)]
     pub fn set_mw_tmr_msw(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

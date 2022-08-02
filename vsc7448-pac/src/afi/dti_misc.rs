@@ -38,7 +38,7 @@ impl DTI_CNT_DOWN {
     }
     #[inline(always)]
     pub fn set_cnt_down(&mut self, value: u32) {
-        assert!(value <= 0x7fffffff);
+        debug_assert!(value <= 0x7fffffff);
         self.0 &= !0x7fffffff;
         self.0 |= value;
     }
@@ -56,7 +56,7 @@ impl DTI_CTRL {
     }
     #[inline(always)]
     pub fn set_bw(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl DTI_CTRL {
     }
     #[inline(always)]
     pub fn set_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -86,7 +86,7 @@ impl DTI_FC_CNT_DOWN {
     }
     #[inline(always)]
     pub fn set_fc_cnt_down(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }

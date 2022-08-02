@@ -38,7 +38,7 @@ impl TTI_TICK_BASE {
     }
     #[inline(always)]
     pub fn set_base_cnt(&mut self, value: u32) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         let value = value << 16;
         self.0 &= !0x3fff0000;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl TTI_TICK_BASE {
     }
     #[inline(always)]
     pub fn set_base_len(&mut self, value: u32) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
         self.0 |= value;
     }
@@ -66,7 +66,7 @@ impl TTI_TICK_LEN_0_3 {
     }
     #[inline(always)]
     pub fn set_len0(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -77,7 +77,7 @@ impl TTI_TICK_LEN_0_3 {
     }
     #[inline(always)]
     pub fn set_len1(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -89,7 +89,7 @@ impl TTI_TICK_LEN_0_3 {
     }
     #[inline(always)]
     pub fn set_len2(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -101,7 +101,7 @@ impl TTI_TICK_LEN_0_3 {
     }
     #[inline(always)]
     pub fn set_len3(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -118,7 +118,7 @@ impl TTI_TICK_LEN_4_7 {
     }
     #[inline(always)]
     pub fn set_len4(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -129,7 +129,7 @@ impl TTI_TICK_LEN_4_7 {
     }
     #[inline(always)]
     pub fn set_len5(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -141,7 +141,7 @@ impl TTI_TICK_LEN_4_7 {
     }
     #[inline(always)]
     pub fn set_len6(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -153,7 +153,7 @@ impl TTI_TICK_LEN_4_7 {
     }
     #[inline(always)]
     pub fn set_len7(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -172,7 +172,7 @@ impl TTI_TICK_STATE {
     }
     #[inline(always)]
     pub fn set_tick_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -183,7 +183,7 @@ impl TTI_TICK_STATE {
     }
     #[inline(always)]
     pub fn set_tick_era(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;

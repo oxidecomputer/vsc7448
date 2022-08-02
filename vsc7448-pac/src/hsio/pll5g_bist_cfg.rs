@@ -40,7 +40,7 @@ impl PLL5G_BIST_CFG0A {
     }
     #[inline(always)]
     pub fn set_pllb_div_factor_pre(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -58,7 +58,7 @@ impl PLL5G_BIST_CFG0B {
     }
     #[inline(always)]
     pub fn set_pllb_lock_repeat(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl PLL5G_BIST_CFG0B {
     }
     #[inline(always)]
     pub fn set_pllb_lock_uncert(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -81,7 +81,7 @@ impl PLL5G_BIST_CFG0B {
     }
     #[inline(always)]
     pub fn set_pllb_meas_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -93,7 +93,7 @@ impl PLL5G_BIST_CFG0B {
     }
     #[inline(always)]
     pub fn set_pllb_start_bist(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -112,7 +112,7 @@ impl PLL5G_BIST_CFG1 {
     }
     #[inline(always)]
     pub fn set_pllb_div_factor_m(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -130,7 +130,7 @@ impl PLL5G_BIST_CFG2 {
     }
     #[inline(always)]
     pub fn set_pllb_div_factor_n(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

@@ -42,7 +42,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_fefchk_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_fefgen_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_linkhysttimer(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -82,7 +82,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_linkhyst_tm_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -96,7 +96,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_loopback_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_pcs_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -121,7 +121,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_rxbitsel(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 12;
         self.0 &= !0xf000;
         self.0 |= value;
@@ -135,7 +135,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_sd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -149,7 +149,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_sd_pol(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -163,7 +163,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_sd_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -177,7 +177,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_sigdet_cfg(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 9;
         self.0 &= !0x600;
         self.0 |= value;
@@ -191,7 +191,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_swap_mii_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -205,7 +205,7 @@ impl PCS_FX100_CFG {
     }
     #[inline(always)]
     pub fn set_unidir_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;

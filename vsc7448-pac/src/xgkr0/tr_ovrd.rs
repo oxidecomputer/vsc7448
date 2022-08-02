@@ -38,7 +38,7 @@ impl TR_OVRD {
     }
     #[inline(always)]
     pub fn set_ber_en_ovrd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl TR_OVRD {
     }
     #[inline(always)]
     pub fn set_coef_ovrd_vld(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -62,7 +62,7 @@ impl TR_OVRD {
     }
     #[inline(always)]
     pub fn set_ovrd_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -74,7 +74,7 @@ impl TR_OVRD {
     }
     #[inline(always)]
     pub fn set_rxtrained_ovrd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -86,7 +86,7 @@ impl TR_OVRD {
     }
     #[inline(always)]
     pub fn set_stat_ovrd_vld(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

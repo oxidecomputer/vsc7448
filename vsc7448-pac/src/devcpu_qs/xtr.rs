@@ -38,7 +38,7 @@ impl XTR_CFG {
     }
     #[inline(always)]
     pub fn set_dp_wm(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 2;
         self.0 &= !0x1c;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl XTR_CFG {
     }
     #[inline(always)]
     pub fn set_oflw_err_sticky(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl XTR_DATA_PRESENT {
     }
     #[inline(always)]
     pub fn set_data_present(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -88,7 +88,7 @@ impl XTR_FLUSH {
     }
     #[inline(always)]
     pub fn set_flush(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -106,7 +106,7 @@ impl XTR_FRM_PRUNING {
     }
     #[inline(always)]
     pub fn set_prune_size(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -124,7 +124,7 @@ impl XTR_GRP_CFG {
     }
     #[inline(always)]
     pub fn set_byte_swap(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -137,7 +137,7 @@ impl XTR_GRP_CFG {
     }
     #[inline(always)]
     pub fn set_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 2;
         self.0 &= !0xc;
         self.0 |= value;
@@ -151,7 +151,7 @@ impl XTR_GRP_CFG {
     }
     #[inline(always)]
     pub fn set_status_word_pos(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;

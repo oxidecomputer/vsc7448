@@ -40,7 +40,7 @@ impl ACTION_CTRL {
     }
     #[inline(always)]
     pub fn set_pstat_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -51,7 +51,7 @@ impl ACTION_CTRL {
     }
     #[inline(always)]
     pub fn set_pvoe_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;

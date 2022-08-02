@@ -42,7 +42,7 @@ impl EEE_INTR_MASK {
     }
     #[inline(always)]
     pub fn set_rx_lpi_received_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -55,7 +55,7 @@ impl EEE_INTR_MASK {
     }
     #[inline(always)]
     pub fn set_tx_lpi_received_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -72,7 +72,7 @@ impl EEE_STATUS {
     }
     #[inline(always)]
     pub fn set_clock_stop_capable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl EEE_STATUS {
     }
     #[inline(always)]
     pub fn set_rx_lpi_indication(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl EEE_STATUS {
     }
     #[inline(always)]
     pub fn set_rx_lpi_received(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl EEE_STATUS {
     }
     #[inline(always)]
     pub fn set_tx_lpi_indication(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -124,7 +124,7 @@ impl EEE_STATUS {
     }
     #[inline(always)]
     pub fn set_tx_lpi_received(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -141,7 +141,7 @@ impl WAKE_ERR_CNT {
     }
     #[inline(always)]
     pub fn set_wake_err_cnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

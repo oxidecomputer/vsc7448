@@ -38,7 +38,7 @@ impl CHIP_ID {
     }
     #[inline(always)]
     pub fn set_mfg_id(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         let value = value << 1;
         self.0 &= !0xffe;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl CHIP_ID {
     }
     #[inline(always)]
     pub fn set_one(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -61,7 +61,7 @@ impl CHIP_ID {
     }
     #[inline(always)]
     pub fn set_part_id(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 12;
         self.0 &= !0xffff000;
         self.0 |= value;
@@ -73,7 +73,7 @@ impl CHIP_ID {
     }
     #[inline(always)]
     pub fn set_rev_id(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 28;
         self.0 &= !0xf0000000;
         self.0 |= value;
@@ -132,7 +132,7 @@ impl HW_CFG {
     }
     #[inline(always)]
     pub fn set_dft_clk_mon_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -143,7 +143,7 @@ impl HW_CFG {
     }
     #[inline(always)]
     pub fn set_dft_stat_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -160,7 +160,7 @@ impl HW_SGPIO_SD_CFG {
     }
     #[inline(always)]
     pub fn set_sd_high_ena(&mut self, value: u32) {
-        assert!(value <= 0x1fffffff);
+        debug_assert!(value <= 0x1fffffff);
         self.0 &= !0x1fffffff;
         self.0 |= value;
     }
@@ -176,7 +176,7 @@ impl HW_STAT {
     }
     #[inline(always)]
     pub fn set_mem_fail(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -192,7 +192,7 @@ impl SOFT_RST {
     }
     #[inline(always)]
     pub fn set_soft_chip_rst(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -203,7 +203,7 @@ impl SOFT_RST {
     }
     #[inline(always)]
     pub fn set_soft_non_cfg_rst(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -215,7 +215,7 @@ impl SOFT_RST {
     }
     #[inline(always)]
     pub fn set_soft_swc_rst(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;

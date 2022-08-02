@@ -50,7 +50,7 @@ impl SIMC {
     }
     #[inline(always)]
     pub fn DR(&self, index: u8) -> RegisterAddress<simc::DR> {
-        assert!(index < 36);
+        debug_assert!(index < 36);
         RegisterAddress::new(self.0 + 0x60 + u32::from(index) * 0x4)
     }
     #[inline(always)]

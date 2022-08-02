@@ -40,7 +40,7 @@ impl QSHP_CFG {
     }
     #[inline(always)]
     pub fn set_se_frm_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -56,7 +56,7 @@ impl QSHP_CIR_CFG {
     }
     #[inline(always)]
     pub fn set_cir_burst(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -67,7 +67,7 @@ impl QSHP_CIR_CFG {
     }
     #[inline(always)]
     pub fn set_cir_rate(&mut self, value: u32) {
-        assert!(value <= 0x1ffff);
+        debug_assert!(value <= 0x1ffff);
         let value = value << 6;
         self.0 &= !0x7fffc0;
         self.0 |= value;

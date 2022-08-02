@@ -40,7 +40,7 @@ impl IPT {
     }
     #[inline(always)]
     pub fn set_ipt_cfg(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 11;
         self.0 &= !0x1800;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl IPT {
     }
     #[inline(always)]
     pub fn set_ppt_idx(&mut self, value: u32) {
-        assert!(value <= 0x1ff);
+        debug_assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;
     }
@@ -65,7 +65,7 @@ impl IPT {
     }
     #[inline(always)]
     pub fn set_prot_pipeline_pt(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 9;
         self.0 &= !0x600;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl ISDX_CFG {
     }
     #[inline(always)]
     pub fn set_l2cp_idx(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -95,7 +95,7 @@ impl ISDX_CFG {
     }
     #[inline(always)]
     pub fn set_mip_idx(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 6;
         self.0 &= !0xffc0;
         self.0 |= value;
@@ -112,7 +112,7 @@ impl OAM_MEP_CFG {
     }
     #[inline(always)]
     pub fn set_independent_mel_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -123,7 +123,7 @@ impl OAM_MEP_CFG {
     }
     #[inline(always)]
     pub fn set_mep_idx(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 2;
         self.0 &= !0xffc;
         self.0 |= value;
@@ -135,7 +135,7 @@ impl OAM_MEP_CFG {
     }
     #[inline(always)]
     pub fn set_mep_idx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -154,7 +154,7 @@ impl VSI_CFG {
     }
     #[inline(always)]
     pub fn set_vsi_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -165,7 +165,7 @@ impl VSI_CFG {
     }
     #[inline(always)]
     pub fn set_vsi_val(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 1;
         self.0 &= !0x7fe;
         self.0 |= value;

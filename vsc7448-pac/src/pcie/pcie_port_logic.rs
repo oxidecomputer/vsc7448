@@ -37,7 +37,7 @@ impl ACK_F_ASPM_CTRL {
     }
     #[inline(always)]
     pub fn set_ack_freq(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -47,7 +47,7 @@ impl ACK_F_ASPM_CTRL {
     }
     #[inline(always)]
     pub fn set_ack_n_fts(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -58,7 +58,7 @@ impl ACK_F_ASPM_CTRL {
     }
     #[inline(always)]
     pub fn set_common_clk_n_fts(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -69,7 +69,7 @@ impl ACK_F_ASPM_CTRL {
     }
     #[inline(always)]
     pub fn set_enter_aspm(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -80,7 +80,7 @@ impl ACK_F_ASPM_CTRL {
     }
     #[inline(always)]
     pub fn set_l0_entrance_latency(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 24;
         self.0 &= !0x7000000;
         self.0 |= value;
@@ -91,7 +91,7 @@ impl ACK_F_ASPM_CTRL {
     }
     #[inline(always)]
     pub fn set_l1_entrance_latency(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -107,7 +107,7 @@ impl ACK_LATENCY_TIMER {
     }
     #[inline(always)]
     pub fn set_replay_time_limit(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -118,7 +118,7 @@ impl ACK_LATENCY_TIMER {
     }
     #[inline(always)]
     pub fn set_round_trip_latency_time_limit(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -133,7 +133,7 @@ impl AMBA_ERROR_RESPONSE_DEFAULT {
     }
     #[inline(always)]
     pub fn set_amba_error_response_default(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -148,7 +148,7 @@ impl AMBA_MUL_OB_DECOMP_NP_SUB_REQ_CTRL {
     }
     #[inline(always)]
     pub fn set_ib_ob_rd_split_burst_en(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -178,7 +178,7 @@ impl ATU_BASE_ADDR_LOW {
     }
     #[inline(always)]
     pub fn set_atu_base_addr_low(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -194,7 +194,7 @@ impl ATU_CFG1 {
     }
     #[inline(always)]
     pub fn set_atu_at(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 16;
         self.0 &= !0x30000;
         self.0 |= value;
@@ -206,7 +206,7 @@ impl ATU_CFG1 {
     }
     #[inline(always)]
     pub fn set_atu_attr(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 9;
         self.0 &= !0x600;
         self.0 |= value;
@@ -218,7 +218,7 @@ impl ATU_CFG1 {
     }
     #[inline(always)]
     pub fn set_atu_fn(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 20;
         self.0 &= !0x1f00000;
         self.0 |= value;
@@ -230,7 +230,7 @@ impl ATU_CFG1 {
     }
     #[inline(always)]
     pub fn set_atu_tc(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 5;
         self.0 &= !0xe0;
         self.0 |= value;
@@ -242,7 +242,7 @@ impl ATU_CFG1 {
     }
     #[inline(always)]
     pub fn set_atu_td(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -256,7 +256,7 @@ impl ATU_CFG1 {
     }
     #[inline(always)]
     pub fn set_atu_type(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -271,7 +271,7 @@ impl ATU_CFG2 {
     }
     #[inline(always)]
     pub fn set_atu_cfg_shift_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -283,7 +283,7 @@ impl ATU_CFG2 {
     }
     #[inline(always)]
     pub fn set_atu_fn_match_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -294,7 +294,7 @@ impl ATU_CFG2 {
     }
     #[inline(always)]
     pub fn set_atu_invert_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 29;
         self.0 &= !0x20000000;
         self.0 |= value;
@@ -306,7 +306,7 @@ impl ATU_CFG2 {
     }
     #[inline(always)]
     pub fn set_atu_msg_code(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -317,7 +317,7 @@ impl ATU_CFG2 {
     }
     #[inline(always)]
     pub fn set_atu_region_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -333,7 +333,7 @@ impl ATU_CFG3 {
     }
     #[inline(always)]
     pub fn set_vf_active(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -344,7 +344,7 @@ impl ATU_CFG3 {
     }
     #[inline(always)]
     pub fn set_vf_number(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -360,7 +360,7 @@ impl ATU_LIMIT_ADDR {
     }
     #[inline(always)]
     pub fn set_atu_limit_addr(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -371,7 +371,7 @@ impl ATU_LIMIT_ADDR {
     }
     #[inline(always)]
     pub fn set_reserved_3(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -391,7 +391,7 @@ impl ATU_REGION {
     }
     #[inline(always)]
     pub fn set_atu_direction(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -403,7 +403,7 @@ impl ATU_REGION {
     }
     #[inline(always)]
     pub fn set_atu_idx(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -433,7 +433,7 @@ impl ATU_TGT_ADDR_LOW {
     }
     #[inline(always)]
     pub fn set_atu_tgt_addr_low(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -449,7 +449,7 @@ impl AUX_CLK_FREQ {
     }
     #[inline(always)]
     pub fn set_aux_clk_freq(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -464,7 +464,7 @@ impl AXI_MASTER_CTRL_REG_0 {
     }
     #[inline(always)]
     pub fn set_remote_max_bridge_tag(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -475,7 +475,7 @@ impl AXI_MASTER_CTRL_REG_0 {
     }
     #[inline(always)]
     pub fn set_remote_read_req_size(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -490,7 +490,7 @@ impl AXI_MASTER_CTRL_REG_1 {
     }
     #[inline(always)]
     pub fn set_resize_master_response(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -544,7 +544,7 @@ impl GEN2_CTRL {
     }
     #[inline(always)]
     pub fn set_gen1_ei_inference(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -555,7 +555,7 @@ impl GEN2_CTRL {
     }
     #[inline(always)]
     pub fn set_num_of_lanes(&mut self, value: u32) {
-        assert!(value <= 0x1ff);
+        debug_assert!(value <= 0x1ff);
         let value = value << 8;
         self.0 &= !0x1ff00;
         self.0 |= value;
@@ -571,7 +571,7 @@ impl LANE_SKEW {
     }
     #[inline(always)]
     pub fn set_ack_nak_disable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -582,7 +582,7 @@ impl LANE_SKEW {
     }
     #[inline(always)]
     pub fn set_disable_lane_to_lane_deskew(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -593,7 +593,7 @@ impl LANE_SKEW {
     }
     #[inline(always)]
     pub fn set_flow_ctrl_disable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -604,7 +604,7 @@ impl LANE_SKEW {
     }
     #[inline(always)]
     pub fn set_insert_lane_skew(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -619,7 +619,7 @@ impl MISC_CONTROL_1 {
     }
     #[inline(always)]
     pub fn set_dbi_ro_wr_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -660,7 +660,7 @@ impl PORT_FORCE {
     }
     #[inline(always)]
     pub fn set_cpl_sent_count(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -671,7 +671,7 @@ impl PORT_FORCE {
     }
     #[inline(always)]
     pub fn set_forced_ltssm(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 8;
         self.0 &= !0xf00;
         self.0 |= value;
@@ -682,7 +682,7 @@ impl PORT_FORCE {
     }
     #[inline(always)]
     pub fn set_link_num(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -692,7 +692,7 @@ impl PORT_FORCE {
     }
     #[inline(always)]
     pub fn set_link_state(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 16;
         self.0 &= !0x3f0000;
         self.0 |= value;
@@ -708,7 +708,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_beacon_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -719,7 +719,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_corrupt_lcrc_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -730,7 +730,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_dll_link_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -741,7 +741,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_extended_synch(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -752,7 +752,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_fast_link_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -763,7 +763,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_link_capable(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 16;
         self.0 &= !0x3f0000;
         self.0 |= value;
@@ -774,7 +774,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_link_disable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -785,7 +785,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_link_rate(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 8;
         self.0 &= !0xf00;
         self.0 |= value;
@@ -796,7 +796,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_loopback_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -807,7 +807,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved0(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -818,7 +818,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved1(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 12;
         self.0 &= !0xf000;
         self.0 |= value;
@@ -829,7 +829,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved2(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 22;
         self.0 &= !0xc00000;
         self.0 |= value;
@@ -840,7 +840,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved3(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 28;
         self.0 &= !0xf0000000;
         self.0 |= value;
@@ -851,7 +851,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_reset_assert(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -862,7 +862,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_scramble_disable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -873,7 +873,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_transmit_lane_reversale_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -884,7 +884,7 @@ impl PORT_LINK_CTRL {
     }
     #[inline(always)]
     pub fn set_vendor_specific_dllp_req(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -899,7 +899,7 @@ impl Q_STATUS {
     }
     #[inline(always)]
     pub fn set_rx_queue_non_empty(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -910,7 +910,7 @@ impl Q_STATUS {
     }
     #[inline(always)]
     pub fn set_rx_tlp_fc_credit_non_return(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -920,7 +920,7 @@ impl Q_STATUS {
     }
     #[inline(always)]
     pub fn set_timer_mod_flow_control(&mut self, value: u32) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         let value = value << 16;
         self.0 &= !0x1fff0000;
         self.0 |= value;
@@ -931,7 +931,7 @@ impl Q_STATUS {
     }
     #[inline(always)]
     pub fn set_timer_mod_flow_control_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -942,7 +942,7 @@ impl Q_STATUS {
     }
     #[inline(always)]
     pub fn set_tx_retry_buffer_ne(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -958,7 +958,7 @@ impl SYMBOL_TIMER_FILTER_1 {
     }
     #[inline(always)]
     pub fn set_disable_fc_wd_timer(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -969,7 +969,7 @@ impl SYMBOL_TIMER_FILTER_1 {
     }
     #[inline(always)]
     pub fn set_eidle_timer(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 11;
         self.0 &= !0x7800;
         self.0 |= value;
@@ -980,7 +980,7 @@ impl SYMBOL_TIMER_FILTER_1 {
     }
     #[inline(always)]
     pub fn set_mask_radm_1(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -991,7 +991,7 @@ impl SYMBOL_TIMER_FILTER_1 {
     }
     #[inline(always)]
     pub fn set_skp_int_val(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
     }
@@ -1006,7 +1006,7 @@ impl TIMER_CTRL_MAX_FUNC_NUM {
     }
     #[inline(always)]
     pub fn set_max_func_num(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -1016,7 +1016,7 @@ impl TIMER_CTRL_MAX_FUNC_NUM {
     }
     #[inline(always)]
     pub fn set_timer_mod_ack_nak(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 19;
         self.0 &= !0xf80000;
         self.0 |= value;
@@ -1027,7 +1027,7 @@ impl TIMER_CTRL_MAX_FUNC_NUM {
     }
     #[inline(always)]
     pub fn set_timer_mod_replay_timer(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 14;
         self.0 &= !0x7c000;
         self.0 |= value;
@@ -1038,7 +1038,7 @@ impl TIMER_CTRL_MAX_FUNC_NUM {
     }
     #[inline(always)]
     pub fn set_update_freq_timer(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 24;
         self.0 &= !0x1f000000;
         self.0 |= value;
@@ -1054,7 +1054,7 @@ impl TX_CPL_FC_CREDIT_STATUS {
     }
     #[inline(always)]
     pub fn set_tx_cpl_data_fc_credit(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -1064,7 +1064,7 @@ impl TX_CPL_FC_CREDIT_STATUS {
     }
     #[inline(always)]
     pub fn set_tx_cpl_header_fc_credit(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 12;
         self.0 &= !0xff000;
         self.0 |= value;
@@ -1080,7 +1080,7 @@ impl TX_NP_FC_CREDIT_STATUS {
     }
     #[inline(always)]
     pub fn set_tx_np_data_fc_credit(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -1090,7 +1090,7 @@ impl TX_NP_FC_CREDIT_STATUS {
     }
     #[inline(always)]
     pub fn set_tx_np_header_fc_credit(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 12;
         self.0 &= !0xff000;
         self.0 |= value;
@@ -1106,7 +1106,7 @@ impl TX_P_FC_CREDIT_STATUS {
     }
     #[inline(always)]
     pub fn set_tx_p_data_fc_credit(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -1116,7 +1116,7 @@ impl TX_P_FC_CREDIT_STATUS {
     }
     #[inline(always)]
     pub fn set_tx_p_header_fc_credit(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 12;
         self.0 &= !0xff000;
         self.0 |= value;
@@ -1132,7 +1132,7 @@ impl VC0_CPL_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved8(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -1143,7 +1143,7 @@ impl VC0_CPL_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved9(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -1154,7 +1154,7 @@ impl VC0_CPL_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc0_cpl_data_credit(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -1164,7 +1164,7 @@ impl VC0_CPL_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc0_cpl_header_credit(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 12;
         self.0 &= !0xff000;
         self.0 |= value;
@@ -1175,7 +1175,7 @@ impl VC0_CPL_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc0_cpl_tlp_q_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 21;
         self.0 &= !0xe00000;
         self.0 |= value;
@@ -1191,7 +1191,7 @@ impl VC0_NP_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved6(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -1202,7 +1202,7 @@ impl VC0_NP_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved7(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -1213,7 +1213,7 @@ impl VC0_NP_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc0_np_data_credit(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -1223,7 +1223,7 @@ impl VC0_NP_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc0_np_header_credit(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 12;
         self.0 &= !0xff000;
         self.0 |= value;
@@ -1234,7 +1234,7 @@ impl VC0_NP_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc0_np_tlp_q_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 21;
         self.0 &= !0xe00000;
         self.0 |= value;
@@ -1250,7 +1250,7 @@ impl VC0_P_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved4(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -1261,7 +1261,7 @@ impl VC0_P_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_reserved5(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 24;
         self.0 &= !0x3f000000;
         self.0 |= value;
@@ -1272,7 +1272,7 @@ impl VC0_P_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_tlp_type_ordering_vc0(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -1283,7 +1283,7 @@ impl VC0_P_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc0_p_data_credit(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -1293,7 +1293,7 @@ impl VC0_P_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc0_p_header_credit(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 12;
         self.0 &= !0xff000;
         self.0 |= value;
@@ -1304,7 +1304,7 @@ impl VC0_P_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc0_p_tlp_q_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 21;
         self.0 &= !0xe00000;
         self.0 |= value;
@@ -1315,7 +1315,7 @@ impl VC0_P_RX_Q_CTRL {
     }
     #[inline(always)]
     pub fn set_vc_ordering_rx_q(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -1331,7 +1331,7 @@ impl VC_TX_ARBI_REG_1 {
     }
     #[inline(always)]
     pub fn set_wrr_weight_vc_0(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -1341,7 +1341,7 @@ impl VC_TX_ARBI_REG_1 {
     }
     #[inline(always)]
     pub fn set_wrr_weight_vc_1(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -1352,7 +1352,7 @@ impl VC_TX_ARBI_REG_1 {
     }
     #[inline(always)]
     pub fn set_wrr_weight_vc_2(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -1363,7 +1363,7 @@ impl VC_TX_ARBI_REG_1 {
     }
     #[inline(always)]
     pub fn set_wrr_weight_vc_3(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -1379,7 +1379,7 @@ impl VC_TX_ARBI_REG_2 {
     }
     #[inline(always)]
     pub fn set_wrr_weight_vc_4(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -1389,7 +1389,7 @@ impl VC_TX_ARBI_REG_2 {
     }
     #[inline(always)]
     pub fn set_wrr_weight_vc_5(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -1400,7 +1400,7 @@ impl VC_TX_ARBI_REG_2 {
     }
     #[inline(always)]
     pub fn set_wrr_weight_vc_6(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -1411,7 +1411,7 @@ impl VC_TX_ARBI_REG_2 {
     }
     #[inline(always)]
     pub fn set_wrr_weight_vc_7(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;

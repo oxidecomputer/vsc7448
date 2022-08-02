@@ -40,7 +40,7 @@ impl ONE_US_TIMER_REG {
     }
     #[inline(always)]
     pub fn set_one_us_timer(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
+        debug_assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
     }
@@ -58,7 +58,7 @@ impl RX_TQ_TIMER_REG {
     }
     #[inline(always)]
     pub fn set_rx_tq_timer(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -76,7 +76,7 @@ impl RX_TW_TIMER_REG {
     }
     #[inline(always)]
     pub fn set_rx_tw_timer(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -94,7 +94,7 @@ impl RX_WF_TIMER_REG {
     }
     #[inline(always)]
     pub fn set_rx_wf_timer(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -112,7 +112,7 @@ impl TX_TQ_TIMER_REG {
     }
     #[inline(always)]
     pub fn set_tx_tq_timer(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
+        debug_assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
     }
@@ -130,7 +130,7 @@ impl TX_TS_TIMER_REG {
     }
     #[inline(always)]
     pub fn set_tx_ts_timer(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
+        debug_assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
     }
@@ -148,7 +148,7 @@ impl TX_TW_TIMER_REG {
     }
     #[inline(always)]
     pub fn set_tx_tw_timer(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
+        debug_assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
     }

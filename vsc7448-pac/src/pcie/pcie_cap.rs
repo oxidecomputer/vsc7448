@@ -37,7 +37,7 @@ impl DEVICE_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_ep_l0s_accpt_latency(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -48,7 +48,7 @@ impl DEVICE_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_ep_l1_accpt_latency(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 9;
         self.0 &= !0xe00;
         self.0 |= value;
@@ -59,7 +59,7 @@ impl DEVICE_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_ext_tag_supp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl DEVICE_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_flr_cap(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -81,7 +81,7 @@ impl DEVICE_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_max_payload_size(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -91,7 +91,7 @@ impl DEVICE_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_phantom_func_support(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 3;
         self.0 &= !0x18;
         self.0 |= value;
@@ -102,7 +102,7 @@ impl DEVICE_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_role_based_err_report(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -118,7 +118,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_128_cas_cpl_supp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -129,7 +129,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_32_atomic_cpl_supp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -140,7 +140,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_64_atomic_cpl_supp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -151,7 +151,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_ari_forward_support(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -162,7 +162,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_atomic_routing_supp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -173,7 +173,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_cpl_timeout_disable_support(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -184,7 +184,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_cpl_timeout_range(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -194,7 +194,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_ltr_supp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -205,7 +205,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_no_ro_en_pr2pr_par(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -216,7 +216,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_obff_support(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 18;
         self.0 &= !0xc0000;
         self.0 |= value;
@@ -227,7 +227,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_tph_cmplt_support_0(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -238,7 +238,7 @@ impl DEVICE_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_tph_cmplt_support_1(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -254,7 +254,7 @@ impl DEVICE_CONTROL2_DEVICE_STATUS2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_ari_forward_support_cs(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -265,7 +265,7 @@ impl DEVICE_CONTROL2_DEVICE_STATUS2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_cpl_timeout_disable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -281,7 +281,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_aux_power_detected(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -292,7 +292,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_aux_power_pm_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -303,7 +303,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_corr_err_detected(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -314,7 +314,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_corr_err_report_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -324,7 +324,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_en_no_snoop(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -335,7 +335,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_en_rel_order(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -346,7 +346,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_ext_tag_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -357,7 +357,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_fatal_err_detected(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -368,7 +368,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_fatal_err_report_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -379,7 +379,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_initiate_flr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -390,7 +390,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_max_payload_size_cs(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 5;
         self.0 &= !0xe0;
         self.0 |= value;
@@ -401,7 +401,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_max_read_req_size(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -412,7 +412,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_non_fatal_err_detected(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -423,7 +423,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_non_fatal_err_report_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -434,7 +434,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_phantom_func_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -445,7 +445,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_trans_pending(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -456,7 +456,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_unsupported_req_detected(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -467,7 +467,7 @@ impl DEVICE_CONTROL_DEVICE_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_unsupport_req_rep_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -483,7 +483,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_active_state_link_pm_support(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 10;
         self.0 &= !0xc00;
         self.0 |= value;
@@ -494,7 +494,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_aspm_opt_compliance(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -505,7 +505,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_clock_power_man(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -516,7 +516,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_dll_active_rep_cap(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -527,7 +527,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_l0s_exit_latency(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -538,7 +538,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_l1_exit_latency(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 15;
         self.0 &= !0x38000;
         self.0 |= value;
@@ -549,7 +549,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_link_bw_not_cap(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -560,7 +560,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_max_link_speed(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -570,7 +570,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_max_link_width(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -581,7 +581,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_port_num(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -592,7 +592,7 @@ impl LINK_CAPABILITIES {
     }
     #[inline(always)]
     pub fn set_pcie_cap_surprise_down_err_rep_cap(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -608,7 +608,7 @@ impl LINK_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_cross_link_support(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -619,7 +619,7 @@ impl LINK_CAPABILITIES2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_support_link_speed_vector(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 1;
         self.0 &= !0xfe;
         self.0 |= value;
@@ -635,7 +635,7 @@ impl LINK_CONTROL2_LINK_STATUS2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_curr_deemphasis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -646,7 +646,7 @@ impl LINK_CONTROL2_LINK_STATUS2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_eq_cpl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -657,7 +657,7 @@ impl LINK_CONTROL2_LINK_STATUS2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_eq_cpl_p1(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -668,7 +668,7 @@ impl LINK_CONTROL2_LINK_STATUS2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_eq_cpl_p2(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -679,7 +679,7 @@ impl LINK_CONTROL2_LINK_STATUS2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_eq_cpl_p3(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -690,7 +690,7 @@ impl LINK_CONTROL2_LINK_STATUS2 {
     }
     #[inline(always)]
     pub fn set_pcie_cap_link_eq_req(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -706,7 +706,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_active_state_link_pm_control(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -716,7 +716,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_common_clk_config(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -727,7 +727,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_dll_active(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 29;
         self.0 &= !0x20000000;
         self.0 |= value;
@@ -738,7 +738,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_en_clk_power_man(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -749,7 +749,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_extended_synch(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -760,7 +760,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_link_auot_bw_status(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -771,7 +771,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_link_auto_bw_int_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -782,7 +782,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_link_bw_man_int_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -793,7 +793,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_link_bw_man_status(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -804,7 +804,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_link_disable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -815,7 +815,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_link_speed(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -826,7 +826,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_link_training(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -837,7 +837,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_nego_link_width(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 20;
         self.0 &= !0x1f00000;
         self.0 |= value;
@@ -848,7 +848,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_rcb(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -859,7 +859,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_retrain_link(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -870,7 +870,7 @@ impl LINK_CONTROL_LINK_STATUS {
     }
     #[inline(always)]
     pub fn set_pcie_cap_slot_clk_config(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -886,7 +886,7 @@ impl PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP {
     }
     #[inline(always)]
     pub fn set_pcie_cap(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -897,7 +897,7 @@ impl PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP {
     }
     #[inline(always)]
     pub fn set_pcie_cap_id(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -907,7 +907,7 @@ impl PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP {
     }
     #[inline(always)]
     pub fn set_pcie_cap_next_ptr(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -918,7 +918,7 @@ impl PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP {
     }
     #[inline(always)]
     pub fn set_pcie_dev_port_type(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 20;
         self.0 &= !0xf00000;
         self.0 |= value;
@@ -929,7 +929,7 @@ impl PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP {
     }
     #[inline(always)]
     pub fn set_pcie_int_msg_num(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 25;
         self.0 &= !0x3e000000;
         self.0 |= value;
@@ -940,7 +940,7 @@ impl PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP {
     }
     #[inline(always)]
     pub fn set_pcie_slot_imp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -951,7 +951,7 @@ impl PCIE_CAP_ID_PCIE_NEXT_CAP_PTR_PCIE_CAP {
     }
     #[inline(always)]
     pub fn set_rsvd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;

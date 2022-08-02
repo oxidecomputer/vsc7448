@@ -42,7 +42,7 @@ impl SERDES6G_DFT_STATUS {
     }
     #[inline(always)]
     pub fn set_bist_active(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl SERDES6G_DFT_STATUS {
     }
     #[inline(always)]
     pub fn set_bist_complete_n(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl SERDES6G_DFT_STATUS {
     }
     #[inline(always)]
     pub fn set_bist_error(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -83,7 +83,7 @@ impl SERDES6G_DFT_STATUS {
     }
     #[inline(always)]
     pub fn set_bist_nosync(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -97,7 +97,7 @@ impl SERDES6G_DFT_STATUS {
     }
     #[inline(always)]
     pub fn set_pll_bist_failed(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -111,7 +111,7 @@ impl SERDES6G_DFT_STATUS {
     }
     #[inline(always)]
     pub fn set_pll_bist_not_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl SERDES6G_DFT_STATUS {
     }
     #[inline(always)]
     pub fn set_pll_bist_timeout_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -139,7 +139,7 @@ impl SERDES6G_DFT_STATUS {
     }
     #[inline(always)]
     pub fn set_prbs_sync_stat(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -158,7 +158,7 @@ impl SERDES6G_ERR_CNT {
     }
     #[inline(always)]
     pub fn set_prbs_err_cnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -178,7 +178,7 @@ impl SERDES6G_MISC_STATUS {
     }
     #[inline(always)]
     pub fn set_des_100fx_phase_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

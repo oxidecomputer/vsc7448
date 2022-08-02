@@ -38,7 +38,7 @@ impl CU_MEDIA_CRC_GOOD_COUNTER {
     }
     #[inline(always)]
     pub fn set_contents(&mut self, value: u16) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         self.0 &= !0x3fff;
         self.0 |= value;
     }
@@ -52,7 +52,7 @@ impl EXTENDED_MODE_CONTROL {
     }
     #[inline(always)]
     pub fn set_fast_link_failure(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -63,7 +63,7 @@ impl EXTENDED_MODE_CONTROL {
     }
     #[inline(always)]
     pub fn set_force_mdi_crossover(&mut self, value: u16) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 2;
         self.0 &= !0xc;
         self.0 |= value;
@@ -78,7 +78,7 @@ impl EXTENDED_PHY_CONTROL_3 {
     }
     #[inline(always)]
     pub fn set_media_mode_status(&mut self, value: u16) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 6;
         self.0 &= !0xc0;
         self.0 |= value;
@@ -99,7 +99,7 @@ impl VERIPHY_CTRL_REG1 {
     }
     #[inline(always)]
     pub fn set_pair_a_distance(&mut self, value: u16) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 8;
         self.0 &= !0x3f00;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl VERIPHY_CTRL_REG1 {
     }
     #[inline(always)]
     pub fn set_pair_b_distance(&mut self, value: u16) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -120,7 +120,7 @@ impl VERIPHY_CTRL_REG1 {
     }
     #[inline(always)]
     pub fn set_trigger(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -131,7 +131,7 @@ impl VERIPHY_CTRL_REG1 {
     }
     #[inline(always)]
     pub fn set_valid(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -146,7 +146,7 @@ impl VERIPHY_CTRL_REG2 {
     }
     #[inline(always)]
     pub fn set_pair_c_distance(&mut self, value: u16) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 8;
         self.0 &= !0x3f00;
         self.0 |= value;
@@ -157,7 +157,7 @@ impl VERIPHY_CTRL_REG2 {
     }
     #[inline(always)]
     pub fn set_pair_d_distance(&mut self, value: u16) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -171,7 +171,7 @@ impl VERIPHY_CTRL_REG3 {
     }
     #[inline(always)]
     pub fn set_pair_a_termination_status(&mut self, value: u16) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 12;
         self.0 &= !0xf000;
         self.0 |= value;
@@ -182,7 +182,7 @@ impl VERIPHY_CTRL_REG3 {
     }
     #[inline(always)]
     pub fn set_pair_b_termination_status(&mut self, value: u16) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 8;
         self.0 &= !0xf00;
         self.0 |= value;
@@ -193,7 +193,7 @@ impl VERIPHY_CTRL_REG3 {
     }
     #[inline(always)]
     pub fn set_pair_c_termination_status(&mut self, value: u16) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -204,7 +204,7 @@ impl VERIPHY_CTRL_REG3 {
     }
     #[inline(always)]
     pub fn set_pair_d_termination_status(&mut self, value: u16) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -218,7 +218,7 @@ impl EXT_28 {
     }
     #[inline(always)]
     pub fn set_epg_data_reg_idx(&mut self, value: u16) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -228,7 +228,7 @@ impl EXT_28 {
     }
     #[inline(always)]
     pub fn set_etype_udpdest_ov_ena(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -239,7 +239,7 @@ impl EXT_28 {
     }
     #[inline(always)]
     pub fn set_ipg_ov_ena(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -250,7 +250,7 @@ impl EXT_28 {
     }
     #[inline(always)]
     pub fn set_pkt_sz_ov_ena(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -261,7 +261,7 @@ impl EXT_28 {
     }
     #[inline(always)]
     pub fn set_sig_ctr_ena(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -276,7 +276,7 @@ impl EPG_CTRL_REG_1 {
     }
     #[inline(always)]
     pub fn set_bad_frame_fcs_gen(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -286,7 +286,7 @@ impl EPG_CTRL_REG_1 {
     }
     #[inline(always)]
     pub fn set_epg_enable(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -297,7 +297,7 @@ impl EPG_CTRL_REG_1 {
     }
     #[inline(always)]
     pub fn set_epg_run_stop(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -308,7 +308,7 @@ impl EPG_CTRL_REG_1 {
     }
     #[inline(always)]
     pub fn set_ipg_8192nsec(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -319,7 +319,7 @@ impl EPG_CTRL_REG_1 {
     }
     #[inline(always)]
     pub fn set_random_payload_pattern(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;

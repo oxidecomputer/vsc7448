@@ -38,7 +38,7 @@ impl OBCFG_ADDR {
     }
     #[inline(always)]
     pub fn set_obcfg_addr(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }

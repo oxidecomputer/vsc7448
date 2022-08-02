@@ -42,7 +42,7 @@ impl PTP_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_domain(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -53,7 +53,7 @@ impl PTP_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_port_num(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 2;
         self.0 &= !0xfc;
         self.0 |= value;
@@ -74,7 +74,7 @@ impl VCAP_S2_KEY_SEL {
     }
     #[inline(always)]
     pub fn set_arp_key_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -87,7 +87,7 @@ impl VCAP_S2_KEY_SEL {
     }
     #[inline(always)]
     pub fn set_ip4_mc_key_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 6;
         self.0 &= !0xc0;
         self.0 |= value;
@@ -101,7 +101,7 @@ impl VCAP_S2_KEY_SEL {
     }
     #[inline(always)]
     pub fn set_ip4_uc_key_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;
@@ -115,7 +115,7 @@ impl VCAP_S2_KEY_SEL {
     }
     #[inline(always)]
     pub fn set_ip6_mc_key_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 2;
         self.0 &= !0xc;
         self.0 |= value;
@@ -129,7 +129,7 @@ impl VCAP_S2_KEY_SEL {
     }
     #[inline(always)]
     pub fn set_ip6_uc_key_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -143,7 +143,7 @@ impl VCAP_S2_KEY_SEL {
     }
     #[inline(always)]
     pub fn set_non_eth_key_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 8;
         self.0 &= !0x300;
         self.0 |= value;

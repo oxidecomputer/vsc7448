@@ -40,7 +40,7 @@ impl GLOBAL_CNT_FRM_TYPE_CFG {
     }
     #[inline(always)]
     pub fn set_global_cfg_cnt_frm_type(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -60,7 +60,7 @@ impl STAT_GLOBAL_CFG {
     }
     #[inline(always)]
     pub fn set_global_cfg_cnt_byte(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -78,7 +78,7 @@ impl STAT_GLOBAL_EVENT_MASK {
     }
     #[inline(always)]
     pub fn set_global_event_mask(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }

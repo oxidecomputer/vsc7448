@@ -66,7 +66,7 @@ impl PTP_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_flag_field(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -79,7 +79,7 @@ impl PTP_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_flag_field_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -96,7 +96,7 @@ impl PTP_SRC_PORT_CFG {
     }
     #[inline(always)]
     pub fn set_port_num(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -107,7 +107,7 @@ impl PTP_SRC_PORT_CFG {
     }
     #[inline(always)]
     pub fn set_port_num_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;

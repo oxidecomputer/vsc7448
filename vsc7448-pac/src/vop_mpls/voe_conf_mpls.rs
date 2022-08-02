@@ -40,7 +40,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_cc_auth_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_cc_rfc6428(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -66,7 +66,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_coordinated_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -78,7 +78,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_cv_auth_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -90,7 +90,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_max_len(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -101,7 +101,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_rx_sample_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -113,7 +113,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_rx_verify_cc_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_rx_verify_cv_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -137,7 +137,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_rx_verify_discr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -149,7 +149,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_rx_verify_flags_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -161,7 +161,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_rx_verify_min_len_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -173,7 +173,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_rx_verify_version_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -187,7 +187,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_scan_period(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 19;
         self.0 &= !0x380000;
         self.0 |= value;
@@ -199,7 +199,7 @@ impl BFD_CONFIG {
     }
     #[inline(always)]
     pub fn set_bfd_tx_update_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -284,7 +284,7 @@ impl CPU_COPY_CTRL_MPLS {
     }
     #[inline(always)]
     pub fn set_bfd_cc_cpu_copy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -298,7 +298,7 @@ impl CPU_COPY_CTRL_MPLS {
     }
     #[inline(always)]
     pub fn set_bfd_cv_cpu_copy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -311,7 +311,7 @@ impl CPU_COPY_CTRL_MPLS {
     }
     #[inline(always)]
     pub fn set_generic_copy_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 3;
         self.0 &= !0x7f8;
         self.0 |= value;
@@ -325,7 +325,7 @@ impl CPU_COPY_CTRL_MPLS {
     }
     #[inline(always)]
     pub fn set_unk_cpt_cpu_copy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -346,7 +346,7 @@ impl OAM_CNT_DATA_MPLS {
     }
     #[inline(always)]
     pub fn set_bfd_cc_cnt_data_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -360,7 +360,7 @@ impl OAM_CNT_DATA_MPLS {
     }
     #[inline(always)]
     pub fn set_bfd_cv_cnt_data_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -373,7 +373,7 @@ impl OAM_CNT_DATA_MPLS {
     }
     #[inline(always)]
     pub fn set_generic_cpt_cnt_data_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 3;
         self.0 &= !0x7f8;
         self.0 |= value;
@@ -387,7 +387,7 @@ impl OAM_CNT_DATA_MPLS {
     }
     #[inline(always)]
     pub fn set_unk_cpt_cnt_data_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -408,7 +408,7 @@ impl OAM_CNT_SEL_MPLS {
     }
     #[inline(always)]
     pub fn set_bfd_cc_cnt_sel_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -422,7 +422,7 @@ impl OAM_CNT_SEL_MPLS {
     }
     #[inline(always)]
     pub fn set_bfd_cv_cnt_sel_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -435,7 +435,7 @@ impl OAM_CNT_SEL_MPLS {
     }
     #[inline(always)]
     pub fn set_generic_cpt_cnt_sel_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 3;
         self.0 &= !0x7f8;
         self.0 |= value;
@@ -449,7 +449,7 @@ impl OAM_CNT_SEL_MPLS {
     }
     #[inline(always)]
     pub fn set_unk_cpt_cnt_sel_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -468,7 +468,7 @@ impl OAM_HW_CTRL_MPLS {
     }
     #[inline(always)]
     pub fn set_bfd_cc_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -480,7 +480,7 @@ impl OAM_HW_CTRL_MPLS {
     }
     #[inline(always)]
     pub fn set_bfd_cv_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -498,7 +498,7 @@ impl PATH_VOE_MPLS {
     }
     #[inline(always)]
     pub fn set_path_voeid(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -509,7 +509,7 @@ impl PATH_VOE_MPLS {
     }
     #[inline(always)]
     pub fn set_path_voe_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -528,7 +528,7 @@ impl VOE_CTRL_MPLS {
     }
     #[inline(always)]
     pub fn set_upmep_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -540,7 +540,7 @@ impl VOE_CTRL_MPLS {
     }
     #[inline(always)]
     pub fn set_voe_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -552,7 +552,7 @@ impl VOE_CTRL_MPLS {
     }
     #[inline(always)]
     pub fn set_voe_is_path(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

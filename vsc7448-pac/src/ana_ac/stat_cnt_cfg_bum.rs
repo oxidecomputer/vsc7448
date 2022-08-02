@@ -52,7 +52,7 @@ impl STAT_MSB_CNT {
     }
     #[inline(always)]
     pub fn set_msb_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }

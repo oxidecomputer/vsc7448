@@ -40,7 +40,7 @@ impl PFC_CFG {
     }
     #[inline(always)]
     pub fn set_fc_link_speed(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -51,7 +51,7 @@ impl PFC_CFG {
     }
     #[inline(always)]
     pub fn set_rx_pfc_ena(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 3;
         self.0 &= !0x7f8;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl PFC_TIMER {
     }
     #[inline(always)]
     pub fn set_pfc_timer_val(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

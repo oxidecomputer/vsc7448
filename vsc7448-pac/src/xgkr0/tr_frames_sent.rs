@@ -38,7 +38,7 @@ impl FRSENT_LSW {
     }
     #[inline(always)]
     pub fn set_frsent_lsw(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl FRSENT_MSW {
     }
     #[inline(always)]
     pub fn set_frsent_msw(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

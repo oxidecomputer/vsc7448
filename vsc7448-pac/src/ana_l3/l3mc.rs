@@ -54,7 +54,7 @@ impl L3MC_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl L3MC_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_redir_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 2;
         self.0 &= !0xc;
         self.0 |= value;
@@ -80,7 +80,7 @@ impl L3MC_CTRL {
     }
     #[inline(always)]
     pub fn set_ipmc_ttl_copy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -91,7 +91,7 @@ impl L3MC_CTRL {
     }
     #[inline(always)]
     pub fn set_rpf_chk_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -103,7 +103,7 @@ impl L3MC_CTRL {
     }
     #[inline(always)]
     pub fn set_rpf_vmid(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 8;
         self.0 &= !0x7f00;
         self.0 |= value;

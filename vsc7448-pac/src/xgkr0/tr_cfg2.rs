@@ -38,7 +38,7 @@ impl TR_CFG2 {
     }
     #[inline(always)]
     pub fn set_v2_min(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -49,7 +49,7 @@ impl TR_CFG2 {
     }
     #[inline(always)]
     pub fn set_vp_max(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 6;
         self.0 &= !0xfc0;
         self.0 |= value;

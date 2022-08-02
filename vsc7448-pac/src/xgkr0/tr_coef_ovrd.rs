@@ -38,7 +38,7 @@ impl TR_COEF_OVRD {
     }
     #[inline(always)]
     pub fn set_coef_ovrd(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

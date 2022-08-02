@@ -40,7 +40,7 @@ impl PTP_CPUVD_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_dom_val(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -53,7 +53,7 @@ impl PTP_CPUVD_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_mode_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 2;
         self.0 &= !0x1c;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl PTP_RSRV_NOT_ZERO_1 {
     }
     #[inline(always)]
     pub fn set_ptp_rsrv_not_zero_1(&mut self, value: u32) {
-        assert!(value <= 0x1ffffff);
+        debug_assert!(value <= 0x1ffffff);
         self.0 &= !0x1ffffff;
         self.0 |= value;
     }
@@ -100,7 +100,7 @@ impl PTP_TWOSTEP_CTRL {
     }
     #[inline(always)]
     pub fn set_ptp_nxt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -112,7 +112,7 @@ impl PTP_TWOSTEP_CTRL {
     }
     #[inline(always)]
     pub fn set_ptp_ovfl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -123,7 +123,7 @@ impl PTP_TWOSTEP_CTRL {
     }
     #[inline(always)]
     pub fn set_ptp_ovwr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -135,7 +135,7 @@ impl PTP_TWOSTEP_CTRL {
     }
     #[inline(always)]
     pub fn set_ptp_vld(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -147,7 +147,7 @@ impl PTP_TWOSTEP_CTRL {
     }
     #[inline(always)]
     pub fn set_stamp_port(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 1;
         self.0 &= !0x1fe;
         self.0 |= value;
@@ -159,7 +159,7 @@ impl PTP_TWOSTEP_CTRL {
     }
     #[inline(always)]
     pub fn set_stamp_tx(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;

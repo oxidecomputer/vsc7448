@@ -40,7 +40,7 @@ impl PORT_CFG {
     }
     #[inline(always)]
     pub fn set_fc_skip_tti_inj(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl PORT_CFG {
     }
     #[inline(always)]
     pub fn set_frm_out_max(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -67,7 +67,7 @@ impl PORT_CFG {
     }
     #[inline(always)]
     pub fn set_frm_rm_only(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl PORT_FRM_OUT {
     }
     #[inline(always)]
     pub fn set_frm_out_cnt(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         let value = value << 16;
         self.0 &= !0x7ff0000;
         self.0 |= value;

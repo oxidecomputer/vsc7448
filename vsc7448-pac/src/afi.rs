@@ -151,17 +151,17 @@ pub struct TTI_MISC(pub(super) u32);
 impl TTI_MISC {
     #[inline(always)]
     pub fn TTI_CAL_SLOT_CNT(&self, index: u8) -> RegisterAddress<tti_misc::TTI_CAL_SLOT_CNT> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn TTI_CAL_SLOT_PTRS(&self, index: u8) -> RegisterAddress<tti_misc::TTI_CAL_SLOT_PTRS> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn TTI_CAL_STATE(&self, index: u8) -> RegisterAddress<tti_misc::TTI_CAL_STATE> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -232,7 +232,7 @@ impl TTI_TICKS {
     }
     #[inline(always)]
     pub fn TTI_TICK_STATE(&self, index: u8) -> RegisterAddress<tti_ticks::TTI_TICK_STATE> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0xc + u32::from(index) * 0x4)
     }
 }
@@ -258,7 +258,7 @@ impl TUPE {
     }
     #[inline(always)]
     pub fn TUPE_CRIT3(&self, index: u8) -> RegisterAddress<tupe::TUPE_CRIT3> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]

@@ -40,7 +40,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_data_valid_propper_side(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -63,7 +63,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_fsm_state(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 23;
         self.0 &= !0x1800000;
         self.0 |= value;
@@ -75,7 +75,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_sample_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -87,7 +87,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_side_det_bit_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 17;
         self.0 &= !0x3e0000;
         self.0 |= value;
@@ -99,7 +99,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_side_det_ones_weight(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 14;
         self.0 &= !0x1c000;
         self.0 |= value;
@@ -111,7 +111,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_side_det_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_side_det_zeros_weight(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 11;
         self.0 &= !0x3800;
         self.0 |= value;
@@ -137,7 +137,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_sticky_clr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -149,7 +149,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_tog_det_cnt(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -161,7 +161,7 @@ impl F2DF_CFG_STAT {
     }
     #[inline(always)]
     pub fn set_f2df_tog_det_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -180,7 +180,7 @@ impl SD10G65_RX_SYNTH_CDRLF {
     }
     #[inline(always)]
     pub fn set_synth_integ1_fsel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 6;
         self.0 &= !0x7c0;
         self.0 |= value;
@@ -192,7 +192,7 @@ impl SD10G65_RX_SYNTH_CDRLF {
     }
     #[inline(always)]
     pub fn set_synth_integ1_lim(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 11;
         self.0 &= !0xf800;
         self.0 |= value;
@@ -204,7 +204,7 @@ impl SD10G65_RX_SYNTH_CDRLF {
     }
     #[inline(always)]
     pub fn set_synth_integ1_max0(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 16;
         self.0 &= !0x1f0000;
         self.0 |= value;
@@ -216,7 +216,7 @@ impl SD10G65_RX_SYNTH_CDRLF {
     }
     #[inline(always)]
     pub fn set_synth_integ1_max1(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 21;
         self.0 &= !0x3e00000;
         self.0 |= value;
@@ -228,7 +228,7 @@ impl SD10G65_RX_SYNTH_CDRLF {
     }
     #[inline(always)]
     pub fn set_synth_integ2_fsel(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -246,7 +246,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_conv_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -258,7 +258,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -271,7 +271,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_fbdiv_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 16;
         self.0 &= !0x30000;
         self.0 |= value;
@@ -283,7 +283,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_fb_dir(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -295,7 +295,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_fb_step(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -307,7 +307,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_hrate_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -319,7 +319,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_i1_dir(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -331,7 +331,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_i1_step(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -343,7 +343,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_i2_dir(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -355,7 +355,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_i2_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -367,7 +367,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_i2_step(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 11;
         self.0 &= !0x1800;
         self.0 |= value;
@@ -381,7 +381,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_off_comp_ena(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 18;
         self.0 &= !0x3c0000;
         self.0 |= value;
@@ -393,7 +393,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_p_dir(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -405,7 +405,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_p_step(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -419,7 +419,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_spare_pool(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 22;
         self.0 &= !0x3fc00000;
         self.0 |= value;
@@ -433,7 +433,7 @@ impl SD10G65_RX_SYNTH_CFG0 {
     }
     #[inline(always)]
     pub fn set_synth_speed_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -452,7 +452,7 @@ impl SD10G65_RX_SYNTH_CFG1 {
     }
     #[inline(always)]
     pub fn set_synth_freqm_1(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -464,7 +464,7 @@ impl SD10G65_RX_SYNTH_CFG1 {
     }
     #[inline(always)]
     pub fn set_synth_freqn_1(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -475,7 +475,7 @@ impl SD10G65_RX_SYNTH_CFG1 {
     }
     #[inline(always)]
     pub fn set_synth_freq_mult(&mut self, value: u32) {
-        assert!(value <= 0x3fff);
+        debug_assert!(value <= 0x3fff);
         let value = value << 8;
         self.0 &= !0x3fff00;
         self.0 |= value;
@@ -487,7 +487,7 @@ impl SD10G65_RX_SYNTH_CFG1 {
     }
     #[inline(always)]
     pub fn set_synth_freq_mult_byp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -499,7 +499,7 @@ impl SD10G65_RX_SYNTH_CFG1 {
     }
     #[inline(always)]
     pub fn set_synth_freq_mult_hi(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 22;
         self.0 &= !0x3c00000;
         self.0 |= value;
@@ -518,7 +518,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_aux_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -530,7 +530,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_cpmd_dig_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -542,7 +542,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_cpmd_dig_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -554,7 +554,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_dv_ctrl_i1e(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 22;
         self.0 &= !0xc00000;
         self.0 |= value;
@@ -566,7 +566,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_dv_ctrl_i1m(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -578,7 +578,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_dv_ctrl_i2e(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 26;
         self.0 &= !0xc000000;
         self.0 |= value;
@@ -590,7 +590,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_dv_ctrl_md(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 20;
         self.0 &= !0x300000;
         self.0 |= value;
@@ -602,7 +602,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_etsd_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -614,7 +614,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_phase_aux(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -625,7 +625,7 @@ impl SD10G65_RX_SYNTH_CFG2 {
     }
     #[inline(always)]
     pub fn set_synth_phase_data(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 8;
         self.0 &= !0x7f00;
         self.0 |= value;
@@ -676,7 +676,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
     }
     #[inline(always)]
     pub fn set_synth_capture_qual(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -688,7 +688,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
     }
     #[inline(always)]
     pub fn set_synth_i1_sat_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -700,7 +700,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
     }
     #[inline(always)]
     pub fn set_synth_i1_sat_det_clr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -712,7 +712,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
     }
     #[inline(always)]
     pub fn set_synth_i2_wrap_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -724,7 +724,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
     }
     #[inline(always)]
     pub fn set_synth_i2_wrap_det_clr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -736,7 +736,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
     }
     #[inline(always)]
     pub fn set_synth_i2_wrap_inhibit(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -748,7 +748,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
     }
     #[inline(always)]
     pub fn set_synth_qual_i1(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -759,7 +759,7 @@ impl SD10G65_RX_SYNTH_QUALIFIER0 {
     }
     #[inline(always)]
     pub fn set_synth_qual_i2_msb(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -794,7 +794,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {
     }
     #[inline(always)]
     pub fn set_synth_sc_protocol_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -806,7 +806,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {
     }
     #[inline(always)]
     pub fn set_synth_sc_protocol_err_clr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -818,7 +818,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {
     }
     #[inline(always)]
     pub fn set_synth_sc_sync_timer_sel(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -829,7 +829,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {
     }
     #[inline(always)]
     pub fn set_synth_sc_test_count(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 4;
         self.0 &= !0x3ff0;
         self.0 |= value;
@@ -841,7 +841,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {
     }
     #[inline(always)]
     pub fn set_synth_sc_test_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -853,7 +853,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {
     }
     #[inline(always)]
     pub fn set_synth_sc_test_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -865,7 +865,7 @@ impl SD10G65_RX_SYNTH_SYNC_CTRL {
     }
     #[inline(always)]
     pub fn set_synth_sc_test_trigger(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;

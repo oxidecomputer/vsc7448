@@ -40,7 +40,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_auto_lrn_rate_exceed_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_drop_unknown_src_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_fwd_entry_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -82,7 +82,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_fwd_flood_kill_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -96,7 +96,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_fwd_flood_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_global_to_global_portmove_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -124,7 +124,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_global_to_local_portmove_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -138,7 +138,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_learn_known_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -152,7 +152,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_learn_unknown_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -165,7 +165,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_local_to_global_portmove_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -179,7 +179,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_local_to_local_portmove_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -193,7 +193,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_local_to_remote_portmove_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -207,7 +207,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_remote_to_local_portmove_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -221,7 +221,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_remote_to_remote_portmove_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -235,7 +235,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_src_ignore_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -249,7 +249,7 @@ impl STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_vlan_ignore_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;

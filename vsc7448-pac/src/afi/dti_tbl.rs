@@ -38,7 +38,7 @@ impl DTI_CNT {
     }
     #[inline(always)]
     pub fn set_cnt(&mut self, value: u32) {
-        assert!(value <= 0x7fffffff);
+        debug_assert!(value <= 0x7fffffff);
         self.0 &= !0x7fffffff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl DTI_DURATION {
     }
     #[inline(always)]
     pub fn set_duration(&mut self, value: u32) {
-        assert!(value <= 0x7fffffff);
+        debug_assert!(value <= 0x7fffffff);
         self.0 &= !0x7fffffff;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl DTI_FRM {
     }
     #[inline(always)]
     pub fn set_first_frm_ptr(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -81,7 +81,7 @@ impl DTI_FRM {
     }
     #[inline(always)]
     pub fn set_next_frm_ptr(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 16;
         self.0 &= !0xfff0000;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl DTI_MODE {
     }
     #[inline(always)]
     pub fn set_dti_next(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 24;
         self.0 &= !0x1f000000;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl DTI_MODE {
     }
     #[inline(always)]
     pub fn set_fc_postpone_len(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -124,7 +124,7 @@ impl DTI_MODE {
     }
     #[inline(always)]
     pub fn set_fc_postpone_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -136,7 +136,7 @@ impl DTI_MODE {
     }
     #[inline(always)]
     pub fn set_frm_inj_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -150,7 +150,7 @@ impl DTI_MODE {
     }
     #[inline(always)]
     pub fn set_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -163,7 +163,7 @@ impl DTI_MODE {
     }
     #[inline(always)]
     pub fn set_trailing_delay_seq_cnt(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 2;
         self.0 &= !0xfc;
         self.0 |= value;
@@ -180,7 +180,7 @@ impl DTI_PORT_QU {
     }
     #[inline(always)]
     pub fn set_port_num(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -191,7 +191,7 @@ impl DTI_PORT_QU {
     }
     #[inline(always)]
     pub fn set_qu_num(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 8;
         self.0 &= !0xffff00;
         self.0 |= value;

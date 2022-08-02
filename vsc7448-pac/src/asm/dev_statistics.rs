@@ -74,7 +74,7 @@ impl RX_BAD_BYTES_MSB_CNT {
     }
     #[inline(always)]
     pub fn set_rx_bad_bytes_msb_cnt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -158,7 +158,7 @@ impl RX_IN_BYTES_MSB_CNT {
     }
     #[inline(always)]
     pub fn set_rx_in_bytes_msb_cnt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -258,7 +258,7 @@ impl RX_OK_BYTES_MSB_CNT {
     }
     #[inline(always)]
     pub fn set_rx_ok_bytes_msb_cnt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -688,7 +688,7 @@ impl TX_OK_BYTES_MSB_CNT {
     }
     #[inline(always)]
     pub fn set_tx_ok_bytes_msb_cnt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -724,7 +724,7 @@ impl TX_OUT_BYTES_MSB_CNT {
     }
     #[inline(always)]
     pub fn set_tx_out_bytes_msb_cnt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }

@@ -38,7 +38,7 @@ impl DWRR_ENTRY {
     }
     #[inline(always)]
     pub fn set_dwrr_balance(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
+        debug_assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
     }
@@ -49,7 +49,7 @@ impl DWRR_ENTRY {
     }
     #[inline(always)]
     pub fn set_dwrr_cost(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 20;
         self.0 &= !0x1f00000;
         self.0 |= value;

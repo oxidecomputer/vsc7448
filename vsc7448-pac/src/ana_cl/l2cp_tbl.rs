@@ -38,7 +38,7 @@ impl L2CP_ENTRY_CFG {
     }
     #[inline(always)]
     pub fn set_cosid_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl L2CP_ENTRY_CFG {
     }
     #[inline(always)]
     pub fn set_cosid_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -64,7 +64,7 @@ impl L2CP_ENTRY_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_fwd_cfg(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 3;
         self.0 &= !0x18;
         self.0 |= value;
@@ -76,7 +76,7 @@ impl L2CP_ENTRY_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_l2cp_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }

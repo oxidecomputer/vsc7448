@@ -42,7 +42,7 @@ impl POL_ACL_CTRL {
     }
     #[inline(always)]
     pub fn set_acl_pipeline_pt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 3;
         self.0 &= !0x78;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl POL_ACL_CTRL {
     }
     #[inline(always)]
     pub fn set_acl_traffic_type_mask(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl POL_ACL_CTRL {
     }
     #[inline(always)]
     pub fn set_dp_bypass_lvl(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 16;
         self.0 &= !0x30000;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl POL_ACL_CTRL {
     }
     #[inline(always)]
     pub fn set_frame_rate_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -97,7 +97,7 @@ impl POL_ACL_CTRL {
     }
     #[inline(always)]
     pub fn set_gap_value(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 8;
         self.0 &= !0x7f00;
         self.0 |= value;
@@ -116,7 +116,7 @@ impl POL_ACL_RATE_CFG {
     }
     #[inline(always)]
     pub fn set_acl_rate(&mut self, value: u32) {
-        assert!(value <= 0x7ffff);
+        debug_assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;
     }
@@ -134,7 +134,7 @@ impl POL_ACL_THRES_CFG {
     }
     #[inline(always)]
     pub fn set_acl_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -152,7 +152,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_acl_force_close(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -166,7 +166,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_acl_force_init(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -180,7 +180,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_acl_force_open(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -192,7 +192,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_dbg_dp_chg_prio_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -206,7 +206,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_dp_to_color_map(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -220,7 +220,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_force_close(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -234,7 +234,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_force_init(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -247,7 +247,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_force_open(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -261,7 +261,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_lport_police_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -273,7 +273,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_port_fc_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -287,7 +287,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_port_pol_in_parallel_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -301,7 +301,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_prio_force_close(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -315,7 +315,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_prio_force_init(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -329,7 +329,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_prio_force_open(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -343,7 +343,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_storm_force_close(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -357,7 +357,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_storm_force_init(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -371,7 +371,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_storm_force_open(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -385,7 +385,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_storm_gap_value(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 24;
         self.0 &= !0x7f000000;
         self.0 |= value;
@@ -399,7 +399,7 @@ impl POL_ALL_CFG {
     }
     #[inline(always)]
     pub fn set_use_sdlb_color_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -418,7 +418,7 @@ impl POL_PORT_FC_CFG {
     }
     #[inline(always)]
     pub fn set_fc_ena(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -431,7 +431,7 @@ impl POL_PORT_FC_CFG {
     }
     #[inline(always)]
     pub fn set_fc_state(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -450,7 +450,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_acl_active_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -464,7 +464,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_acl_bypass_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -478,7 +478,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_acl_drop_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -492,7 +492,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_acl_pt_bypass_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -506,7 +506,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_dlb_drop_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -520,7 +520,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_dlb_pt_bypass_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -534,7 +534,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_port_active_sticky(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 5;
         self.0 &= !0x1e0;
         self.0 |= value;
@@ -548,7 +548,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_port_bypass_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -561,7 +561,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_port_drop_cpu_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -575,7 +575,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_port_drop_fwd_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -589,7 +589,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_port_fc_clear_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -603,7 +603,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_port_fc_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -617,7 +617,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_port_pt_bypass_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -631,7 +631,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_prio_active_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -645,7 +645,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_prio_bypass_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -659,7 +659,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_prio_drop_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -673,7 +673,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_prio_pt_bypass_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -687,7 +687,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_storm_active_sticky(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 22;
         self.0 &= !0x3fc00000;
         self.0 |= value;
@@ -701,7 +701,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_storm_drop_cpu_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -715,7 +715,7 @@ impl POL_STICKY {
     }
     #[inline(always)]
     pub fn set_pol_storm_drop_fwd_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -734,7 +734,7 @@ impl POL_STICKY1 {
     }
     #[inline(always)]
     pub fn set_pol_bdlb_drop_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -747,7 +747,7 @@ impl POL_STICKY1 {
     }
     #[inline(always)]
     pub fn set_pol_bum_slb_active_sticky(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 2;
         self.0 &= !0x1c;
         self.0 |= value;
@@ -761,7 +761,7 @@ impl POL_STICKY1 {
     }
     #[inline(always)]
     pub fn set_pol_bum_slb_drop_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -780,7 +780,7 @@ impl POL_STORM_CTRL {
     }
     #[inline(always)]
     pub fn set_storm_cpu_qu_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 10;
         self.0 &= !0x3fc00;
         self.0 |= value;
@@ -794,7 +794,7 @@ impl POL_STORM_CTRL {
     }
     #[inline(always)]
     pub fn set_storm_frame_rate_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -808,7 +808,7 @@ impl POL_STORM_CTRL {
     }
     #[inline(always)]
     pub fn set_storm_limit_cpu_traffic_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -822,7 +822,7 @@ impl POL_STORM_CTRL {
     }
     #[inline(always)]
     pub fn set_storm_limit_noncpu_traffic_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -836,7 +836,7 @@ impl POL_STORM_CTRL {
     }
     #[inline(always)]
     pub fn set_storm_traffic_type_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -856,7 +856,7 @@ impl POL_STORM_RATE_CFG {
     }
     #[inline(always)]
     pub fn set_storm_rate(&mut self, value: u32) {
-        assert!(value <= 0x7ffff);
+        debug_assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;
     }
@@ -876,7 +876,7 @@ impl POL_STORM_THRES_CFG {
     }
     #[inline(always)]
     pub fn set_storm_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -896,7 +896,7 @@ impl POL_UPD_INT_CFG {
     }
     #[inline(always)]
     pub fn set_pol_upd_int(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }

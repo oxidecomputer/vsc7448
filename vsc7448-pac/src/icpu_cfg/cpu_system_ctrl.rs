@@ -40,7 +40,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_boot_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -51,7 +51,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_8051_irom_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -63,7 +63,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_be_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -75,7 +75,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_busif_sleep_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -87,7 +87,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_busif_werr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -101,7 +101,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -113,7 +113,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_mips_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_if_miim_slv_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -137,7 +137,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_if_pi_mst_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -149,7 +149,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_if_pi_slv_donepol(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -161,7 +161,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_if_pi_slv_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -175,7 +175,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_if_si1_owner(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;
@@ -189,7 +189,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_if_si_owner(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 6;
         self.0 &= !0xc0;
         self.0 |= value;
@@ -201,7 +201,7 @@ impl GENERAL_CTRL {
     }
     #[inline(always)]
     pub fn set_simc_ssp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -218,7 +218,7 @@ impl GENERAL_STAT {
     }
     #[inline(always)]
     pub fn set_cpu_sleep(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -229,7 +229,7 @@ impl GENERAL_STAT {
     }
     #[inline(always)]
     pub fn set_pi_slv_rd_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -241,7 +241,7 @@ impl GENERAL_STAT {
     }
     #[inline(always)]
     pub fn set_pi_slv_wr_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -255,7 +255,7 @@ impl GENERAL_STAT {
     }
     #[inline(always)]
     pub fn set_reg_if_err(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 1;
         self.0 &= !0xe;
         self.0 |= value;
@@ -267,7 +267,7 @@ impl GENERAL_STAT {
     }
     #[inline(always)]
     pub fn set_vcore_cfg(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -300,7 +300,7 @@ impl RESET {
     }
     #[inline(always)]
     pub fn set_core_rst_cpu_only(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -314,7 +314,7 @@ impl RESET {
     }
     #[inline(always)]
     pub fn set_core_rst_force(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -328,7 +328,7 @@ impl RESET {
     }
     #[inline(always)]
     pub fn set_core_rst_protect(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -342,7 +342,7 @@ impl RESET {
     }
     #[inline(always)]
     pub fn set_mem_rst_force(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

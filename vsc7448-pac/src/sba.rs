@@ -66,7 +66,7 @@ impl SBA {
     }
     #[inline(always)]
     pub fn RESERVED1(&self, index: u8) -> RegisterAddress<sba::RESERVED1> {
-        assert!(index < 12);
+        debug_assert!(index < 12);
         RegisterAddress::new(self.0 + 0xc + u32::from(index) * 0x4)
     }
     #[inline(always)]

@@ -42,7 +42,7 @@ impl SYSTEM {
     }
     #[inline(always)]
     pub fn FRAME_COPY_CFG(&self, index: u8) -> RegisterAddress<system::FRAME_COPY_CFG> {
-        assert!(index < 12);
+        debug_assert!(index < 12);
         RegisterAddress::new(self.0 + 0xe8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -63,7 +63,7 @@ impl SYSTEM {
     }
     #[inline(always)]
     pub fn SWITCH_PORT_MODE(&self, index: u8) -> RegisterAddress<system::SWITCH_PORT_MODE> {
-        assert!(index < 57);
+        debug_assert!(index < 57);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }

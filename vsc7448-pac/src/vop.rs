@@ -84,12 +84,12 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn HMO_FORCE_SLOT_CFG(&self, index: u8) -> RegisterAddress<common::HMO_FORCE_SLOT_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x84 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn HMO_PERIOD_CFG(&self, index: u8) -> RegisterAddress<common::HMO_PERIOD_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x7c + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -98,7 +98,7 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn INTR(&self, index: u8) -> RegisterAddress<common::INTR> {
-        assert!(index < 34);
+        debug_assert!(index < 34);
         RegisterAddress::new(self.0 + 0xa0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -107,7 +107,7 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn LOC_PERIOD_CFG(&self, index: u8) -> RegisterAddress<common::LOC_PERIOD_CFG> {
-        assert!(index < 7);
+        debug_assert!(index < 7);
         RegisterAddress::new(self.0 + 0x60 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -123,12 +123,12 @@ impl COMMON {
         &self,
         index: u8,
     ) -> RegisterAddress<common::MPLS_GENERIC_CODEPOINT> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x3c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn OAM_GENERIC_CFG(&self, index: u8) -> RegisterAddress<common::OAM_GENERIC_CFG> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x1c + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -145,7 +145,7 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn VOE32_INTR(&self, index: u8) -> RegisterAddress<common::VOE32_INTR> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x98 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -218,7 +218,7 @@ impl SAM_COSID_SEQ_CNT {
         &self,
         index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBM_TX_TRANSID> {
-        assert!(index < 7);
+        debug_assert!(index < 7);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -226,7 +226,7 @@ impl SAM_COSID_SEQ_CNT {
         &self,
         index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_FRM_CNT> {
-        assert!(index < 7);
+        debug_assert!(index < 7);
         RegisterAddress::new(self.0 + 0x38 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -234,7 +234,7 @@ impl SAM_COSID_SEQ_CNT {
         &self,
         index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_TRANSID> {
-        assert!(index < 7);
+        debug_assert!(index < 7);
         RegisterAddress::new(self.0 + 0x54 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -242,7 +242,7 @@ impl SAM_COSID_SEQ_CNT {
         &self,
         index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_RX_TRANSID_ERR_CNT> {
-        assert!(index < 7);
+        debug_assert!(index < 7);
         RegisterAddress::new(self.0 + 0x70 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -250,7 +250,7 @@ impl SAM_COSID_SEQ_CNT {
         &self,
         index: u8,
     ) -> RegisterAddress<sam_cosid_seq_cnt::SAM_LBR_TX_FRM_CNT> {
-        assert!(index < 7);
+        debug_assert!(index < 7);
         RegisterAddress::new(self.0 + 0x1c + u32::from(index) * 0x4)
     }
 }
@@ -277,7 +277,7 @@ impl VOE_CONF {
     }
     #[inline(always)]
     pub fn CCM_MEGID_CFG(&self, index: u8) -> RegisterAddress<voe_conf::CCM_MEGID_CFG> {
-        assert!(index < 12);
+        debug_assert!(index < 12);
         RegisterAddress::new(self.0 + 0x44 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -358,7 +358,7 @@ impl VOE_CONF {
     }
     #[inline(always)]
     pub fn SLM_PEER_LIST(&self, index: u8) -> RegisterAddress<voe_conf::SLM_PEER_LIST> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x7c + u32::from(index) * 0x4)
     }
     #[inline(always)]

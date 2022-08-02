@@ -42,7 +42,7 @@ impl ADV_CL_CFG {
     }
     #[inline(always)]
     pub fn set_etype_clm_key_sel(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 1;
         self.0 &= !0x1e;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl ADV_CL_CFG {
     }
     #[inline(always)]
     pub fn set_ip4_clm_key_sel(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 21;
         self.0 &= !0x1e00000;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl ADV_CL_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_clm_key_sel(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 17;
         self.0 &= !0x1e0000;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl ADV_CL_CFG {
     }
     #[inline(always)]
     pub fn set_lookup_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -97,7 +97,7 @@ impl ADV_CL_CFG {
     }
     #[inline(always)]
     pub fn set_mlbs_clm_key_sel(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 5;
         self.0 &= !0x1e0;
         self.0 |= value;
@@ -111,7 +111,7 @@ impl ADV_CL_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_mc_clm_key_sel(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 9;
         self.0 &= !0x1e00;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl ADV_CL_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_uc_clm_key_sel(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 13;
         self.0 &= !0x1e000;
         self.0 |= value;
@@ -139,7 +139,7 @@ impl ADV_CL_CFG {
     }
     #[inline(always)]
     pub fn set_use_cl_dscp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -153,7 +153,7 @@ impl ADV_CL_CFG {
     }
     #[inline(always)]
     pub fn set_use_cl_tci0_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -192,7 +192,7 @@ impl CAPTURE_CFG {
     }
     #[inline(always)]
     pub fn set_capture_tpid_aware_dis(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 7;
         self.0 &= !0xf80;
         self.0 |= value;
@@ -206,7 +206,7 @@ impl CAPTURE_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_igmp_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -219,7 +219,7 @@ impl CAPTURE_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_ip4_mc_copy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -233,7 +233,7 @@ impl CAPTURE_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_ip6_mc_copy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -247,7 +247,7 @@ impl CAPTURE_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mld_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -261,7 +261,7 @@ impl CAPTURE_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_vrap_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -275,7 +275,7 @@ impl CAPTURE_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_hop_by_hop_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -289,7 +289,7 @@ impl CAPTURE_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_icmp_hop_by_hop_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -346,7 +346,7 @@ impl FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_filter_null_mac_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -360,7 +360,7 @@ impl FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_filter_smac_mc_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -372,7 +372,7 @@ impl FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_force_fcs_update_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -390,7 +390,7 @@ impl PCP_DEI_MAP_CFG {
     }
     #[inline(always)]
     pub fn set_pcp_dei_dp_val(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 3;
         self.0 &= !0x18;
         self.0 |= value;
@@ -402,7 +402,7 @@ impl PCP_DEI_MAP_CFG {
     }
     #[inline(always)]
     pub fn set_pcp_dei_qos_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -420,7 +420,7 @@ impl PCP_DEI_TRANS_CFG {
     }
     #[inline(always)]
     pub fn set_dei_trans_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -432,7 +432,7 @@ impl PCP_DEI_TRANS_CFG {
     }
     #[inline(always)]
     pub fn set_pcp_trans_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -452,7 +452,7 @@ impl PORT_ID_CFG {
     }
     #[inline(always)]
     pub fn set_glag_num(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 8;
         self.0 &= !0x1f00;
         self.0 |= value;
@@ -466,7 +466,7 @@ impl PORT_ID_CFG {
     }
     #[inline(always)]
     pub fn set_lport_num(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -477,7 +477,7 @@ impl PORT_ID_CFG {
     }
     #[inline(always)]
     pub fn set_pag_val(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 13;
         self.0 &= !0x1fe000;
         self.0 |= value;
@@ -491,7 +491,7 @@ impl PORT_ID_CFG {
     }
     #[inline(always)]
     pub fn set_port_is_glag_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -505,7 +505,7 @@ impl PORT_ID_CFG {
     }
     #[inline(always)]
     pub fn set_update_ifh_src_port_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -526,7 +526,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_default_dp_val(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 3;
         self.0 &= !0x18;
         self.0 |= value;
@@ -538,7 +538,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_default_qos_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -551,7 +551,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_dp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -565,7 +565,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_keep_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -579,7 +579,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_qos_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -593,7 +593,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_rewr_mode_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -607,7 +607,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_translate_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -621,7 +621,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_keep_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -635,7 +635,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_pcp_dei_dp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -649,7 +649,7 @@ impl QOS_CFG {
     }
     #[inline(always)]
     pub fn set_pcp_dei_qos_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -670,7 +670,7 @@ impl STACKING_CTRL {
     }
     #[inline(always)]
     pub fn set_igr_drop_ena(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 4;
         self.0 &= !0xff0;
         self.0 |= value;
@@ -682,7 +682,7 @@ impl STACKING_CTRL {
     }
     #[inline(always)]
     pub fn set_stacking_aware_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -696,7 +696,7 @@ impl STACKING_CTRL {
     }
     #[inline(always)]
     pub fn set_stacking_header_discard_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -709,7 +709,7 @@ impl STACKING_CTRL {
     }
     #[inline(always)]
     pub fn set_stacking_non_header_discard_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -723,7 +723,7 @@ impl STACKING_CTRL {
     }
     #[inline(always)]
     pub fn set_vstax_isdx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -740,7 +740,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_port_dei(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -752,7 +752,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_port_pcp(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 13;
         self.0 &= !0xe000;
         self.0 |= value;
@@ -766,7 +766,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_port_tag_type(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -778,7 +778,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_port_vid(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -789,7 +789,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_port_voe_default_dei(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -801,7 +801,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_port_voe_default_pcp(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 23;
         self.0 &= !0x3800000;
         self.0 |= value;
@@ -815,7 +815,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_port_voe_tpid_aware_dis(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 26;
         self.0 &= !0x7c000000;
         self.0 |= value;
@@ -829,7 +829,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_vlan_aware_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -841,7 +841,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_vlan_pcp_dei_trans_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -855,7 +855,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_vlan_pop_cnt(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 17;
         self.0 &= !0x60000;
         self.0 |= value;
@@ -869,7 +869,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_vlan_tag_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -888,7 +888,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_ctag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -900,7 +900,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_cust1_stag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -912,7 +912,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_cust2_stag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -924,7 +924,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_cust3_stag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -935,7 +935,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_prio_ctag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -947,7 +947,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_prio_cust1_stag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -959,7 +959,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_prio_cust2_stag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -971,7 +971,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_prio_cust3_stag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -983,7 +983,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_prio_stag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -995,7 +995,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_stag_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1007,7 +1007,7 @@ impl VLAN_FILTER_CTRL {
     }
     #[inline(always)]
     pub fn set_tag_required_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1028,7 +1028,7 @@ impl VLAN_TPID_CTRL {
     }
     #[inline(always)]
     pub fn set_basic_tpid_aware_dis(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         let value = value << 4;
         self.0 &= !0x7fff0;
         self.0 |= value;
@@ -1042,7 +1042,7 @@ impl VLAN_TPID_CTRL {
     }
     #[inline(always)]
     pub fn set_rt_tag_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }

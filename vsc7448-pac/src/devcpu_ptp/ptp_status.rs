@@ -40,7 +40,7 @@ impl PTP_CUR_NSEC {
     }
     #[inline(always)]
     pub fn set_ptp_cur_nsec(&mut self, value: u32) {
-        assert!(value <= 0x3fffffff);
+        debug_assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
     }
@@ -84,7 +84,7 @@ impl PTP_CUR_SEC_MSB {
     }
     #[inline(always)]
     pub fn set_ptp_cur_sec_msb(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

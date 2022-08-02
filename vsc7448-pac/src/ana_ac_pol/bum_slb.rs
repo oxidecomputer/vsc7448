@@ -40,7 +40,7 @@ impl LB_BUCKET_VAL {
     }
     #[inline(always)]
     pub fn set_bucket_val(&mut self, value: u32) {
-        assert!(value <= 0x7ffff);
+        debug_assert!(value <= 0x7ffff);
         let value = value << 9;
         self.0 &= !0xffffe00;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl LB_BUCKET_VAL {
     }
     #[inline(always)]
     pub fn set_rem_val(&mut self, value: u32) {
-        assert!(value <= 0x1ff);
+        debug_assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;
     }
@@ -72,7 +72,7 @@ impl LB_CFG {
     }
     #[inline(always)]
     pub fn set_rate_val(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
     }
@@ -85,7 +85,7 @@ impl LB_CFG {
     }
     #[inline(always)]
     pub fn set_thres_val(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 16;
         self.0 &= !0x7f0000;
         self.0 |= value;
@@ -104,7 +104,7 @@ impl MISC_CFG {
     }
     #[inline(always)]
     pub fn set_frame_rate_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -122,7 +122,7 @@ impl SLB_CFG {
     }
     #[inline(always)]
     pub fn set_encap_data_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -136,7 +136,7 @@ impl SLB_CFG {
     }
     #[inline(always)]
     pub fn set_gap_val(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 2;
         self.0 &= !0x1fc;
         self.0 |= value;
@@ -150,7 +150,7 @@ impl SLB_CFG {
     }
     #[inline(always)]
     pub fn set_timescale_val(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -161,7 +161,7 @@ impl SLB_CFG {
     }
     #[inline(always)]
     pub fn set_timestamp_val(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         let value = value << 10;
         self.0 &= !0x1ffc00;
         self.0 |= value;

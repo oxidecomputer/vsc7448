@@ -38,7 +38,7 @@ impl TR_LUTSEL {
     }
     #[inline(always)]
     pub fn set_lut_clr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl TR_LUTSEL {
     }
     #[inline(always)]
     pub fn set_lut_row(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 3;
         self.0 &= !0x1f8;
         self.0 |= value;
@@ -64,7 +64,7 @@ impl TR_LUTSEL {
     }
     #[inline(always)]
     pub fn set_lut_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }

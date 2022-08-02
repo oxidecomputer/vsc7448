@@ -42,7 +42,7 @@ impl RCOMP_STATUS {
     }
     #[inline(always)]
     pub fn set_busy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl RCOMP_STATUS {
     }
     #[inline(always)]
     pub fn set_delta_alert(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl RCOMP_STATUS {
     }
     #[inline(always)]
     pub fn set_rcomp(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }

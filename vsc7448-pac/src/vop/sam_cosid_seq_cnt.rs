@@ -88,7 +88,7 @@ impl SAM_LBR_RX_TRANSID_ERR_CNT {
     }
     #[inline(always)]
     pub fn set_sam_lbr_rx_transid_err_cnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

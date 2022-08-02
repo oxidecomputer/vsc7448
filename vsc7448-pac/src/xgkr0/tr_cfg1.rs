@@ -40,7 +40,7 @@ impl TR_CFG1 {
     }
     #[inline(always)]
     pub fn set_tmr_hold(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
     }
