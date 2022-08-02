@@ -38,7 +38,7 @@ impl CIR_STATE {
     }
     #[inline(always)]
     pub fn set_cir_lvl(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl EIR_STATE {
     }
     #[inline(always)]
     pub fn set_eir_lvl(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl SE_STATE {
     }
     #[inline(always)]
     pub fn set_force_upd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

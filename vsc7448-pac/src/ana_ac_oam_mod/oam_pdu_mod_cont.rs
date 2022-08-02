@@ -38,7 +38,7 @@ impl CCM_LM_INFO_REG {
     }
     #[inline(always)]
     pub fn set_ccm_lm_info_vld(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl CCM_LM_INFO_REG {
     }
     #[inline(always)]
     pub fn set_ccm_lm_voe_idx(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
     }
@@ -98,7 +98,7 @@ impl LM_CNT_FRAME {
     }
     #[inline(always)]
     pub fn set_path_cnt_frm(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -109,7 +109,7 @@ impl LM_CNT_FRAME {
     }
     #[inline(always)]
     pub fn set_srv_cnt_frm(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl TEMP_CNT_REG {
     }
     #[inline(always)]
     pub fn set_temp_cnt_val(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

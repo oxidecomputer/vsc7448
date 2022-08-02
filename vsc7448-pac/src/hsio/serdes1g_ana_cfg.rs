@@ -42,7 +42,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_ena_direct(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_ena_eloop(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_ena_floop(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_ena_iloop(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_ena_lane(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -112,7 +112,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_ena_ploop(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -126,7 +126,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_hrate(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -140,7 +140,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_if_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -151,7 +151,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_lane_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 13;
         self.0 &= !0xe000;
         self.0 |= value;
@@ -165,7 +165,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_pwd_rx(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -179,7 +179,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_pwd_tx(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -193,7 +193,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_se_auto_squelch_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -207,7 +207,7 @@ impl SERDES1G_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_sys_rst(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -228,7 +228,7 @@ impl SERDES1G_DES_CFG {
     }
     #[inline(always)]
     pub fn set_des_bw_ana(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 5;
         self.0 &= !0xe0;
         self.0 |= value;
@@ -242,7 +242,7 @@ impl SERDES1G_DES_CFG {
     }
     #[inline(always)]
     pub fn set_des_bw_hyst(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 1;
         self.0 &= !0xe;
         self.0 |= value;
@@ -256,7 +256,7 @@ impl SERDES1G_DES_CFG {
     }
     #[inline(always)]
     pub fn set_des_cpmd_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 11;
         self.0 &= !0x1800;
         self.0 |= value;
@@ -270,7 +270,7 @@ impl SERDES1G_DES_CFG {
     }
     #[inline(always)]
     pub fn set_des_mbtr_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 8;
         self.0 &= !0x700;
         self.0 |= value;
@@ -284,7 +284,7 @@ impl SERDES1G_DES_CFG {
     }
     #[inline(always)]
     pub fn set_des_phs_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 13;
         self.0 &= !0x1e000;
         self.0 |= value;
@@ -298,7 +298,7 @@ impl SERDES1G_DES_CFG {
     }
     #[inline(always)]
     pub fn set_des_swap_ana(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -312,7 +312,7 @@ impl SERDES1G_DES_CFG {
     }
     #[inline(always)]
     pub fn set_des_swap_hyst(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -332,7 +332,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_acjtag_hyst(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 24;
         self.0 &= !0x7000000;
         self.0 |= value;
@@ -346,7 +346,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_det_lev(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 19;
         self.0 &= !0x380000;
         self.0 |= value;
@@ -360,7 +360,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_ena_cmv_term(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -374,7 +374,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_ena_dc_coupling(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -388,7 +388,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_ena_detlev(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -402,7 +402,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_ena_hyst(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -416,7 +416,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_ena_offset_comp(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -430,7 +430,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_eq_gain(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -442,7 +442,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_fx100_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -456,7 +456,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_hyst_lev(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -468,7 +468,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_resistor_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -481,7 +481,7 @@ impl SERDES1G_IB_CFG {
     }
     #[inline(always)]
     pub fn set_ib_sel_corner_freq(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;
@@ -502,7 +502,7 @@ impl SERDES1G_OB_CFG {
     }
     #[inline(always)]
     pub fn set_ob_amp_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 13;
         self.0 &= !0x1e000;
         self.0 |= value;
@@ -514,7 +514,7 @@ impl SERDES1G_OB_CFG {
     }
     #[inline(always)]
     pub fn set_ob_cmm_bias_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 10;
         self.0 &= !0x1c00;
         self.0 |= value;
@@ -526,7 +526,7 @@ impl SERDES1G_OB_CFG {
     }
     #[inline(always)]
     pub fn set_ob_dis_vcm_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -538,7 +538,7 @@ impl SERDES1G_OB_CFG {
     }
     #[inline(always)]
     pub fn set_ob_en_meas_vreg(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -550,7 +550,7 @@ impl SERDES1G_OB_CFG {
     }
     #[inline(always)]
     pub fn set_ob_resistor_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -563,7 +563,7 @@ impl SERDES1G_OB_CFG {
     }
     #[inline(always)]
     pub fn set_ob_slp(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 17;
         self.0 &= !0x60000;
         self.0 |= value;
@@ -577,7 +577,7 @@ impl SERDES1G_OB_CFG {
     }
     #[inline(always)]
     pub fn set_ob_vcm_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -598,7 +598,7 @@ impl SERDES1G_PLL_CFG {
     }
     #[inline(always)]
     pub fn set_pll_ena_fb_div2(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -612,7 +612,7 @@ impl SERDES1G_PLL_CFG {
     }
     #[inline(always)]
     pub fn set_pll_ena_rc_div2(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -624,7 +624,7 @@ impl SERDES1G_PLL_CFG {
     }
     #[inline(always)]
     pub fn set_pll_fsm_ctrl_data(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -636,7 +636,7 @@ impl SERDES1G_PLL_CFG {
     }
     #[inline(always)]
     pub fn set_pll_fsm_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -648,7 +648,7 @@ impl SERDES1G_PLL_CFG {
     }
     #[inline(always)]
     pub fn set_pll_fsm_force_set_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -660,7 +660,7 @@ impl SERDES1G_PLL_CFG {
     }
     #[inline(always)]
     pub fn set_pll_fsm_oor_recal_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -672,7 +672,7 @@ impl SERDES1G_PLL_CFG {
     }
     #[inline(always)]
     pub fn set_pll_rb_data_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -693,7 +693,7 @@ impl SERDES1G_SER_CFG {
     }
     #[inline(always)]
     pub fn set_ser_alisel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;
@@ -707,7 +707,7 @@ impl SERDES1G_SER_CFG {
     }
     #[inline(always)]
     pub fn set_ser_big_win(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -721,7 +721,7 @@ impl SERDES1G_SER_CFG {
     }
     #[inline(always)]
     pub fn set_ser_cpmd_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -735,7 +735,7 @@ impl SERDES1G_SER_CFG {
     }
     #[inline(always)]
     pub fn set_ser_deemph(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -749,7 +749,7 @@ impl SERDES1G_SER_CFG {
     }
     #[inline(always)]
     pub fn set_ser_enali(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -762,7 +762,7 @@ impl SERDES1G_SER_CFG {
     }
     #[inline(always)]
     pub fn set_ser_enhys(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -776,7 +776,7 @@ impl SERDES1G_SER_CFG {
     }
     #[inline(always)]
     pub fn set_ser_en_win(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -790,7 +790,7 @@ impl SERDES1G_SER_CFG {
     }
     #[inline(always)]
     pub fn set_ser_idle(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -804,7 +804,7 @@ impl SERDES1G_SER_CFG {
     }
     #[inline(always)]
     pub fn set_ser_swap_cpmd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;

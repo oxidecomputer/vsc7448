@@ -42,7 +42,7 @@ impl RCOMP_CFG0 {
     }
     #[inline(always)]
     pub fn set_force_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl RCOMP_CFG0 {
     }
     #[inline(always)]
     pub fn set_mode_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 8;
         self.0 &= !0x300;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl RCOMP_CFG0 {
     }
     #[inline(always)]
     pub fn set_pwd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl RCOMP_CFG0 {
     }
     #[inline(always)]
     pub fn set_rcomp_val(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -97,7 +97,7 @@ impl RCOMP_CFG0 {
     }
     #[inline(always)]
     pub fn set_run_cal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -111,7 +111,7 @@ impl RCOMP_CFG0 {
     }
     #[inline(always)]
     pub fn set_speed_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 10;
         self.0 &= !0xc00;
         self.0 |= value;

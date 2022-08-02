@@ -42,7 +42,7 @@ impl CPU_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_ip_len_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl CPU_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_ip_ttl_fail_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -69,7 +69,7 @@ impl CPU_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mc_fail_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 8;
         self.0 &= !0x700;
         self.0 |= value;
@@ -83,7 +83,7 @@ impl CPU_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_rleg_ip_hdr_fail_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 20;
         self.0 &= !0x700000;
         self.0 |= value;
@@ -97,7 +97,7 @@ impl CPU_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_rleg_ip_opt_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 24;
         self.0 &= !0x7000000;
         self.0 |= value;
@@ -111,7 +111,7 @@ impl CPU_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_rleg_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 28;
         self.0 &= !0x70000000;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl CPU_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_sip_rpf_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 16;
         self.0 &= !0x70000;
         self.0 |= value;
@@ -139,7 +139,7 @@ impl CPU_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_uc_fail_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -176,7 +176,7 @@ impl DIP_SECURE_ENA1 {
     }
     #[inline(always)]
     pub fn set_dip_cmp_ena1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -210,7 +210,7 @@ impl L3_MC_ENA1 {
     }
     #[inline(always)]
     pub fn set_l3_mc_ena1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -244,7 +244,7 @@ impl L3_UC_ENA1 {
     }
     #[inline(always)]
     pub fn set_l3_uc_ena1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -260,7 +260,7 @@ impl MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_ac_update_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -294,7 +294,7 @@ impl PORT_FWD_CTRL1 {
     }
     #[inline(always)]
     pub fn set_port_fwd_ena1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -328,7 +328,7 @@ impl PORT_LRN_CTRL1 {
     }
     #[inline(always)]
     pub fn set_port_lrn_ena1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -348,7 +348,7 @@ impl RLEG_CFG_0 {
     }
     #[inline(always)]
     pub fn set_rleg_mac_lsb(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         let value = value << 8;
         self.0 &= !0xffffff00;
         self.0 |= value;
@@ -369,7 +369,7 @@ impl RLEG_CFG_1 {
     }
     #[inline(always)]
     pub fn set_rleg_mac_msb(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -382,7 +382,7 @@ impl RLEG_CFG_1 {
     }
     #[inline(always)]
     pub fn set_rleg_mac_type_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -401,7 +401,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_ip4_options_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -413,7 +413,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_ip6_hopbyhop_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -427,7 +427,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_rleg_ip_hdr_fail_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -441,7 +441,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip4_dip_addr_violation_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 11;
         self.0 &= !0x3800;
         self.0 |= value;
@@ -453,7 +453,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip4_l2_bc_copy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -467,7 +467,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip4_len_redir(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -479,7 +479,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip4_mc_dip_fwd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 27;
         self.0 &= !0x8000000;
         self.0 |= value;
@@ -493,7 +493,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip4_sip_addr_violation_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 5;
         self.0 &= !0xe0;
         self.0 |= value;
@@ -507,7 +507,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip4_ttl_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -520,7 +520,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_dip_addr_violation_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 15;
         self.0 &= !0x18000;
         self.0 |= value;
@@ -534,7 +534,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_hc_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -546,7 +546,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_l2_bc_copy_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -560,7 +560,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_len_redir(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -572,7 +572,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_mc_dip_fwd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -586,7 +586,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_ip6_sip_addr_violation_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 8;
         self.0 &= !0x700;
         self.0 |= value;
@@ -600,7 +600,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_l3_ena_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 29;
         self.0 &= !0x20000000;
         self.0 |= value;
@@ -612,7 +612,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_rleg_ip4_sip_rpf_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -624,7 +624,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_rleg_ip6_sip_rpf_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -638,7 +638,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_rleg_nonip_uc_redir_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -650,7 +650,7 @@ impl ROUTING_CFG {
     }
     #[inline(always)]
     pub fn set_rt_smac_update_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -671,7 +671,7 @@ impl SERVICE_CFG {
     }
     #[inline(always)]
     pub fn set_isdx_force_mc_efid_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -684,7 +684,7 @@ impl SERVICE_CFG {
     }
     #[inline(always)]
     pub fn set_vsi_force_mc_efid_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -719,7 +719,7 @@ impl SIP_RPF_ENA1 {
     }
     #[inline(always)]
     pub fn set_sip_rpf_ena1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -755,7 +755,7 @@ impl SIP_SECURE_ENA1 {
     }
     #[inline(always)]
     pub fn set_sip_cmp_ena1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -791,7 +791,7 @@ impl VLAN_COMMUNITY_CFG1 {
     }
     #[inline(always)]
     pub fn set_vlan_community_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -809,7 +809,7 @@ impl VLAN_CTRL {
     }
     #[inline(always)]
     pub fn set_vlan_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -843,7 +843,7 @@ impl VLAN_FILTER_CTRL1 {
     }
     #[inline(always)]
     pub fn set_vlan_igr_filter_ena1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -879,7 +879,7 @@ impl VLAN_ISOLATED_CFG1 {
     }
     #[inline(always)]
     pub fn set_vlan_isolated_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -899,7 +899,7 @@ impl VRRP_IP4_CFG_0 {
     }
     #[inline(always)]
     pub fn set_vrrp_ip4_base_mac_mid(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         let value = value << 8;
         self.0 &= !0xffffff00;
         self.0 |= value;
@@ -920,7 +920,7 @@ impl VRRP_IP4_CFG_1 {
     }
     #[inline(always)]
     pub fn set_vrrp_ip4_base_mac_high(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -940,7 +940,7 @@ impl VRRP_IP6_CFG_0 {
     }
     #[inline(always)]
     pub fn set_vrrp_ip6_base_mac_mid(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -960,7 +960,7 @@ impl VRRP_IP6_CFG_1 {
     }
     #[inline(always)]
     pub fn set_vrrp_ip6_base_mac_high(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

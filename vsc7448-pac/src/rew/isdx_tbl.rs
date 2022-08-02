@@ -42,7 +42,7 @@ impl COS_CTRL {
     }
     #[inline(always)]
     pub fn set_cos_nxt(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }

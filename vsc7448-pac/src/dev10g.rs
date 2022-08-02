@@ -401,7 +401,7 @@ impl MAC_CFG_STATUS {
     }
     #[inline(always)]
     pub fn MAC_TAGS_CFG(&self, index: u8) -> RegisterAddress<mac_cfg_status::MAC_TAGS_CFG> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]

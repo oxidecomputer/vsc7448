@@ -40,7 +40,7 @@ impl EVENTS_CORE {
     }
     #[inline(always)]
     pub fn set_ev_fdc(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -51,7 +51,7 @@ impl EVENTS_CORE {
     }
     #[inline(always)]
     pub fn set_ev_fwr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;

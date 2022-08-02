@@ -101,7 +101,7 @@ pub struct HSCH_L1W(pub(super) u32);
 impl HSCH_L1W {
     #[inline(always)]
     pub fn HSCH_L1W(&self, index: u8) -> RegisterAddress<hsch_l1w::HSCH_L1W> {
-        assert!(index < 64);
+        debug_assert!(index < 64);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
@@ -120,12 +120,12 @@ pub struct HSCH_LEAK_LISTS(pub(super) u32);
 impl HSCH_LEAK_LISTS {
     #[inline(always)]
     pub fn HSCH_LEAK_CFG(&self, index: u8) -> RegisterAddress<hsch_leak_lists::HSCH_LEAK_CFG> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn HSCH_TIMER_CFG(&self, index: u8) -> RegisterAddress<hsch_leak_lists::HSCH_TIMER_CFG> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
@@ -163,7 +163,7 @@ impl HSCH_MISC {
     }
     #[inline(always)]
     pub fn HSCH_LARGE_ENA(&self, index: u8) -> RegisterAddress<hsch_misc::HSCH_LARGE_ENA> {
-        assert!(index < 14);
+        debug_assert!(index < 14);
         RegisterAddress::new(self.0 + 0x1c0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -180,17 +180,17 @@ impl HSCH_MISC {
     }
     #[inline(always)]
     pub fn OUTB_SHARE_ENA(&self, index: u8) -> RegisterAddress<hsch_misc::OUTB_SHARE_ENA> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x1fc + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn PFC_CFG(&self, index: u8) -> RegisterAddress<hsch_misc::PFC_CFG> {
-        assert!(index < 53);
+        debug_assert!(index < 53);
         RegisterAddress::new(self.0 + 0xec + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn PORT_MODE(&self, index: u8) -> RegisterAddress<hsch_misc::PORT_MODE> {
-        assert!(index < 57);
+        debug_assert!(index < 57);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]

@@ -38,7 +38,7 @@ impl KR_7X0016 {
     }
     #[inline(always)]
     pub fn set_np_tx0(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl KR_7X0017 {
     }
     #[inline(always)]
     pub fn set_np_tx1(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl KR_7X0018 {
     }
     #[inline(always)]
     pub fn set_np_tx2(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

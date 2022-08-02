@@ -63,20 +63,20 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
         std::mem::swap(&mut accum, &mut prev_accum);
 
         if let Some(cap) = reg_group_re.captures(s) {
-            assert!(out.block_type == DoxygenBlockType::Unknown);
+            debug_assert!(out.block_type == DoxygenBlockType::Unknown);
             out.block_type = DoxygenBlockType::RegisterGroup;
             out.name = cap[2].to_owned();
             out.parent.push(cap[1].to_owned());
             state = State::Desc;
         }
         if let Some(cap) = target_re.captures(s) {
-            assert!(out.block_type == DoxygenBlockType::Unknown);
+            debug_assert!(out.block_type == DoxygenBlockType::Unknown);
             out.block_type = DoxygenBlockType::Target;
             out.name = cap[1].to_owned();
             state = State::Desc;
         }
         if let Some(cap) = reg_re.captures(s) {
-            assert!(out.block_type == DoxygenBlockType::Unknown);
+            debug_assert!(out.block_type == DoxygenBlockType::Unknown);
             out.block_type = DoxygenBlockType::Register;
             out.name = cap[3].to_owned();
             out.parent.push(cap[1].to_owned());
@@ -84,7 +84,7 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
             state = State::Desc;
         }
         if let Some(cap) = field_re.captures(s) {
-            assert!(out.block_type == DoxygenBlockType::Unknown);
+            debug_assert!(out.block_type == DoxygenBlockType::Unknown);
             out.block_type = DoxygenBlockType::Field;
             out.name = cap[2].to_owned();
             out.parent.push(cap[1].to_owned());
@@ -106,15 +106,15 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
                 let prev_accum = prev_accum.trim().to_owned();
                 match prev_state.1 {
                     State::Brief => {
-                        assert!(out.brief.is_none());
+                        debug_assert!(out.brief.is_none());
                         out.brief = Some(prev_accum);
                     }
                     State::Details => {
-                        assert!(out.details.is_none());
+                        debug_assert!(out.details.is_none());
                         out.details = Some(prev_accum);
                     }
                     State::Desc => {
-                        assert!(out.desc.is_none());
+                        debug_assert!(out.desc.is_none());
                         out.desc = Some(prev_accum);
                     }
                 }
@@ -132,15 +132,15 @@ fn parse_doxygen_block(s: &str) -> DoxygenBlock {
     if !accum.is_empty() {
         match state {
             State::Brief => {
-                assert!(out.brief.is_none());
+                debug_assert!(out.brief.is_none());
                 out.brief = Some(accum);
             }
             State::Details => {
-                assert!(out.details.is_none());
+                debug_assert!(out.details.is_none());
                 out.details = Some(accum);
             }
             State::Desc => {
-                assert!(out.desc.is_none());
+                debug_assert!(out.desc.is_none());
                 out.desc = Some(accum);
             }
         };
@@ -179,9 +179,9 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
         let item = item.unwrap();
         match item.block_type {
             DoxygenBlockType::Target => {
-                assert!(target.is_none());
-                assert!(item.brief.is_none());
-                assert!(item.details.is_none());
+                debug_assert!(target.is_none());
+                debug_assert!(item.brief.is_none());
+                debug_assert!(item.details.is_none());
                 target = Some(OwnedTarget {
                     desc: item.desc.unwrap(),
                     groups: BTreeMap::new(),
@@ -189,8 +189,8 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
                 target_name = Some(item.name);
             }
             DoxygenBlockType::RegisterGroup => {
-                assert!(item.brief.is_none());
-                assert!(item.details.is_none());
+                debug_assert!(item.brief.is_none());
+                debug_assert!(item.details.is_none());
                 let addr = map.get(&item.name).unwrap().0;
                 target.as_mut().unwrap().groups.insert(
                     item.name,
@@ -219,7 +219,7 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
                             fields: BTreeMap::new(),
                         },
                     );
-                assert!(&item.parent[0] == target_name.as_ref().unwrap());
+                debug_assert!(&item.parent[0] == target_name.as_ref().unwrap());
                 flat_names.insert(
                     format!("VTSS_{}_{}_{}", item.parent[0], item.parent[1], item.name),
                     (item.parent[1].clone(), item.name),
@@ -240,7 +240,7 @@ pub fn parse_regs_doxygen(s: &str, map: &TargetMap) -> OwnedTarget {
                     (lo, lo + size)
                 };
                 let (group, reg) = flat_names.get(&item.parent[0]).unwrap();
-                assert!(item.desc.is_none());
+                debug_assert!(item.desc.is_none());
                 target
                     .as_mut()
                     .unwrap()

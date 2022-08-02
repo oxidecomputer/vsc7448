@@ -40,7 +40,7 @@ impl KR_FEC_CAPABILITY {
     }
     #[inline(always)]
     pub fn set_fec_capable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

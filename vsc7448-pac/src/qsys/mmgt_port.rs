@@ -38,7 +38,7 @@ impl MMGT_IQ_STAT {
     }
     #[inline(always)]
     pub fn set_mmgt_iq_size(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
+        debug_assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl MMGT_PORT_USE {
     }
     #[inline(always)]
     pub fn set_mmgt_port_use(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl MMGT_PORT_VIEW {
     }
     #[inline(always)]
     pub fn set_mmgt_port_view(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -85,7 +85,7 @@ impl MMGT_TAILDROP_CNT {
     }
     #[inline(always)]
     pub fn set_mmgt_taildrop_cnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

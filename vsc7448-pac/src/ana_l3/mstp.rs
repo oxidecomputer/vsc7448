@@ -58,7 +58,7 @@ impl MSTP_FWD_CFG1 {
     }
     #[inline(always)]
     pub fn set_mstp_fwd_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -92,7 +92,7 @@ impl MSTP_LRN_CFG1 {
     }
     #[inline(always)]
     pub fn set_mstp_lrn_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }

@@ -42,7 +42,7 @@ impl RES_CFG {
     }
     #[inline(always)]
     pub fn set_wm_high(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -58,7 +58,7 @@ impl RES_STAT {
     }
     #[inline(always)]
     pub fn set_maxuse(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -74,7 +74,7 @@ impl RES_STAT_CUR {
     }
     #[inline(always)]
     pub fn set_inuse(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }

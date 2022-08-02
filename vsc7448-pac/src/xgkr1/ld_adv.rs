@@ -38,7 +38,7 @@ impl KR_7X0010 {
     }
     #[inline(always)]
     pub fn set_adv0(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl KR_7X0011 {
     }
     #[inline(always)]
     pub fn set_adv1(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl KR_7X0012 {
     }
     #[inline(always)]
     pub fn set_adv2(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

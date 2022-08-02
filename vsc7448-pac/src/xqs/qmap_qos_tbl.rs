@@ -38,7 +38,7 @@ impl DROP_STAT_CTRL {
     }
     #[inline(always)]
     pub fn set_drop_stat_base_addr(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         let value = value << 6;
         self.0 &= !0x1ffc0;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl DROP_STAT_CTRL {
     }
     #[inline(always)]
     pub fn set_drop_stat_cos8_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -65,7 +65,7 @@ impl DROP_STAT_CTRL {
     }
     #[inline(always)]
     pub fn set_drop_stat_cos_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -79,7 +79,7 @@ impl DROP_STAT_CTRL {
     }
     #[inline(always)]
     pub fn set_drop_stat_oam_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 3;
         self.0 &= !0x38;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl QMAP_QOS_TBL {
     }
     #[inline(always)]
     pub fn set_qmap_qos_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }

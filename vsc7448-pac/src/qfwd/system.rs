@@ -40,7 +40,7 @@ impl CPUQ_DISCARD {
     }
     #[inline(always)]
     pub fn set_cpuq_discard(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -58,7 +58,7 @@ impl FRAME_COPY_CFG {
     }
     #[inline(always)]
     pub fn set_frmc_port_val(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 6;
         self.0 &= !0xfc0;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl FRAME_COPY_CFG {
     }
     #[inline(always)]
     pub fn set_frmc_qos_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -82,7 +82,7 @@ impl FRAME_COPY_CFG {
     }
     #[inline(always)]
     pub fn set_frmc_qos_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 3;
         self.0 &= !0x38;
         self.0 |= value;
@@ -96,7 +96,7 @@ impl FRAME_COPY_CFG {
     }
     #[inline(always)]
     pub fn set_frmc_sp_ena(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -114,7 +114,7 @@ impl FRAME_COPY_LRNA_CFG {
     }
     #[inline(always)]
     pub fn set_frmc_port_lrna_val(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -130,7 +130,7 @@ impl FWD_CTRL {
     }
     #[inline(always)]
     pub fn set_drop_single(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -141,7 +141,7 @@ impl FWD_CTRL {
     }
     #[inline(always)]
     pub fn set_fwd_afi_handshake(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -172,7 +172,7 @@ impl MIRROR_CFG {
     }
     #[inline(always)]
     pub fn set_mirror_discards(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -188,7 +188,7 @@ impl SWITCH_PORT_MODE {
     }
     #[inline(always)]
     pub fn set_egress_drop_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -200,7 +200,7 @@ impl SWITCH_PORT_MODE {
     }
     #[inline(always)]
     pub fn set_egress_rsrv_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -213,7 +213,7 @@ impl SWITCH_PORT_MODE {
     }
     #[inline(always)]
     pub fn set_egr_no_sharing(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -225,7 +225,7 @@ impl SWITCH_PORT_MODE {
     }
     #[inline(always)]
     pub fn set_fwd_urgency(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 9;
         self.0 &= !0x1fe00;
         self.0 |= value;
@@ -239,7 +239,7 @@ impl SWITCH_PORT_MODE {
     }
     #[inline(always)]
     pub fn set_igr_no_sharing(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -251,7 +251,7 @@ impl SWITCH_PORT_MODE {
     }
     #[inline(always)]
     pub fn set_ingress_drop_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -263,7 +263,7 @@ impl SWITCH_PORT_MODE {
     }
     #[inline(always)]
     pub fn set_port_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -275,7 +275,7 @@ impl SWITCH_PORT_MODE {
     }
     #[inline(always)]
     pub fn set_yel_rsrvd(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 5;
         self.0 &= !0x1e0;
         self.0 |= value;

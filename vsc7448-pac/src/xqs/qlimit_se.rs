@@ -38,7 +38,7 @@ impl QLIMIT_CONG_CNT {
     }
     #[inline(always)]
     pub fn set_qlimit_cong_cnt(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl QLIMIT_SE_USE {
     }
     #[inline(always)]
     pub fn set_qlimit_se_use(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }

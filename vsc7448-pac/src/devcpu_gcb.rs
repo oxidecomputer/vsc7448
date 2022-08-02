@@ -99,12 +99,12 @@ pub struct GPIO(pub(super) u32);
 impl GPIO {
     #[inline(always)]
     pub fn GPIO_ALT(&self, index: u8) -> RegisterAddress<gpio::GPIO_ALT> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x40 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn GPIO_ALT1(&self, index: u8) -> RegisterAddress<gpio::GPIO_ALT1> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x48 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -173,7 +173,7 @@ impl GPIO {
     }
     #[inline(always)]
     pub fn GPIO_SD_MAP(&self, index: u8) -> RegisterAddress<gpio::GPIO_SD_MAP> {
-        assert!(index < 16);
+        debug_assert!(index < 16);
         RegisterAddress::new(self.0 + 0x50 + u32::from(index) * 0x4)
     }
 }
@@ -256,7 +256,7 @@ impl MIIM_READ_SCAN {
         &self,
         index: u8,
     ) -> RegisterAddress<miim_read_scan::MII_SCAN_RSLTS_STICKY> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
@@ -283,12 +283,12 @@ impl SIO_CTRL {
     }
     #[inline(always)]
     pub fn SIO_INPUT_DATA(&self, index: u8) -> RegisterAddress<sio_ctrl::SIO_INPUT_DATA> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SIO_INTR(&self, index: u8) -> RegisterAddress<sio_ctrl::SIO_INTR> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0xe8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -297,32 +297,32 @@ impl SIO_CTRL {
     }
     #[inline(always)]
     pub fn SIO_INTR_IDENT(&self, index: u8) -> RegisterAddress<sio_ctrl::SIO_INTR_IDENT> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0xfc + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SIO_INTR_POL(&self, index: u8) -> RegisterAddress<sio_ctrl::SIO_INTR_POL> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0xa8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SIO_INTR_RAW(&self, index: u8) -> RegisterAddress<sio_ctrl::SIO_INTR_RAW> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0xb8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SIO_INTR_TRIGGER0(&self, index: u8) -> RegisterAddress<sio_ctrl::SIO_INTR_TRIGGER0> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0xc8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SIO_INTR_TRIGGER1(&self, index: u8) -> RegisterAddress<sio_ctrl::SIO_INTR_TRIGGER1> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0xd8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SIO_PORT_CFG(&self, index: u8) -> RegisterAddress<sio_ctrl::SIO_PORT_CFG> {
-        assert!(index < 32);
+        debug_assert!(index < 32);
         RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -331,7 +331,7 @@ impl SIO_CTRL {
     }
     #[inline(always)]
     pub fn SIO_PWM_CFG(&self, index: u8) -> RegisterAddress<sio_ctrl::SIO_PWM_CFG> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x9c + u32::from(index) * 0x4)
     }
 }

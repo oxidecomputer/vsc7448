@@ -40,7 +40,7 @@ impl PLL5G_STATUS0 {
     }
     #[inline(always)]
     pub fn set_calibration_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl PLL5G_STATUS0 {
     }
     #[inline(always)]
     pub fn set_calibration_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -64,7 +64,7 @@ impl PLL5G_STATUS0 {
     }
     #[inline(always)]
     pub fn set_lock_status(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -75,7 +75,7 @@ impl PLL5G_STATUS0 {
     }
     #[inline(always)]
     pub fn set_out_of_range_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -87,7 +87,7 @@ impl PLL5G_STATUS0 {
     }
     #[inline(always)]
     pub fn set_range_lim(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -99,7 +99,7 @@ impl PLL5G_STATUS0 {
     }
     #[inline(always)]
     pub fn set_readback_data(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 1;
         self.0 &= !0x1fe;
         self.0 |= value;
@@ -118,7 +118,7 @@ impl PLL5G_STATUS1 {
     }
     #[inline(always)]
     pub fn set_fbcnt_dif(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 4;
         self.0 &= !0x3ff0;
         self.0 |= value;
@@ -130,7 +130,7 @@ impl PLL5G_STATUS1 {
     }
     #[inline(always)]
     pub fn set_fsm_lock(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -141,7 +141,7 @@ impl PLL5G_STATUS1 {
     }
     #[inline(always)]
     pub fn set_fsm_stat(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 1;
         self.0 &= !0xe;
         self.0 |= value;
@@ -153,7 +153,7 @@ impl PLL5G_STATUS1 {
     }
     #[inline(always)]
     pub fn set_gain_stat(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 14;
         self.0 &= !0x7c000;
         self.0 |= value;
@@ -165,7 +165,7 @@ impl PLL5G_STATUS1 {
     }
     #[inline(always)]
     pub fn set_sig_del(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 19;
         self.0 &= !0x7f80000;
         self.0 |= value;

@@ -38,7 +38,7 @@ impl DTI_DURATION_TICK_LEN {
     }
     #[inline(always)]
     pub fn set_dti_duration_tick_len(&mut self, value: u32) {
-        assert!(value <= 0x3ffff);
+        debug_assert!(value <= 0x3ffff);
         self.0 &= !0x3ffff;
         self.0 |= value;
     }
@@ -56,7 +56,7 @@ impl ERR {
     }
     #[inline(always)]
     pub fn set_err_frm_out_neg_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -72,7 +72,7 @@ impl MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_afi_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -88,7 +88,7 @@ impl NEW_FRM_CTRL {
     }
     #[inline(always)]
     pub fn set_vld(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -104,7 +104,7 @@ impl NEW_FRM_INFO {
     }
     #[inline(always)]
     pub fn set_frm_info(&mut self, value: u32) {
-        assert!(value <= 0x7ffff);
+        debug_assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;
     }
@@ -122,7 +122,7 @@ impl STICKY_INFO {
     }
     #[inline(always)]
     pub fn set_port_num(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -135,7 +135,7 @@ impl STICKY_INFO {
     }
     #[inline(always)]
     pub fn set_sticky_info_wr_cnt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 28;
         self.0 &= !0xf0000000;
         self.0 |= value;
@@ -147,7 +147,7 @@ impl STICKY_INFO {
     }
     #[inline(always)]
     pub fn set_tti_ptr(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 8;
         self.0 &= !0xfff00;
         self.0 |= value;
@@ -164,7 +164,7 @@ impl STICKY_INFO_ENA {
     }
     #[inline(always)]
     pub fn set_enq_stop_info_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -176,7 +176,7 @@ impl STICKY_INFO_ENA {
     }
     #[inline(always)]
     pub fn set_frm_out_max_info_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -188,7 +188,7 @@ impl STICKY_INFO_ENA {
     }
     #[inline(always)]
     pub fn set_frm_out_neg_info_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -199,7 +199,7 @@ impl STICKY_INFO_ENA {
     }
     #[inline(always)]
     pub fn set_tti_busy_info_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -218,7 +218,7 @@ impl WARN {
     }
     #[inline(always)]
     pub fn set_warn_dti_cnt_down_max_neg_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -230,7 +230,7 @@ impl WARN {
     }
     #[inline(always)]
     pub fn set_warn_enq_stop_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -242,7 +242,7 @@ impl WARN {
     }
     #[inline(always)]
     pub fn set_warn_frm_out_max_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -254,7 +254,7 @@ impl WARN {
     }
     #[inline(always)]
     pub fn set_warn_new_frm_vld_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -265,7 +265,7 @@ impl WARN {
     }
     #[inline(always)]
     pub fn set_warn_tti_busy_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;

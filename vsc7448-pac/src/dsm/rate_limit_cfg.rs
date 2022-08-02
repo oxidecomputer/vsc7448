@@ -42,7 +42,7 @@ impl TX_FRAME_RATE_START_CFG {
     }
     #[inline(always)]
     pub fn set_tx_frame_rate_start(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -62,7 +62,7 @@ impl TX_IPG_STRETCH_RATIO_CFG {
     }
     #[inline(always)]
     pub fn set_tx_fine_ipg_stretch_ratio(&mut self, value: u32) {
-        assert!(value <= 0x7ffff);
+        debug_assert!(value <= 0x7ffff);
         self.0 &= !0x7ffff;
         self.0 |= value;
     }
@@ -82,7 +82,7 @@ impl TX_RATE_LIMIT_HDR_CFG {
     }
     #[inline(always)]
     pub fn set_tx_rate_limit_hdr_size(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -102,7 +102,7 @@ impl TX_RATE_LIMIT_MODE {
     }
     #[inline(always)]
     pub fn set_ipg_scale_val(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -116,7 +116,7 @@ impl TX_RATE_LIMIT_MODE {
     }
     #[inline(always)]
     pub fn set_payload_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -130,7 +130,7 @@ impl TX_RATE_LIMIT_MODE {
     }
     #[inline(always)]
     pub fn set_payload_pream_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -144,7 +144,7 @@ impl TX_RATE_LIMIT_MODE {
     }
     #[inline(always)]
     pub fn set_tx_rate_ipg_ppm_adapt_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -158,7 +158,7 @@ impl TX_RATE_LIMIT_MODE {
     }
     #[inline(always)]
     pub fn set_tx_rate_limit_accum_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -172,7 +172,7 @@ impl TX_RATE_LIMIT_MODE {
     }
     #[inline(always)]
     pub fn set_tx_rate_limit_frame_overhead_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -185,7 +185,7 @@ impl TX_RATE_LIMIT_MODE {
     }
     #[inline(always)]
     pub fn set_tx_rate_limit_frame_rate_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -199,7 +199,7 @@ impl TX_RATE_LIMIT_MODE {
     }
     #[inline(always)]
     pub fn set_tx_rate_limit_payload_rate_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;

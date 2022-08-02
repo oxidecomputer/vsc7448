@@ -38,7 +38,7 @@ impl HSCH_L1W {
     }
     #[inline(always)]
     pub fn set_win_shist(&mut self, value: u32) {
-        assert!(value <= 0x7fffff);
+        debug_assert!(value <= 0x7fffff);
         self.0 &= !0x7fffff;
         self.0 |= value;
     }

@@ -38,7 +38,7 @@ impl TR_GAIN {
     }
     #[inline(always)]
     pub fn set_gain_marg(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 10;
         self.0 &= !0xfc00;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl TR_GAIN {
     }
     #[inline(always)]
     pub fn set_gain_targ(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }

@@ -40,7 +40,7 @@ impl STACK_LINK_EQUAL_COST_CFG {
     }
     #[inline(always)]
     pub fn set_stack_link_equal_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -74,7 +74,7 @@ impl UPSID_CFG1 {
     }
     #[inline(always)]
     pub fn set_upsid_port_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }

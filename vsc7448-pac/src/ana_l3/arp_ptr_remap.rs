@@ -40,7 +40,7 @@ impl ARP_PTR_REMAP_CFG {
     }
     #[inline(always)]
     pub fn set_arp_ptr(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
     }
@@ -53,7 +53,7 @@ impl ARP_PTR_REMAP_CFG {
     }
     #[inline(always)]
     pub fn set_ecmp_cnt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;

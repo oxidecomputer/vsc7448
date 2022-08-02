@@ -38,7 +38,7 @@ impl AN_SM {
     }
     #[inline(always)]
     pub fn set_abdet_cnt(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl AN_SM {
     }
     #[inline(always)]
     pub fn set_an_sm(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }

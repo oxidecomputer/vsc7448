@@ -38,7 +38,7 @@ impl VCAP_CORE_IDX {
     }
     #[inline(always)]
     pub fn set_core_idx(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -56,7 +56,7 @@ impl VCAP_CORE_MAP {
     }
     #[inline(always)]
     pub fn set_core_map(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }

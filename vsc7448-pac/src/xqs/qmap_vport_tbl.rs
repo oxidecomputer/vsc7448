@@ -38,7 +38,7 @@ impl QMAP_VPORT_TBL {
     }
     #[inline(always)]
     pub fn set_qmap_vport_val(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }

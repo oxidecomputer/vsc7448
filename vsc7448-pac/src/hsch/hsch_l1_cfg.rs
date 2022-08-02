@@ -38,7 +38,7 @@ impl HSCH_L1_CFG {
     }
     #[inline(always)]
     pub fn set_l2_idx(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }

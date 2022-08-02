@@ -314,7 +314,7 @@ impl GPIO_SD_MAP {
     }
     #[inline(always)]
     pub fn set_g_sd_map(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }

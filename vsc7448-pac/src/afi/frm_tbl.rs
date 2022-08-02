@@ -42,7 +42,7 @@ impl FRM_ENTRY_PART0 {
     }
     #[inline(always)]
     pub fn set_part0(&mut self, value: u32) {
-        assert!(value <= 0x3fffffff);
+        debug_assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
     }
@@ -62,7 +62,7 @@ impl FRM_NEXT_AND_TYPE {
     }
     #[inline(always)]
     pub fn set_entry_type(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -74,7 +74,7 @@ impl FRM_NEXT_AND_TYPE {
     }
     #[inline(always)]
     pub fn set_next_ptr(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }

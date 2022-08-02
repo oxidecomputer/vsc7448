@@ -40,7 +40,7 @@ impl ATOP {
     }
     #[inline(always)]
     pub fn set_atop(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -58,7 +58,7 @@ impl ATOP_TOT_CFG {
     }
     #[inline(always)]
     pub fn set_atop_tot(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -76,7 +76,7 @@ impl FWD_PRESSURE {
     }
     #[inline(always)]
     pub fn set_fwd_pressure(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 3;
         self.0 &= !0x7ff8;
         self.0 |= value;
@@ -88,7 +88,7 @@ impl FWD_PRESSURE {
     }
     #[inline(always)]
     pub fn set_fwd_pressure_copycnt(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -104,7 +104,7 @@ impl PAUSE_CFG {
     }
     #[inline(always)]
     pub fn set_pause_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -117,7 +117,7 @@ impl PAUSE_CFG {
     }
     #[inline(always)]
     pub fn set_pause_start(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 13;
         self.0 &= !0x1ffe000;
         self.0 |= value;
@@ -131,7 +131,7 @@ impl PAUSE_CFG {
     }
     #[inline(always)]
     pub fn set_pause_stop(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 1;
         self.0 &= !0x1ffe;
         self.0 |= value;
@@ -150,7 +150,7 @@ impl PAUSE_TOT_CFG {
     }
     #[inline(always)]
     pub fn set_pause_tot_start(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         let value = value << 12;
         self.0 &= !0xfff000;
         self.0 |= value;
@@ -164,7 +164,7 @@ impl PAUSE_TOT_CFG {
     }
     #[inline(always)]
     pub fn set_pause_tot_stop(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }

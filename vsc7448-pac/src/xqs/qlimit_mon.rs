@@ -37,7 +37,7 @@ impl QLIMIT_CONG_CNT_MAX_STAT {
     }
     #[inline(always)]
     pub fn set_qlimit_cong_cnt_max(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -55,7 +55,7 @@ impl QLIMIT_MON_CFG {
     }
     #[inline(always)]
     pub fn set_qlimit_shr_mon_clr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl QLIMIT_SHR_FILL_MAX_STAT {
     }
     #[inline(always)]
     pub fn set_qlimit_shr_fill_max(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }

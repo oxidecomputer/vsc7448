@@ -38,7 +38,7 @@ impl VRAP_ACCESS_STAT {
     }
     #[inline(always)]
     pub fn set_cmd_invalid_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl VRAP_ACCESS_STAT {
     }
     #[inline(always)]
     pub fn set_frm_invalid_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -62,7 +62,7 @@ impl VRAP_ACCESS_STAT {
     }
     #[inline(always)]
     pub fn set_frm_recv_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -74,7 +74,7 @@ impl VRAP_ACCESS_STAT {
     }
     #[inline(always)]
     pub fn set_reply_abort_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

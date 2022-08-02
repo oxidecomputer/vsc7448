@@ -38,7 +38,7 @@ impl ERR_CNTS {
     }
     #[inline(always)]
     pub fn set_err_no_action(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl ERR_CNTS {
     }
     #[inline(always)]
     pub fn set_err_tgt_busy(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -62,7 +62,7 @@ impl ERR_CNTS {
     }
     #[inline(always)]
     pub fn set_err_utm(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -73,7 +73,7 @@ impl ERR_CNTS {
     }
     #[inline(always)]
     pub fn set_err_wd_drop(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 8;
         self.0 &= !0xf00;
         self.0 |= value;
@@ -85,7 +85,7 @@ impl ERR_CNTS {
     }
     #[inline(always)]
     pub fn set_err_wd_drop_org(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 12;
         self.0 &= !0xf000;
         self.0 |= value;
@@ -118,7 +118,7 @@ impl IF_CFGSTAT {
     }
     #[inline(always)]
     pub fn set_if_cfg(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -131,7 +131,7 @@ impl IF_CFGSTAT {
     }
     #[inline(always)]
     pub fn set_if_num(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -143,7 +143,7 @@ impl IF_CFGSTAT {
     }
     #[inline(always)]
     pub fn set_if_stat(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -160,7 +160,7 @@ impl IF_CTRL {
     }
     #[inline(always)]
     pub fn set_if_ctrl(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -220,7 +220,7 @@ impl ORG_CFG {
     }
     #[inline(always)]
     pub fn set_blocking_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -232,7 +232,7 @@ impl ORG_CFG {
     }
     #[inline(always)]
     pub fn set_drop_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -244,7 +244,7 @@ impl ORG_CFG {
     }
     #[inline(always)]
     pub fn set_fast_wr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -262,7 +262,7 @@ impl SEMA0 {
     }
     #[inline(always)]
     pub fn set_sema0(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -296,7 +296,7 @@ impl SEMA1 {
     }
     #[inline(always)]
     pub fn set_sema1(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -332,7 +332,7 @@ impl SEMA_CFG {
     }
     #[inline(always)]
     pub fn set_sema_intr_pol(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -350,7 +350,7 @@ impl TIMEOUT_CFG {
     }
     #[inline(always)]
     pub fn set_timeout_cfg(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }

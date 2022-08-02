@@ -40,7 +40,7 @@ impl POL_PORT_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_qu_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl POL_PORT_CFG {
     }
     #[inline(always)]
     pub fn set_dp_bypass_lvl(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl POL_PORT_CFG {
     }
     #[inline(always)]
     pub fn set_frame_rate_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -82,7 +82,7 @@ impl POL_PORT_CFG {
     }
     #[inline(always)]
     pub fn set_limit_cpu_traffic_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -96,7 +96,7 @@ impl POL_PORT_CFG {
     }
     #[inline(always)]
     pub fn set_limit_noncpu_traffic_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -110,7 +110,7 @@ impl POL_PORT_CFG {
     }
     #[inline(always)]
     pub fn set_service_bypass_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -124,7 +124,7 @@ impl POL_PORT_CFG {
     }
     #[inline(always)]
     pub fn set_traffic_type_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -142,7 +142,7 @@ impl POL_PORT_GAP {
     }
     #[inline(always)]
     pub fn set_gap_value(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -155,7 +155,7 @@ impl POL_PORT_GAP {
     }
     #[inline(always)]
     pub fn set_port_pipeline_pt(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 7;
         self.0 &= !0xf80;
         self.0 |= value;

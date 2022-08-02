@@ -40,7 +40,7 @@ impl TWI_CONFIG {
     }
     #[inline(always)]
     pub fn set_twi_cnt_reload(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 1;
         self.0 &= !0x1fe;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl TWI_CONFIG {
     }
     #[inline(always)]
     pub fn set_twi_delay_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

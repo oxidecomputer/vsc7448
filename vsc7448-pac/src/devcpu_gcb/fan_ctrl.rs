@@ -40,7 +40,7 @@ impl FAN_CFG {
     }
     #[inline(always)]
     pub fn set_clk_period(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 7;
         self.0 &= !0x7f80;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl FAN_CFG {
     }
     #[inline(always)]
     pub fn set_duty_cycle(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -66,7 +66,7 @@ impl FAN_CFG {
     }
     #[inline(always)]
     pub fn set_fan_stat_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -79,7 +79,7 @@ impl FAN_CFG {
     }
     #[inline(always)]
     pub fn set_gate_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -93,7 +93,7 @@ impl FAN_CFG {
     }
     #[inline(always)]
     pub fn set_inv_pol(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -107,7 +107,7 @@ impl FAN_CFG {
     }
     #[inline(always)]
     pub fn set_pwm_freq(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -119,7 +119,7 @@ impl FAN_CFG {
     }
     #[inline(always)]
     pub fn set_pwm_open_col_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -136,7 +136,7 @@ impl FAN_CNT {
     }
     #[inline(always)]
     pub fn set_fan_cnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

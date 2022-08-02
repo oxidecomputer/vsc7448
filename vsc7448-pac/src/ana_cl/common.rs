@@ -42,7 +42,7 @@ impl ADV_RNG_CTRL {
     }
     #[inline(always)]
     pub fn set_rng_type_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -58,7 +58,7 @@ impl ADV_RNG_VALUE_CFG {
     }
     #[inline(always)]
     pub fn set_rng_max_value(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl ADV_RNG_VALUE_CFG {
     }
     #[inline(always)]
     pub fn set_rng_min_value(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -90,7 +90,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_dmac_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -104,7 +104,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_dmac_reversed_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -118,7 +118,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_ip4_sipdip_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -132,7 +132,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_ip4_tcpudp_port_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -146,7 +146,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_ip6_flow_lbl_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -160,7 +160,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_ip6_sipdip_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -174,7 +174,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_ip6_tcpudp_port_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -188,7 +188,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_isdx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -202,7 +202,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_rnd_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -216,7 +216,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_smac_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -229,7 +229,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_aggr_use_vstax_ac_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -243,7 +243,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_rt_upd_vstax_ac_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -257,7 +257,7 @@ impl AGGR_CFG {
     }
     #[inline(always)]
     pub fn set_short_aggr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -278,7 +278,7 @@ impl CLM_KEY_CFG {
     }
     #[inline(always)]
     pub fn set_clm_tri_vid_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -296,7 +296,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_clm_gidx_def_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 19;
         self.0 &= !0x180000;
         self.0 |= value;
@@ -310,7 +310,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_igr_mask_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -323,7 +323,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_forced_key_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 17;
         self.0 &= !0x60000;
         self.0 |= value;
@@ -337,7 +337,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_force_no_clm_for_basic_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -351,7 +351,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_fp_vs2_igr_mask_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -365,7 +365,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_igr_port_clm_force_ena(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 5;
         self.0 &= !0x7e0;
         self.0 |= value;
@@ -379,7 +379,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_lbk_clm_force_ena(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 11;
         self.0 &= !0x1f800;
         self.0 |= value;
@@ -393,7 +393,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_lbk_igr_mask_sel3_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -407,7 +407,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_masq_igr_mask_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -421,7 +421,7 @@ impl CLM_MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_vd_igr_mask_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -440,7 +440,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_misc_dscp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -458,7 +458,7 @@ impl CPU_8021_QOS_CFG {
     }
     #[inline(always)]
     pub fn set_bpdu_qos(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -469,7 +469,7 @@ impl CPU_8021_QOS_CFG {
     }
     #[inline(always)]
     pub fn set_gxrp_qos(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -481,7 +481,7 @@ impl CPU_8021_QOS_CFG {
     }
     #[inline(always)]
     pub fn set_y1731_ag_qos(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 8;
         self.0 &= !0x700;
         self.0 |= value;
@@ -500,7 +500,7 @@ impl CPU_8021_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_bpdu_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -511,7 +511,7 @@ impl CPU_8021_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_gxrp_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 3;
         self.0 &= !0x38;
         self.0 |= value;
@@ -523,7 +523,7 @@ impl CPU_8021_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_y1731_ag_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -540,7 +540,7 @@ impl CPU_PROTO_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_hop_by_hop_icmp_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -552,7 +552,7 @@ impl CPU_PROTO_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_igmp_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -563,7 +563,7 @@ impl CPU_PROTO_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_ip4_mc_ctrl_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 3;
         self.0 &= !0x38;
         self.0 |= value;
@@ -575,7 +575,7 @@ impl CPU_PROTO_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_ip6_mc_ctrl_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -587,7 +587,7 @@ impl CPU_PROTO_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mld_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 9;
         self.0 &= !0xe00;
         self.0 |= value;
@@ -599,7 +599,7 @@ impl CPU_PROTO_QU_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_vrap_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 15;
         self.0 &= !0x38000;
         self.0 |= value;
@@ -616,7 +616,7 @@ impl DSCP_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_dp_val(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 2;
         self.0 &= !0xc;
         self.0 |= value;
@@ -628,7 +628,7 @@ impl DSCP_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_qos_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -640,7 +640,7 @@ impl DSCP_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_rewr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -652,7 +652,7 @@ impl DSCP_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_translate_val(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 7;
         self.0 &= !0x1f80;
         self.0 |= value;
@@ -664,7 +664,7 @@ impl DSCP_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_trust_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -680,7 +680,7 @@ impl HM_CFG {
     }
     #[inline(always)]
     pub fn set_hmd_port(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 2;
         self.0 &= !0xfc;
         self.0 |= value;
@@ -694,7 +694,7 @@ impl HM_CFG {
     }
     #[inline(always)]
     pub fn set_hmd_port_vld(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -707,7 +707,7 @@ impl HM_CFG {
     }
     #[inline(always)]
     pub fn set_hm_force_mode_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -726,7 +726,7 @@ impl MIP_CTRL {
     }
     #[inline(always)]
     pub fn set_mip_ccm_hmo_set_shot(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -740,7 +740,7 @@ impl MIP_CTRL {
     }
     #[inline(always)]
     pub fn set_mip_ccm_interval_mask(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -756,7 +756,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_g8113_1_non_oam_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -768,7 +768,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_g8113_1_non_oam_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 18;
         self.0 &= !0x1c0000;
         self.0 |= value;
@@ -780,7 +780,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_ip_traffic_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -792,7 +792,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_mip_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 21;
         self.0 &= !0xe00000;
         self.0 |= value;
@@ -804,7 +804,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_oam_def_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 24;
         self.0 &= !0x7000000;
         self.0 |= value;
@@ -816,7 +816,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_oam_mep_err_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -828,7 +828,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_oam_mep_err_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 14;
         self.0 &= !0x1c000;
         self.0 |= value;
@@ -840,7 +840,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_pop_err_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -852,7 +852,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_pop_err_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 10;
         self.0 &= !0x1c00;
         self.0 |= value;
@@ -864,7 +864,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_pw_err_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -875,7 +875,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_pw_err_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 1;
         self.0 &= !0xe;
         self.0 |= value;
@@ -887,7 +887,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_pw_ttl0_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -899,7 +899,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_swap_err_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -911,7 +911,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_mpls_swap_err_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -923,7 +923,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_oam_keep_gal_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -935,7 +935,7 @@ impl MPLS_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_sel_tc_only_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -952,7 +952,7 @@ impl MPLS_LM_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_common_err_lm_cnt_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -964,7 +964,7 @@ impl MPLS_LM_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_g8113_1_non_oam_lm_cnt_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -975,7 +975,7 @@ impl MPLS_LM_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_ip_err_lm_cnt_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -987,7 +987,7 @@ impl MPLS_LM_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_oam_def_lm_cnt_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -999,7 +999,7 @@ impl MPLS_LM_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_oam_err_lm_cnt_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1011,7 +1011,7 @@ impl MPLS_LM_CFG {
     }
     #[inline(always)]
     pub fn set_mpls_pw_term_err_lm_cnt_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -1032,7 +1032,7 @@ impl MPLS_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_clm_rsvd_lbl_skip_ena(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -1043,7 +1043,7 @@ impl MPLS_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_g8113_1_ach_ch_type(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -1064,7 +1064,7 @@ impl MPLS_RSV_LBL_CFG {
     }
     #[inline(always)]
     pub fn set_rsvd_lbl_skip_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1082,7 +1082,7 @@ impl OAM_CFG {
     }
     #[inline(always)]
     pub fn set_vccv2_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1093,7 +1093,7 @@ impl OAM_CFG {
     }
     #[inline(always)]
     pub fn set_vccv2_label(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 1;
         self.0 &= !0x1e;
         self.0 |= value;
@@ -1110,7 +1110,7 @@ impl QOS_MAP_CFG {
     }
     #[inline(always)]
     pub fn set_dscp_rewr_val(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -1127,7 +1127,7 @@ impl UPSID_CFG {
     }
     #[inline(always)]
     pub fn set_upsid_num(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -1145,7 +1145,7 @@ impl VLAN_STAG_CFG {
     }
     #[inline(always)]
     pub fn set_stag_etype_val(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -1161,7 +1161,7 @@ impl VRAP_CFG {
     }
     #[inline(always)]
     pub fn set_vrap_vid(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -1172,7 +1172,7 @@ impl VRAP_CFG {
     }
     #[inline(always)]
     pub fn set_vrap_vlan_aware_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;

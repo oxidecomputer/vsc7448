@@ -38,7 +38,7 @@ impl DEI_MAP_DE0 {
     }
     #[inline(always)]
     pub fn set_dei_de0(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl DEI_MAP_DE1 {
     }
     #[inline(always)]
     pub fn set_dei_de1(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -72,7 +72,7 @@ impl DSCP_MAP {
     }
     #[inline(always)]
     pub fn set_dscp_remap_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -85,7 +85,7 @@ impl DSCP_MAP {
     }
     #[inline(always)]
     pub fn set_dscp_update_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -104,7 +104,7 @@ impl HIH_CTRL {
     }
     #[inline(always)]
     pub fn set_hih_auto_cksm(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -117,7 +117,7 @@ impl HIH_CTRL {
     }
     #[inline(always)]
     pub fn set_hih_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -131,7 +131,7 @@ impl HIH_CTRL {
     }
     #[inline(always)]
     pub fn set_hih_frm_cl(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 3;
         self.0 &= !0x18;
         self.0 |= value;
@@ -145,7 +145,7 @@ impl HIH_CTRL {
     }
     #[inline(always)]
     pub fn set_hih_frm_flags(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -159,7 +159,7 @@ impl HIH_CTRL {
     }
     #[inline(always)]
     pub fn set_hih_frm_lpid(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -173,7 +173,7 @@ impl HIH_CTRL {
     }
     #[inline(always)]
     pub fn set_hih_lpid_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -190,7 +190,7 @@ impl PCP_MAP_DE0 {
     }
     #[inline(always)]
     pub fn set_pcp_de0(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -206,7 +206,7 @@ impl PCP_MAP_DE1 {
     }
     #[inline(always)]
     pub fn set_pcp_de1(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -224,7 +224,7 @@ impl PORT_VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_port_dei(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -238,7 +238,7 @@ impl PORT_VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_port_pcp(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 13;
         self.0 &= !0xe000;
         self.0 |= value;
@@ -252,7 +252,7 @@ impl PORT_VLAN_CFG {
     }
     #[inline(always)]
     pub fn set_port_vid(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }
@@ -310,7 +310,7 @@ impl PTP_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_udp4_csum_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -321,7 +321,7 @@ impl PTP_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_udp6_csum_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -340,7 +340,7 @@ impl PTP_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_dom_val(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -353,7 +353,7 @@ impl PTP_MODE_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_mode_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 2;
         self.0 &= !0x1c;
         self.0 |= value;
@@ -370,7 +370,7 @@ impl PTP_SMAC_HIGH {
     }
     #[inline(always)]
     pub fn set_ptp_smac_high(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -402,7 +402,7 @@ impl TAG_CTRL {
     }
     #[inline(always)]
     pub fn set_tag_cfg(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 10;
         self.0 &= !0xc00;
         self.0 |= value;
@@ -416,7 +416,7 @@ impl TAG_CTRL {
     }
     #[inline(always)]
     pub fn set_tag_cfg_obey_was_tagged(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -430,7 +430,7 @@ impl TAG_CTRL {
     }
     #[inline(always)]
     pub fn set_tag_dei_cfg(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -443,7 +443,7 @@ impl TAG_CTRL {
     }
     #[inline(always)]
     pub fn set_tag_pcp_cfg(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 3;
         self.0 &= !0x38;
         self.0 |= value;
@@ -457,7 +457,7 @@ impl TAG_CTRL {
     }
     #[inline(always)]
     pub fn set_tag_tpid_cfg(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 7;
         self.0 &= !0x380;
         self.0 |= value;
@@ -471,7 +471,7 @@ impl TAG_CTRL {
     }
     #[inline(always)]
     pub fn set_tag_vid_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;

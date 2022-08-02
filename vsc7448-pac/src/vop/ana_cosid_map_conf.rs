@@ -42,7 +42,7 @@ impl COSID_MAP_CFG_ANA {
     }
     #[inline(always)]
     pub fn set_cnt_yellow_ana(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -55,7 +55,7 @@ impl COSID_MAP_CFG_ANA {
     }
     #[inline(always)]
     pub fn set_color_src_sel_ana(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -69,7 +69,7 @@ impl COSID_MAP_CFG_ANA {
     }
     #[inline(always)]
     pub fn set_cosid_src_sel_ana(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 3;
         self.0 &= !0x18;
         self.0 |= value;
@@ -88,7 +88,7 @@ impl COSID_MAP_TABLE_ANA {
     }
     #[inline(always)]
     pub fn set_cosid_map_table_ana(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }

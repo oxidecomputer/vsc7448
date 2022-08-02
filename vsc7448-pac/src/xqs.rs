@@ -122,7 +122,7 @@ impl QLIMIT_SHR {
         &self,
         index: u8,
     ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_ATOP_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -130,7 +130,7 @@ impl QLIMIT_SHR {
         &self,
         index: u8,
     ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_CTOP_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -142,7 +142,7 @@ impl QLIMIT_SHR {
         &self,
         index: u8,
     ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_QDIV_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -150,17 +150,17 @@ impl QLIMIT_SHR {
         &self,
         index: u8,
     ) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_QLIM_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn QLIMIT_SHR_TOP_CFG(&self, index: u8) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_TOP_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn QLIMIT_SHR_WM_STAT(&self, index: u8) -> RegisterAddress<qlimit_shr::QLIMIT_SHR_WM_STAT> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x3c + u32::from(index) * 0x4)
     }
 }
@@ -192,7 +192,7 @@ pub struct QMAP_VPORT_TBL(pub(super) u32);
 impl QMAP_VPORT_TBL {
     #[inline(always)]
     pub fn QMAP_VPORT_TBL(&self, index: u8) -> RegisterAddress<qmap_vport_tbl::QMAP_VPORT_TBL> {
-        assert!(index < 53);
+        debug_assert!(index < 53);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
@@ -219,12 +219,12 @@ impl SYSTEM {
     }
     #[inline(always)]
     pub fn FWD_DROP_EVENTS(&self, index: u8) -> RegisterAddress<system::FWD_DROP_EVENTS> {
-        assert!(index < 57);
+        debug_assert!(index < 57);
         RegisterAddress::new(self.0 + 0xc + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn FWD_STAT_CNT(&self, index: u8) -> RegisterAddress<system::FWD_STAT_CNT> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0xf0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -233,7 +233,7 @@ impl SYSTEM {
     }
     #[inline(always)]
     pub fn QMAP_PORT_MODE(&self, index: u8) -> RegisterAddress<system::QMAP_PORT_MODE> {
-        assert!(index < 53);
+        debug_assert!(index < 53);
         RegisterAddress::new(self.0 + 0x100 + u32::from(index) * 0x4)
     }
     #[inline(always)]

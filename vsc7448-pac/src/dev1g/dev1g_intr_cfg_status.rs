@@ -42,7 +42,7 @@ impl DEV1G_INTR {
     }
     #[inline(always)]
     pub fn set_an_link_down_intr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl DEV1G_INTR {
     }
     #[inline(always)]
     pub fn set_an_link_up_intr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl DEV1G_INTR {
     }
     #[inline(always)]
     pub fn set_an_page_rx_intr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl DEV1G_INTR {
     }
     #[inline(always)]
     pub fn set_fef_found_intr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl DEV1G_INTR {
     }
     #[inline(always)]
     pub fn set_link_down_intr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -111,7 +111,7 @@ impl DEV1G_INTR {
     }
     #[inline(always)]
     pub fn set_link_up_intr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl DEV1G_INTR {
     }
     #[inline(always)]
     pub fn set_rx_lpi_intr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -139,7 +139,7 @@ impl DEV1G_INTR {
     }
     #[inline(always)]
     pub fn set_tx_lpi_intr_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -160,7 +160,7 @@ impl DEV1G_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_an_link_down_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -174,7 +174,7 @@ impl DEV1G_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_an_link_up_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -188,7 +188,7 @@ impl DEV1G_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_an_page_rx_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -202,7 +202,7 @@ impl DEV1G_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_fef_found_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -216,7 +216,7 @@ impl DEV1G_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_link_down_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -229,7 +229,7 @@ impl DEV1G_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_link_up_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -243,7 +243,7 @@ impl DEV1G_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_rx_lpi_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -257,7 +257,7 @@ impl DEV1G_INTR_CFG {
     }
     #[inline(always)]
     pub fn set_tx_lpi_intr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -278,7 +278,7 @@ impl DEV1G_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_an_link_down_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -292,7 +292,7 @@ impl DEV1G_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_an_link_up_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -306,7 +306,7 @@ impl DEV1G_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_an_page_rx_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -320,7 +320,7 @@ impl DEV1G_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_fef_found_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -334,7 +334,7 @@ impl DEV1G_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_link_down_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -347,7 +347,7 @@ impl DEV1G_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_link_up_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -361,7 +361,7 @@ impl DEV1G_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_rx_lpi_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -375,7 +375,7 @@ impl DEV1G_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_tx_lpi_intr_ident(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;

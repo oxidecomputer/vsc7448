@@ -38,7 +38,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_cosid_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 13;
         self.0 &= !0xe000;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_dei_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -62,7 +62,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_dp_val(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 16;
         self.0 &= !0x30000;
         self.0 |= value;
@@ -74,7 +74,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_dscp_val(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -85,7 +85,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_fwd_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -97,7 +97,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_path_color_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -109,7 +109,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_path_cosid_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 21;
         self.0 &= !0xe00000;
         self.0 |= value;
@@ -121,7 +121,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_pcp_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -133,7 +133,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_qos_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 10;
         self.0 &= !0x1c00;
         self.0 |= value;
@@ -145,7 +145,7 @@ impl MAP_ENTRY {
     }
     #[inline(always)]
     pub fn set_tc_val(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 18;
         self.0 &= !0x1c0000;
         self.0 |= value;
@@ -162,7 +162,7 @@ impl SET_CTRL {
     }
     #[inline(always)]
     pub fn set_cosid_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -174,7 +174,7 @@ impl SET_CTRL {
     }
     #[inline(always)]
     pub fn set_dei_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -186,7 +186,7 @@ impl SET_CTRL {
     }
     #[inline(always)]
     pub fn set_dp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -198,7 +198,7 @@ impl SET_CTRL {
     }
     #[inline(always)]
     pub fn set_dscp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -209,7 +209,7 @@ impl SET_CTRL {
     }
     #[inline(always)]
     pub fn set_path_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -221,7 +221,7 @@ impl SET_CTRL {
     }
     #[inline(always)]
     pub fn set_pcp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -233,7 +233,7 @@ impl SET_CTRL {
     }
     #[inline(always)]
     pub fn set_qos_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -245,7 +245,7 @@ impl SET_CTRL {
     }
     #[inline(always)]
     pub fn set_tc_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;

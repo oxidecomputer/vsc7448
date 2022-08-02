@@ -40,7 +40,7 @@ impl SPI_MST_CFG {
     }
     #[inline(always)]
     pub fn set_a32b_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl SPI_MST_CFG {
     }
     #[inline(always)]
     pub fn set_clk_div(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -65,7 +65,7 @@ impl SPI_MST_CFG {
     }
     #[inline(always)]
     pub fn set_cs_deselect_time(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 5;
         self.0 &= !0x3e0;
         self.0 |= value;
@@ -79,7 +79,7 @@ impl SPI_MST_CFG {
     }
     #[inline(always)]
     pub fn set_fast_read_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl SPI_MST_STATUS {
     }
     #[inline(always)]
     pub fn set_unsup_err(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -116,7 +116,7 @@ impl SW_MODE {
     }
     #[inline(always)]
     pub fn set_sw_pin_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -128,7 +128,7 @@ impl SW_MODE {
     }
     #[inline(always)]
     pub fn set_sw_spi_cs(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 5;
         self.0 &= !0x1e0;
         self.0 |= value;
@@ -140,7 +140,7 @@ impl SW_MODE {
     }
     #[inline(always)]
     pub fn set_sw_spi_cs_oe(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 1;
         self.0 &= !0x1e;
         self.0 |= value;
@@ -152,7 +152,7 @@ impl SW_MODE {
     }
     #[inline(always)]
     pub fn set_sw_spi_sck(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -164,7 +164,7 @@ impl SW_MODE {
     }
     #[inline(always)]
     pub fn set_sw_spi_sck_oe(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -176,7 +176,7 @@ impl SW_MODE {
     }
     #[inline(always)]
     pub fn set_sw_spi_sdi(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -187,7 +187,7 @@ impl SW_MODE {
     }
     #[inline(always)]
     pub fn set_sw_spi_sdo(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -199,7 +199,7 @@ impl SW_MODE {
     }
     #[inline(always)]
     pub fn set_sw_spi_sdo_oe(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;

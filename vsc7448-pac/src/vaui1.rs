@@ -85,7 +85,7 @@ impl VAUI_CHANNEL_CFG {
         &self,
         index: u8,
     ) -> RegisterAddress<vaui_channel_cfg::VAUI_CHANNEL_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }

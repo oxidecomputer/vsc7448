@@ -40,7 +40,7 @@ impl SD10G65_DES_CFG0 {
     }
     #[inline(always)]
     pub fn set_des_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -53,7 +53,7 @@ impl SD10G65_DES_CFG0 {
     }
     #[inline(always)]
     pub fn set_des_if_mode_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 2;
         self.0 &= !0x1c;
         self.0 |= value;
@@ -65,7 +65,7 @@ impl SD10G65_DES_CFG0 {
     }
     #[inline(always)]
     pub fn set_des_inv_h(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -77,7 +77,7 @@ impl SD10G65_DES_CFG0 {
     }
     #[inline(always)]
     pub fn set_des_inv_l(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -89,7 +89,7 @@ impl SD10G65_DES_CFG0 {
     }
     #[inline(always)]
     pub fn set_des_inv_m(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -101,7 +101,7 @@ impl SD10G65_DES_CFG0 {
     }
     #[inline(always)]
     pub fn set_des_vsc_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -120,7 +120,7 @@ impl SD10G65_MOEBDIV_CFG0 {
     }
     #[inline(always)]
     pub fn set_moebdiv_bw_cdr_sel_a(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 9;
         self.0 &= !0xe00;
         self.0 |= value;
@@ -132,7 +132,7 @@ impl SD10G65_MOEBDIV_CFG0 {
     }
     #[inline(always)]
     pub fn set_moebdiv_bw_cdr_sel_b(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -144,7 +144,7 @@ impl SD10G65_MOEBDIV_CFG0 {
     }
     #[inline(always)]
     pub fn set_moebdiv_bw_core_sel(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 3;
         self.0 &= !0x38;
         self.0 |= value;
@@ -156,7 +156,7 @@ impl SD10G65_MOEBDIV_CFG0 {
     }
     #[inline(always)]
     pub fn set_moebdiv_cpmd_swap(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -168,7 +168,7 @@ impl SD10G65_MOEBDIV_CFG0 {
     }
     #[inline(always)]
     pub fn set_moebdiv_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -179,7 +179,7 @@ impl SD10G65_MOEBDIV_CFG0 {
     }
     #[inline(always)]
     pub fn set_moebdiv_div32_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;

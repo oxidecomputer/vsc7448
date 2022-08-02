@@ -36,7 +36,7 @@ impl REG_1588_PPS_0_MUX_CTRL {
     }
     #[inline(always)]
     pub fn set_1588_soft_reset(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -51,7 +51,7 @@ impl SPI_DAISY_CHAIN_CTRL {
     }
     #[inline(always)]
     pub fn set_enable_input_port(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -62,7 +62,7 @@ impl SPI_DAISY_CHAIN_CTRL {
     }
     #[inline(always)]
     pub fn set_enable_output_port(&mut self, value: u16) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;

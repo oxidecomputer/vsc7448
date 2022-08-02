@@ -70,12 +70,12 @@ impl UART {
     }
     #[inline(always)]
     pub fn RESERVED1(&self, index: u8) -> RegisterAddress<uart::RESERVED1> {
-        assert!(index < 23);
+        debug_assert!(index < 23);
         RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn RESERVED2(&self, index: u8) -> RegisterAddress<uart::RESERVED2> {
-        assert!(index < 9);
+        debug_assert!(index < 9);
         RegisterAddress::new(self.0 + 0x80 + u32::from(index) * 0x4)
     }
     #[inline(always)]

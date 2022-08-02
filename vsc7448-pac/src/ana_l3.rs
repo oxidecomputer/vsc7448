@@ -199,7 +199,7 @@ pub struct L3MC(pub(super) u32);
 impl L3MC {
     #[inline(always)]
     pub fn EVMID_MASK_CFG(&self, index: u8) -> RegisterAddress<l3mc::EVMID_MASK_CFG> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -379,7 +379,7 @@ impl VMID {
     }
     #[inline(always)]
     pub fn VRRP_CFG(&self, index: u8) -> RegisterAddress<vmid::VRRP_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
 }

@@ -38,7 +38,7 @@ impl ACK_GEN_CALL {
     }
     #[inline(always)]
     pub fn set_ack_gen_call(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -56,7 +56,7 @@ impl CFG {
     }
     #[inline(always)]
     pub fn set_master_10bitaddr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -70,7 +70,7 @@ impl CFG {
     }
     #[inline(always)]
     pub fn set_master_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -83,7 +83,7 @@ impl CFG {
     }
     #[inline(always)]
     pub fn set_restart_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -97,7 +97,7 @@ impl CFG {
     }
     #[inline(always)]
     pub fn set_slave_10bitaddr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -111,7 +111,7 @@ impl CFG {
     }
     #[inline(always)]
     pub fn set_slave_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl CFG {
     }
     #[inline(always)]
     pub fn set_speed(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -142,7 +142,7 @@ impl CLR_ACTIVITY {
     }
     #[inline(always)]
     pub fn set_clr_activity(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -158,7 +158,7 @@ impl CLR_GEN_CALL {
     }
     #[inline(always)]
     pub fn set_clr_gen_call(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -174,7 +174,7 @@ impl CLR_INTR {
     }
     #[inline(always)]
     pub fn set_clr_intr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -190,7 +190,7 @@ impl CLR_RD_REQ {
     }
     #[inline(always)]
     pub fn set_clr_rd_req(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -206,7 +206,7 @@ impl CLR_RX_DONE {
     }
     #[inline(always)]
     pub fn set_clr_rx_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -222,7 +222,7 @@ impl CLR_RX_OVER {
     }
     #[inline(always)]
     pub fn set_clr_rx_over(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -238,7 +238,7 @@ impl CLR_RX_UNDER {
     }
     #[inline(always)]
     pub fn set_clr_rx_under(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -254,7 +254,7 @@ impl CLR_START_DET {
     }
     #[inline(always)]
     pub fn set_clr_start_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -270,7 +270,7 @@ impl CLR_STOP_DET {
     }
     #[inline(always)]
     pub fn set_clr_stop_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -286,7 +286,7 @@ impl CLR_TX_ABRT {
     }
     #[inline(always)]
     pub fn set_clr_tx_abrt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -302,7 +302,7 @@ impl CLR_TX_OVER {
     }
     #[inline(always)]
     pub fn set_clr_tx_over(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -320,7 +320,7 @@ impl COMP_PARAM_1 {
     }
     #[inline(always)]
     pub fn set_add_encoded_params(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -334,7 +334,7 @@ impl COMP_PARAM_1 {
     }
     #[inline(always)]
     pub fn set_apb_data_width(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -345,7 +345,7 @@ impl COMP_PARAM_1 {
     }
     #[inline(always)]
     pub fn set_has_dma(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -357,7 +357,7 @@ impl COMP_PARAM_1 {
     }
     #[inline(always)]
     pub fn set_hc_count_values(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -369,7 +369,7 @@ impl COMP_PARAM_1 {
     }
     #[inline(always)]
     pub fn set_intr_io(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -383,7 +383,7 @@ impl COMP_PARAM_1 {
     }
     #[inline(always)]
     pub fn set_max_speed_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 2;
         self.0 &= !0xc;
         self.0 |= value;
@@ -395,7 +395,7 @@ impl COMP_PARAM_1 {
     }
     #[inline(always)]
     pub fn set_rx_buffer_depth(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -407,7 +407,7 @@ impl COMP_PARAM_1 {
     }
     #[inline(always)]
     pub fn set_tx_buffer_depth(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -454,7 +454,7 @@ impl CTRL {
     }
     #[inline(always)]
     pub fn set_enable(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -472,7 +472,7 @@ impl DATA_CMD {
     }
     #[inline(always)]
     pub fn set_cmd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -484,7 +484,7 @@ impl DATA_CMD {
     }
     #[inline(always)]
     pub fn set_data(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -500,7 +500,7 @@ impl ENABLE_STATUS {
     }
     #[inline(always)]
     pub fn set_busy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -511,7 +511,7 @@ impl ENABLE_STATUS {
     }
     #[inline(always)]
     pub fn set_slv_fifo_filled_and_flushed(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -523,7 +523,7 @@ impl ENABLE_STATUS {
     }
     #[inline(always)]
     pub fn set_slv_rx_aborted(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -542,7 +542,7 @@ impl FS_SCL_HCNT {
     }
     #[inline(always)]
     pub fn set_fs_scl_hcnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -560,7 +560,7 @@ impl FS_SCL_LCNT {
     }
     #[inline(always)]
     pub fn set_fs_scl_lcnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -577,7 +577,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_activity(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -588,7 +588,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_gen_call(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -599,7 +599,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_rd_req(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -610,7 +610,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_rx_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -621,7 +621,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_rx_full(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -632,7 +632,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_rx_over(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -643,7 +643,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_rx_under(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -653,7 +653,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_start_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -664,7 +664,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_stop_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -675,7 +675,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_tx_abrt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -686,7 +686,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_tx_empty(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -697,7 +697,7 @@ impl INTR_MASK {
     }
     #[inline(always)]
     pub fn set_m_tx_over(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -715,7 +715,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_activity(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -726,7 +726,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_gen_call(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -737,7 +737,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rd_req(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -748,7 +748,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rx_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -759,7 +759,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rx_full(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -770,7 +770,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rx_over(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -781,7 +781,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_rx_under(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -791,7 +791,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_start_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -802,7 +802,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_stop_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -813,7 +813,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_tx_abrt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -824,7 +824,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_tx_empty(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -835,7 +835,7 @@ impl INTR_STAT {
     }
     #[inline(always)]
     pub fn set_tx_over(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -854,7 +854,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_activity(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -866,7 +866,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_gen_call(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -878,7 +878,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_rd_req(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -890,7 +890,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_rx_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -902,7 +902,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_rx_full(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -914,7 +914,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_rx_over(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -926,7 +926,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_rx_under(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -937,7 +937,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_start_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -949,7 +949,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_stop_det(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -961,7 +961,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_tx_abrt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -973,7 +973,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_tx_empty(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -985,7 +985,7 @@ impl RAW_INTR_STAT {
     }
     #[inline(always)]
     pub fn set_r_tx_over(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1106,7 +1106,7 @@ impl RXFLR {
     }
     #[inline(always)]
     pub fn set_rxflr(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -1122,7 +1122,7 @@ impl RX_TL {
     }
     #[inline(always)]
     pub fn set_rx_tl(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -1138,7 +1138,7 @@ impl SAR {
     }
     #[inline(always)]
     pub fn set_sar(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -1156,7 +1156,7 @@ impl SDA_SETUP {
     }
     #[inline(always)]
     pub fn set_sda_setup(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -1174,7 +1174,7 @@ impl SS_SCL_HCNT {
     }
     #[inline(always)]
     pub fn set_ss_scl_hcnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -1192,7 +1192,7 @@ impl SS_SCL_LCNT {
     }
     #[inline(always)]
     pub fn set_ss_scl_lcnt(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -1208,7 +1208,7 @@ impl STAT {
     }
     #[inline(always)]
     pub fn set_bus_activity(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1221,7 +1221,7 @@ impl STAT {
     }
     #[inline(always)]
     pub fn set_mst_activity(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -1235,7 +1235,7 @@ impl STAT {
     }
     #[inline(always)]
     pub fn set_rff(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -1249,7 +1249,7 @@ impl STAT {
     }
     #[inline(always)]
     pub fn set_rfne(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1263,7 +1263,7 @@ impl STAT {
     }
     #[inline(always)]
     pub fn set_slv_activity(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -1277,7 +1277,7 @@ impl STAT {
     }
     #[inline(always)]
     pub fn set_tfe(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1291,7 +1291,7 @@ impl STAT {
     }
     #[inline(always)]
     pub fn set_tfnf(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1310,7 +1310,7 @@ impl TAR {
     }
     #[inline(always)]
     pub fn set_gc_or_start(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1324,7 +1324,7 @@ impl TAR {
     }
     #[inline(always)]
     pub fn set_gc_or_start_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -1336,7 +1336,7 @@ impl TAR {
     }
     #[inline(always)]
     pub fn set_tar(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -1352,7 +1352,7 @@ impl TXFLR {
     }
     #[inline(always)]
     pub fn set_txflr(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -1368,7 +1368,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_10addr1_noack(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -1380,7 +1380,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_10addr2_noack(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1392,7 +1392,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_10b_rd_norstrt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1404,7 +1404,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_7b_addr_noack(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -1415,7 +1415,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_gcall_noack(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -1427,7 +1427,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_gcall_read(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -1439,7 +1439,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_hs_ackdet(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -1451,7 +1451,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_hs_norstrt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -1463,7 +1463,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_master_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -1475,7 +1475,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_sbyte_ackdet(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -1489,7 +1489,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_sbyte_norstrt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -1501,7 +1501,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_slvflush_txfifo(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -1513,7 +1513,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_slvrd_intx(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -1525,7 +1525,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_slv_arblost(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -1537,7 +1537,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_abrt_txdata_noack(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1549,7 +1549,7 @@ impl TX_ABRT_SOURCE {
     }
     #[inline(always)]
     pub fn set_arb_lost(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -1566,7 +1566,7 @@ impl TX_TL {
     }
     #[inline(always)]
     pub fn set_tx_tl(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }

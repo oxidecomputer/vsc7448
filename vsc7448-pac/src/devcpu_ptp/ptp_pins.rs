@@ -38,7 +38,7 @@ impl PIN_WF_HIGH_PERIOD {
     }
     #[inline(always)]
     pub fn set_pin_wfh(&mut self, value: u32) {
-        assert!(value <= 0x3fffffff);
+        debug_assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl PIN_WF_LOW_PERIOD {
     }
     #[inline(always)]
     pub fn set_pin_wfl(&mut self, value: u32) {
-        assert!(value <= 0x3fffffff);
+        debug_assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
     }
@@ -88,7 +88,7 @@ impl PTP_PIN_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_pin_action(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -100,7 +100,7 @@ impl PTP_PIN_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_pin_dom(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -113,7 +113,7 @@ impl PTP_PIN_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_pin_inv_pol(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -125,7 +125,7 @@ impl PTP_PIN_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_pin_sync(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -142,7 +142,7 @@ impl PTP_TOD_NSEC {
     }
     #[inline(always)]
     pub fn set_ptp_tod_nsec(&mut self, value: u32) {
-        assert!(value <= 0x3fffffff);
+        debug_assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
     }
@@ -172,7 +172,7 @@ impl PTP_TOD_SEC_MSB {
     }
     #[inline(always)]
     pub fn set_ptp_tod_sec_msb(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

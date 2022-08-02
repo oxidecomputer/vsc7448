@@ -38,7 +38,7 @@ impl PTP_SEQ_NO {
     }
     #[inline(always)]
     pub fn set_ptp_seq_no(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

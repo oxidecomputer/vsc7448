@@ -40,7 +40,7 @@ impl WRED_PROFILE {
     }
     #[inline(always)]
     pub fn set_wm_red_high(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         self.0 &= !0x7ff;
         self.0 |= value;
     }
@@ -51,7 +51,7 @@ impl WRED_PROFILE {
     }
     #[inline(always)]
     pub fn set_wm_red_low(&mut self, value: u32) {
-        assert!(value <= 0x7ff);
+        debug_assert!(value <= 0x7ff);
         let value = value << 11;
         self.0 &= !0x3ff800;
         self.0 |= value;

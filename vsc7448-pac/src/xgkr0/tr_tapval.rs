@@ -38,7 +38,7 @@ impl TR_C0VAL {
     }
     #[inline(always)]
     pub fn set_c0_val(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -54,7 +54,7 @@ impl TR_CMVAL {
     }
     #[inline(always)]
     pub fn set_cm_val(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl TR_CPVAL {
     }
     #[inline(always)]
     pub fn set_cp_val(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }

@@ -40,7 +40,7 @@ impl DP_MAP {
     }
     #[inline(always)]
     pub fn set_dp(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }
@@ -56,7 +56,7 @@ impl EEE_CFG {
     }
     #[inline(always)]
     pub fn set_eee_fast_queues(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -72,7 +72,7 @@ impl EEE_THRES {
     }
     #[inline(always)]
     pub fn set_eee_high_bytes(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -84,7 +84,7 @@ impl EEE_THRES {
     }
     #[inline(always)]
     pub fn set_eee_high_frames(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -102,7 +102,7 @@ impl FRM_AGING {
     }
     #[inline(always)]
     pub fn set_max_age(&mut self, value: u32) {
-        assert!(value <= 0xfffff);
+        debug_assert!(value <= 0xfffff);
         self.0 &= !0xfffff;
         self.0 |= value;
     }
@@ -118,7 +118,7 @@ impl PMEM_SIZE {
     }
     #[inline(always)]
     pub fn set_pmem_size(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -136,7 +136,7 @@ impl RESET_CFG {
     }
     #[inline(always)]
     pub fn set_core_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -152,7 +152,7 @@ impl STAT_CFG {
     }
     #[inline(always)]
     pub fn set_stat_rx_taildrop_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

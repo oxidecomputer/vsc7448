@@ -47,12 +47,12 @@ pub struct COMMON(pub(super) u32);
 impl COMMON {
     #[inline(always)]
     pub fn ADV_RNG_CTRL(&self, index: u8) -> RegisterAddress<common::ADV_RNG_CTRL> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0xa4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn ADV_RNG_VALUE_CFG(&self, index: u8) -> RegisterAddress<common::ADV_RNG_VALUE_CFG> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0xc4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -61,7 +61,7 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn CLM_KEY_CFG(&self, index: u8) -> RegisterAddress<common::CLM_KEY_CFG> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0x2bc + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -74,12 +74,12 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn CPU_8021_QOS_CFG(&self, index: u8) -> RegisterAddress<common::CPU_8021_QOS_CFG> {
-        assert!(index < 16);
+        debug_assert!(index < 16);
         RegisterAddress::new(self.0 + 0x58 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn CPU_8021_QU_CFG(&self, index: u8) -> RegisterAddress<common::CPU_8021_QU_CFG> {
-        assert!(index < 16);
+        debug_assert!(index < 16);
         RegisterAddress::new(self.0 + 0x18 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -88,12 +88,12 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn DSCP_CFG(&self, index: u8) -> RegisterAddress<common::DSCP_CFG> {
-        assert!(index < 64);
+        debug_assert!(index < 64);
         RegisterAddress::new(self.0 + 0xfc + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn HM_CFG(&self, index: u8) -> RegisterAddress<common::HM_CFG> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0xec + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -114,7 +114,7 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn MPLS_RSV_LBL_CFG(&self, index: u8) -> RegisterAddress<common::MPLS_RSV_LBL_CFG> {
-        assert!(index < 16);
+        debug_assert!(index < 16);
         RegisterAddress::new(self.0 + 0x27c + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -123,7 +123,7 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn QOS_MAP_CFG(&self, index: u8) -> RegisterAddress<common::QOS_MAP_CFG> {
-        assert!(index < 32);
+        debug_assert!(index < 32);
         RegisterAddress::new(self.0 + 0x1fc + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -132,7 +132,7 @@ impl COMMON {
     }
     #[inline(always)]
     pub fn VLAN_STAG_CFG(&self, index: u8) -> RegisterAddress<common::VLAN_STAG_CFG> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -184,7 +184,7 @@ pub struct MAP_TBL(pub(super) u32);
 impl MAP_TBL {
     #[inline(always)]
     pub fn MAP_ENTRY(&self, index: u8) -> RegisterAddress<map_tbl::MAP_ENTRY> {
-        assert!(index < 8);
+        debug_assert!(index < 8);
         RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -232,7 +232,7 @@ pub struct PORT(pub(super) u32);
 impl PORT {
     #[inline(always)]
     pub fn ADV_CL_CFG(&self, index: u8) -> RegisterAddress<port::ADV_CL_CFG> {
-        assert!(index < 6);
+        debug_assert!(index < 6);
         RegisterAddress::new(self.0 + 0xb4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -257,12 +257,12 @@ impl PORT {
     }
     #[inline(always)]
     pub fn PCP_DEI_MAP_CFG(&self, index: u8) -> RegisterAddress<port::PCP_DEI_MAP_CFG> {
-        assert!(index < 16);
+        debug_assert!(index < 16);
         RegisterAddress::new(self.0 + 0x60 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn PCP_DEI_TRANS_CFG(&self, index: u8) -> RegisterAddress<port::PCP_DEI_TRANS_CFG> {
-        assert!(index < 16);
+        debug_assert!(index < 16);
         RegisterAddress::new(self.0 + 0x1c + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -283,7 +283,7 @@ impl PORT {
     }
     #[inline(always)]
     pub fn VLAN_FILTER_CTRL(&self, index: u8) -> RegisterAddress<port::VLAN_FILTER_CTRL> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -297,7 +297,7 @@ pub struct PPT(pub(super) u32);
 impl PPT {
     #[inline(always)]
     pub fn PP_CFG(&self, index: u8) -> RegisterAddress<ppt::PP_CFG> {
-        assert!(index < 16);
+        debug_assert!(index < 16);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
@@ -335,7 +335,7 @@ impl STICKY {
     }
     #[inline(always)]
     pub fn VLAN_FILTER_STICKY(&self, index: u8) -> RegisterAddress<sticky::VLAN_FILTER_STICKY> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
 }
@@ -368,7 +368,7 @@ impl STICKY_MASK {
         &self,
         index: u8,
     ) -> RegisterAddress<sticky_mask::VLAN_FILTER_STICKY_MASK> {
-        assert!(index < 3);
+        debug_assert!(index < 3);
         RegisterAddress::new(self.0 + 0x4 + u32::from(index) * 0x4)
     }
 }

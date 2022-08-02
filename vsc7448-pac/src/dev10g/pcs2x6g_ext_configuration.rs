@@ -42,7 +42,7 @@ impl PCS2X6G_EXT_CFG {
     }
     #[inline(always)]
     pub fn set_flip_hmbus(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -55,7 +55,7 @@ impl PCS2X6G_EXT_CFG {
     }
     #[inline(always)]
     pub fn set_invert_hmbus(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;

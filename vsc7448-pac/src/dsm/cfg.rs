@@ -42,7 +42,7 @@ impl BUF_CFG {
     }
     #[inline(always)]
     pub fn set_aging_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -53,7 +53,7 @@ impl BUF_CFG {
     }
     #[inline(always)]
     pub fn set_csc_stat_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -92,7 +92,7 @@ impl DBG_CTRL {
     }
     #[inline(always)]
     pub fn set_dbg_event_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -110,7 +110,7 @@ impl DEV_TX_STOP_WM_CFG {
     }
     #[inline(always)]
     pub fn set_dev10g_shadow_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -122,7 +122,7 @@ impl DEV_TX_STOP_WM_CFG {
     }
     #[inline(always)]
     pub fn set_dev_tx_stop_wm(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -133,7 +133,7 @@ impl DEV_TX_STOP_WM_CFG {
     }
     #[inline(always)]
     pub fn set_fast_startup_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -152,7 +152,7 @@ impl ETH_FC_CFG {
     }
     #[inline(always)]
     pub fn set_fc_ana_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -164,7 +164,7 @@ impl ETH_FC_CFG {
     }
     #[inline(always)]
     pub fn set_fc_qs_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -182,7 +182,7 @@ impl ETH_PFC_CFG {
     }
     #[inline(always)]
     pub fn set_pfc_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -193,7 +193,7 @@ impl ETH_PFC_CFG {
     }
     #[inline(always)]
     pub fn set_pfc_min_update_time(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         let value = value << 2;
         self.0 &= !0x1fffc;
         self.0 |= value;
@@ -205,7 +205,7 @@ impl ETH_PFC_CFG {
     }
     #[inline(always)]
     pub fn set_pfc_xoff_min_update_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -224,7 +224,7 @@ impl IPG_SHRINK_CFG {
     }
     #[inline(always)]
     pub fn set_ipg_pream_shrink_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -236,7 +236,7 @@ impl IPG_SHRINK_CFG {
     }
     #[inline(always)]
     pub fn set_ipg_shrink_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -254,7 +254,7 @@ impl MAC_ADDR_BASE_HIGH_CFG {
     }
     #[inline(always)]
     pub fn set_mac_addr_high(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -272,7 +272,7 @@ impl MAC_ADDR_BASE_LOW_CFG {
     }
     #[inline(always)]
     pub fn set_mac_addr_low(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }
@@ -292,7 +292,7 @@ impl MAC_CFG {
     }
     #[inline(always)]
     pub fn set_hdx_backpressure(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -306,7 +306,7 @@ impl MAC_CFG {
     }
     #[inline(always)]
     pub fn set_send_pause_frm_twice(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -320,7 +320,7 @@ impl MAC_CFG {
     }
     #[inline(always)]
     pub fn set_tx_pause_val(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -334,7 +334,7 @@ impl MAC_CFG {
     }
     #[inline(always)]
     pub fn set_tx_pause_xon_xoff(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -352,7 +352,7 @@ impl RATE_CTRL {
     }
     #[inline(always)]
     pub fn set_frm_gap_comp(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -373,7 +373,7 @@ impl RX_PAUSE_CFG {
     }
     #[inline(always)]
     pub fn set_fc_obey_local(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -386,7 +386,7 @@ impl RX_PAUSE_CFG {
     }
     #[inline(always)]
     pub fn set_rx_pause_en(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -407,7 +407,7 @@ impl SCH_STOP_WM_CFG {
     }
     #[inline(always)]
     pub fn set_sch_stop_wm(&mut self, value: u32) {
-        assert!(value <= 0x1ff);
+        debug_assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;
     }
@@ -427,7 +427,7 @@ impl TX_START_WM_CFG {
     }
     #[inline(always)]
     pub fn set_tx_start_wm(&mut self, value: u32) {
-        assert!(value <= 0x1ff);
+        debug_assert!(value <= 0x1ff);
         self.0 &= !0x1ff;
         self.0 |= value;
     }

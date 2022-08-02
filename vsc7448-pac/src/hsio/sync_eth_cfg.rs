@@ -42,7 +42,7 @@ impl SYNC_ETH_CFG {
     }
     #[inline(always)]
     pub fn set_reco_clk_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -55,7 +55,7 @@ impl SYNC_ETH_CFG {
     }
     #[inline(always)]
     pub fn set_sel_reco_clk_div(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -69,7 +69,7 @@ impl SYNC_ETH_CFG {
     }
     #[inline(always)]
     pub fn set_sel_reco_clk_src(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 3;
         self.0 &= !0x1f8;
         self.0 |= value;
@@ -86,7 +86,7 @@ impl SYNC_ETH_PLL2_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_clk_div(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 2;
         self.0 &= !0xfc;
         self.0 |= value;
@@ -98,7 +98,7 @@ impl SYNC_ETH_PLL2_CFG {
     }
     #[inline(always)]
     pub fn set_pll2_auto_squelch_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -111,7 +111,7 @@ impl SYNC_ETH_PLL2_CFG {
     }
     #[inline(always)]
     pub fn set_pll2_reco_clk_div(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -127,7 +127,7 @@ impl SYNC_ETH_SD10G_CFG {
     }
     #[inline(always)]
     pub fn set_sd10g_auto_squelch_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -140,7 +140,7 @@ impl SYNC_ETH_SD10G_CFG {
     }
     #[inline(always)]
     pub fn set_sd10g_reco_clk_div(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;

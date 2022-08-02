@@ -39,17 +39,17 @@ pub struct INJ(pub(super) u32);
 impl INJ {
     #[inline(always)]
     pub fn INJ_CTRL(&self, index: u8) -> RegisterAddress<inj::INJ_CTRL> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn INJ_ERR(&self, index: u8) -> RegisterAddress<inj::INJ_ERR> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x1c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn INJ_GRP_CFG(&self, index: u8) -> RegisterAddress<inj::INJ_GRP_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -58,7 +58,7 @@ impl INJ {
     }
     #[inline(always)]
     pub fn INJ_WR(&self, index: u8) -> RegisterAddress<inj::INJ_WR> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -84,17 +84,17 @@ impl XTR {
     }
     #[inline(always)]
     pub fn XTR_FRM_PRUNING(&self, index: u8) -> RegisterAddress<xtr::XTR_FRM_PRUNING> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x10 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn XTR_GRP_CFG(&self, index: u8) -> RegisterAddress<xtr::XTR_GRP_CFG> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn XTR_RD(&self, index: u8) -> RegisterAddress<xtr::XTR_RD> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x8 + u32::from(index) * 0x4)
     }
 }

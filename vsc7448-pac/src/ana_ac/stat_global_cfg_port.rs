@@ -40,7 +40,7 @@ impl STAT_GLOBAL_EVENT_MASK {
     }
     #[inline(always)]
     pub fn set_global_event_mask(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -56,7 +56,7 @@ impl STAT_RESET {
     }
     #[inline(always)]
     pub fn set_reset(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

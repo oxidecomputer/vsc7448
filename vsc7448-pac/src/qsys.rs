@@ -45,7 +45,7 @@ pub struct CALCFG(pub(super) u32);
 impl CALCFG {
     #[inline(always)]
     pub fn CAL_AUTO(&self, index: u8) -> RegisterAddress<calcfg::CAL_AUTO> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -119,7 +119,7 @@ pub struct PAUSE_CFG(pub(super) u32);
 impl PAUSE_CFG {
     #[inline(always)]
     pub fn ATOP(&self, index: u8) -> RegisterAddress<pause_cfg::ATOP> {
-        assert!(index < 57);
+        debug_assert!(index < 57);
         RegisterAddress::new(self.0 + 0xe8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -128,12 +128,12 @@ impl PAUSE_CFG {
     }
     #[inline(always)]
     pub fn FWD_PRESSURE(&self, index: u8) -> RegisterAddress<pause_cfg::FWD_PRESSURE> {
-        assert!(index < 57);
+        debug_assert!(index < 57);
         RegisterAddress::new(self.0 + 0x1cc + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn PAUSE_CFG(&self, index: u8) -> RegisterAddress<pause_cfg::PAUSE_CFG> {
-        assert!(index < 57);
+        debug_assert!(index < 57);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -160,7 +160,7 @@ impl SYSTEM {
     }
     #[inline(always)]
     pub fn EEE_CFG(&self, index: u8) -> RegisterAddress<system::EEE_CFG> {
-        assert!(index < 57);
+        debug_assert!(index < 57);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]

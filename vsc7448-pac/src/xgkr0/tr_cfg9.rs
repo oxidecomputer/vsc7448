@@ -38,7 +38,7 @@ impl TR_CFG9 {
     }
     #[inline(always)]
     pub fn set_frcnt_ber(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

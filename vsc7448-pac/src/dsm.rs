@@ -43,12 +43,12 @@ pub struct CFG(pub(super) u32);
 impl CFG {
     #[inline(always)]
     pub fn BUF_CFG(&self, index: u8) -> RegisterAddress<cfg::BUF_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn CLR_BUF(&self, index: u8) -> RegisterAddress<cfg::CLR_BUF> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x294 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -57,22 +57,22 @@ impl CFG {
     }
     #[inline(always)]
     pub fn DEV_TX_STOP_WM_CFG(&self, index: u8) -> RegisterAddress<cfg::DEV_TX_STOP_WM_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x454 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn ETH_FC_CFG(&self, index: u8) -> RegisterAddress<cfg::ETH_FC_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x60c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn ETH_PFC_CFG(&self, index: u8) -> RegisterAddress<cfg::ETH_PFC_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x6e8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn IPG_SHRINK_CFG(&self, index: u8) -> RegisterAddress<cfg::IPG_SHRINK_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x1b8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -80,37 +80,37 @@ impl CFG {
         &self,
         index: u8,
     ) -> RegisterAddress<cfg::MAC_ADDR_BASE_HIGH_CFG> {
-        assert!(index < 53);
+        debug_assert!(index < 53);
         RegisterAddress::new(self.0 + 0x8a0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn MAC_ADDR_BASE_LOW_CFG(&self, index: u8) -> RegisterAddress<cfg::MAC_ADDR_BASE_LOW_CFG> {
-        assert!(index < 53);
+        debug_assert!(index < 53);
         RegisterAddress::new(self.0 + 0x974 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn MAC_CFG(&self, index: u8) -> RegisterAddress<cfg::MAC_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x7c4 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn RATE_CTRL(&self, index: u8) -> RegisterAddress<cfg::RATE_CTRL> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0xdc + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn RX_PAUSE_CFG(&self, index: u8) -> RegisterAddress<cfg::RX_PAUSE_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x530 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn SCH_STOP_WM_CFG(&self, index: u8) -> RegisterAddress<cfg::SCH_STOP_WM_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x29c + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn TX_START_WM_CFG(&self, index: u8) -> RegisterAddress<cfg::TX_START_WM_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x378 + u32::from(index) * 0x4)
     }
 }
@@ -145,7 +145,7 @@ impl RATE_LIMIT_CFG {
         &self,
         index: u8,
     ) -> RegisterAddress<rate_limit_cfg::TX_FRAME_RATE_START_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x1b8 + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -153,7 +153,7 @@ impl RATE_LIMIT_CFG {
         &self,
         index: u8,
     ) -> RegisterAddress<rate_limit_cfg::TX_IPG_STRETCH_RATIO_CFG> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0xdc + u32::from(index) * 0x4)
     }
     #[inline(always)]
@@ -165,7 +165,7 @@ impl RATE_LIMIT_CFG {
         &self,
         index: u8,
     ) -> RegisterAddress<rate_limit_cfg::TX_RATE_LIMIT_MODE> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
@@ -178,7 +178,7 @@ impl RATE_LIMIT_STATUS {
         &self,
         index: u8,
     ) -> RegisterAddress<rate_limit_status::TX_RATE_LIMIT_STICKY> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
 }
@@ -188,17 +188,17 @@ pub struct STATUS(pub(super) u32);
 impl STATUS {
     #[inline(always)]
     pub fn AGED_FRMS(&self, index: u8) -> RegisterAddress<status::AGED_FRMS> {
-        assert!(index < 55);
+        debug_assert!(index < 55);
         RegisterAddress::new(self.0 + 0x0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn BUF_OFLW_STICKY(&self, index: u8) -> RegisterAddress<status::BUF_OFLW_STICKY> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0xe0 + u32::from(index) * 0x4)
     }
     #[inline(always)]
     pub fn BUF_UFLW_STICKY(&self, index: u8) -> RegisterAddress<status::BUF_UFLW_STICKY> {
-        assert!(index < 2);
+        debug_assert!(index < 2);
         RegisterAddress::new(self.0 + 0xe8 + u32::from(index) * 0x4)
     }
     #[inline(always)]

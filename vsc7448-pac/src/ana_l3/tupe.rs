@@ -38,7 +38,7 @@ impl TUPE_ADDR {
     }
     #[inline(always)]
     pub fn set_tupe_end_addr(&mut self, value: u32) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         let value = value << 16;
         self.0 &= !0x1fff0000;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl TUPE_ADDR {
     }
     #[inline(always)]
     pub fn set_tupe_start_addr(&mut self, value: u32) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
     }
@@ -82,7 +82,7 @@ impl TUPE_CMD_PORT_MASK_CLR1 {
     }
     #[inline(always)]
     pub fn set_tupe_cmd_port_mask_clr1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -114,7 +114,7 @@ impl TUPE_CMD_PORT_MASK_SET1 {
     }
     #[inline(always)]
     pub fn set_tupe_cmd_port_mask_set1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -130,7 +130,7 @@ impl TUPE_CTRL_BIT_MASK {
     }
     #[inline(always)]
     pub fn set_tupe_ctrl_bit_mask(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -146,7 +146,7 @@ impl TUPE_CTRL_VAL {
     }
     #[inline(always)]
     pub fn set_tupe_ctrl_val(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -162,7 +162,7 @@ impl TUPE_CTRL_VAL_MASK {
     }
     #[inline(always)]
     pub fn set_tupe_ctrl_val_mask(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -178,7 +178,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_tupe_comb_mask_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -190,7 +190,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_tupe_ctrl_bit_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -202,7 +202,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_tupe_ctrl_val_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -214,7 +214,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_tupe_port_mask_a_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -226,7 +226,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_tupe_port_mask_b_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -238,7 +238,7 @@ impl TUPE_MISC {
     }
     #[inline(always)]
     pub fn set_tupe_start(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -268,7 +268,7 @@ impl TUPE_PORT_MASK_A1 {
     }
     #[inline(always)]
     pub fn set_tupe_port_mask_a1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -298,7 +298,7 @@ impl TUPE_PORT_MASK_B1 {
     }
     #[inline(always)]
     pub fn set_tupe_port_mask_b1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }

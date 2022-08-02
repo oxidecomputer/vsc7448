@@ -38,7 +38,7 @@ impl QSHP_ALLOC_CFG {
     }
     #[inline(always)]
     pub fn set_qshp_base(&mut self, value: u32) {
-        assert!(value <= 0x1fff);
+        debug_assert!(value <= 0x1fff);
         self.0 &= !0x1fff;
         self.0 |= value;
     }
@@ -49,7 +49,7 @@ impl QSHP_ALLOC_CFG {
     }
     #[inline(always)]
     pub fn set_qshp_max(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 13;
         self.0 &= !0x7e000;
         self.0 |= value;
@@ -61,7 +61,7 @@ impl QSHP_ALLOC_CFG {
     }
     #[inline(always)]
     pub fn set_qshp_min(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 19;
         self.0 &= !0x1f80000;
         self.0 |= value;
@@ -78,7 +78,7 @@ impl QSHP_CONNECT {
     }
     #[inline(always)]
     pub fn set_se_leak_link(&mut self, value: u32) {
-        assert!(value <= 0xfff);
+        debug_assert!(value <= 0xfff);
         self.0 &= !0xfff;
         self.0 |= value;
     }

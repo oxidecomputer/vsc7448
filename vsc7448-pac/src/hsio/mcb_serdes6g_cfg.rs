@@ -42,7 +42,7 @@ impl MCB_SERDES6G_ADDR_CFG {
     }
     #[inline(always)]
     pub fn set_serdes6g_addr(&mut self, value: u32) {
-        assert!(value <= 0x1ffffff);
+        debug_assert!(value <= 0x1ffffff);
         self.0 &= !0x1ffffff;
         self.0 |= value;
     }
@@ -55,7 +55,7 @@ impl MCB_SERDES6G_ADDR_CFG {
     }
     #[inline(always)]
     pub fn set_serdes6g_rd_one_shot(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -69,7 +69,7 @@ impl MCB_SERDES6G_ADDR_CFG {
     }
     #[inline(always)]
     pub fn set_serdes6g_wr_one_shot(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;

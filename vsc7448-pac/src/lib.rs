@@ -130,19 +130,19 @@ pub fn ASM() -> tgt::ASM {
 /// \see vtss_target_DEV10G_e VAUI @ 12Gbps 2 lanes, XAUI @ 10 Gbps, XAUI @ 12 Gbps, VAUI @ 10Gbps 2 lanes and SGMII @ 10/100/1000/2500 Mbps
 #[inline(always)]
 pub fn DEV10G(index: u8) -> tgt::DEV10G {
-    assert!(index < 4);
+    debug_assert!(index < 4);
     tgt::DEV10G(0x71390000 + u32::from(index) * 0x10000)
 }
 /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
 #[inline(always)]
 pub fn DEV1G(index: u8) -> tgt::DEV1G {
-    assert!(index < 24);
+    debug_assert!(index < 24);
     tgt::DEV1G(0x71040000 + u32::from(index) * 0x10000)
 }
 /// \see vtss_target_DEV1G_e The device operates as an interface between the TAXI bus and SGMII macro supporting data rates of 10M, 100M, and 1000Mbps. The device includes PCS, MAC and rate adaption logic.
 #[inline(always)]
 pub fn DEV2G5(index: u8) -> tgt::DEV2G5 {
-    assert!(index < 29);
+    debug_assert!(index < 29);
     tgt::DEV2G5(0x711c0000 + u32::from(index) * 0x10000)
 }
 /// General Configuration Block
@@ -198,7 +198,7 @@ pub fn PCIE() -> tgt::PCIE {
 /// \see vtss_target_PCS_10GBASE_R_e PCS configuration and status registers and counters
 #[inline(always)]
 pub fn PCS10G_BR(index: u8) -> tgt::PCS10G_BR {
-    assert!(index < 4);
+    debug_assert!(index < 4);
     tgt::PCS10G_BR(0x713d0000 + u32::from(index) * 0x10000)
 }
 /// Queue System Configuration
@@ -284,31 +284,31 @@ pub fn VOP_MPLS() -> tgt::VOP_MPLS {
 /// \see vtss_target_SD10G65_e Configuration and status for high speed macro.
 #[inline(always)]
 pub fn XGANA(index: u8) -> tgt::XGANA {
-    assert!(index < 4);
+    debug_assert!(index < 4);
     tgt::XGANA(0x71480000 + u32::from(index) * 0x10000)
 }
 /// \see vtss_target_SD10G65_DIG_e Configuration and status of digital peripherals for high speed macro.
 #[inline(always)]
 pub fn XGDIG(index: u8) -> tgt::XGDIG {
-    assert!(index < 4);
+    debug_assert!(index < 4);
     tgt::XGDIG(0x714c0000 + u32::from(index) * 0x10000)
 }
 /// \see vtss_target_KR_DEV1_e
 #[inline(always)]
 pub fn XGKR0(index: u8) -> tgt::XGKR0 {
-    assert!(index < 4);
+    debug_assert!(index < 4);
     tgt::XGKR0(0x71540000 + u32::from(index) * 0x10000)
 }
 /// \see vtss_target_KR_DEV7_e
 #[inline(always)]
 pub fn XGKR1(index: u8) -> tgt::XGKR1 {
-    assert!(index < 4);
+    debug_assert!(index < 4);
     tgt::XGKR1(0x71580000 + u32::from(index) * 0x10000)
 }
 /// \see vtss_target_XFI_SHELL_e XFI shell
 #[inline(always)]
 pub fn XGXFI(index: u8) -> tgt::XGXFI {
-    assert!(index < 4);
+    debug_assert!(index < 4);
     tgt::XGXFI(0x71500000 + u32::from(index) * 0x10000)
 }
 /// Queue Transfer Configuration
@@ -334,17 +334,17 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn DTI_MISC(&self, index: u8) -> afi::DTI_MISC {
-            assert!(index < 32);
+            debug_assert!(index < 32);
             afi::DTI_MISC(self.0 + 0x285e8 + u32::from(index) * 0xc)
         }
         #[inline(always)]
         pub fn DTI_TBL(&self, index: u8) -> afi::DTI_TBL {
-            assert!(index < 32);
+            debug_assert!(index < 32);
             afi::DTI_TBL(self.0 + 0x28000 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn FRM_TBL(&self, index: u16) -> afi::FRM_TBL {
-            assert!(index < 4096);
+            debug_assert!(index < 4096);
             afi::FRM_TBL(self.0 + 0x20000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
@@ -353,7 +353,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn PORT_TBL(&self, index: u8) -> afi::PORT_TBL {
-            assert!(index < 57);
+            debug_assert!(index < 57);
             afi::PORT_TBL(self.0 + 0x28400 + u32::from(index) * 0x8)
         }
         #[inline(always)]
@@ -362,7 +362,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn TTI_TBL(&self, index: u16) -> afi::TTI_TBL {
-            assert!(index < 4096);
+            debug_assert!(index < 4096);
             afi::TTI_TBL(self.0 + 0x0 + u32::from(index) * 0x20)
         }
         #[inline(always)]
@@ -385,7 +385,7 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn AGGR(&self, index: u8) -> ana_ac::AGGR {
-            assert!(index < 16);
+            debug_assert!(index < 16);
             ana_ac::AGGR(self.0 + 0x94380 + u32::from(index) * 0x8)
         }
         #[inline(always)]
@@ -394,17 +394,17 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn GLAG(&self, index: u8) -> ana_ac::GLAG {
-            assert!(index < 32);
+            debug_assert!(index < 32);
             ana_ac::GLAG(self.0 + 0x94700 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn MIRROR_PROBE(&self, index: u8) -> ana_ac::MIRROR_PROBE {
-            assert!(index < 3);
+            debug_assert!(index < 3);
             ana_ac::MIRROR_PROBE(self.0 + 0x94780 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn PGID(&self, index: u16) -> ana_ac::PGID {
-            assert!(index < 1077);
+            debug_assert!(index < 1077);
             ana_ac::PGID(self.0 + 0x90000 + u32::from(index) * 0x10)
         }
         #[inline(always)]
@@ -417,7 +417,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn PS_STICKY_MASK(&self, index: u8) -> ana_ac::PS_STICKY_MASK {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             ana_ac::PS_STICKY_MASK(self.0 + 0x94ebc + u32::from(index) * 0x40)
         }
         #[inline(always)]
@@ -426,52 +426,52 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn SFLOW(&self, index: u8) -> ana_ac::SFLOW {
-            assert!(index < 53);
+            debug_assert!(index < 53);
             ana_ac::SFLOW(self.0 + 0x94c00 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn SRC(&self, index: u8) -> ana_ac::SRC {
-            assert!(index < 89);
+            debug_assert!(index < 89);
             ana_ac::SRC(self.0 + 0x94400 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn STAT_CNT_CFG_ACL(&self, index: u8) -> ana_ac::STAT_CNT_CFG_ACL {
-            assert!(index < 32);
+            debug_assert!(index < 32);
             ana_ac::STAT_CNT_CFG_ACL(self.0 + 0x94a00 + u32::from(index) * 0x10)
         }
         #[inline(always)]
         pub fn STAT_CNT_CFG_BDLB(&self, index: u16) -> ana_ac::STAT_CNT_CFG_BDLB {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             ana_ac::STAT_CNT_CFG_BDLB(self.0 + 0x98000 + u32::from(index) * 0x10)
         }
         #[inline(always)]
         pub fn STAT_CNT_CFG_BUM(&self, index: u16) -> ana_ac::STAT_CNT_CFG_BUM {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             ana_ac::STAT_CNT_CFG_BUM(self.0 + 0x80000 + u32::from(index) * 0x40)
         }
         #[inline(always)]
         pub fn STAT_CNT_CFG_ERLEG(&self, index: u16) -> ana_ac::STAT_CNT_CFG_ERLEG {
-            assert!(index < 256);
+            debug_assert!(index < 256);
             ana_ac::STAT_CNT_CFG_ERLEG(self.0 + 0xa0000 + u32::from(index) * 0x40)
         }
         #[inline(always)]
         pub fn STAT_CNT_CFG_IRLEG(&self, index: u16) -> ana_ac::STAT_CNT_CFG_IRLEG {
-            assert!(index < 256);
+            debug_assert!(index < 256);
             ana_ac::STAT_CNT_CFG_IRLEG(self.0 + 0x9c000 + u32::from(index) * 0x40)
         }
         #[inline(always)]
         pub fn STAT_CNT_CFG_ISDX(&self, index: u16) -> ana_ac::STAT_CNT_CFG_ISDX {
-            assert!(index < 8192);
+            debug_assert!(index < 8192);
             ana_ac::STAT_CNT_CFG_ISDX(self.0 + 0x0 + u32::from(index) * 0x40)
         }
         #[inline(always)]
         pub fn STAT_CNT_CFG_PORT(&self, index: u8) -> ana_ac::STAT_CNT_CFG_PORT {
-            assert!(index < 57);
+            debug_assert!(index < 57);
             ana_ac::STAT_CNT_CFG_PORT(self.0 + 0x95000 + u32::from(index) * 0x40)
         }
         #[inline(always)]
         pub fn STAT_CNT_CFG_QUEUE(&self, index: u16) -> ana_ac::STAT_CNT_CFG_QUEUE {
-            assert!(index < 456);
+            debug_assert!(index < 456);
             ana_ac::STAT_CNT_CFG_QUEUE(self.0 + 0x96000 + u32::from(index) * 0x10)
         }
         #[inline(always)]
@@ -508,7 +508,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn UPSID(&self, index: u8) -> ana_ac::UPSID {
-            assert!(index < 32);
+            debug_assert!(index < 32);
             ana_ac::UPSID(self.0 + 0x94800 + u32::from(index) * 0x10)
         }
     }
@@ -523,17 +523,17 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn CNT_TBL(&self, index: u16) -> ana_acl::CNT_TBL {
-            assert!(index < 4096);
+            debug_assert!(index < 4096);
             ana_acl::CNT_TBL(self.0 + 0x0 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn PORT(&self, index: u8) -> ana_acl::PORT {
-            assert!(index < 57);
+            debug_assert!(index < 57);
             ana_acl::PORT(self.0 + 0x4000 + u32::from(index) * 0xc)
         }
         #[inline(always)]
         pub fn PTP_DOM(&self, index: u8) -> ana_acl::PTP_DOM {
-            assert!(index < 3);
+            debug_assert!(index < 3);
             ana_acl::PTP_DOM(self.0 + 0x446c + u32::from(index) * 0x10)
         }
         #[inline(always)]
@@ -556,7 +556,7 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn OAM_PDU_MOD_CONT(&self, index: u8) -> ana_ac_oam_mod::OAM_PDU_MOD_CONT {
-            assert!(index < 110);
+            debug_assert!(index < 110);
             ana_ac_oam_mod::OAM_PDU_MOD_CONT(self.0 + 0xa000 + u32::from(index) * 0x20)
         }
         #[inline(always)]
@@ -565,12 +565,12 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn VOE_PORT_LM_CNT(&self, index: u16) -> ana_ac_oam_mod::VOE_PORT_LM_CNT {
-            assert!(index < 424);
+            debug_assert!(index < 424);
             ana_ac_oam_mod::VOE_PORT_LM_CNT(self.0 + 0x8000 + u32::from(index) * 0x10)
         }
         #[inline(always)]
         pub fn VOE_SRV_LM_CNT(&self, index: u16) -> ana_ac_oam_mod::VOE_SRV_LM_CNT {
-            assert!(index < 8192);
+            debug_assert!(index < 8192);
             ana_ac_oam_mod::VOE_SRV_LM_CNT(self.0 + 0x0 + u32::from(index) * 0x4)
         }
     }
@@ -585,12 +585,12 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn BDLB(&self, index: u16) -> ana_ac_pol::BDLB {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             ana_ac_pol::BDLB(self.0 + 0x28000 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn BUM_SLB(&self, index: u16) -> ana_ac_pol::BUM_SLB {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             ana_ac_pol::BUM_SLB(self.0 + 0x30000 + u32::from(index) * 0x20)
         }
         #[inline(always)]
@@ -615,17 +615,17 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn POL_PORT_CTRL(&self, index: u8) -> ana_ac_pol::POL_PORT_CTRL {
-            assert!(index < 57);
+            debug_assert!(index < 57);
             ana_ac_pol::POL_PORT_CTRL(self.0 + 0x23800 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn PORT_PT_CTRL(&self, index: u8) -> ana_ac_pol::PORT_PT_CTRL {
-            assert!(index < 64);
+            debug_assert!(index < 64);
             ana_ac_pol::PORT_PT_CTRL(self.0 + 0x25000 + u32::from(index) * 0x14)
         }
         #[inline(always)]
         pub fn SDLB(&self, index: u16) -> ana_ac_pol::SDLB {
-            assert!(index < 4520);
+            debug_assert!(index < 4520);
             ana_ac_pol::SDLB(self.0 + 0x0 + u32::from(index) * 0x20)
         }
     }
@@ -644,32 +644,32 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn IPT(&self, index: u16) -> ana_cl::IPT {
-            assert!(index < 4096);
+            debug_assert!(index < 4096);
             ana_cl::IPT(self.0 + 0x0 + u32::from(index) * 0x10)
         }
         #[inline(always)]
         pub fn L2CP_TBL(&self, index: u16) -> ana_cl::L2CP_TBL {
-            assert!(index < 3744);
+            debug_assert!(index < 3744);
             ana_cl::L2CP_TBL(self.0 + 0x20000 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn MAP_TBL(&self, index: u16) -> ana_cl::MAP_TBL {
-            assert!(index < 512);
+            debug_assert!(index < 512);
             ana_cl::MAP_TBL(self.0 + 0x18000 + u32::from(index) * 0x40)
         }
         #[inline(always)]
         pub fn MIP_TBL(&self, index: u16) -> ana_cl::MIP_TBL {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             ana_cl::MIP_TBL(self.0 + 0x10000 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn MPLS_PROFILE(&self, index: u8) -> ana_cl::MPLS_PROFILE {
-            assert!(index < 18);
+            debug_assert!(index < 18);
             ana_cl::MPLS_PROFILE(self.0 + 0x23d68 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn PORT(&self, index: u8) -> ana_cl::PORT {
-            assert!(index < 57);
+            debug_assert!(index < 57);
             ana_cl::PORT(self.0 + 0x24000 + u32::from(index) * 0x100)
         }
         #[inline(always)]
@@ -682,7 +682,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn STICKY_MASK(&self, index: u8) -> ana_cl::STICKY_MASK {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             ana_cl::STICKY_MASK(self.0 + 0x23e18 + u32::from(index) * 0x20)
         }
     }
@@ -701,17 +701,17 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn ISDX(&self, index: u16) -> ana_l2::ISDX {
-            assert!(index < 4096);
+            debug_assert!(index < 4096);
             ana_l2::ISDX(self.0 + 0x0 + u32::from(index) * 0x80)
         }
         #[inline(always)]
         pub fn LRN_LIMIT(&self, index: u16) -> ana_l2::LRN_LIMIT {
-            assert!(index < 5120);
+            debug_assert!(index < 5120);
             ana_l2::LRN_LIMIT(self.0 + 0x80000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn PORT_LIMIT(&self, index: u8) -> ana_l2::PORT_LIMIT {
-            assert!(index < 85);
+            debug_assert!(index < 85);
             ana_l2::PORT_LIMIT(self.0 + 0x8a000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
@@ -720,7 +720,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn STICKY_MASK(&self, index: u8) -> ana_l2::STICKY_MASK {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             ana_l2::STICKY_MASK(self.0 + 0x8a410 + u32::from(index) * 0x4)
         }
     }
@@ -735,12 +735,12 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn ARP(&self, index: u16) -> ana_l3::ARP {
-            assert!(index < 2048);
+            debug_assert!(index < 2048);
             ana_l3::ARP(self.0 + 0x30000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn ARP_PTR_REMAP(&self, index: u8) -> ana_l3::ARP_PTR_REMAP {
-            assert!(index < 64);
+            debug_assert!(index < 64);
             ana_l3::ARP_PTR_REMAP(self.0 + 0x35500 + u32::from(index) * 0x4)
         }
         #[inline(always)]
@@ -749,12 +749,12 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn L3MC(&self, index: u16) -> ana_l3::L3MC {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             ana_l3::L3MC(self.0 + 0x28000 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn L3_STICKY_MASK(&self, index: u8) -> ana_l3::L3_STICKY_MASK {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             ana_l3::L3_STICKY_MASK(self.0 + 0x35600 + u32::from(index) * 0x10)
         }
         #[inline(always)]
@@ -763,7 +763,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn MSTP(&self, index: u8) -> ana_l3::MSTP {
-            assert!(index < 66);
+            debug_assert!(index < 66);
             ana_l3::MSTP(self.0 + 0x35000 + u32::from(index) * 0x10)
         }
         #[inline(always)]
@@ -772,7 +772,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn VLAN(&self, index: u16) -> ana_l3::VLAN {
-            assert!(index < 5120);
+            debug_assert!(index < 5120);
             ana_l3::VLAN(self.0 + 0x0 + u32::from(index) * 0x20)
         }
         #[inline(always)]
@@ -781,7 +781,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn VMID(&self, index: u8) -> ana_l3::VMID {
-            assert!(index < 128);
+            debug_assert!(index < 128);
             ana_l3::VMID(self.0 + 0x34000 + u32::from(index) * 0x20)
         }
     }
@@ -808,7 +808,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn DEV_STATISTICS(&self, index: u8) -> asm::DEV_STATISTICS {
-            assert!(index < 53);
+            debug_assert!(index < 53);
             asm::DEV_STATISTICS(self.0 + 0x0 + u32::from(index) * 0x100)
         }
         #[inline(always)]
@@ -825,7 +825,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn PFC(&self, index: u8) -> asm::PFC {
-            assert!(index < 55);
+            debug_assert!(index < 55);
             asm::PFC(self.0 + 0x4000 + u32::from(index) * 0x40)
         }
         #[inline(always)]
@@ -997,7 +997,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn MIIM(&self, index: u8) -> devcpu_gcb::MIIM {
-            assert!(index < 3);
+            debug_assert!(index < 3);
             devcpu_gcb::MIIM(self.0 + 0xc8 + u32::from(index) * 0x24)
         }
         #[inline(always)]
@@ -1010,7 +1010,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn SIO_CTRL(&self, index: u8) -> devcpu_gcb::SIO_CTRL {
-            assert!(index < 3);
+            debug_assert!(index < 3);
             devcpu_gcb::SIO_CTRL(self.0 + 0x150 + u32::from(index) * 0x10c)
         }
         #[inline(always)]
@@ -1059,12 +1059,12 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn PTP_PINS(&self, index: u8) -> devcpu_ptp::PTP_PINS {
-            assert!(index < 5);
+            debug_assert!(index < 5);
             devcpu_ptp::PTP_PINS(self.0 + 0x0 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn PTP_STATUS(&self, index: u8) -> devcpu_ptp::PTP_STATUS {
-            assert!(index < 3);
+            debug_assert!(index < 3);
             devcpu_ptp::PTP_STATUS(self.0 + 0xcc + u32::from(index) * 0x10)
         }
     }
@@ -1131,37 +1131,37 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn HSCH_CFG(&self, index: u16) -> hsch::HSCH_CFG {
-            assert!(index < 3400);
+            debug_assert!(index < 3400);
             hsch::HSCH_CFG(self.0 + 0x0 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn HSCH_DWRR(&self, index: u8) -> hsch::HSCH_DWRR {
-            assert!(index < 64);
+            debug_assert!(index < 64);
             hsch::HSCH_DWRR(self.0 + 0x1ad00 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn HSCH_INP_STATE(&self, index: u8) -> hsch::HSCH_INP_STATE {
-            assert!(index < 2);
+            debug_assert!(index < 2);
             hsch::HSCH_INP_STATE(self.0 + 0x1ae00 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn HSCH_L0_CFG(&self, index: u16) -> hsch::HSCH_L0_CFG {
-            assert!(index < 3400);
+            debug_assert!(index < 3400);
             hsch::HSCH_L0_CFG(self.0 + 0x38000 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn HSCH_L1W(&self, index: u8) -> hsch::HSCH_L1W {
-            assert!(index < 64);
+            debug_assert!(index < 64);
             hsch::HSCH_L1W(self.0 + 0x1c000 + u32::from(index) * 0x100)
         }
         #[inline(always)]
         pub fn HSCH_L1_CFG(&self, index: u8) -> hsch::HSCH_L1_CFG {
-            assert!(index < 64);
+            debug_assert!(index < 64);
             hsch::HSCH_L1_CFG(self.0 + 0x1a900 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn HSCH_LEAK_LISTS(&self, index: u8) -> hsch::HSCH_LEAK_LISTS {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             hsch::HSCH_LEAK_LISTS(self.0 + 0x1b034 + u32::from(index) * 0x20)
         }
         #[inline(always)]
@@ -1170,22 +1170,22 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn HSCH_STATUS(&self, index: u16) -> hsch::HSCH_STATUS {
-            assert!(index < 3400);
+            debug_assert!(index < 3400);
             hsch::HSCH_STATUS(self.0 + 0x20000 + u32::from(index) * 0x10)
         }
         #[inline(always)]
         pub fn QSHP_ALLOC_CFG(&self, index: u16) -> hsch::QSHP_ALLOC_CFG {
-            assert!(index < 3400);
+            debug_assert!(index < 3400);
             hsch::QSHP_ALLOC_CFG(self.0 + 0x30000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn QSHP_CFG(&self, index: u8) -> hsch::QSHP_CFG {
-            assert!(index < 64);
+            debug_assert!(index < 64);
             hsch::QSHP_CFG(self.0 + 0x1aa00 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn QSHP_STATUS(&self, index: u8) -> hsch::QSHP_STATUS {
-            assert!(index < 64);
+            debug_assert!(index < 64);
             hsch::QSHP_STATUS(self.0 + 0x1ac00 + u32::from(index) * 0x4)
         }
     }
@@ -1212,22 +1212,22 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn PLL5G_BIST_CFG(&self, index: u8) -> hsio::PLL5G_BIST_CFG {
-            assert!(index < 2);
+            debug_assert!(index < 2);
             hsio::PLL5G_BIST_CFG(self.0 + 0x48 + u32::from(index) * 0x10)
         }
         #[inline(always)]
         pub fn PLL5G_BIST_STATUS(&self, index: u8) -> hsio::PLL5G_BIST_STATUS {
-            assert!(index < 2);
+            debug_assert!(index < 2);
             hsio::PLL5G_BIST_STATUS(self.0 + 0x68 + u32::from(index) * 0xc)
         }
         #[inline(always)]
         pub fn PLL5G_CFG(&self, index: u8) -> hsio::PLL5G_CFG {
-            assert!(index < 2);
+            debug_assert!(index < 2);
             hsio::PLL5G_CFG(self.0 + 0x0 + u32::from(index) * 0x1c)
         }
         #[inline(always)]
         pub fn PLL5G_STATUS(&self, index: u8) -> hsio::PLL5G_STATUS {
-            assert!(index < 2);
+            debug_assert!(index < 2);
             hsio::PLL5G_STATUS(self.0 + 0x38 + u32::from(index) * 0x8)
         }
         #[inline(always)]
@@ -1457,7 +1457,7 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn RES_CTRL(&self, index: u16) -> qres::RES_CTRL {
-            assert!(index < 5120);
+            debug_assert!(index < 5120);
             qres::RES_CTRL(self.0 + 0x0 + u32::from(index) * 0x10)
         }
         #[inline(always)]
@@ -1466,7 +1466,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn RES_WRED(&self, index: u8) -> qres::RES_WRED {
-            assert!(index < 72);
+            debug_assert!(index < 72);
             qres::RES_WRED(self.0 + 0x14000 + u32::from(index) * 0x4)
         }
     }
@@ -1531,32 +1531,32 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn ENCAP(&self, index: u16) -> rew::ENCAP {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             rew::ENCAP(self.0 + 0x0 + u32::from(index) * 0x80)
         }
         #[inline(always)]
         pub fn ISDX_TBL(&self, index: u16) -> rew::ISDX_TBL {
-            assert!(index < 4096);
+            debug_assert!(index < 4096);
             rew::ISDX_TBL(self.0 + 0x20000 + u32::from(index) * 0x10)
         }
         #[inline(always)]
         pub fn MAP_RES_A(&self, index: u16) -> rew::MAP_RES_A {
-            assert!(index < 4096);
+            debug_assert!(index < 4096);
             rew::MAP_RES_A(self.0 + 0x30000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn MAP_RES_B(&self, index: u16) -> rew::MAP_RES_B {
-            assert!(index < 4096);
+            debug_assert!(index < 4096);
             rew::MAP_RES_B(self.0 + 0x38000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn MIP_TBL(&self, index: u16) -> rew::MIP_TBL {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             rew::MIP_TBL(self.0 + 0x40000 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn OAM_PDU_MOD_CONT(&self, index: u8) -> rew::OAM_PDU_MOD_CONT {
-            assert!(index < 106);
+            debug_assert!(index < 106);
             rew::OAM_PDU_MOD_CONT(self.0 + 0x56000 + u32::from(index) * 0x20)
         }
         #[inline(always)]
@@ -1565,7 +1565,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn PORT(&self, index: u8) -> rew::PORT {
-            assert!(index < 53);
+            debug_assert!(index < 53);
             rew::PORT(self.0 + 0x50000 + u32::from(index) * 0x100)
         }
         #[inline(always)]
@@ -1582,17 +1582,17 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn VMID(&self, index: u8) -> rew::VMID {
-            assert!(index < 128);
+            debug_assert!(index < 128);
             rew::VMID(self.0 + 0x53600 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn VOE_PORT_LM_CNT(&self, index: u16) -> rew::VOE_PORT_LM_CNT {
-            assert!(index < 424);
+            debug_assert!(index < 424);
             rew::VOE_PORT_LM_CNT(self.0 + 0x54000 + u32::from(index) * 0x10)
         }
         #[inline(always)]
         pub fn VOE_SRV_LM_CNT(&self, index: u16) -> rew::VOE_SRV_LM_CNT {
-            assert!(index < 8192);
+            debug_assert!(index < 8192);
             rew::VOE_SRV_LM_CNT(self.0 + 0x48000 + u32::from(index) * 0x4)
         }
     }
@@ -1691,12 +1691,12 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn ANEG_CFG(&self, index: u8) -> vaui0::ANEG_CFG {
-            assert!(index < 8);
+            debug_assert!(index < 8);
             vaui0::ANEG_CFG(self.0 + 0x8 + u32::from(index) * 0x14)
         }
         #[inline(always)]
         pub fn ANEG_STATUS(&self, index: u8) -> vaui0::ANEG_STATUS {
-            assert!(index < 8);
+            debug_assert!(index < 8);
             vaui0::ANEG_STATUS(self.0 + 0xa8 + u32::from(index) * 0xc)
         }
         #[inline(always)]
@@ -1715,12 +1715,12 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn ANEG_CFG(&self, index: u8) -> vaui1::ANEG_CFG {
-            assert!(index < 8);
+            debug_assert!(index < 8);
             vaui1::ANEG_CFG(self.0 + 0x8 + u32::from(index) * 0x14)
         }
         #[inline(always)]
         pub fn ANEG_STATUS(&self, index: u8) -> vaui1::ANEG_STATUS {
-            assert!(index < 8);
+            debug_assert!(index < 8);
             vaui1::ANEG_STATUS(self.0 + 0xa8 + u32::from(index) * 0xc)
         }
         #[inline(always)]
@@ -1807,7 +1807,7 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn ANA_COSID_MAP_CONF(&self, index: u16) -> vop::ANA_COSID_MAP_CONF {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             vop::ANA_COSID_MAP_CONF(self.0 + 0x48000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
@@ -1820,7 +1820,7 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn PORT_COSID_MAP_CONF(&self, index: u8) -> vop::PORT_COSID_MAP_CONF {
-            assert!(index < 53);
+            debug_assert!(index < 53);
             vop::PORT_COSID_MAP_CONF(self.0 + 0x46400 + u32::from(index) * 0x10)
         }
         #[inline(always)]
@@ -1829,47 +1829,47 @@ pub mod tgt {
         }
         #[inline(always)]
         pub fn REW_COSID_MAP_CONF(&self, index: u16) -> vop::REW_COSID_MAP_CONF {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             vop::REW_COSID_MAP_CONF(self.0 + 0x4a000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn SAM_COSID_SEQ_CNT(&self, index: u8) -> vop::SAM_COSID_SEQ_CNT {
-            assert!(index < 32);
+            debug_assert!(index < 32);
             vop::SAM_COSID_SEQ_CNT(self.0 + 0x4c000 + u32::from(index) * 0x100)
         }
         #[inline(always)]
         pub fn VOE_CCM_LM(&self, index: u16) -> vop::VOE_CCM_LM {
-            assert!(index < 1077);
+            debug_assert!(index < 1077);
             vop::VOE_CCM_LM(self.0 + 0x44000 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn VOE_CONF(&self, index: u16) -> vop::VOE_CONF {
-            assert!(index < 1077);
+            debug_assert!(index < 1077);
             vop::VOE_CONF(self.0 + 0x0 + u32::from(index) * 0x100)
         }
         #[inline(always)]
         pub fn VOE_CONF_REG(&self, index: u16) -> vop::VOE_CONF_REG {
-            assert!(index < 1077);
+            debug_assert!(index < 1077);
             vop::VOE_CONF_REG(self.0 + 0x4e000 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn VOE_CONTEXT_ANA(&self, index: u8) -> vop::VOE_CONTEXT_ANA {
-            assert!(index < 110);
+            debug_assert!(index < 110);
             vop::VOE_CONTEXT_ANA(self.0 + 0x47000 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn VOE_CONTEXT_REW(&self, index: u8) -> vop::VOE_CONTEXT_REW {
-            assert!(index < 53);
+            debug_assert!(index < 53);
             vop::VOE_CONTEXT_REW(self.0 + 0x43800 + u32::from(index) * 0x20)
         }
         #[inline(always)]
         pub fn VOE_CRC_ERR(&self, index: u16) -> vop::VOE_CRC_ERR {
-            assert!(index < 1077);
+            debug_assert!(index < 1077);
             vop::VOE_CRC_ERR(self.0 + 0x50000 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn VOE_STAT(&self, index: u16) -> vop::VOE_STAT {
-            assert!(index < 1077);
+            debug_assert!(index < 1077);
             vop::VOE_STAT(self.0 + 0x80000 + u32::from(index) * 0x80)
         }
     }
@@ -1884,12 +1884,12 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn VOE_CONF_MPLS(&self, index: u16) -> vop_mpls::VOE_CONF_MPLS {
-            assert!(index < 1077);
+            debug_assert!(index < 1077);
             vop_mpls::VOE_CONF_MPLS(self.0 + 0x40000 + u32::from(index) * 0x40)
         }
         #[inline(always)]
         pub fn VOE_STAT_MPLS(&self, index: u16) -> vop_mpls::VOE_STAT_MPLS {
-            assert!(index < 1077);
+            debug_assert!(index < 1077);
             vop_mpls::VOE_STAT_MPLS(self.0 + 0x0 + u32::from(index) * 0x80)
         }
     }
@@ -2255,47 +2255,47 @@ pub mod tgt {
 
         #[inline(always)]
         pub fn QLIMIT_MON(&self, index: u8) -> xqs::QLIMIT_MON {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             xqs::QLIMIT_MON(self.0 + 0x1910 + u32::from(index) * 0xc)
         }
         #[inline(always)]
         pub fn QLIMIT_PORT(&self, index: u8) -> xqs::QLIMIT_PORT {
-            assert!(index < 57);
+            debug_assert!(index < 57);
             xqs::QLIMIT_PORT(self.0 + 0x1638 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn QLIMIT_QUEUE(&self, index: u8) -> xqs::QLIMIT_QUEUE {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             xqs::QLIMIT_QUEUE(self.0 + 0x1450 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn QLIMIT_SE(&self, index: u8) -> xqs::QLIMIT_SE {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             xqs::QLIMIT_SE(self.0 + 0x1420 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn QLIMIT_SHR(&self, index: u8) -> xqs::QLIMIT_SHR {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             xqs::QLIMIT_SHR(self.0 + 0x1800 + u32::from(index) * 0x44)
         }
         #[inline(always)]
         pub fn QMAP_QOS_TBL(&self, index: u8) -> xqs::QMAP_QOS_TBL {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             xqs::QMAP_QOS_TBL(self.0 + 0x1400 + u32::from(index) * 0x8)
         }
         #[inline(always)]
         pub fn QMAP_SE_TBL(&self, index: u8) -> xqs::QMAP_SE_TBL {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             xqs::QMAP_SE_TBL(self.0 + 0x1440 + u32::from(index) * 0x4)
         }
         #[inline(always)]
         pub fn QMAP_VPORT_TBL(&self, index: u8) -> xqs::QMAP_VPORT_TBL {
-            assert!(index < 4);
+            debug_assert!(index < 4);
             xqs::QMAP_VPORT_TBL(self.0 + 0x1000 + u32::from(index) * 0x100)
         }
         #[inline(always)]
         pub fn STAT(&self, index: u16) -> xqs::STAT {
-            assert!(index < 1024);
+            debug_assert!(index < 1024);
             xqs::STAT(self.0 + 0x0 + u32::from(index) * 0x4)
         }
         #[inline(always)]

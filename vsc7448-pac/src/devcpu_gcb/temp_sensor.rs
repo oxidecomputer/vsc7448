@@ -40,7 +40,7 @@ impl TEMP_SENSOR_CFG {
     }
     #[inline(always)]
     pub fn set_run_wid(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl TEMP_SENSOR_CFG {
     }
     #[inline(always)]
     pub fn set_sample_per(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -70,7 +70,7 @@ impl TEMP_SENSOR_CTRL {
     }
     #[inline(always)]
     pub fn set_force_clk(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -82,7 +82,7 @@ impl TEMP_SENSOR_CTRL {
     }
     #[inline(always)]
     pub fn set_force_no_rst(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -94,7 +94,7 @@ impl TEMP_SENSOR_CTRL {
     }
     #[inline(always)]
     pub fn set_force_power_up(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -106,7 +106,7 @@ impl TEMP_SENSOR_CTRL {
     }
     #[inline(always)]
     pub fn set_force_run(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -118,7 +118,7 @@ impl TEMP_SENSOR_CTRL {
     }
     #[inline(always)]
     pub fn set_force_temp_rd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -130,7 +130,7 @@ impl TEMP_SENSOR_CTRL {
     }
     #[inline(always)]
     pub fn set_sample_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -148,7 +148,7 @@ impl TEMP_SENSOR_STAT {
     }
     #[inline(always)]
     pub fn set_temp(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -159,7 +159,7 @@ impl TEMP_SENSOR_STAT {
     }
     #[inline(always)]
     pub fn set_temp_valid(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;

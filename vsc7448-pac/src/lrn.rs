@@ -38,7 +38,7 @@ pub struct COMMON(pub(super) u32);
 impl COMMON {
     #[inline(always)]
     pub fn AUTOAGE_CFG(&self, index: u8) -> RegisterAddress<common::AUTOAGE_CFG> {
-        assert!(index < 4);
+        debug_assert!(index < 4);
         RegisterAddress::new(self.0 + 0x20 + u32::from(index) * 0x4)
     }
     #[inline(always)]

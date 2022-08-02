@@ -40,7 +40,7 @@ impl PLL5G_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_busy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl PLL5G_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_done_n(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -64,7 +64,7 @@ impl PLL5G_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_fail(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -75,7 +75,7 @@ impl PLL5G_BIST_STAT0 {
     }
     #[inline(always)]
     pub fn set_pllb_fsm_stat(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 4;
         self.0 &= !0xf0;
         self.0 |= value;
@@ -94,7 +94,7 @@ impl PLL5G_BIST_STAT1A {
     }
     #[inline(always)]
     pub fn set_pllb_cnt_ref_diff(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -112,7 +112,7 @@ impl PLL5G_BIST_STAT1B {
     }
     #[inline(always)]
     pub fn set_pllb_cnt_out(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

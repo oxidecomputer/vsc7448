@@ -40,7 +40,7 @@ impl RX_SYNC_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_rx_i2_clr(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl RX_SYNC_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_rx_i2_hold(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -66,7 +66,7 @@ impl RX_SYNC_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_rx_lane_sync_src(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -84,7 +84,7 @@ impl RX_SYNC_CTRL_STAT {
     }
     #[inline(always)]
     pub fn set_rx_lane_sync_fifo_of_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -104,7 +104,7 @@ impl SYNC_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lane_sync_src(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -122,7 +122,7 @@ impl SYNC_CTRL_STAT {
     }
     #[inline(always)]
     pub fn set_lane_sync_fifo_of_sticky(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }

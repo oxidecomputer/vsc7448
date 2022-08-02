@@ -38,7 +38,7 @@ impl CIR_CFG {
     }
     #[inline(always)]
     pub fn set_cir_burst(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -49,7 +49,7 @@ impl CIR_CFG {
     }
     #[inline(always)]
     pub fn set_cir_rate(&mut self, value: u32) {
-        assert!(value <= 0x1ffff);
+        debug_assert!(value <= 0x1ffff);
         let value = value << 6;
         self.0 &= !0x7fffc0;
         self.0 |= value;
@@ -66,7 +66,7 @@ impl EIR_CFG {
     }
     #[inline(always)]
     pub fn set_eir_burst(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -77,7 +77,7 @@ impl EIR_CFG {
     }
     #[inline(always)]
     pub fn set_eir_rate(&mut self, value: u32) {
-        assert!(value <= 0x1ffff);
+        debug_assert!(value <= 0x1ffff);
         let value = value << 6;
         self.0 &= !0x7fffc0;
         self.0 |= value;
@@ -94,7 +94,7 @@ impl SE_CFG {
     }
     #[inline(always)]
     pub fn set_se_avb_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -108,7 +108,7 @@ impl SE_CFG {
     }
     #[inline(always)]
     pub fn set_se_dwrr_cnt(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 6;
         self.0 &= !0xfc0;
         self.0 |= value;
@@ -122,7 +122,7 @@ impl SE_CFG {
     }
     #[inline(always)]
     pub fn set_se_dwrr_frm_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 1;
         self.0 &= !0x6;
         self.0 |= value;
@@ -136,7 +136,7 @@ impl SE_CFG {
     }
     #[inline(always)]
     pub fn set_se_frm_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 3;
         self.0 &= !0x18;
         self.0 |= value;
@@ -150,7 +150,7 @@ impl SE_CFG {
     }
     #[inline(always)]
     pub fn set_se_stop(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -166,7 +166,7 @@ impl SE_CONNECT {
     }
     #[inline(always)]
     pub fn set_se_leak_link(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }
@@ -182,7 +182,7 @@ impl SE_DLB_SENSE {
     }
     #[inline(always)]
     pub fn set_se_dlb_dport(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 8;
         self.0 &= !0x3f00;
         self.0 |= value;
@@ -194,7 +194,7 @@ impl SE_DLB_SENSE {
     }
     #[inline(always)]
     pub fn set_se_dlb_dport_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -205,7 +205,7 @@ impl SE_DLB_SENSE {
     }
     #[inline(always)]
     pub fn set_se_dlb_prio(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 14;
         self.0 &= !0x1c000;
         self.0 |= value;
@@ -217,7 +217,7 @@ impl SE_DLB_SENSE {
     }
     #[inline(always)]
     pub fn set_se_dlb_prio_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -229,7 +229,7 @@ impl SE_DLB_SENSE {
     }
     #[inline(always)]
     pub fn set_se_dlb_sport_obsolete(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 2;
         self.0 &= !0xfc;
         self.0 |= value;

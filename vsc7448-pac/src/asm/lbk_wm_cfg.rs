@@ -38,7 +38,7 @@ impl VD_FC_WM {
     }
     #[inline(always)]
     pub fn set_vd_fc_wm(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }

@@ -40,7 +40,7 @@ impl COMMON_EQUAL_STACK_LINK_TTL_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_equal_stack_links_flood_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl COMMON_EQUAL_STACK_LINK_TTL_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_equal_stack_link_ttl_val(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -68,7 +68,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_own_upsid(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -81,7 +81,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_allow_upsid_cpu_or_int_pn_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 24;
         self.0 &= !0x1000000;
         self.0 |= value;
@@ -95,7 +95,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_fwd_err_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 8;
         self.0 &= !0x700;
         self.0 |= value;
@@ -109,7 +109,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_glag_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -121,7 +121,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_isdx_stat_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -135,7 +135,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_logical_llookup_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -149,7 +149,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_mc_llookup_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -163,7 +163,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_mc_llookup_non_flood_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -177,7 +177,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_mc_route_to_stack_link_ena(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 17;
         self.0 &= !0x60000;
         self.0 |= value;
@@ -189,7 +189,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_misc_dscp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -203,7 +203,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_misc_isdx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -217,7 +217,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_rt_all_fwd_logical_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -231,7 +231,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_rt_mc_src_lrn_skip_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 20;
         self.0 &= !0x100000;
         self.0 |= value;
@@ -245,7 +245,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_rt_mc_src_update_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 22;
         self.0 &= !0x400000;
         self.0 |= value;
@@ -259,7 +259,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_rt_uc_src_lrn_skip_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -273,7 +273,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_rt_uc_src_update_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 21;
         self.0 &= !0x200000;
         self.0 |= value;
@@ -287,7 +287,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_ttl_keep_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -301,7 +301,7 @@ impl COMMON_VSTAX_CFG {
     }
     #[inline(always)]
     pub fn set_vstax2_use_cm_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -320,7 +320,7 @@ impl CPU_CFG {
     }
     #[inline(always)]
     pub fn set_one_cpu_copy_only_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -338,7 +338,7 @@ impl MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_cmac_flood_dp_inc(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;
@@ -350,7 +350,7 @@ impl MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_to_cpu_kill_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -362,7 +362,7 @@ impl MISC_CTRL {
     }
     #[inline(always)]
     pub fn set_use_vid_as_isdx_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -395,7 +395,7 @@ impl PHYS_SRC_AGGR_CFG1 {
     }
     #[inline(always)]
     pub fn set_phys_src_aggr_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -411,7 +411,7 @@ impl PS_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_sflow_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -423,7 +423,7 @@ impl PS_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_sflow_smpl_id_in_stamp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -435,7 +435,7 @@ impl PS_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_src_lookup_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -453,7 +453,7 @@ impl PS_DBG_CTRL {
     }
     #[inline(always)]
     pub fn set_cpu_qu_zero_dst(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 4;
         self.0 &= !0x70;
         self.0 |= value;
@@ -465,7 +465,7 @@ impl PS_DBG_CTRL {
     }
     #[inline(always)]
     pub fn set_zero_dst_redir_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -483,7 +483,7 @@ impl SFLOW_CFG {
     }
     #[inline(always)]
     pub fn set_sflow_cpu_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 12;
         self.0 &= !0x7000;
         self.0 |= value;
@@ -504,7 +504,7 @@ impl SFLOW_RESET_CTRL {
     }
     #[inline(always)]
     pub fn set_sflow_frame_reset_shot(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -536,7 +536,7 @@ impl STACK_A_CFG1 {
     }
     #[inline(always)]
     pub fn set_stack_a_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -568,7 +568,7 @@ impl STACK_CFG1 {
     }
     #[inline(always)]
     pub fn set_stack_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }
@@ -586,7 +586,7 @@ impl VSTAX_CTRL {
     }
     #[inline(always)]
     pub fn set_vstax2_stack_port_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -616,7 +616,7 @@ impl VSTAX_GMIRROR_CFG1 {
     }
     #[inline(always)]
     pub fn set_gmirror_port_mask1(&mut self, value: u32) {
-        assert!(value <= 0x1fffff);
+        debug_assert!(value <= 0x1fffff);
         self.0 &= !0x1fffff;
         self.0 |= value;
     }

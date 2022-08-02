@@ -228,7 +228,7 @@ pub fn {0}() -> tgt::{0} {{
 /// {6}
 #[inline(always)]
 pub fn {0}(index: {4}) -> tgt::{0} {{
-    assert!(index < {2});
+    debug_assert!(index < {2});
     tgt::{0}(0x{1:x} + {5} * 0x{3:x})
 }}",
                     name,
@@ -321,7 +321,7 @@ use crate::types::RegisterAddress;
                     "
         #[inline(always)]
         pub fn {1}(&self, index: {5}) -> {0}::{1} {{
-            assert!(index < {3});
+            debug_assert!(index < {3});
             {0}::{1}(self.0 + 0x{2:x} + {6} * 0x{4:x})
         }}",
                     name.to_lowercase(),
@@ -367,7 +367,7 @@ impl {0} {{",
                         "
     #[inline(always)]
     pub fn {0}(&self, index: {5}) -> RegisterAddress<{1}::{0}> {{
-        assert!(index < {4});
+        debug_assert!(index < {4});
         RegisterAddress::new(self.0 + 0x{2:x} + {6} * 0x{3:x})
     }}",
                         rname,
@@ -462,7 +462,7 @@ impl {pname} {{",
             };
             write_reg(&mut pfile, &rname, "u16", reg)?;
 
-            assert!(reg.addr.count == 1);
+            debug_assert!(reg.addr.count == 1);
             write!(
                 &mut file,
                 "
@@ -576,7 +576,7 @@ pub struct {}({}{});",
     }}
     #[inline(always)]
     pub fn set_{field}(&mut self, value: {t}) {{
-        assert!(value <= 0x{mask:x});
+        debug_assert!(value <= 0x{mask:x});
         self.0 &= !0x{mask:x};
         self.0 |= value;
     }}",
@@ -594,7 +594,7 @@ pub struct {}({}{});",
     }}
     #[inline(always)]
     pub fn set_{field}(&mut self, value: {t}) {{
-        assert!(value <= 0x{max:x});
+        debug_assert!(value <= 0x{max:x});
         let value = value << {shift};
         self.0 &= !0x{mask:x};
         self.0 |= value;

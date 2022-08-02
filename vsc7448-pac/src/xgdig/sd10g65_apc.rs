@@ -40,7 +40,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_apc_direct_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -54,7 +54,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_apc_fsm_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 26;
         self.0 &= !0xc000000;
         self.0 |= value;
@@ -68,7 +68,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_apc_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -81,7 +81,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_block_read_sel(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 12;
         self.0 &= !0xf000;
         self.0 |= value;
@@ -93,7 +93,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -107,7 +107,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_freeze_apc(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -121,7 +121,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_hml_clr_cnt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -135,7 +135,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_hml_errcorr_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 29;
         self.0 &= !0x20000000;
         self.0 |= value;
@@ -149,7 +149,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_hml_errcorr_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -163,7 +163,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_hml_swap_hl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 28;
         self.0 &= !0x10000000;
         self.0 |= value;
@@ -177,7 +177,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_if_width(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -191,7 +191,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_reset_apc(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -205,7 +205,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_sig_det_valid_cfg(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 25;
         self.0 &= !0x2000000;
         self.0 |= value;
@@ -217,7 +217,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_sig_lost_delay_time(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 20;
         self.0 &= !0x1f00000;
         self.0 |= value;
@@ -229,7 +229,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_skip_cal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -243,7 +243,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_throttle_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -257,7 +257,7 @@ impl APC_COMMON_CFG0 {
     }
     #[inline(always)]
     pub fn set_top_ctrl_state(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -276,7 +276,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_actval(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 16;
         self.0 &= !0x3ff0000;
         self.0 |= value;
@@ -290,7 +290,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -304,7 +304,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -316,7 +316,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_ctrl_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -330,7 +330,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_ctrl_thres_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -344,7 +344,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -357,7 +357,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_read_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -371,7 +371,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -383,7 +383,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -397,7 +397,7 @@ impl APC_DFE1_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe1_sync_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -418,7 +418,7 @@ impl APC_DFE1_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe1_chg_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -432,7 +432,7 @@ impl APC_DFE1_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe1_dir_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -444,7 +444,7 @@ impl APC_DFE1_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe1_ini(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -455,7 +455,7 @@ impl APC_DFE1_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe1_max(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -467,7 +467,7 @@ impl APC_DFE1_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe1_min(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -479,7 +479,7 @@ impl APC_DFE1_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe1_range_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 26;
         self.0 &= !0x7c000000;
         self.0 |= value;
@@ -498,7 +498,7 @@ impl APC_DFE1_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_dfe1_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -511,7 +511,7 @@ impl APC_DFE1_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_dfe1_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -530,7 +530,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_actval(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 16;
         self.0 &= !0x3ff0000;
         self.0 |= value;
@@ -544,7 +544,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -558,7 +558,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -570,7 +570,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_ctrl_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -584,7 +584,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_ctrl_thres_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -598,7 +598,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -611,7 +611,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_read_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -625,7 +625,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -637,7 +637,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -651,7 +651,7 @@ impl APC_DFE2_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe2_sync_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -672,7 +672,7 @@ impl APC_DFE2_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe2_chg_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -686,7 +686,7 @@ impl APC_DFE2_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe2_dir_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -698,7 +698,7 @@ impl APC_DFE2_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe2_ini(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -709,7 +709,7 @@ impl APC_DFE2_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe2_max(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -721,7 +721,7 @@ impl APC_DFE2_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe2_min(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -733,7 +733,7 @@ impl APC_DFE2_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe2_range_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 26;
         self.0 &= !0x7c000000;
         self.0 |= value;
@@ -752,7 +752,7 @@ impl APC_DFE2_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_dfe2_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -765,7 +765,7 @@ impl APC_DFE2_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_dfe2_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -784,7 +784,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_actval(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 16;
         self.0 &= !0x3ff0000;
         self.0 |= value;
@@ -798,7 +798,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -812,7 +812,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -824,7 +824,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_ctrl_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -838,7 +838,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_ctrl_thres_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -852,7 +852,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -865,7 +865,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_read_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -879,7 +879,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -891,7 +891,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -905,7 +905,7 @@ impl APC_DFE3_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe3_sync_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -926,7 +926,7 @@ impl APC_DFE3_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe3_chg_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -940,7 +940,7 @@ impl APC_DFE3_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe3_dir_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -952,7 +952,7 @@ impl APC_DFE3_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe3_ini(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -963,7 +963,7 @@ impl APC_DFE3_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe3_max(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -975,7 +975,7 @@ impl APC_DFE3_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe3_min(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -987,7 +987,7 @@ impl APC_DFE3_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe3_range_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 26;
         self.0 &= !0x7c000000;
         self.0 |= value;
@@ -1006,7 +1006,7 @@ impl APC_DFE3_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_dfe3_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -1019,7 +1019,7 @@ impl APC_DFE3_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_dfe3_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -1038,7 +1038,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_actval(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 16;
         self.0 &= !0x3ff0000;
         self.0 |= value;
@@ -1052,7 +1052,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -1066,7 +1066,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1078,7 +1078,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_ctrl_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -1092,7 +1092,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_ctrl_thres_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1106,7 +1106,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -1119,7 +1119,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_read_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -1133,7 +1133,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -1145,7 +1145,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1159,7 +1159,7 @@ impl APC_DFE4_CTRL {
     }
     #[inline(always)]
     pub fn set_dfe4_sync_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -1180,7 +1180,7 @@ impl APC_DFE4_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe4_chg_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -1194,7 +1194,7 @@ impl APC_DFE4_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe4_dir_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -1206,7 +1206,7 @@ impl APC_DFE4_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe4_ini(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -1217,7 +1217,7 @@ impl APC_DFE4_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe4_max(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -1229,7 +1229,7 @@ impl APC_DFE4_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe4_min(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -1241,7 +1241,7 @@ impl APC_DFE4_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_dfe4_range_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 26;
         self.0 &= !0x7c000000;
         self.0 |= value;
@@ -1260,7 +1260,7 @@ impl APC_DFE4_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_dfe4_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -1273,7 +1273,7 @@ impl APC_DFE4_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_dfe4_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -1292,7 +1292,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_actval(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 16;
         self.0 &= !0x3ff0000;
         self.0 |= value;
@@ -1306,7 +1306,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -1320,7 +1320,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1332,7 +1332,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_ctrl_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -1346,7 +1346,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_ctrl_thres_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1360,7 +1360,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -1373,7 +1373,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_read_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -1387,7 +1387,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -1399,7 +1399,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1413,7 +1413,7 @@ impl APC_EQZ_AGC_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_agc_sync_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -1434,7 +1434,7 @@ impl APC_EQZ_AGC_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_agc_chg_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -1448,7 +1448,7 @@ impl APC_EQZ_AGC_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_agc_dir_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -1460,7 +1460,7 @@ impl APC_EQZ_AGC_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_agc_ini(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -1471,7 +1471,7 @@ impl APC_EQZ_AGC_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_agc_max(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -1483,7 +1483,7 @@ impl APC_EQZ_AGC_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_agc_min(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -1495,7 +1495,7 @@ impl APC_EQZ_AGC_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_agc_range_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 26;
         self.0 &= !0x7c000000;
         self.0 |= value;
@@ -1514,7 +1514,7 @@ impl APC_EQZ_AGC_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_agc_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -1527,7 +1527,7 @@ impl APC_EQZ_AGC_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_agc_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -1546,7 +1546,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_adj_halt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1558,7 +1558,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_adj_start_update(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -1570,7 +1570,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_auto_restart(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1584,7 +1584,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_cal_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -1598,7 +1598,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_chg_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -1609,7 +1609,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_freeze_thres(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 13;
         self.0 &= !0x7fe000;
         self.0 |= value;
@@ -1623,7 +1623,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;
@@ -1637,7 +1637,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 11;
         self.0 &= !0x1800;
         self.0 |= value;
@@ -1649,7 +1649,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -1661,7 +1661,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_start_update(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -1673,7 +1673,7 @@ impl APC_EQZ_COMMON_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_stop_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1692,7 +1692,7 @@ impl APC_EQZ_CTRL_STATUS {
     }
     #[inline(always)]
     pub fn set_eqz_gain_actval(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 6;
         self.0 &= !0xffc0;
         self.0 |= value;
@@ -1704,7 +1704,7 @@ impl APC_EQZ_CTRL_STATUS {
     }
     #[inline(always)]
     pub fn set_eqz_gain_adj_actval(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 16;
         self.0 &= !0x7f0000;
         self.0 |= value;
@@ -1716,7 +1716,7 @@ impl APC_EQZ_CTRL_STATUS {
     }
     #[inline(always)]
     pub fn set_eqz_gain_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -1728,7 +1728,7 @@ impl APC_EQZ_CTRL_STATUS {
     }
     #[inline(always)]
     pub fn set_ld_lev_actval(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -1746,7 +1746,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_actval(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 16;
         self.0 &= !0x3ff0000;
         self.0 |= value;
@@ -1760,7 +1760,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -1774,7 +1774,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -1786,7 +1786,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_ctrl_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -1800,7 +1800,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_ctrl_thres_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -1814,7 +1814,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -1827,7 +1827,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_read_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -1841,7 +1841,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -1853,7 +1853,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -1867,7 +1867,7 @@ impl APC_EQZ_C_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_c_sync_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -1888,7 +1888,7 @@ impl APC_EQZ_C_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_c_chg_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -1902,7 +1902,7 @@ impl APC_EQZ_C_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_c_dir_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -1914,7 +1914,7 @@ impl APC_EQZ_C_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_c_ini(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -1925,7 +1925,7 @@ impl APC_EQZ_C_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_c_max(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -1937,7 +1937,7 @@ impl APC_EQZ_C_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_c_min(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -1949,7 +1949,7 @@ impl APC_EQZ_C_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_c_range_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 26;
         self.0 &= !0x7c000000;
         self.0 |= value;
@@ -1968,7 +1968,7 @@ impl APC_EQZ_C_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_c_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -1981,7 +1981,7 @@ impl APC_EQZ_C_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_c_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -2000,7 +2000,7 @@ impl APC_EQZ_GAIN_ADJ_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_adj_ini(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -2011,7 +2011,7 @@ impl APC_EQZ_GAIN_ADJ_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_adj_max(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 20;
         self.0 &= !0x7f00000;
         self.0 |= value;
@@ -2023,7 +2023,7 @@ impl APC_EQZ_GAIN_ADJ_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_adj_min(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 10;
         self.0 &= !0x1fc00;
         self.0 |= value;
@@ -2042,7 +2042,7 @@ impl APC_EQZ_GAIN_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_ini(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -2053,7 +2053,7 @@ impl APC_EQZ_GAIN_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_max(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 20;
         self.0 &= !0x3ff00000;
         self.0 |= value;
@@ -2065,7 +2065,7 @@ impl APC_EQZ_GAIN_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_gain_min(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 10;
         self.0 &= !0xffc00;
         self.0 |= value;
@@ -2084,7 +2084,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_catch_bypass(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 29;
         self.0 &= !0x20000000;
         self.0 |= value;
@@ -2096,7 +2096,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_eq_start_tog_chk(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -2108,7 +2108,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_eq_toggle(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -2120,7 +2120,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_ib_start_tog_chk(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -2132,7 +2132,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_ib_toggle(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -2144,7 +2144,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_lev_ini(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         self.0 &= !0x3f;
         self.0 |= value;
     }
@@ -2155,7 +2155,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_lev_update(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -2167,7 +2167,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_tog_threshold(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 22;
         self.0 &= !0x3c00000;
         self.0 |= value;
@@ -2179,7 +2179,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_t_toggle_deadtime(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 14;
         self.0 &= !0x3fc000;
         self.0 |= value;
@@ -2191,7 +2191,7 @@ impl APC_EQZ_LD_CTRL {
     }
     #[inline(always)]
     pub fn set_ld_wd_cnt_max(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 26;
         self.0 &= !0x1c000000;
         self.0 |= value;
@@ -2210,7 +2210,7 @@ impl APC_EQZ_LD_CTRL_CFG0 {
     }
     #[inline(always)]
     pub fn set_ld_t_deadtime_wrk(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -2222,7 +2222,7 @@ impl APC_EQZ_LD_CTRL_CFG0 {
     }
     #[inline(always)]
     pub fn set_ld_t_timeout_wrk(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -2240,7 +2240,7 @@ impl APC_EQZ_LD_CTRL_CFG1 {
     }
     #[inline(always)]
     pub fn set_ld_t_deadtime_cal(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -2252,7 +2252,7 @@ impl APC_EQZ_LD_CTRL_CFG1 {
     }
     #[inline(always)]
     pub fn set_ld_t_timeout_cal(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -2270,7 +2270,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_actval(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 16;
         self.0 &= !0x3ff0000;
         self.0 |= value;
@@ -2284,7 +2284,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -2298,7 +2298,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -2310,7 +2310,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_ctrl_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -2324,7 +2324,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_ctrl_thres_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -2338,7 +2338,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -2351,7 +2351,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_read_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -2365,7 +2365,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -2377,7 +2377,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -2391,7 +2391,7 @@ impl APC_EQZ_L_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_l_sync_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -2412,7 +2412,7 @@ impl APC_EQZ_L_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_l_chg_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -2426,7 +2426,7 @@ impl APC_EQZ_L_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_l_dir_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -2438,7 +2438,7 @@ impl APC_EQZ_L_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_l_ini(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -2449,7 +2449,7 @@ impl APC_EQZ_L_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_l_max(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -2461,7 +2461,7 @@ impl APC_EQZ_L_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_l_min(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -2473,7 +2473,7 @@ impl APC_EQZ_L_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_l_range_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 26;
         self.0 &= !0x7c000000;
         self.0 |= value;
@@ -2492,7 +2492,7 @@ impl APC_EQZ_L_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_l_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -2505,7 +2505,7 @@ impl APC_EQZ_L_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_l_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -2524,7 +2524,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_actval(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         let value = value << 16;
         self.0 &= !0x3ff0000;
         self.0 |= value;
@@ -2538,7 +2538,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 26;
         self.0 &= !0x4000000;
         self.0 |= value;
@@ -2552,7 +2552,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -2564,7 +2564,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_ctrl_thres(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 4;
         self.0 &= !0x3f0;
         self.0 |= value;
@@ -2578,7 +2578,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_ctrl_thres_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -2592,7 +2592,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -2605,7 +2605,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_read_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 12;
         self.0 &= !0x3000;
         self.0 |= value;
@@ -2619,7 +2619,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 27;
         self.0 &= !0x38000000;
         self.0 |= value;
@@ -2631,7 +2631,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -2645,7 +2645,7 @@ impl APC_EQZ_OFFS_CTRL {
     }
     #[inline(always)]
     pub fn set_eqz_offs_sync_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 14;
         self.0 &= !0xc000;
         self.0 |= value;
@@ -2666,7 +2666,7 @@ impl APC_EQZ_OFFS_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_offs_chg_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 24;
         self.0 &= !0x3000000;
         self.0 |= value;
@@ -2680,7 +2680,7 @@ impl APC_EQZ_OFFS_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_offs_dir_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 31;
         self.0 &= !0x80000000;
         self.0 |= value;
@@ -2692,7 +2692,7 @@ impl APC_EQZ_OFFS_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_offs_ini(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -2703,7 +2703,7 @@ impl APC_EQZ_OFFS_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_offs_max(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -2715,7 +2715,7 @@ impl APC_EQZ_OFFS_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_offs_min(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -2727,7 +2727,7 @@ impl APC_EQZ_OFFS_PAR_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_offs_range_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 26;
         self.0 &= !0x7c000000;
         self.0 |= value;
@@ -2746,7 +2746,7 @@ impl APC_EQZ_OFFS_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_offs_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -2759,7 +2759,7 @@ impl APC_EQZ_OFFS_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_eqz_offs_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -2778,7 +2778,7 @@ impl APC_EQZ_PAT_MATCH_CFG0 {
     }
     #[inline(always)]
     pub fn set_eqz_c_pat_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -2790,7 +2790,7 @@ impl APC_EQZ_PAT_MATCH_CFG0 {
     }
     #[inline(always)]
     pub fn set_eqz_c_pat_match(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -2802,7 +2802,7 @@ impl APC_EQZ_PAT_MATCH_CFG0 {
     }
     #[inline(always)]
     pub fn set_eqz_l_pat_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -2814,7 +2814,7 @@ impl APC_EQZ_PAT_MATCH_CFG0 {
     }
     #[inline(always)]
     pub fn set_eqz_l_pat_match(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -2832,7 +2832,7 @@ impl APC_EQZ_PAT_MATCH_CFG1 {
     }
     #[inline(always)]
     pub fn set_eqz_agc_pat_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 8;
         self.0 &= !0xff00;
         self.0 |= value;
@@ -2844,7 +2844,7 @@ impl APC_EQZ_PAT_MATCH_CFG1 {
     }
     #[inline(always)]
     pub fn set_eqz_agc_pat_match(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -2855,7 +2855,7 @@ impl APC_EQZ_PAT_MATCH_CFG1 {
     }
     #[inline(always)]
     pub fn set_eqz_offs_pat_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -2867,7 +2867,7 @@ impl APC_EQZ_PAT_MATCH_CFG1 {
     }
     #[inline(always)]
     pub fn set_eqz_offs_pat_match(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -2902,7 +2902,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_cpmd_thres_init(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 14;
         self.0 &= !0xfc000;
         self.0 |= value;
@@ -2914,7 +2914,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_ib_dfe_gain_adj(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 20;
         self.0 &= !0x3f00000;
         self.0 |= value;
@@ -2926,7 +2926,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_skip_dfe_buffer_cal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -2937,7 +2937,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_skip_dfe_buffer_init(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -2949,7 +2949,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_skip_observe_cal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -2961,7 +2961,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_skip_observe_init(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -2973,7 +2973,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_skip_offset_cal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -2985,7 +2985,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_skip_offset_init(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -2997,7 +2997,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_skip_threshold_cal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -3009,7 +3009,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_skip_threshold_init(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -3021,7 +3021,7 @@ impl APC_IS_CAL_CFG0 {
     }
     #[inline(always)]
     pub fn set_vsc_thres_init(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 8;
         self.0 &= !0x3f00;
         self.0 |= value;
@@ -3040,7 +3040,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_cal_num_iterations(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -3052,7 +3052,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_cal_ramp_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 20;
         self.0 &= !0x300000;
         self.0 |= value;
@@ -3064,7 +3064,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_cal_vsc_offset_tgt(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -3076,7 +3076,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_eqz_agc_dac_val(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -3088,7 +3088,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_offscal_dis_swap(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -3102,7 +3102,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_offscal_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -3114,7 +3114,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_offscal_read_cnt_sel(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 3;
         self.0 &= !0xf8;
         self.0 |= value;
@@ -3126,7 +3126,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_par_data_num_ones_thres(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 9;
         self.0 &= !0x3e00;
         self.0 |= value;
@@ -3138,7 +3138,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_par_data_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -3150,7 +3150,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_par_data_swap_even_odd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -3162,7 +3162,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_start_offscal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -3173,7 +3173,7 @@ impl APC_IS_CAL_CFG1 {
     }
     #[inline(always)]
     pub fn set_use_agc_dac_val(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 23;
         self.0 &= !0x800000;
         self.0 |= value;
@@ -3194,7 +3194,7 @@ impl APC_LC_SOFTCTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lc_sc_agc_threshold(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         let value = value << 9;
         self.0 &= !0xfe00;
         self.0 |= value;
@@ -3208,7 +3208,7 @@ impl APC_LC_SOFTCTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lc_sc_avgshft(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 24;
         self.0 &= !0xf000000;
         self.0 |= value;
@@ -3220,7 +3220,7 @@ impl APC_LC_SOFTCTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lc_sc_dfe1_threshold(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 20;
         self.0 &= !0xf00000;
         self.0 |= value;
@@ -3232,7 +3232,7 @@ impl APC_LC_SOFTCTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lc_sc_dfe2_threshold(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 16;
         self.0 &= !0xf0000;
         self.0 |= value;
@@ -3246,7 +3246,7 @@ impl APC_LC_SOFTCTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lc_sc_div_c(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 2;
         self.0 &= !0x1c;
         self.0 |= value;
@@ -3260,7 +3260,7 @@ impl APC_LC_SOFTCTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lc_sc_div_c_sel(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -3274,7 +3274,7 @@ impl APC_LC_SOFTCTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lc_sc_div_l(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 5;
         self.0 &= !0xe0;
         self.0 |= value;
@@ -3288,7 +3288,7 @@ impl APC_LC_SOFTCTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lc_sc_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -3301,7 +3301,7 @@ impl APC_LC_SOFTCTRL_CFG {
     }
     #[inline(always)]
     pub fn set_lc_sc_timer(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 28;
         self.0 &= !0xf0000000;
         self.0 |= value;
@@ -3320,7 +3320,7 @@ impl APC_LC_SOFTCTRL_CFG1 {
     }
     #[inline(always)]
     pub fn set_lc_sc_dfe1_target(&mut self, value: u32) {
-        assert!(value <= 0x7f);
+        debug_assert!(value <= 0x7f);
         self.0 &= !0x7f;
         self.0 |= value;
     }
@@ -3331,7 +3331,7 @@ impl APC_LC_SOFTCTRL_CFG1 {
     }
     #[inline(always)]
     pub fn set_lc_sc_dfe2_target(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 8;
         self.0 &= !0x3f00;
         self.0 |= value;
@@ -3352,7 +3352,7 @@ impl APC_LD_CAL_CFG {
     }
     #[inline(always)]
     pub fn set_cal_clk_div(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 28;
         self.0 &= !0x70000000;
         self.0 |= value;
@@ -3366,7 +3366,7 @@ impl APC_LD_CAL_CFG {
     }
     #[inline(always)]
     pub fn set_detlev_cal_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -3380,7 +3380,7 @@ impl APC_LD_CAL_CFG {
     }
     #[inline(always)]
     pub fn set_detlvl_timer(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 1;
         self.0 &= !0x1e;
         self.0 |= value;
@@ -3394,7 +3394,7 @@ impl APC_LD_CAL_CFG {
     }
     #[inline(always)]
     pub fn set_ie_sdet_level(&mut self, value: u32) {
-        assert!(value <= 0x3f);
+        debug_assert!(value <= 0x3f);
         let value = value << 5;
         self.0 &= !0x7e0;
         self.0 |= value;
@@ -3406,7 +3406,7 @@ impl APC_LD_CAL_CFG {
     }
     #[inline(always)]
     pub fn set_skip_ld_cal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -3418,7 +3418,7 @@ impl APC_LD_CAL_CFG {
     }
     #[inline(always)]
     pub fn set_skip_sdet_cal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -3430,7 +3430,7 @@ impl APC_LD_CAL_CFG {
     }
     #[inline(always)]
     pub fn set_start_detlvl_cal(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -3448,7 +3448,7 @@ impl APC_PARCTRL_FSM1_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_fsm1_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -3461,7 +3461,7 @@ impl APC_PARCTRL_FSM1_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_fsm1_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -3480,7 +3480,7 @@ impl APC_PARCTRL_FSM2_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_fsm2_op_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -3493,7 +3493,7 @@ impl APC_PARCTRL_FSM2_TIMER_CFG {
     }
     #[inline(always)]
     pub fn set_fsm2_ps_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         let value = value << 16;
         self.0 &= !0xffff0000;
         self.0 |= value;
@@ -3512,7 +3512,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_apc_spare_pool(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 28;
         self.0 &= !0xf0000000;
         self.0 |= value;
@@ -3526,7 +3526,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm1_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -3540,7 +3540,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm1_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -3554,7 +3554,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm1_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -3567,7 +3567,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm1_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 8;
         self.0 &= !0x700;
         self.0 |= value;
@@ -3579,7 +3579,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm1_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -3593,7 +3593,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm2_ctrl_done(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -3607,7 +3607,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm2_ctrl_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -3621,7 +3621,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm2_op_mode(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;
@@ -3635,7 +3635,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm2_recover_mode(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 11;
         self.0 &= !0x3800;
         self.0 |= value;
@@ -3647,7 +3647,7 @@ impl APC_PARCTRL_SYNC_CFG {
     }
     #[inline(always)]
     pub fn set_fsm2_start_ctrl(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -3666,7 +3666,7 @@ impl APC_TOP_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_pwr_dn_time(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 16;
         self.0 &= !0xff0000;
         self.0 |= value;
@@ -3678,7 +3678,7 @@ impl APC_TOP_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_pwr_up_time(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 24;
         self.0 &= !0xff000000;
         self.0 |= value;
@@ -3690,7 +3690,7 @@ impl APC_TOP_CTRL_CFG {
     }
     #[inline(always)]
     pub fn set_sleep_time(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

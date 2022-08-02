@@ -38,7 +38,7 @@ impl PFC_CFG {
     }
     #[inline(always)]
     pub fn set_tx_pfc_ena(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 1;
         self.0 &= !0x1fe;
         self.0 |= value;
@@ -50,7 +50,7 @@ impl PFC_CFG {
     }
     #[inline(always)]
     pub fn set_tx_pfc_mode(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -66,7 +66,7 @@ impl RES_DLB_OFFSET {
     }
     #[inline(always)]
     pub fn set_res_dlb_offs_val(&mut self, value: u32) {
-        assert!(value <= 0x3ff);
+        debug_assert!(value <= 0x3ff);
         self.0 &= !0x3ff;
         self.0 |= value;
     }
@@ -82,7 +82,7 @@ impl RES_QOS_MODE {
     }
     #[inline(always)]
     pub fn set_res_qos_rsrvd(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
@@ -100,7 +100,7 @@ impl WRED_GROUP {
     }
     #[inline(always)]
     pub fn set_wred_group(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }

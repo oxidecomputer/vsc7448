@@ -52,7 +52,7 @@ impl VA_CTRL {
     }
     #[inline(always)]
     pub fn set_va_busy(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -63,7 +63,7 @@ impl VA_CTRL {
     }
     #[inline(always)]
     pub fn set_va_busy_rd(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -77,7 +77,7 @@ impl VA_CTRL {
     }
     #[inline(always)]
     pub fn set_va_err(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 2;
         self.0 &= !0xc;
         self.0 |= value;
@@ -91,7 +91,7 @@ impl VA_CTRL {
     }
     #[inline(always)]
     pub fn set_va_size(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 4;
         self.0 &= !0x30;
         self.0 |= value;

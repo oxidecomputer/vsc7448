@@ -42,7 +42,7 @@ impl CLK_ADJ_CFG {
     }
     #[inline(always)]
     pub fn set_clk_adj_dir(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -56,7 +56,7 @@ impl CLK_ADJ_CFG {
     }
     #[inline(always)]
     pub fn set_clk_adj_ena(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -76,7 +76,7 @@ impl CLK_ADJ_FRQ {
     }
     #[inline(always)]
     pub fn set_clk_adj(&mut self, value: u32) {
-        assert!(value <= 0x3fffffff);
+        debug_assert!(value <= 0x3fffffff);
         self.0 &= !0x3fffffff;
         self.0 |= value;
     }
@@ -89,7 +89,7 @@ impl CLK_ADJ_FRQ {
     }
     #[inline(always)]
     pub fn set_clk_adj_unit(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 30;
         self.0 &= !0x40000000;
         self.0 |= value;
@@ -106,7 +106,7 @@ impl PTP_INTR_IDENT {
     }
     #[inline(always)]
     pub fn set_intr_ptp_ident(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -124,7 +124,7 @@ impl PTP_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_ena(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 6;
         self.0 &= !0x1c0;
         self.0 |= value;
@@ -138,7 +138,7 @@ impl PTP_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_hold(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 3;
         self.0 &= !0x38;
         self.0 |= value;
@@ -150,7 +150,7 @@ impl PTP_MISC_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_tod_freeze(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -166,7 +166,7 @@ impl PTP_PIN_INTR {
     }
     #[inline(always)]
     pub fn set_intr_ptp(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -182,7 +182,7 @@ impl PTP_PIN_INTR_ENA {
     }
     #[inline(always)]
     pub fn set_intr_ptp_ena(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         self.0 &= !0x1f;
         self.0 |= value;
     }
@@ -198,7 +198,7 @@ impl PTP_SYS_CLK_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_sys_clk_per_ns(&mut self, value: u32) {
-        assert!(value <= 0x1f);
+        debug_assert!(value <= 0x1f);
         let value = value << 4;
         self.0 &= !0x1f0;
         self.0 |= value;
@@ -210,7 +210,7 @@ impl PTP_SYS_CLK_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_sys_clk_per_ps100(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         self.0 &= !0xf;
         self.0 |= value;
     }

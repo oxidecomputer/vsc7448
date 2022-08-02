@@ -38,7 +38,7 @@ impl QSHP_CIR_STATE {
     }
     #[inline(always)]
     pub fn set_cir_lvl(&mut self, value: u32) {
-        assert!(value <= 0xffffff);
+        debug_assert!(value <= 0xffffff);
         self.0 &= !0xffffff;
         self.0 |= value;
     }

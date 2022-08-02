@@ -40,7 +40,7 @@ impl RLEG_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_rleg_mc_hdr_err_redir_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -52,7 +52,7 @@ impl RLEG_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_rleg_mc_hit_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -64,7 +64,7 @@ impl RLEG_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_rleg_mc_ip_opt_redir_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -76,7 +76,7 @@ impl RLEG_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_rleg_mc_ttl_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -88,7 +88,7 @@ impl RLEG_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_rleg_nonip_uc_redir_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -99,7 +99,7 @@ impl RLEG_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_rleg_uc_hdr_err_redir_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -111,7 +111,7 @@ impl RLEG_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_rleg_uc_hit_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -123,7 +123,7 @@ impl RLEG_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_rleg_uc_ip_opt_redir_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -142,7 +142,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_entry_not_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 14;
         self.0 &= !0x4000;
         self.0 |= value;
@@ -154,7 +154,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_ip4_sip_rpf_filter_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -166,7 +166,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_ip6_sip_rpf_filter_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 17;
         self.0 &= !0x20000;
         self.0 |= value;
@@ -178,7 +178,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_ip_max_len_exceeded_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -190,7 +190,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_l2_mc_fwd_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -202,7 +202,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_l3_mc_fwd_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -214,7 +214,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_lpm_ip4mc_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -225,7 +225,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_lpm_ip4uc_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -237,7 +237,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_lpm_ip6mc_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -249,7 +249,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_lpm_ip6uc_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -261,7 +261,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_mc_looped_cp_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 13;
         self.0 &= !0x2000;
         self.0 |= value;
@@ -273,7 +273,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_mc_rpf_filter_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -285,7 +285,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_no_mc_fwd_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 8;
         self.0 &= !0x100;
         self.0 |= value;
@@ -297,7 +297,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_no_mc_vmid_avail_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -309,7 +309,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_uc_entry_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 9;
         self.0 &= !0x200;
         self.0 |= value;
@@ -321,7 +321,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_uc_icmp_redir_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 10;
         self.0 &= !0x400;
         self.0 |= value;
@@ -333,7 +333,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_uc_ttl_filtering_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 11;
         self.0 &= !0x800;
         self.0 |= value;
@@ -345,7 +345,7 @@ impl ROUT_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_uc_zero_dmac_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 12;
         self.0 &= !0x1000;
         self.0 |= value;
@@ -364,7 +364,7 @@ impl SECUR_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_secur_dip_fail_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -375,7 +375,7 @@ impl SECUR_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_secur_ip4_dip_match_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -387,7 +387,7 @@ impl SECUR_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_secur_ip4_lpm_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -399,7 +399,7 @@ impl SECUR_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_secur_ip4_sip_match_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -411,7 +411,7 @@ impl SECUR_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_secur_ip6_dip_match_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 7;
         self.0 &= !0x80;
         self.0 |= value;
@@ -423,7 +423,7 @@ impl SECUR_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_secur_ip6_lpm_found_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -435,7 +435,7 @@ impl SECUR_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_secur_ip6_sip_match_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;
@@ -447,7 +447,7 @@ impl SECUR_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_secur_sip_fail_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -466,7 +466,7 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_mstp_discard_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 5;
         self.0 &= !0x20;
         self.0 |= value;
@@ -478,7 +478,7 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_mstp_fwd_allowed_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 6;
         self.0 &= !0x40;
         self.0 |= value;
@@ -490,7 +490,7 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_mstp_lrn_allowed_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 2;
         self.0 &= !0x4;
         self.0 |= value;
@@ -502,7 +502,7 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_mstp_lrn_deny_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 3;
         self.0 &= !0x8;
         self.0 |= value;
@@ -514,7 +514,7 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_port_fwd_deny_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 15;
         self.0 &= !0x8000;
         self.0 |= value;
@@ -526,7 +526,7 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_port_lrn_deny_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 16;
         self.0 &= !0x10000;
         self.0 |= value;
@@ -538,7 +538,7 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_vlan_igr_filter_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -549,7 +549,7 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_vlan_lookup_invld_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 1;
         self.0 &= !0x2;
         self.0 |= value;
@@ -561,7 +561,7 @@ impl VLAN_MSTP_STICKY_MASK {
     }
     #[inline(always)]
     pub fn set_vlan_lrn_deny_sticky_mask(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 4;
         self.0 &= !0x10;
         self.0 |= value;

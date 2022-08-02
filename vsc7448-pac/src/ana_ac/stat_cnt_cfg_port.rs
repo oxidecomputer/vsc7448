@@ -42,7 +42,7 @@ impl STAT_CFG {
     }
     #[inline(always)]
     pub fn set_cfg_cnt_byte(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         self.0 &= !0x1;
         self.0 |= value;
     }
@@ -55,7 +55,7 @@ impl STAT_CFG {
     }
     #[inline(always)]
     pub fn set_cfg_cnt_frm_type(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 1;
         self.0 &= !0xe;
         self.0 |= value;
@@ -69,7 +69,7 @@ impl STAT_CFG {
     }
     #[inline(always)]
     pub fn set_cfg_prio_mask(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         let value = value << 4;
         self.0 &= !0xff0;
         self.0 |= value;
@@ -90,7 +90,7 @@ impl STAT_EVENTS_STICKY {
     }
     #[inline(always)]
     pub fn set_sticky_bits(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }
@@ -120,7 +120,7 @@ impl STAT_MSB_CNT {
     }
     #[inline(always)]
     pub fn set_msb_cnt(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }

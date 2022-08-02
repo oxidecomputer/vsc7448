@@ -52,7 +52,7 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
         // When a block ends, finalize it
         if s.trim().starts_with("};") {
             if let Some(r) = active_target.take() {
-                assert!(active_regs.is_none());
+                debug_assert!(active_regs.is_none());
                 known_targets.insert(r.0, r.1);
                 known_regs.clear();
             }
@@ -66,11 +66,11 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
         }
 
         if let Some(caps) = regs_within_re.captures(s) {
-            assert!(active_regs.is_none());
+            debug_assert!(active_regs.is_none());
             active_regs = Some((caps[1].to_owned(), BTreeMap::new()));
         }
         if let Some(caps) = reggrp_within_re.captures(s) {
-            assert!(active_target.is_none());
+            debug_assert!(active_target.is_none());
             active_target = Some((caps[1].to_owned(), BTreeMap::new()));
         }
 
@@ -116,7 +116,7 @@ pub fn parse_symregs(s: &str) -> MemoryMap {
             let entry = target_list
                 .entry(name)
                 .or_insert((caps[6].to_owned(), Vec::new()));
-            assert!(entry.0 == caps[6]);
+            debug_assert!(entry.0 == caps[6]);
             let repl = if repl == -1 { None } else { Some(repl as u32) };
             entry.1.push((repl, addr + offsets.get(&caps[4]).unwrap()));
         }

@@ -40,7 +40,7 @@ impl PROFILE_CFG {
     }
     #[inline(always)]
     pub fn set_cpu_qu(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         self.0 &= !0x7;
         self.0 |= value;
     }
@@ -53,7 +53,7 @@ impl PROFILE_CFG {
     }
     #[inline(always)]
     pub fn set_custom_ace_ena(&mut self, value: u32) {
-        assert!(value <= 0x7);
+        debug_assert!(value <= 0x7);
         let value = value << 15;
         self.0 &= !0x38000;
         self.0 |= value;
@@ -67,7 +67,7 @@ impl PROFILE_CFG {
     }
     #[inline(always)]
     pub fn set_fwd_sel(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 3;
         self.0 &= !0x18;
         self.0 |= value;
@@ -79,7 +79,7 @@ impl PROFILE_CFG {
     }
     #[inline(always)]
     pub fn set_lm_cnt_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 19;
         self.0 &= !0x80000;
         self.0 |= value;
@@ -91,7 +91,7 @@ impl PROFILE_CFG {
     }
     #[inline(always)]
     pub fn set_normalize_dis(&mut self, value: u32) {
-        assert!(value <= 0x1);
+        debug_assert!(value <= 0x1);
         let value = value << 18;
         self.0 &= !0x40000;
         self.0 |= value;
@@ -105,7 +105,7 @@ impl PROFILE_CFG {
     }
     #[inline(always)]
     pub fn set_nxt_key_type(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 5;
         self.0 &= !0x1e0;
         self.0 |= value;
@@ -117,7 +117,7 @@ impl PROFILE_CFG {
     }
     #[inline(always)]
     pub fn set_nxt_norm_w16_offset(&mut self, value: u32) {
-        assert!(value <= 0xf);
+        debug_assert!(value <= 0xf);
         let value = value << 9;
         self.0 &= !0x1e00;
         self.0 |= value;
@@ -131,7 +131,7 @@ impl PROFILE_CFG {
     }
     #[inline(always)]
     pub fn set_nxt_type_after_offset(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         let value = value << 13;
         self.0 &= !0x6000;
         self.0 |= value;

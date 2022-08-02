@@ -38,7 +38,7 @@ impl AN_HIST {
     }
     #[inline(always)]
     pub fn set_an_sm_hist(&mut self, value: u32) {
-        assert!(value <= 0x7fff);
+        debug_assert!(value <= 0x7fff);
         self.0 &= !0x7fff;
         self.0 |= value;
     }

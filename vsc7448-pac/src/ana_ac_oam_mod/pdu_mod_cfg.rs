@@ -39,7 +39,7 @@ impl DM_PTP_DOMAIN_CFG {
     }
     #[inline(always)]
     pub fn set_ptp_domain(&mut self, value: u32) {
-        assert!(value <= 0x3);
+        debug_assert!(value <= 0x3);
         self.0 &= !0x3;
         self.0 |= value;
     }
@@ -73,7 +73,7 @@ impl RD_LAST_PORT_BYTE_CNT_MSB {
     }
     #[inline(always)]
     pub fn set_rd_last_port_byte_cnt_msb(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }

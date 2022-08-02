@@ -38,7 +38,7 @@ impl APC_TMR {
     }
     #[inline(always)]
     pub fn set_apc_tmr(&mut self, value: u32) {
-        assert!(value <= 0xffff);
+        debug_assert!(value <= 0xffff);
         self.0 &= !0xffff;
         self.0 |= value;
     }

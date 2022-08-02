@@ -56,7 +56,7 @@ impl PORT_BYTE_CNT_MSB {
     }
     #[inline(always)]
     pub fn set_port_byte_cnt_msb(&mut self, value: u32) {
-        assert!(value <= 0xff);
+        debug_assert!(value <= 0xff);
         self.0 &= !0xff;
         self.0 |= value;
     }
